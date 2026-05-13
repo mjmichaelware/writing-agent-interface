@@ -1,104 +1,133 @@
 "use client";
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 export default function LandingPage() {
-  const [stage, setStage] = useState(-1);
-  const [chapter, setChapter] = useState({ title: '', blocks: [] as string[] });
-  const [depth, setDepth] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
+  const [chapter, setChapter] = useState({ blocks: [] });
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const onScroll = () => {
-      if (stage < 2) return;
-      setDepth(window.scrollY / window.innerHeight);
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    
+    const fetchChapter = async (retries = 3) => {
+      try {
+        setLoading(true);
+        const res = await fetch('/api/chapters?slug=7');
+        if (!res.ok) throw new Error('Failed to fetch');
+        const data = await res.json();
+        setChapter(data);
+        setError(false);
+      } catch (e) {
+        if (retries > 0) {
+          setTimeout(() => fetchChapter(retries - 1), 2000);
+        } else {
+          setError(true);
+        }
+      } finally {
+        setLoading(false);
+      }
     };
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [stage]);
 
-  useEffect(() => {
-    if (stage === 0) {
-      fetch('/api/chapters?slug=7')
-        .then(res => res.json())
-        .then(data => {
-          if (data.error) setError(true);
-          else setChapter(data);
-        })
-        .catch(() => setError(true));
-    }
-  }, [stage]);
+    fetchChapter();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-  const initiateSequence = () => {
-    setStage(0);
-    setTimeout(() => setStage(1), 1500);
-    setTimeout(() => setStage(2), 3000);
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) element.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <main className="relative bg-black text-slate-200 font-serif">
-      {/* Background */}
+    <main className="relative bg-black min-h-[300vh] text-slate-200 font-serif overflow-x-hidden">
       <div 
-        className="fixed inset-0 z-0 opacity-30 pointer-events-none transition-transform duration-300"
+        className="fixed inset-0 z-0 opacity-40 pointer-events-none"
         style={{
           backgroundImage: 'url("/bg.png")',
           backgroundSize: 'cover',
-          filter: `blur(${Math.min(depth * 5, 10)}px)`,
-          transform: `scale(${1 + depth * 0.05}) translateZ(0)`
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
+          transform: scrolled ? 'scale(1.05)' : 'scale(1)',
+          filter: scrolled ? 'blur(8px)' : 'blur(0px)',
+          transition: 'all 0.7s ease-out'
         }}
-      />
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-zinc-950" />
+      </div>
 
-      {/* Stage -1: Initiate */}
-      {stage === -1 && (
-        <div onClick={initiateSequence} className="fixed inset-0 z-[100] flex items-center justify-center cursor-pointer bg-black">
-          <p className="text-cyan-500 tracking-[0.5em] text-[10px] animate-pulse uppercase">Initiate Witness</p>
-        </div>
-      )}
-
-      {/* Stage 0: Logo fade */}
-      {stage === 0 && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">
-          <h2 className="text-2xl md:text-5xl tracking-[0.4em] uppercase font-light text-slate-400 animate-fade-in">
-            AlliterasBooks <span className="font-bold text-slate-200">LLC</span>
-          </h2>
-        </div>
-      )}
-
-      {/* Scrollable content (Stage 2+) */}
-      <div className={`relative z-10 transition-opacity duration-1000 ${stage < 2 ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-        
-        {/* Title Section */}
-        <section className="h-screen flex flex-col items-center justify-center text-center p-6">
-          <h1 className="text-6xl md:text-8xl font-bold tracking-tighter leading-tight">
+      <section className="relative z-10 h-screen flex flex-col items-center justify-between py-16 px-6">
+        <motion.div 
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          className="text-center"
+        >
+          <h1 className="text-6xl md:text-8xl font-bold tracking-tighter leading-none text-white drop-shadow-2xl">
             THE WEIGHT<br/>OF THE SKY
           </h1>
-          <p className="text-cyan-500 tracking-[0.3em] text-xs uppercase mt-4">Michael Alonza P. Ware</p>
-          <div className="mt-20 text-slate-600 text-sm">↓ Scroll to continue</div>
-        </section>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8 }}
+            className="text-cyan-500 tracking-[0.4em] uppercase text-xs mt-6"
+          >
+            An Archetypal Tale
+          </motion.p>
+        </motion.div>
 
-        {/* Dedication Section */}
-        <section className="min-h-screen flex items-center justify-center p-10 bg-black/60 backdrop-blur border-y border-white/10">
-          <div className="max-w-2xl text-center italic font-serif text-2xl md:text-3xl opacity-80 text-emerald-400/70">
-            "Dedicated to those who survive the storm."
-          </div>
-        </section>
+        <div className="w-full max-w-sm space-y-4">
+          {[
+            { label: 'Dedication', id: 'dedication' },
+            { label: 'The Blurb', id: 'chapter7' },
+            { label: 'Begin Reading', id: 'chapter7' }
+          ].map((item, i) => (
+            <motion.button
+              key={item.label}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1 + (i * 0.2) }}
+              onClick={() => scrollToSection(item.id)}
+              className="w-full py-4 border-y border-white/10 bg-white/5 text-[10px] uppercase tracking-[0.3em] hover:bg-white/10 hover:text-cyan-400 transition-all duration-300 cursor-pointer"
+            >
+              {item.label}
+            </motion.button>
+          ))}
+        </div>
 
-        {/* Chapter 7 Section */}
-        <section className="min-h-screen p-8 md:p-24 bg-zinc-950">
-          <h2 className="text-slate-500 uppercase tracking-widest text-[10px] mb-20">VII. The Pit</h2>
-          <div className="max-w-prose mx-auto space-y-8 text-xl md:text-2xl leading-relaxed">
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.6 }}
+          className="text-[10px] tracking-[0.5em] text-slate-500 uppercase"
+        >
+          Michael Alonza P. Ware
+        </motion.p>
+      </section>
+
+      <section id="dedication" className="relative z-10 h-screen flex items-center justify-center bg-gradient-to-b from-black/80 to-zinc-950/80 border-y border-white/5">
+        <p className="max-w-xl text-center italic text-2xl md:text-3xl text-emerald-400/70 px-6">
+          "Dedicated to those who survive the storm."
+        </p>
+      </section>
+
+      <section id="chapter7" className="relative z-10 p-8 md:p-24 bg-zinc-950 min-h-screen flex items-center">
+        <div className="max-w-prose mx-auto w-full">
+          <h2 className="text-slate-500 uppercase tracking-widest text-[10px] mb-16 italic">VII. The Pit</h2>
+          <div className="space-y-12 text-xl md:text-2xl leading-relaxed opacity-90">
             {error ? (
-              <p className="text-red-900/60">Manuscript retrieval in progress...</p>
-            ) : chapter.blocks.length ? (
-              chapter.blocks.slice(0, 3).map((block, i) => (
-                <p key={i} className="opacity-90">{block}</p>
-              ))
+              <p className="text-red-900/60">Manuscript retrieval encountered an error. Please refresh the page.</p>
+            ) : loading ? (
+              <p className="text-slate-700 animate-pulse">Retrieving manuscript from archive...</p>
+            ) : chapter.blocks && chapter.blocks.length > 0 ? (
+              chapter.blocks.slice(0, 3).map((block, i) => <p key={i} className="text-slate-200">{block}</p>)
             ) : (
-              <p className="opacity-60">Loading text...</p>
+              <p className="text-slate-700">No content available.</p>
             )}
           </div>
-        </section>
-
-      </div>
+        </div>
+      </section>
     </main>
   );
 }

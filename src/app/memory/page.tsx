@@ -1,0 +1,1 @@
+import MemoryPanel from "@/components/ui/memory-panel"; export default function MemoryPage() { return <div className="p-8"><h1 className="text-2xl font-bold text-white mb-4">Memory Stream</h1><MemoryPanel /></div>; }

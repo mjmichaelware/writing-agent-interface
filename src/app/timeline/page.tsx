@@ -1,0 +1,1 @@
+import Timeline from "@/components/ui/timeline"; export default function TimelinePage() { return <div className="p-8"><h1 className="text-2xl font-bold text-white mb-4">9-8-7 Structural Timeline</h1><Timeline /></div>; }

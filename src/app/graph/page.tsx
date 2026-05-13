@@ -1,0 +1,1 @@
+import GraphView from "@/components/ui/graph-view"; export default function GraphPage() { return <div className="p-8 h-screen"><h1 className="text-2xl font-bold text-white mb-4">Narrative Graph</h1><GraphView /></div>; }

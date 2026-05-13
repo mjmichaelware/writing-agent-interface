@@ -3,14 +3,28 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getRuntime } from "@/runtime/runtimeContext";
-import { chapter7 } from "@/data/chapter7";
 import { initAudioListener } from "@/features/audioListener";
 import { initDistortionListener } from "@/features/distortionListener";
 import { initThematicListener } from "@/features/thematicListener";
 
+type Block = {
+  id: string;
+  text: string;
+  tone?: "neutral" | "intense" | "sacred";
+};
+
+type Chapter = {
+  id: number;
+  title: string;
+  blocks: Block[];
+};
+
 export default function Reader() {
   const { bus, engine } = getRuntime();
   const [state, setState] = useState(engine.getState());
+  const [chapter, setChapter] = useState<Chapter | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [blockIndex, setBlockIndex] = useState(0);
 
   useEffect(() => {
     initAudioListener(bus);
@@ -19,36 +33,63 @@ export default function Reader() {
 
     const update = (s: any) => setState({ ...s });
     bus.on("state:change", update);
-    bus.emit("chapter:load", chapter7);
+
+    // Fetch chapter from API
+    fetch(`/api/chapters?slug=${state.chapter}`)
+      .then(res => res.json())
+      .then(data => {
+        setChapter(data);
+        bus.emit("chapter:load", data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Failed to load chapter:", err);
+        setLoading(false);
+      });
 
     return () => {};
-  }, [bus]);
+  }, [bus, state.chapter]);
 
-  const block = chapter7.blocks[state.blockIndex] || {
-    text: "Content unavailable (safe mode fallback).",
+  const block = chapter?.blocks[blockIndex] || {
+    text: "Loading chapter...",
     tone: "neutral",
   };
 
   useEffect(() => {
-    bus.emit("block:render", block);
-  }, [state.blockIndex, bus, block]);
+    if (block.text !== "Loading chapter...") {
+      bus.emit("block:render", block);
+    }
+  }, [blockIndex, bus, block]);
 
   const advance = () => {
-    engine.dispatch({ type: "ADVANCE_BLOCK", payload: 1 });
-    bus.emit("scroll:update", { depth: engine.getState().blockIndex });
+    if (blockIndex < (chapter?.blocks.length || 0) - 1) {
+      setBlockIndex(blockIndex + 1);
+      bus.emit("scroll:update", { depth: blockIndex + 1 });
+    }
   };
 
   const retreat = () => {
-    engine.dispatch({ type: "ADVANCE_BLOCK", payload: -1 });
-    bus.emit("scroll:update", { depth: engine.getState().blockIndex });
+    if (blockIndex > 0) {
+      setBlockIndex(blockIndex - 1);
+      bus.emit("scroll:update", { depth: blockIndex - 1 });
+    }
   };
+
+  if (loading) {
+    return (
+      <main className="min-h-screen bg-black text-white flex items-center justify-center">
+        <p className="text-gray-400">Loading chapter...</p>
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen bg-black text-white p-6 md:p-10">
       <div className="max-w-2xl mx-auto space-y-8">
+
         <div className="flex items-center justify-between">
           <div className="text-xs text-gray-500 uppercase tracking-widest">
-            Chapter {state.chapter} • Block {state.blockIndex + 1} / {chapter7.blocks.length} • Mode {state.mode}
+            Chapter {state.chapter} • Block {blockIndex + 1} / {chapter?.blocks.length || 0}
           </div>
           <Link href="/" className="text-xs text-cyan-400 uppercase hover:text-cyan-300">
             ← Back
@@ -56,7 +97,7 @@ export default function Reader() {
         </div>
 
         <h2 className="text-xs uppercase tracking-[0.3em] text-slate-500 font-light">
-          {chapter7.title}
+          {chapter?.title || "Chapter"}
         </h2>
 
         <div className="py-12 border-l border-slate-700/50 pl-6">
@@ -67,16 +108,24 @@ export default function Reader() {
         </div>
 
         <div className="flex gap-4 justify-center">
-          <button onClick={retreat} disabled={state.blockIndex === 0} className="border border-white/20 px-4 py-2 text-xs uppercase tracking-widest disabled:opacity-30 hover:border-white/50 transition-colors">
+          <button
+            onClick={retreat}
+            disabled={blockIndex === 0}
+            className="border border-white/20 px-4 py-2 text-xs uppercase tracking-widest disabled:opacity-30 hover:border-white/50 transition-colors"
+          >
             ← Previous
           </button>
-          <button onClick={advance} disabled={state.blockIndex === chapter7.blocks.length - 1} className="border border-white/20 px-4 py-2 text-xs uppercase tracking-widest disabled:opacity-30 hover:border-white/50 transition-colors">
+          <button
+            onClick={advance}
+            disabled={blockIndex === (chapter?.blocks.length || 0) - 1}
+            className="border border-white/20 px-4 py-2 text-xs uppercase tracking-widest disabled:opacity-30 hover:border-white/50 transition-colors"
+          >
             Next →
           </button>
         </div>
 
         <div className="text-xs text-gray-600 text-center pt-8">
-          Cinematic Layer v1 (check console for event log)
+          Dynamic chapter parser • Device-responsive blocks
         </div>
       </div>
     </main>

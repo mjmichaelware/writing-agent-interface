@@ -1,48 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const slug = searchParams.get('slug') || '7';
-  
+
   try {
-    const directoryPath = path.join(process.cwd(), 'src/data-layer/ingestion-buffer/gdrive_raw');
-    const files = fs.readdirSync(directoryPath);
+    const res = await fetch(`/data/chapters/${slug}.txt`, { cache: 'no-store' });
+    if (!res.ok) throw new Error('Not found');
     
-    const targetFile = files.find(f => 
-      f.toLowerCase().includes(`chapter`) && 
-      f.toLowerCase().includes(`${slug}`) && 
-      f.endsWith('.txt')
-    );
-
-    if (!targetFile) {
-      return NextResponse.json({ error: 'Chapter not found' }, { status: 404 });
-    }
-
-    const rawContent = fs.readFileSync(path.join(directoryPath, targetFile), 'utf-8');
-    const words = rawContent.split(/\s+/).filter(w => w.length > 0);
-    
-    const blockSize = 200;
+    const rawText = await res.text();
+    const words = rawText.split(/\s+/).filter(w => w.length > 0);
     const blocks = [];
-    
-    for (let i = 0; i < words.length; i += blockSize) {
-      const blockText = words.slice(i, i + blockSize).join(' ');
-      const tone = blockText.includes('fall') || blockText.includes('darkness') ? 'intense' : 'neutral';
-      
-      blocks.push({
-        id: `${slug}-${blocks.length}`,
-        text: blockText,
-        tone: tone
-      });
+    for (let i = 0; i < words.length; i += 200) {
+      blocks.push(words.slice(i, i + 200).join(' '));
     }
 
     return NextResponse.json({
-      id: parseInt(slug),
-      title: targetFile.replace('.txt', ''),
-      blocks: blocks
+      title: `Chapter ${slug}`,
+      blocks: blocks,
+      totalBlocks: blocks.length
     });
-  } catch (error) {
-    return NextResponse.json({ error: 'Failed to load chapter' }, { status: 500 });
+  } catch (e) {
+    return NextResponse.json({ error: 'Retrieval failed', fallback: true }, { status: 404 });
   }
 }

@@ -1,117 +1,144 @@
 "use client";
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
-import { BookOpen, Feather, Info } from 'lucide-react';
 import { Howl } from 'howler';
 
 export default function LandingPage() {
   const [stage, setStage] = useState(-1);
+  const timers = useRef<number[]>([]);
+  const soundRef = useRef<Howl | null>(null);
 
-  const initiateSequence = useCallback(() => {
-    // 1. Immediate UI Feedback (Fixes INP)
-    setStage(0);
+  // Preload and manage audio lifecycle
+  useEffect(() => {
+    soundRef.current = new Howl({
+      src: ['https://actions.google.com/sounds/v1/science_fiction/deep_space_drone.ogg'],
+      volume: 0.6,
+      html5: true,
+      preload: true,
+    });
 
-    // 2. Defer heavy audio/logic to the next tick
-    setTimeout(() => {
-      const sound = new Howl({
-        src: ['https://actions.google.com/sounds/v1/science_fiction/deep_space_drone.ogg'],
-        volume: 0.6,
-        html5: true,
-      });
-      sound.play();
-
-      // 3. Start the cascade
-      setTimeout(() => setStage(1), 1500);
-      setTimeout(() => setStage(2), 3500);
-    }, 10);
+    return () => {
+      soundRef.current?.unload();
+    };
   }, []);
 
-  const titleText = "THE WEIGHT OF THE SKY";
+  // Play audio when stage hits 1
+  useEffect(() => {
+    if (stage === 1) {
+      const audioTimer = setTimeout(() => {
+        soundRef.current?.play();
+      }, 50);
+      timers.current.push(audioTimer);
+    }
+  }, [stage]);
+
+  // Click initiates the sequence - guard against double-triggering
+  const initiateSequence = useCallback(() => {
+    if (stage !== -1) return;
+
+    setStage(0);
+
+    timers.current.push(
+      window.setTimeout(() => setStage(1), 1500)
+    );
+
+    timers.current.push(
+      window.setTimeout(() => setStage(2), 3500)
+    );
+  }, [stage]);
+
+  // Cleanup all timers on unmount
+  useEffect(() => {
+    return () => {
+      timers.current.forEach(clearTimeout);
+      timers.current = [];
+    };
+  }, []);
 
   return (
-    <div className="relative min-h-[100dvh] bg-black overflow-hidden flex flex-col items-center justify-center text-slate-200">
+    <main className="relative min-h-screen w-screen bg-black overflow-hidden flex flex-col items-center justify-center text-slate-200 touch-manipulation">
       
-      {/* Optimized Background Layer */}
-      {stage >= 1 && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.5 }}
-          className="absolute inset-0 z-0 will-change-transform"
-          style={{
-            backgroundImage: 'url("/bg.png")',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
-        </motion.div>
-      )}
+      {/* Background Layer */}
+      <div
+        className={`fixed inset-0 z-0 transition-opacity duration-600 motion-reduce:transition-none ${
+          stage >= 1 ? 'opacity-50' : 'opacity-0 pointer-events-none'
+        }`}
+        style={{
+          backgroundImage: 'url("/bg.png")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
+      </div>
 
-      {/* STAGE -1: INITIALIZER (Optimized for Touch) */}
-      <AnimatePresence>
-        {stage === -1 && (
-          <motion.div 
-            exit={{ opacity: 0, scale: 1.05 }}
-            transition={{ duration: 0.4 }}
-            className="absolute inset-0 z-[100] flex items-center justify-center bg-black cursor-pointer touch-none"
-            onClick={initiateSequence}
-          >
-            <p className="text-cyan-500 tracking-[0.5em] uppercase text-[10px] animate-pulse">
-              Touch to Initiate
-            </p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* STAGE -1: INITIALIZER */}
+      <div
+        className={`fixed inset-0 z-[100] flex items-center justify-center bg-black cursor-pointer touch-manipulation transition-opacity duration-400 motion-reduce:transition-none ${
+          stage === -1 ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+        onClick={initiateSequence}
+      >
+        <p className="text-cyan-500 tracking-[0.5em] uppercase text-[10px] animate-pulse motion-reduce:animate-none">
+          Touch to Initiate
+        </p>
+      </div>
 
       {/* STAGE 0: CENTERED LOGO */}
-      <AnimatePresence>
-        {stage === 0 && (
-          <motion.div 
-            initial={{ opacity: 0 }} 
-            animate={{ opacity: 1 }} 
-            exit={{ opacity: 0 }}
-            className="absolute inset-0 z-50 flex items-center justify-center bg-black"
-          >
-            <h2 className="text-2xl md:text-5xl tracking-[0.4em] uppercase font-light text-slate-400">
-              AlliterasBooks <span className="font-bold text-slate-200">LLC</span>
-            </h2>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <div
+        className={`fixed inset-0 z-50 flex items-center justify-center bg-black transition-opacity duration-600 motion-reduce:transition-none ${
+          stage === 0 ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <h2 className="text-2xl md:text-5xl tracking-[0.4em] uppercase font-light text-slate-400">
+          AlliterasBooks <span className="font-bold text-slate-200">LLC</span>
+        </h2>
+      </div>
 
       {/* STAGE 2: MAIN UI */}
-      {stage === 2 && (
-        <div className="relative z-10 w-full h-screen flex flex-col items-center justify-between py-16 px-6">
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-center">
-            <h1 className="font-serif text-[11vw] md:text-8xl font-bold text-white tracking-tighter leading-none">
-              THE WEIGHT<br/>OF THE SKY
-            </h1>
-            <h2 className="mt-4 text-cyan-500 tracking-[0.3em] uppercase text-[10px] sm:text-xs">
-              An Archetypal Tale
-            </h2>
-          </motion.div>
-
-          <div className="w-full max-w-sm space-y-4">
-            <Link href="/title" className="block w-full py-5 border-y border-white/10 bg-white/5 backdrop-blur-md text-center group">
-              <span className="tracking-[0.3em] uppercase text-[11px] group-hover:text-cyan-400 transition-colors">Title Page</span>
-            </Link>
-            <Link href="/dedication" className="block w-full py-5 border-y border-white/10 bg-white/5 backdrop-blur-md text-center group">
-              <span className="tracking-[0.3em] uppercase text-[11px] group-hover:text-emerald-400 transition-colors">Dedication</span>
-            </Link>
-            <Link href="/blurb" className="block w-full py-5 border-y border-white/10 bg-white/5 backdrop-blur-md text-center group">
-              <span className="tracking-[0.3em] uppercase text-[11px] group-hover:text-purple-400 transition-colors">The Blurb</span>
-            </Link>
-          </div>
-
-          <div className="text-center">
-            <p className="text-[9px] tracking-[0.4em] text-slate-500 uppercase">
-              By Michael Alonza P. Ware
-            </p>
-          </div>
+      <div
+        className={`fixed inset-0 z-10 w-full flex flex-col items-center justify-between py-8 px-6 transition-opacity duration-600 motion-reduce:transition-none ${
+          stage === 2 ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        {/* Title with GPU promotion */}
+        <div
+          className={`text-center pt-12 transform-gpu transition-opacity transition-transform duration-700 motion-reduce:transition-none motion-reduce:transform-none ${
+            stage === 2
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-2'
+          }`}
+          style={{ contain: 'layout paint' }}
+        >
+          <h1 className="font-serif text-[11vw] md:text-8xl font-bold text-white tracking-tighter leading-none">
+            THE WEIGHT<br/>OF THE SKY
+          </h1>
+          <h2 className="mt-4 text-cyan-500 tracking-[0.3em] uppercase text-[10px] sm:text-xs">
+            An Archetypal Tale
+          </h2>
         </div>
-      )}
-    </div>
+
+        {/* Navigation */}
+        <div className="w-full max-w-sm space-y-4">
+          <Link href="/title" className="block w-full py-5 border-y border-white/10 bg-black/40 text-center group hover:bg-white/10 transition-colors touch-manipulation">
+            <span className="tracking-[0.3em] uppercase text-[11px] group-hover:text-cyan-400 transition-colors">Title Page</span>
+          </Link>
+          <Link href="/dedication" className="block w-full py-5 border-y border-white/10 bg-black/40 text-center group hover:bg-white/10 transition-colors touch-manipulation">
+            <span className="tracking-[0.3em] uppercase text-[11px] group-hover:text-emerald-400 transition-colors">Dedication</span>
+          </Link>
+          <Link href="/blurb" className="block w-full py-5 border-y border-white/10 bg-black/40 text-center group hover:bg-white/10 transition-colors touch-manipulation">
+            <span className="tracking-[0.3em] uppercase text-[11px] group-hover:text-purple-400 transition-colors">The Blurb</span>
+          </Link>
+        </div>
+
+        {/* Author */}
+        <div className="text-center pb-8">
+          <p className="text-[9px] tracking-[0.4em] text-slate-500 uppercase">
+            By Michael Alonza P. Ware
+          </p>
+        </div>
+      </div>
+    </main>
   );
 }

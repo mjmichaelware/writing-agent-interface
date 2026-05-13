@@ -1,123 +1,162 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { BookOpen, Feather, Info } from 'lucide-react';
+import { Howl } from 'howler';
 
 export default function LandingPage() {
-  const [stage, setStage] = useState(0); 
+  const [stage, setStage] = useState(-1); // -1: Touch to Initiate, 0: Logo, 1: BG, 2: UI
 
-  useEffect(() => {
-    // Stage 0: Logo (0 to 2s)
-    // Stage 1: Cinematic Pan begins (2s)
-    const t1 = setTimeout(() => setStage(1), 2000);
-    // Stage 2: Text & UI sequence begins (5.5s)
-    const t2 = setTimeout(() => setStage(2), 5500);
-    return () => { clearTimeout(t1); clearTimeout(t2); };
-  }, []);
+  // --- AUDIO ENGINE ---
+  const initiateSequence = () => {
+    // Play cinematic drone
+    const sound = new Howl({
+      src: ['https://actions.google.com/sounds/v1/science_fiction/deep_space_drone.ogg'],
+      volume: 0.5,
+      loop: true,
+      fade: 2000,
+    });
+    sound.play();
+
+    // Trigger the sequence cascade
+    setStage(0);
+    setTimeout(() => setStage(1), 2000); // BG starts at 2s
+    setTimeout(() => setStage(2), 4000); // UI starts at 4s
+  };
+
+  // --- TYPOGRAPHY ENGINE (Splits text for letter-by-letter animation) ---
+  const titleText = "THE WEIGHT OF THE SKY";
+  const titleVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1, delayChildren: 0.5 }
+    }
+  };
+  const letterVariants = {
+    hidden: { opacity: 0, y: 50, filter: "blur(10px)", scale: 1.5 },
+    visible: { opacity: 1, y: 0, filter: "blur(0px)", scale: 1, transition: { type: "spring", damping: 12, stiffness: 100 } }
+  };
 
   return (
-    <div className="relative min-h-screen bg-black overflow-hidden flex flex-col items-center justify-center font-sans text-slate-200">
+    <div className="relative min-h-[100dvh] bg-black overflow-hidden flex flex-col items-center font-sans text-slate-200">
       
-      {/* THE ANIMATION ENGINE (Pure CSS, Zero Bloat) */}
-      <style dangerouslySetInnerHTML={{__html: `
-        @keyframes pan {
-          0% { transform: scale(1.05) translate(0, 0); }
-          100% { transform: scale(1.15) translate(-2%, -1%); }
-        }
-        @keyframes dust {
-          0% { background-position: 0% 0%; opacity: 0.15; }
-          50% { opacity: 0.25; }
-          100% { background-position: 100% 100%; opacity: 0.15; }
-        }
-        @keyframes dropIn {
-          0% { transform: translateY(-40px); opacity: 0; filter: blur(10px); }
-          100% { transform: translateY(0); opacity: 1; filter: blur(0px); }
-        }
-        @keyframes fadeInUp {
-          0% { transform: translateY(20px); opacity: 0; }
-          100% { transform: translateY(0); opacity: 1; }
-        }
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        .font-ancient {
-          font-family: 'Times New Roman', Times, serif;
-          letter-spacing: 0.15em;
-        }
-      `}} />
+      {/* STAGE -1: The Airlock (Touch to Initiate) */}
+      <AnimatePresence>
+        {stage === -1 && (
+          <motion.div 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            exit={{ opacity: 0, scale: 1.2, filter: "blur(10px)" }}
+            transition={{ duration: 1 }}
+            className="absolute inset-0 z-[100] flex items-center justify-center bg-black cursor-pointer"
+            onClick={initiateSequence}
+          >
+            <motion.p 
+              animate={{ opacity: [0.3, 1, 0.3] }} 
+              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+              className="text-cyan-500 tracking-[0.5em] text-sm md:text-base font-light uppercase drop-shadow-[0_0_15px_rgba(8,145,178,0.8)]"
+            >
+              Touch to Initiate
+            </motion.p>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {/* STAGE 0: AlliterasBooks Logo (0.0s to 2.0s) */}
-      <div className={`absolute inset-0 z-50 flex flex-col items-center justify-center bg-black transition-opacity duration-1000 ${stage === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-        <h2 className="text-3xl md:text-5xl tracking-[0.4em] text-gray-500 uppercase font-light grayscale">
-          AlliterasBooks <span className="font-bold text-gray-300">LLC</span>
-        </h2>
-        <div className="w-px h-12 bg-gradient-to-b from-gray-500 to-transparent mt-8 animate-pulse"></div>
-      </div>
+      {/* STAGE 0: AlliterasBooks Logo */}
+      <AnimatePresence>
+        {stage === 0 && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-black"
+          >
+            <h2 className="text-3xl md:text-5xl tracking-[0.4em] uppercase font-light text-slate-400">
+              AlliterasBooks <span className="font-bold text-slate-200">LLC</span>
+            </h2>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {/* STAGE 1 & 2: Atmospheric Background (Starts at 2.0s) */}
+      {/* STAGE 1 & 2: Physics-Driven Background */}
       {stage >= 1 && (
-        <>
-          {/* Main Image Layer (Ken Burns Pan) */}
-          <div 
-            className={`absolute inset-0 z-0 transition-opacity duration-2000 ${stage >= 1 ? 'opacity-40 animate-[pan_20s_ease-out_forwards]' : 'opacity-0'}`}
-            style={{
-              backgroundImage: 'url("/bg.png")',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
-          />
-          
-          {/* Blowing Dust Overlay */}
-          <div 
-            className="absolute inset-0 z-0 animate-[dust_30s_linear_infinite]"
-            style={{
-              backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E")',
-              mixBlendMode: 'overlay',
-            }}
-          />
-          
-          {/* Vignette (Darkens the edges so text pops) */}
-          <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.8)_100%)]" />
-        </>
+        <motion.div
+          initial={{ opacity: 0, scale: 1 }}
+          animate={{ opacity: 0.6, scale: 1.15 }}
+          transition={{ duration: 20, ease: "easeOut" }}
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: 'url("/bg.png")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          {/* Hardware Accelerated Vignette */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/20 to-black/90" />
+        </motion.div>
       )}
 
-      {/* STAGE 2: Title & UI (Starts at 5.5s) */}
+      {/* STAGE 2: Interactive Framer Motion UI */}
       {stage === 2 && (
-        <div className="relative z-10 flex flex-col items-center text-center w-full max-w-5xl px-6">
+        <div className="relative z-10 flex flex-col items-center w-full min-h-[100dvh] pt-[15vh] pb-8 px-6">
           
-          {/* Main Title (5.5s) */}
-          <h1 className="font-ancient text-6xl md:text-8xl lg:text-9xl font-bold text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.3)] animate-[dropIn_1.5s_ease-out_forwards]">
-            THE WEIGHT<br/>OF THE SKY
-          </h1>
-          
-          {/* Subtitle (7.0s) */}
-          <h2 className="mt-8 text-xl md:text-3xl text-cyan-500/80 font-light tracking-[0.3em] uppercase opacity-0 animate-[fadeInUp_1s_ease-out_1.5s_forwards]">
-            An Archetypal Tale
-          </h2>
-
-          {/* Author Name (8.0s) */}
-          <h3 className="mt-12 text-lg md:text-2xl text-slate-400 tracking-widest opacity-0 animate-[fadeInUp_1s_ease-out_2.5s_forwards]">
-            By <span className="text-slate-200 font-semibold tracking-widest">Michael Alonza P. Ware</span>
-          </h3>
-
-          {/* Interactive Navigation (9.0s) */}
-          <div className="mt-20 flex flex-col sm:flex-row gap-6 opacity-0 animate-[fadeIn_1.5s_ease-out_3.5s_forwards]">
-            <button className="flex items-center justify-center gap-3 px-8 py-4 w-64 bg-black/40 hover:bg-cyan-900/40 border border-slate-800 hover:border-cyan-500/50 text-slate-300 hover:text-white rounded transition-all backdrop-blur-md group">
-              <BookOpen size={18} className="text-cyan-600 group-hover:text-cyan-400 transition-colors" />
-              <span className="tracking-[0.2em] uppercase text-xs font-semibold">Title Page</span>
-            </button>
+          {/* Animated Typography Title */}
+          <motion.div variants={titleVariants} initial="hidden" animate="visible" className="flex flex-col items-center text-center w-full">
+            <h1 className="font-serif text-[12vw] md:text-8xl font-bold text-white drop-shadow-[0_0_25px_rgba(255,255,255,0.4)] leading-none flex flex-wrap justify-center max-w-5xl">
+              {titleText.split("").map((char, index) => (
+                <motion.span key={index} variants={letterVariants} className={char === " " ? "w-4 md:w-8" : ""}>
+                  {char}
+                </motion.span>
+              ))}
+            </h1>
             
-            <button className="flex items-center justify-center gap-3 px-8 py-4 w-64 bg-black/40 hover:bg-emerald-900/40 border border-slate-800 hover:border-emerald-500/50 text-slate-300 hover:text-white rounded transition-all backdrop-blur-md group">
-              <Feather size={18} className="text-emerald-600 group-hover:text-emerald-400 transition-colors" />
-              <span className="tracking-[0.2em] uppercase text-xs font-semibold">Dedication</span>
-            </button>
-            
-            <button className="flex items-center justify-center gap-3 px-8 py-4 w-64 bg-black/40 hover:bg-purple-900/40 border border-slate-800 hover:border-purple-500/50 text-slate-300 hover:text-white rounded transition-all backdrop-blur-md group">
-              <Info size={18} className="text-purple-600 group-hover:text-purple-400 transition-colors" />
-              <span className="tracking-[0.2em] uppercase text-xs font-semibold">The Blurb</span>
-            </button>
-          </div>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 2.5, duration: 1 }}
+              className="mt-6 text-xl md:text-3xl text-cyan-500 font-light tracking-[0.4em] uppercase"
+            >
+              An Archetypal Tale
+            </motion.h2>
+          </motion.div>
+
+          {/* Staggered Navigation Buttons */}
+          <motion.div 
+            initial="hidden" animate="visible" 
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.2, delayChildren: 3.5 } }
+            }}
+            className="flex-1 w-full flex flex-col justify-center items-center gap-6 mt-12 max-w-lg"
+          >
+            {[
+              { href: "/title", icon: BookOpen, text: "Title Page", color: "cyan" },
+              { href: "/dedication", icon: Feather, text: "Dedication", color: "emerald" },
+              { href: "/blurb", icon: Info, text: "The Blurb", color: "purple" }
+            ].map((btn, i) => (
+              <motion.a 
+                key={i} href={btn.href}
+                variants={{ hidden: { opacity: 0, x: -50 }, visible: { opacity: 1, x: 0, transition: { type: "spring" } } }}
+                whileHover={{ scale: 1.02, backgroundColor: "rgba(15,23,42,0.8)" }}
+                whileTap={{ scale: 0.98 }}
+                className={`w-full py-6 bg-black/40 border-y border-slate-800 text-slate-300 transition-all backdrop-blur-md flex flex-col items-center justify-center`}
+              >
+                <btn.icon size={24} className={`text-${btn.color}-500 mb-2`} />
+                <span className="tracking-[0.3em] uppercase text-sm sm:text-lg font-light">{btn.text}</span>
+              </motion.a>
+            ))}
+          </motion.div>
+
+          {/* Author Byline */}
+          <motion.div 
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 4.5, duration: 2 }}
+            className="mt-auto pt-8"
+          >
+            <h3 className="text-xs md:text-sm text-slate-500 tracking-[0.3em] uppercase font-light text-center">
+              By <br className="sm:hidden" /><span className="text-slate-300 font-normal sm:ml-2">Michael Alonza P. Ware</span>
+            </h3>
+          </motion.div>
 
         </div>
       )}

@@ -1,0 +1,3 @@
+progressive narrative runtime system with optional cinematic enhancements
+
+I made a Persistent Native Multi-Intelligent/Modal Narrative Operating System utilizing 200+ folders & files (5+MB) obtained through 1 year's worth of deciding, writing, editing and "thinking" about "The Weight of the Sky" - an Archetypal Tale. On my phone. For free.

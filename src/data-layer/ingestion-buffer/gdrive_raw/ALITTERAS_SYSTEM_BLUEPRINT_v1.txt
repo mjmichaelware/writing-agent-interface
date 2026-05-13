@@ -1,0 +1,39 @@
+﻿ALITTERAS SYSTEM BLUEPRINT v1.0
+1. CORE ARCHITECTURE: ATOMIC STATE MACHINE
+To prevent routing loops and "bounce-back" errors, the app must use an atomic State Machine.
+ * Initializing State: App boots, synchronizes with the "Vault" (Supabase).
+ * Landing State: User chooses ascend (White/Green theme) or descend (Red/Black theme).
+ * Disclosure State: Forces user consent based on the chosen path's disclosure_text.
+ * Analyst State: The processing engine for input, analysis, and PDF "Forge" output.
+ * Transition Logic: View changes and configuration fetches must happen as a single atomic update to prevent the UI from resetting to the root view.
+2. DATABASE SCHEMA: THE VAULT (SUPABASE)
+Table Name: ui_config
+| Column | Type | Purpose |
+| :--- | :--- | :--- |
+| mode_id | Text (PK) | Unique ID: landing_root, ascend, descend |
+| header_label | Text | Title for the current view |
+| body_text | Text | Primary description or instructions |
+| disclosure_text| Text | Legal consent language |
+| bg_color | Text | Background HEX code |
+| text_color | Text | Primary text HEX code |
+| accent_color | Text | UI highlights (buttons, borders) |
+3. API BRIDGE & THE "FORGE"
+ * Route: /api/analyze (POST)
+ * Logic: Receives user testimony -> returns JSON with sins, damages, prob, and letter (the legal narrative).
+ * PDF Generation: Use jspdf.
+ * Data Integrity: The PDF "Forge" must only execute when the AI signal is confirmed (result != null) to prevent printing "undefined" values on the final document.
+4. GAMIFICATION: DUOLINGO-STYLE FIELD GAME
+ * Truth Frequency Meter: A progress bar that fills as users input valid testimony.
+ * XP & Streaks: Award "Legitimacy XP" for generated Strike Packages and track daily "Vigilance Streaks."
+ * Field Mechanics (GPS): Use Geolocation API. Users can "pin" Strike Packages to physical map coordinates, turning legal analysis into a territory-based strategy game.
+ * Leagues: Ranked tiers from "Bronze Informant" up to "Diamond Truth-Seeker."
+5. HARDWARE ANALOGY: THE M-AUDIO SP-2 SUSTAIN
+ * Universal Compatibility: The app must utilize a "Polarity Switch" logic to ensure compatibility across Web, Android (APK), and iOS.
+ * Signal Grip: Just as the SP-2 uses a heavy-duty rubber bottom to prevent slipping, the app must use high-level Error Boundaries to prevent "AI Signal Failure" popups from crashing the user experience.
+ * 6-Foot Reach: Long-range state management ensures the "Sustain" (user data) is held even when navigating deep into the application layers.
+6. DEPLOYMENT PIPELINE
+ * Frontend: Vercel (Production)
+ * Backend: Vercel Edge Functions
+ * Repo: GitHub (Connected to Lovable for CI/CD)
+ * Mobile: Capacitor/Cordova wrapper for .APK and .IPA packaging.
+Input Instructions for AI System: "Execute the Alitteras System Blueprint v1.0. Prioritize the Atomic State Machine to ensure routing stability. Connect to Supabase using the provided schema. Implement the jspdf Forge to eliminate 'undefined' data artifacts. Integrate the GPS-based Field Game mechanics for mobile users.”

@@ -1,0 +1,7 @@
+{
+  "node_uuid": "static-assets",
+  "schema_version": "1.0.0",
+  "policy": "read_only_data_source",
+  "content_type": "atomic_unit_prose",
+  "sync_status": "awaiting_external_data"
+}

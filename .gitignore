@@ -1,0 +1,12 @@
+# Nerve Center (Internal Build Machinery)
+system/
+.env.local
+
+# Build Manifests (AI Protocols)
+system/07_Build_Manifests/
+
+# Software Junk
+node_modules/
+.next/
+out/
+build/

@@ -1,12 +1,14 @@
-import React, { createContext, useContext, useState, useMemo, useEffect, useRef } from 'react';
+"use client";
+import React, { createContext, useContext, useState, useMemo, useCallback, useRef, useEffect } from 'react';
 
-const StateCtx = createContext(undefined);
-const DispatchCtx = createContext(undefined);
+const StateCtx = createContext<{ isOpen: boolean; activeWord: string | null; activeLower: string | null } | undefined>(undefined);
+const DispatchCtx = createContext<{ toggle: (trigger?: HTMLElement) => void; select: (word: string) => void; isOpenRef: React.MutableRefObject<boolean>; triggerRef: React.MutableRefObject<HTMLElement | null> } | undefined>(undefined);
 
-export const SidebarProvider = ({ children }) => {
+export const SidebarProvider = ({ children }: { children: React.ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeWord, setActiveWord] = useState(null);
+  const [activeWord, setActiveWord] = useState<string | null>(null);
   const isOpenRef = useRef(isOpen);
+  const triggerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => { isOpenRef.current = isOpen; }, [isOpen]);
 
@@ -14,26 +16,26 @@ export const SidebarProvider = ({ children }) => {
     activeWord ? activeWord.normalize('NFC').toLocaleLowerCase() : null, 
   [activeWord]);
 
-  const toggle = () => setIsOpen(prev => !prev);
-  const select = (word) => { setActiveWord(word); setIsOpen(true); };
+  const toggle = useCallback((trigger?: HTMLElement) => {
+    setIsOpen(prev => {
+      if (!prev && trigger) triggerRef.current = trigger;
+      return !prev;
+    });
+  }, []);
+
+  const select = useCallback((word: string) => {
+    setActiveWord(word);
+    setIsOpen(true);
+  }, []);
 
   return (
     <StateCtx.Provider value={{ isOpen, activeWord, activeLower }}>
-      <DispatchCtx.Provider value={{ toggle, select, isOpenRef }}>
+      <DispatchCtx.Provider value={{ toggle, select, isOpenRef, triggerRef }}>
         {children}
       </DispatchCtx.Provider>
     </StateCtx.Provider>
   );
 };
 
-export const useSidebarState = () => {
-  const context = useContext(StateCtx);
-  if (!context) throw new Error('useSidebarState must be used within SidebarProvider');
-  return context;
-};
-
-export const useSidebarDispatch = () => {
-  const context = useContext(DispatchCtx);
-  if (!context) throw new Error('useSidebarDispatch must be used within SidebarProvider');
-  return context;
-};
+export const useSidebarState = () => { const c = useContext(StateCtx); if (!c) throw new Error('Err'); return c; };
+export const useSidebarDispatch = () => { const c = useContext(DispatchCtx); if (!c) throw new Error('Err'); return c; };

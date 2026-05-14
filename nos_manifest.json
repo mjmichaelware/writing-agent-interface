@@ -596,6 +596,11 @@
       "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/8.0_Pacing\uff0fRedundancy.txt"
     },
     {
+      "id": "8._0_This_",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/8._0_This_is_the_final,_most_crucial_step:_ensuring_the_narrative's_structure_is_so_perfectly_weighted_that_the_profound_sadness\u2014the_weeping_of_self-recognition\u2014is_not_a_chance_event,_but_an_earned,_inevitable_catharsis_for_the_reader.txt"
+    },
+    {
       "id": "9.0_Aesthe",
       "aim": "[PENDING SEMANTIC ANALYSIS]",
       "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/9.0_Aesthetic.txt"
@@ -709,6 +714,11 @@
       "id": "Chapter_1",
       "aim": "[PENDING SEMANTIC ANALYSIS]",
       "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Integration_Prompt.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "Dans age (16), the duration (7 years), Dagons Philistine origin, and the political setting (Hebron/King David). |",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Merge_Prompt.txt"
     },
     {
       "id": "Chapter_1",

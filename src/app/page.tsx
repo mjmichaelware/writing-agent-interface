@@ -2,21 +2,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-export default function LandingPage() {
+export default function WritingAgentInterface() {
   const [paragraphs, setParagraphs] = useState([]);
   const [loading, setLoading] = useState(true);
   const containerRef = useRef(null);
   const chapter7Ref = useRef(null);
   
+  // SCROLL TRACKING
+  const { scrollYProgress: pageScroll } = useScroll({ target: containerRef });
   const { scrollYProgress: chapterScroll } = useScroll({ 
     target: chapter7Ref,
     offset: ["start end", "end start"]
   });
 
-  const galaxyColor = useTransform(chapterScroll,
-    [0, 0.2, 0.4, 0.6, 0.8, 1],
-    ["#0a0a1a", "#1a1a2e", "#2a1a3a", "#3a1010", "#000000", "#0a0a1a"]
-  );
+  // LAYER 0: THE MOON BACKDROP FADE
+  const moonOpacity = useTransform(pageScroll, [0, 0.15, 0.3], [1, 0.5, 0]);
 
   useEffect(() => {
     fetch('/data/chapters/7.txt')
@@ -32,53 +32,83 @@ export default function LandingPage() {
 
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
-  return (
-    <div ref={containerRef} className="relative bg-black font-serif text-slate-200 selection:bg-emerald-500/30">
-      
-      {/* LAYER 0: GALAXY */}
-      <motion.div style={{ backgroundColor: galaxyColor }} className="fixed inset-0 z-0" />
+  // THE SYSTEM: Dynamic Text Styling
+  const getDynamicStyle = (index) => {
+    const progress = index / Math.max(1, paragraphs.length - 1);
+    if (progress < 0.2) return 'text-slate-200';
+    if (progress < 0.4) return 'text-emerald-400/90';
+    if (progress < 0.6) return 'text-amber-500/80';
+    if (progress < 0.8) return 'text-red-700'; // The color of old blood
+    return 'text-zinc-500';
+  };
 
-      {/* LAYER 10: THE MOON BOY (THE NUCLEAR OPTION: ACTUAL IMG TAG) */}
-      <img 
-        src="/bg.png?v=2" 
-        alt="The Weight of the Sky"
-        className="fixed inset-0 w-full h-full object-contain z-10 pointer-events-none opacity-100"
+  return (
+    <div ref={containerRef} className="relative bg-black min-h-screen selection:bg-emerald-500/30">
+      
+      {/* LAYER 0: THE BACKDROP (Always Moon, No Galaxy Fallback) */}
+      <motion.img 
+        src="/bg.png?v=5" 
+        style={{ opacity: moonOpacity }}
+        className="fixed inset-0 w-full h-full object-contain z-0 pointer-events-none"
       />
 
-      {/* LAYER 20: THE CONTENT */}
-      <div className="relative z-20">
+      {/* FRONT LAYER: THE TEXT (The System) */}
+      <div className="relative z-10" style={{ fontFamily: 'var(--font-hebrew), serif' }}>
         
+        {/* TITLE SECTION */}
         <section className="min-h-screen flex flex-col items-center justify-center text-center p-6">
-          <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-white drop-shadow-[0_0_35px_rgba(0,0,0,0.9)]">
-            THE WEIGHT<br/>OF THE SKY
-          </h1>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 2 }}>
+            <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-white drop-shadow-[0_0_20px_rgba(0,0,0,1)] leading-none">
+              THE WEIGHT<br/>OF THE SKY
+            </h1>
+            <p className="text-cyan-500 tracking-[0.5em] uppercase text-[10px] mt-6">An Archetypal Tale</p>
+          </motion.div>
           
-          <div className="w-full max-w-xs space-y-3 mt-20 font-sans">
-            <button onClick={() => scrollTo('dedication')} className="w-full py-4 border border-white/20 bg-black/60 text-[10px] uppercase tracking-[0.4em] backdrop-blur-md">Dedication</button>
-            <button onClick={() => scrollTo('blurb')} className="w-full py-4 border border-white/20 bg-black/60 text-[10px] uppercase tracking-[0.4em] backdrop-blur-md">The Blurb</button>
-            <button onClick={() => scrollTo('chapter7')} className="w-full py-4 border border-white/40 bg-white/10 text-[10px] uppercase tracking-[0.4em] backdrop-blur-md">Begin Reading</button>
+          <div className="w-full max-w-xs space-y-4 mt-24 font-sans">
+            <button onClick={() => scrollTo('dedication')} className="w-full py-4 border border-white/10 bg-black/40 text-[9px] uppercase tracking-[0.5em] backdrop-blur-md">Dedication</button>
+            <button onClick={() => scrollTo('blurb')} className="w-full py-4 border border-white/10 bg-black/40 text-[9px] uppercase tracking-[0.5em] backdrop-blur-md">The Blurb</button>
+            <button onClick={() => scrollTo('chapter7')} className="w-full py-4 border border-white/30 bg-white/5 text-[9px] uppercase tracking-[0.6em] backdrop-blur-md">Begin Reading</button>
+          </div>
+          <p className="text-[10px] tracking-[0.5em] text-slate-500 uppercase mt-20">Michael Alonza P. Ware</p>
+        </section>
+
+        {/* DEDICATION SECTION */}
+        <section id="dedication" className="min-h-screen flex flex-col items-center justify-center bg-black/60 border-y border-white/5">
+          <h2 className="text-[9px] uppercase tracking-[0.6em] text-slate-500 mb-8 font-sans">Dedication</h2>
+          <p className="max-w-xl text-center italic text-4xl text-emerald-400/80 px-8">"For James Lee Ware."</p>
+        </section>
+
+        {/* BLURB SECTION (Full Restore) */}
+        <section id="blurb" className="min-h-screen flex flex-col items-center justify-center p-8 md:p-24 bg-zinc-950/90">
+          <h2 className="text-[9px] uppercase tracking-[0.6em] text-slate-500 mb-16 font-sans">The Blurb</h2>
+          <div className="max-w-2xl text-center space-y-8 text-lg md:text-xl leading-relaxed">
+            <p>In 1003 BCE Hebron, a young boy named Dan possesses a rare gift: he can walk the dreamscape with full consciousness, moving between the layers of divine truth.</p>
+            <p>A journey from the lowlands of pride to the heights of love. A father left behind. A sister born from the depths of hell itself. And the ultimate question: Is clarity worth the cost of silence?</p>
+            <p className="italic text-emerald-400/70">The Weight of the Sky is an archetypal tale set at the threshold where gods still walk the earth, and every step upward demands a sacrifice the heart never wants to give.</p>
           </div>
         </section>
 
-        <section id="dedication" className="min-h-screen flex flex-col items-center justify-center bg-black/80">
-          <p className="max-w-xl text-center italic text-3xl text-emerald-400/90 px-8">"For James Lee Ware."</p>
-        </section>
-
-        <section id="blurb" className="min-h-screen flex flex-col items-center justify-center p-8 bg-zinc-950/90">
-          <div className="max-w-2xl text-center space-y-8 text-xl leading-relaxed">
-            <p>A journey from the lowlands of pride to the heights of love.</p>
-            <p className="italic text-emerald-400/70">"Is clarity worth the cost of silence?"</p>
-          </div>
-        </section>
-
-        <article ref={chapter7Ref} id="chapter7" className="max-w-2xl mx-auto py-40 px-6 bg-black/95">
-          <h2 className="text-center text-zinc-600 uppercase tracking-[0.8em] text-[10px] mb-40 italic">VII. The Pit</h2>
-          <div className="space-y-12">
-            {!loading && paragraphs.map((para, i) => (
-              <p key={i} className="text-2xl leading-relaxed text-slate-300" style={{ textIndent: "4rem", textAlign: "justify" }}>
-                {para}
-              </p>
-            ))}
+        {/* THE MANUSCRIPT (With Distortion System) */}
+        <article ref={chapter7Ref} id="chapter7" className="max-w-2xl mx-auto py-60 px-6 bg-black/95">
+          <h2 className="text-center text-zinc-700 uppercase tracking-[1em] text-[10px] mb-60 italic font-sans">VII. The Pit</h2>
+          <div className="space-y-20">
+            {loading ? (
+              <p className="text-center text-zinc-800 animate-pulse">Retrieving...</p>
+            ) : (
+              paragraphs.map((para, i) => (
+                <motion.p
+                  key={i}
+                  initial={{ opacity: 0, y: 50, filter: "blur(15px)", skewX: -6 }}
+                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", skewX: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 1.4, ease: "easeOut" }}
+                  className={`${getDynamicStyle(i)} text-2xl md:text-3xl leading-[1.9]`}
+                  style={{ textIndent: "4rem", textAlign: "justify" }}
+                >
+                  {para}
+                </motion.p>
+              ))
+            )}
           </div>
         </article>
       </div>

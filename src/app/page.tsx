@@ -46,13 +46,11 @@ export default function LandingPage() {
 
   return (
     <div ref={containerRef} className="relative font-serif text-slate-200">
-      {/* LAYER 0: THE GALAXY (Base Background) */}
       <motion.div 
         style={{ backgroundColor: galaxyColor }}
         className="fixed inset-0 z-0"
       />
 
-      {/* LAYER 10: THE MOON (Middle Fixed Layer) */}
       <motion.div
         className="fixed inset-0 z-10 bg-center bg-no-repeat pointer-events-none"
         style={{
@@ -64,7 +62,6 @@ export default function LandingPage() {
         }}
       />
 
-      {/* LAYER 20: THE PROSE (Front-most Content Layer) */}
       <section className="relative z-20 min-h-screen flex flex-col items-center justify-center text-center p-6">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
           <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-white drop-shadow-2xl leading-none">

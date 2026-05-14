@@ -46,13 +46,15 @@ export default function LandingPage() {
 
   return (
     <div ref={containerRef} className="relative font-serif text-slate-200">
+      {/* LAYER 0: THE GALAXY (Base Background) */}
       <motion.div 
         style={{ backgroundColor: galaxyColor }}
-        className="fixed inset-0 z-[-2]"
+        className="fixed inset-0 z-0"
       />
 
+      {/* LAYER 10: THE MOON (Middle Fixed Layer) */}
       <motion.div
-        className="fixed inset-0 z-[-1] bg-center bg-no-repeat pointer-events-none"
+        className="fixed inset-0 z-10 bg-center bg-no-repeat pointer-events-none"
         style={{
           backgroundImage: 'url("/bg.png")',
           backgroundSize: 'contain',
@@ -62,7 +64,8 @@ export default function LandingPage() {
         }}
       />
 
-      <section className="relative z-10 min-h-screen flex flex-col items-center justify-center text-center p-6">
+      {/* LAYER 20: THE PROSE (Front-most Content Layer) */}
+      <section className="relative z-20 min-h-screen flex flex-col items-center justify-center text-center p-6">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
           <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-white drop-shadow-2xl leading-none">
             THE WEIGHT<br/>OF THE SKY
@@ -79,12 +82,12 @@ export default function LandingPage() {
         <p className="text-[10px] tracking-[0.5em] text-slate-500 uppercase mt-20">Michael Alonza P. Ware</p>
       </section>
 
-      <section id="dedication" className="relative z-10 min-h-screen flex flex-col items-center justify-center bg-black/40">
+      <section id="dedication" className="relative z-20 min-h-screen flex flex-col items-center justify-center bg-black/40">
         <h2 className="text-[9px] uppercase tracking-[0.6em] text-slate-500 mb-8">Dedication</h2>
         <p className="max-w-xl text-center italic text-3xl text-emerald-400/80 px-8">"For James Lee Ware."</p>
       </section>
 
-      <section id="blurb" className="relative z-10 min-h-screen flex flex-col items-center justify-center p-8 md:p-24 bg-zinc-950/70">
+      <section id="blurb" className="relative z-20 min-h-screen flex flex-col items-center justify-center p-8 md:p-24 bg-zinc-950/70">
         <h2 className="text-[9px] uppercase tracking-[0.6em] text-slate-500 mb-16">The Blurb</h2>
         <div className="max-w-2xl text-center space-y-6 text-lg md:text-xl leading-relaxed">
           <p>In 1003 BCE Hebron, a young boy named Dan possesses a rare gift: he can walk the dreamscape with full consciousness, moving between the layers of divine truth. His father, Aviel, is drowning in grief and hoarded stone.</p>
@@ -93,7 +96,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <article ref={chapter7Ref} id="chapter7" className="relative z-10 max-w-2xl mx-auto py-40 px-6">
+      <article ref={chapter7Ref} id="chapter7" className="relative z-20 max-w-2xl mx-auto py-40 px-6">
         <h2 className="text-center text-zinc-600 uppercase tracking-[0.8em] text-[10px] mb-40 italic">VII. The Pit</h2>
         <div className="space-y-10">
           {loading ? (

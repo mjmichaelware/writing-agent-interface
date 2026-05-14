@@ -1,0 +1,6 @@
+# 3. Move the file to your phone's Downloads folder
+cp nos_logic_dump.txt ~/storage/downloads/
+
+# 4. Force a "Phone Refresh" (Media Scanner) 
+# This ensures the file appears in your upload picker immediately.
+am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file:///sdcard/Download/nos_logic_dump.txt

@@ -6,7 +6,7 @@ for file in src/data-layer/ingestion-buffer/gdrive_raw/*.txt; do
     [ -e "$file" ] || continue
     
     # Identify the Node (Chapter/Version)
-    ID=$(basename "$file" | grep -oP 'Chapter_\d+|v\d+' || basename "$file" | cut -c1-10)
+    ID=$(basename "$file" | grep -oP 'Chapter_\d+|v\d+' || basename "$file" | cut -c1-30)
     
     # Extract the 'Dominant' line (Aim/Theme/Context)
     AIM_RAW=$(grep -Ei "THEME:|AIM:|CONTEXT:" "$file" | head -n 1)

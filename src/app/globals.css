@@ -1,12 +1,21 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --font-hebrew: "Frank Ruhl Libre", serif;
+  --color-amber-200: #fde68a;
+  --color-amber-500: #f59e0b;
+  --color-amber-900: #78350f;
+}
+
+:root {
+  --background: #000000;
+  --foreground: #f4f4f5;
+}
 
 body {
-  background-color: #000000;
-  color: #ffffff;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-hebrew);
 }
+
 

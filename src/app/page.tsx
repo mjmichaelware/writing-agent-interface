@@ -14,22 +14,30 @@ export default function LandingPage() {
     offset: ["start end", "end start"]
   });
 
-  // GALAXY: Shift colors behind the moon
+  // FIX 1: THE GALAXY (Middle Layer z-10)
+  // Starts transparent to show the moon, then fades into the narrative colors
   const galaxyColor = useTransform(chapterScroll,
-    [0, 0.2, 0.4, 0.55, 0.75, 0.9, 1],
-    ["#0a0a1a", "#1a1a2e", "#2a1a3a", "#3a1010", "#110d0d", "#000000", "#0a0a1a"]
+    [0, 0.05, 0.2, 0.4, 0.55, 0.75, 0.9, 1],
+    [
+      "rgba(10,10,26,0)",   // Pure transparency for the moon
+      "rgba(10,10,26,0.3)", // Soft bleed-in
+      "#1a1a2e",            // Deep Navy
+      "#2d2d4a",            // Purple Haze
+      "#4a3a6a",            // The Shift
+      "#7a3a3a",            // Blood/Amber
+      "#000000",            // The Void
+      "#1a1a2a"             // Final Ascent
+    ]
   );
 
-  // MOON: Stays in the middle stacking layer
-  const moonOpacity = useTransform(pageScroll, [0, 0.1, 0.25], [0.8, 0.5, 0]);
-  const moonScale = useTransform(pageScroll, [0, 0.3], [1, 1.15]);
+  const moonOpacity = useTransform(pageScroll, [0, 0.1, 0.25], [1, 0.6, 0]);
+  const moonScale = useTransform(pageScroll, [0, 0.3], [1, 1.1]);
 
   useEffect(() => {
     fetch('/data/chapters/7.txt')
       .then(res => res.text())
       .then(text => {
         const cleaned = text.replace(/\*\*/g, '').replace(/\*/g, '');
-        // STRUCTURAL FIX: Splitting by actual paragraph breaks
         const blocks = cleaned.split(/\n\s*\n/).filter(p => p.trim().length > 0);
         setParagraphs(blocks);
         setLoading(false);
@@ -50,20 +58,25 @@ export default function LandingPage() {
   return (
     <div ref={containerRef} className="relative font-serif text-slate-200">
       
-      {/* BACKGROUND LAYERS */}
-      <motion.div style={{ backgroundColor: galaxyColor }} className="fixed inset-0 z-0" />
+      {/* LAYER 0: THE MOON (The Absolute Backdrop) */}
       <motion.div
-        className="fixed inset-0 z-10 bg-center bg-no-repeat pointer-events-none"
+        className="fixed inset-0 z-0 bg-center bg-no-repeat pointer-events-none"
         style={{
           backgroundImage: 'url("/bg.png")',
-          backgroundSize: 'contain',
+          backgroundSize: 'cover',
           opacity: moonOpacity,
           scale: moonScale,
-          filter: "brightness(0.8) contrast(1.1)"
+          filter: "brightness(0.9) contrast(1.1)"
         }}
       />
 
-      {/* CONTENT LAYERS (z-20 sits on top) */}
+      {/* LAYER 10: THE GALAXY (The Color Filter Overlay) */}
+      <motion.div 
+        style={{ backgroundColor: galaxyColor }}
+        className="fixed inset-0 z-10 pointer-events-none"
+      />
+
+      {/* LAYER 20: THE CONTENT (Manuscript & Nav) */}
       <section className="relative z-20 min-h-screen flex flex-col items-center justify-center text-center p-6">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
           <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-white drop-shadow-2xl leading-none">
@@ -72,22 +85,23 @@ export default function LandingPage() {
           <p className="text-cyan-500 tracking-[0.4em] uppercase text-[10px] mt-4">An Archetypal Tale</p>
         </motion.div>
 
-        <div className="w-full max-w-xs space-y-3 mt-20">
-          <button onClick={() => scrollTo('dedication')} className="w-full py-4 border border-white/10 bg-white/5 text-[10px] uppercase tracking-[0.4em] hover:border-emerald-500 transition-all">Dedication</button>
-          <button onClick={() => scrollTo('blurb')} className="w-full py-4 border border-white/10 bg-white/5 text-[10px] uppercase tracking-[0.4em] hover:border-purple-500 transition-all">The Blurb</button>
-          <button onClick={() => scrollTo('chapter7')} className="w-full py-4 border border-white/10 bg-white/5 text-[10px] uppercase tracking-[0.4em] hover:bg-white/10 transition-all">Begin Reading</button>
+        <div className="w-full max-w-xs space-y-3 mt-20 font-sans">
+          <button onClick={() => scrollTo('dedication')} className="w-full py-4 border border-white/10 bg-white/5 text-[10px] uppercase tracking-[0.4em] hover:border-emerald-500 transition-all backdrop-blur-sm">Dedication</button>
+          <button onClick={() => scrollTo('blurb')} className="w-full py-4 border border-white/10 bg-white/5 text-[10px] uppercase tracking-[0.4em] hover:border-purple-500 transition-all backdrop-blur-sm">The Blurb</button>
+          <button onClick={() => scrollTo('chapter7')} className="w-full py-4 border border-white/10 bg-white/5 text-[10px] uppercase tracking-[0.4em] hover:bg-white/10 transition-all backdrop-blur-sm">Begin Reading</button>
         </div>
+
         <p className="text-[10px] tracking-[0.5em] text-slate-500 uppercase mt-20">Michael Alonza P. Ware</p>
       </section>
 
-      <section id="dedication" className="relative z-20 min-h-screen flex flex-col items-center justify-center bg-black/40">
-        <h2 className="text-[9px] uppercase tracking-[0.6em] text-slate-500 mb-8">Dedication</h2>
+      <section id="dedication" className="relative z-20 min-h-screen flex flex-col items-center justify-center bg-black/60 border-y border-white/5">
+        <h2 className="text-[9px] uppercase tracking-[0.6em] text-slate-500 mb-8 font-sans">Dedication</h2>
         <p className="max-w-xl text-center italic text-3xl text-emerald-400/80 px-8">"For James Lee Ware."</p>
       </section>
 
-      <section id="blurb" className="relative z-20 min-h-screen flex flex-col items-center justify-center p-8 md:p-24 bg-zinc-950/70">
-        <h2 className="text-[9px] uppercase tracking-[0.6em] text-slate-500 mb-16">The Blurb</h2>
-        <div className="max-w-2xl text-center space-y-6 text-lg md:text-xl leading-relaxed">
+      <section id="blurb" className="relative z-20 min-h-screen flex flex-col items-center justify-center p-8 md:p-24 bg-zinc-950/80">
+        <h2 className="text-[9px] uppercase tracking-[0.6em] text-slate-500 mb-16 font-sans">The Blurb</h2>
+        <div className="max-w-2xl text-center space-y-8 text-lg md:text-xl leading-relaxed">
           <p>In 1003 BCE Hebron, a young boy named Dan possesses a rare gift: he can walk the dreamscape with full consciousness, moving between the layers of divine truth.</p>
           <p>A journey from the lowlands of pride to the heights of love. A father left behind. A sister born from the depths of hell itself.</p>
           <p className="italic text-emerald-400/70 text-lg">"Is clarity worth the cost of silence?"</p>
@@ -110,7 +124,11 @@ export default function LandingPage() {
                   viewport={{ once: true, amount: 0.15 }}
                   transition={{ duration: 0.9, ease: "easeOut" }}
                   className={`${getTextColor(progress)} text-xl md:text-2xl`}
-                  style={{ textIndent: "3.5rem", textAlign: "justify", lineHeight: "1.8" }}
+                  style={{
+                    textIndent: "3.5rem",
+                    textAlign: "justify",
+                    lineHeight: "1.8"
+                  }}
                 >
                   {para}
                 </motion.p>

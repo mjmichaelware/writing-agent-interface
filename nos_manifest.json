@@ -1,0 +1,899 @@
+{
+  "nodes": [
+    {
+      "id": "Chapter_8",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)Chapter_8:_Sea_People.txt"
+    },
+    {
+      "id": "(A)_Chapte",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter:_1_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1:_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_2-_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_2:_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_3-_Lift_Up.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_3_-_Lift_Up.txt"
+    },
+    {
+      "id": "Chapter_5",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_5_-_The_Snare.txt"
+    },
+    {
+      "id": "Chapter_6",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_6:_Beelzebub,_Beelzebub.txt"
+    },
+    {
+      "id": "Chapter_8",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)Chapter_8:_Sea_People.txt"
+    },
+    {
+      "id": "(B)_Chapte",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter:_1_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1:_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_2-_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "a tribal ascent from a king\u2019s stronghold to the outskirts of his dominion; a rise from the dust of the south to the final, indifferent peak of Mount Hermon, the marker where the true promise dies in the ice. You choose the ascent, my boy? Then understand this:",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_2:_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_3-_Lift_Up.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_3:_Lift_Up.txt"
+    },
+    {
+      "id": "Chapter_5",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_5-_The_Snare.txt"
+    },
+    {
+      "id": "Chapter_6",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_6_-_Beelzebub,_Beelzebub.txt"
+    },
+    {
+      "id": "Chapter_7",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_7:_The_Pit.txt"
+    },
+    {
+      "id": "Chapter_9",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_9:_The_Ascent.txt"
+    },
+    {
+      "id": "(B)_Stardu",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_8",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)Chapter_8:_Sea_People.txt"
+    },
+    {
+      "id": "(C)_Chapte",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_1_-_Stardust_to_Stardust_.txt"
+    },
+    {
+      "id": "(C)_Chapte",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_7_-_The_Pit.txt"
+    },
+    {
+      "id": "(C)_Chapte",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_1-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_2-_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_3-_Lift_Up.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_3_-_Lift_Up.txt"
+    },
+    {
+      "id": "Chapter_4",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_4-_Pilgrimage.txt"
+    },
+    {
+      "id": "Chapter_4",
+      "aim": "the fear of pure verticality, the terror of standing up without a terrestrial tether, the unbearable loneliness of a soul untethered from the earth. And for young dan, the night had been a long, whispering journey indeed; though light danced in his vision from distant stars, they were the cold a-tonal frequencies of the unmanifest, promising no solace, only the frigid fire of separation and the immutable truth of his solitude.",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_4_-_Pilgrimage.txt"
+    },
+    {
+      "id": "Chapter_6",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_6-_Beelzebub,_Beelzebub.txt"
+    },
+    {
+      "id": "(D)_Chapte",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter:_7_-_The_Pit.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter_2-_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter_2_-_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_1-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_2-_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_2_-_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_3-_Lift_Up.txt"
+    },
+    {
+      "id": "(F)_Chapte",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter:_1_Stardust_to_Stardust_.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_1:_Stardust_to_Stardust_.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_2-_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_3-_Lift_Up.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_1:_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_2-_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_3-_Lift_Up.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_3:_Lift_Up.txt"
+    },
+    {
+      "id": "Chapter_5",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_5_-_The_Snare.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(G)_Chapter_1:_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(G)_Chapter_2-_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(G)_Chapter_3-_Lift_Up.txt"
+    },
+    {
+      "id": "(G)_Final_",
+      "aim": "breath as technical necessity rather than living act. She was awake in her living awareness and a sealed jar in her flesh, a prisoner in a house of clay that had forgotten how to open its own doors.",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(G)_Final_)_Chapter:_10_-_Forsaken.txt"
+    },
+    {
+      "id": "(I)_(Notes",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(I)_(Notes)_Chapter:_1_Stardust_to_Stardust_.txt"
+    },
+    {
+      "id": "(I)_Chapte",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(I)_Chapter:_1_Stardust_to_Stardust_.txt"
+    },
+    {
+      "id": "(N)_CHAPTE",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(N)_CHAPTER_1-_STARDUST_TO_STARDUST.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(N)_Chapter_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "(Notes)_(P",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_(P)_Chapter:_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_Chapter_2-_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_Chapter_2:_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(O)_Chapter_1-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "(P)_Chapte",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(P)_Chapter:_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_10",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Prompt_Guide_(E))_Chapter_10:_Forsaken.txt"
+    },
+    {
+      "id": "(R) Chapte",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(R) Chapter: 1 - Stardust to Stardust .txt"
+    },
+    {
+      "id": "(R)_Chapte",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(R)_Chapter:_1_-_Stardust_to_Stardust_.txt"
+    },
+    {
+      "id": "Chapter_10",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Revision_Prompt_(D))_Chapter_10:_Forsaken.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Revision_Prompt_(N)__Chapter_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Revisions)_Chapter_1:_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "v2",
+      "aim": "3. Check pacing context:",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(SDP)_v2.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1:_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1_-_Stardust_to_Stardust.docx.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1__Stardust_to_Stardust_(1).txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1__Stardust_to_Stardust_(2).txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Z)_Chapter_1:_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_1:_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_2-_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_3:_Lift_Up.txt"
+    },
+    {
+      "id": "Chapter_4",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_4:_Pilgrimage.txt"
+    },
+    {
+      "id": "Chapter_7",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_7:_The_Pit.txt"
+    },
+    {
+      "id": "Chapter_8",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_8:_Sea_People.txt"
+    },
+    {
+      "id": "Chapter_9",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_9:_The_Ascent.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/-Final_Chapter_1_Revision_Prompt-.txt"
+    },
+    {
+      "id": "1.0_Revisi",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/1.0_Revision.txt"
+    },
+    {
+      "id": "10.0_Bluep",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/10.0_Blueprint_for_The_Ascent_of_Daniel:_The_Archetype_of_Sacrifice_(NYT_Bestseller_Focus).txt"
+    },
+    {
+      "id": "10.0_MASTE",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/10.0_MASTER_SYSTEM_FOR_CHAPTER_REVISION.txt"
+    },
+    {
+      "id": "10.0_Mass_",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/10.0_Mass_Market.txt"
+    },
+    {
+      "id": "11.0_Error",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/11.0_Error_Catalog.txt"
+    },
+    {
+      "id": "11.0_Final",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/11.0_Final_Revision.txt"
+    },
+    {
+      "id": "11.0_Marke",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/11.0_Marketability_.txt"
+    },
+    {
+      "id": "12.0_Perfe",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/12.0_Perfection.txt"
+    },
+    {
+      "id": "13.0_Claud",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/13.0_Claude.txt"
+    },
+    {
+      "id": "13.0_GENER",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/13.0_GENERAL_PRINCIPLES.txt"
+    },
+    {
+      "id": "2.0_Critiq",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/2.0_Critique_\uff0f_Analysis_Guide.txt"
+    },
+    {
+      "id": "2.0_This_i",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/2.0_This_is_the_critical_adjustment\u2014the_final_layer_that_elevates_philosophical_storytelling_into_timeless,_devastating_human_tragedy.txt"
+    },
+    {
+      "id": "3.0_Final_",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/3.0_Final_.txt"
+    },
+    {
+      "id": "3.0_Litera",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/3.0_Literary_&_Archetypal_Fusion_Rulebook_(The_Cat_God_&_The_Primal_Self).txt"
+    },
+    {
+      "id": "3.0_Scient",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/3.0_Scientific_Guide.txt"
+    },
+    {
+      "id": "4.0_(12_Ru",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/4.0_(12_Rules_For_Life).txt"
+    },
+    {
+      "id": "4.0_Emotio",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/4.0_Emotional_&_Archetypal_Editing_Rulebook_(Visceral_Empathy_Focus).txt"
+    },
+    {
+      "id": "4.0_Psycho",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/4.0_Psychology_Guide.txt"
+    },
+    {
+      "id": "4.0_REVISE",
+      "aim": "3. Check pacing context:",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/4.0_REVISED.txt"
+    },
+    {
+      "id": "5.0_Final_",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/5.0_Final_Guide.txt"
+    },
+    {
+      "id": "5.0_Psycho",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/5.0_Psychology_Guide.txt"
+    },
+    {
+      "id": "6.0_Core_E",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt"
+    },
+    {
+      "id": "6.0_HIGHES",
+      "aim": "Repeating the same thematic keywords (gravimetric claim, downward pull, Snare) so often that they lose their impact.",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/6.0_HIGHEST_PRIORITY_(Read_this_first_and_then_again_last)_.txt"
+    },
+    {
+      "id": "6.0_SYNTHE",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/6.0_SYNTHESIS_MANDATE.txt"
+    },
+    {
+      "id": "6.0_Suprem",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/6.0_Supreme_Generative_Constraint.txt"
+    },
+    {
+      "id": "7.0_Chapte",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/7.0_Chapter_Refinery.txt"
+    },
+    {
+      "id": "7.0_Nuclea",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/7.0_Nuclear_Edit!!!!_(CRITICAL!_DIRE!_EMERGENCY!!!).txt"
+    },
+    {
+      "id": "8.0_Pacing",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/8.0_Pacing\uff0fRedundancy.txt"
+    },
+    {
+      "id": "9.0_Aesthe",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/9.0_Aesthetic.txt"
+    },
+    {
+      "id": "9.0_Stones",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/9.0_Stones.txt"
+    },
+    {
+      "id": "v1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/ALITTERAS_SYSTEM_BLUEPRINT_v1.txt"
+    },
+    {
+      "id": "Chapter 3 ",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter 3 - Commerciality and Marketing 3.0.txt"
+    },
+    {
+      "id": "Chapter2_W",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter2_Weight_of_the_Sky.txt"
+    },
+    {
+      "id": "Chapter:_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_10_-_MASTER_BRIEFING.txt"
+    },
+    {
+      "id": "Chapter:_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter:_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_1_Proof_of_Authorship_1.0.txt"
+    },
+    {
+      "id": "Chapter:_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_1_Proof_of_Authorship_1.1.txt"
+    },
+    {
+      "id": "Chapter:_8",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_8_(Final).txt"
+    },
+    {
+      "id": "Chapter_10",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10.1.txt"
+    },
+    {
+      "id": "Chapter_10",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10.5.txt"
+    },
+    {
+      "id": "Chapter_10",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10:_Forsaken.txt"
+    },
+    {
+      "id": "Chapter_10",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10_Forsaken_FINAL_DEFINITIVE.txt"
+    },
+    {
+      "id": "Chapter_10",
+      "aim": "one cold deposit compounding on another, until the structure is suddenly, completely, irrevocably there.",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10_Version_F.txt"
+    },
+    {
+      "id": "Chapter_11",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_11.8.txt"
+    },
+    {
+      "id": "Chapter_11",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_11._Forsaken.txt"
+    },
+    {
+      "id": "Chapter_13",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_13:_Exodus.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1:_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Integration.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[Core concept]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Integration_2.0.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Integration_Prompt.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Version_O.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2:_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2_-_Analysis_&_Guides_1.0.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2_-_Commerciality_and_Marketing_3.0.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2_-_Master_Revision_Prompt_2.0.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2nd_to_last.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3:_Lift_Up.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3_-_Master_Revision_Prompt_2.0.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3_Analysis_&_Guides.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3_Integration_Prompt.txt"
+    },
+    {
+      "id": "Chapter_4",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_4:_Pilgrimage.txt"
+    },
+    {
+      "id": "Chapter_5",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_5:_The_Snare.txt"
+    },
+    {
+      "id": "Chapter_6",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_6:_Beelzebub,_Beelzebub.txt"
+    },
+    {
+      "id": "Chapter_8",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_8.1.txt"
+    },
+    {
+      "id": "Chapter_8",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_8:_Sea_People.txt"
+    },
+    {
+      "id": "Chapter_9",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_9:_The_Ascent.txt"
+    },
+    {
+      "id": "Could_you_",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Could_you_condense_that_chapter_by_500_to_1,000_w....txt"
+    },
+    {
+      "id": "Critique_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Critique_2.2.txt"
+    },
+    {
+      "id": "Final Revi",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Final Revision (Generalized For All Chapters).txt"
+    },
+    {
+      "id": "Go_ahead_a",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Go_ahead_and_write_out_the_chapter_keep_in_mind_t....txt"
+    },
+    {
+      "id": "MANUSCRIPT",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/MANUSCRIPT_AUTOPSY.txt"
+    },
+    {
+      "id": "Narnia_.tx",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Narnia_.txt"
+    },
+    {
+      "id": "Purple_Pro",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Purple_Prose_Prompt.txt"
+    },
+    {
+      "id": "THE_WEIGHT",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/THE_WEIGHT_OF_THE_SKY-_MASTER_COMPENDIUM_(SINGULARITY_v.txt"
+    },
+    {
+      "id": "The_-Versi",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/The_-Version_X-_Meta-Prompt.txt"
+    },
+    {
+      "id": "The_Weight",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/The_Weight_of_the_Sky:_The_Fall_into_Megiddo.txt"
+    },
+    {
+      "id": "The_scrape",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/The_scrape.txt"
+    },
+    {
+      "id": "v2",
+      "aim": "White/Gold/Green.",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/ToALITTERAS_ECOSYSTEM_v2.txt"
+    },
+    {
+      "id": "Untitled_d",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Untitled_document.txt"
+    },
+    {
+      "id": "Version_A.",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Version_A.txt"
+    },
+    {
+      "id": "Version_B.",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Version_B.txt"
+    },
+    {
+      "id": "WOS_Ch7_Th",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/WOS_Ch7_The_Pit.txt"
+    },
+    {
+      "id": "Whole_Book",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Whole_Book.txt"
+    },
+    {
+      "id": "chapter_11",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/chapter_11.2.txt"
+    },
+    {
+      "id": "\u2022(G)_Chapt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/\u2022(G)_Chapter:_1_Stardust_to_Stardust_.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/\u2022(G)_Chapter_2-_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/\ufeffChapter_1-_Stardust_to_Stardust.txt"
+    }
+  ]
+}

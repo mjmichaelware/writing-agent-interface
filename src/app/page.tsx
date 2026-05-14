@@ -3,34 +3,32 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function LandingPage() {
-  const [chapter, setChapter] = useState({ blocks: [] });
+  const [paragraphs, setParagraphs] = useState([]);
   const [loading, setLoading] = useState(true);
   const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({ target: containerRef });
+  const chapter7Ref = useRef(null);
+  
+  const { scrollYProgress: pageScroll } = useScroll({ target: containerRef });
+  const { scrollYProgress: chapterScroll } = useScroll({ 
+    target: chapter7Ref,
+    offset: ["start end", "end start"]
+  });
 
-  const bgColor = useTransform(scrollYProgress, 
-    [0, 0.25, 0.5, 0.65, 0.8, 0.95, 1], 
+  const bgColor = useTransform(chapterScroll,
+    [0, 0.2, 0.4, 0.55, 0.75, 0.9, 1],
     ["#1a1a2e", "#2d2d4a", "#4a3a6a", "#7a3a3a", "#110d0d", "#000000", "#1a1a2a"]
   );
-  
-  const blurAmount = useTransform(scrollYProgress, [0, 0.65, 0.95, 1], [0, 5, 20, 0]);
-  const textSkew = useTransform(scrollYProgress, [0.5, 0.65, 0.95, 1], [0, 1, -3, 0]);
+
+  const moonOpacity = useTransform(pageScroll, [0, 0.1, 0.2], [0.5, 0.3, 0]);
+  const moonScale = useTransform(pageScroll, [0, 0.2], [1, 1.1]);
 
   useEffect(() => {
     fetch('/data/chapters/7.txt')
       .then(res => res.text())
       .then(text => {
-        const words = text.split(/\s+/).filter(w => w.length > 0);
-        const lineHeightPixels = 32; 
-        const availableHeight = window.innerHeight * 0.75; 
-        const linesPerScreen = Math.floor(availableHeight / lineHeightPixels);
-        const wordsPerLine = window.innerWidth < 768 ? 6 : 10;
-        const nativeBlockSize = Math.max(80, linesPerScreen * wordsPerLine);
-        const blocks = [];
-        for (let i = 0; i < words.length; i += nativeBlockSize) {
-          blocks.push(words.slice(i, i + nativeBlockSize).join(' '));
-        }
-        setChapter({ blocks });
+        const cleaned = text.replace(/\*\*/g, '').replace(/\*/g, '');
+        const blocks = cleaned.split(/\n\s*\n/).filter(p => p.trim().length > 0);
+        setParagraphs(blocks);
         setLoading(false);
       })
       .catch(() => setLoading(false));
@@ -39,28 +37,30 @@ export default function LandingPage() {
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
   const getTextColor = (progress) => {
-    if (progress < 0.25) return 'text-slate-200';
-    if (progress < 0.50) return 'text-emerald-300';
-    if (progress < 0.65) return 'text-amber-500';
-    if (progress < 0.90) return 'text-red-700';
+    if (progress < 0.2) return 'text-slate-200';
+    if (progress < 0.45) return 'text-emerald-300';
+    if (progress < 0.6) return 'text-amber-500';
+    if (progress < 0.85) return 'text-red-700';
     return 'text-zinc-500';
   };
 
   return (
-    <motion.main 
+    <motion.main
       ref={containerRef}
       style={{ backgroundColor: bgColor }}
-      className="relative min-h-[400vh] text-slate-200 overflow-x-hidden font-serif"
+      className="relative text-slate-200 overflow-x-hidden font-serif"
     >
-      <motion.div 
-        className="fixed inset-0 z-0 opacity-30 bg-cover bg-center"
+      <motion.div
+        className="fixed inset-0 z-0 bg-cover bg-center pointer-events-none"
         style={{
-          backgroundImage: 'url("/bg.png")',
-          filter: useTransform(blurAmount, v => `blur(${v}px)`)
+          backgroundImage: 'url(/bg.png)',
+          opacity: moonOpacity,
+          scale: moonScale,
+          filter: "brightness(0.7)"
         }}
       />
 
-      <section className="relative z-10 h-screen flex flex-col items-center justify-center text-center p-6">
+      <section className="relative z-10 min-h-screen flex flex-col items-center justify-center text-center p-6">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
           <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-white drop-shadow-2xl leading-none">
             THE WEIGHT<br/>OF THE SKY
@@ -77,7 +77,7 @@ export default function LandingPage() {
         <p className="text-[10px] tracking-[0.5em] text-slate-500 uppercase mt-20">Michael Alonza P. Ware</p>
       </section>
 
-      <section id="dedication" className="relative z-10 h-screen flex flex-col items-center justify-center bg-black/60 border-y border-white/5">
+      <section id="dedication" className="relative z-10 min-h-screen flex flex-col items-center justify-center bg-black/60 border-y border-white/5">
         <h2 className="text-[9px] uppercase tracking-[0.6em] text-slate-500 mb-8">Dedication</h2>
         <p className="max-w-xl text-center italic text-3xl text-emerald-400/80 px-8">"For James Lee Ware."</p>
       </section>
@@ -91,30 +91,34 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section id="chapter7" className="relative z-10 p-8 md:p-32 bg-black/90">
-        <h2 className="text-slate-500 uppercase tracking-widest text-[9px] mb-20 italic">VII. The Pit</h2>
-        <div className="max-w-prose mx-auto space-y-24">
+      <article ref={chapter7Ref} id="chapter7" className="relative z-10 max-w-2xl mx-auto py-40 px-6">
+        <h2 className="text-center text-zinc-600 uppercase tracking-[0.6em] text-[10px] mb-32 italic">VII. The Pit</h2>
+        <div className="space-y-12">
           {loading ? (
-            <p className="animate-pulse text-slate-700 text-xl">Retrieving from the Pit...</p>
+            <p className="animate-pulse text-zinc-700 text-xl text-center">Retrieving from the Pit...</p>
           ) : (
-            chapter.blocks.map((block, i) => {
-              const blockNarrativeProgress = i / Math.max(1, chapter.blocks.length - 1);
+            paragraphs.map((para, i) => {
+              const progress = i / Math.max(1, paragraphs.length - 1);
               return (
-                <motion.p 
+                <motion.p
                   key={i}
-                  style={{ skewY: textSkew }}
-                  initial={{ opacity: 0, filter: "blur(10px)" }}
-                  whileInView={{ opacity: 1, filter: "blur(0px)" }}
-                  viewport={{ once: true, margin: "-25%" }}
-                  className={`${getTextColor(blockNarrativeProgress)} text-2xl md:text-3xl leading-relaxed transition-all duration-700`}
+                  initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  className={`${getTextColor(progress)} text-xl md:text-2xl leading-relaxed`}
+                  style={{
+                    textIndent: "2.5rem",
+                    textAlign: "justify"
+                  }}
                 >
-                  {block}
+                  {para}
                 </motion.p>
-              )
+              );
             })
           )}
         </div>
-      </section>
+      </article>
     </motion.main>
   );
 }

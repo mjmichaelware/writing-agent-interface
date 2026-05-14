@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Frank_Ruhl_Libre } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 
 const hebrewFont = Frank_Ruhl_Libre({
@@ -24,7 +25,10 @@ export default function RootLayout({
         <link rel="preload" as="image" href="/bg.png" />
         <meta name="theme-color" content="#000000" />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }

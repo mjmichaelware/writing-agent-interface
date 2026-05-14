@@ -302,7 +302,7 @@
     },
     {
       "id": "(G)_Final_",
-      "aim": "breath as technical necessity rather than living act. She was awake in her living awareness and a sealed jar in her flesh, a prisoner in a house of clay that had forgotten how to open its own doors.",
+      "aim": "it makes no entrance and sends no herald. One moment the body is a tool in full service to a will; the next moment there is a will and there is a body and they are no longer in the same arrangement. The weight on the sternum had been building since before the chant began, building the way stalactite builds: one cold deposit compounding on another, until the structure is suddenly, completely, irrevocably there. First the sternum\u2014not the weight of stone but heavier, the specific density of absolute certainty pressing down with no interest in argument. Then the limbs, which did not grow heavy but held\u2014caught between the beat and the silence like a pendulum arrested at the summit of its arc, suspended in the interval where will and flesh were being carefully separated with the calm precision of a craftsman who has performed this work before. Her throat sealed. Her eyes fixed on the dark weave of the tent above and would not move. Her chest continued the minimum: breath as technical necessity rather than living act. She was awake in her living awareness and a sealed jar in her flesh, a prisoner in a house of clay that had forgotten how to open its own doors.",
       "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(G)_Final_)_Chapter:_10_-_Forsaken.txt"
     },
     {
@@ -382,7 +382,7 @@
     },
     {
       "id": "v2",
-      "aim": "3. Check pacing context:",
+      "aim": "",
       "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(SDP)_v2.txt"
     },
     {
@@ -547,7 +547,7 @@
     },
     {
       "id": "4.0_REVISE",
-      "aim": "3. Check pacing context:",
+      "aim": "",
       "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/4.0_REVISED.txt"
     },
     {
@@ -594,6 +594,11 @@
       "id": "8.0_Pacing",
       "aim": "[PENDING SEMANTIC ANALYSIS]",
       "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/8.0_Pacing\uff0fRedundancy.txt"
+    },
+    {
+      "id": "8._0_This_",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/8._0_This_is_the_final,_most_crucial_step:_ensuring_the_narrative's_structure_is_so_perfectly_weighted_that_the_profound_sadness\u2014the_weeping_of_self-recognition\u2014is_not_a_chance_event,_but_an_earned,_inevitable_catharsis_for_the_reader.txt"
     },
     {
       "id": "9.0_Aesthe",
@@ -667,7 +672,7 @@
     },
     {
       "id": "Chapter_10",
-      "aim": "one cold deposit compounding on another, until the structure is suddenly, completely, irrevocably there.",
+      "aim": "it makes no entrance, sends no herald. One moment the body is a tool in full service to a will; the next moment there is a will and there is a body and they are no longer in the same arrangement. It does not approach. It is simply the knowledge working backwards through the awareness\u2014the cold certainty finding itself already present, the possession having preceded the accounting of it. The weight on the sternum had been building since before the chant began, since before the lamp went out, building the way stalactite builds: one cold deposit compounding on another, until the structure is suddenly, completely, irrevocably there.",
       "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10_Version_F.txt"
     },
     {
@@ -709,6 +714,11 @@
       "id": "Chapter_1",
       "aim": "[PENDING SEMANTIC ANALYSIS]",
       "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Integration_Prompt.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "Dan's age (16), the duration (7 years), Dagon's Philistine origin, and the political setting (Hebron/King David). |",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Merge_Prompt.txt"
     },
     {
       "id": "Chapter_1",
@@ -847,7 +857,7 @@
     },
     {
       "id": "v2",
-      "aim": "White/Gold/Green.",
+      "aim": "ASCEND (The Light): * Theme: White/Gold/Green.",
       "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/ToALITTERAS_ECOSYSTEM_v2.txt"
     },
     {

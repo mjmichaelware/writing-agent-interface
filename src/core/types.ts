@@ -10,8 +10,4 @@ export interface CompendiumEntry {
 export interface Compendium {
   entities: CompendiumEntry[];
 }
-export interface State {
-  chapter: number;
-  blockIndex: number;
-  mode: "safe" | "cinematic";
-}
+

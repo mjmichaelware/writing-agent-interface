@@ -2,20 +2,71 @@
 
 @theme {
   --font-hebrew: "Frank Ruhl Libre", serif;
-  --color-amber-200: #fde68a;
-  --color-amber-500: #f59e0b;
-  --color-amber-900: #78350f;
+  
+  /* The Archetypal Palette */
+  --color-gold-low: #78350f;
+  --color-gold-mid: #f59e0b;
+  --color-gold-high: #fef3c7;
+  
+  /* Cinematic Animations */
+  --animate-reveal: reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-pulse-gold: pulse-gold 3s infinite alternate;
+  --animate-grain: grain 8s steps(10) infinite;
+
+  @keyframes reveal {
+    from { opacity: 0; transform: translateY(10px) scale(0.99); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes pulse-gold {
+    from { text-shadow: 0 0 0px rgba(245, 158, 11, 0); }
+    to { text-shadow: 0 0 15px rgba(245, 158, 11, 0.4); }
+  }
+  @keyframes grain {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-5%, -10%); }
+    30% { transform: translate(3%, -15%); }
+    50% { transform: translate(12%, 9%); }
+    70% { transform: translate(9%, 4%); }
+    90% { transform: translate(-1%, 7%); }
+  }
 }
 
 :root {
   --background: #000000;
-  --foreground: #f4f4f5;
+  --foreground: #d4d4d8;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-hebrew);
+  -webkit-font-smoothing: antialiased;
+  cursor: crosshair;
 }
 
+/* The Grain Overlay - Gives it a "Documentary" feel */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -150%;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.04;
+  z-index: 9999;
+  pointer-events: none;
+  animation: var(--animate-grain);
+}
 
+/* Typography Perfection */
+.manuscript {
+  @apply text-2xl md:text-3xl leading-[2] tracking-wide animate-reveal;
+}
+
+.manuscript b { @apply text-white font-black drop-shadow-sm; }
+.manuscript i { @apply italic text-zinc-400; }
+.manuscript u { @apply underline decoration-gold-low decoration-1 underline-offset-[12px]; }
+
+/* Custom Scrollbar (Minimalist) */
+::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #27272a; transition: background 0.3s; }
+::-webkit-scrollbar-thumb:hover { background: #f59e0b; }

@@ -14,13 +14,13 @@ export default function LandingPage() {
     offset: ["start end", "end start"]
   });
 
-  const bgColor = useTransform(chapterScroll,
+  const galaxyColor = useTransform(chapterScroll,
     [0, 0.2, 0.4, 0.55, 0.75, 0.9, 1],
     ["#1a1a2e", "#2d2d4a", "#4a3a6a", "#7a3a3a", "#110d0d", "#000000", "#1a1a2a"]
   );
 
-  const moonOpacity = useTransform(pageScroll, [0, 0.1, 0.2], [0.5, 0.3, 0]);
-  const moonScale = useTransform(pageScroll, [0, 0.2], [1, 1.1]);
+  const moonOpacity = useTransform(pageScroll, [0, 0.1, 0.25], [0.8, 0.5, 0]);
+  const moonScale = useTransform(pageScroll, [0, 0.3], [1, 1.15]);
 
   useEffect(() => {
     fetch('/data/chapters/7.txt')
@@ -45,18 +45,20 @@ export default function LandingPage() {
   };
 
   return (
-    <motion.main
-      ref={containerRef}
-      style={{ backgroundColor: bgColor }}
-      className="relative text-slate-200 overflow-x-hidden font-serif"
-    >
+    <div ref={containerRef} className="relative font-serif text-slate-200">
+      <motion.div 
+        style={{ backgroundColor: galaxyColor }}
+        className="fixed inset-0 z-[-2]"
+      />
+
       <motion.div
-        className="fixed inset-0 z-0 bg-cover bg-center pointer-events-none"
+        className="fixed inset-0 z-[-1] bg-center bg-no-repeat pointer-events-none"
         style={{
-          backgroundImage: 'url(/bg.png)',
+          backgroundImage: 'url("/bg.png")',
+          backgroundSize: 'contain',
           opacity: moonOpacity,
           scale: moonScale,
-          filter: "brightness(0.7)"
+          filter: "brightness(0.8) contrast(1.1)"
         }}
       />
 
@@ -77,12 +79,12 @@ export default function LandingPage() {
         <p className="text-[10px] tracking-[0.5em] text-slate-500 uppercase mt-20">Michael Alonza P. Ware</p>
       </section>
 
-      <section id="dedication" className="relative z-10 min-h-screen flex flex-col items-center justify-center bg-black/60 border-y border-white/5">
+      <section id="dedication" className="relative z-10 min-h-screen flex flex-col items-center justify-center bg-black/40">
         <h2 className="text-[9px] uppercase tracking-[0.6em] text-slate-500 mb-8">Dedication</h2>
         <p className="max-w-xl text-center italic text-3xl text-emerald-400/80 px-8">"For James Lee Ware."</p>
       </section>
 
-      <section id="blurb" className="relative z-10 min-h-screen flex flex-col items-center justify-center p-8 md:p-24 bg-zinc-950/80">
+      <section id="blurb" className="relative z-10 min-h-screen flex flex-col items-center justify-center p-8 md:p-24 bg-zinc-950/70">
         <h2 className="text-[9px] uppercase tracking-[0.6em] text-slate-500 mb-16">The Blurb</h2>
         <div className="max-w-2xl text-center space-y-6 text-lg md:text-xl leading-relaxed">
           <p>In 1003 BCE Hebron, a young boy named Dan possesses a rare gift: he can walk the dreamscape with full consciousness, moving between the layers of divine truth. His father, Aviel, is drowning in grief and hoarded stone.</p>
@@ -92,24 +94,25 @@ export default function LandingPage() {
       </section>
 
       <article ref={chapter7Ref} id="chapter7" className="relative z-10 max-w-2xl mx-auto py-40 px-6">
-        <h2 className="text-center text-zinc-600 uppercase tracking-[0.6em] text-[10px] mb-32 italic">VII. The Pit</h2>
-        <div className="space-y-12">
+        <h2 className="text-center text-zinc-600 uppercase tracking-[0.8em] text-[10px] mb-40 italic">VII. The Pit</h2>
+        <div className="space-y-10">
           {loading ? (
-            <p className="animate-pulse text-zinc-700 text-xl text-center">Retrieving from the Pit...</p>
+            <p className="text-center animate-pulse text-zinc-700 text-xl">Retrieving from the Pit...</p>
           ) : (
             paragraphs.map((para, i) => {
               const progress = i / Math.max(1, paragraphs.length - 1);
               return (
                 <motion.p
                   key={i}
-                  initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+                  initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
                   whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                  className={`${getTextColor(progress)} text-xl md:text-2xl leading-relaxed`}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.9, ease: "easeOut" }}
+                  className={`${getTextColor(progress)} text-xl md:text-2xl`}
                   style={{
-                    textIndent: "2.5rem",
-                    textAlign: "justify"
+                    textIndent: "3rem",
+                    textAlign: "justify",
+                    lineHeight: "1.8"
                   }}
                 >
                   {para}
@@ -119,6 +122,6 @@ export default function LandingPage() {
           )}
         </div>
       </article>
-    </motion.main>
+    </div>
   );
 }

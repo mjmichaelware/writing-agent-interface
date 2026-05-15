@@ -10,9 +10,18 @@ interface RuntimeContextValue {
 
 const RuntimeContext = createContext<RuntimeContextValue | null>(null);
 
+let busInstance: EventBus | null = null;
+let engineInstance: RuntimeEngine | null = null;
+
 export function RuntimeProvider({ children }: { children: React.ReactNode }) {
-  const bus = useMemo(() => new EventBus(), []);
-  const engine = useMemo(() => new RuntimeEngine(bus), [bus]);
+  const bus = useMemo(() => {
+    if (!busInstance) busInstance = new EventBus();
+    return busInstance;
+  }, []);
+  const engine = useMemo(() => {
+    if (!engineInstance) engineInstance = new RuntimeEngine(bus);
+    return engineInstance;
+  }, [bus]);
 
   return (
     <RuntimeContext.Provider value={{ bus, engine }}>
@@ -23,9 +32,14 @@ export function RuntimeProvider({ children }: { children: React.ReactNode }) {
 
 export function useRuntime() {
   const context = useContext(RuntimeContext);
-  if (!context) {
-    throw new Error("useRuntime must be used within a RuntimeProvider");
-  }
+  if (!context) throw new Error("useRuntime must be used within a RuntimeProvider");
   return context;
+}
+
+// Fixed: Exporting getRuntime to satisfy other pages (like Reader)
+export function getRuntime() {
+  if (!busInstance) busInstance = new EventBus();
+  if (!engineInstance) engineInstance = new RuntimeEngine(busInstance);
+  return { bus: busInstance, engine: engineInstance };
 }
 

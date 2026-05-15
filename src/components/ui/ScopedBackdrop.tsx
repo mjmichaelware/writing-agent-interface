@@ -1,10 +1,6 @@
 "use client";
 import { motion } from 'framer-motion';
 
-/**
- * SCOPED BACKDROP: Prevents UI bleeding.
- * Fades out as the reader descends into 'The Pit'.
- */
 export function ScopedBackdrop({ opacity }: { opacity: any }) {
   return (
     <motion.img 

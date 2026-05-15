@@ -1,22 +1,27 @@
-import type { Metadata } from 'next';
-import { Frank_Ruhl_Libre } from 'next/font/google';
-import './globals.css';
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { RuntimeProvider } from "@/runtime/runtimeContext";
 
-const hebrewFont = Frank_Ruhl_Libre({
-  subsets: ['hebrew'],
-  weight: ['400', '700'],
-  variable: '--font-hebrew',
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'The Weight of the Sky | Michael Alonza P. Ware',
-  description: 'An Archetypal Tale.',
+  title: "Singularity Narrative OS",
+  description: "The Weight of the Sky - Michael Alonza P. Ware",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="en" className={hebrewFont.variable}>
-      <body className="antialiased">{children}</body>
+    <html lang="en">
+      <body className={inter.className}>
+        <RuntimeProvider>
+          {children}
+        </RuntimeProvider>
+      </body>
     </html>
   );
 }

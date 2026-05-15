@@ -36,7 +36,6 @@ export function useRuntime() {
   return context;
 }
 
-// Fixed: Exporting getRuntime to satisfy other pages (like Reader)
 export function getRuntime() {
   if (!busInstance) busInstance = new EventBus();
   if (!engineInstance) engineInstance = new RuntimeEngine(busInstance);

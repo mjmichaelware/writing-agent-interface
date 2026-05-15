@@ -4,7 +4,7 @@ import { SidebarProvider } from '@/context/SidebarContext';
 import { ReaderLayout } from '@/components/ReaderLayout';
 import { OmniText } from '@/components/OmniText';
 import { EMAWord } from '@/core/types';
-import { tokenize, isWordToken } from '@/utils/tokenize';
+import { isWordToken } from '@/utils/tokenize';
 
 function InfiniteReelContent() {
   const [emaWords, setEmaWords] = useState<EMAWord[]>([]);
@@ -14,15 +14,32 @@ function InfiniteReelContent() {
   const visible = useRef<Set<number>>(new Set());
 
   useEffect(() => {
-    fetch('/api/chapters?slug=7&format=ema').then(r => r.json()).then(d => setEmaWords(d.words));
+    // Ingest Chapter 7 XML
+    fetch('/api/chapters?slug=7').then(r => r.json()).then(d => {
+      if (d.xml) {
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(`<root>${d.xml}</root>`, "text/xml");
+        setEmaWords(Array.from(xmlDoc.getElementsByTagName("word")).map((w, i) => ({
+          text: w.textContent || "",
+          color: w.getAttribute("color") || undefined,
+          font: w.getAttribute("font") || undefined,
+          reference: w.getAttribute("ref") || undefined,
+          foreshadowing: w.getAttribute("sync") || undefined,
+          index: i
+        })));
+      } else {
+        setEmaWords(d.text.split(/\s+/).map((t: string, i: number) => ({ text: t, index: i })));
+      }
+    });
     fetch('/api/compendium').then(r => r.json()).then(setComp);
     fetch('/api/author').then(r => r.json()).then(setAuthor);
+
     const handleScroll = () => document.documentElement.style.setProperty('--scroll-offset', window.scrollY.toString());
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const wordOnlyTokens = useMemo(() => emaWords.filter(w => isWordToken(w.text)), [emaWords]);
+  const wordTokens = useMemo(() => emaWords.filter(w => isWordToken(w.text)), [emaWords]);
 
   useEffect(() => {
     if (emaWords.length === 0 || !comp) return;
@@ -31,11 +48,15 @@ function InfiniteReelContent() {
         const idx = Number(e.target.getAttribute('data-word-index'));
         if (e.isIntersecting) visible.current.add(idx); else visible.current.delete(idx);
       });
+      
       if (visible.current.size > 0) {
         const arr = Array.from(visible.current);
         const start = Math.min(...arr), end = Math.max(...arr), range = end - start;
-        const bS = Math.max(0, start - Math.floor(range * 1.5)), bE = Math.min(wordOnlyTokens.length, end + Math.floor(range * 1.5));
-        const purview = wordOnlyTokens.slice(bS, bE).map(w => w.text).join(" ").toLowerCase();
+        [span_2](start_span)// Looking ahead and behind for context[span_2](end_span)
+        const bS = Math.max(0, start - Math.floor(range * 1.5));
+        const bE = Math.min(wordTokens.length, end + Math.floor(range * 1.5));
+        const purview = wordTokens.slice(bS, bE).map(w => w.text).join(" ").toLowerCase();
+        
         let found = null;
         comp.entities.forEach((ent: any) => {
           if (ent.triggers.some((t: string) => purview.includes(t.toLowerCase()))) found = ent.id;
@@ -43,76 +64,61 @@ function InfiniteReelContent() {
         setActiveID(found);
       }
     }, { threshold: 0 });
+
     document.querySelectorAll('[data-word-index]').forEach(w => obs.observe(w));
     return () => obs.disconnect();
-  }, [emaWords, comp, wordOnlyTokens]);
+  }, [emaWords, comp, wordTokens]);
 
-  const activeEntry = comp?.entities.find((e: any) => e.id === activeID);
+  const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
   return (
-    <ReaderLayout activeEntry={activeEntry}>
-      <article className="relative">
-        <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
-          <div className="absolute inset-0 z-0 bg-cover bg-center parallax-layer" style={{ backgroundImage: "url('/bg.png')" }} />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black z-10" />
-          <div className="relative z-20 text-center animate-reveal">
-            <h2 className="text-[10px] uppercase tracking-[0.8em] text-amber-500/60 mb-6 font-sans">An Archetypal Tale</h2>
-            <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-white">THE WEIGHT<br/>OF THE SKY</h1>
+    <ReaderLayout activeEntry={comp?.entities.find((e: any) => e.id === activeID)}>
+      <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 z-0 bg-cover bg-center parallax-layer" style={{ backgroundImage: "url('/bg.png')" }} />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black z-10" />
+        <div className="relative z-20 text-center animate-reveal">
+          <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-white mb-2">THE WEIGHT<br/>OF THE SKY</h1>
+          <h2 className="text-[10px] uppercase tracking-[0.8em] text-cyan-500/60 mb-20 font-sans italic">An Archetypal Tale</h2>
+          <div className="flex flex-col space-y-4 w-64 mx-auto">
+            <button onClick={() => scrollTo('dedication')} className="py-4 border border-white/10 bg-black/40 hover:bg-white/5 uppercase tracking-[0.5em] text-[9px] transition-all">Dedication</button>
+            <button onClick={() => scrollTo('blurb')} className="py-4 border border-white/10 bg-black/40 hover:bg-white/5 uppercase tracking-[0.5em] text-[9px] transition-all">The Blurb</button>
+            <button onClick={() => scrollTo('manuscript')} className="py-4 border border-white/30 bg-white/5 uppercase tracking-[0.6em] text-[9px] transition-all">Begin Reading</button>
           </div>
-        </section>
-
-        <section className="relative z-30 bg-black py-40 px-8">
-          <div className="max-w-prose mx-auto text-center">
-            <h3 className="text-zinc-500 text-[10px] uppercase tracking-widest mb-8">Dedication</h3>
-            <p className="text-4xl italic font-serif text-emerald-400/80 underline decoration-amber-900/40 underline-offset-8">
-              Dedicated to James Lee Ware (To keep Curious)
-            </p>
-          </div>
-        </section>
-
-        <section className="relative z-30 bg-black py-40 px-8">
-          <div className="max-w-prose mx-auto space-y-12 text-zinc-400 font-serif leading-relaxed text-xl">
-            <p>In 1003 BCE Hebron, a young boy named Dan possesses a rare gift: he can walk the dreamscape with full consciousness, moving between the layers of divine truth.</p>
-            <p>A journey from the lowlands of pride to the heights of love. A father left behind. A sister born from the depths of hell itself. And the ultimate question: Is clarity worth the cost of silence?</p>
-            <p className="text-emerald-400/70 italic text-center">The Weight of the Sky is an archetypal tale set at the threshold where gods still walk the earth, and every step upward demands a sacrifice the heart never wants to give.</p>
-          </div>
-        </section>
-
-        <section className="relative z-30 bg-black py-60 px-8">
-          <div className="max-w-prose mx-auto">
-            <h2 className="text-center text-zinc-700 uppercase tracking-[1em] text-[10px] mb-40 italic">VII. THE PIT</h2>
-            <OmniText emaWords={emaWords} />
-          </div>
-        </section>
-
-        <section className="relative z-30 bg-black py-40 px-8 border-t border-white/5">
-          <div className="max-w-prose mx-auto space-y-12">
-            <h3 className="text-zinc-500 text-[10px] uppercase tracking-widest text-center">About the Author</h3>
-            {author && (
-              <div className="space-y-8">
-                <h4 className="text-3xl font-serif text-white text-center italic">{author.name}</h4>
-                <p className="text-zinc-400 text-lg leading-relaxed text-justify">{author.bio}</p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8">
-                  <div className="space-y-4">
-                    <span className="text-amber-500/60 text-[9px] uppercase tracking-widest">Ongoing Goals</span>
-                    <ul className="text-xs text-zinc-500 space-y-2">{author.achievements.map((a: string, i: number) => <li key={i}>// {a}</li>)}</ul>
-                  </div>
-                  <div className="text-xs text-zinc-500 italic flex items-end justify-end uppercase tracking-widest opacity-50">{author.contact}</div>
-                </div>
-              </div>
-            )}
-          </div>
-        </section>
-
-        <div className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-1000">
-          <div className={`absolute inset-0 bg-cover bg-center transition-opacity duration-[2000ms] ${activeID ? 'opacity-20' : 'opacity-0'}`}
-               style={{ backgroundImage: activeEntry ? `url('${activeEntry.visualAsset}')` : 'none' }} />
         </div>
-      </article>
+      </section>
+
+      <section id="dedication" className="relative z-30 bg-black py-60 px-8 text-center">
+        <h3 className="text-zinc-500 text-[10px] uppercase tracking-widest mb-12">Dedication</h3>
+        <p className="text-4xl italic font-serif text-emerald-400/80">Dedicated to James Lee Ware (To keep Curious)</p>
+      </section>
+
+      <section id="blurb" className="relative z-30 bg-black py-40 px-8 space-y-12 text-zinc-400 font-serif leading-relaxed text-xl">
+        <div className="max-w-2xl mx-auto space-y-8 text-center">
+          [span_3](start_span)[span_4](start_span)<p>In 1003 BCE Hebron, a young boy named Dan possesses a rare gift: he can walk the dreamscape with full consciousness, moving between the layers of divine truth[span_3](end_span)[span_4](end_span).</p>
+          <p>A journey from the lowlands of pride to the heights of love. A father left behind. [span_5](start_span)[span_6](start_span)A sister born from the depths of hell itself[span_5](end_span)[span_6](end_span).</p>
+          [span_7](start_span)[span_8](start_span)<p className="italic text-emerald-400/70">The Weight of the Sky is an archetypal tale set at the threshold where gods still walk the earth[span_7](end_span)[span_8](end_span).</p>
+        </div>
+      </section>
+
+      <section id="manuscript" className="relative z-30 bg-black min-h-screen py-60 px-8 max-w-2xl mx-auto">
+        <h3 className="text-center text-zinc-700 uppercase tracking-[1.2em] text-[9px] mb-40 italic">VII. [span_9](start_span)[span_10](start_span)THE PIT[span_9](end_span)[span_10](end_span)</h3>
+        <div className="space-y-16 font-serif text-2xl leading-relaxed text-zinc-300">
+          <OmniText words={emaWords} />
+        </div>
+        <div className="mt-60 text-center">
+          <p className="text-[10px] tracking-[0.5em] text-slate-500 uppercase">
+            [span_11](start_span)[span_12](start_span)Written and Witnessed by Michael Alonza P. Ware[span_11](end_span)[span_12](end_span)
+          </p>
+        </div>
+      </section>
     </ReaderLayout>
   );
 }
 
-export default function Page() {
-  return <SidebarProvider><InfiniteReelContent /></SidebarProvider>;
+export default function InfiniteReel() {
+  return (
+    <SidebarProvider>
+      <InfiniteReelContent />
+    </SidebarProvider>
+  );
 }

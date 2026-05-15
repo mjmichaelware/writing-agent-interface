@@ -6,7 +6,6 @@ export interface EMAWord {
   foreshadowing?: string;
   index: number;
 }
-
 export interface CompendiumEntry {
   id: string;
   archetype: string;
@@ -14,9 +13,11 @@ export interface CompendiumEntry {
   visualAsset: string;
   weight: number;
   historicalContext?: string;
-  loreSummary?: string;
 }
-
-export interface Compendium {
-  entities: CompendiumEntry[];
+export interface AuthorData {
+  name: string;
+  bio: string;
+  aspirations: string[];
+  technicalFocus: string;
+  stats: Record<string, string>;
 }

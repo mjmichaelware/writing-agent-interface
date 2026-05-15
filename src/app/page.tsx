@@ -8,6 +8,10 @@ import { initAudioListener } from '@/features/audioListener';
 import { initThematicListener } from '@/features/thematicListener';
 import { initDistortionListener } from '@/features/distortionListener';
 
+/**
+ * LAYER 3: THE COMMAND CENTER (Z-50)
+ * Retractable overlay sitting ABOVE the manuscript.
+ */
 function Dashboard({ isOpen, close, nodeCount }: { isOpen: boolean; close: () => void; nodeCount: number }) {
   return (
     <AnimatePresence>
@@ -80,37 +84,71 @@ export default function SingularityOS() {
 
   return (
     <div ref={containerRef} className="relative bg-[#000000] text-white min-h-[1000vh] font-[var(--font-hebrew)] selection:bg-cyan-500/30">
-      <button onClick={() => setIsDashOpen(true)} className="fixed top-8 right-8 z-40 bg-zinc-900/40 p-4 border border-zinc-800 text-[10px] tracking-widest uppercase hover:bg-cyan-900 backdrop-blur-md">Dashboard</button>
+      
+      {/* LAYER 3: HUD (Z-50) */}
+      <button onClick={() => setIsDashOpen(true)} className="fixed top-8 right-8 z-40 bg-zinc-900/40 p-4 border border-zinc-800 text-[10px] tracking-widest uppercase hover:bg-cyan-900 backdrop-blur-md transition-all">
+        Dashboard
+      </button>
       <Dashboard isOpen={isDashOpen} close={() => setIsDashOpen(false)} nodeCount={181} />
+
+      {/* LAYER 1: CINEMA (Z-10) - Fixed Backdrop */}
       <div className="fixed inset-0 z-10 pointer-events-none">
-        <motion.img src="/bg.png" style={{ opacity: cinemaOpacity }} className="w-full h-full object-cover grayscale contrast-[1.2] brightness-[0.7]" />
+        <motion.img 
+          src="/bg.png" 
+          style={{ opacity: cinemaOpacity }} 
+          className="w-full h-full object-cover grayscale contrast-[1.2] brightness-[0.7]" 
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black" />
       </div>
+
+      {/* LAYER 2: MANUSCRIPT (Z-20) - Glass Layer */}
       <div className="relative z-20">
+        
+        {/* TITLE SECTION */}
         <section className="h-screen flex flex-col items-center justify-center text-center p-10 bg-black/40 backdrop-blur-sm">
-          <h1 className="text-7xl md:text-9xl font-black tracking-tighter mb-4 uppercase leading-none mix-blend-difference">THE WEIGHT<br/>OF THE SKY</h1>
-          <p className="text-cyan-500 tracking-[1.5em] uppercase text-[10px] mb-20 font-sans font-bold">Michael Alonza P. Ware</p>
-          <div className="flex gap-4">
-            <button onClick={() => scrollTo('dedication')} className="px-8 py-3 border border-zinc-800 text-[10px] uppercase tracking-widest hover:bg-zinc-900">Dedication</button>
-            <button onClick={() => scrollTo('blurb')} className="px-8 py-3 border border-zinc-800 text-[10px] uppercase tracking-widest hover:bg-zinc-900">The Blurb</button>
-            <button onClick={() => scrollTo('pit')} className="px-8 py-3 bg-white text-black text-[10px] uppercase tracking-widest font-bold hover:bg-cyan-500">Enter The Pit</button>
+          <h1 className="text-7xl md:text-9xl font-black tracking-tighter mb-4 uppercase leading-none mix-blend-difference">
+            THE WEIGHT<br/>OF THE SKY
+          </h1>
+          <p className="text-cyan-500 tracking-[1.5em] uppercase text-[10px] mb-20 font-sans font-bold">
+            Michael Alonza P. Ware
+          </p>
+          <div className="flex gap-6">
+            <button onClick={() => scrollTo('dedication')} className="px-10 py-4 border border-zinc-800 text-[10px] uppercase tracking-[0.3em] hover:bg-zinc-900 transition-all">Dedication</button>
+            <button onClick={() => scrollTo('blurb')} className="px-10 py-4 border border-zinc-800 text-[10px] uppercase tracking-[0.3em] hover:bg-zinc-900 transition-all">The Blurb</button>
+            <button onClick={() => scrollTo('pit')} className="px-10 py-4 bg-white text-black text-[10px] uppercase tracking-[0.3em] font-black hover:bg-cyan-500 transition-all">Enter The Pit</button>
           </div>
         </section>
-        <section id="dedication" className="h-screen flex items-center justify-center italic text-4xl text-emerald-400/80 px-10 text-center bg-transparent">"For James Lee Ware."</section>
+
+        {/* DEDICATION */}
+        <section id="dedication" className="h-screen flex items-center justify-center italic text-4xl text-emerald-400/80 px-10 text-center bg-transparent">
+          "For James Lee Ware."
+        </section>
+
+        {/* THE HEBRON BLURB */}
         <section id="blurb" className="min-h-screen flex flex-col items-center justify-center p-10 md:p-24 bg-transparent border-y border-zinc-900/10 backdrop-blur-[2px]">
-          <h2 className="text-[10px] uppercase tracking-[0.8em] text-slate-500 mb-16 font-sans">The Narrative Blurb</h2>
+          <h2 className="text-[10px] uppercase tracking-[0.8em] text-slate-500 mb-20 font-sans">The Narrative Blurb</h2>
           <div className="max-w-2xl text-center space-y-12 text-xl md:text-2xl leading-[1.8] font-light">
             <p>In 1003 BCE Hebron, a young boy named Dan possesses a rare gift: he can walk the dreamscape with full consciousness, moving between the layers of divine truth.</p>
             <p>A journey from the lowlands of pride to the heights of love. A father left behind. A sister born from the depths of hell itself.</p>
             <p className="italic text-emerald-400/70 border-t border-zinc-900/20 pt-12">The Weight of the Sky is an archetypal tale set at the threshold where gods still walk the earth...</p>
           </div>
         </section>
+
+        {/* CHAPTER 7 MANUSCRIPT (4rem indents) */}
         <section id="pit" className="py-60 px-8 max-w-2xl mx-auto space-y-32 bg-transparent">
           {paragraphs.map((p, i) => (
-            <motion.div key={i} onViewportEnter={() => bus.emit("block:render", { tone: p.words[0]?.intensity })} className={`text-2xl md:text-3xl leading-[2.1] text-justify selection:bg-red-900/50 ${p.isBlood ? 'text-red-700/90' : 'text-zinc-200'}`} style={{ textIndent: '4rem' }}>
+            <motion.div 
+              key={i} 
+              onViewportEnter={() => bus.emit("block:render", { tone: p.words[0]?.intensity })}
+              className={`text-2xl md:text-3xl leading-[2.1] text-justify selection:bg-red-900/50 ${p.isBlood ? 'text-red-700/90' : 'text-zinc-200'}`} 
+              style={{ textIndent: '4rem' }}
+            >
               <OmniText words={p.words} />
             </motion.div>
           ))}
         </section>
+
+        {/* AUTHOR SECTION */}
         <section className="py-80 text-center bg-black/60 border-t border-zinc-900/50">
           <h3 className="text-white uppercase tracking-[0.6em] text-[10px] mb-10 font-sans opacity-40">Architect of the Singularity</h3>
           <p className="text-white text-3xl font-black tracking-tighter mb-4">MICHAEL ALONZA P. WARE</p>

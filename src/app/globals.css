@@ -1,11 +1,23 @@
-@import "tailwindcss";
-@property --scroll-offset { syntax: '<number>'; inherits: true; initial-value: 0; }
-@keyframes reveal { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-.animate-reveal { animation: reveal 1s ease-out forwards; }
-:root { --background: #000; --foreground: #f4f4f5; }
-body { background: var(--background); color: var(--foreground); font-family: var(--font-hebrew), serif; overflow-x: hidden; }
-.parallax-layer {
-  transform: translateY(calc(var(--scroll-offset) * 0.5px)) scale(calc(1 + var(--scroll-offset) * 0.0001));
-  opacity: calc(1 - var(--scroll-offset) / 700);
-  will-change: transform, opacity;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[span_3](start_span)/* THE VOID (Z-0)[span_3](end_span) */
+body {
+  background-color: #000000;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+[span_4](start_span)/* THE MANUSCRIPT STYLING[span_4](end_span) */
+.manuscript-container {
+  text-indent: 4rem;
+  line-height: 1.9;
+  text-align: justify;
+}
+
+:root {
+  --font-hebrew: 'Frank Ruhl Libre', serif;
 }

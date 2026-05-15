@@ -5,18 +5,22 @@ import path from 'path';
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const slug = searchParams.get('slug') || '7';
-
+  
   try {
-    // Pointing to your internal ingestion-buffer where EMA XML is stored
-    const emaPath = path.join(process.cwd(), 'src', 'data-layer', 'ingestion-buffer', `chapter${slug}-ema.xml`);
-    const rawXML = await fs.readFile(emaPath, 'utf-8');
+    const filePath = path.join(process.cwd(), 'src', 'data', 'canon', `${slug}.txt`);
+    const rawText = await fs.readFile(filePath, 'utf-8');
+    
+    // Detect if the file is EMA XML format
+    const isXML = rawText.trim().startsWith('<');
 
-    // Basic logic to return the raw XML for the client-side parser
-    return NextResponse.json({ xml: rawXML });
+    return NextResponse.json({
+      title: `Chapter ${slug}`,
+      // If it's XML, we send it raw; if text, we send an array of blocks
+      xml: isXML ? rawText : null,
+      blocks: isXML ? [] : rawText.split(/\n\s*\n/).filter(p => p.trim().length > 0)
+    });
   } catch (e) {
-    // Fallback if the XML isn't found
-    const fallbackPath = path.join(process.cwd(), 'src', 'data', `chapter7-raw.txt`);
-    const rawText = await fs.readFile(fallbackPath, 'utf-8');
-    return NextResponse.json({ text: rawText, fallback: true });
+    return NextResponse.json({ error: 'Canon retrieval failed' }, { status: 404 });
   }
 }
+

@@ -1,28 +1,20 @@
 "use client";
 import React from 'react';
-import { EMAWord } from '@/core/types';
 
-/**
- * OmniText: Surgical build-fix. 
- * Added default empty array and optional chaining to prevent 'undefined (reading map)'
- */
-export function OmniText({ words = [] }: { words?: EMAWord[] }) {
-  if (!words || !Array.isArray(words)) return null;
-
+export function OmniText({ words = [] }: { words?: any[] }) {
+  if (!words) return null;
   return (
     <>
       {words.map((w, i) => (
         <span 
-          key={`${w.text}-${i}`}
-          data-word-index={w.index}
-          className="inline-block transition-colors duration-700"
+          key={i}
+          className="transition-all duration-500 hover:text-white"
           style={{ 
-            color: w.color, 
-            fontFamily: w.font,
-            marginRight: '0.25em'
+            color: w.color || 'inherit', 
+            fontFamily: w.font || 'inherit'
           }}
         >
-          {w.text}
+          {w.text}{' '}
         </span>
       ))}
     </>

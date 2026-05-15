@@ -1,5 +1,5 @@
 /**
- * [cite_start]DIGITAL PAPER ANALYSIS: Canvas 2D API  [cite: 101, 268-269]
+ * DIGITAL PAPER ANALYSIS: Canvas 2D API
  * Measures true character width to determine context window capacity.
  */
 export function measureViewportCapacity(
@@ -14,7 +14,7 @@ export function measureViewportCapacity(
   const context = canvas.getContext('2d');
   if (!context) return 200;
 
-  [cite_start]// Use the Frank Ruhl Libre font metrics[span_1](end_span)
+  // Use Frank Ruhl Libre font metrics
   context.font = `${fontSize} Frank Ruhl Libre, serif`;
   const metrics = context.measureText('M'); 
   const avgCharWidth = metrics.width;
@@ -22,6 +22,6 @@ export function measureViewportCapacity(
   const charsPerLine = Math.floor(containerWidth / avgCharWidth);
   const totalLines = Math.floor(containerHeight / (parseFloat(fontSize) * lineHeight));
   
-  [span_2](start_span)// Calculate Active Context Window Capacity[span_2](end_span)
+  // Return Active Context Window Capacity
   return Math.floor(charsPerLine * totalLines / 5); 
 }

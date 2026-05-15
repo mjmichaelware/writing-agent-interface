@@ -10,11 +10,9 @@ import { useViewport } from '@/hooks/useViewport';
 function InfiniteReelContent() {
   const [paragraphs, setParagraphs] = useState<any[]>([]);
   const containerRef = useRef(null);
-  const capacity = useViewport(); [cite_start]// VIE: Digital Paper Analysis[span_5](end_span)
+  const capacity = useViewport(); 
 
   const { scrollYProgress } = useScroll({ target: containerRef });
-  
-  [span_6](start_span)// THE CINEMA (Z-10): Fades as the reader descends[span_6](end_span)
   const backdropOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
   useEffect(() => {
@@ -31,7 +29,7 @@ function InfiniteReelContent() {
           }))
         }));
         setParagraphs(parsed);
-      } else {
+      } else if (d.blocks) {
         setParagraphs(d.blocks.map((b: string) => ({ words: b.split(' ').map(w => ({ text: w })) })));
       }
     });
@@ -41,7 +39,6 @@ function InfiniteReelContent() {
     <div ref={containerRef} className="relative bg-black min-h-screen">
       <ScopedBackdrop opacity={backdropOpacity} />
 
-      [span_7](start_span){/* LAYER 20: THE MANUSCRIPT[span_7](end_span) */}
       <div className="relative z-20 font-[var(--font-hebrew)]">
         <section className="h-screen flex flex-col items-center justify-center text-center p-6">
           <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-white">
@@ -57,9 +54,9 @@ function InfiniteReelContent() {
               initial={{ opacity: 0, filter: 'blur(10px)' }}
               whileInView={{ opacity: 1, filter: 'blur(0px)' }}
               transition={{ duration: 1.5 }}
-              className="manuscript-container"
+              style={{ textIndent: '4rem', textAlign: 'justify' }}
             >
-              <p className="text-2xl md:text-3xl text-zinc-300">
+              <p className="text-2xl md:text-3xl text-zinc-300 leading-[1.9]">
                 <OmniText words={p.words} />
               </p>
             </motion.div>

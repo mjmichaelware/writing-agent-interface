@@ -1,18 +1,30 @@
 "use client";
 
-import { EventBus, RuntimeEngine } from "@/core/runtimeEngine";
+import React, { createContext, useContext, useMemo } from 'react';
+import { EventBus, RuntimeEngine } from '@/core/runtimeEngine';
 
-let busInstance: EventBus | null = null;
-let engineInstance: RuntimeEngine | null = null;
+interface RuntimeContextValue {
+  bus: EventBus;
+  engine: RuntimeEngine;
+}
 
-export function getRuntime() {
-  if (!busInstance) {
-    busInstance = new EventBus();
-    engineInstance = new RuntimeEngine(busInstance);
+const RuntimeContext = createContext<RuntimeContextValue | null>(null);
+
+export function RuntimeProvider({ children }: { children: React.ReactNode }) {
+  const bus = useMemo(() => new EventBus(), []);
+  const engine = useMemo(() => new RuntimeEngine(bus), [bus]);
+
+  return (
+    <RuntimeContext.Provider value={{ bus, engine }}>
+      {children}
+    </RuntimeContext.Provider>
+  );
+}
+
+export function useRuntime() {
+  const context = useContext(RuntimeContext);
+  if (!context) {
+    throw new Error("useRuntime must be used within a RuntimeProvider");
   }
-
-  return {
-    bus: busInstance,
-    engine: engineInstance!,
-  };
+  return context;
 }

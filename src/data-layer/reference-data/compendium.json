@@ -3,19 +3,19 @@
     {
       "id": "flies",
       "archetype": "Lord of the Flies",
-      "triggers": ["flies", "Beelzebub", "Zebub", "Ekron"],
+      "triggers": ["flies", "Beelzebub", "Zebub", "Ekron", "decay"],
       "visualAsset": "/flies.png",
       "weight": 0.7,
-      "historicalContext": "Ba'al-Zebub of Ekron — the Philistine god whose name translates as 'Lord of the Flies.'",
+      "historicalContext": "Ba'al-Zebub of Ekron — the Philistine god associated with decay and stagnation.",
       "loreSummary": ""
     },
     {
       "id": "dagon",
       "archetype": "Dagon",
-      "triggers": ["Dagon", "fish-god", "Philistine"],
+      "triggers": ["Dagon", "fish-god", "shrine", "Philistine"],
       "visualAsset": "/dagon.png",
       "weight": 1.0,
-      "historicalContext": "Dagon, the primary deity of the Philistines; a fertility and grain god associated with the sea.",
+      "historicalContext": "Dagon, the primary deity of the Philistines; a fertility god associated with the sea.",
       "loreSummary": ""
     }
   ]

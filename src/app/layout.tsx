@@ -1,9 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Frank_Ruhl_Libre } from "next/font/google";
 import "./globals.css";
 import { RuntimeProvider } from "@/runtime/runtimeContext";
 
-const inter = Inter({ subsets: ["latin"] });
+/**
+ * Loading both subsets to ensure Hebrew passages and English 
+ * narrative context render with the same weights.
+ */
+const frankRuhl = Frank_Ruhl_Libre({ 
+  subsets: ["hebrew", "latin"],
+  variable: '--font-hebrew' 
+});
 
 export const metadata: Metadata = {
   title: "Singularity Narrative OS",
@@ -17,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={frankRuhl.className}>
         <RuntimeProvider>
           {children}
         </RuntimeProvider>

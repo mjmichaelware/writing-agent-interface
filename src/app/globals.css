@@ -2,22 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-[span_3](start_span)/* THE VOID (Z-0)[span_3](end_span) */
 body {
-  background-color: #000000;
+  background-color: #000000; /* Layer 0: The Void */
   color: #ffffff;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
 }
 
-[span_4](start_span)/* THE MANUSCRIPT STYLING[span_4](end_span) */
-.manuscript-container {
+.manuscript-text {
   text-indent: 4rem;
   line-height: 1.9;
   text-align: justify;
-}
-
-:root {
-  --font-hebrew: 'Frank Ruhl Libre', serif;
 }

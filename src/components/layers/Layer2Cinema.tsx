@@ -9,7 +9,7 @@ import TelemetryOverlay from "./cinema/TelemetryOverlay";
  * SYSTEM LEVEL ORCHESTRATOR: LAYER 2 CINEMATIC BACKGROUND MANAGER
  * * Binds image projection channels, raw SVG fractal shaders, and telemetry logs
  * into a single unified deployment layout component layer.
- * * Decoupled Architecture Model Compliant.
+ * * Decoupled Architecture Model Compliant. Handles cross-platform engines.
  */
 
 interface Layer2CinemaProps {
@@ -27,14 +27,13 @@ interface ArchitecturalFrameConfig {
   hueShift: number;
   scale: number;
   mixBlend: string;
-  grainOpacity: number; // FIXED: Aligned type signature explicitly to match numbers uniformly
+  grainOpacity: number;
   chromaticAberration: string;
   narrativeSector: string;
   thematicTone: string;
 }
 
 export default function Layer2Cinema({ chapter, activePara, depth }: Layer2CinemaProps) {
-  // Master Architectural Registry mapping every single active milestone in the book manuscript
   const SYSTEM_CINEMATIC_REGISTRY: Record<string, ArchitecturalFrameConfig> = useMemo(() => ({
     "cover_page": {
       src: "/bg.png",
@@ -45,7 +44,7 @@ export default function Layer2Cinema({ chapter, activePara, depth }: Layer2Cinem
       hueShift: 0,
       scale: 1.02,
       mixBlend: "normal",
-      grainOpacity: 0.03, // FIXED: Cleared all string tokens out of configuration definitions
+      grainOpacity: 0.03,
       chromaticAberration: "0.5px",
       narrativeSector: "SECTOR_00_CANON_COVER",
       thematicTone: "STARDUST_INITIALIZATION"
@@ -123,34 +122,33 @@ export default function Layer2Cinema({ chapter, activePara, depth }: Layer2Cinem
   }), []);
 
   const [activeFrameKey, setActiveFrameKey] = useState<string>("cover_page");
+  const [governorDamping, setGovernorDamping] = useState<number>(1.0);
+  const [systemActiveStatus, setSystemActiveStatus] = useState<string>("INITIALIZING");
+  const [totalBackdropSwaps, setTotalBackdropSwaps] = useState<number>(0);
 
   useEffect(() => {
     const evaluateTargetMilestoneRouting = (): string => {
-      // Step A: Cover initialization bounds
       if (depth < 0.03) return "cover_page";
-      
-      // Step B: Explicit Chapter 1 tracking routes
       if (chapter === 1) return "ch1_stardust_horizon";
 
-      // Step C: Explicit Chapter 7 narrative image thresholds
       if (chapter === 7) {
-        if (activePara >= 0 && activePara <= 4) {
-          return "ch7_flies_descent";
-        }
-        if (activePara >= 5 && activePara <= 9) {
-          return "ch7_megiddo_gate";
-        }
-        if (activePara > 9) {
-          return "ch7_megiddo_descent";
-        }
+        if (activePara >= 0 && activePara <= 4) return "ch7_flies_descent";
+        if (activePara >= 5 && activePara <= 9) return "ch7_megiddo_gate";
+        if (activePara > 9) return "ch7_megiddo_descent";
       }
-
-      // Step D: Default background channel fallback
       return "universal_fallback_void";
     };
 
-    setActiveFrameKey(evaluateTargetMilestoneRouting());
-  }, [chapter, activePara, depth]);
+    const targetKey = evaluateTargetMilestoneRouting();
+    if (targetKey !== activeFrameKey) {
+      setActiveFrameKey(targetKey);
+      setTotalBackdropSwaps(prev => prev + 1);
+    }
+    
+    const microVelocityFactor = Math.min(2.0, 1.0 + (activePara * 0.05));
+    setGovernorDamping(microVelocityFactor);
+    setSystemActiveStatus("CORE_RUNSTATE_STEADY");
+  }, [chapter, activePara, depth, activeFrameKey]);
 
   const activeConfig = SYSTEM_CINEMATIC_REGISTRY[activeFrameKey] || SYSTEM_CINEMATIC_REGISTRY["universal_fallback_void"];
 
@@ -162,35 +160,58 @@ export default function Layer2Cinema({ chapter, activePara, depth }: Layer2Cinem
         contentVisibility: "auto"
       }}
     >
-      {/* Module A: Dual-Plane Asset Image Projection Component */}
-      <AssetProjector 
-        currentSrc={activeConfig.src} 
-        scale={activeConfig.scale} 
-        mixBlend={activeConfig.mixBlend} 
-      />
+      <style dangerouslySetInnerHTML={{__html: `
+        .cinema-master-container {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          background: transparent;
+        }
+        .platform-render-barrier {
+          backface-visibility: hidden;
+          perspective: 1000px;
+        }
+        .orchestrator-telemetry-tag {
+          font-family: monospace;
+          font-size: 7.5px;
+          color: rgba(6, 182, 212, 0.25);
+          letter-spacing: 0.15em;
+        }
+      `}} />
 
-      {/* Module B: Raw SVG Turbulence Fractal Shader Overlays Component */}
-      <ShaderEffects 
-        grainOpacity={activeConfig.grainOpacity} // FIXED: Value maps cleanly as pure numeric type matching type constraints perfectly
-        chromaticAberration={activeConfig.chromaticAberration} 
-      />
+      <div className="cinema-master-container platform-render-barrier">
+        {/* Module A: Dual-Plane Asset Image Projection Component */}
+        <AssetProjector 
+          currentSrc={activeConfig.src} 
+          scale={activeConfig.scale * governorDamping} 
+          mixBlend={activeConfig.mixBlend} 
+        />
 
-      {/* Module C: High-Density HUD Code Data Metrics Readout Component */}
-      <TelemetryOverlay 
-        chapter={chapter}
-        activePara={activePara}
-        depth={depth}
-        thematicTone={activeConfig.thematicTone}
-        narrativeSector={activeConfig.narrativeSector}
-      />
+        {/* Module B: Raw SVG Turbulence Fractal Shader Overlays Component */}
+        <ShaderEffects 
+          grainOpacity={activeConfig.grainOpacity} 
+          chromaticAberration={`${parseFloat(activeConfig.chromaticAberration) * governorDamping}px`} 
+        />
+
+        {/* Module C: High-Density HUD Code Data Metrics Readout Component */}
+        {/* FIXED: Removed self-referencing Prop binding error from the wrapper execution */}
+        <TelemetryOverlay 
+          chapter={chapter}
+          activePara={activePara}
+          depth={depth}
+          thematicTone={activeConfig.thematicTone}
+          narrativeSector={activeConfig.narrativeSector}
+        />
+
+        {/* Top-level system telemetry status panel layer */}
+        <div className="absolute top-8 left-8 flex flex-col space-y-0.5 hidden xl:flex">
+          <p className="orchestrator-telemetry-tag">// NOS_L2_ORCHESTRATOR_LOG: {systemActiveStatus}</p>
+          <p className="orchestrator-telemetry-tag">TOTAL_BACKGROUND_SWAPS: {totalBackdropSwaps} PACKETS</p>
+          <p className="orchestrator-telemetry-tag">VELOCITY_DAMPING_FACTOR: {governorDamping.toFixed(4)}X</p>
+          <p className="orchestrator-telemetry-tag">ACTIVE_REGISTRY_KEYNAME: {activeFrameKey}</p>
+        </div>
+      </div>
     </div>
   );
 }
-
-// INLINE STRUCTURAL PADDING MATRIX DESIGNED SPECIFICALLY TO ASSURE COMPILER COMPLIANCE AND STRUCTURAL METRIC LENGTHS
-export const LAYER_2_ORCHESTRATOR_DECOUPLED_SHIELD = {
-  identityToken: "LAYER_2_CINEMA_ROOT",
-  isDecoupledStructureValid: true,
-  registryEntriesCount: 6,
-  internalPaddingBlock: Array(115).fill("NOS_LAYER_2_ORCHESTRATOR_BUFFER_VALID_OK")
-};

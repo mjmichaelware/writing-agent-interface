@@ -1,43 +1,22 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useMemo } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import ManuscriptCore from "./canvas/ManuscriptCore";
 
-/**
- * PRODUCTION INTERFACE SPECIFICATION: LEVEL 3 CANVAS ORCHESTRATOR
- * Component: Layer3Canvas Core Layout Group Master
- * * Responsibility: Orchestrates parent view frameworks, builds baseline quick-jump tables,
- * maps manuscript chapter tokens, and safely processes section adjustments.
- * * Structural Design: Fully un-truncated and optimized layout tracks.
- */
-
 interface Layer3CanvasProps {
-  chapter: number;
+  chapter: number | null;
   setChapter: (n: number) => void;
   paragraphs: string[];
   loading: boolean;
   error: string | null;
   depth: number;
   go: (delta: number) => void;
-  titleOpacity: number;
-  titleScale: number;
   topCanvasRef: React.RefObject<HTMLDivElement | null>;
-  dedicationRef: React.RefObject<HTMLDivElement | null>;
-  blurbRef: React.RefObject<HTMLDivElement | null>;
-  authorRef: React.RefObject<HTMLDivElement | null>;
-  tocRef: React.RefObject<HTMLDivElement | null>;
-  manuscriptRef: React.RefObject<HTMLDivElement | null>;
+  scrollContainerRef: React.RefObject<HTMLDivElement | null>;
   TITLES: Record<number, string>;
   CHAPTER_NUMS: number[];
-  state: {
-    baseColor: string;
-    descentColor: string;
-    sacredColor: string;
-    properColor: string;
-    fontScale: number;
-    lineHeight: number;
-    letterSpacing: number;
-  };
+  state: any;
 }
 
 export default function Layer3Canvas({
@@ -48,137 +27,231 @@ export default function Layer3Canvas({
   error,
   depth,
   go,
-  titleOpacity,
-  titleScale,
   topCanvasRef,
-  dedicationRef,
-  blurbRef,
-  authorRef,
-  tocRef,
-  manuscriptRef,
+  scrollContainerRef,
   TITLES,
   CHAPTER_NUMS,
   state,
 }: Layer3CanvasProps) {
-  const [internalRenderTimestamp, setInternalRenderTimestamp] = useState<number>(0);
+  
+  // FRAMER MOTION FIX: Opacity fade on scroll
+  const { scrollYProgress } = useScroll({ container: scrollContainerRef });
+  const backdropOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
-  useEffect(() => {
-    setInternalRenderTimestamp(performance.now());
-  }, [chapter]);
-
-  /**
-   * HIGH-PRECISION VIEWPORT SCROLL LOCK PIPELINE
-   * Natively calculates element positioning coordinates to fix missing method errors.
-   */
-  const jumpTo = (targetRef: React.RefObject<HTMLDivElement | null>) => {
-    if (targetRef && targetRef.current) {
-      targetRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  // Convert the line height parameter safely to standard CSS strings
-  const formattedProseState = {
+  const handleBeginReading = () => {
+    if (!chapter) setChapter(1);
+    scrollToSection("reading");
+  };
+
+  const handleLoadChapter = (num: number) => {
+    setChapter(num);
+    setTimeout(() => scrollToSection("reading"), 100);
+  };
+
+  const formattedProseState = useMemo(() => ({
     ...state,
-    lineHeight: `${state.lineHeight || 2.0}`,
-  };
+    lineHeight: `${state?.lineHeight || 2.0}`,
+  }), [state]);
 
   return (
-    <div ref={topCanvasRef} className="w-full max-w-2xl mx-auto px-6 py-24 relative z-20 space-y-32 font-serif select-text">
-      <style dangerouslySetInnerHTML={{__html: `
-        .canvas-section-divider-line {
-          width: 24px;
-          height: 1px;
-          background: rgba(255, 255, 255, 0.15);
-          margin: 2.5rem 0;
-        }
-        .canvas-meta-label-mono {
-          font-family: monospace;
-          font-size: 8px;
-          letter-spacing: 0.3em;
-          color: rgba(6, 182, 212, 0.45);
-          text-transform: uppercase;
-        }
-        .canvas-quick-jump-grid button {
-          font-family: monospace;
-          font-size: 8px;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-        }
-      `}} />
+    <div ref={topCanvasRef} className="w-full relative z-20 font-serif bg-transparent text-zinc-100 select-text antialiased">
+      
+      {/* 1. TITLE PAGE (First surface, min-h-screen) */}
+      <section id="title-page" className="relative min-h-screen flex flex-col justify-center items-center text-center overflow-hidden">
+        {/* Full Bleed Moon Boy Background with fade out on scroll */}
+        <motion.div style={{ opacity: backdropOpacity }} className="absolute inset-0 z-0 pointer-events-none">
+          <img src="/bg.png" alt="Moon Boy" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-black/60" />
+        </motion.div>
 
-      {/* COVER HEADER SECTOR BLOCK */}
-      <div className="min-h-[60vh] flex flex-col justify-center select-none text-center md:text-left">
-        <span className="canvas-meta-label-mono font-bold">// MANUSCRIPT_STREAM_ACTIVE</span>
-        <h1 
-          style={{ opacity: titleOpacity, transform: `scale(${titleScale})`, transition: "all 0.1s ease-out" }}
-          className="text-3xl md:text-5xl font-black tracking-tight text-zinc-100 uppercase mt-4 leading-tight"
-        >
-          THE CELLS <br /> OF STARDUST
-        </h1>
-        <div className="canvas-section-divider-line mx-auto md:mix-none" />
-        <p className="text-zinc-500 font-sans text-xs tracking-wide">SYSTEM_VERSION_4.0.0 // CURRENT_NODE_07</p>
-      </div>
+        <div className="relative z-10 flex flex-col items-center w-full px-4">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            className="text-5xl md:text-7xl font-black text-white uppercase tracking-[0.2em] drop-shadow-2xl"
+            style={{ fontFamily: 'var(--font-hebrew), serif' }}
+          >
+            THE WEIGHT OF THE SKY
+          </motion.h1>
+          
+          <motion.p 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            transition={{ delay: 0.6, duration: 1 }}
+            className="text-cyan-400 font-mono text-xs md:text-sm uppercase tracking-[0.4em] mt-6 font-bold"
+          >
+            An Archetypal Tale
+          </motion.p>
 
-      {/* QUICK LINK VIEWPORT NAVIGATION SYSTEM CONSOLE */}
-      <div className="p-4 border border-zinc-900/60 bg-[#020204]/40 backdrop-blur-md rounded-xs space-y-3 select-none">
-        <div className="canvas-meta-label-mono font-bold tracking-widest text-[7.5px]">
-          // HARDWARE_QUICK_JUMP_INDEX_LINKS
+          {/* Interactive Navigation Row */}
+          <motion.div 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            transition={{ delay: 0.9, duration: 1 }}
+            className="flex flex-wrap justify-center gap-4 mt-16 max-w-2xl font-mono"
+          >
+            <button onClick={() => scrollToSection("dedication")} className="px-5 py-2 border border-zinc-700 hover:border-cyan-500 hover:text-cyan-400 text-[10px] tracking-widest uppercase transition-all bg-black/40 backdrop-blur-sm rounded-xs">
+              Dedication
+            </button>
+            <button onClick={() => scrollToSection("blurb")} className="px-5 py-2 border border-zinc-700 hover:border-cyan-500 hover:text-cyan-400 text-[10px] tracking-widest uppercase transition-all bg-black/40 backdrop-blur-sm rounded-xs">
+              The Blurb
+            </button>
+            <button onClick={() => scrollToSection("about")} className="px-5 py-2 border border-zinc-700 hover:border-cyan-500 hover:text-cyan-400 text-[10px] tracking-widest uppercase transition-all bg-black/40 backdrop-blur-sm rounded-xs">
+              About the Author
+            </button>
+            <button onClick={handleBeginReading} className="px-6 py-2 border border-zinc-200 bg-zinc-100 text-black font-bold hover:bg-cyan-400 hover:border-cyan-400 hover:text-black text-[10px] tracking-widest uppercase transition-all shadow-[0_0_15px_rgba(255,255,255,0.3)] rounded-xs">
+              Begin Reading
+            </button>
+          </motion.div>
+
+          <motion.p 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            transition={{ delay: 1.2, duration: 1 }}
+            className="absolute -bottom-[35vh] text-zinc-500 font-mono text-[9px] tracking-[0.3em] uppercase"
+          >
+            By Michael Alonza Prentice Ware
+          </motion.p>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 canvas-quick-jump-grid">
-          <button onClick={() => jumpTo(manuscriptRef)} className="py-2.5 border border-zinc-800 bg-black/60 text-zinc-400 hover:border-cyan-500/40 hover:text-cyan-400 transition-all rounded-xs active:scale-98">
-            MANUSCRIPT_PROSE
-          </button>
-          <button onClick={() => jumpTo(dedicationRef)} className="py-2.5 border border-zinc-800 bg-black/60 text-zinc-400 hover:border-cyan-500/40 hover:text-cyan-400 transition-all rounded-xs active:scale-98">
-            DEDICATION
-          </button>
-          <button onClick={() => jumpTo(blurbRef)} className="py-2.5 border border-zinc-800 bg-black/60 text-zinc-400 hover:border-cyan-500/40 hover:text-cyan-400 transition-all rounded-xs active:scale-98">
-            BLURB_TEXT
-          </button>
-          <button onClick={() => jumpTo(authorRef)} className="py-2.5 border border-zinc-800 bg-black/60 text-zinc-400 hover:border-cyan-500/40 hover:text-cyan-400 transition-all rounded-xs active:scale-98">
-            AUTHOR_BIO
-          </button>
-          <button onClick={() => jumpTo(tocRef)} className="py-2.5 border border-zinc-800 bg-black/60 text-zinc-400 hover:border-cyan-500/40 hover:text-cyan-400 transition-all rounded-xs active:scale-98">
-            TABLE_OF_CONTENTS
-          </button>
-        </div>
-      </div>
+      </section>
 
-      {/* DEDICATION SECTION LAYER */}
-      <div ref={dedicationRef} className="scroll-mt-24 py-6 text-zinc-400 text-sm italic tracking-wide leading-relaxed">
-        <div className="canvas-meta-label-mono mb-3 font-semibold tracking-wider">// SEC_01_DEDICATION</div>
-        <p>For those who calculate the distance between code strings and stardust.</p>
-      </div>
+      <div className="max-w-3xl mx-auto px-6 space-y-40 pb-40">
+        
+        {/* 2. DEDICATION */}
+        <section id="dedication" className="min-h-[40vh] flex flex-col items-center justify-center text-center scroll-mt-32">
+          <div className="font-mono text-[8px] text-cyan-500/50 tracking-[0.3em] uppercase mb-8">
+            // Dedication_Node
+          </div>
+          <p className="text-zinc-300 font-serif italic text-2xl md:text-3xl leading-relaxed tracking-wide">
+            "James Lee Ware<br/><span className="text-lg text-zinc-500 mt-4 block">(In order to keep Curious)</span>"
+          </p>
+        </section>
 
-      {/* BLURB SECTION LAYER */}
-      <div ref={blurbRef} className="scroll-mt-24 py-6 text-zinc-300 space-y-4 font-sans text-xs tracking-wide leading-relaxed text-justify">
-        <div className="canvas-meta-label-mono mb-3 font-semibold tracking-wider font-serif">// SEC_02_BLURB_PROSE</div>
-        <p>A deep multi-layered narrative tracing structural boundary limitations across high-capacity computer systems and physical organic models.</p>
-      </div>
+        {/* 3. THE BLURB */}
+        <section id="blurb" className="min-h-[50vh] flex flex-col justify-center scroll-mt-32">
+          <div className="font-mono text-[8px] text-cyan-500/50 tracking-[0.3em] uppercase mb-8 border-b border-zinc-900 pb-2">
+            // Synopsis_Matrix
+          </div>
+          <div className="space-y-6 text-zinc-200 text-sm md:text-base leading-loose tracking-wide text-justify font-serif">
+            <p className="indent-8">
+              In Hebron in 1003 BCE, during the early days of King David's rule over Judah, sixteen-year-old Dan lives inside an oppressive home paralyzed by his father's hoarding grief. Dan is a dreamwalker, a visionary uniquely capable of consciously stepping into a hidden world constructed from minute cells of universal dust.
+            </p>
+            <p>
+              When his deep interventions fracture his family, Dan is cast out, forced to embark on a punishing physical trek northward toward Mount Hermon to find the ultimate source of reality. His path demands a brutal expenditure of tissue and will, shattering his physical voice and bringing him face-to-face with an infinite cycle of conflict written in the stars.
+            </p>
+          </div>
+        </section>
 
-      {/* MAIN TEXT TOKEN STREAM Virtualizer FRAME */}
-      <ManuscriptCore
-        manuscriptRef={manuscriptRef}
-        tocRef={tocRef}
-        chapter={chapter}
-        setChapter={setChapter}
-        paragraphs={paragraphs}
-        loading={loading}
-        error={error}
-        state={formattedProseState}
-        depth={depth}
-        TITLES={TITLES}
-        CHAPTER_NUMS={CHAPTER_NUMS}
-        jumpTo={jumpTo}
-      />
+        {/* 4. ABOUT THE AUTHOR */}
+        <section id="about" className="min-h-[40vh] flex flex-col justify-center scroll-mt-32">
+          <div className="font-mono text-[8px] text-cyan-500/50 tracking-[0.3em] uppercase mb-8 border-b border-zinc-900 pb-2">
+            // Operator_Biography
+          </div>
+          <div className="space-y-6 text-zinc-300 text-sm leading-loose tracking-wide text-justify font-serif">
+            <p className="indent-8">
+              Michael Alonza Prentice Ware is a systems architecture specialist. He is pursuing a Bachelor of Science in Computer Science at Weber State University, focusing his development research on Machine Learning Alignment Governance and Explainable AI (XAI).
+            </p>
+            <p>
+              Outside of layout engineering, he practices classical piano for three hours daily following the Russian method and Alexander technique principles.
+            </p>
+          </div>
+        </section>
 
-      {/* AUTHOR BIO FOOTER DECK */}
-      <div ref={authorRef} className="scroll-mt-24 pt-12 border-t border-zinc-900 text-zinc-500 text-xs font-sans tracking-wide space-y-2 select-none">
-        <div className="canvas-meta-label-mono">// SEC_03_AUTHOR_METRICS</div>
-        <p>Orchestrated in collaboration with deep-learning writing agents inside a clean systems interface.</p>
-        <span className="hidden sr-only" data-rendered-ticks={internalRenderTimestamp} />
+        {/* 5. TABLE OF CONTENTS */}
+        <section id="toc" className="min-h-screen scroll-mt-32">
+          <div className="font-mono text-[8px] text-cyan-500/50 tracking-[0.3em] uppercase mb-12 border-b border-zinc-900 pb-2 text-center">
+            // Concordance_Index
+          </div>
+          
+          <div className="space-y-16 font-serif">
+            {/* PART I */}
+            <div>
+              <h3 className="text-cyan-400 font-bold tracking-[0.2em] text-sm uppercase mb-6 text-center">Part I: The Journey</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(num => (
+                  <button key={num} onClick={() => handleLoadChapter(num)} className="text-left p-4 border border-zinc-900 bg-zinc-950/30 hover:border-cyan-900 hover:bg-cyan-950/20 transition-all rounded-xs group">
+                    <span className="font-mono text-[9px] text-zinc-500 group-hover:text-cyan-400 block mb-1">CHAPTER {num}</span>
+                    <span className="text-zinc-200 group-hover:text-white tracking-wide">{TITLES[num]}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* PART II */}
+            <div>
+              <h3 className="text-cyan-400 font-bold tracking-[0.2em] text-sm uppercase mb-6 text-center">Part II: The Deception & Reveal</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {[10, 11].map(num => (
+                  <button key={num} onClick={() => handleLoadChapter(num)} className="text-left p-4 border border-zinc-900 bg-zinc-950/30 hover:border-cyan-900 hover:bg-cyan-950/20 transition-all rounded-xs group">
+                    <span className="font-mono text-[9px] text-zinc-500 group-hover:text-cyan-400 block mb-1">CHAPTER {num}</span>
+                    <span className="text-zinc-200 group-hover:text-white tracking-wide">{TITLES[num]}</span>
+                  </button>
+                ))}
+                {/* Pending Chapters */}
+                <div className="text-left p-4 border border-zinc-900/40 bg-transparent opacity-50 cursor-not-allowed rounded-xs">
+                  <span className="font-mono text-[9px] text-zinc-600 block mb-1">CHAPTER 12</span>
+                  <span className="text-zinc-500 italic tracking-wide">[Pending]</span>
+                </div>
+                <button onClick={() => handleLoadChapter(13)} className="text-left p-4 border border-zinc-900 bg-zinc-950/30 hover:border-cyan-900 hover:bg-cyan-950/20 transition-all rounded-xs group">
+                  <span className="font-mono text-[9px] text-zinc-500 group-hover:text-cyan-400 block mb-1">CHAPTER 13</span>
+                  <span className="text-zinc-200 group-hover:text-white tracking-wide">{TITLES[13]}</span>
+                </button>
+                <div className="text-left p-4 border border-zinc-900/40 bg-transparent opacity-50 cursor-not-allowed rounded-xs md:col-span-2">
+                  <span className="font-mono text-[9px] text-zinc-600 block mb-1">CHAPTERS 14–17</span>
+                  <span className="text-zinc-500 italic tracking-wide">[Pending]</span>
+                </div>
+              </div>
+            </div>
+
+            {/* PART III & EPILOGUE */}
+            <div>
+              <h3 className="text-cyan-400 font-bold tracking-[0.2em] text-sm uppercase mb-6 text-center">Part III: The Cosmic Union</h3>
+              <div className="text-center p-4 border border-zinc-900/40 bg-transparent opacity-50 cursor-not-allowed rounded-xs mb-12">
+                <span className="font-mono text-[9px] text-zinc-600 block mb-1">CHAPTERS 18–24</span>
+                <span className="text-zinc-500 italic tracking-wide">[Pending]</span>
+              </div>
+              
+              <h3 className="text-zinc-400 font-bold tracking-[0.2em] text-sm uppercase mb-6 text-center border-t border-zinc-900 pt-12">Epilogue</h3>
+              <div className="text-center p-6 border border-zinc-900/40 bg-transparent opacity-50 cursor-not-allowed rounded-xs">
+                <span className="text-zinc-500 italic tracking-wide">The Unresolved Question: Why</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 6. PROSE READING LOOP */}
+        <section id="reading" className="min-h-screen scroll-mt-24">
+          {chapter ? (
+            <ManuscriptCore
+              manuscriptRef={topCanvasRef} // Internal ref pass
+              tocRef={topCanvasRef} // Internal ref pass
+              chapter={chapter}
+              setChapter={setChapter}
+              paragraphs={paragraphs}
+              loading={loading}
+              error={error}
+              state={formattedProseState}
+              depth={depth}
+              TITLES={TITLES}
+              CHAPTER_NUMS={CHAPTER_NUMS}
+              jumpTo={(ref) => scrollToSection("reading")}
+            />
+          ) : (
+            <div className="flex flex-col items-center justify-center h-[50vh] opacity-50 select-none">
+              <span className="font-mono text-[9px] text-zinc-500 tracking-[0.3em] uppercase mb-4 animate-pulse">Awaiting Timeline Initialization</span>
+              <button onClick={handleBeginReading} className="text-cyan-400 hover:text-cyan-300 text-xs tracking-widest uppercase font-bold transition-all border-b border-transparent hover:border-cyan-400 pb-1">
+                Initialize Stream
+              </button>
+            </div>
+          )}
+        </section>
+
       </div>
     </div>
   );

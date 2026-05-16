@@ -28,7 +28,6 @@ interface Layer3CanvasProps {
 function DynamicWord({ word, depth, state, isDescent }: { word: string; depth: number; state: any; isDescent: boolean }) {
   const cleanWord = word.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?"']/g, "");
   
-  // 1. Scroll-dependent word color variation logic shifts parameters smoothly down the scroll depth
   let color = isDescent ? state.descentColor : state.baseColor;
   if (["stardust", "universe", "stars", "sacred", "dreamwalker", "visionary"].includes(cleanWord)) {
     color = state.sacredColor || "#38bdf8";
@@ -36,19 +35,20 @@ function DynamicWord({ word, depth, state, isDescent }: { word: string; depth: n
     color = depth > 0.55 ? "#0e7490" : "#06b6d4";
   }
 
-  let className = "inline-block transition-all duration-500 mx-[0.1em]";
+  // FIX: Altered fallback default parameter to clean inline layout formatting rules
+  let className = "inline transition-all duration-500 mx-[0.02em]";
   let inlineStyle: React.CSSProperties = { color };
 
-  // 2. Semantic text distortion parsing modifications based on narrative context values
+  // Promote to inline-block blocks strictly if visual transformation rules are flagged
   if (["big", "huge", "giant", "god", "infinite", "oppressive"].includes(cleanWord)) {
     inlineStyle.fontWeight = "800";
     inlineStyle.transform = "scale(1.12)";
-    className += " uppercase tracking-wide px-0.5";
+    className = "inline-block uppercase tracking-wide px-0.5 transition-all duration-500";
   } else if (["small", "minute", "stardust", "cells", "dust"].includes(cleanWord)) {
     inlineStyle.fontSize = "0.78em";
     inlineStyle.fontFamily = "monospace";
     inlineStyle.opacity = 0.55;
-    className += " tracking-tighter";
+    className = "inline tracking-tighter transition-all duration-500";
   }
 
   if (["shake", "tremble", "fracture", "shattering", "conflict", "pit"].includes(cleanWord)) {
@@ -115,7 +115,6 @@ export default function Layer3Canvas({
   return (
     <article className="relative z-20 px-6 max-w-2xl mx-auto flex flex-col pb-40 bg-transparent">
       
-      {/* Native inline stylesheet appending non-destructive vibration keyframes to layout shell context */}
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes wordShake {
           0%, 100% { transform: translate(0, 0) rotate(0deg); }
@@ -130,11 +129,11 @@ export default function Layer3Canvas({
         }
       `}} />
 
-      {/* FULL VIEWPORT TITLE CARD COVER VIEW */}
+      {/* FULL VIEWPORT TITLE COVER PAGE VIEW CONTAINER */}
       <motion.div 
-        ref={topCanvasRef} 
+        topCanvasRef={topCanvasRef} 
         style={{ opacity: titleOpacity, scale: titleScale }}
-        className="min-h-screen flex flex-col justify-between items-center text-center pt-32 pb-16 relative"
+        className="min-h-screen flex flex-col justify-between items-center text-center pt-32 pb-16 relative animate-fade"
       >
         <div className="flex-1 flex flex-col justify-center items-center">
           <motion.h1 
@@ -273,7 +272,7 @@ export default function Layer3Canvas({
         </div>
       </div>
 
-      {/* FIX: Injects an absolute Webkit view linear-gradient mask to execute Star Wars ingress fade-in merge limits */}
+      {/* CONTINUOUS MANUSCRIPT WITH FILM OVERLAY MASK FADE INGRESS */}
       <div 
         ref={manuscriptRef} 
         className="pt-24 min-h-[60vh] scroll-mt-16 transition-all duration-300"

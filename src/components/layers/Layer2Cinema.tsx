@@ -9,7 +9,7 @@ interface Layer2CinemaProps {
 }
 
 export default function Layer2Cinema({ chapter, activePara, depth }: Layer2CinemaProps) {
-  // Explicitly binds your stardust background cover and narrative beat photo assets to the engine loop
+  // Correctly maps your narrative beat graphics located in your public asset directory
   const baseAssets: Record<string, string[]> = {
     "6": ["/bg.png", "/assets/agent-photos/flies.jpg"],
     "7": ["/bg.png", "/assets/agent-photos/flies.jpg", "/assets/agent-photos/megiddo1.jpg", "/assets/agent-photos/megiddo2.jpg"],
@@ -17,7 +17,6 @@ export default function Layer2Cinema({ chapter, activePara, depth }: Layer2Cinem
   };
 
   const assets = baseAssets[String(chapter)] || ["/bg.png"];
-  // Swaps assets cleanly every 8 paragraphs as the reader descends down the manuscript track
   const imgIndex = Math.min(assets.length - 1, Math.floor(activePara / 8));
 
   return (
@@ -34,6 +33,7 @@ export default function Layer2Cinema({ chapter, activePara, depth }: Layer2Cinem
             filter: `grayscale(0.2) contrast(1.05) brightness(${Math.max(0.35, 0.95 - depth * 0.45)})`,
           }}
           onError={(e) => {
+            // Safe root baseline fallback execution track
             e.currentTarget.src = "/bg.png";
           }}
         />
@@ -45,3 +45,4 @@ export default function Layer2Cinema({ chapter, activePara, depth }: Layer2Cinem
     </div>
   );
 }
+

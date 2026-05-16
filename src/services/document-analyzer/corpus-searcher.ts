@@ -1,25 +1,37 @@
-import { promises as fs } from 'fs';
-import path from 'path';
+import { promises as fs } from "fs";
+import path from "path";
 
-/**
- * [span_6](start_span)MASTER BRAIN: Corpus Searcher v11.8[span_6](end_span)
- * Consolidates 181 nodes into a definitive searchable manifest.
- */
+export interface SearchResult {
+  file: string;
+  snippet: string;
+}
+
 export class CorpusSearcher {
-  private manifestPath = path.join(process.cwd(), 'src', 'data-layer', 'nos_manifest.json');
+  private corpusPath = path.join(process.cwd(), "src/data-layer/ingestion-buffer/gdrive_raw");
 
-  public async consolidateManifest() {
-    console.log("[MASTER BRAIN] Consolidating 181 nodes...");
-    // 1. Scan src/data-layer/ingestion-buffer/gdrive_raw/
-    // 2. Cross-reference with src/data-layer/version-archive/ema_history.json
-    // 3. Score 'Final' drafts as 1.0; Drafts A/B/C as 0.5
-    [span_7](start_span)// 4. Output to nos_manifest.json[span_7](end_span)
-    return { status: "Consolidated", nodes: 181 };
-  }
+  async search(term: string): Promise<SearchResult[]> {
+    try {
+      const files = await fs.readdir(this.corpusPath);
+      const results: SearchResult[] = [];
+      const query = term.toLowerCase();
 
-  public async query(term: string) {
-    // Selects the 'Final' version of any chapter over drafts
-    console.log(`[MASTER BRAIN] Searching for: ${term}`);
-    return [];
+      for (const file of files) {
+        if (!file.endsWith(".txt")) continue;
+        const fullPath = path.join(this.corpusPath, file);
+        const content = await fs.readFile(fullPath, "utf-8");
+
+        if (content.toLowerCase().includes(query)) {
+          const lines = content.split("\n");
+          const matchLine = lines.find(l => l.toLowerCase().includes(query)) || "";
+          results.push({
+            file,
+            snippet: matchLine.trim().substring(0, 160)
+          });
+        }
+      }
+      return results;
+    } catch {
+      return [];
+    }
   }
 }

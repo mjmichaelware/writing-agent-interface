@@ -57,7 +57,7 @@ export default function HomePage() {
     initDistortionListener(bus);
     initThematicListener(bus);
 
-    bus.on("tone:update", (evt: { tone: string; intensity: number }) => {
+    (bus as any).on("tone:update", (evt: { tone: string; intensity: number }) => {
       if (evt.tone === "intense") {
         cp.update({ properColor: "#ef4444" });
       } else if (evt.tone === "sacred") {
@@ -86,7 +86,7 @@ export default function HomePage() {
         else if (d.blocks?.length > 0) { setParagraphs(d.blocks); }
         else { setParagraphs([]); }
         setLoading(false);
-        bus.emit("chapter:load", { id: chapter });
+        (bus as any).emit("chapter:load", { id: chapter });
       })
       .catch((e) => {
         if (e.name !== "AbortError") { setError(e.message); setLoading(false); }
@@ -100,7 +100,7 @@ export default function HomePage() {
       const max = doc.scrollHeight - doc.clientHeight;
       const d = max > 0 ? doc.scrollTop / max : 0;
       setDepth(d);
-      bus.emit("scroll:update", { depth: d });
+      (bus as any).emit("scroll:update", { depth: d });
 
       const paras = document.querySelectorAll("[data-para]");
       let active = 0;

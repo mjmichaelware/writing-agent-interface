@@ -14,12 +14,12 @@ interface Layer3CanvasProps {
   go: (delta: number) => void;
   titleOpacity: any;
   titleScale: any;
-  topCanvasRef: React.RefObject<HTMLDivElement | null>;
-  dedicationRef: React.RefObject<HTMLDivElement | null>;
-  blurbRef: React.RefObject<HTMLDivElement | null>;
-  authorRef: React.RefObject<HTMLDivElement | null>;
-  tocRef: React.RefObject<HTMLDivElement | null>;
-  manuscriptRef: React.RefObject<HTMLDivElement | null>;
+  topCanvasRef: React.RefObject<HTMLDivElement>;
+  dedicationRef: React.RefObject<HTMLDivElement>;
+  blurbRef: React.RefObject<HTMLDivElement>;
+  authorRef: React.RefObject<HTMLDivElement>;
+  tocRef: React.RefObject<HTMLDivElement>;
+  manuscriptRef: React.RefObject<HTMLDivElement>;
   TITLES: Record<number, string>;
   CHAPTER_NUMS: number[];
   state: any;
@@ -28,17 +28,16 @@ interface Layer3CanvasProps {
 function DynamicWord({ word, state, isDescent }: { word: string; depth: number; state: any; isDescent: boolean }) {
   const cleanWord = word.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?"']/g, "");
   
-  // Confines color mapping strictly to individual token targets to eliminate distracting blue text blocks
+  // Clean, single-token color mapping logic that ignores global background paragraph tints
   let color = isDescent ? state.descentColor : state.baseColor;
   if (["stardust", "universe", "stars", "sacred", "dreamwalker", "visionary"].includes(cleanWord)) {
     color = state.sacredColor || "#38bdf8";
   }
 
-  // FIX: Defaults to clean native inline spacing to eliminate text justification gaps entirely
   let className = "inline transition-all duration-300 mx-[0.01em]";
   let inlineStyle: React.CSSProperties = { color };
 
-  // Promote to inline-block blocks strictly if visual dimensional transformations are flagged
+  // Executes fine-grained individual word variations without breaking full line configurations
   if (["big", "huge", "giant", "god", "infinite", "oppressive"].includes(cleanWord)) {
     inlineStyle.fontWeight = "800";
     inlineStyle.transform = "scale(1.08)";
@@ -61,7 +60,6 @@ function MorphingParagraph({ text, isDescent, state, depth }: any) {
   const cleaned = text.replace(/\r/g, "");
   const tokens = cleaned.split(/(\s+|\*\*[^*]+\*\*)/g).filter(Boolean);
   return (
-    // FIX: Configures clean left alignment with absolute line spacing parameters to avoid word-stretching gaps
     <p 
       className="text-left mb-8 font-serif select-text tracking-normal" 
       style={{ 
@@ -106,7 +104,7 @@ export default function Layer3Canvas({
   CHAPTER_NUMS,
   state,
 }: Layer3CanvasProps) {
-  const jumpTo = (elementRef: React.RefObject<HTMLDivElement | null>) => {
+  const jumpTo = (elementRef: React.RefObject<HTMLDivElement>) => {
     if (elementRef.current) {
       elementRef.current.scrollIntoView({ behavior: "smooth" });
     }
@@ -127,9 +125,15 @@ export default function Layer3Canvas({
           display: inline-block !important;
           animation: wordShake 0.3s infinite linear !important;
         }
+        .native-screen-fade-container {
+          mask-image: linear-gradient(to bottom, transparent 0vh, transparent 4vh, white 22vh, white calc(100% - 22vh), transparent calc(100% - 4vh), transparent 100vh) !important;
+          -webkit-mask-image: linear-gradient(to bottom, transparent 0vh, transparent 4vh, white 22vh, white calc(100% - 22vh), transparent calc(100% - 4vh), transparent 100vh) !important;
+          mask-attachment: fixed !important;
+          -webkit-mask-attachment: fixed !important;
+        }
       `}} />
 
-      {/* FULL VIEWPORT TITLE SECTION */}
+      {/* FULL VIEWPORT TITLE OVERLAY CANVAS */}
       <motion.div 
         ref={topCanvasRef} 
         style={{ opacity: titleOpacity, scale: titleScale }}
@@ -214,7 +218,7 @@ export default function Layer3Canvas({
         </div>
       </div>
 
-      {/* HIGH-DENSITY CYBERNETIC INDEX MATRIX TABLE OF CONTENTS */}
+      {/* OVERHAULED HIGH-DENSITY CYBERNETIC INDEX MATRIX TABLE OF CONTENTS */}
       <div ref={tocRef} className="min-h-[70vh] flex flex-col justify-center scroll-mt-20 border-t border-b border-zinc-950 py-16">
         <p className="text-cyan-500 font-mono text-[9px] uppercase tracking-[0.4em] mb-12 text-center font-bold animate-pulse">// SYSTEM MATRIX MANUSCRIPT INDEX</p>
         <div className="max-w-xl mx-auto w-full space-y-8 px-2">
@@ -254,7 +258,7 @@ export default function Layer3Canvas({
                     key={num}
                     disabled={isPending}
                     onClick={() => { if (!isPending) { setChapter(num); setTimeout(() => { manuscriptRef.current?.scrollIntoView({ behavior: "smooth" }); }, 100); } }}
-                    className={`group flex justify-between items-center w-full text-left px-2.5 py-1.5 transition-all border rounded-xs font-mono text-xs ${isPending ? "border-transparent text-zinc-700 cursor-not-allowed select-none" : chapter === num ? "bg-cyan-950/30 border-cyan-800/40 text-cyan-400" : "border-transparent hover:bg-zinc-900/30 text-zinc-400 hover:text-zinc-200"}`}
+                    className={`group flex justify-between items-center w-full text-left px-2.5 py-1.5 transition-all border rounded-xs font-mono text-xs ${isPending ? "border-transparent text-zinc-700 cursor-not-allowed select-none" : chapter === num ? "bg-cyan-950/30 border border-cyan-800/40 text-cyan-400" : "border-transparent hover:bg-zinc-900/30 text-zinc-400 hover:text-zinc-200"}`}
                   >
                     <span className="font-serif italic tracking-wide transition-transform group-hover:translate-x-1">
                       {isPending ? `Chapter ${num}: [Staging Node: Unwritten]` : TITLES[num]}
@@ -298,18 +302,8 @@ export default function Layer3Canvas({
         </div>
       </div>
 
-      {/* MANUSCRIPT TRACK WITH DEVICE-NATIVE, VIEWPORT-RELATIVE (VH) ALPHA GRADIENT MASK */}
-      <div 
-        ref={manuscriptRef} 
-        className="pt-24 min-h-[60vh] scroll-mt-16 transition-all duration-300"
-        style={{
-          // FIX: Injects responsive viewport-relative height masking rules to automatically lock text fade bounds on any device shape
-          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0vh, transparent 4vh, white 22vh, white calc(100% - 22vh), transparent calc(100% - 4vh), transparent 100vh)',
-          maskImage: 'linear-gradient(to bottom, transparent 0vh, transparent 4vh, white 22vh, white calc(100% - 22vh), transparent calc(100% - 4vh), transparent 100vh)',
-          WebkitMaskAttachment: 'fixed',
-          maskAttachment: 'fixed'
-        }}
-      >
+      {/* MANUSCRIPT CONTAIN ZONE WITH DEVICE-NATIVE INTUATIVE DEVICE-MASK */}
+      <div ref={manuscriptRef} className="pt-24 min-h-[60vh] scroll-mt-16 transition-all duration-300 native-screen-fade-container">
         <h2 className="text-zinc-400 uppercase tracking-[0.7em] text-[11px] text-center mb-16 font-mono select-none">
           {TITLES[chapter] || `Chapter ${chapter}`}
         </h2>

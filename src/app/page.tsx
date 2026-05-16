@@ -6,7 +6,7 @@ import { getRuntime } from "@/runtime/runtimeContext";
 import { initAudioListener } from "@/features/audioListener";
 import { initDistortionListener } from "@/features/distortionListener";
 import { initThematicListener } from "@/features/thematicListener";
-import { useControlPanel, classifyWord } from "@/runtime/controlPanel";
+import { useControlPanel } from "@/runtime/controlPanel";
 
 import Layer1Void from "@/components/layers/Layer1Void";
 import Layer2Cinema from "@/components/layers/Layer2Cinema";
@@ -28,23 +28,6 @@ const TITLES: Record<number, string> = {
   13: "XIII. Exodus",
 };
 const CHAPTER_NUMS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13];
-
-function TaggedParagraph({ text, isDescent, state }: any) {
-  const cleaned = text.replace(/\r/g, "");
-  const tokens = cleaned.split(/(\s+|\*\*[^*]+\*\*)/g).filter(Boolean);
-  return (
-    <p className="text-justify mb-6 font-serif select-text" style={{ fontSize: `${1.25 * state.fontScale}rem`, lineHeight: state.lineHeight, letterSpacing: `${state.letterSpacing}em`, textIndent: "3rem", color: isDescent ? state.descentColor : state.baseColor, transition: "color 700ms" }}>
-      {tokens.map((tok: string, i: number) => {
-        if (/^\s+$/.test(tok)) return <span key={i}>{tok}</span>;
-        if (tok.startsWith("**") && tok.endsWith("**")) {
-          return <strong key={i} style={{ color: state.properColor, fontWeight: 600 }}>{tok.slice(2, -2)}</strong>;
-        }
-        const style = classifyWord(tok, state);
-        return <span key={i} style={{ color: style.color, fontWeight: parseInt(style.weight, 10), fontStyle: style.italic ? "italic" : "normal" }}>{tok}</span>;
-      })}
-    </p>
-  );
-}
 
 export default function HomePage() {
   const { bus } = getRuntime();
@@ -147,7 +130,7 @@ export default function HomePage() {
         chapter={chapter} setChapter={setChapter} paragraphs={paragraphs} loading={loading} error={error}
         depth={depth} go={go} titleOpacity={titleOpacity} titleScale={titleScale}
         topCanvasRef={topCanvasRef} dedicationRef={dedicationRef} blurbRef={blurbRef} authorRef={authorRef} tocRef={tocRef} manuscriptRef={manuscriptRef}
-        TITLES={TITLES} CHAPTER_NUMS={CHAPTER_NUMS} TaggedParagraph={TaggedParagraph} state={cp.state}
+        TITLES={TITLES} CHAPTER_NUMS={CHAPTER_NUMS} state={cp.state}
       />
       <Layer4Panel
         open={panelOpen} onClose={() => setPanelOpen(false)} cp={cp} chapter={chapter} setChapter={setChapter}

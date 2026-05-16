@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { CINEMA_ASSETS, CINEMA_PARAGRAPHS_PER_IMAGE } from "@/data/cinema";
 
 interface Layer2CinemaProps {
   chapter: number;
@@ -10,8 +9,16 @@ interface Layer2CinemaProps {
 }
 
 export default function Layer2Cinema({ chapter, activePara, depth }: Layer2CinemaProps) {
-  const assets = CINEMA_ASSETS[String(chapter)] || ["/bg.png"];
-  const imgIndex = Math.min(assets.length - 1, Math.floor(activePara / CINEMA_PARAGRAPHS_PER_IMAGE));
+  // Explicitly binds your stardust background cover and narrative beat photo assets to the engine loop
+  const baseAssets: Record<string, string[]> = {
+    "6": ["/bg.png", "/assets/agent-photos/flies.jpg"],
+    "7": ["/bg.png", "/assets/agent-photos/flies.jpg", "/assets/agent-photos/megiddo1.jpg", "/assets/agent-photos/megiddo2.jpg"],
+    "8": ["/bg.png", "/assets/agent-photos/megiddo1.jpg", "/assets/agent-photos/megiddo2.jpg"]
+  };
+
+  const assets = baseAssets[String(chapter)] || ["/bg.png"];
+  // Swaps assets cleanly every 8 paragraphs as the reader descends down the manuscript track
+  const imgIndex = Math.min(assets.length - 1, Math.floor(activePara / 8));
 
   return (
     <div className="fixed inset-0 z-10 pointer-events-none overflow-hidden">

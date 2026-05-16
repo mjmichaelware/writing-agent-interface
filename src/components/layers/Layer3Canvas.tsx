@@ -10,6 +10,7 @@ interface Layer3CanvasProps {
   paragraphs: string[];
   loading: boolean;
   error: string | null;
+  depth: number;
   go: (delta: number) => void;
   titleOpacity: any;
   titleScale: any;
@@ -21,8 +22,68 @@ interface Layer3CanvasProps {
   manuscriptRef: React.RefObject<HTMLDivElement | null>;
   TITLES: Record<number, string>;
   CHAPTER_NUMS: number[];
-  TaggedParagraph: React.ComponentType<any>;
   state: any;
+}
+
+function DynamicWord({ word, depth, state, isDescent }: { word: string; depth: number; state: any; isDescent: boolean }) {
+  const cleanWord = word.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?"']/g, "");
+  
+  // 1. Scroll-dependent word color variation logic shifts parameters smoothly down the scroll depth
+  let color = isDescent ? state.descentColor : state.baseColor;
+  if (["stardust", "universe", "stars", "sacred", "dreamwalker", "visionary"].includes(cleanWord)) {
+    color = state.sacredColor || "#38bdf8";
+  } else if (depth > 0.15) {
+    color = depth > 0.55 ? "#0e7490" : "#06b6d4";
+  }
+
+  let className = "inline-block transition-all duration-500 mx-[0.1em]";
+  let inlineStyle: React.CSSProperties = { color };
+
+  // 2. Semantic text distortion parsing modifications based on narrative context values
+  if (["big", "huge", "giant", "god", "infinite", "oppressive"].includes(cleanWord)) {
+    inlineStyle.fontWeight = "800";
+    inlineStyle.transform = "scale(1.12)";
+    className += " uppercase tracking-wide px-0.5";
+  } else if (["small", "minute", "stardust", "cells", "dust"].includes(cleanWord)) {
+    inlineStyle.fontSize = "0.78em";
+    inlineStyle.fontFamily = "monospace";
+    inlineStyle.opacity = 0.55;
+    className += " tracking-tighter";
+  }
+
+  if (["shake", "tremble", "fracture", "shattering", "conflict", "pit"].includes(cleanWord)) {
+    className += " animate-word-shake";
+  }
+
+  return <span className={className} style={inlineStyle}>{word}</span>;
+}
+
+function MorphingParagraph({ text, isDescent, state, depth }: any) {
+  const cleaned = text.replace(/\r/g, "");
+  const tokens = cleaned.split(/(\s+|\*\*[^*]+\*\*)/g).filter(Boolean);
+  return (
+    <p 
+      className="text-justify mb-6 font-serif select-text" 
+      style={{ 
+        fontSize: `${1.25 * state.fontScale}rem`, 
+        lineHeight: state.lineHeight, 
+        letterSpacing: `${state.letterSpacing}em`, 
+        textIndent: "3rem" 
+      }}
+    >
+      {tokens.map((tok: string, i: number) => {
+        if (/^\s+$/.test(tok)) return <span key={i}>{tok}</span>;
+        if (tok.startsWith("**") && tok.endsWith("**")) {
+          return (
+            <strong key={i} style={{ color: state.properColor, fontWeight: 600 }} className="inline-block scale-105">
+              {tok.slice(2, -2)}
+            </strong>
+          );
+        }
+        return <DynamicWord key={i} word={tok} depth={depth} state={state} isDescent={isDescent} />;
+      })}
+    </p>
+  );
 }
 
 export default function Layer3Canvas({
@@ -31,6 +92,7 @@ export default function Layer3Canvas({
   paragraphs,
   loading,
   error,
+  depth,
   go,
   titleOpacity,
   titleScale,
@@ -42,7 +104,6 @@ export default function Layer3Canvas({
   manuscriptRef,
   TITLES,
   CHAPTER_NUMS,
-  TaggedParagraph,
   state,
 }: Layer3CanvasProps) {
   const jumpTo = (elementRef: React.RefObject<HTMLDivElement | null>) => {
@@ -54,7 +115,22 @@ export default function Layer3Canvas({
   return (
     <article className="relative z-20 px-6 max-w-2xl mx-auto flex flex-col pb-40 bg-transparent">
       
-      {/* FULL VIEWPORT TITLE COVER VIEW FRAME */}
+      {/* Native inline stylesheet appending non-destructive vibration keyframes to layout shell context */}
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes wordShake {
+          0%, 100% { transform: translate(0, 0) rotate(0deg); }
+          20% { transform: translate(-1px, 1px) rotate(-1deg); }
+          40% { transform: translate(1px, -1px) rotate(1deg); }
+          60% { transform: translate(-1px, -1px) rotate(1deg); }
+          80% { transform: translate(1px, 1px) rotate(-1deg); }
+        }
+        .animate-word-shake {
+          display: inline-block !important;
+          animation: wordShake 0.25s infinite linear !important;
+        }
+      `}} />
+
+      {/* FULL VIEWPORT TITLE CARD COVER VIEW */}
       <motion.div 
         ref={topCanvasRef} 
         style={{ opacity: titleOpacity, scale: titleScale }}
@@ -111,7 +187,7 @@ export default function Layer3Canvas({
         </div>
       </motion.div>
 
-      {/* VERBATIM MANUSCRIPT ACCREDITATION DEDICATION BLOCK */}
+      {/* VERBATIM ACCREDITATION DEDICATION BLOCK */}
       <div ref={dedicationRef} className="min-h-[40vh] flex flex-col justify-center items-center text-center scroll-mt-20">
         <p className="text-cyan-600 font-mono text-[8px] uppercase tracking-[0.3em] mb-4">// ACCREDITATION</p>
         <p className="text-zinc-200 font-serif italic text-xl max-w-md leading-relaxed select-text">
@@ -119,7 +195,7 @@ export default function Layer3Canvas({
         </p>
       </div>
 
-      {/* VERBATIM MANUSCRIPT SUMMARY SYNOPSIS BLURB BLOCK */}
+      {/* VERBATIM SUMMARY SYNOPSIS BLURB BLOCK */}
       <div ref={blurbRef} className="min-h-[50vh] flex flex-col justify-center items-center scroll-mt-20">
         <p className="text-cyan-600 font-mono text-[8px] uppercase tracking-[0.3em] mb-4">// BLURB SUMMARY</p>
         <div className="bg-zinc-950/40 border border-zinc-900/60 p-6 rounded-sm text-justify max-w-lg select-text">
@@ -129,7 +205,7 @@ export default function Layer3Canvas({
         </div>
       </div>
 
-      {/* VERBATIM MANUSCRIPT BIOGRAPHY AUTHOR BLOCK */}
+      {/* VERBATIM BIOGRAPHY AUTHOR BLOCK */}
       <div ref={authorRef} className="min-h-[50vh] flex flex-col justify-center items-center text-center scroll-mt-20">
         <p className="text-cyan-600 font-mono text-[8px] uppercase tracking-[0.3em] mb-4">// AUTHOR BIOGRAPHY</p>
         <div className="max-w-lg bg-zinc-950/20 border border-zinc-900/40 p-6 rounded-sm text-justify select-text flex flex-col items-center gap-4">
@@ -139,7 +215,7 @@ export default function Layer3Canvas({
         </div>
       </div>
 
-      {/* COMPLETE CANONICAL 25-PART MATRIX TABLE OF CONTENTS */}
+      {/* CANONICAL MATRIX SECTIONS */}
       <div ref={tocRef} className="min-h-[70vh] flex flex-col justify-center scroll-mt-20 border-t border-b border-zinc-900/40 py-12">
         <p className="text-cyan-600 font-mono text-[8px] uppercase tracking-[0.3em] mb-8 text-center">// COMPLETE CANONICAL MATRIX</p>
         <div className="max-w-md mx-auto w-full space-y-6 font-mono text-xs px-4">
@@ -197,8 +273,15 @@ export default function Layer3Canvas({
         </div>
       </div>
 
-      {/* CONTINUOUS MANUSCRIPT TARGET PROSE LOOP */}
-      <div ref={manuscriptRef} className="pt-24 min-h-[60vh] scroll-mt-16">
+      {/* FIX: Injects an absolute Webkit view linear-gradient mask to execute Star Wars ingress fade-in merge limits */}
+      <div 
+        ref={manuscriptRef} 
+        className="pt-24 min-h-[60vh] scroll-mt-16 transition-all duration-300"
+        style={{
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, white 14%, white 84%, transparent 99%)',
+          maskImage: 'linear-gradient(to bottom, transparent 0%, white 14%, white 84%, transparent 99%)'
+        }}
+      >
         <h2 className="text-zinc-400 uppercase tracking-[0.7em] text-[11px] text-center mb-16 font-mono select-none">
           {TITLES[chapter] || `Chapter ${chapter}`}
         </h2>
@@ -222,7 +305,7 @@ export default function Layer3Canvas({
         <div className="space-y-6">
           {paragraphs.map((para, i) => (
             <div key={`${chapter}-${i}`} data-para={i}>
-              <TaggedParagraph text={para} isDescent={i > 12} state={state} />
+              <MorphingParagraph text={para} isDescent={i > 12} state={state} depth={depth} />
             </div>
           ))}
         </div>

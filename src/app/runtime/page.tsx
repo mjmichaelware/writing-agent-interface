@@ -285,7 +285,7 @@ export default function RuntimePage() {
 
         <Panel title="Cinema Layer · Live Filter Controls" icon={Eye} status="live">
           <div className="aspect-video bg-black border border-zinc-800 overflow-hidden mb-4 relative">
-             <img src="/bg.png" alt="" className="w-full h-full object-cover" style={{
+             <img src="/assets/bg.png" alt="" className="w-full h-full object-cover" style={{
               filter: `grayscale(${gray}) contrast(${contrast}) brightness(${bright}) blur(${blur}px)`,
             }} />
           </div>

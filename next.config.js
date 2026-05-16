@@ -1,21 +1,25 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
-    ignoreDuringBuilds: true
+    ignoreDuringBuilds: true,
   },
 
   typescript: {
-    ignoreBuildErrors: true
+    ignoreBuildErrors: true,
   },
 
-  outputFileTracingExcludes: {
-    "*": [
-      "**/.next/cache/webpack/**/*",
-      "**/.sandbox/**/*",
-      "**/.git/**/*",
-      "**/node_modules/@swc/**/*"
-    ]
-  }
+  experimental: {
+    outputFileTracingExcludes: {
+      "*": [
+        ".git/**",
+        "**/.git/**",
+        ".next/cache/**",
+        "**/.next/cache/**",
+        ".sandbox/**",
+        "**/.sandbox/**",
+      ],
+    },
+  },
 };
 
 module.exports = nextConfig;

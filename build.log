@@ -1,0 +1,14 @@
+
+> creative-intelligence-interface@1.0.0 build
+> next build
+
+ ⚠ Invalid next.config.js options detected: 
+ ⚠     Unrecognized key(s) in object: 'outputFileTracingExcludes'
+ ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+  ▲ Next.js 14.2.35
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+ ⚠ Attempted to load @next/swc-android-arm64, but it was not installed
+ ⨯ Failed to load SWC binary for android/arm64, see more info here: https://nextjs.org/docs/messages/failed-loading-swc
+Next.js build worker exited with code: 1 and signal: null

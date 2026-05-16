@@ -17,8 +17,8 @@ interface AssetProjectorProps {
 
 export default function AssetProjector({ currentSrc, scale, mixBlend }: AssetProjectorProps) {
   const [activePlane, setActivePlane] = useState<"ALPHA" | "BETA">("ALPHA");
-  const [srcPlaneAlpha, setSrcPlaneAlpha] = useState("/bg.png");
-  const [srcPlaneBeta, setSrcPlaneBeta] = useState("/bg.png");
+  const [srcPlaneAlpha, setSrcPlaneAlpha] = useState("/assets/bg.png");
+  const [srcPlaneBeta, setSrcPlaneBeta] = useState("/assets/bg.png");
   const [opacityPlaneAlpha, setOpacityPlaneAlpha] = useState(1);
   const [opacityPlaneBeta, setOpacityPlaneBeta] = useState(0);
 
@@ -33,12 +33,12 @@ export default function AssetProjector({ currentSrc, scale, mixBlend }: AssetPro
     preloaderQueue: new Set(),
     cachedAssets: new Map(),
     executionCount: 0,
-    lastActiveSrc: "/bg.png"
+    lastActiveSrc: "/assets/bg.png"
   });
 
   // Master asset registry mapping available story graphics to prevent hot-linking faults
   const mediaInventory = useMemo(() => [
-    "/bg.png",
+    "/assets/bg.png",
     "/assets/agent-photos/flies.jpg",
     "/assets/agent-photos/megiddo1.jpg",
     "/assets/agent-photos/megiddo2.jpg"
@@ -85,9 +85,9 @@ export default function AssetProjector({ currentSrc, scale, mixBlend }: AssetPro
           console.error(`NOS_CINEMA_ERROR: Target file route could not resolve binary stream: ${currentSrc}`);
           // Graceful system recovery: Fall back to native stardust background art
           if (activePlane === "ALPHA") {
-            setSrcPlaneBeta("/bg.png");
+            setSrcPlaneBeta("/assets/bg.png");
           } else {
-            setSrcPlaneAlpha("/bg.png");
+            setSrcPlaneAlpha("/assets/bg.png");
           }
           executePlaneCrossfadeSequence();
         };

@@ -1,0 +1,73 @@
+"use client";
+
+import React, { useState } from "react";
+import { Search as SearchIcon, Link2 } from "lucide-react";
+
+export default function SystemTab() {
+  const [term, setTerm] = useState("");
+  const [results, setResults] = useState<any[]>([]);
+  const [searching, setSearching] = useState(false);
+  const [hyperlinksEnabled, setHyperlinksEnabled] = useState(true);
+
+  const runSearch = async () => {
+    if (!term.trim()) return;
+    setSearching(true);
+    try {
+      const r = await fetch(`/api/search?term=${encodeURIComponent(term)}`);
+      const d = await r.json();
+      setResults(d.results || []);
+    } catch {
+      setResults([]);
+    }
+    setSearching(false);
+  };
+
+  return (
+    <div className="space-y-5 font-mono text-xs px-1">
+      <section className="space-y-2">
+        <p className="text-[8px] uppercase tracking-[0.2em] text-zinc-500 font-bold">// CRAWL 181 CONCORDANCE NODES</p>
+        <div className="flex gap-2">
+          <input
+            type="text"
+            value={term}
+            onChange={(e) => setTerm(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && runSearch()}
+            placeholder="Query query term engine..."
+            className="flex-1 bg-zinc-900/40 border border-zinc-900 px-3 py-2 text-xs text-white placeholder-zinc-700 focus:border-cyan-800 focus:outline-none rounded-xs"
+          />
+          <button onClick={runSearch} disabled={searching} className="bg-cyan-950 border border-cyan-800 text-cyan-400 px-3 py-2 text-xs rounded-xs font-bold active:scale-95 transition-transform">
+            <SearchIcon size={12} />
+          </button>
+        </div>
+        <div className="space-y-1.5 max-h-40 overflow-y-auto pt-1">
+          {results.map((r: any, i) => (
+            <div key={i} className="bg-zinc-900/30 border border-zinc-900 p-2.5 text-[10px] text-zinc-400 rounded-xs">
+              {r.snippet}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="pt-3 border-t border-zinc-900/60 space-y-2">
+        <p className="text-[8px] uppercase tracking-[0.2em] text-zinc-500 font-bold">// XAI MATRIX OVERLAYS</p>
+        <div className="p-3 bg-zinc-900/10 border border-zinc-900 rounded-xs flex items-center justify-between">
+          <span className="text-zinc-300 font-sans text-xs">Hyperlinking References</span>
+          <button 
+            onClick={() => setHyperlinksEnabled(!hyperlinksEnabled)}
+            className={`w-8 h-4 rounded-full p-0.5 transition-colors duration-200 ${hyperlinksEnabled ? "bg-cyan-600" : "bg-zinc-800"}`}
+          >
+            <div className={`w-3 h-3 rounded-full bg-white transition-transform duration-200 ${hyperlinksEnabled ? "translate-x-4" : "translate-x-0"}`} />
+          </button>
+        </div>
+        <button className="w-full py-2.5 bg-zinc-900/20 border border-zinc-900 text-left px-3 text-zinc-400 hover:text-cyan-400 hover:border-cyan-900/40 transition-all rounded-xs flex items-center justify-between">
+          <span className="font-sans text-xs">Biblical Reference Framework</span>
+          <Link2 size={12} className="text-zinc-700" />
+        </button>
+        <button className="w-full py-2.5 bg-zinc-900/20 border border-zinc-900 text-left px-3 text-zinc-400 hover:text-cyan-400 hover:border-cyan-900/40 transition-all rounded-xs flex items-center justify-between">
+          <span className="font-sans text-xs">Narrative Foreshadowing Loops</span>
+          <Link2 size={12} className="text-zinc-700" />
+        </button>
+      </section>
+    </div>
+  );
+}

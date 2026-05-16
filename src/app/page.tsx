@@ -1,16 +1,31 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
-import { getRuntime } from "@/runtime/runtimeContext";
-import { initAudioListener } from "@/features/audioListener";
-import { initDistortionListener } from "@/features/distortionListener";
-import { initThematicListener } from "@/features/thematicListener";
-import { useControlPanel } from "@/runtime/controlPanel";
+import React, { useEffect, useRef, useState } from "react";
 
 import Layer1Void from "@/components/layers/Layer1Void";
 import Layer2Cinema from "@/components/layers/Layer2Cinema";
 import Layer3Canvas from "@/components/layers/Layer3Canvas";
 import Layer4Panel from "@/components/layers/Layer4Panel";
+
+import { initAudioListener } from "@/features/audioListener";
+import { initDistortionListener } from "@/features/distortionListener";
+import { initThematicListener } from "@/features/thematicListener";
+
+const mockBus = {
+  emit: () => {},
+  on: () => {},
+  off: () => {}
+};
+
+const cp = {
+  state: {
+    fontScale: 1.125,
+    lineHeight: "1.7",
+    letterSpacing: 0,
+    baseColor: "#e8e4dc"
+  },
+  update: () => {}
+};
 
 const TITLES: Record<number, string> = {
   1: "Stardust to Stardust",
@@ -24,15 +39,12 @@ const TITLES: Record<number, string> = {
   9: "The Ascent",
   10: "Forsaken",
   11: "Forsaken (II)",
-  13: "Exodus",
+  13: "Exodus"
 };
-const CHAPTER_NUMS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13];
 
-export default function HomePage() {
-  const { bus } = getRuntime();
-  const cp = useControlPanel();
-  
-  // Chapter defaults to null so the Title Page shows cleanly
+const CHAPTER_NUMS = [1,2,3,4,5,6,7,8,9,10,11,13];
+
+export default function ReaderPage() {
   const [chapter, setChapter] = useState<number | null>(null);
   const [paragraphs, setParagraphs] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
@@ -41,122 +53,139 @@ export default function HomePage() {
   const [activePara, setActivePara] = useState(0);
   const [panelOpen, setPanelOpen] = useState(false);
 
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const topCanvasRef = useRef<HTMLDivElement>(null);
-  const manuscriptRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    initAudioListener(bus);
-    initDistortionListener(bus);
-    initThematicListener(bus);
-  }, [bus]);
+    initAudioListener(mockBus);
+    initDistortionListener(mockBus);
+    initThematicListener(mockBus);
+  }, []);
 
   useEffect(() => {
-    const p = new URLSearchParams(window.location.search);
-    const ch = p.get("ch");
-    if (ch !== null) {
-      const parsed = parseInt(ch, 10);
-      if (TITLES[parsed] !== undefined) {
-        setChapter(parsed);
-      }
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+
+      const maxScroll =
+        document.body.scrollHeight - window.innerHeight;
+
+      const scrollDepth =
+        maxScroll > 0 ? scrollY / maxScroll : 0;
+
+      setDepth(scrollDepth);
+
+      const paras = Array.from(
+        document.querySelectorAll("[data-para]")
+      );
+
+      let currentActive = 0;
+
+      paras.forEach((p) => {
+        const rect = p.getBoundingClientRect();
+
+        if (rect.top < window.innerHeight * 0.5) {
+          currentActive = parseInt(
+            p.getAttribute("data-para") || "0",
+            10
+          );
+        }
+      });
+
+      setActivePara(currentActive);
+    };
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+
+    const ch = params.get("ch");
+
+    if (ch && TITLES[parseInt(ch, 10)]) {
+      setChapter(parseInt(ch, 10));
     }
   }, []);
 
   useEffect(() => {
     if (!chapter) return;
-    const ac = new AbortController();
+
     setLoading(true);
     setError(null);
-    fetch(`/api/chapters?slug=${chapter}`, { signal: ac.signal })
-      .then((r) => r.json())
-      .then((d) => {
-        if (d.error) { setError(d.error); setParagraphs([]); }
-        else if (d.blocks?.length > 0) { setParagraphs(d.blocks); }
-        else { setParagraphs([]); }
+
+    fetch(`/api/chapters?slug=${chapter}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error) {
+          setError(data.error);
+        } else {
+          setParagraphs(data.blocks || []);
+        }
+
         setLoading(false);
-        (bus as any).emit("chapter:load", { id: chapter });
       })
-      .catch((e) => {
-        if (e.name !== "AbortError") { setError(e.message); setLoading(false); }
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
       });
-    return () => ac.abort();
-  }, [chapter, bus]);
-
-  const handleScroll = () => {
-    const el = scrollContainerRef.current;
-    if (!el) return;
-
-    const max = el.scrollHeight - el.clientHeight;
-    const d = max > 0 ? el.scrollTop / max : 0;
-    setDepth(d);
-    (bus as any).emit("scroll:update", { depth: d });
-
-    const paras = el.querySelectorAll("[data-para]");
-    let active = 0;
-    paras.forEach((pEl, i) => {
-      const r = pEl.getBoundingClientRect();
-      if (r.top < window.innerHeight * 0.5) active = i;
-    });
-    setActivePara(active);
-  };
+  }, [chapter]);
 
   const go = (delta: number) => {
     if (!chapter) return;
-    const currentIdx = CHAPTER_NUMS.indexOf(chapter);
-    if (currentIdx !== -1 && CHAPTER_NUMS[currentIdx + delta] !== undefined) {
-      setChapter(CHAPTER_NUMS[currentIdx + delta]);
-      setTimeout(() => { 
-        document.getElementById("reading")?.scrollIntoView({ behavior: "smooth" }); 
-      }, 50);
+
+    const idx = CHAPTER_NUMS.indexOf(chapter);
+
+    if (
+      idx !== -1 &&
+      CHAPTER_NUMS[idx + delta] !== undefined
+    ) {
+      setChapter(CHAPTER_NUMS[idx + delta]);
     }
   };
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden bg-black text-zinc-100 font-sans selection:bg-cyan-950/60">
-      
-      {/* Z-0: Fixed Black Void */}
+    <>
       <Layer1Void />
-      
-      {/* Z-10: Fixed Cinema Backdrop */}
-      <Layer2Cinema chapter={chapter || 1} activePara={activePara} depth={depth} />
 
-      {/* Z-20: Relative Scroll Canvas */}
-      <div 
-        ref={scrollContainerRef}
-        onScroll={handleScroll}
-        className="absolute inset-0 w-full h-full overflow-y-auto overflow-x-hidden z-20 scroll-smooth"
-        // REMOVED THE CSS MASKS THAT BROKE YOUR LAYER 2 VISIBILITY
-        style={{}}
-      >
-        <Layer3Canvas
-          chapter={chapter} 
-          setChapter={setChapter} 
-          paragraphs={paragraphs} 
-          loading={loading} 
-          error={error}
-          depth={depth} 
-          go={go} 
-          scrollContainerRef={scrollContainerRef}
-          topCanvasRef={topCanvasRef} 
-          TITLES={TITLES} 
-          CHAPTER_NUMS={CHAPTER_NUMS} 
-          state={cp.state}
-        />
-      </div>
-
-      {/* Z-40 / Z-50: HUD & Panel */}
-      <Layer4Panel
-        open={panelOpen} 
-        onClose={() => setPanelOpen(false)} 
-        cp={cp} 
-        chapter={chapter || 1} 
-        setChapter={setChapter}
-        manuscriptRef={manuscriptRef} 
-        TITLES={TITLES} 
-        CHAPTER_NUMS={CHAPTER_NUMS} 
-        depth={depth} 
-        setOpen={setPanelOpen}
+      <Layer2Cinema
+        chapter={chapter || 7}
+        activePara={activePara}
+        depth={depth}
       />
-    </div>
+
+      <Layer3Canvas
+        chapter={chapter}
+        setChapter={setChapter}
+        paragraphs={paragraphs}
+        loading={loading}
+        error={error}
+        depth={depth}
+        go={go}
+        topCanvasRef={topCanvasRef}
+        scrollContainerRef={scrollContainerRef}
+        TITLES={TITLES}
+        CHAPTER_NUMS={CHAPTER_NUMS}
+        state={cp.state}
+      />
+
+      <Layer4Panel
+        open={panelOpen}
+        setOpen={setPanelOpen}
+        onClose={() => setPanelOpen(false)}
+        cp={cp}
+        chapter={chapter}
+        setChapter={setChapter}
+        manuscriptRef={topCanvasRef}
+        TITLES={TITLES}
+        CHAPTER_NUMS={CHAPTER_NUMS}
+        depth={depth}
+      />
+    </>
   );
 }

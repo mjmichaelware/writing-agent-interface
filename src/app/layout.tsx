@@ -1,33 +1,39 @@
 import type { Metadata } from "next";
-import { Frank_Ruhl_Libre } from "next/font/google";
-import "./globals.css";
-import { RuntimeProvider } from "@/runtime/runtimeContext";
+import {
+  Frank_Ruhl_Libre,
+  EB_Garamond
+} from "next/font/google";
 
-/**
- * Loading both subsets to ensure Hebrew passages and English 
- * narrative context render with the same weights.
- */
-const frankRuhl = Frank_Ruhl_Libre({ 
+import "./globals.css";
+
+const frankRuhl = Frank_Ruhl_Libre({
   subsets: ["hebrew", "latin"],
-  variable: '--font-hebrew' 
+  variable: "--font-hebrew"
+});
+
+const ebGaramond = EB_Garamond({
+  subsets: ["latin"],
+  variable: "--font-prose"
 });
 
 export const metadata: Metadata = {
-  title: "Singularity Narrative OS",
-  description: "The Weight of the Sky - Michael Alonza P. Ware",
+  title: "The Weight of the Sky",
+  description:
+    "An Archetypal Tale by Michael Alonza Prentice Ware"
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
+  children
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-      <body className={frankRuhl.className}>
-        <RuntimeProvider>
-          {children}
-        </RuntimeProvider>
+    <html
+      lang="en"
+      className={`${frankRuhl.variable} ${ebGaramond.variable}`}
+    >
+      <body className="bg-[var(--bg-void)] text-[var(--text-body)] antialiased selection:bg-[var(--accent-gold)]/30">
+        {children}
       </body>
     </html>
   );

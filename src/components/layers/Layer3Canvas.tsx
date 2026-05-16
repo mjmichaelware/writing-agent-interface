@@ -25,30 +25,29 @@ interface Layer3CanvasProps {
   state: any;
 }
 
-function DynamicWord({ word, depth, state, isDescent }: { word: string; depth: number; state: any; isDescent: boolean }) {
+function DynamicWord({ word, state, isDescent }: { word: string; depth: number; state: any; isDescent: boolean }) {
   const cleanWord = word.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?"']/g, "");
   
+  // Confines color mapping strictly to individual token targets to eliminate distracting blue text blocks
   let color = isDescent ? state.descentColor : state.baseColor;
   if (["stardust", "universe", "stars", "sacred", "dreamwalker", "visionary"].includes(cleanWord)) {
     color = state.sacredColor || "#38bdf8";
-  } else if (depth > 0.15) {
-    color = depth > 0.55 ? "#0e7490" : "#06b6d4";
   }
 
-  // FIX: Altered fallback default parameter to clean inline layout formatting rules
-  let className = "inline transition-all duration-500 mx-[0.02em]";
+  // FIX: Defaults to clean native inline spacing to eliminate text justification gaps entirely
+  let className = "inline transition-all duration-300 mx-[0.01em]";
   let inlineStyle: React.CSSProperties = { color };
 
-  // Promote to inline-block blocks strictly if visual transformation rules are flagged
+  // Promote to inline-block blocks strictly if visual dimensional transformations are flagged
   if (["big", "huge", "giant", "god", "infinite", "oppressive"].includes(cleanWord)) {
     inlineStyle.fontWeight = "800";
-    inlineStyle.transform = "scale(1.12)";
-    className = "inline-block uppercase tracking-wide px-0.5 transition-all duration-500";
+    inlineStyle.transform = "scale(1.08)";
+    className = "inline-block uppercase tracking-wide px-0.5 font-bold transition-all duration-300";
   } else if (["small", "minute", "stardust", "cells", "dust"].includes(cleanWord)) {
-    inlineStyle.fontSize = "0.78em";
+    inlineStyle.fontSize = "0.82em";
     inlineStyle.fontFamily = "monospace";
-    inlineStyle.opacity = 0.55;
-    className = "inline tracking-tighter transition-all duration-500";
+    inlineStyle.opacity = 0.6;
+    className = "inline tracking-tighter transition-all duration-300";
   }
 
   if (["shake", "tremble", "fracture", "shattering", "conflict", "pit"].includes(cleanWord)) {
@@ -62,20 +61,21 @@ function MorphingParagraph({ text, isDescent, state, depth }: any) {
   const cleaned = text.replace(/\r/g, "");
   const tokens = cleaned.split(/(\s+|\*\*[^*]+\*\*)/g).filter(Boolean);
   return (
+    // FIX: Configures clean left alignment with absolute line spacing parameters to avoid word-stretching gaps
     <p 
-      className="text-justify mb-6 font-serif select-text" 
+      className="text-left mb-8 font-serif select-text tracking-normal" 
       style={{ 
-        fontSize: `${1.25 * state.fontScale}rem`, 
+        fontSize: `${1.2 * state.fontScale}rem`, 
         lineHeight: state.lineHeight, 
         letterSpacing: `${state.letterSpacing}em`, 
-        textIndent: "3rem" 
+        textIndent: "2.5rem" 
       }}
     >
       {tokens.map((tok: string, i: number) => {
         if (/^\s+$/.test(tok)) return <span key={i}>{tok}</span>;
         if (tok.startsWith("**") && tok.endsWith("**")) {
           return (
-            <strong key={i} style={{ color: state.properColor, fontWeight: 600 }} className="inline-block scale-105">
+            <strong key={i} style={{ color: state.properColor, fontWeight: 600 }} className="inline-block scale-102">
               {tok.slice(2, -2)}
             </strong>
           );
@@ -118,22 +118,22 @@ export default function Layer3Canvas({
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes wordShake {
           0%, 100% { transform: translate(0, 0) rotate(0deg); }
-          20% { transform: translate(-1px, 1px) rotate(-1deg); }
-          40% { transform: translate(1px, -1px) rotate(1deg); }
-          60% { transform: translate(-1px, -1px) rotate(1deg); }
-          80% { transform: translate(1px, 1px) rotate(-1deg); }
+          20% { transform: translate(-0.5px, 0.5px) rotate(-0.5deg); }
+          40% { transform: translate(0.5px, -0.5px) rotate(0.5deg); }
+          60% { transform: translate(-0.5px, -0.5px) rotate(0.5deg); }
+          80% { transform: translate(0.5px, 0.5px) rotate(-0.5deg); }
         }
         .animate-word-shake {
           display: inline-block !important;
-          animation: wordShake 0.25s infinite linear !important;
+          animation: wordShake 0.3s infinite linear !important;
         }
       `}} />
 
-      {/* FULL VIEWPORT TITLE COVER PAGE VIEW CONTAINER */}
+      {/* FULL VIEWPORT TITLE SECTION */}
       <motion.div 
-        topCanvasRef={topCanvasRef} 
+        ref={topCanvasRef} 
         style={{ opacity: titleOpacity, scale: titleScale }}
-        className="min-h-screen flex flex-col justify-between items-center text-center pt-32 pb-16 relative animate-fade"
+        className="min-h-screen flex flex-col justify-between items-center text-center pt-32 pb-16 relative"
       >
         <div className="flex-1 flex flex-col justify-center items-center">
           <motion.h1 
@@ -186,7 +186,7 @@ export default function Layer3Canvas({
         </div>
       </motion.div>
 
-      {/* VERBATIM ACCREDITATION DEDICATION BLOCK */}
+      {/* VERBATIM MANUSCRIPT ACCREDITATION DEDICATION BLOCK */}
       <div ref={dedicationRef} className="min-h-[40vh] flex flex-col justify-center items-center text-center scroll-mt-20">
         <p className="text-cyan-600 font-mono text-[8px] uppercase tracking-[0.3em] mb-4">// ACCREDITATION</p>
         <p className="text-zinc-200 font-serif italic text-xl max-w-md leading-relaxed select-text">
@@ -194,7 +194,7 @@ export default function Layer3Canvas({
         </p>
       </div>
 
-      {/* VERBATIM SUMMARY SYNOPSIS BLURB BLOCK */}
+      {/* VERBATIM MANUSCRIPT SUMMARY SYNOPSIS BLURB BLOCK */}
       <div ref={blurbRef} className="min-h-[50vh] flex flex-col justify-center items-center scroll-mt-20">
         <p className="text-cyan-600 font-mono text-[8px] uppercase tracking-[0.3em] mb-4">// BLURB SUMMARY</p>
         <div className="bg-zinc-950/40 border border-zinc-900/60 p-6 rounded-sm text-justify max-w-lg select-text">
@@ -204,7 +204,7 @@ export default function Layer3Canvas({
         </div>
       </div>
 
-      {/* VERBATIM BIOGRAPHY AUTHOR BLOCK */}
+      {/* VERBATIM MANUSCRIPT BIOGRAPHY AUTHOR BLOCK */}
       <div ref={authorRef} className="min-h-[50vh] flex flex-col justify-center items-center text-center scroll-mt-20">
         <p className="text-cyan-600 font-mono text-[8px] uppercase tracking-[0.3em] mb-4">// AUTHOR BIOGRAPHY</p>
         <div className="max-w-lg bg-zinc-950/20 border border-zinc-900/40 p-6 rounded-sm text-justify select-text flex flex-col items-center gap-4">
@@ -214,71 +214,100 @@ export default function Layer3Canvas({
         </div>
       </div>
 
-      {/* CANONICAL MATRIX SECTIONS */}
-      <div ref={tocRef} className="min-h-[70vh] flex flex-col justify-center scroll-mt-20 border-t border-b border-zinc-900/40 py-12">
-        <p className="text-cyan-600 font-mono text-[8px] uppercase tracking-[0.3em] mb-8 text-center">// COMPLETE CANONICAL MATRIX</p>
-        <div className="max-w-md mx-auto w-full space-y-6 font-mono text-xs px-4">
+      {/* HIGH-DENSITY CYBERNETIC INDEX MATRIX TABLE OF CONTENTS */}
+      <div ref={tocRef} className="min-h-[70vh] flex flex-col justify-center scroll-mt-20 border-t border-b border-zinc-950 py-16">
+        <p className="text-cyan-500 font-mono text-[9px] uppercase tracking-[0.4em] mb-12 text-center font-bold animate-pulse">// SYSTEM MATRIX MANUSCRIPT INDEX</p>
+        <div className="max-w-xl mx-auto w-full space-y-8 px-2">
           
-          <section className="space-y-1.5">
-            <p className="text-[9px] uppercase tracking-widest text-zinc-500 font-bold border-b border-zinc-900 pb-1">PART I: THE JOURNEY (Chapters 1–9)</p>
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
-              <button
-                key={num}
-                onClick={() => { setChapter(num); setTimeout(() => { manuscriptRef.current?.scrollIntoView({ behavior: "smooth" }); }, 100); }}
-                className={`flex justify-between w-full text-left pb-0.5 transition-colors ${chapter === num ? "text-cyan-400" : "text-zinc-400 hover:text-zinc-200"}`}
-              >
-                <span className="font-serif italic">{TITLES[num] || `Chapter ${num}`}</span>
-                <span className="text-[9px] opacity-30">NODE 0{num}</span>
-              </button>
-            ))}
-          </section>
-
-          <section className="space-y-1.5">
-            <p className="text-[9px] uppercase tracking-widest text-zinc-500 font-bold border-b border-zinc-900 pb-1">PART II: THE DECEPTION & REVEAL (Chapters 10–17)</p>
-            {[10, 11, 12, 13, 14, 15, 16, 17].map((num) => {
-              const isPending = TITLES[num] === undefined;
-              return (
+          <section className="border border-zinc-900/80 bg-zinc-950/30 p-4 backdrop-blur-xs rounded-xs shadow-lg shadow-black/40">
+            <p className="text-[9px] uppercase tracking-[0.25em] text-cyan-500 font-mono font-bold border-b border-zinc-900 pb-2 mb-3 flex justify-between items-center">
+              <span>PART I: THE JOURNEY (Chapters 1–9)</span>
+              <span className="text-[8px] text-zinc-600 font-normal">TRACK_LOG_01</span>
+            </p>
+            <div className="grid grid-cols-1 gap-1">
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
                 <button
                   key={num}
-                  disabled={isPending}
-                  onClick={() => { if (!isPending) { setChapter(num); setTimeout(() => { manuscriptRef.current?.scrollIntoView({ behavior: "smooth" }); }, 100); } }}
-                  className={`flex justify-between w-full text-left pb-0.5 transition-colors ${isPending ? "text-zinc-700 cursor-not-allowed" : chapter === num ? "text-cyan-400" : "text-zinc-400 hover:text-zinc-200"}`}
+                  onClick={() => { setChapter(num); setTimeout(() => { manuscriptRef.current?.scrollIntoView({ behavior: "smooth" }); }, 100); }}
+                  className={`group flex justify-between items-center w-full text-left px-2.5 py-1.5 transition-all rounded-xs font-mono text-xs ${chapter === num ? "bg-cyan-950/30 border border-cyan-800/40 text-cyan-400" : "border border-transparent hover:bg-zinc-900/30 text-zinc-400 hover:text-zinc-200"}`}
                 >
-                  <span className="font-serif italic">{isPending ? `Chapter ${num}: [Staging Node: Unwritten]` : TITLES[num]}</span>
-                  <span className="text-[9px] opacity-30">NODE {num}</span>
+                  <span className="font-serif italic tracking-wide transition-transform group-hover:translate-x-1">{TITLES[num] || `Chapter ${num}`}</span>
+                  <div className="flex items-center gap-3">
+                    <span className="text-[9px] opacity-30 font-mono tracking-tighter">NODE_0{num}</span>
+                    <div className={`w-1 h-1 rounded-full transition-colors ${chapter === num ? "bg-cyan-500 shadow-md shadow-cyan-400" : "bg-zinc-800 group-hover:bg-zinc-600"}`} />
+                  </div>
                 </button>
-              );
-            })}
+              ))}
+            </div>
           </section>
 
-          <section className="space-y-1.5">
-            <p className="text-[9px] uppercase tracking-widest text-zinc-500 font-bold border-b border-zinc-900 pb-1">PART III: THE COSMIC UNION (Chapters 18–24)</p>
-            {[18, 19, 20, 21, 22, 23, 24].map((num) => (
-              <div key={num} className="flex justify-between w-full text-left pb-0.5 text-zinc-700 select-none">
-                <span className="font-serif italic">Chapter {num}: [Staging Node: Unwritten]</span>
-                <span className="text-[9px] opacity-20">NODE {num}</span>
-              </div>
-            ))}
+          <section className="border border-zinc-900/80 bg-zinc-950/30 p-4 backdrop-blur-xs rounded-xs shadow-lg shadow-black/40">
+            <p className="text-[9px] uppercase tracking-[0.25em] text-zinc-400 font-mono font-bold border-b border-zinc-900 pb-2 mb-3 flex justify-between items-center">
+              <span>PART II: THE DECEPTION & REVEAL (Chapters 10–17)</span>
+              <span className="text-[8px] text-zinc-600 font-normal">TRACK_LOG_02</span>
+            </p>
+            <div className="grid grid-cols-1 gap-1">
+              {[10, 11, 12, 13, 14, 15, 16, 17].map((num) => {
+                const isPending = TITLES[num] === undefined;
+                return (
+                  <button
+                    key={num}
+                    disabled={isPending}
+                    onClick={() => { if (!isPending) { setChapter(num); setTimeout(() => { manuscriptRef.current?.scrollIntoView({ behavior: "smooth" }); }, 100); } }}
+                    className={`group flex justify-between items-center w-full text-left px-2.5 py-1.5 transition-all border rounded-xs font-mono text-xs ${isPending ? "border-transparent text-zinc-700 cursor-not-allowed select-none" : chapter === num ? "bg-cyan-950/30 border-cyan-800/40 text-cyan-400" : "border-transparent hover:bg-zinc-900/30 text-zinc-400 hover:text-zinc-200"}`}
+                  >
+                    <span className="font-serif italic tracking-wide transition-transform group-hover:translate-x-1">
+                      {isPending ? `Chapter ${num}: [Staging Node: Unwritten]` : TITLES[num]}
+                    </span>
+                    <div className="flex items-center gap-3">
+                      <span className="text-[9px] opacity-30 font-mono tracking-tighter">NODE_{num}</span>
+                      <div className={`w-1 h-1 rounded-full ${isPending ? "bg-zinc-900" : chapter === num ? "bg-cyan-500 shadow-md shadow-cyan-400" : "bg-zinc-800"}`} />
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
           </section>
 
-          <section className="space-y-1.5">
-            <p className="text-[9px] uppercase tracking-widest text-zinc-500 font-bold border-b border-zinc-900 pb-1">EPILOGUE</p>
-            <div className="flex justify-between w-full text-left pb-0.5 text-zinc-400">
+          <section className="border border-zinc-900/80 bg-zinc-950/30 p-4 backdrop-blur-xs rounded-xs shadow-lg shadow-black/40">
+            <p className="text-[9px] uppercase tracking-[0.25em] text-zinc-600 font-mono font-bold border-b border-zinc-900 pb-2 mb-2 flex justify-between items-center">
+              <span>PART III: THE COSMIC UNION (Chapters 18–24)</span>
+              <span className="text-[8px] text-zinc-700 font-normal">TRACK_LOG_03</span>
+            </p>
+            <div className="grid grid-cols-1 gap-1 pl-2.5 font-mono text-xs text-zinc-700 space-y-1.5 select-none py-1">
+              {[18, 19, 20, 21, 22, 23, 24].map((num) => (
+                <div key={num} className="flex justify-between items-center pr-1.5">
+                  <span className="font-serif italic">Chapter {num}: [Staging Node: Unwritten]</span>
+                  <span className="text-[9px] opacity-20 tracking-tighter">NODE_{num}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="border border-zinc-900/80 bg-zinc-950/30 p-4 backdrop-blur-xs rounded-xs shadow-lg shadow-black/40">
+            <p className="text-[9px] uppercase tracking-[0.25em] text-zinc-500 font-mono font-bold border-b border-zinc-900 pb-2 mb-2 flex justify-between items-center">
+              <span>EPILOGUE</span>
+              <span className="text-[8px] text-zinc-700 font-normal">FINAL_LOG</span>
+            </p>
+            <div className="px-2.5 py-1.5 font-mono text-xs text-zinc-400 flex justify-between items-center">
               <span className="font-serif italic">The Unresolved Question: Why</span>
-              <span className="text-[9px] opacity-30">NODE 25</span>
+              <span className="text-[9px] opacity-30 tracking-tighter">NODE_25</span>
             </div>
           </section>
 
         </div>
       </div>
 
-      {/* CONTINUOUS MANUSCRIPT WITH FILM OVERLAY MASK FADE INGRESS */}
+      {/* MANUSCRIPT TRACK WITH DEVICE-NATIVE, VIEWPORT-RELATIVE (VH) ALPHA GRADIENT MASK */}
       <div 
         ref={manuscriptRef} 
         className="pt-24 min-h-[60vh] scroll-mt-16 transition-all duration-300"
         style={{
-          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, white 14%, white 84%, transparent 99%)',
-          maskImage: 'linear-gradient(to bottom, transparent 0%, white 14%, white 84%, transparent 99%)'
+          // FIX: Injects responsive viewport-relative height masking rules to automatically lock text fade bounds on any device shape
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0vh, transparent 4vh, white 22vh, white calc(100% - 22vh), transparent calc(100% - 4vh), transparent 100vh)',
+          maskImage: 'linear-gradient(to bottom, transparent 0vh, transparent 4vh, white 22vh, white calc(100% - 22vh), transparent calc(100% - 4vh), transparent 100vh)',
+          WebkitMaskAttachment: 'fixed',
+          maskAttachment: 'fixed'
         }}
       >
         <h2 className="text-zinc-400 uppercase tracking-[0.7em] text-[11px] text-center mb-16 font-mono select-none">

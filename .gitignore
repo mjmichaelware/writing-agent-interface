@@ -10,3 +10,8 @@ node_modules/
 .next/
 out/
 build/
+.vercel
+
+# TypeScript Build Info Cache Matrix
+*.tsbuildinfo
+.sandbox/

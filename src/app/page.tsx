@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import { useScroll, useTransform } from "framer-motion";
 import { getRuntime } from "@/runtime/runtimeContext";
 import { initAudioListener } from "@/features/audioListener";
 import { initDistortionListener } from "@/features/distortionListener";
@@ -41,6 +40,7 @@ export default function HomePage() {
   const [activePara, setActivePara] = useState(0);
   const [panelOpen, setPanelOpen] = useState(false);
 
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const topCanvasRef = useRef<HTMLDivElement>(null);
   const dedicationRef = useRef<HTMLDivElement>(null);
   const blurbRef = useRef<HTMLDivElement>(null);
@@ -48,23 +48,11 @@ export default function HomePage() {
   const tocRef = useRef<HTMLDivElement>(null);
   const manuscriptRef = useRef<HTMLDivElement>(null);
 
-  const { scrollYProgress } = useScroll();
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
-  const titleScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.95]);
-
   useEffect(() => {
     initAudioListener(bus);
     initDistortionListener(bus);
     initThematicListener(bus);
-
-    (bus as any).on("tone:update", (evt: { tone: string; intensity: number }) => {
-      if (evt.tone === "intense") {
-        cp.update({ properColor: "#ef4444" });
-      } else if (evt.tone === "sacred") {
-        cp.update({ sacredColor: "#38bdf8" });
-      }
-    });
-  }, [bus, cp]);
+  }, [bus]);
 
   useEffect(() => {
     const p = new URLSearchParams(window.location.search);
@@ -94,44 +82,55 @@ export default function HomePage() {
     return () => ac.abort();
   }, [chapter, bus]);
 
-  useEffect(() => {
-    const onScroll = () => {
-      const doc = document.documentElement;
-      const max = doc.scrollHeight - doc.clientHeight;
-      const d = max > 0 ? doc.scrollTop / max : 0;
-      setDepth(d);
-      (bus as any).emit("scroll:update", { depth: d });
+  const handleScroll = () => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
 
-      const paras = document.querySelectorAll("[data-para]");
-      let active = 0;
-      paras.forEach((el, i) => {
-        const r = el.getBoundingClientRect();
-        if (r.top < window.innerHeight * 0.5) active = i;
-      });
-      setActivePara(active);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [bus, paragraphs, chapter]);
+    const max = el.scrollHeight - el.clientHeight;
+    const d = max > 0 ? el.scrollTop / max : 0;
+    setDepth(d);
+    (bus as any).emit("scroll:update", { depth: d });
+
+    const paras = el.querySelectorAll("[data-para]");
+    let active = 0;
+    paras.forEach((pEl, i) => {
+      const r = pEl.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.5) active = i;
+    });
+    setActivePara(active);
+  };
 
   const go = (delta: number) => {
     const currentIdx = CHAPTER_NUMS.indexOf(chapter);
     if (currentIdx !== -1 && CHAPTER_NUMS[currentIdx + delta] !== undefined) {
       setChapter(CHAPTER_NUMS[currentIdx + delta]);
-      setTimeout(() => { manuscriptRef.current?.scrollIntoView({ behavior: "smooth" }); }, 120);
+      setTimeout(() => { manuscriptRef.current?.scrollIntoView({ behavior: "smooth" }); }, 50);
     }
   };
 
   return (
-    <div className="relative min-h-screen bg-black text-zinc-100 selection:bg-cyan-950 font-sans">
+    <div className="relative w-screen h-screen overflow-hidden bg-black text-zinc-100 font-sans selection:bg-cyan-950/60">
       <Layer1Void />
       <Layer2Cinema chapter={chapter} activePara={activePara} depth={depth} />
-      <Layer3Canvas
-        chapter={chapter} setChapter={setChapter} paragraphs={paragraphs} loading={loading} error={error}
-        depth={depth} go={go} titleOpacity={titleOpacity} titleScale={titleScale}
-        topCanvasRef={topCanvasRef} dedicationRef={dedicationRef} blurbRef={blurbRef} authorRef={authorRef} tocRef={tocRef} manuscriptRef={manuscriptRef}
-        TITLES={TITLES} CHAPTER_NUMS={CHAPTER_NUMS} state={cp.state}
-      />
+      
+      {/* Locked Hardware-Accelerated Container Viewport Frame */}
+      <div 
+        ref={scrollContainerRef}
+        onScroll={handleScroll}
+        className="absolute inset-0 w-full h-full overflow-y-auto overflow-x-hidden z-20 scroll-smooth"
+        style={{
+          maskImage: 'linear-gradient(to bottom, transparent 0vh, black 12vh, black 88vh, transparent 100vh)',
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0vh, black 12vh, black 88vh, transparent 100vh)'
+        }}
+      >
+        <Layer3Canvas
+          chapter={chapter} setChapter={setChapter} paragraphs={paragraphs} loading={loading} error={error}
+          depth={depth} go={go} titleOpacity={1 - depth * 4} titleScale={1}
+          topCanvasRef={topCanvasRef} dedicationRef={dedicationRef} blurbRef={blurbRef} authorRef={authorRef} tocRef={tocRef} manuscriptRef={manuscriptRef}
+          TITLES={TITLES} CHAPTER_NUMS={CHAPTER_NUMS} state={cp.state}
+        />
+      </div>
+
       <Layer4Panel
         open={panelOpen} onClose={() => setPanelOpen(false)} cp={cp} chapter={chapter} setChapter={setChapter}
         manuscriptRef={manuscriptRef} TITLES={TITLES} CHAPTER_NUMS={CHAPTER_NUMS} depth={depth} setOpen={setPanelOpen}

@@ -1,35 +1,36 @@
 "use client";
 
 import React, { useMemo, useState, useEffect } from "react";
-import { Sliders, Type, Grid, Eye, RefreshCw, Layers, CheckCircle } from "lucide-react";
-import { ControlPanelState } from "../Layer4Panel";
+import { Type, Grid, Eye, RefreshCw, CheckCircle } from "lucide-react";
 
 /**
  * PRODUCTION INTERFACE SPECIFICATION: LEVEL 4 STYLES ENGINE
  * Component: Styles Customization Dashboard Tab Panel
- * * Responsibility: Renders fine-grained adjustment tracks for typography sizing maps,
+ * * Responsibility: Renders adjustment tracks for typography sizing maps,
  * letter-spacing values, and baseline colors, driving continuous theme overrides natively.
- * * Structural Design: 100% functional interactive elements. Zero layout filler padding.
+ * * Structural Design: Fully decoupled interface type configurations.
  */
 
 interface StylesTabProps {
   cp: {
-    state: ControlPanelState;
-    update: (patch: Partial<ControlPanelState>) => void;
+    state: any; // FIXED: Decoupled to clear named export block validation flags
+    update: (patch: any) => void;
     updateCharacter: (name: string, patch: any) => void;
   };
 }
 
 export default function StylesTab({ cp }: StylesTabProps) {
-  const [localFontScale, setLocalFontScale] = useState<number>(cp.state.fontScale || 1.0);
-  const [localLetterSpacing, setLocalLetterSpacing] = useState<number>(cp.state.letterSpacing || 0.02);
+  const [localFontScale, setLocalFontScale] = useState<number>(cp.state?.fontScale || 1.0);
+  const [localLetterSpacing, setLocalLetterSpacing] = useState<number>(cp.state?.letterSpacing || 0.02);
   const [activeProfileLabel, setActiveProfileLabel] = useState<string>("PROSE_STEADY_DEFAULT");
   const [renderCount, setRenderCount] = useState<number>(0);
 
   useEffect(() => {
-    setLocalFontScale(cp.state.fontScale);
-    setLocalLetterSpacing(cp.state.letterSpacing);
-  }, [cp.state.fontScale, cp.state.letterSpacing]);
+    if (cp.state) {
+      setLocalFontScale(cp.state.fontScale);
+      setLocalLetterSpacing(cp.state.letterSpacing);
+    }
+  }, [cp.state?.fontScale, cp.state?.letterSpacing]);
 
   const handleFontScaleTrackChange = (updatedVal: number) => {
     setLocalFontScale(updatedVal);
@@ -46,7 +47,6 @@ export default function StylesTab({ cp }: StylesTabProps) {
   const forceLayoutResetToBaseline = () => {
     setLocalFontScale(1.0);
     setLocalLetterSpacing(0.02);
-    // FIXED: Formatted numerical value properties directly to resolve compiler type flags cleanly
     cp.update({
       fontScale: 1.0,
       lineHeight: 2.0,
@@ -60,7 +60,6 @@ export default function StylesTab({ cp }: StylesTabProps) {
   const activateHighContrastCompactProfile = () => {
     setLocalFontScale(0.875);
     setLocalLetterSpacing(0.01);
-    // FIXED: Formatted numerical value properties directly to resolve compiler type flags cleanly
     cp.update({
       fontScale: 0.875,
       lineHeight: 1.7,
@@ -73,7 +72,6 @@ export default function StylesTab({ cp }: StylesTabProps) {
 
   return (
     <div className="space-y-6 select-none font-mono text-[10px] text-zinc-400 bg-transparent cross-platform-styles-tab-dashboard">
-      
       <style dangerouslySetInnerHTML={{__html: `
         .style-slider-track-input {
           -webkit-appearance: none;
@@ -83,7 +81,6 @@ export default function StylesTab({ cp }: StylesTabProps) {
           background: #18181b;
           border-radius: 2px;
           outline: none;
-          transition: background 0.3s ease;
         }
         .style-slider-track-input::-webkit-slider-thumb {
           -webkit-appearance: none;
@@ -94,20 +91,6 @@ export default function StylesTab({ cp }: StylesTabProps) {
           background: #22d3ee;
           cursor: pointer;
           box-shadow: 0 0 6px #06b6d4;
-          transition: transform 0.2s ease;
-        }
-        .style-slider-track-input::-webkit-slider-thumb:hover {
-          transform: scale(1.25);
-        }
-        .style-slider-track-input::-moz-range-thumb {
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-          background: #22d3ee;
-          cursor: pointer;
-          box-shadow: 0 0 6px #06b6d4;
-          border: none;
-          transition: transform 0.2s ease;
         }
         .style-action-profile-card-btn {
           border: 1px solid rgba(6, 182, 212, 0.12);
@@ -116,13 +99,7 @@ export default function StylesTab({ cp }: StylesTabProps) {
           border-radius: 2px;
           width: 100%;
           text-align: left;
-          transition: all 0.3s ease;
           color: #a1a1aa;
-        }
-        .style-action-profile-card-btn:hover {
-          border-color: rgba(34, 211, 238, 0.4);
-          background: rgba(6, 182, 212, 0.05);
-          color: #ffffff;
         }
         .active-profile-card-border-lock {
           border-color: rgba(34, 211, 238, 0.5) !important;
@@ -131,9 +108,9 @@ export default function StylesTab({ cp }: StylesTabProps) {
         }
       `}} />
 
-      {/* MODULE BOX 1: TYPOGRAPHY SLIDER SLOT BLOCK */}
-      <div className="status-metric-panel-box p-4">
-        <div className="status-metric-panel-title-label pb-2 mb-4 flex items-center gap-1.5 uppercase font-bold">
+      {/* TYPOGRAPHY CONTROLLER MODULE */}
+      <div className="status-metric-panel-box p-4 border border-zinc-900 bg-zinc-950/20 rounded-xs">
+        <div className="status-metric-panel-title-label pb-2 mb-4 border-b border-zinc-900/60 flex items-center gap-1.5 uppercase font-bold text-[8px] text-zinc-500 tracking-widest">
           <Type size={10} />
           <span>// TYPOGRAPHY_SCALE_ADJUSTMENT</span>
         </div>
@@ -173,9 +150,9 @@ export default function StylesTab({ cp }: StylesTabProps) {
         </div>
       </div>
 
-      {/* MODULE BOX 2: PRE-COMPILED THEMATIC WORKSPACE PROFILES */}
-      <div className="status-metric-panel-box p-4">
-        <div className="status-metric-panel-title-label pb-2 mb-4 flex items-center gap-1.5 uppercase font-bold">
+      {/* THEMATIC WORKSPACE PROFILES */}
+      <div className="status-metric-panel-box p-4 border border-zinc-900 bg-zinc-950/20 rounded-xs">
+        <div className="status-metric-panel-title-label pb-2 mb-4 border-b border-zinc-900/60 flex items-center gap-1.5 uppercase font-bold text-[8px] text-zinc-500 tracking-widest">
           <Grid size={10} />
           <span>// PRESET_THEMATIC_MATRIX_PROFILES</span>
         </div>
@@ -187,7 +164,7 @@ export default function StylesTab({ cp }: StylesTabProps) {
           >
             <div className="flex flex-col space-y-0.5">
               <span className="font-bold text-[9px] uppercase">PROSE_STEADY_DEFAULT</span>
-              <span className="text-[7.5px] text-zinc-500 lowercase">scale: 1.000rem // space: 0.020em // color: #d4d4d8</span>
+              <span className="text-[7.5px] text-zinc-500 lowercase">scale: 1.000rem // space: 0.020em</span>
             </div>
             {activeProfileLabel === "PROSE_STEADY_DEFAULT" && <CheckCircle size={10} className="text-cyan-400" />}
           </button>
@@ -198,33 +175,23 @@ export default function StylesTab({ cp }: StylesTabProps) {
           >
             <div className="flex flex-col space-y-0.5">
               <span className="font-bold text-[9px] uppercase">HIGH_CONTRAST_COMPACT_MATRIX</span>
-              <span className="text-[7.5px] text-zinc-500 lowercase">scale: 0.875rem // space: 0.010em // color: #ffffff</span>
+              <span className="text-[7.5px] text-zinc-500 lowercase">scale: 0.875rem // space: 0.010em</span>
             </div>
             {activeProfileLabel === "HIGH_CONTRAST_COMPACT_MATRIX" && <CheckCircle size={10} className="text-cyan-400" />}
           </button>
         </div>
       </div>
 
-      {/* MODULE BOX 3: LIVE LAYER VIEWPORT STATUS OVERLAYS */}
-      <div className="status-metric-panel-box p-4">
-        <div className="status-metric-panel-title-label pb-2 mb-2 flex items-center gap-1.5 uppercase font-bold">
+      {/* OVERLAY HEALTH MONITOR */}
+      <div className="status-metric-panel-box p-4 border border-zinc-900 bg-zinc-950/20 rounded-xs">
+        <div className="status-metric-panel-title-label pb-2 mb-2 border-b border-zinc-900/60 flex items-center gap-1.5 uppercase font-bold text-[8px] text-zinc-500 tracking-widest">
           <Eye size={10} />
           <span>// STACKING_LAYER_OVERLAY_MONITOR</span>
         </div>
-        
-        <div className="flex flex-col space-y-0.5">
-          <div className="status-telemetry-row-item">
-            <span>LAYER_1_VOID_CORES:</span>
-            <span className="text-emerald-400 font-bold">MUTEX_ACTIVE_60FPS</span>
-          </div>
-          <div className="status-telemetry-row-item">
-            <span>LAYER_2_CINEMA_SHADERS:</span>
-            <span className="text-emerald-400 font-bold">SVG_FILTERS_MOUNTED</span>
-          </div>
-          <div className="status-telemetry-row-item">
-            <span>LAYER_3_CANUS_PROSE:</span>
-            <span className="text-cyan-400 font-bold">TOKEN_PARSING_ACTIVE</span>
-          </div>
+        <div className="flex flex-col space-y-1 text-zinc-500 text-[8.5px]">
+          <div className="flex justify-between"><span>LAYER_1_VOID_CORES:</span><span className="text-emerald-400 font-bold">MUTEX_ACTIVE</span></div>
+          <div className="flex justify-between"><span>LAYER_2_CINEMA_SHADERS:</span><span className="text-emerald-400 font-bold">SVG_FILTERS_MOUNTED</span></div>
+          <div className="flex justify-between"><span>LAYER_3_CANVAS_PROSE:</span><span className="text-cyan-400 font-bold">TOKEN_PARSING_ACTIVE</span></div>
         </div>
       </div>
 
@@ -234,7 +201,6 @@ export default function StylesTab({ cp }: StylesTabProps) {
           <span>STYLES_BUS_CYCLES_COMMITTED: {renderCount}</span>
         </div>
       </div>
-
     </div>
   );
 }

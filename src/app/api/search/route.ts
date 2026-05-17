@@ -1,32 +1,15 @@
-import { NextRequest, NextResponse } from "next/server";
-import { semanticSearch } from "@/services/retrieval-engine/vector-searcher";
+import { EmbeddingProcessor } from "@/services/memory-engine/embedding-processor";
+import { VectorStore } from "@/services/memory-engine/vector-store";
 
-export async function GET(req: NextRequest) {
+export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
-  const query = searchParams.get("term");
+  const query = searchParams.get("term") || "";
 
-  if (!query) {
-    return NextResponse.json({ results: [] });
-  }
+  const embedder = new EmbeddingProcessor();
+  const store = new VectorStore();
 
-  try {
-    const results = await semanticSearch(query, {
-      topK: 6
-    });
+  const embedding = await embedder.embed(query);
+  const results = await store.search(embedding);
 
-    return NextResponse.json({
-      results: results.map(r => ({
-        content: r.content,
-        score: r.score,
-        source: r.metadata?.file
-      }))
-    });
-
-  } catch (err: any) {
-    return NextResponse.json(
-      { error: "semantic search failed", message: err.message },
-      { status: 500 }
-    );
-  }
+  return Response.json({ results });
 }
-

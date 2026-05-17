@@ -1,6 +1,5 @@
 import path from "path";
 import { promises as fs } from "fs";
-import { EmbeddingProcessor } from "./embedding-processor";
 import { VectorStore } from "./vector-store";
 
 // 13 canonical chapter picks. Slug → filename in gdrive_raw/.
@@ -31,7 +30,6 @@ export class CorpusLoader {
   async ingestCorpus(): Promise<void> {
     if (this.initialized) return;
 
-    const embeddingProcessor = new EmbeddingProcessor();
     const vectorStore = new VectorStore();
 
     for (const [slug, filename] of Object.entries(PICKS)) {
@@ -45,14 +43,10 @@ export class CorpusLoader {
           .replace(/\r/g, "")
           .replace(/\uFEFF/g, "");
 
-        // Embed the first 2k chars of the chapter as its thematic anchor
-        const embedding = await embeddingProcessor.embed(
-          clean.slice(0, 2000)
-        );
-
+        // Skip embeddings — OpenAI not funded. Re-run ingest later to backfill.
         const chapterUuid = await vectorStore.insertChapter(
           manifestId,
-          embedding
+          null as any
         );
 
         await vectorStore.clearParagraphs(chapterUuid);

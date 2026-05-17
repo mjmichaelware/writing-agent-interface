@@ -2,16 +2,16 @@
 import React, { useEffect, useRef } from "react";
 
 interface ManuscriptCoreProps {
-  manuscriptRef: React.RefObject<HTMLDivElement | null> | ((node: HTMLDivElement | null) => void) | any;
+  manuscriptRef: React.RefObject<HTMLDivElement | null> | ((node: HTMLDivElement | null) => void) | null | any;
   chapter: number;
   paragraphs: string[];
   loading: boolean;
   error: string | null;
   state: { fontScale: number };
-  tocRef?: React.RefObject<HTMLDivElement | null>;
+  tocRef?: React.RefObject<HTMLDivElement | null> | any;
   setChapter?: (n: number) => void;
   depth?: number;
-  TITLES?: string[];
+  TITLES?: Record<number, string>;
   CHAPTER_NUMS?: number[];
   jumpTo?: () => void;
 }

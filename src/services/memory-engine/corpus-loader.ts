@@ -3,9 +3,6 @@ import { promises as fs } from "fs";
 import { EmbeddingProcessor } from "./embedding-processor";
 import { VectorStore } from "./vector-store";
 
-const embeddingProcessor = new EmbeddingProcessor();
-const vectorStore = new VectorStore();
-
 const CORPUS_PATH = path.join(
   process.cwd(),
   "src/data-layer/ingestion-buffer/gdrive_raw"
@@ -22,6 +19,11 @@ export class CorpusLoader {
 
   async ingestCorpus(): Promise<void> {
     if (this.initialized) return;
+
+    // Isolate constructors inside the method block execution context
+    const embeddingProcessor = new EmbeddingProcessor();
+    const vectorStore = new VectorStore();
+
     const files = await fs.readdir(CORPUS_PATH);
 
     for (const file of files) {

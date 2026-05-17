@@ -118,3 +118,32 @@ body {
   color: var(--text-muted);
   letter-spacing: 0.05em;
 }
+
+/* Title-page text links */
+.nav-link {
+  font-family: var(--font-prose);
+  font-variant: small-caps;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.4rem 0;
+  position: relative;
+  transition: color 0.4s ease;
+}
+.nav-link:hover { color: var(--text-body); }
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 0%;
+  background-color: var(--accent-gold);
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-link:hover::after { width: 100%; }
+.nav-link:disabled { opacity: 0.3; cursor: default; }
+.nav-link:disabled:hover::after { width: 0; }

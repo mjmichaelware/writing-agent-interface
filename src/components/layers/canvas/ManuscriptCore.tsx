@@ -1,14 +1,19 @@
 "use client";
-
 import React, { useEffect, useRef } from "react";
 
 interface ManuscriptCoreProps {
-  manuscriptRef: React.RefObject<HTMLDivElement | null>;
+  manuscriptRef: React.RefObject<HTMLDivElement | null> | ((node: HTMLDivElement | null) => void) | any;
   chapter: number;
   paragraphs: string[];
   loading: boolean;
   error: string | null;
   state: { fontScale: number };
+  tocRef?: React.RefObject<HTMLDivElement | null>;
+  setChapter?: (n: number) => void;
+  depth?: number;
+  TITLES?: string[];
+  CHAPTER_NUMS?: number[];
+  jumpTo?: () => void;
 }
 
 export default function ManuscriptCore({
@@ -92,8 +97,13 @@ export default function ManuscriptCore({
       ref={(node) => {
         // @ts-ignore
         containerRef.current = node;
-        if (typeof manuscriptRef === 'function') manuscriptRef(node);
-        else if (manuscriptRef) manuscriptRef.current = node;
+        if (manuscriptRef) {
+          if (typeof manuscriptRef === 'function') {
+            manuscriptRef(node);
+          } else if ('current' in manuscriptRef) {
+            (manuscriptRef as any).current = node;
+          }
+        }
       }}
       className="w-full max-w-2xl mx-auto py-16 px-4 md:px-0 relative z-20 font-serif manuscript-paragraph-segment"
       style={{ fontSize: `${state?.fontScale || 1.125}rem` }}

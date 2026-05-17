@@ -1,8 +1,15 @@
-import { INarrativeGraphEngine } from "@/core/INarrativeGraphEngine";
+import { INarrativeGraphEngine, AdjacencyMatrix, StructuralEcho } from "@/core/INarrativeGraphEngine";
 
 export class NarrativeGraphEngine implements INarrativeGraphEngine {
-  async sync(): Promise<void> {
-    // Structural handshake sync log verification
+  async sync(manuscriptDataPayload: string[]): Promise<void> {
     return Promise.resolve();
+  }
+
+  async buildAdjacencyMatrix(chapterIndex: number): Promise<AdjacencyMatrix> {
+    return Promise.resolve({ nodes: [], edges: [] });
+  }
+
+  async queryEchoes(nodeId: string): Promise<StructuralEcho[]> {
+    return Promise.resolve([]);
   }
 }

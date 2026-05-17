@@ -1,20 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
-import { vectorSearcher } from "@/services/retrieval-engine/vector-searcher";
+import { EmbeddingProcessor } from "@/services/memory-engine/embedding-processor";
+import { VectorStore } from "@/services/memory-engine/vector-store";
+
+const embedder = new EmbeddingProcessor();
+const store = new VectorStore();
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const slug = searchParams.get("slug") ?? "7";
 
   try {
-    // treat chapter as semantic query, NOT filename
-    const results = await vectorSearcher.search(`chapter ${slug}`, {
-      topK: 20,
-      threshold: 0.6,
-    });
-
+    const embedding = await embedder.embed(`chapter ${slug}`);
+    const results = await store.search(embedding, 20);
     return NextResponse.json({
       slug,
-      blocks: results.map((r) => r.text),
+      blocks: results.map((r: any) => r.content),
       total: results.length,
     });
   } catch (err: any) {

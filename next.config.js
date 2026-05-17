@@ -7,19 +7,6 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-
-  experimental: {
-    outputFileTracingExcludes: {
-      "*": [
-        ".git/**",
-        "**/.git/**",
-        ".next/cache/**",
-        "**/.next/cache/**",
-        ".sandbox/**",
-        "**/.sandbox/**",
-      ],
-    },
-  },
 };
 
 module.exports = nextConfig;

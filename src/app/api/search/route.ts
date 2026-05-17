@@ -1,31 +1,32 @@
-import { NextResponse } from 'next/server';
-import fs from 'fs/promises';
-import path from 'path';
+import { NextRequest, NextResponse } from "next/server";
+import { semanticSearch } from "@/services/retrieval-engine/vector-searcher";
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const term = searchParams.get('term')?.normalize('NFC').toLocaleLowerCase();
-  
-  if (!term) return NextResponse.json({ results: [] });
+export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const query = searchParams.get("term");
+
+  if (!query) {
+    return NextResponse.json({ results: [] });
+  }
 
   try {
-    const lorePath = path.join(process.cwd(), 'src/data-layer/ingestion-buffer/gdrive_raw');
-    const files = await fs.readdir(lorePath);
-    
-    const matches = [];
-    for (const file of files) {
-      if (file.endsWith('.txt')) {
-        const content = await fs.readFile(path.join(lorePath, file), 'utf-8');
-        if (content.toLocaleLowerCase().includes(term)) {
-          const index = content.toLocaleLowerCase().indexOf(term);
-          const snippet = content.substring(index - 60, index + 140).replace(/\n/g, ' ');
-          matches.push({ file, snippet: `...${snippet}...` });
-        }
-      }
-    }
-    
-    return NextResponse.json({ results: matches.slice(0, 5) });
-  } catch (e) {
-    return NextResponse.json({ error: 'Search failed' }, { status: 500 });
+    const results = await semanticSearch(query, {
+      topK: 6
+    });
+
+    return NextResponse.json({
+      results: results.map(r => ({
+        content: r.content,
+        score: r.score,
+        source: r.metadata?.file
+      }))
+    });
+
+  } catch (err: any) {
+    return NextResponse.json(
+      { error: "semantic search failed", message: err.message },
+      { status: 500 }
+    );
   }
 }
+

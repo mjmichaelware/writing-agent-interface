@@ -1,233 +1,108 @@
 "use client";
 
-import React from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import React, { useEffect, useRef } from "react";
 
 interface ManuscriptCoreProps {
   manuscriptRef: React.RefObject<HTMLDivElement | null>;
-  tocRef: React.RefObject<HTMLDivElement | null>;
-
   chapter: number;
-  setChapter: (n: number) => void;
-
   paragraphs: string[];
-
   loading: boolean;
   error: string | null;
-
-  state: {
-    baseColor: string;
-    descentColor: string;
-    sacredColor: string;
-    properColor: string;
-    fontScale: number;
-    lineHeight: string;
-    letterSpacing: number;
-  };
-
-  depth: number;
-
-  TITLES: Record<number, string>;
-  CHAPTER_NUMS: number[];
-
-  jumpTo: (
-    elementRef: React.RefObject<HTMLDivElement | null>
-  ) => void;
+  state: { fontScale: number };
 }
 
 export default function ManuscriptCore({
   manuscriptRef,
-  chapter,
-  setChapter,
   paragraphs,
   loading,
   error,
   state,
-  depth,
-  TITLES,
-  CHAPTER_NUMS,
 }: ManuscriptCoreProps) {
-  const calculateWordVectors = (
-    word: string,
-    currentDepth: number,
-    chapterIndex: number
-  ): React.CSSProperties => {
-    let hash = 0;
+  const containerRef = useRef<HTMLDivElement>(null);
 
-    for (let i = 0; i < word.length; i++) {
-      hash = (hash << 5) - hash + word.charCodeAt(i);
-      hash |= 0;
-    }
+  useEffect(() => {
+    let rafId: number;
+    const container = containerRef.current;
+    if (!container) return;
 
-    const normalized =
-      Math.abs(hash) / 2147483647;
+    const updatePhysics = () => {
+      const viewportHeight = window.innerHeight;
+      const tokens = container.querySelectorAll('.kinetic-token');
 
-    const narrativeGravity =
-      chapterIndex / 25 + currentDepth;
+      tokens.forEach((token) => {
+        const rect = token.getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        const distFromCenter = Math.abs(center - viewportHeight / 2);
 
-    if (word.length > 4 && normalized > 0.6) {
-      return {
-        ["--arc-mass" as any]:
-          (normalized * 0.9).toFixed(3),
+        const intersectionRatio = Math.max(0, 1 - (distFromCenter / (viewportHeight / 2.5)));
+        const htmlToken = token as HTMLElement;
 
-        ["--arc-tension" as any]:
-          (
-            normalized *
-            narrativeGravity *
-            0.8
-          ).toFixed(3),
+        if (intersectionRatio > 0.85) {
+            htmlToken.style.opacity = '1';
+            htmlToken.style.filter = 'blur(0px)';
+        } else {
+            htmlToken.style.opacity = Math.max(0.15, intersectionRatio).toString();
+            htmlToken.style.filter = `blur(${(1 - intersectionRatio) * 5}px)`;
+        }
 
-        ["--arc-velocity" as any]:
-          (
-            normalized > 0.85
-              ? -0.5
-              : 0
-          ).toFixed(3),
-      };
-    }
+        const weight = parseFloat(htmlToken.getAttribute('data-weight') || '0');
+        const arcMass = weight * intersectionRatio;
+        const arcTension = weight > 0.5 ? Math.pow(intersectionRatio, 2) : 0;
+        const arcVelocity = (1 - intersectionRatio) * (weight > 0 ? 1 : -1);
 
-    return {
-      ["--arc-mass" as any]: 0,
-      ["--arc-tension" as any]: 0,
-      ["--arc-velocity" as any]: 0,
+        htmlToken.style.setProperty('--arc-mass', arcMass.toFixed(3));
+        htmlToken.style.setProperty('--arc-tension', arcTension.toFixed(3));
+        htmlToken.style.setProperty('--arc-velocity', arcVelocity.toFixed(3));
+      });
+
+      rafId = requestAnimationFrame(updatePhysics);
     };
-  };
 
-  const renderVisceralProse = (
-    text: string
-  ) => {
-    const tokens =
-      text.split(/(\b\w+\b)/g);
+    rafId = requestAnimationFrame(updatePhysics);
+    return () => cancelAnimationFrame(rafId);
+  }, [paragraphs]);
 
-    return tokens.map((token, index) => {
-      if (/\w+/.test(token)) {
-        const vectors =
-          calculateWordVectors(
-            token,
-            depth,
-            chapter
-          );
+  const renderVisceralProse = (text: string, pIndex: number) => {
+    const words = text.split(/(\b\w+\b)/g);
+    return words.map((word, wIndex) => {
+      const cleanWord = word.toLowerCase();
+      let thematicWeight = 0;
 
-        return (
-          <span
-            key={index}
-            className="kinetic-token"
-            style={vectors}
-          >
-            {token}
-          </span>
-        );
-      }
+      if (['fall', 'down', 'heavy', 'pit', 'drop'].includes(cleanWord)) thematicWeight = 1.0;
+      else if (['squeeze', 'compress', 'crush'].includes(cleanWord)) thematicWeight = 0.8;
+      else if (['stretch', 'long', 'ascend', 'sky'].includes(cleanWord)) thematicWeight = -0.8;
 
       return (
-        <React.Fragment key={index}>
-          {token}
-        </React.Fragment>
+        <span
+          key={`${pIndex}-${wIndex}`}
+          className="kinetic-token inline-block transition-transform duration-300"
+          data-weight={thematicWeight}
+        >
+          {word}
+        </span>
       );
     });
   };
 
-  if (loading) {
-    return (
-      <div
-        ref={manuscriptRef}
-        className="w-full max-w-2xl mx-auto py-24 text-center"
-      >
-        <p className="font-serif text-lg text-zinc-500 italic">
-          Retrieving canonical text...
-        </p>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div
-        ref={manuscriptRef}
-        className="w-full max-w-2xl mx-auto py-24 text-center"
-      >
-        <p className="font-serif text-lg text-[#6b2c2c] italic">
-          This chapter is not yet available.
-        </p>
-      </div>
-    );
-  }
+  if (loading) return <div className="text-center py-24 font-serif text-zinc-500 italic">Retrieving canonical text...</div>;
+  if (error) return <div className="text-center py-24 font-serif text-[#6b2c2c] italic">This chapter is not yet available.</div>;
 
   return (
     <div
-      ref={manuscriptRef}
-      id="reading"
-      className="w-full max-w-2xl mx-auto py-16 px-4 md:px-0 relative z-20 font-serif"
-      style={{
-        fontSize: `${
-          state?.fontScale || 1.125
-        }rem`,
-
-        lineHeight:
-          state?.lineHeight || "1.7",
-
-        letterSpacing: `${
-          state?.letterSpacing || 0
-        }em`,
-
-        color:
-          state?.baseColor ||
-          "var(--text-body)",
+      ref={(node) => {
+        // @ts-ignore
+        containerRef.current = node;
+        if (typeof manuscriptRef === 'function') manuscriptRef(node);
+        else if (manuscriptRef) manuscriptRef.current = node;
       }}
+      className="w-full max-w-2xl mx-auto py-16 px-4 md:px-0 relative z-20 font-serif manuscript-paragraph-segment"
+      style={{ fontSize: `${state?.fontScale || 1.125}rem` }}
     >
-      <div className="mb-16 text-center">
-        <p className="section-label mb-2">
-          Chapter {chapter}
+      {paragraphs.map((p, i) => (
+        <p key={i} className="mb-10 text-justify leading-[var(--leading-prose)]" data-para-index={i}>
+          {renderVisceralProse(p, i)}
         </p>
-
-        <h2 className="text-3xl text-[var(--sacred)] tracking-wide">
-          {TITLES[chapter]}
-        </h2>
-      </div>
-
-      <div className="prose-container">
-        {paragraphs.map((para, i) => (
-          <p
-            key={i}
-            data-para={i}
-            className="manuscript-paragraph-segment"
-          >
-            {renderVisceralProse(para)}
-          </p>
-        ))}
-      </div>
-
-      <div className="mt-24 border-t border-[var(--text-muted)] opacity-20 pt-8 flex justify-between">
-        <button
-          onClick={() =>
-            setChapter(
-              Math.max(1, chapter - 1)
-            )
-          }
-          disabled={chapter <= 1}
-          className="text-[var(--text-muted)] hover:text-[var(--accent-gold)] flex items-center gap-2 transition-colors disabled:opacity-30 uppercase tracking-widest text-xs"
-        >
-          <ChevronLeft size={14} />
-          Previous
-        </button>
-
-        <button
-          onClick={() =>
-            setChapter(
-              Math.min(25, chapter + 1)
-            )
-          }
-          disabled={
-            !CHAPTER_NUMS.includes(
-              chapter + 1
-            )
-          }
-          className="text-[var(--text-muted)] hover:text-[var(--accent-gold)] flex items-center gap-2 transition-colors disabled:opacity-30 uppercase tracking-widest text-xs"
-        >
-          Next
-          <ChevronRight size={14} />
-        </button>
-      </div>
+      ))}
     </div>
   );
 }

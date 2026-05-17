@@ -1,27 +1,64 @@
-import { promises as fs } from 'fs';
-import path from 'path';
+import path from "path";
+import { promises as fs } from "fs";
+import { embeddingProcessor } from "./embedding-processor";
+import { vectorStore } from "./vector-store";
+
+const CORPUS_PATH = path.join(
+  process.cwd(),
+  "src/data-layer/ingestion-buffer/gdrive_raw"
+);
+
+export type CorpusFile = {
+  filename: string;
+  content: string;
+  embedding: number[];
+};
 
 export class CorpusLoader {
-  private corpusPath: string;
+  private initialized = false;
 
-  constructor() {
-    // Dynamically locates the gdrive_raw folder in the Next.js environment
-    this.corpusPath = path.join(process.cwd(), 'src', 'data-layer', 'ingestion-buffer', 'gdrive_raw');
-  }
+  /**
+   * INGESTION ONLY
+   * - No runtime search
+   * - No keyword logic
+   * - No filename-based retrieval dependency
+   */
+  async ingestCorpus(): Promise<void> {
+    if (this.initialized) return;
 
-  public async loadAllFiles(): Promise<{ filename: string; content: string }[]> {
-    const files = await fs.readdir(this.corpusPath);
-    const loadedFiles = [];
+    const files = await fs.readdir(CORPUS_PATH);
 
     for (const file of files) {
-      // Ignore hidden files and non-text files
-      if (!file.startsWith('.') && file.endsWith('.txt')) {
-        const filePath = path.join(this.corpusPath, file);
-        const content = await fs.readFile(filePath, 'utf-8');
-        loadedFiles.push({ filename: file, content });
-      }
+      if (!file.endsWith(".txt")) continue;
+
+      const fullPath = path.join(CORPUS_PATH, file);
+      const raw = await fs.readFile(fullPath, "utf-8");
+
+      const clean = raw
+        .replace(/\r/g, "")
+        .replace(/\uFEFF/g, "");
+
+      const embedding = await embeddingProcessor.embed(clean);
+
+      await vectorStore.upsert({
+        id: file,
+        vector: embedding,
+        content: clean,
+        metadata: {
+          filename: file,
+          source: "corpus-loader"
+        }
+      });
     }
-    
-    return loadedFiles;
+
+    this.initialized = true;
+  }
+
+  /**
+   * Optional reindex hook (manual only)
+   */
+  async reindex(): Promise<void> {
+    this.initialized = false;
+    await this.ingestCorpus();
   }
 }

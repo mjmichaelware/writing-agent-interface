@@ -1,4 +1,8 @@
-# Nerve Center (Internal Build Machinery)
+node_modules
+.next
+.vercel
+.sandbox
+*.log# Nerve Center (Internal Build Machinery)
 system/
 .env.local
 

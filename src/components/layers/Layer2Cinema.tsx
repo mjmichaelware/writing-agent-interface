@@ -30,11 +30,11 @@ export default function Layer2Cinema({
       "7": [
         { src: "/assets/bg.png", triggerPara: 0 },
 
-        { src: "/assets/agent-photos/flies.jpg", triggerPara: 18 },
+        { src: "/assets/flies.jpg", triggerPara: 18 },
 
-        { src: "/assets/agent-photos/megiddo1.jpg", triggerPara: 35 },
+        { src: "/assets/megiddo1.jpg", triggerPara: 35 },
 
-        { src: "/assets/agent-photos/megiddo2.jpg", triggerPara: 55 }
+        { src: "/assets/megiddo2.jpg", triggerPara: 55 }
       ]
     }),
     []

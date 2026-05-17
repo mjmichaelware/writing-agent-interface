@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "ingest": "tsx src/actions/ingest.action.ts"
   },
   "dependencies": {
     "framer-motion": "^12.38.0",
@@ -28,6 +29,7 @@
     "autoprefixer": "^10.5.0",
     "postcss": "^8.5.14",
     "tailwindcss": "^4.3.0",
+    "tsx": "^4.22.1",
     "typescript": "^5.9.3"
   }
 }

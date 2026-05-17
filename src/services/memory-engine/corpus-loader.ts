@@ -24,6 +24,27 @@ const RAW_DIR = path.join(
   "src/data-layer/ingestion-buffer/gdrive_raw"
 );
 
+function splitParagraphs(text: string): string[] {
+  // Strip CR + BOM
+  const clean = text.replace(/\r/g, "").replace(/\uFEFF/g, "");
+
+  // Try blank-line splitting first
+  const byBlank = clean
+    .split(/\n\s*\n/)
+    .map(p => p.trim())
+    .filter(Boolean);
+
+  // If that yields a healthy paragraph count (>= 10), use it.
+  // Otherwise the file likely has single-newline paragraph breaks.
+  if (byBlank.length >= 10) return byBlank;
+
+  // Fallback: split on every newline, trim, drop the title line and empties.
+  return clean
+    .split(/\n+/)
+    .map(p => p.trim())
+    .filter(p => p.length > 0 && !/^Chapter\s+\d+:?\s/i.test(p));
+}
+
 export class CorpusLoader {
   private initialized = false;
 
@@ -39,11 +60,7 @@ export class CorpusLoader {
       try {
         const raw = await fs.readFile(filePath, "utf-8");
 
-        const clean = raw
-          .replace(/\r/g, "")
-          .replace(/\uFEFF/g, "");
-
-        // Skip embeddings — OpenAI not funded. Re-run ingest later to backfill.
+        // Skip embeddings — OpenAI not funded.
         const chapterUuid = await vectorStore.insertChapter(
           manifestId,
           null as any
@@ -51,10 +68,7 @@ export class CorpusLoader {
 
         await vectorStore.clearParagraphs(chapterUuid);
 
-        const paragraphs = clean
-          .split(/\n\s*\n/)
-          .map((p) => p.trim())
-          .filter(Boolean);
+        const paragraphs = splitParagraphs(raw);
 
         for (let i = 0; i < paragraphs.length; i++) {
           await vectorStore.insertParagraph(

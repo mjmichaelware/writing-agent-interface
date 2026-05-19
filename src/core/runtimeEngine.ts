@@ -2,13 +2,16 @@ export type RuntimeEvents = {
   "scroll:focus": { paraIndex: string };
   "nav:velocity_scroll": { speed: number };
   "ui:menu_toggle": { isOpen: boolean };
+  "engine:semantic_parse": {
+    dualism: number;
+    archetype: number;
+  };
 };
 
 type Handler<K extends keyof RuntimeEvents> = (payload: RuntimeEvents[K]) => void;
 
 class EventBus {
   private static instance: EventBus;
-
   private events: {
     [K in keyof RuntimeEvents]?: Set<Handler<K>>;
   } = {};
@@ -28,7 +31,6 @@ class EventBus {
     }
 
     this.events[event]!.add(fn);
-
     return () => this.off(event, fn);
   }
 

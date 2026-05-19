@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { VectorStore } from "@/services/memory-engine/vector-store";
+import { VectorStore } from "../../../services/memory-engine/vector-store";
 
 export async function GET() {
   try {

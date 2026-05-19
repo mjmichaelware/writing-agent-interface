@@ -1,173 +1,45 @@
-export type AgentResponse = {
-  response?: string;
-  result?: string;
-  results?: unknown[];
-  error?: string;
-  status?: string;
-};
+import { DraftSchema } from "@/core/IWritingAgent";
 
-export type ConcordanceRecord = {
-  ref: string;
-  title: string;
-  note: string;
-  passage?: string;
-  content?: string;
-  para_index?: number;
-};
-
-export type DualismRecord = {
-  id: string;
-  term: string;
-  parallel: string;
-  note: string;
-  chapters: string;
-  para_index?: number;
-};
-
-export type ArchetypeRecord = {
-  name: string;
-  character: string;
-  description: string;
-  development: string;
-};
+export type AgentResponse = { response?: string; results?: any[]; archetypes?: any[]; dualisms?: any[]; result?: string };
+export type DualismRecord = { id: string; term: string; parallel: string; note: string; chapters: string; para_index?: number; };
+export type ArchetypeRecord = { name: string; character: string; description: string; development: string; };
+export type ConcordanceRecord = { ref: string; title: string; note: string; passage?: string; content?: string; para_index?: number; };
 
 export const AgentService = {
-  async queryNarrative(
-    input: string,
-    context: string
-  ): Promise<AgentResponse> {
-    const res = await fetch("/api/agent", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        prompt: input,
-        query: input,
-        context,
-      }),
+  async queryNarrative(input: string, context: string): Promise<AgentResponse> {
+    const res = await fetch("/api/agent", { 
+      method: "POST", 
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt: input, context }) 
     });
-
-    if (!res.ok) {
-      throw new Error("Agent kernel unreachable");
-    }
-
     return res.json();
   },
-
-  async searchConcordance(
-    term: string
-  ): Promise<ConcordanceRecord[]> {
-    try {
-      const res = await fetch("/api/search", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          query: term,
-        }),
-      });
-
-      if (!res.ok) return [];
-
-      const data = await res.json();
-
-      const raw = Array.isArray(data?.results)
-        ? data.results
-        : [];
-
-      return raw.map((item: any, index: number) => ({
-        ref: String(item?.ref || `Node ${index + 1}`),
-        title: String(
-          item?.title ||
-          item?.content?.slice?.(0, 64) ||
-          "Untitled"
-        ),
-        note: String(
-          item?.note ||
-          item?.content ||
-          ""
-        ),
-        passage: item?.passage
-          ? String(item.passage)
-          : undefined,
-        content: item?.content
-          ? String(item.content)
-          : undefined,
-        para_index: item?.para_index ?? undefined,
-      }));
-    } catch {
-      return [];
-    }
+  async searchConcordance(term: string): Promise<ConcordanceRecord[]> {
+    const res = await fetch("/api/search", { method: "POST", body: JSON.stringify({ query: term }) });
+    const data = await res.json();
+    return (data.results || []).map((i: any) => ({ ...i, ref: i.ref || "Node", para_index: i.para_index }));
   },
-
   async getDualisms(): Promise<DualismRecord[]> {
-    try {
-      const res = await fetch("/api/graph?type=dualisms");
-
-      if (!res.ok) return [];
-
-      const data = await res.json();
-
-      const raw = Array.isArray(data?.dualisms)
-        ? data.dualisms
-        : [];
-
-      return raw.map((item: any, index: number) => ({
-        id: String(item?.id || `dualism-${index}`),
-        term: String(item?.term || ""),
-        parallel: String(item?.parallel || ""),
-        note: String(item?.note || ""),
-        chapters: String(item?.chapters || ""),
-        para_index: item?.para_index ?? undefined,
-      }));
-    } catch {
-      return [];
-    }
+    const res = await fetch("/api/graph?type=dualisms");
+    const data = await res.json();
+    return (data.dualisms || []).map((i: any) => ({ ...i, para_index: i.para_index }));
   },
-
   async getArchetypes(): Promise<ArchetypeRecord[]> {
-    try {
-      const res = await fetch("/api/search", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          query: "shadow persona anima self archetype",
-        }),
-      });
-
-      if (!res.ok) return [];
-
-      const data = await res.json();
-
-      const raw = Array.isArray(data?.archetypes)
-        ? data.archetypes
-        : Array.isArray(data?.results)
-          ? data.results
-          : [];
-
-      return raw.map((item: any, index: number) => ({
-        name: String(
-          item?.name ||
-          item?.title ||
-          `Archetype ${index + 1}`
-        ),
-        character: String(item?.character || ""),
-        description: String(
-          item?.description ||
-          item?.note ||
-          item?.content ||
-          ""
-        ),
-        development: String(
-          item?.development || ""
-        ),
-      }));
-    } catch {
-      return [];
-    }
+    const res = await fetch("/api/search", { method: "POST", body: JSON.stringify({ query: "archetype" }) });
+    const data = await res.json();
+    return (data.archetypes || data.results || []).map((i: any) => ({ 
+      name: i.name || i.title || "Unknown", 
+      character: i.character || "", 
+      description: i.description || i.content || "", 
+      development: i.development || "" 
+    }));
   },
+  async executeAgentTask(task: string, schema: DraftSchema): Promise<string> {
+    const res = await fetch("/api/agent", { 
+        method: "POST", 
+        body: JSON.stringify({ prompt: task, context: schema.contextNodes.join("\n") }) 
+    });
+    const data = await res.json();
+    return data.response || data.result || "";
+  }
 };

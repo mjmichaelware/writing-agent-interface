@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useRef, useState } from "react";
 import { bus } from "@/core/runtimeEngine";
 import SystemTab from "./panel/SystemTab";
@@ -7,6 +6,7 @@ import StylesTab from "./panel/StylesTab";
 import HyperlinksGraph from "./panel/HyperlinksGraph";
 import BiblicalReferencesDirectory from "./panel/BiblicalReferencesDirectory";
 import ArchetypesDirectory from "./panel/ArchetypesDirectory";
+import WritingAgentConsole from "./panel/WritingAgentConsole";
 
 type PanelTab = "HYPERLINKS" | "REFERENCES" | "ARCHETYPES" | "SETTINGS" | "SYSTEM";
 
@@ -28,7 +28,6 @@ export default function Layer4Panel() {
       const panel = panelRef.current;
       const shield = shieldRef.current;
       if (!panel || !shield) return;
-
       if (state.isOpen) {
         panel.style.transform = "rotateY(0deg) translateX(0) scale(1)";
         panel.style.opacity = "1";
@@ -43,7 +42,6 @@ export default function Layer4Panel() {
         shield.style.pointerEvents = "none";
       }
     };
-
     return bus.on("ui:menu_toggle", toggleMenu);
   }, []);
 
@@ -76,7 +74,12 @@ export default function Layer4Panel() {
             {activeTab === "REFERENCES" && <BiblicalReferencesDirectory />}
             {activeTab === "ARCHETYPES" && <ArchetypesDirectory />}
             {activeTab === "SETTINGS" && <StylesTab />}
-            {activeTab === "SYSTEM" && <SystemTab />}
+            {activeTab === "SYSTEM" && (
+              <div className="flex flex-col gap-4 p-4">
+                <SystemTab />
+                <WritingAgentConsole />
+              </div>
+            )}
           </div>
         </div>
       </div>

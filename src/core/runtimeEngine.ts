@@ -1,108 +1,34 @@
-export type ArchetypalWeights = {
-  shadow: number;
-  persona: number;
-  anima: number;
-  self: number;
-};
-
-export type RuntimeEvents = {
-  "scroll:focus": {
-    paraIndex: string;
-    archetypal_weights?: ArchetypalWeights;
-  };
-
-  "nav:velocity_scroll": {
-    speed: number;
-  };
-
-  "ui:menu_toggle": {
-    isOpen: boolean;
-  };
-
-  "engine:semantic_parse": {
-    dualism: number;
-    archetype: number;
-  };
-
-  "audio:tone": {
-    paraIndex: number;
-    intensity: number;
-  };
-
-  "distortion:update": {
-    paraIndex: number;
-    mass: number;
-    tension: number;
-    blur: number;
-    drift: number;
-  };
-
-  "theme:tone": {
-    tone: "sacred" | "descent" | "neutral";
-    paraIndex: number;
-    warmth: number;
-  };
-
-  "theme:warmth": {
-    warmth: number;
-    paraIndex: number;
-  };
-};
-
-type Handler<K extends keyof RuntimeEvents> = (payload: RuntimeEvents[K]) => void;
+type Handler<T> = (data: T) => void;
 
 class EventBus {
   private static instance: EventBus;
-
-  private events: {
-    [K in keyof RuntimeEvents]?: Set<Handler<K>>;
-  } = {};
+  private events: Record<string, Set<Handler<any>>> = {};
 
   private constructor() {}
 
-  static getInstance() {
+  public static getInstance(): EventBus {
     if (!EventBus.instance) {
       EventBus.instance = new EventBus();
     }
-
     return EventBus.instance;
   }
 
-  on<K extends keyof RuntimeEvents>(event: K, fn: Handler<K>) {
+  on<T>(event: string, handler: Handler<T>) {
     if (!this.events[event]) {
       this.events[event] = new Set();
     }
-
-    this.events[event]!.add(fn);
-
-    return () => this.off(event, fn);
+    this.events[event].add(handler);
+    return () => this.events[event].delete(handler);
   }
 
-  off<K extends keyof RuntimeEvents>(event: K, fn: Handler<K>) {
-    const handlers = this.events[event];
-    if (!handlers) return;
-
-    handlers.delete(fn);
-
-    if (handlers.size === 0) {
-      delete this.events[event];
-    }
-  }
-
-  emit<K extends keyof RuntimeEvents>(event: K, payload: RuntimeEvents[K]) {
-    const handlers = this.events[event];
-    if (!handlers) return;
-
-    for (const fn of handlers) {
-      try {
-        fn(payload);
-      } catch (err) {
-        console.error(`[bus:${event}]`, err);
-      }
+  emit<T>(event: string, data: T) {
+    if (this.events[event]) {
+      this.events[event].forEach((handler) => handler(data));
     }
   }
 }
 
-export const bus = EventBus.getInstance();
+const bus = EventBus.getInstance();
+export { bus }; // Named export for components
+export default bus; // Default export for compatibility
 export { EventBus };
-export default bus;

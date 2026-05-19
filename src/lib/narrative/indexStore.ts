@@ -1,15 +1,18 @@
-import { CorpusFile } from "../../services/memory-engine/corpus-loader";
+import { CorpusFile } from "@/services/memory-engine/corpus-loader";
 
 export class IndexStore {
-  private files: CorpusFile[] = [];
+  private index: Map<string, CorpusFile> = new Map();
 
-  load(files: CorpusFile[]) {
-    this.files = files;
+  register(file: CorpusFile) {
+    this.index.set(file.id, file);
   }
 
-  getAll() {
-    return this.files;
+  get(id: string): CorpusFile | undefined {
+    return this.index.get(id);
   }
 
-  // semantic layer will sit above this later
+  getAll(): CorpusFile[] {
+    return Array.from(this.index.values());
+  }
 }
+

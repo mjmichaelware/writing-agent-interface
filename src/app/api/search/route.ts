@@ -1,27 +1,84 @@
 import { NextResponse } from "next/server";
 import { VectorStore } from "@/services/memory-engine/vector-store";
 
-export async function GET(request: Request) {
+export async function POST(request: Request) {
   try {
-    const { searchParams } = new URL(request.url);
-    const query = String(searchParams.get("q") || "").trim();
-    const type = searchParams.get("type") || "general";
+    const body = await request.json();
+
+    const query = String(
+      body?.query || ""
+    ).trim();
 
     if (!query) {
-      return NextResponse.json({ results: [], archetypes: [], records: [] });
+      return NextResponse.json({
+        results: [],
+      });
     }
 
     const store = new VectorStore();
 
-    // Safe ILIKE search — works without full-text index
-    const results = await store.searchParagraphs(query);
+    const results = await store.searchParagraphs(
+      query
+    );
 
-    return NextResponse.json({ results, type });
+    return NextResponse.json({
+      results,
+    });
   } catch (err) {
-    console.error("[search/route]", err);
     return NextResponse.json(
-      { error: err instanceof Error ? err.message : "Search failed" },
-      { status: 500 }
+      {
+        results: [],
+        error:
+          err instanceof Error
+            ? err.message
+            : "Search failure",
+      },
+      {
+        status: 500,
+      }
+    );
+  }
+}
+
+export async function GET(request: Request) {
+  try {
+    const { searchParams } = new URL(
+      request.url
+    );
+
+    const query = String(
+      searchParams.get("q") ||
+      searchParams.get("type") ||
+      ""
+    ).trim();
+
+    if (!query) {
+      return NextResponse.json({
+        results: [],
+      });
+    }
+
+    const store = new VectorStore();
+
+    const results = await store.searchParagraphs(
+      query
+    );
+
+    return NextResponse.json({
+      results,
+    });
+  } catch (err) {
+    return NextResponse.json(
+      {
+        results: [],
+        error:
+          err instanceof Error
+            ? err.message
+            : "Search failure",
+      },
+      {
+        status: 500,
+      }
     );
   }
 }

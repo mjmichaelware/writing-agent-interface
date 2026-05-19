@@ -38,10 +38,7 @@ export class VectorStore {
     `);
   }
 
-  async insertChapter(
-    manifestId: string,
-    embedding: number[]
-  ): Promise<string> {
+  async insertChapter(manifestId: string, embedding: number[]): Promise<string> {
     const res = await this.pool.query(
       `INSERT INTO chapters (manifest_id, thematic_embedding)
        VALUES ($1, $2)
@@ -62,11 +59,7 @@ export class VectorStore {
     );
   }
 
-  async insertParagraph(
-    chapterId: string,
-    chunkIndex: number,
-    content: string
-  ) {
+  async insertParagraph(chapterId: string, chunkIndex: number, content: string) {
     await this.pool.query(
       `INSERT INTO paragraphs (
          chapter_id,
@@ -78,9 +71,7 @@ export class VectorStore {
     );
   }
 
-  async getChapterByManifestId(
-    manifestId: string
-  ): Promise<string | null> {
+  async getChapterByManifestId(manifestId: string): Promise<string | null> {
     const res = await this.pool.query(
       `SELECT id
        FROM chapters
@@ -92,9 +83,7 @@ export class VectorStore {
     return res.rows[0]?.id || null;
   }
 
-  async searchTopChapter(
-    embedding: number[]
-  ): Promise<string | null> {
+  async searchTopChapter(embedding: number[]): Promise<string | null> {
     const res = await this.pool.query(
       `SELECT id
        FROM chapters
@@ -106,9 +95,7 @@ export class VectorStore {
     return res.rows[0]?.id || null;
   }
 
-  async getParagraphsByChapter(
-    chapterId: string
-  ): Promise<string[]> {
+  async getParagraphsByChapter(chapterId: string): Promise<string[]> {
     const res = await this.pool.query(
       `SELECT content
        FROM paragraphs
@@ -117,6 +104,71 @@ export class VectorStore {
       [chapterId]
     );
 
-    return res.rows.map((r) => r.content);
+    return res.rows.map((r) => String(r.content || ""));
+  }
+
+  async searchParagraphs(query: string): Promise<{
+    ref: string;
+    title: string;
+    note: string;
+    content: string;
+    para_index: number;
+  }[]> {
+    const res = await this.pool.query(
+      `SELECT
+         p.content,
+         p.chunk_index,
+         c.manifest_id
+       FROM paragraphs p
+       JOIN chapters c
+         ON p.chapter_id = c.id
+       WHERE p.content ILIKE $1
+       ORDER BY
+         c.manifest_id ASC,
+         p.chunk_index ASC
+       LIMIT 40`,
+      [`%${query}%`]
+    );
+
+    return res.rows.map((r) => ({
+      ref: String(r.manifest_id || "Unknown"),
+      title: String(r.content || "").slice(0, 64),
+      note: String(r.content || ""),
+      content: String(r.content || ""),
+      para_index: Number(r.chunk_index ?? 0),
+    }));
+  }
+
+  async getDualismNodes(): Promise<{
+    id: string;
+    term: string;
+    parallel: string;
+    note: string;
+    chapters: string;
+    para_index: number;
+  }[]> {
+    const res = await this.pool.query(
+      `SELECT
+         p.chunk_index,
+         p.content,
+         c.manifest_id
+       FROM paragraphs p
+       JOIN chapters c
+         ON p.chapter_id = c.id
+       WHERE p.content IS NOT NULL
+       ORDER BY
+         c.manifest_id ASC,
+         p.chunk_index ASC
+       LIMIT 60`
+    );
+
+    return res.rows.map((r, index) => ({
+      id: `${r.manifest_id || "chapter"}-${r.chunk_index ?? index}`,
+      term: String(r.content || "").slice(0, 42),
+      parallel: "Semantic resonance pending",
+      note: String(r.content || "").slice(0, 180),
+      chapters: String(r.manifest_id || "Unknown"),
+      para_index: Number(r.chunk_index ?? 0),
+    }));
   }
 }

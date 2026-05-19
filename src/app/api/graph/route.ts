@@ -1,16 +1,28 @@
 import { NextResponse } from "next/server";
+import { VectorStore } from "@/services/memory-engine/vector-store";
 
 export async function GET() {
   try {
+    const store = new VectorStore();
+
+    const dualisms =
+      await store.getDualismNodes();
+
     return NextResponse.json({
-      status: "online",
-      nodes: [],
-      total: 0,
+      dualisms,
     });
-  } catch (err: any) {
+  } catch (err) {
     return NextResponse.json(
-      { error: "graph failed", message: err.message },
-      { status: 500 }
+      {
+        dualisms: [],
+        error:
+          err instanceof Error
+            ? err.message
+            : "Graph failure",
+      },
+      {
+        status: 500,
+      }
     );
   }
 }

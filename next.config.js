@@ -1,16 +1,16 @@
+const path = require('path');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Silences the build error by providing an empty config
-  turbopack: {}, 
-  
-  // Clean configurations
+  turbopack: {},
   typescript: {
     ignoreBuildErrors: true,
   },
-  
-  // Remove the unsupported 'eslint' key
-  // Add other necessary configs here
   webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': path.resolve(__dirname, 'src'),
+    };
     config.experiments = { ...config.experiments, topLevelAwait: true };
     return config;
   },

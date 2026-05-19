@@ -1,44 +1,29 @@
 "use client";
 
-import React, { createContext, useContext, useMemo } from 'react';
-import { EventBus, RuntimeEngine } from '@/core/runtimeEngine';
+import { createContext, useContext, type ReactNode } from "react";
+import { bus } from "@/core/runtimeEngine";
 
-interface RuntimeContextValue {
-  bus: EventBus;
-  engine: RuntimeEngine;
+export const runtime = {
+  bus,
+  emit: bus.emit.bind(bus),
+  on: bus.on.bind(bus),
+  off: bus.off.bind(bus),
+};
+
+export function getRuntime() {
+  return runtime;
 }
 
-const RuntimeContext = createContext<RuntimeContextValue | null>(null);
+const RuntimeContext = createContext<typeof runtime>(runtime);
 
-let busInstance: EventBus | null = null;
-let engineInstance: RuntimeEngine | null = null;
-
-export function RuntimeProvider({ children }: { children: React.ReactNode }) {
-  const bus = useMemo(() => {
-    if (!busInstance) busInstance = new EventBus();
-    return busInstance;
-  }, []);
-  const engine = useMemo(() => {
-    if (!engineInstance) engineInstance = new RuntimeEngine(bus);
-    return engineInstance;
-  }, [bus]);
-
+export function RuntimeProvider({ children }: { children: ReactNode }) {
   return (
-    <RuntimeContext.Provider value={{ bus, engine }}>
+    <RuntimeContext.Provider value={runtime}>
       {children}
     </RuntimeContext.Provider>
   );
 }
 
 export function useRuntime() {
-  const context = useContext(RuntimeContext);
-  if (!context) throw new Error("useRuntime must be used within a RuntimeProvider");
-  return context;
+  return useContext(RuntimeContext);
 }
-
-export function getRuntime() {
-  if (!busInstance) busInstance = new EventBus();
-  if (!engineInstance) engineInstance = new RuntimeEngine(busInstance);
-  return { bus: busInstance, engine: engineInstance };
-}
-

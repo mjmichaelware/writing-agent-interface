@@ -1,73 +1,68 @@
 "use client";
 
 import React, { useState } from "react";
-import { Search as SearchIcon, Link2 } from "lucide-react";
 
 export default function SystemTab() {
-  const [term, setTerm] = useState("");
-  const [results, setResults] = useState<any[]>([]);
-  const [searching, setSearching] = useState(false);
-  const [hyperlinksEnabled, setHyperlinksEnabled] = useState(true);
+  const [pin, setPin] = useState("");
+  const [unlocked, setUnlocked] = useState(false);
+  const [error, setError] = useState(false);
 
-  const runSearch = async () => {
-    if (!term.trim()) return;
-    setSearching(true);
-    try {
-      const r = await fetch(`/api/search?term=${encodeURIComponent(term)}`);
-      const d = await r.json();
-      setResults(d.results || []);
-    } catch {
-      setResults([]);
+  const submitPin = (value: string) => {
+    if (value === "1003") {
+      setTimeout(() => setUnlocked(true), 300);
+      return;
     }
-    setSearching(false);
+    setError(true);
+    setTimeout(() => { setPin(""); setError(false); }, 500);
   };
 
+  const handleKey = (key: string) => {
+    if (error) return;
+    if (key === "DEL") {
+      setPin((current) => current.slice(0, -1));
+      return;
+    }
+    if (key === "ENT") {
+      if (pin.length === 4) submitPin(pin);
+      return;
+    }
+    if (!/^\d$/.test(key) || pin.length >= 4) return;
+    const nextPin = pin + key;
+    setPin(nextPin);
+    if (nextPin.length === 4) submitPin(nextPin);
+  };
+
+  if (unlocked) {
+    return (
+      <div className="p-8 animate-in fade-in duration-700">
+        <h3 className="font-mono text-[10px] text-emerald-500 tracking-widest uppercase mb-6 flex items-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          IWritingAgent: Online
+        </h3>
+        <button className="w-full text-left p-4 border border-zinc-900 bg-zinc-900/20 hover:bg-zinc-900/50 transition-colors">
+          <span className="block font-serif text-zinc-300">Access 181 Concordance Nodes</span>
+        </button>
+      </div>
+    );
+  }
+
   return (
-    <div className="space-y-5 font-mono text-xs px-1">
-      <section className="space-y-2">
-        <p className="text-[8px] uppercase tracking-[0.2em] text-zinc-500 font-bold">// CRAWL 181 CONCORDANCE NODES</p>
-        <div className="flex gap-2">
-          <input
-            type="text"
-            value={term}
-            onChange={(e) => setTerm(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && runSearch()}
-            placeholder="Query query term engine..."
-            className="flex-1 bg-zinc-900/40 border border-zinc-900 px-3 py-2 text-xs text-white placeholder-zinc-700 focus:border-cyan-800 focus:outline-none rounded-xs"
-          />
-          <button onClick={runSearch} disabled={searching} className="bg-cyan-950 border border-cyan-800 text-cyan-400 px-3 py-2 text-xs rounded-xs font-bold active:scale-95 transition-transform">
-            <SearchIcon size={12} />
-          </button>
-        </div>
-        <div className="space-y-1.5 max-h-40 overflow-y-auto pt-1">
-          {results.map((r: any, i) => (
-            <div key={i} className="bg-zinc-900/30 border border-zinc-900 p-2.5 text-[10px] text-zinc-400 rounded-xs">
-              {r.snippet}
-            </div>
+    <div className="p-8 h-[60vh] flex flex-col items-center justify-center">
+      <div className="text-center mb-10">
+        <h2 className="font-mono text-[10px] tracking-[0.3em] text-zinc-500 mb-4">SYSTEM GATEWAY</h2>
+        <div className="flex gap-4 justify-center">
+          {[0, 1, 2, 3].map((i) => (
+            <div key={i} className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${error ? "bg-red-500 shadow-[0_0_12px_rgba(239,68,68,0.6)]" : i < pin.length ? "bg-zinc-200 shadow-[0_0_12px_rgba(255,255,255,0.4)]" : "bg-zinc-800"}`} />
           ))}
         </div>
-      </section>
-
-      <section className="pt-3 border-t border-zinc-900/60 space-y-2">
-        <p className="text-[8px] uppercase tracking-[0.2em] text-zinc-500 font-bold">// XAI MATRIX OVERLAYS</p>
-        <div className="p-3 bg-zinc-900/10 border border-zinc-900 rounded-xs flex items-center justify-between">
-          <span className="text-zinc-300 font-sans text-xs">Hyperlinking References</span>
-          <button 
-            onClick={() => setHyperlinksEnabled(!hyperlinksEnabled)}
-            className={`w-8 h-4 rounded-full p-0.5 transition-colors duration-200 ${hyperlinksEnabled ? "bg-cyan-600" : "bg-zinc-800"}`}
-          >
-            <div className={`w-3 h-3 rounded-full bg-white transition-transform duration-200 ${hyperlinksEnabled ? "translate-x-4" : "translate-x-0"}`} />
+      </div>
+      <div className="grid grid-cols-3 gap-3 w-full max-w-[220px]">
+        {["1", "2", "3", "4", "5", "6", "7", "8", "9", "DEL", "0", "ENT"].map((key) => (
+          <button key={key} onClick={() => handleKey(key)} className="aspect-square font-mono text-sm text-zinc-400 border border-zinc-800/30 bg-[#070709] hover:bg-zinc-800 transition-all">
+            {key}
           </button>
-        </div>
-        <button className="w-full py-2.5 bg-zinc-900/20 border border-zinc-900 text-left px-3 text-zinc-400 hover:text-cyan-400 hover:border-cyan-900/40 transition-all rounded-xs flex items-center justify-between">
-          <span className="font-sans text-xs">Biblical Reference Framework</span>
-          <Link2 size={12} className="text-zinc-700" />
-        </button>
-        <button className="w-full py-2.5 bg-zinc-900/20 border border-zinc-900 text-left px-3 text-zinc-400 hover:text-cyan-400 hover:border-cyan-900/40 transition-all rounded-xs flex items-center justify-between">
-          <span className="font-sans text-xs">Narrative Foreshadowing Loops</span>
-          <Link2 size={12} className="text-zinc-700" />
-        </button>
-      </section>
+        ))}
+      </div>
     </div>
   );
 }

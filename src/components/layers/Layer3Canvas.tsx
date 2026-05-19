@@ -1,121 +1,64 @@
 "use client";
 
-import React, { useRef } from "react";
-
-import TitleCover from "./canvas/front-matter/TitleCover";
-import Dedication from "./canvas/front-matter/Dedication";
-import Synopsis from "./canvas/front-matter/Synopsis";
-import AboutAuthor from "./canvas/front-matter/AboutAuthor";
-import TableOfContents from "./canvas/front-matter/TableOfContents";
+import React, { useEffect, useRef, useState } from "react";
 import ManuscriptCore from "./canvas/ManuscriptCore";
+import { bus } from "@/core/runtimeEngine";
+import ReaderControlPanel from "./controls/ReaderControlPanel";
+import { DEFAULT_READER_CONTROLS, readerFontStack, type ReaderControls } from "@/runtime/readerControls";
 
-import type { ControlPanelState } from "@/runtime/controlPanel";
+export default function Layer3Canvas({ chapterData }: { chapterData: any }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [controls, setControls] = useState<ReaderControls>(DEFAULT_READER_CONTROLS);
 
-interface Layer3CanvasProps {
-  chapter: number | null;
-  setChapter: (n: number | null) => void;
-  paragraphs: string[];
-  loading: boolean;
-  error: string | null;
-  depth: number;
-  go: (delta: number) => void;
-  topCanvasRef: React.RefObject<HTMLDivElement | null>;
-  scrollContainerRef: React.RefObject<HTMLDivElement | null>;
-  TITLES: Record<number, string>;
-  CHAPTER_NUMS: number[];
-  state: ControlPanelState;
-}
+  useEffect(() => {
+    const onNav = (_data: { speed: number }) => {
+      const el = scrollRef.current;
+      if (!el || !controls.motion) return;
+      const blur = Math.max(0, Math.min(8, controls.blur * 8));
+      const scale = 1 - Math.max(0, Math.min(0.04, controls.distortion * 0.04));
+      const opacity = 1 - Math.max(0, Math.min(0.35, controls.sensitivity * 0.35));
+      el.style.filter = `blur(${blur}px) contrast(${controls.contrast}) saturate(${1 + controls.colorShift}) sepia(${controls.warmth})`;
+      el.style.transform = `scale(${scale})`;
+      el.style.opacity = String(opacity);
+      el.scrollTo({ top: 0, behavior: "smooth" });
+      window.setTimeout(() => {
+        el.style.filter = `blur(0px) contrast(${controls.contrast}) saturate(${1 + controls.colorShift}) sepia(${controls.warmth})`;
+        el.style.transform = "scale(1)";
+        el.style.opacity = "1";
+      }, 800);
+    };
+    return bus.on("nav:velocity_scroll", onNav);
+  }, [controls]);
 
-export default function Layer3Canvas({
-  chapter,
-  setChapter,
-  paragraphs,
-  loading,
-  error,
-  depth,
-  TITLES,
-  CHAPTER_NUMS,
-  state,
-  topCanvasRef,
-}: Layer3CanvasProps) {
-  const manuscriptRef = useRef<HTMLDivElement>(null);
-
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
-  const handleBeginReading = () => {
-    if (chapter == null) setChapter(1);
-    setTimeout(() => scrollTo("reading"), 100);
-  };
-
-  const handleLoadChapter = (n: number) => {
-    setChapter(n);
-    setTimeout(() => scrollTo("reading"), 100);
-  };
-
-  // Coerce lineHeight to string so it matches ManuscriptCore's current type.
-  // Paste #8 widens ManuscriptCore's type to accept both and removes this.
-  const proseState = {
-    baseColor: state.baseColor,
-    descentColor: state.descentColor,
-    sacredColor: state.sacredColor,
-    properColor: state.properColor,
-    fontScale: state.fontScale,
-    lineHeight: String(state.lineHeight),
-    letterSpacing: state.letterSpacing,
-  };
+  if (!chapterData?.blocks?.length) {
+    return <div className="absolute inset-0 flex justify-center items-center text-zinc-600 font-mono">Awaiting Manifest...</div>;
+  }
 
   return (
-    <main ref={topCanvasRef} className="relative z-20">
-      <TitleCover
-        onJump={scrollTo}
-        onBeginReading={handleBeginReading}
-      />
-
-      <div className="space-y-24 md:space-y-32 pt-16 pb-24">
-        <Dedication />
-        <Synopsis />
-        <AboutAuthor />
-        <TableOfContents
-          TITLES={TITLES}
-          onLoadChapter={handleLoadChapter}
-        />
-
-        {chapter == null ? (
-          <section
-            id="reading"
-            className="min-h-[50vh] scroll-mt-20 flex items-center justify-center"
-          >
-            <p
-              style={{
-                fontFamily: "var(--font-prose)",
-                fontStyle: "italic",
-                color: "var(--text-muted)",
-                padding: "4rem 1rem",
-              }}
-            >
-              Choose a chapter to begin.
-            </p>
-          </section>
-        ) : (
-          <ManuscriptCore
-            manuscriptRef={manuscriptRef}
-            tocRef={manuscriptRef}
-            chapter={chapter}
-            setChapter={setChapter as (n: number) => void}
-            paragraphs={paragraphs}
-            loading={loading}
-            error={error}
-            state={proseState}
-            depth={depth}
-            TITLES={TITLES}
-            CHAPTER_NUMS={CHAPTER_NUMS}
-            jumpTo={() => scrollTo("reading")}
-          />
-        )}
+    <div className="absolute inset-0 overflow-hidden bg-[#050505]">
+      <div
+        ref={scrollRef}
+        className="absolute inset-0 overflow-y-auto overflow-x-hidden transition-all duration-500 will-change-[transform,filter,opacity]"
+        style={{
+          fontFamily: readerFontStack(controls.font),
+          fontSize: `${controls.fontScale}rem`,
+          lineHeight: controls.lineHeight,
+          filter: `contrast(${controls.contrast}) saturate(${1 + controls.colorShift}) sepia(${controls.warmth})`,
+          ["--reader-font-scale" as any]: controls.fontScale,
+          ["--reader-line-height" as any]: controls.lineHeight,
+          ["--reader-sensitivity" as any]: controls.sensitivity,
+          ["--reader-color-shift" as any]: controls.colorShift,
+          ["--reader-distortion" as any]: controls.distortion,
+          ["--reader-blur" as any]: controls.blur,
+          ["--reader-contrast" as any]: controls.contrast,
+          ["--reader-warmth" as any]: controls.warmth,
+        }}
+      >
+        <div className="w-full min-h-screen relative">
+          <ManuscriptCore blocks={chapterData.blocks} chapterSlug={chapterData.slug} />
+        </div>
       </div>
-    </main>
+      <ReaderControlPanel controls={controls} setControls={setControls} />
+    </div>
   );
 }

@@ -1,71 +1,62 @@
-export type MenuTab = 
-  | "Hyperlinks(parallelisms & Dualisms)" 
-  | "biblical references" 
-  | "Archetypes" 
-  | "[Standard Reader Customizations / Chapter Settings]" 
-  | "Password-Protected Object for \"all of the engines! Including the writing agent\""
-  | "CLOSED";
+export type RuntimeEvents = {
+  "scroll:focus": { paraIndex: string };
+  "nav:velocity_scroll": { speed: number };
+  "ui:menu_toggle": { isOpen: boolean };
+};
 
-export type EventType = "chapter:load" | "block:render" | "scroll:update" | "state:change";
-export type CommandType = "SET_CHAPTER" | "SET_MODE" | "ADVANCE_BLOCK" | "SET_ACTIVE_TAB" | "TOGGLE_MENU";
+type Handler<K extends keyof RuntimeEvents> = (payload: RuntimeEvents[K]) => void;
 
-export interface State {
-  chapter: number;
-  blockIndex: number;
-  mode: "safe" | "cinematic";
-  activeTab: MenuTab;
-  isMenuOpen: boolean;
-}
+class EventBus {
+  private static instance: EventBus;
 
-export class EventBus {
-  private listeners: Record<string, Function[]> = {};
-  on(event: EventType, fn: Function) {
-    this.listeners[event] = this.listeners[event] || [];
-    this.listeners[event].push(fn);
-  }
-  off(event: EventType, fn: Function) {
-    if (!this.listeners[event]) return;
-    this.listeners[event] = this.listeners[event].filter(l => l !== fn);
-  }
-  emit(event: EventType, payload: any) {
-    (this.listeners[event] || []).forEach(fn => fn(payload));
-  }
-}
+  private events: {
+    [K in keyof RuntimeEvents]?: Set<Handler<K>>;
+  } = {};
 
-export class RuntimeEngine {
-  private state: State = {
-    chapter: 7,
-    blockIndex: 0,
-    mode: "safe",
-    activeTab: "CLOSED",
-    isMenuOpen: false
-  };
+  private constructor() {}
 
-  constructor(public events: EventBus) {}
-
-  getState(): State { return { ...this.state }; }
-
-  dispatch(command: { type: CommandType; payload?: any }) {
-    switch (command.type) {
-      case "SET_CHAPTER":
-        this.state.chapter = command.payload;
-        break;
-      case "SET_MODE":
-        this.state.mode = command.payload;
-        break;
-      case "ADVANCE_BLOCK":
-        const dir = command.payload ?? 1;
-        this.state.blockIndex = Math.max(0, this.state.blockIndex + dir);
-        break;
-      case "SET_ACTIVE_TAB":
-        this.state.activeTab = command.payload;
-        this.state.isMenuOpen = command.payload !== "CLOSED";
-        break;
-      case "TOGGLE_MENU":
-        this.state.isMenuOpen = command.payload;
-        if (!this.state.isMenuOpen) this.state.activeTab = "CLOSED";
-        break;
+  static getInstance() {
+    if (!EventBus.instance) {
+      EventBus.instance = new EventBus();
     }
-    this.events.emit("state:change", { ...this.state });
+    return EventBus.instance;
+  }
+
+  on<K extends keyof RuntimeEvents>(event: K, fn: Handler<K>) {
+    if (!this.events[event]) {
+      this.events[event] = new Set();
+    }
+
+    this.events[event]!.add(fn);
+
+    return () => this.off(event, fn);
+  }
+
+  off<K extends keyof RuntimeEvents>(event: K, fn: Handler<K>) {
+    const handlers = this.events[event];
+    if (!handlers) return;
+
+    handlers.delete(fn);
+
+    if (handlers.size === 0) {
+      delete this.events[event];
+    }
+  }
+
+  emit<K extends keyof RuntimeEvents>(event: K, payload: RuntimeEvents[K]) {
+    const handlers = this.events[event];
+    if (!handlers) return;
+
+    for (const fn of handlers) {
+      try {
+        fn(payload);
+      } catch (err) {
+        console.error(`[bus:${event}]`, err);
+      }
+    }
   }
 }
+
+export const bus = EventBus.getInstance();
+export { EventBus };
+export default bus;

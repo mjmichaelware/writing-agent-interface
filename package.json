@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "ingest": "tsx src/actions/ingest.action.ts"
+    "ingest": "tsx src/actions/ingest.action.ts",
+    "lint": "next lint"
   },
   "dependencies": {
     "framer-motion": "^12.38.0",

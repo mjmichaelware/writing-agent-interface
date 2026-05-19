@@ -3,6 +3,7 @@ import ReaderLayout from "../components/ReaderLayout";
 import Layer2Cinema from "../components/layers/Layer2Cinema";
 import Layer3Canvas from "../components/layers/Layer3Canvas";
 import Layer4Panel from "../components/layers/Layer4Panel";
+import { VectorStore } from "../services/memory-engine/vector-store";
 import { promises as fs } from "fs";
 
 export const dynamic = "force-dynamic";

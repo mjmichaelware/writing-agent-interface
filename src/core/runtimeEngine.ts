@@ -1,10 +1,51 @@
+export type ArchetypalWeights = {
+  shadow: number;
+  persona: number;
+  anima: number;
+  self: number;
+};
+
 export type RuntimeEvents = {
-  "scroll:focus": { paraIndex: string };
-  "nav:velocity_scroll": { speed: number };
-  "ui:menu_toggle": { isOpen: boolean };
+  "scroll:focus": {
+    paraIndex: string;
+    archetypal_weights?: ArchetypalWeights;
+  };
+
+  "nav:velocity_scroll": {
+    speed: number;
+  };
+
+  "ui:menu_toggle": {
+    isOpen: boolean;
+  };
+
   "engine:semantic_parse": {
     dualism: number;
     archetype: number;
+  };
+
+  "audio:tone": {
+    paraIndex: number;
+    intensity: number;
+  };
+
+  "distortion:update": {
+    paraIndex: number;
+    mass: number;
+    tension: number;
+    blur: number;
+    drift: number;
+  };
+
+  "theme:tone": {
+    tone: "sacred" | "descent" | "neutral";
+    paraIndex: number;
+    warmth: number;
+  };
+
+  "theme:warmth": {
+    warmth: number;
+    paraIndex: number;
   };
 };
 
@@ -12,6 +53,7 @@ type Handler<K extends keyof RuntimeEvents> = (payload: RuntimeEvents[K]) => voi
 
 class EventBus {
   private static instance: EventBus;
+
   private events: {
     [K in keyof RuntimeEvents]?: Set<Handler<K>>;
   } = {};
@@ -22,6 +64,7 @@ class EventBus {
     if (!EventBus.instance) {
       EventBus.instance = new EventBus();
     }
+
     return EventBus.instance;
   }
 
@@ -31,6 +74,7 @@ class EventBus {
     }
 
     this.events[event]!.add(fn);
+
     return () => this.off(event, fn);
   }
 

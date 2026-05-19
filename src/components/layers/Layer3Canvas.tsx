@@ -14,24 +14,34 @@ export default function Layer3Canvas({ chapterData }: { chapterData: any }) {
     const onNav = (_data: { speed: number }) => {
       const el = scrollRef.current;
       if (!el || !controls.motion) return;
+      
       const blur = Math.max(0, Math.min(8, controls.blur * 8));
       const scale = 1 - Math.max(0, Math.min(0.04, controls.distortion * 0.04));
       const opacity = 1 - Math.max(0, Math.min(0.35, controls.sensitivity * 0.35));
+      
       el.style.filter = `blur(${blur}px) contrast(${controls.contrast}) saturate(${1 + controls.colorShift}) sepia(${controls.warmth})`;
       el.style.transform = `scale(${scale})`;
       el.style.opacity = String(opacity);
+      
       el.scrollTo({ top: 0, behavior: "smooth" });
+      
       window.setTimeout(() => {
         el.style.filter = `blur(0px) contrast(${controls.contrast}) saturate(${1 + controls.colorShift}) sepia(${controls.warmth})`;
         el.style.transform = "scale(1)";
         el.style.opacity = "1";
       }, 800);
     };
-    return bus.on("nav:velocity_scroll", onNav);
+
+    const unsubscribe = bus.on("nav:velocity_scroll", onNav);
+    return () => { unsubscribe(); }; // Explicit void return
   }, [controls]);
 
   if (!chapterData?.blocks?.length) {
-    return <div className="absolute inset-0 flex justify-center items-center text-zinc-600 font-mono">Awaiting Manifest...</div>;
+    return (
+      <div className="absolute inset-0 flex justify-center items-center text-zinc-600 font-mono">
+        Awaiting Manifest...
+      </div>
+    );
   }
 
   return (
@@ -62,3 +72,4 @@ export default function Layer3Canvas({ chapterData }: { chapterData: any }) {
     </div>
   );
 }
+

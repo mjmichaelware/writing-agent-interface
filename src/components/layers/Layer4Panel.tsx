@@ -1,175 +1,49 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+import { bus } from "@/core/runtimeEngine";
+import SystemTab from "./panel/SystemTab";
+import IndexTab from "./panel/IndexTab";
 
-interface Layer4PanelProps {
-  open: boolean;
-  onClose: () => void;
-  cp: any;
-  chapter: number | null;
-  setChapter: (n: number) => void;
-  manuscriptRef: React.RefObject<HTMLDivElement>;
-  TITLES: Record<number, string>;
-  CHAPTER_NUMS: number[];
-  depth: number;
-  setOpen: (b: boolean) => void;
-}
+type PanelTab = "INDEX" | "SYSTEM" | "HYPERLINKS" | "REFERENCES" | "ARCHETYPES";
 
-type Tab = "chapters" | "style" | "references";
+export default function Layer4Panel() {
+  const panelRef = useRef<HTMLDivElement>(null);
+  const shieldRef = useRef<HTMLDivElement>(null);
+  const [activeTab, setActiveTab] = useState<PanelTab>("SYSTEM");
 
-export default function Layer4Panel({
-  open,
-  cp,
-  chapter,
-  setChapter,
-  TITLES,
-  CHAPTER_NUMS,
-  depth,
-  setOpen
-}: Layer4PanelProps) {
-  const [activeTab, setActiveTab] = useState<Tab>("chapters");
+  useEffect(() => {
+    return bus.on("ui:menu_toggle", (state) => {
+      const panel = panelRef.current;
+      const shield = shieldRef.current;
+      if (!panel || !shield) return;
+      panel.style.transform = state.isOpen ? "rotateY(0deg) translateX(0)" : "rotateY(25deg) translateX(100%)";
+      panel.style.opacity = state.isOpen ? "1" : "0";
+      panel.style.pointerEvents = state.isOpen ? "auto" : "none";
+      shield.style.opacity = state.isOpen ? "1" : "0";
+      shield.style.pointerEvents = state.isOpen ? "auto" : "none";
+    });
+  }, []);
 
   return (
-    <>
-      <header className="fixed top-0 left-0 right-0 z-40 border-b border-[var(--text-muted)]/20 bg-[var(--bg-void)]/70 backdrop-blur-md select-none transition-all duration-700 ease-in-out">
-        <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
-          <p className="font-serif text-sm italic tracking-wide text-[var(--text-muted)] drop-shadow-md">
-            {depth < 0.05 || !chapter
-              ? "The Weight of the Sky"
-              : TITLES[chapter]}
-          </p>
-
-          <button
-            onClick={() => setOpen(!open)}
-            className="font-serif text-[var(--text-muted)] transition-colors duration-500 hover:text-[var(--accent-gold)]"
-          >
-            {open ? "Close" : "Menu"}
-          </button>
+    <div className="fixed inset-0 z-50 pointer-events-none" style={{ perspective: "2000px" }}>
+      <div ref={shieldRef} onClick={() => bus.emit("ui:menu_toggle", { isOpen: false })} className="absolute inset-0 bg-black/40 backdrop-blur-[2px] transition-opacity duration-800 opacity-0 pointer-events-none will-change-[opacity]" />
+      <div ref={panelRef} className="absolute top-0 right-0 w-[420px] h-full bg-[#050507] border-l border-zinc-900 shadow-2xl flex flex-col origin-right transition-all duration-800 opacity-0 pointer-events-none will-change-[transform,opacity]" style={{ transform: "rotateY(25deg) translateX(100%)", transformStyle: "preserve-3d" }}>
+        <div className="flex items-center gap-4 p-6 border-b border-zinc-900">
+          <img src="/assets/michael.jpg" alt="Operator" className="w-8 h-8 rounded-full opacity-60" />
+          <div className="text-[10px] uppercase tracking-widest text-zinc-500">Operator</div>
         </div>
-
-        <div className="absolute bottom-0 left-0 h-[1px] w-full bg-transparent">
-          <div
-            className="h-full bg-[var(--accent-gold)]/60 transition-all duration-100 ease-out"
-            style={{
-              width: `${Math.min(100, depth * 100)}%`
-            }}
-          />
+        <div className="grid grid-cols-2 gap-2 p-6">
+          {["INDEX", "SYSTEM", "HYPERLINKS", "REFERENCES", "ARCHETYPES"].map((t) => (
+            <button key={t} onClick={() => setActiveTab(t as PanelTab)} className={`text-[9px] tracking-widest uppercase py-2 border ${activeTab === t ? "border-zinc-500 text-zinc-100" : "border-zinc-900 text-zinc-700"}`}>{t}</button>
+          ))}
         </div>
-      </header>
-
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{
-              duration: 0.6,
-              ease: [0.22, 1, 0.36, 1]
-            }}
-            className="fixed left-0 right-0 top-14 z-50 border-b border-[var(--text-muted)]/20 bg-[var(--bg-void)]/95 shadow-2xl backdrop-blur-xl"
-          >
-            <div className="mx-auto max-w-4xl px-6 py-8">
-              <div className="mb-8 flex gap-8 border-b border-[var(--text-muted)]/20">
-                {(["chapters", "style", "references"] as Tab[]).map((tab) => (
-                  <button
-                    key={tab}
-                    onClick={() => setActiveTab(tab)}
-                    className={`relative pb-2 font-serif text-sm transition-colors duration-500 ${
-                      activeTab === tab
-                        ? "text-[var(--text-body)]"
-                        : "text-[var(--text-muted)] hover:text-[var(--accent-gold)]"
-                    }`}
-                  >
-                    {tab}
-
-                    {activeTab === tab && (
-                      <motion.div
-                        layoutId="activeTab"
-                        className="absolute bottom-0 left-0 right-0 h-[1px] bg-[var(--accent-gold)]"
-                      />
-                    )}
-                  </button>
-                ))}
-              </div>
-
-              <div className="max-h-[60vh] min-h-[40vh] overflow-y-auto">
-                {activeTab === "chapters" && (
-                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                    {CHAPTER_NUMS.map((num) => (
-                      <button
-                        key={num}
-                        onClick={() => {
-                          setChapter(num);
-                          setOpen(false);
-                        }}
-                        className={`group flex items-center justify-between border-l-2 p-4 text-left transition-all duration-500 ${
-                          chapter === num
-                            ? "border-[var(--accent-gold)] bg-[var(--accent-gold)]/5"
-                            : "border-transparent hover:border-[var(--accent-gold)]/30 hover:bg-[var(--text-muted)]/5"
-                        }`}
-                      >
-                        <span className="font-serif text-[var(--text-body)] transition-colors duration-500 group-hover:text-[var(--accent-gold)]">
-                          {TITLES[num]}
-                        </span>
-
-                        <span className="font-serif text-sm italic text-[var(--text-muted)]">
-                          Chapter {num}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                )}
-
-                {activeTab === "style" && (
-                  <div className="max-w-md space-y-8">
-                    <p className="mb-4 font-serif text-sm italic text-[var(--text-muted)]">
-                      Adjust the physical weight of the prose to match the operational environment.
-                    </p>
-
-                    <div className="space-y-4">
-                      <div className="flex justify-between font-serif text-sm text-[var(--text-body)]">
-                        <span>Typographic Scale</span>
-
-                        <span>{cp.state?.fontScale || 1.125}x</span>
-                      </div>
-
-                      <input
-                        type="range"
-                        min="0.8"
-                        max="1.5"
-                        step="0.05"
-                        value={cp.state?.fontScale || 1.125}
-                        onChange={(e) =>
-                          cp.update({
-                            fontScale: parseFloat(e.target.value)
-                          })
-                        }
-                        className="w-full accent-[var(--accent-gold)] opacity-70 transition-opacity hover:opacity-100"
-                      />
-                    </div>
-                  </div>
-                )}
-
-                {activeTab === "references" && (
-                  <div className="max-w-xl">
-                    <p className="mb-6 font-serif text-sm italic text-[var(--text-muted)]">
-                      The Concordance. Search the 181 narrative nodes.
-                    </p>
-
-                    <input
-                      type="text"
-                      placeholder="Enter semantic query..."
-                      className="w-full border-b border-[var(--text-muted)]/40 bg-transparent py-3 font-serif text-[var(--text-body)] transition-colors duration-500 placeholder:text-[var(--text-muted)]/50 focus:border-[var(--accent-gold)] focus:outline-none"
-                    />
-                  </div>
-                )}
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+        <div className="flex-1 overflow-y-auto p-6">
+          {activeTab === "SYSTEM" && <SystemTab />}
+          {activeTab === "INDEX" && <IndexTab />}
+          {/* Remaining tabs mount placeholders until Batch 5 */}
+        </div>
+      </div>
+    </div>
   );
 }

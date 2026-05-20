@@ -1,88 +1,95 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import { bus } from "@/core/runtimeEngine";
-import SystemTab from "./panel/SystemTab";
-import StylesTab from "./panel/StylesTab";
+
+import React, { useState } from "react";
 import HyperlinksGraph from "./panel/HyperlinksGraph";
 import BiblicalReferencesDirectory from "./panel/BiblicalReferencesDirectory";
 import ArchetypesDirectory from "./panel/ArchetypesDirectory";
-import WritingAgentConsole from "./panel/WritingAgentConsole";
-
-type PanelTab = "HYPERLINKS" | "REFERENCES" | "ARCHETYPES" | "SETTINGS" | "SYSTEM";
-
-const tabs: { id: PanelTab; label: string; sub: string }[] = [
-  { id: "HYPERLINKS", label: "Links", sub: "Dualisms" },
-  { id: "REFERENCES", label: "Refs", sub: "Concordance" },
-  { id: "ARCHETYPES", label: "Types", sub: "Jungian" },
-  { id: "SETTINGS", label: "Style", sub: "Reader" },
-  { id: "SYSTEM", label: "System", sub: "Agent" },
-];
+import StatusTab from "./panel/StatusTab";
+import SystemTab from "./panel/SystemTab";
 
 export default function Layer4Panel() {
-  const panelRef = useRef<HTMLDivElement>(null);
-  const shieldRef = useRef<HTMLDivElement>(null);
-  const [activeTab, setActiveTab] = useState<PanelTab>("SYSTEM");
+  const [activeTab, setActiveTab] = useState<string | null>(null);
 
-  useEffect(() => {
-    const toggleMenu = (state: { isOpen: boolean }) => {
-      const panel = panelRef.current;
-      const shield = shieldRef.current;
-      if (!panel || !shield) return;
-      if (state.isOpen) {
-        panel.style.transform = "rotateY(0deg) translateX(0) scale(1)";
-        panel.style.opacity = "1";
-        panel.style.pointerEvents = "auto";
-        shield.style.opacity = "1";
-        shield.style.pointerEvents = "auto";
-      } else {
-        panel.style.transform = "rotateY(25deg) translateX(100%) scale(0.985)";
-        panel.style.opacity = "0";
-        panel.style.pointerEvents = "none";
-        shield.style.opacity = "0";
-        shield.style.pointerEvents = "none";
-      }
-    };
-    return bus.on("ui:menu_toggle", toggleMenu);
-  }, []);
-
-  const closeMenu = () => bus.emit("ui:menu_toggle", { isOpen: false });
+  const TABS = [
+    {
+      id: "HYPERLINKS",
+      label: "Parallelisms & Dualisms",
+      component: <HyperlinksGraph />,
+    },
+    {
+      id: "BIBLICAL",
+      label: "Biblical References",
+      component: <BiblicalReferencesDirectory />,
+    },
+    {
+      id: "ARCHETYPES",
+      label: "Archetypes",
+      component: <ArchetypesDirectory />,
+    },
+    {
+      id: "SETTINGS",
+      label: "Chapter Settings",
+      component: <StatusTab />,
+    },
+    {
+      id: "SYSTEM",
+      label: "Master Override",
+      component: <SystemTab />,
+    },
+  ];
 
   return (
-    <div className="fixed inset-0 z-50 pointer-events-none" style={{ perspective: "2000px" }}>
-      <div ref={shieldRef} onClick={closeMenu} className="absolute inset-0 bg-black/40 backdrop-blur-[12px] transition-opacity duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] opacity-0 pointer-events-none will-change-[opacity]" />
-      <div ref={panelRef} className="absolute top-0 right-0 w-[88vw] md:w-[460px] h-full bg-[#050507]/90 border-l border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.7)] flex flex-col origin-right transition-all duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] opacity-0 pointer-events-none will-change-[transform,opacity] backdrop-blur-2xl" style={{ transform: "rotateY(25deg) translateX(100%) scale(0.985)", transformStyle: "preserve-3d" }}>
-        <div className="flex-1 flex flex-col pointer-events-auto">
-          <div className="p-5 border-b border-white/10 bg-gradient-to-b from-white/[0.04] to-transparent">
-            <div className="flex justify-between items-center mb-5">
-              <div>
-                <div className="font-serif italic text-xl text-[#e8e4dc]">Ghost Perimeter</div>
-                <div className="text-[9px] uppercase tracking-[0.32em] text-zinc-600">Narrative Operating Shell</div>
-              </div>
-              <button onClick={closeMenu} className="rounded-full border border-white/10 px-3 py-2 text-[9px] tracking-widest text-zinc-500 hover:text-[#e8e4dc] hover:border-white/25 hover:bg-white/[0.04] transition">CLOSE</button>
-            </div>
-            <div className="flex gap-2 overflow-x-auto pb-2">
-              {tabs.map((tab) => (
-                <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`min-w-[92px] rounded-2xl border px-3 py-3 text-left transition-all duration-300 ${activeTab === tab.id ? "border-[#d4af37]/60 bg-[#d4af37]/10 text-[#f6e7b4] shadow-[0_0_24px_rgba(212,175,55,0.08)]" : "border-white/10 bg-black/20 text-zinc-600 hover:text-zinc-300 hover:border-white/20"}`}>
-                  <span className="block text-[9px] uppercase tracking-widest">{tab.label}</span>
-                  <span className="block mt-1 font-serif italic text-xs opacity-60">{tab.sub}</span>
-                </button>
-              ))}
-            </div>
+    <div className="fixed inset-0 z-40 pointer-events-none flex flex-col justify-between">
+      <header className="pointer-events-auto w-full px-4 py-3 md:px-8 md:py-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-gradient-to-b from-[#0a0a0a]/90 via-[#0a0a0a]/50 to-transparent backdrop-blur-sm transition-all duration-700">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-[#8a857c]/30 shadow-lg bg-[#c9a96e]/20" />
+
+          <div className="flex flex-col leading-none">
+            <span className="font-serif text-[#e8e4dc] text-[10px] md:text-xs tracking-[0.2em] uppercase mb-1">
+              Operator Active
+            </span>
+
+            <span className="font-serif text-[#c9a96e] text-[9px] md:text-[10px] tracking-widest uppercase animate-pulse">
+              Telemetry Online
+            </span>
           </div>
-          <div className="flex-1 overflow-y-auto bg-[#020203]">
-            {activeTab === "HYPERLINKS" && <HyperlinksGraph />}
-            {activeTab === "REFERENCES" && <BiblicalReferencesDirectory />}
-            {activeTab === "ARCHETYPES" && <ArchetypesDirectory />}
-            {activeTab === "SETTINGS" && <StylesTab />}
-            {activeTab === "SYSTEM" && (
-              <div className="flex flex-col gap-4 p-4">
-                <SystemTab />
-                <WritingAgentConsole />
-              </div>
-            )}
+        </div>
+
+        <nav className="flex gap-4 md:gap-8 overflow-x-auto w-full md:w-auto pb-2 md:pb-0">
+          {TABS.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() =>
+                setActiveTab(activeTab === tab.id ? null : tab.id)
+              }
+              className={`font-serif text-[10px] md:text-xs tracking-[0.15em] uppercase whitespace-nowrap transition-all duration-500 pb-1 border-b border-transparent ${
+                activeTab === tab.id
+                  ? "text-[#e8d4a0] border-[#e8d4a0] drop-shadow-[0_0_8px_rgba(232,212,160,0.4)]"
+                  : "text-[#8a857c] hover:text-[#e8e4dc]"
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </nav>
+      </header>
+
+      <div
+        className={`pointer-events-auto absolute bottom-0 left-0 w-full h-[85vh] transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          activeTab
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-12 pointer-events-none"
+        }`}
+      >
+        <div className="w-full h-full mx-auto bg-[#0a0a0a]/80 backdrop-blur-xl border-t border-[#8a857c]/10 shadow-[0_-20px_60px_rgba(0,0,0,0.9)] overflow-y-auto px-6 py-12 md:px-24">
+          <div className="max-w-4xl mx-auto">
+            {activeTab &&
+              TABS.find((t) => t.id === activeTab)?.component}
           </div>
         </div>
       </div>
+
+      <div className="h-16 w-full bg-gradient-to-t from-[#0a0a0a] to-transparent pointer-events-none absolute bottom-0" />
     </div>
   );
 }

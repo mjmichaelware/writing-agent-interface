@@ -74,7 +74,7 @@ export default function ManuscriptCore({
           data-para
           data-index={idx}
           data-state="inactive"
-          className="manuscript-paragraph-segment mb-10 text-justify font-serif text-lg md:text-xl text-[var(--text-primary,#e8e4dc)] tracking-wide leading-[var(--leading-prose,1.7)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform opacity-40 data-[state=active]:opacity-100 data-[state=active]:translate-y-0 data-[state=inactive]:translate-y-[4px] data-[state=inactive]:blur-[1px]"
+          className="kinetic-word manuscript-paragraph-segment mb-10 text-justify font-serif text-lg md:text-xl text-[var(--text-primary,#e8e4dc)] tracking-wide leading-[var(--leading-prose,1.7)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform opacity-40 data-[state=active]:opacity-100 data-[state=active]:translate-y-0 data-[state=inactive]:translate-y-[4px] data-[state=inactive]:blur-[1px]"
         >
           {text}
         </p>

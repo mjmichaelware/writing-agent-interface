@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useRef, useState } from "react";
 import ManuscriptCore from "./canvas/ManuscriptCore";
 import { bus } from "@/core/runtimeEngine";
@@ -9,6 +8,15 @@ import { DEFAULT_READER_CONTROLS, readerFontStack, type ReaderControls } from "@
 export default function Layer3Canvas({ chapterData }: { chapterData: any }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [controls, setControls] = useState<ReaderControls>(DEFAULT_READER_CONTROLS);
+
+  // Guard Clause: If data is null or blocks missing, render a neutral state
+  if (!chapterData || !chapterData.blocks || chapterData.blocks.length === 0) {
+    return (
+      <div className="absolute inset-0 bg-[#050505] flex justify-center items-center text-zinc-600 font-mono">
+        Awaiting Manifest Data...
+      </div>
+    );
+  }
 
   useEffect(() => {
     const onNav = (_data: { speed: number }) => {
@@ -22,9 +30,8 @@ export default function Layer3Canvas({ chapterData }: { chapterData: any }) {
       el.style.filter = `blur(${blur}px) contrast(${controls.contrast}) saturate(${1 + controls.colorShift}) sepia(${controls.warmth})`;
       el.style.transform = `scale(${scale})`;
       el.style.opacity = String(opacity);
-      
       el.scrollTo({ top: 0, behavior: "smooth" });
-      
+
       window.setTimeout(() => {
         el.style.filter = `blur(0px) contrast(${controls.contrast}) saturate(${1 + controls.colorShift}) sepia(${controls.warmth})`;
         el.style.transform = "scale(1)";
@@ -33,16 +40,8 @@ export default function Layer3Canvas({ chapterData }: { chapterData: any }) {
     };
 
     const unsubscribe = bus.on("nav:velocity_scroll", onNav);
-    return () => { unsubscribe(); }; // Explicit void return
+    return () => { unsubscribe(); };
   }, [controls]);
-
-  if (!chapterData?.blocks?.length) {
-    return (
-      <div className="absolute inset-0 flex justify-center items-center text-zinc-600 font-mono">
-        Awaiting Manifest...
-      </div>
-    );
-  }
 
   return (
     <div className="absolute inset-0 overflow-hidden bg-[#050505]">
@@ -72,4 +71,3 @@ export default function Layer3Canvas({ chapterData }: { chapterData: any }) {
     </div>
   );
 }
-

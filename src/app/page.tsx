@@ -3,59 +3,19 @@ import ReaderLayout from "../components/ReaderLayout";
 import Layer2Cinema from "../components/layers/Layer2Cinema";
 import Layer3Canvas from "../components/layers/Layer3Canvas";
 import Layer4Panel from "../components/layers/Layer4Panel";
-import { VectorStore } from "../services/memory-engine/vector-store";
-import { promises as fs } from "fs";
 
 export const dynamic = "force-dynamic";
 
 async function fetchChapterData(slug: string) {
   try {
-    const store = new VectorStore();
-
-    const manifestPath = path.join(
-      process.cwd(),
-      "nos_manifest.json"
-    );
-
-    const manifestRaw = await fs.readFile(
-      manifestPath,
-      "utf-8"
-    );
-
-    const manifest = JSON.parse(
-      manifestRaw || '{"nodes":[]}'
-    );
-
-    const targetNode = (manifest.nodes || []).find(
-      (n: any) =>
-        String(n.id)
-          .toLowerCase()
-          .includes(`chapter_${slug}`)
-    );
-
-    if (!targetNode) {
-      return null;
-    }
-
-    const matchedChapterId =
-      await store.getChapterByManifestId(
-        targetNode.id
-      );
-
-    if (!matchedChapterId) {
-      return null;
-    }
-
-    const blocks =
-      await store.getParagraphsByChapter(
-        matchedChapterId
-      );
-
-    return {
-      slug,
-      blocks,
-      total: blocks.length,
-    };
+    // Fetch data from your existing server-side API route
+    // This runs on the server, not in the browser
+    const res = await fetch(`http://localhost:3000/api/graph?slug=${slug}`, {
+      cache: 'no-store',
+    });
+    
+    if (!res.ok) return null;
+    return await res.json();
   } catch (e) {
     console.error("[fetchChapterData]", e);
     return null;
@@ -63,9 +23,8 @@ async function fetchChapterData(slug: string) {
 }
 
 export default async function Page() {
-  const chapterData =
-    await fetchChapterData("7");
-
+  const chapterData = await fetchChapterData("7");
+  
   return (
     <ReaderLayout>
       <Layer2Cinema

@@ -44,10 +44,10 @@ export default function Layer3Canvas({ chapterData }: { chapterData: any }) {
   }, [controls]);
 
   return (
-    <div className="absolute inset-0 overflow-hidden bg-[#050505]">
+    <div className="relative z-20 min-h-screen overflow-hidden bg-transparent">
       <div
         ref={scrollRef}
-        className="absolute inset-0 overflow-y-auto overflow-x-hidden transition-all duration-500 will-change-[transform,filter,opacity]"
+        className="relative min-h-screen overflow-y-auto overflow-x-hidden transition-all duration-500 will-change-[transform,filter,opacity]"
         style={{
           fontFamily: readerFontStack(controls.font),
           fontSize: `${controls.fontScale}rem`,

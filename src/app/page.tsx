@@ -24,7 +24,7 @@ export default async function Page() {
 
   return (
     <ReaderLayout>
-      <Layer2Cinema chapter={7} activePara={0} depth={0} />
+      <Layer2Cinema chapterSlug="7" />
       
       <Layer3Canvas chapterData={chapterData} />
       

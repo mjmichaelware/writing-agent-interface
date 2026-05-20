@@ -8,8 +8,7 @@ export const dynamic = "force-dynamic";
 
 async function fetchChapterData(slug: string) {
   try {
-    // Fetch data from your existing server-side API route
-    // This runs on the server, not in the browser
+    // Rely on your established API route, which has server-side context
     const res = await fetch(`http://localhost:3000/api/graph?slug=${slug}`, {
       cache: 'no-store',
     });
@@ -17,7 +16,7 @@ async function fetchChapterData(slug: string) {
     if (!res.ok) return null;
     return await res.json();
   } catch (e) {
-    console.error("[fetchChapterData]", e);
+    console.error("[fetchChapterData] Fetch failed:", e);
     return null;
   }
 }
@@ -32,11 +31,9 @@ export default async function Page() {
         activePara={0}
         depth={0}
       />
-
       <Layer3Canvas
         chapterData={chapterData}
       />
-
       <Layer4Panel />
     </ReaderLayout>
   );

@@ -12,7 +12,7 @@ export default function Layer3Canvas({ chapterData }: { chapterData: any }) {
   // Guard Clause: If data is null or blocks missing, render a neutral state
   if (!chapterData || !chapterData.blocks || chapterData.blocks.length === 0) {
     return (
-      <div className="absolute inset-0 bg-[#050505] flex justify-center items-center text-zinc-600 font-mono">
+      <div className="fixed inset-0 z-20 bg-transparent flex justify-center items-center font-serif text-[var(--text-muted)]">
         Awaiting Manifest Data...
       </div>
     );
@@ -44,10 +44,10 @@ export default function Layer3Canvas({ chapterData }: { chapterData: any }) {
   }, [controls]);
 
   return (
-    <div className="relative z-20 min-h-screen overflow-hidden bg-transparent">
+    <div className="fixed inset-0 z-20 overflow-hidden bg-transparent">
       <div
         ref={scrollRef}
-        className="relative min-h-screen overflow-y-auto overflow-x-hidden transition-all duration-500 will-change-[transform,filter,opacity]"
+        className="relative h-full overflow-y-auto overflow-x-hidden transition-all duration-500 will-change-[transform,filter,opacity]"
         style={{
           fontFamily: readerFontStack(controls.font),
           fontSize: `${controls.fontScale}rem`,
@@ -63,7 +63,7 @@ export default function Layer3Canvas({ chapterData }: { chapterData: any }) {
           ["--reader-warmth" as any]: controls.warmth,
         }}
       >
-        <div className="w-full min-h-screen relative">
+        <div className="w-full min-h-full relative">
           <ManuscriptCore blocks={chapterData.blocks} chapterSlug={chapterData.slug} />
         </div>
       </div>

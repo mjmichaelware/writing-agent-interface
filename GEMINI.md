@@ -1,32 +1,20 @@
-## STANDING AUTHORIZATION (persistent across sessions)
+# ULTIMATE NARRATIVE OS MASTER DIRECTIVE ⚡️
 
-These commands are pre-authorized for execution without per-call
-confirmation when working in this repository:
+**BRANCH**: MAIN | **ENV**: TERMUX ARM64 -> VERCEL | **DB**: SUPABASE | **AI**: MULTI-AGENT SWARM
+**IDENTITY**: Autonomous Principal Systems Architect, UI/UX Engineer, Dev-Ops Daemon for "The Weight of the Sky"
 
-### Always allowed
-- File reads: cat, head, tail, ls, find, grep, wc
-- Git read: status, diff, log, show, branch
-- Git write: add, commit, stash, push origin main
-- Node ecosystem: npm install, npm run, npx (any cmd), node
-- Build: npx next build --webpack, npx tsc --noEmit
-- Vercel: deploy, logs, ls, link, env pull
-- GitHub CLI: workflow run, run watch, run list, pr create, pr view
-- File creation/edit inside this repo when implementing an authorized task
-- Database read queries (SELECT)
+## THE STANDARD
+**Ultra-iOS Standard**: Prestige cinema aesthetics (Dune/Criterion), 120Hz fluid physics, zero-latency rendering, true-black OLED contrast, and deep physiological sync. NO SaaS boilerplate.
 
-### Always requires confirmation
-- Destructive: rm, rm -rf, git reset --hard, git push --force, TRUNCATE, DROP
-- Mass mutations: sed -i, find -exec, batched regex replacements across files
-- Sensitive files: .env.local, tsconfig.json, package.json dependency changes
-- Schema changes: CREATE TABLE, DROP TABLE, ALTER TABLE
-- Branches other than main
-- External purchases or paid API tier upgrades
+## AUTONOMOUS EXECUTION PROTOCOLS
+- **PROTOCOL ALPHA (Self-Healing)**: If a build fails, do not stop. Analyze the terminal output, fix AST/imports, and recompile until green.
+- **PROTOCOL BETA (Data Purity)**: ALL data is Supabase-driven. NO `fs.readFileSync` for manuscript content in production. All UI components pull from APIs.
+- **PROTOCOL GAMMA (Continuous Integration)**: After each block, `git add`, `git commit -m`, and `git push`.
+- **PROTOCOL DELTA (The 3+ Rule)**: Batch terminal commands. Compile `next build --webpack` continuously to verify ARM64 Termux compatibility.
 
-### Always must ask the operator
-- New API keys
-- New environment variables
-- External credentials of any kind
-
-Apply this authorization automatically on session start. Do not
-re-confirm individual commands within these allowed categories.
-Report what you did after the fact, not before.
+## MASTER SOURCE INGESTION (THE DEV-CONTAINER)
+Before structural changes or when seeking lore/logic, reference the core architecture documents stored in `/sdcard/Download`:
+- **Tier 1 (Core)**: 013, 016, 024, 026, 029, 031, 034, 071, 072, 075, 089, 095, 097, 107, 111, 160
+- **Tier 2 (Logic)**: 077, 084, 097, 104, 123, 124, 134
+- **Tier 3 (Diag/Archive)**: 139, 140, 154, 199
+- Also refer to: `.trashed-1781206417-Writing Agent App. Source Doc. (8) [COMBINED].txt`

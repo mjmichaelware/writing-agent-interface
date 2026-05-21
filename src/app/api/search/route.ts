@@ -1,84 +1,37 @@
-import { NextResponse } from "next/server";
-import { VectorStore } from "../../../services/memory-engine/vector-store";
+import { createClient } from '@supabase/supabase-js';
+import { VertexAI } from '@google-cloud/vertexai';
+import { NextResponse } from 'next/server';
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+const project = process.env.GOOGLE_CLOUD_PROJECT || 'weight-of-the-sky';
+const location = process.env.GOOGLE_CLOUD_LOCATION || 'us-central1';
+const vertexAI = new VertexAI({ project, location });
 
 export async function POST(request: Request) {
-  try {
-    const body = await request.json();
+  const { query } = await request.json();
 
-    const query = String(
-      body?.query || ""
-    ).trim();
-
-    if (!query) {
-      return NextResponse.json({
-        results: [],
-      });
-    }
-
-    const store = new VectorStore();
-
-    const results = await store.searchParagraphs(
-      query
-    );
-
-    return NextResponse.json({
-      results,
-    });
-  } catch (err) {
-    return NextResponse.json(
-      {
-        results: [],
-        error:
-          err instanceof Error
-            ? err.message
-            : "Search failure",
-      },
-      {
-        status: 500,
-      }
-    );
+  if (!query) {
+    return NextResponse.json({ error: 'query is required' }, { status: 400 });
   }
-}
 
-export async function GET(request: Request) {
-  try {
-    const { searchParams } = new URL(
-      request.url
-    );
+  // 1. Generate Embedding via Vertex AI
+  const embedModel = vertexAI.preview.getGenerativeModel({ model: 'text-embedding-004' });
+  const embedResponse = await embedModel.embedContent(query);
+  const embedding = embedResponse.embedding.values;
 
-    const query = String(
-      searchParams.get("q") ||
-      searchParams.get("type") ||
-      ""
-    ).trim();
+  // 2. Vector Search via Supabase RPC
+  const { data, error } = await supabase.rpc('match_paragraphs', {
+    query_embedding: embedding,
+    match_threshold: 0.5,
+    match_count: 10,
+  });
 
-    if (!query) {
-      return NextResponse.json({
-        results: [],
-      });
-    }
-
-    const store = new VectorStore();
-
-    const results = await store.searchParagraphs(
-      query
-    );
-
-    return NextResponse.json({
-      results,
-    });
-  } catch (err) {
-    return NextResponse.json(
-      {
-        results: [],
-        error:
-          err instanceof Error
-            ? err.message
-            : "Search failure",
-      },
-      {
-        status: 500,
-      }
-    );
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
+
+  return NextResponse.json(data);
 }

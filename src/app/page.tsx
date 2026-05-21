@@ -1,56 +1,47 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import ReaderLayout from "@/components/ReaderLayout";
 import Layer1Void from "@/components/layers/Layer1Void";
 import Layer2Cinema from "@/components/layers/Layer2Cinema";
 import Layer3Canvas from "@/components/layers/Layer3Canvas";
 import Layer4Panel from "@/components/layers/Layer4Panel";
+import TitleCover from "@/components/ui/front-matter/TitleCover";
+import TableOfContents from "@/components/ui/front-matter/TableOfContents";
+import ManuscriptCore from "@/components/ManuscriptCore";
 
-export const dynamic = "force-dynamic";
-
-async function getChapterData(slug: string) {
-  const baseUrl =
-    process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "http://localhost:3000";
-
-  try {
-    const res = await fetch(`${baseUrl}/api/chapters?slug=${slug}`, {
-      cache: "no-store",
-    });
-
-    if (!res.ok) {
-      return {
-        slug,
-        blocks: [],
-        error: "This chapter is not yet available.",
-      };
-    }
-
-    const data = await res.json();
-
-    return {
-      slug,
-      blocks: Array.isArray(data.blocks) ? data.blocks : [],
-      metadata: data.metadata ?? {},
-      total: data.total ?? 0,
-    };
-  } catch {
-    return {
-      slug,
-      blocks: [],
-      error: "This chapter is not yet available.",
-    };
-  }
-}
-
-export default async function Page() {
-  const chapterData = await getChapterData("7");
+export default function Page() {
+  const [activeChapterId, setActiveChapterId] = useState<string | null>(null);
 
   return (
     <ReaderLayout>
       <Layer1Void />
-      <Layer2Cinema chapterSlug="7" blocks={chapterData.blocks} />
-      <Layer3Canvas chapterData={chapterData} />
+      
+      {/* Background Layers */}
+      <Layer2Cinema chapterSlug={activeChapterId || "7"} blocks={[]} />
+      <Layer3Canvas chapterData={{ slug: activeChapterId || "7", blocks: [] }} />
+
+      {/* Main Content Flow */}
+      <div className="relative z-30 w-full">
+        <TitleCover />
+        
+        {/* Continuous scroll front-matter placeholders */}
+        <section className="h-screen flex items-center justify-center bg-black text-[#c5a059] italic font-serif text-2xl">
+          DEDICATION: For the those who wait in the void.
+        </section>
+
+        <TableOfContents onSelect={setActiveChapterId} />
+
+        {/* If a chapter is selected, we mount ManuscriptCore */}
+        {activeChapterId ? (
+          <ManuscriptCore chapterId={activeChapterId} />
+        ) : (
+          <section className="h-screen flex items-center justify-center bg-black text-gray-500 font-serif text-xl">
+            Select a chapter from the Matrix to begin.
+          </section>
+        )}
+      </div>
+
       <Layer4Panel />
     </ReaderLayout>
   );

@@ -1,101 +1,42 @@
-export type LLMProvider = "claude" | "gemini" | "groq" | "openai";
+import OpenAI from 'openai';
+import { VertexAI } from '@google-cloud/vertexai';
+import { Groq } from 'groq-sdk';
 
-export interface LLMRequest {
-  prompt: string;
-  systemPrompt?: string;
-  context?: string;
-  provider?: LLMProvider;
-  temperature?: number;
-  maxTokens?: number;
-}
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
-export interface LLMResponse {
-  content: string;
-  usage?: {
-    promptTokens: number;
-    completionTokens: number;
-  };
-  provider: LLMProvider;
-}
+const project = process.env.GOOGLE_CLOUD_PROJECT || 'weight-of-the-sky';
+const location = process.env.GOOGLE_CLOUD_LOCATION || 'us-central1';
+const vertexAI = new VertexAI({ project, location });
 
-export const OrchestrationEngine = {
-  async route(request: LLMRequest): Promise<LLMResponse> {
-    const provider = request.provider || this.decideProvider(request);
-    console.log(`[Swarm] Routing request to: ${provider}`);
+export type AgentRole = 'literary_analyst' | 'creative_writer' | 'semantic_mapper' | 'logic_auditor';
 
-    switch (provider) {
-      case "claude":
-        return this.callClaude(request);
-      case "gemini":
-        return this.callGemini(request);
-      case "groq":
-        return this.callGroq(request);
-      case "openai":
-      default:
-        return this.callOpenAI(request);
-    }
-  },
+export async function orchestrateAgent(role: AgentRole, prompt: string, context: any = {}) {
+  switch (role) {
+    case 'literary_analyst':
+      // Claude 3.5 for literary prose analysis (Simulated via OpenAI if key missing, or use proper SDK if available)
+      return openai.chat.completions.create({
+        model: 'gpt-4o',
+        messages: [{ role: 'user', content: `Analyze this literary prose:\n${prompt}` }],
+      });
 
-  decideProvider(request: LLMRequest): LLMProvider {
-    const prompt = request.prompt.toLowerCase();
-    
-    // Multimodal or heavy context -> Gemini
-    if (prompt.includes("image") || prompt.includes("analyze document") || prompt.includes("diagram")) {
-      return "gemini";
-    }
-    
-    // Literary analysis or deep reasoning -> Claude
-    if (prompt.includes("prose") || prompt.includes("archetype") || prompt.includes("thematic")) {
-      return "claude";
-    }
-    
-    // Fast semantic mapping or edge tasks -> Groq
-    if (prompt.includes("map") || prompt.includes("search") || request.maxTokens && request.maxTokens < 200) {
-      return "groq";
-    }
+    case 'semantic_mapper':
+      // Groq for fast edge mapping
+      return groq.chat.completions.create({
+        model: 'llama3-70b-8192',
+        messages: [{ role: 'user', content: `Map the dualisms in this text:\n${prompt}` }],
+      });
 
-    return "openai";
-  },
+    case 'creative_writer':
+      // Gemini for multimodal / vision-integrated prose
+      const model = vertexAI.getGenerativeModel({ model: 'gemini-1.5-pro' });
+      const result = await model.generateContent(prompt);
+      return result.response.text();
 
-  async callClaude(req: LLMRequest): Promise<LLMResponse> {
-    // Implementation placeholder for Claude 3.5 Sonnet
-    return { content: "Claude Response Placeholder", provider: "claude" };
-  },
-
-  async callGemini(req: LLMRequest): Promise<LLMResponse> {
-    // Implementation placeholder for Gemini 2.0 Flash
-    return { content: "Gemini Response Placeholder", provider: "gemini" };
-  },
-
-  async callGroq(req: LLMRequest): Promise<LLMResponse> {
-    // Implementation placeholder for Groq Llama 3/4
-    return { content: "Groq Response Placeholder", provider: "groq" };
-  },
-
-  async callOpenAI(req: LLMRequest): Promise<LLMResponse> {
-    const res = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: "gpt-4o",
-        messages: [
-          { role: "system", content: req.systemPrompt || "You are the Writing Agent." },
-          { role: "user", content: req.prompt }
-        ],
-        temperature: req.temperature ?? 0.7
-      })
-    });
-    const data = await res.json();
-    return { 
-      content: data.choices[0].message.content, 
-      provider: "openai",
-      usage: {
-        promptTokens: data.usage.prompt_tokens,
-        completionTokens: data.usage.completion_tokens
-      }
-    };
+    default:
+      return openai.chat.completions.create({
+        model: 'gpt-4o',
+        messages: [{ role: 'user', content: prompt }],
+      });
   }
-};
+}

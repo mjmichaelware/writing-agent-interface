@@ -9,40 +9,34 @@ import Layer4Panel from "@/components/layers/Layer4Panel";
 import TitleCover from "@/components/ui/front-matter/TitleCover";
 import TableOfContents from "@/components/ui/front-matter/TableOfContents";
 import ManuscriptCore from "@/components/ManuscriptCore";
+import { NarrativeProvider } from "@/context/NarrativeContext";
 
 export default function Page() {
   const [activeChapterId, setActiveChapterId] = useState<string | null>(null);
 
   return (
-    <ReaderLayout>
-      <Layer1Void />
-      
-      {/* Background Layers */}
-      <Layer2Cinema chapterSlug={activeChapterId || "7"} blocks={[]} />
-      <Layer3Canvas chapterData={{ slug: activeChapterId || "7", blocks: [] }} />
-
-      {/* Main Content Flow */}
-      <div className="relative z-30 w-full">
-        <TitleCover />
+    <NarrativeProvider>
+      <ReaderLayout>
+        <Layer1Void />
         
-        {/* Continuous scroll front-matter placeholders */}
-        <section className="h-screen flex items-center justify-center bg-black text-[#c5a059] italic font-serif text-2xl">
-          DEDICATION: For the those who wait in the void.
-        </section>
+        {/* Background Layers */}
+        <Layer2Cinema chapterSlug={activeChapterId || "7"} blocks={[]} />
+        <Layer3Canvas chapterId={activeChapterId} />
 
-        <TableOfContents onSelect={setActiveChapterId} />
+        {/* Main Content Flow */}
+        <div className="relative z-30 w-full">
+          <TitleCover />
 
-        {/* If a chapter is selected, we mount ManuscriptCore */}
-        {activeChapterId ? (
-          <ManuscriptCore chapterId={activeChapterId} />
-        ) : (
-          <section className="h-screen flex items-center justify-center bg-black text-gray-500 font-serif text-xl">
-            Select a chapter from the Matrix to begin.
+          <section className="h-screen flex items-center justify-center bg-black text-[#c5a059] italic font-serif text-2xl">
+            DEDICATION: For the those who wait in the void.
           </section>
-        )}
-      </div>
 
-      <Layer4Panel />
-    </ReaderLayout>
+          <TableOfContents onSelect={setActiveChapterId} />
+
+          {/* The manuscript is now rendered inside Layer3Canvas */}
+        </div>
+        <Layer4Panel />
+      </ReaderLayout>
+    </NarrativeProvider>
   );
 }

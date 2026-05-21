@@ -26,3 +26,6 @@ Debug priorities:
 4. EventBus event type consistency
 5. z-index and background transparency
 6. runtime listeners actually causing visible UI state changes
+
+See GEMINI.md "STANDING AUTHORIZATION" section for the pre-approved
+command list. Apply it every session.

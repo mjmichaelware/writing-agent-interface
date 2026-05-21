@@ -8,7 +8,7 @@ export default function Layer2Cinema({ chapterSlug }: { chapterSlug: string }) {
   const asset = resolveAsset("", chapterSlug);
 
   return (
-    <div className="fixed inset-0 z-10 pointer-events-none overflow-hidden bg-[var(--bg-void)]">
+    <div className="fixed inset-0 z-10 pointer-events-none overflow-hidden">
       <Image
         src={asset}
         alt="Cinematic Backdrop"

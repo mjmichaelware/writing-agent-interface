@@ -31,8 +31,8 @@ export default function ReaderLayout({ children }: ReaderLayoutProps) {
 
   return (
     <main
-      className="relative isolate w-screen overflow-hidden bg-[var(--bg-void)] text-[var(--text-body)] antialiased"
-      style={{ height: viewportHeight }}
+      className="relative isolate w-full min-h-screen bg-[var(--bg-void)] text-[var(--text-body)] antialiased"
+      style={{ minHeight: viewportHeight }}
     >
       {children}
     </main>

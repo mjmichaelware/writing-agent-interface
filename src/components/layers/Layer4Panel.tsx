@@ -10,6 +10,33 @@ import SystemTab from "./panel/SystemTab";
 export default function Layer4Panel() {
   const [activeTab, setActiveTab] = useState<string | null>(null);
 
+  React.useEffect(() => {
+    let startX = 0;
+    
+    const handleTouchStart = (e: TouchEvent) => {
+      startX = e.touches[0].clientX;
+    };
+    
+    const handleTouchEnd = (e: TouchEvent) => {
+      const endX = e.changedTouches[0].clientX;
+      // Edge swipe: start near left edge (<= 30px) and swipe right by > 50px
+      if (startX <= 30 && endX - startX > 50 && activeTab) {
+        setActiveTab(null);
+      }
+    };
+    
+    if (typeof window !== "undefined") {
+      window.addEventListener("touchstart", handleTouchStart, { passive: true });
+      window.addEventListener("touchend", handleTouchEnd, { passive: true });
+    }
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("touchstart", handleTouchStart);
+        window.removeEventListener("touchend", handleTouchEnd);
+      }
+    };
+  }, [activeTab]);
+
   const TABS = [
     {
       id: "HYPERLINKS",

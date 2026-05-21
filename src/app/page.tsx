@@ -49,7 +49,7 @@ export default async function Page() {
   return (
     <ReaderLayout>
       <Layer1Void />
-      <Layer2Cinema chapterSlug="7" />
+      <Layer2Cinema chapterSlug="7" blocks={chapterData.blocks} />
       <Layer3Canvas chapterData={chapterData} />
       <Layer4Panel />
     </ReaderLayout>

@@ -7,6 +7,7 @@ import Dedication from "./front-matter/Dedication";
 import Synopsis from "./front-matter/Synopsis";
 import AboutAuthor from "./front-matter/AboutAuthor";
 import TableOfContents from "./front-matter/TableOfContents";
+import Tokenizer from "../../ui/Tokenizer";
 
 const CHAPTER_TITLES: Record<number, string> = {
   1: "The Well at Bethlehem",
@@ -149,9 +150,9 @@ export default function ManuscriptCore({
             data-para
             data-index={idx}
             data-state="inactive"
-            className="prose-paragraph kinetic-word"
+            className={`prose-paragraph ${idx === 0 ? "first-paragraph" : ""}`}
           >
-            {text}
+            <Tokenizer text={text} isFirst={idx === 0} />
           </p>
         ))}
       </div>

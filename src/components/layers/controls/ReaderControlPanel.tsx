@@ -37,7 +37,10 @@ export default function ReaderControlPanel({ controls, setControls }: Props) {
         <label>Contrast<input className="w-full accent-zinc-200" type="range" min="0.75" max="1.5" step="0.01" value={controls.contrast} onChange={(e) => update("contrast", Number(e.target.value))} /></label>
         <label>Warmth<input className="w-full accent-zinc-200" type="range" min="0" max="0.75" step="0.01" value={controls.warmth} onChange={(e) => update("warmth", Number(e.target.value))} /></label>
       </div>
-      <button onClick={() => update("motion", !controls.motion)} className={`mt-3 w-full rounded-full border py-2 text-[10px] tracking-widest transition ${controls.motion ? "border-[#e8e4dc] text-[#e8e4dc]" : "border-white/10 text-zinc-500"}`}>MOTION {controls.motion ? "ON" : "OFF"}</button>
+      <div className="flex gap-2 mt-3">
+        <button onClick={() => update("motion", !controls.motion)} className={`w-full rounded-full border py-2 text-[10px] tracking-widest transition ${controls.motion ? "border-[#e8e4dc] text-[#e8e4dc]" : "border-white/10 text-zinc-500"}`}>MOTION {controls.motion ? "ON" : "OFF"}</button>
+        <button onClick={() => update("bionic", !controls.bionic)} className={`w-full rounded-full border py-2 text-[10px] tracking-widest transition ${controls.bionic ? "border-[#e8e4dc] text-[#e8e4dc]" : "border-white/10 text-zinc-500"}`}>BIONIC {controls.bionic ? "ON" : "OFF"}</button>
+      </div>
     </div>
   );
 }

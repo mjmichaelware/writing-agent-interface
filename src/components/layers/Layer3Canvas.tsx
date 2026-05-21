@@ -42,6 +42,10 @@ export default function Layer3Canvas({ chapterData }: { chapterData: any }) {
     return () => { unsubscribe(); };
   }, [controls]);
 
+  useEffect(() => {
+    document.body.setAttribute("data-bionic", String(controls.bionic));
+  }, [controls.bionic]);
+
   return (
     <div
       className="relative z-20 w-full min-h-screen transition-all duration-500 will-change-[transform,filter,opacity]"

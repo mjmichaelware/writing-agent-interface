@@ -11,6 +11,7 @@ export type ReaderControls = {
   contrast: number;
   warmth: number;
   motion: boolean;
+  bionic: boolean;
 };
 
 export const DEFAULT_READER_CONTROLS: ReaderControls = {
@@ -24,6 +25,7 @@ export const DEFAULT_READER_CONTROLS: ReaderControls = {
   contrast: 1,
   warmth: 0.25,
   motion: true,
+  bionic: false,
 };
 
 export function readerFontStack(font: ReaderFont) {

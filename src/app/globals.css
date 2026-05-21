@@ -128,7 +128,7 @@ body {
   margin-bottom: 2rem;
 }
 
-.prose-paragraph:first-of-type::first-letter {
+.drop-cap {
   font-size: 3.5em;
   float: left;
   line-height: 0.78;
@@ -333,6 +333,27 @@ p[data-tone="descent"] { color: var(--descent) !important; }
   opacity: calc(1 - var(--arc-blur) * 0.28);
 }
 
+/* Bionic Reading (Feature 142) Default state: off */
+body {
+  --bionic-bold-weight: 400;
+  --bionic-tail-opacity: 1;
+}
+
+body[data-bionic="true"] {
+  --bionic-bold-weight: 700;
+  --bionic-tail-opacity: 0.65;
+}
+
+.bionic-bold {
+  font-weight: var(--bionic-bold-weight);
+  transition: font-weight 300ms ease;
+}
+
+.bionic-tail {
+  opacity: var(--bionic-tail-opacity);
+  transition: opacity 300ms ease;
+}
+
 .word-sacred {
   color: var(--sacred);
   transition: color 600ms var(--ease-spring);
@@ -416,3 +437,24 @@ p[data-tone="descent"] { color: var(--descent) !important; }
 .animate-fade-in     { animation: fadeIn 700ms var(--ease-spring) both; }
 .animate-fade-slow   { animation: fadeInSlow 1400ms var(--ease-out) both; }
 .animate-slide-right { animation: slideInRight 800ms var(--ease-spring) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .kinetic-word {
+    transform: none !important;
+    filter: none !important;
+    letter-spacing: normal !important;
+    opacity: 1 !important;
+  }
+  body {
+    --arc-mass: 0 !important;
+    --arc-tension: 0 !important;
+    --arc-blur: 0 !important;
+    --arc-drift: 0 !important;
+  }
+}

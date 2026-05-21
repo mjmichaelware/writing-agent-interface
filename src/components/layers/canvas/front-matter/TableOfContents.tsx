@@ -32,8 +32,8 @@ function Pending({ numeral }: { numeral: string }) {
 
 export default function TableOfContents({ TITLES, onLoadChapter }: Props) {
   return (
-    <section id="toc" className="min-h-screen px-6 scroll-mt-24 pb-16">
-      <h2 className="section-label text-center mb-10">Table of Contents</h2>
+    <section id="toc" className="min-h-screen px-6 scroll-mt-24 pb-32">
+      <h2 className="section-label text-center">Table of Contents</h2>
 
       <div className="mx-auto w-full max-w-2xl">
         <h3 className="toc-part-heading">Part I — The Journey</h3>
@@ -52,12 +52,7 @@ export default function TableOfContents({ TITLES, onLoadChapter }: Props) {
         <Pending numeral="XVIII–XXIV" />
 
         <h3 className="toc-part-heading">Epilogue</h3>
-        <div className="toc-pending" style={{ opacity: 0.6 }}>
-          <span className="toc-title" style={{ fontStyle: "italic" }}>
-            The Unresolved Question: Why
-          </span>
-          <span className="toc-numeral">XXV</span>
-        </div>
+        <Pending numeral="XXV" />
       </div>
     </section>
   );

@@ -21,6 +21,8 @@
   /* Typography */
   --leading-prose: 1.7;
   --measure: 65ch;
+  --font-size-prose: clamp(1.125rem, 2.5vw, 1.5rem);
+  --indent-prose: clamp(1rem, 4vw, 4rem);
 
   /* Kinetic Typography Physics — §2 Project Checkpoint */
   --arc-mass: 0;
@@ -37,6 +39,10 @@
   --reader-blur: 0.5;
   --reader-contrast: 1;
   --reader-warmth: 0;
+
+  /* Measured viewport properties (written by useDeviceCapability) */
+  --measured-vw: 100vw;
+  --measured-vh: 100vh;
 
   /* Motion Easing */
   --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
@@ -68,6 +74,12 @@ body {
   font-family: var(--font-prose, 'EB Garamond', Georgia, serif);
   line-height: var(--leading-prose);
   overflow-x: hidden;
+}
+
+/* Frank Ruhl Libre for Hebrew names and display titles */
+.font-hebrew {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-weight: 700;
 }
 
 /* Custom Scrollbar — hairline gold thread */
@@ -102,7 +114,7 @@ body {
 
 .prose-paragraph {
   font-family: var(--font-prose, 'EB Garamond', Georgia, serif);
-  font-size: calc(1.125rem * var(--reader-font-scale, 1));
+  font-size: var(--font-size-prose);
   line-height: var(--reader-line-height, 1.7);
   color: var(--text-primary);
   text-align: justify;
@@ -113,6 +125,7 @@ body {
   text-rendering: optimizeLegibility;
   max-width: var(--measure);
   contain: content;
+  margin-bottom: 2rem;
 }
 
 .prose-paragraph:first-of-type::first-letter {
@@ -126,12 +139,12 @@ body {
 }
 
 .title-display {
-  font-family: var(--font-title, var(--font-hebrew, 'EB Garamond', Georgia, serif));
+  font-family: 'Frank Ruhl Libre', serif;
   color: var(--text-body);
   font-size: clamp(2.8rem, 10vw, 6.5rem);
   line-height: 1.04;
   letter-spacing: -0.01em;
-  font-weight: 400;
+  font-weight: 700;
   text-shadow: 0 2px 60px rgba(0, 0, 0, 0.9), 0 1px 20px rgba(0, 0, 0, 0.6);
 }
 
@@ -140,25 +153,83 @@ body {
   font-style: italic;
   font-size: 0.8125rem;
   color: var(--text-muted);
-  letter-spacing: 0.015em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 2.5rem;
 }
 
 /* --- Table of Contents ------------------------------------ */
+
+.toc-part-heading {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-size: 0.875rem;
+  color: var(--accent-gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin: 4rem 0 2rem 0;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.15);
+  padding-bottom: 0.5rem;
+}
 
 .toc-row {
   position: relative;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  padding: 0.9rem 0 0.9rem 0;
+  width: 100%;
+  padding: 0.75rem 0;
   font-family: var(--font-prose, 'EB Garamond', Georgia, serif);
-  font-size: 1rem;
+  font-size: 1.125rem;
   color: var(--text-body);
   cursor: pointer;
   overflow: hidden;
   transition:
     color var(--duration-fast) var(--ease-spring),
     padding-left var(--duration-medium) var(--ease-spring);
+  border: none;
+  background: transparent;
+  text-align: left;
+}
+
+.toc-row::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) scaleX(0);
+  transform-origin: left;
+  width: 2px;
+  height: 60%;
+  background: var(--accent-gold);
+  transition: transform var(--duration-medium) var(--ease-spring);
+  border-radius: 1px;
+}
+
+.toc-row:hover::before {
+  transform: translateY(-50%) scaleX(1);
+}
+
+.toc-row:hover {
+  color: var(--accent-gold);
+  padding-left: 1.25rem;
+}
+
+.toc-numeral {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.toc-pending {
+  opacity: 0.35;
+  font-style: italic;
+  cursor: default;
+  pointer-events: none;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
 }
 
 .toc-row::before {

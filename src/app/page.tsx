@@ -12,11 +12,10 @@ export default function Page() {
   const [blocks, setBlocks] = useState<any[]>([]);
   const [partNumber, setPartNumber] = useState("I");
   const [chapterNum, setChapterNum] = useState(1);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function loadChapter() {
-      setLoading(true);
       try {
         // Feature 205: Fetch from Supabase Hash Registry
         const chaptersRes = await fetch(`/api/chapters`);
@@ -44,8 +43,6 @@ export default function Page() {
         }
       } catch (err) {
         console.error("Failed to load chapter data:", err);
-      } finally {
-        setLoading(false);
       }
     }
     loadChapter();
@@ -61,18 +58,12 @@ export default function Page() {
       <Layer1Void />
       <Layer2Cinema />
       <Layer3Canvas>
-        {loading ? (
-            <div className="h-screen flex items-center justify-center font-serif italic text-[#8a857c] animate-pulse">
-                Synchronizing Narrative OS...
-            </div>
-        ) : (
-            <ManuscriptCore 
-                blocks={blocks} 
-                chapterSlug={chapterNum.toString()} 
-                partNumber={partNumber} 
-                onLoadChapter={handleChapterChange}
-            />
-        )}
+        <ManuscriptCore 
+            blocks={blocks} 
+            chapterSlug={chapterNum.toString()} 
+            partNumber={partNumber} 
+            onLoadChapter={handleChapterChange}
+        />
       </Layer3Canvas>
       <Layer4Panel />
     </ReaderLayout>

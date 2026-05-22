@@ -17,7 +17,8 @@ function getOpenAI() {
 
 /**
  * ENGINE PLANE: NARRATIVE INGESTION PIPELINE
- * * Feature 200: Vertex AI Semantic Weighting
+ * * Feature 200: Meaning-Driven Semantic Weighting
+ * * BATCH OPTIMIZED: Processes 5 paragraphs per LLM call.
  */
 export async function ingestChapter(
   partNumber: string,
@@ -27,9 +28,7 @@ export async function ingestChapter(
   rawXmlText: string
 ) {
   const supabase = getSupabase();
-  const openai = getOpenAI(); // Still used for embeddings for consistency
-  const vertex = GoogleSwarm.getVertexAI();
-  const model = vertex.getGenerativeModel({ model: 'gemini-1.5-pro' });
+  const openai = getOpenAI(); 
 
   if (!supabase) throw new Error("Supabase credentials not configured");
   if (!openai) throw new Error("OpenAI API key not configured");
@@ -54,48 +53,66 @@ export async function ingestChapter(
   const cleanText = rawXmlText.replace(/<[^>]*>?/gm, ''); 
   const paragraphs = cleanText.split(/\n\s*\n/).filter((p) => p.trim().length > 0);
 
-  let chunkIndex = 0;
-  for (const pText of paragraphs) {
-    const embedResponse = await openai.embeddings.create({
-      model: "text-embedding-3-small",
-      input: pText,
+  const BATCH_SIZE = 5;
+  for (let i = 0; i < paragraphs.length; i += BATCH_SIZE) {
+    const batch = paragraphs.slice(i, i + BATCH_SIZE);
+    
+    // Feature 200: Semantic Enrichment Batch Pass
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [
+        { 
+          role: "system", 
+          content: `You are the NOS Orchestration Engine. Analyze the ${batch.length} texts and return valid JSON only. 
+          Return an object with a "results" array. Each item must have:
+          "archetypal_weights": { "shadow": 0.0, "persona": 0.0, "anima": 0.0, "self": 0.0, "hero": 0.0 },
+          "dualism_map": { "sacred": 0.0, "descent": 0.0 },
+          "biblical_references": [{ "text": "...", "book": "...", "chapter": 0, "verse": 0 }]` 
+        },
+        { role: "user", content: JSON.stringify(batch) }
+      ],
+      response_format: { type: "json_object" }
     });
-    const embedding = embedResponse.data[0].embedding;
 
-    // Tenth System / Engine Plane - Google Vertex AI Semantic Pass
-    const prompt = `You are the NOS Orchestration Engine. Analyze the text and return JSON:
-      {
-        "archetypal_weights": { "shadow": 0.0, "persona": 0.0, "anima": 0.0, "self": 0.0, "hero": 0.0 },
-        "dualism_map": { "sacred": 0.0, "descent": 0.0 },
-        "hebrew_terms": [],
-        "biblical_references": [{ "text": "...", "book": "...", "chapter": 0, "verse": 0 }],
-        "metadata": { "internal_state": "..." }
+    const enrichedBatch = JSON.parse(completion.choices[0].message.content || '{"results":[]}').results;
+
+    for (let j = 0; j < batch.length; j++) {
+      const pText = batch[j];
+      const enrichment = enrichedBatch[j] || {};
+
+      const embedResponse = await openai.embeddings.create({
+        model: "text-embedding-3-small",
+        input: pText,
+      });
+      const embedding = embedResponse.data[0].embedding;
+
+      const { data: paragraphData, error: pError } = await supabase
+        .from('paragraphs')
+        .insert({
+          chapter_id: chapter.id,
+          content: pText,
+          chunk_index: i + j,
+          embedding,
+          archetypal_weights: enrichment.archetypal_weights || {},
+          dualism_map: enrichment.dualism_map || {},
+          metadata: { batch_index: i },
+        })
+        .select()
+        .single();
+
+      if (pError) throw pError;
+
+      if (paragraphData && enrichment.biblical_references?.length > 0) {
+        const refs = enrichment.biblical_references.map((ref: any) => ({
+          paragraph_id: paragraphData.id,
+          reference_text: ref.text || ref.reference_text,
+          book: ref.book,
+          chapter: ref.chapter,
+          verse: ref.verse,
+        }));
+        await supabase.from('biblical_references').insert(refs);
       }
-      TEXT: ${pText}`;
 
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const jsonText = response.text().replace(/```json|```/g, '').trim();
-    const enrichment = JSON.parse(jsonText);
-
-    const { data: paragraphData, error: pError } = await supabase
-      .from('paragraphs')
-      .insert({
-        chapter_id: chapter.id,
-        content: pText,
-        chunk_index: chunkIndex,
-        embedding,
-        archetypal_weights: enrichment.archetypal_weights || {},
-        dualism_map: enrichment.dualism_map || {},
-        hebrew_spans: enrichment.hebrew_terms || [],
-        metadata: enrichment.metadata || {},
-      })
-      .select()
-      .single();
-
-    if (pError) throw pError;
-
-    if (paragraphData) {
       await GoogleSwarm.mirrorParagraph({
         ...paragraphData,
         chapter_number: chapter.chapter_number,
@@ -103,17 +120,8 @@ export async function ingestChapter(
       });
     }
 
-    if (paragraphData && enrichment.biblical_references?.length > 0) {
-      const refs = enrichment.biblical_references.map((ref: any) => ({
-        paragraph_id: paragraphData.id,
-        reference_text: ref.text,
-        book: ref.book,
-        chapter: ref.chapter,
-        verse: ref.verse,
-      }));
-      await supabase.from('biblical_references').insert(refs);
-    }
-    chunkIndex++;
+    console.log(`Ingested paragraphs ${i} to ${i + batch.length - 1} for Chapter ${chapterNumber}`);
+    await new Promise(resolve => setTimeout(resolve, 100));
   }
 
   await GoogleSwarm.logIntegrity('ingestion_complete', { manifestId, paragraphCount: paragraphs.length });

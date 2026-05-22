@@ -11,49 +11,68 @@ import ManuscriptCore from "@/components/layers/canvas/ManuscriptCore";
 export default function Page() {
   const [blocks, setBlocks] = useState<any[]>([]);
   const [partNumber, setPartNumber] = useState("I");
-  const chapterSlug = "7";
+  const [chapterNum, setChapterNum] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadChapter() {
+      setLoading(true);
       try {
-        // Step 1: Identify Chapter ID in Supabase
+        // Feature 205: Fetch from Supabase Hash Registry
         const chaptersRes = await fetch(`/api/chapters`);
         const chapters = await chaptersRes.json();
-        const activeChapter = chapters.find((c: any) => c.chapter_number === parseInt(chapterSlug));
+        
+        // Find by number
+        const activeChapter = chapters.find((c: any) => c.chapter_number === chapterNum);
 
         if (activeChapter) {
-            // Step 2: Fetch Semantic Blocks from Supabase
             const manuscriptRes = await fetch(`/api/manuscript?chapterId=${activeChapter.id}`);
             const data = await manuscriptRes.json();
             setBlocks(data);
             setPartNumber(activeChapter.part_number || "I");
         } else {
-            // Fallback: Local TXT (Pure prose, no weights)
-            const localRes = await fetch(`/data/chapters/${chapterSlug}.txt`);
-            const text = await localRes.text();
-            const paragraphs = text
-              .split(/\n\s*\n/)
-              .map(p => p.trim())
-              .filter(p => p.length > 0 && !p.startsWith("Chapter"));
-            setBlocks(paragraphs);
+            // Fallback: Local TXT
+            const localRes = await fetch(`/data/chapters/${chapterNum}.txt`);
+            if (localRes.ok) {
+                const text = await localRes.text();
+                const paragraphs = text
+                  .split(/\n\s*\n/)
+                  .map(p => p.trim())
+                  .filter(p => p.length > 0 && !p.startsWith("Chapter"));
+                setBlocks(paragraphs);
+            }
         }
       } catch (err) {
         console.error("Failed to load chapter data:", err);
+      } finally {
+        setLoading(false);
       }
     }
     loadChapter();
-  }, [chapterSlug]);
+  }, [chapterNum]);
+
+  const handleChapterChange = (n: number) => {
+      setChapterNum(n);
+      window.scrollTo(0, 0);
+  };
 
   return (
     <ReaderLayout>
       <Layer1Void />
       <Layer2Cinema />
       <Layer3Canvas>
-        <ManuscriptCore 
-            blocks={blocks} 
-            chapterSlug={chapterSlug} 
-            partNumber={partNumber} 
-        />
+        {loading ? (
+            <div className="h-screen flex items-center justify-center font-serif italic text-[#8a857c] animate-pulse">
+                Synchronizing Narrative OS...
+            </div>
+        ) : (
+            <ManuscriptCore 
+                blocks={blocks} 
+                chapterSlug={chapterNum.toString()} 
+                partNumber={partNumber} 
+                onLoadChapter={handleChapterChange}
+            />
+        )}
       </Layer3Canvas>
       <Layer4Panel />
     </ReaderLayout>

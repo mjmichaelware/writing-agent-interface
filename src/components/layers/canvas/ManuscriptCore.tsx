@@ -26,7 +26,8 @@ const CHAPTER_TITLES: Record<number, string> = {
 export default function ManuscriptCore({
   blocks,
   chapterSlug,
-  partNumber = "I"
+  partNumber = "I",
+  onLoadChapter
 }: {
   blocks: (string | { 
     id: string; 
@@ -36,13 +37,14 @@ export default function ManuscriptCore({
   })[];
   chapterSlug: string;
   partNumber?: string;
+  onLoadChapter?: (n: number) => void;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   const handleLoadChapter = (n: number) => {
     bus.emit("scroll:begin", { target: "title" });
-    console.log(`Loading chapter ${n}`);
+    if (onLoadChapter) onLoadChapter(n);
   };
 
   useEffect(() => {

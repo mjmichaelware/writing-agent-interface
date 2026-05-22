@@ -3,6 +3,7 @@ import { Storage } from '@google-cloud/storage';
 import { SecretManagerServiceClient } from '@google-cloud/secret-manager';
 import { TextToSpeechClient } from '@google-cloud/text-to-speech';
 import { VertexAI } from '@google-cloud/vertexai';
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 /**
  * Feature 190: Google Cloud Swarm Infusion
@@ -17,32 +18,40 @@ export class GoogleSwarm {
     };
   }
 
-  private static projectId = process.env.GOOGLE_CLOUD_PROJECT;
-
   static getBigQuery() {
-    return new BigQuery({ credentials: this.getCredentials(), projectId: this.projectId });
+    return new BigQuery({ credentials: this.getCredentials(), projectId: "the-weight-of-the-sky" });
   }
 
   static getStorage() {
-    return new Storage({ credentials: this.getCredentials(), projectId: this.projectId });
+    return new Storage({ credentials: this.getCredentials(), projectId: "the-weight-of-the-sky" });
   }
 
   static getSecrets() {
-    return new SecretManagerServiceClient({ credentials: this.getCredentials(), projectId: this.projectId });
+    return new SecretManagerServiceClient({ credentials: this.getCredentials(), projectId: "the-weight-of-the-sky" });
   }
 
   static getTTS() {
-    return new TextToSpeechClient({ credentials: this.getCredentials(), projectId: this.projectId });
+    return new TextToSpeechClient({ credentials: this.getCredentials(), projectId: "the-weight-of-the-sky" });
   }
 
   static getVertexAI() {
-    return new VertexAI({ project: this.projectId!, location: 'us-central1' });
+    return new VertexAI({ 
+      project: "439008308970", // Numeric Project Number
+      location: 'us-central1',
+      googleAuthOptions: {
+        credentials: this.getCredentials()
+      }
+    });
+  }
+
+  static getGoogleAI() {
+    return new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
   }
 
   static async getSecret(name: string) {
     const client = this.getSecrets();
     const [version] = await client.accessSecretVersion({
-      name: `projects/${this.projectId}/secrets/${name}/versions/latest`,
+      name: `projects/the-weight-of-the-sky/secrets/${name}/versions/latest`,
     });
     return version.payload?.data?.toString();
   }

@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useScrollFocus } from '@/hooks/useScrollFocus';
 import { useNarrative } from '@/context/NarrativeContext';
+import { tokenize } from '@/services/tokenize';
 
 interface Paragraph {
   id: string;
@@ -35,22 +36,22 @@ const ManuscriptCore: React.FC<{ chapterId: string }> = ({ chapterId }) => {
   }, [chapterId]);
 
   return (
-    <div ref={containerRef} className="max-w-prose mx-auto py-40 space-y-24">
-      {paragraphs.map((p, index) => (
-        <p 
-          key={p.id}
-          id={p.id}
-          data-paragraph-id={p.id}
-          className="text-2xl md:text-3xl font-serif text-gray-300 leading-relaxed selection:bg-[#c5a059] selection:text-black transition-all duration-700"
-          style={{
-            // Placeholder for spring-damped kinetics driven by scroll
-            // transform: `scale(${focusScale})`,
-            // filter: `blur(${focusBlur}px)`
-          }}
-        >
-          {p.content}
-        </p>
-      ))}
+    <div ref={containerRef} className="max-w-prose mx-auto py-40 space-y-32">
+      {paragraphs.map((p) => {
+        const isFocused = focusedId === p.id;
+        
+        return (
+          <p 
+            key={p.id}
+            id={p.id}
+            data-paragraph-id={p.id}
+            className={`prose-text text-gray-300 leading-relaxed selection:bg-[#c5a059] selection:text-black transition-all duration-1000 ease-spring ${
+              isFocused ? 'opacity-100 scale-100 blur-0' : 'opacity-40 scale-95 blur-[2px]'
+            }`}
+            dangerouslySetInnerHTML={{ __html: tokenize(p.content) }}
+          />
+        );
+      })}
     </div>
   );
 };

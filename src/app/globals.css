@@ -5,8 +5,8 @@
 
 /* --- CSS Custom Properties --------------------------------- */
 :root {
-  /* Color Palette — Aesthetic Mandate §5 */
-  --bg-void: #0a0a0a;
+  /* Color Palette — Aesthetic Mandate §5 & Feature 140 (OLED True Black) */
+  --bg-void: #000000;
   --text-body: #e8e4dc;
   --text-muted: #8a857c;
   --accent-gold: #c9a96e;
@@ -18,17 +18,17 @@
   --text-primary: #e8e4dc;
   --text-secondary: #8a857c;
 
-  /* Typography */
+  /* Typography — Feature 115 (True Native Typography) */
   --leading-prose: 1.7;
   --measure: 65ch;
   --font-size-prose: clamp(1.125rem, 2.5vw, 1.5rem);
   --indent-prose: clamp(1rem, 4vw, 4rem);
 
-  /* Kinetic Typography Physics — §2 Project Checkpoint */
-  --arc-mass: 0;
-  --arc-tension: 0;
-  --arc-blur: 0;
-  --arc-drift: 0;
+  /* Kinetic Typography Physics — §2 Project Checkpoint & Features 11-14 */
+  --arc-mass: 0px;
+  --arc-tension: 1;
+  --arc-blur: 0px;
+  --arc-drift: 0px;
 
   /* Reader Controls */
   --reader-font-scale: 1;

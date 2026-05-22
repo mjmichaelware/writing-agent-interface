@@ -7,6 +7,9 @@ import Layer2Cinema from "@/components/layers/Layer2Cinema";
 import Layer3Canvas from "@/components/layers/Layer3Canvas";
 import Layer4Panel from "@/components/layers/Layer4Panel";
 import TitleCover from "@/components/ui/front-matter/TitleCover";
+import Dedication from "@/components/ui/front-matter/Dedication";
+import Synopsis from "@/components/ui/front-matter/Synopsis";
+import AboutAuthor from "@/components/ui/front-matter/AboutAuthor";
 import TableOfContents from "@/components/ui/front-matter/TableOfContents";
 import ManuscriptCore from "@/components/ManuscriptCore";
 import { NarrativeProvider } from "@/context/NarrativeContext";
@@ -18,7 +21,7 @@ export default function Page() {
     <NarrativeProvider>
       <ReaderLayout>
         <Layer1Void />
-        
+
         {/* Background Layers */}
         <Layer2Cinema chapterSlug={activeChapterId || "7"} blocks={[]} />
         <Layer3Canvas chapterId={activeChapterId} />
@@ -27,9 +30,11 @@ export default function Page() {
         <div className="relative z-30 w-full">
           <TitleCover />
 
-          <section className="h-screen flex items-center justify-center bg-black text-[#c5a059] italic font-serif text-2xl">
-            DEDICATION: For the those who wait in the void.
-          </section>
+          <Dedication />
+
+          <Synopsis />
+
+          <AboutAuthor />
 
           <TableOfContents onSelect={setActiveChapterId} />
 

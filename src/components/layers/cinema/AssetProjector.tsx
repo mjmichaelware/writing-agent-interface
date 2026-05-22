@@ -39,9 +39,9 @@ export default function AssetProjector({ currentSrc, scale, mixBlend }: AssetPro
   // Master asset registry mapping available story graphics to prevent hot-linking faults
   const mediaInventory = useMemo(() => [
     "/assets/bg.png",
-    "/assets/agent-photos/flies.jpg",
-    "/assets/agent-photos/megiddo1.jpg",
-    "/assets/agent-photos/megiddo2.jpg"
+    "/assets/flies.jpg",
+    "/assets/megiddo1.jpg",
+    "/assets/megiddo2.jpg"
   ], []);
 
   useEffect(() => {

@@ -2,132 +2,101 @@
 
 import React, { useEffect, useState } from "react";
 import { bus } from "@/core/runtimeEngine";
-import { AgentService, type ArchetypeRecord } from "@/services/bridge/agent.service";
 
-import { useNarrative } from "@/context/NarrativeContext";
+interface ArchetypePeak {
+  id: string;
+  chapter_number: number;
+  dominant: string;
+  content: string;
+}
 
 export default function ArchetypesDirectory() {
-  const { state } = useNarrative();
-  const { archetypalWeights, focusedId } = state;
-  const [archetypes, setArchetypes] = useState<ArchetypeRecord[]>([]);
-  const [active, setActive] = useState<ArchetypeRecord | null>(null);
-  const [status, setStatus] = useState<"loading" | "ready" | "empty">("loading");
+  const [timeline, setTimeline] = useState<ArchetypePeak[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let mounted = true;
-    AgentService.getArchetypes().then((data) => {
-      if (!mounted) return;
-      if (data.length > 0) {
-        setArchetypes(data);
-        setActive(data[0]);
-        setStatus("ready");
-      } else {
-        setStatus("empty");
+    async function fetchArchetypes() {
+      try {
+        const res = await fetch("/api/manuscript?chapterId=all");
+        const paragraphs = await res.json();
+        
+        const peaks: ArchetypePeak[] = paragraphs
+          .filter((p: any) => p.archetypal_weights && Object.keys(p.archetypal_weights).length > 0)
+          .map((p: any) => {
+            const weights = p.archetypal_weights;
+            const dominant = Object.entries(weights).reduce(
+              (a, b) => ((b[1] as number) > (a[1] as number) ? b : a),
+              ["none", 0]
+            )[0];
+
+            return {
+              id: p.id,
+              chapter_number: p.chapters?.chapter_number || 0,
+              dominant,
+              content: p.content
+            };
+          });
+
+        setTimeline(peaks);
+      } catch (err) {
+        console.error("Failed to fetch archetypes:", err);
+      } finally {
+        setLoading(false);
       }
-    });
-    return () => { mounted = false; };
+    }
+    fetchArchetypes();
   }, []);
 
-  // Highlight archetype based on active paragraph weights
-  useEffect(() => {
-    if (!archetypalWeights) return;
-    
-    // Simple logic: pick the archetype with highest weight
-    const keys = Object.keys(archetypalWeights) as (keyof typeof archetypalWeights)[];
-    const maxKey = keys.reduce((a, b) => (archetypalWeights[a] || 0) > (archetypalWeights[b] || 0) ? a : b, keys[0]);
-    
-    const found = archetypes.find(a => a.name.toLowerCase().includes(maxKey.toLowerCase()));
-    if (found) setActive(found);
-  }, [archetypalWeights, archetypes]);
+  const handleJump = (id: string) => {
+    bus.emit("navigate:paragraph", { id });
+    bus.emit("ui:menu_close", {});
+  };
+
+  const COLORS: Record<string, string> = {
+    self: "#c9a96e",
+    anima: "#e8d4a0",
+    shadow: "#0a0a0a", // Needs outline
+    persona: "#8a857c",
+  };
 
   return (
-    <div className="min-h-full flex flex-col" style={{ background: "radial-gradient(circle at top, rgba(201,169,110,0.06) 0%, transparent 50%)" }}>
+    <div className="flex flex-col gap-8">
+      <h2 className="font-serif italic text-[#8a857c] text-center mb-8">Psychological Landscape</h2>
 
-      {/* Header */}
-      <div className="px-8 pt-10 pb-6">
-        <p className="section-label mb-2">Jungian Archetypes</p>
-        <h2 className="font-serif text-3xl text-[var(--text-body)] leading-tight">
-          Characters as<br />
-          <span className="italic text-[var(--text-muted)]">psychic weather.</span>
-        </h2>
-        <div
-          className="mt-3 font-serif italic text-xs"
-          style={{ color: "rgba(201,169,110,0.55)" }}
-        >
-          Active Focus: {focusedId || "None"}
-        </div>
-        {status === "loading" && (
-          <p className="mt-4 font-serif italic text-sm text-[var(--text-muted)] animate-pulse-gold">
-            Mapping the psyche...
-          </p>
-        )}
-        {status === "empty" && (
-          <p className="mt-4 font-serif italic text-sm text-[var(--text-muted)]">
-            Archetypes will appear once the manuscript is ingested.
-          </p>
-        )}
-      </div>
+      {loading ? (
+        <p className="font-serif italic text-[#8a857c] text-center py-20">Mapping the collective unconscious...</p>
+      ) : timeline.length === 0 ? (
+        <p className="font-serif italic text-[#8a857c] text-center py-20">Archetypal peaks will emerge as the story unfolds.</p>
+      ) : (
+        <div className="relative border-l border-white/5 ml-4 pl-8 flex flex-col gap-12">
+          {timeline.map((peak, idx) => (
+            <div key={peak.id} className="relative group cursor-pointer" onClick={() => handleJump(peak.id)}>
+              
+              {/* Chapter Marker */}
+              {(idx === 0 || timeline[idx-1].chapter_number !== peak.chapter_number) && (
+                <div className="absolute -left-12 top-0 transform -translate-x-1/2">
+                   <span className="font-hebrew text-[10px] text-[#c9a96e]/40 uppercase tracking-tighter">
+                     Ch {peak.chapter_number}
+                   </span>
+                </div>
+              )}
 
-      {/* List */}
-      {status === "ready" && (
-        <div className="px-6 space-y-2 flex-shrink-0">
-          {archetypes.map((type) => (
-            <button
-              key={type.name}
-              onClick={() => setActive(type)}
-              className="w-full text-left rounded-2xl border p-5 transition-all duration-500"
-              style={{
-                background: active?.name === type.name
-                  ? "rgba(201,169,110,0.09)"
-                  : "rgba(0,0,0,0.25)",
-                borderColor: active?.name === type.name
-                  ? "rgba(201,169,110,0.38)"
-                  : "rgba(255,255,255,0.07)",
-              }}
-            >
-              <div className="font-serif italic text-base text-[var(--text-body)] leading-snug">
-                {type.name}
+              {/* Archetype Peak Dot */}
+              <div 
+                className={`absolute -left-[37px] top-1.5 w-3 h-3 rounded-full transition-transform duration-500 group-hover:scale-150 ${peak.dominant === 'shadow' ? 'border border-white' : ''}`}
+                style={{ backgroundColor: COLORS[peak.dominant] || "#444" }}
+              />
+
+              <div className="flex flex-col gap-1">
+                <span className="font-hebrew text-[#e8d4a0] text-xs uppercase tracking-widest opacity-60">
+                  {peak.dominant}
+                </span>
+                <p className="font-serif italic text-[#8a857c] text-sm line-clamp-2 group-hover:text-[#e8e4dc] transition-colors">
+                  "{peak.content}"
+                </p>
               </div>
-              <div className="mt-1 font-serif text-sm text-[var(--text-muted)]">
-                {type.character}
-              </div>
-              <div
-                className="mt-1 font-serif text-xs italic"
-                style={{ color: "rgba(201,169,110,0.5)" }}
-              >
-                {type.development}
-              </div>
-            </button>
+            </div>
           ))}
-        </div>
-      )}
-
-      {/* Detail */}
-      {active && status === "ready" && (
-        <div
-          className="mx-6 mt-5 mb-8 rounded-2xl p-6 flex-1"
-          style={{
-            background: "rgba(0,0,0,0.32)",
-            border: "1px solid rgba(255,255,255,0.08)",
-            backdropFilter: "blur(12px)",
-            WebkitBackdropFilter: "blur(12px)",
-          }}
-        >
-          <div className="font-serif italic text-xs text-[var(--text-muted)] mb-3">
-            {active.development}
-          </div>
-          <div className="font-serif italic text-xl text-[var(--text-body)] leading-snug mb-1">
-            {active.name}
-          </div>
-          <div
-            className="font-serif text-sm mb-4"
-            style={{ color: "var(--accent-gold)" }}
-          >
-            {active.character}
-          </div>
-          <p className="font-serif text-sm leading-[1.75] text-[var(--text-muted)]">
-            {active.description}
-          </p>
         </div>
       )}
     </div>

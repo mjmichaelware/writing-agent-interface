@@ -1,146 +1,114 @@
 "use client";
 
 import React, { useState } from "react";
-import { AgentService } from "@/services/bridge/agent.service";
-import { motion, AnimatePresence } from "framer-motion";
-
-type Status = "LOCKED" | "READY" | "RUNNING" | "COMPLETE" | "ERROR";
+import { bus } from "@/core/runtimeEngine";
 
 export default function SystemTab() {
   const [pin, setPin] = useState("");
-  const [unlocked, setUnlocked] = useState(false);
+  const [isUnlocked, setIsUnlocked] = useState(false);
   const [error, setError] = useState(false);
-  const [input, setInput] = useState("");
-  const [output, setOutput] = useState("");
-  const [status, setStatus] = useState<Status>("LOCKED");
+  const [activeTool, setActiveTab] = useState<"AGENT" | "ANALYZER" | "RESOLVER" | "EDITOR">("AGENT");
 
-  const submitPin = (value: string) => {
-    if (value === "1003") {
-      setTimeout(() => { setUnlocked(true); setStatus("READY"); }, 400);
-      return;
-    }
-    setError(true);
-    setTimeout(() => { setPin(""); setError(false); }, 600);
-  };
-
-  const handleKey = (key: string) => {
-    if (error) return;
-    if (key === "DEL") { setPin((p) => p.slice(0, -1)); return; }
-    if (key === "ENT") { if (pin.length === 4) submitPin(pin); return; }
-    if (!/^\d$/.test(key) || pin.length >= 4) return;
-    const next = pin + key;
-    setPin(next);
-    if (next.length === 4) submitPin(next);
-  };
-
-  const execute = async () => {
-    if (!input.trim() || status === "RUNNING") return;
-    try {
-      setStatus("RUNNING");
-      setOutput("");
-      const data = await AgentService.queryNarrative(
-        input,
-        "Weight of the Sky — Writing Agent Console"
-      );
-      setOutput(data.result || JSON.stringify(data, null, 2));
-      setStatus("COMPLETE");
-    } catch (err) {
-      setStatus("ERROR");
-      setOutput(err instanceof Error ? err.message : "Agent kernel disconnected.");
+  const handleKey = (num: string) => {
+    if (pin.length < 4) {
+      const nextPin = pin + num;
+      setPin(nextPin);
+      if (nextPin.length === 4) {
+        if (nextPin === "1003") {
+          setIsUnlocked(true);
+        } else {
+          setError(true);
+          setTimeout(() => {
+            setPin("");
+            setError(false);
+          }, 1000);
+        }
+      }
     }
   };
 
-  if (!unlocked) {
+  if (!isUnlocked) {
     return (
-      <div className="min-h-full flex flex-col items-center justify-center relative overflow-hidden bg-[#050507]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,_rgba(201,169,110,0.05)_0%,_transparent_60%)]" />
-        
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="w-full max-w-[320px] z-10 px-8"
-        >
-          <div className="text-center mb-12">
-            <div className="text-[10px] tracking-[0.4em] text-[var(--accent-gold)] uppercase font-bold mb-4">Kernel Access</div>
-            <h2 className="font-serif text-3xl text-[var(--text-body)] leading-tight italic">
-              Authorization Required.
-            </h2>
-          </div>
+      <div className="flex flex-col items-center justify-center h-full gap-12 py-20">
+        <div className="flex flex-col items-center gap-4">
+           <h3 className="font-hebrew text-[#c9a96e] text-xs uppercase tracking-[0.4em]">Authorization Required</h3>
+           <div className="flex gap-4">
+             {[0, 1, 2, 3].map((i) => (
+               <div 
+                 key={i} 
+                 className={`w-3 h-3 rounded-full border border-[#c9a96e]/30 transition-all duration-300 ${
+                   error ? "bg-red-900 border-red-500 shadow-[0_0_10px_red]" :
+                   i < pin.length ? "bg-[#c9a96e] shadow-[0_0_15px_#c9a96e]" : "bg-transparent"
+                 }`}
+               />
+             ))}
+           </div>
+        </div>
 
-          <div className="flex justify-center gap-6 mb-12">
-            {[0, 1, 2, 3].map((i) => (
-              <motion.div
-                key={i}
-                animate={{ 
-                  scale: i < pin.length ? 1.2 : 1,
-                  backgroundColor: error ? "#6b2c2c" : i < pin.length ? "#e8e4dc" : "rgba(255,255,255,0.05)"
-                }}
-                className="w-4 h-4 rounded-full border border-white/5 shadow-2xl"
-              />
-            ))}
-          </div>
-
-          <div className="grid grid-cols-3 gap-3">
-            {["1","2","3","4","5","6","7","8","9","DEL","0","ENT"].map((key) => (
-              <button
-                key={key}
-                onClick={() => handleKey(key)}
-                className="aspect-square rounded-2xl bg-white/[0.02] border border-white/[0.05] font-serif text-lg text-[var(--text-muted)] hover:bg-[var(--accent-gold)]/10 hover:text-white transition-all active:scale-95"
-              >
-                {key === "DEL" ? "⌫" : key === "ENT" ? "↵" : key}
-              </button>
-            ))}
-          </div>
-        </motion.div>
+        <div className="grid grid-cols-3 gap-4 w-full max-w-[240px]">
+          {["1", "2", "3", "4", "5", "6", "7", "8", "9", "DEL", "0", "ENT"].map((k) => (
+            <button
+              key={k}
+              onClick={() => k === "DEL" ? setPin(pin.slice(0, -1)) : handleKey(k)}
+              className="aspect-square border border-white/5 bg-white/[0.02] rounded-full flex items-center justify-center font-hebrew text-[#8a857c] hover:bg-[#c9a96e]/10 hover:text-[#e8e4dc] transition-all active:scale-90"
+            >
+              {k}
+            </button>
+          ))}
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-full flex flex-col bg-[#050507] p-8">
-      <div className="flex items-center justify-between mb-12">
-        <div>
-          <div className="flex items-center gap-3 mb-2">
-            <div className="w-2 h-2 rounded-full bg-[#10b981] shadow-[0_0_12px_#10b981] animate-pulse" />
-            <span className="text-[9px] tracking-[0.3em] text-[#10b981] uppercase font-bold">Author Intel v4.0</span>
-          </div>
-          <h2 className="font-serif text-3xl text-[var(--text-body)] italic leading-tight">Narrative Swarm.</h2>
-        </div>
-        <div className="flex gap-4">
-          <a href="/analyze" className="px-4 py-2 rounded-full border border-white/10 text-[9px] tracking-widest uppercase hover:bg-white/5 transition-all">Doc Analyzer</a>
-        </div>
-      </div>
-
-      <div className="flex-1 flex flex-col gap-8">
-        <div className="relative group">
-          <textarea
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            className="w-full h-48 bg-white/[0.02] border border-white/5 rounded-[32px] p-8 font-serif text-base text-[var(--text-body)] outline-none placeholder:text-white/10 resize-none transition-all focus:border-[#10b981]/30 focus:bg-white/[0.04]"
-            placeholder="Query the kernel for narrative drift..."
-          />
-          <button
-            onClick={execute}
-            disabled={!input.trim() || status === "RUNNING"}
-            className="absolute bottom-6 right-6 px-6 py-3 rounded-full bg-[#10b981] text-black text-[10px] tracking-widest uppercase font-bold hover:scale-105 active:scale-95 transition-all disabled:opacity-20"
+    <div className="flex flex-col gap-10">
+      {/* Tool Navigation */}
+      <nav className="flex justify-around border-b border-white/5 pb-4">
+        {(["AGENT", "ANALYZER", "RESOLVER", "EDITOR"] as const).map(t => (
+          <button 
+            key={t}
+            onClick={() => setActiveTab(t)}
+            className={`font-hebrew text-[10px] tracking-widest transition-colors ${activeTool === t ? "text-[#c9a96e]" : "text-[#8a857c]"}`}
           >
-            {status === "RUNNING" ? "Processing..." : "Execute"}
+            {t}
           </button>
-        </div>
+        ))}
+      </nav>
 
-        <AnimatePresence>
-          {output && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex-1 rounded-[32px] bg-black/40 border border-white/5 p-8 overflow-auto scrollbar-hide"
-            >
-              <pre className="font-serif text-sm leading-[1.8] text-[var(--text-muted)] whitespace-pre-wrap">
-                {output}
-              </pre>
-            </motion.div>
-          )}
-        </AnimatePresence>
+      {/* Tool Content */}
+      <div className="flex flex-col gap-6">
+        {activeTool === "AGENT" && (
+            <div className="flex flex-col gap-4">
+                <div className="bg-black/20 border border-white/5 p-4 rounded-sm h-64 overflow-y-auto font-serif italic text-sm text-[#8a857c]">
+                    Awaiting prompt...
+                </div>
+                <input 
+                    className="bg-white/[0.03] border border-white/10 p-4 rounded-sm font-serif text-[#e8e4dc] focus:outline-none focus:border-[#c9a96e]/30"
+                    placeholder="Consult the Writing Agent..."
+                />
+            </div>
+        )}
+
+        {activeTool === "ANALYZER" && (
+            <div className="flex flex-col items-center justify-center py-20 border-2 border-dashed border-white/5 rounded-sm">
+                <span className="font-serif italic text-[#8a857c]">Drop manuscript file to analyze</span>
+                <button className="mt-4 primary-button py-2 px-6 text-xs">Upload .txt</button>
+            </div>
+        )}
+
+        {activeTool === "RESOLVER" && (
+            <div className="flex flex-col gap-4 text-center py-20">
+                 <span className="font-serif italic text-[#8a857c]">Awaiting semantic mapper run...</span>
+                 <p className="text-[10px] text-[#6b2c2c] uppercase tracking-widest">No conflicts detected in current segment</p>
+            </div>
+        )}
+
+        {activeTool === "EDITOR" && (
+            <div className="flex flex-col gap-4 text-center py-20">
+                 <span className="font-serif italic text-[#8a857c]">Select a paragraph to begin live editing</span>
+                 <p className="text-[10px] text-[#8a857c] uppercase tracking-widest">Read-only mode disabled</p>
+            </div>
+        )}
       </div>
     </div>
   );

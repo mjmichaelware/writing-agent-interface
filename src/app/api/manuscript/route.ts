@@ -23,9 +23,9 @@ export async function GET(request: Request) {
 
   const { data, error } = await supabase
     .from('paragraphs')
-    .select('*, biblical_references(*)')
+    .select('*, biblical_references(*), chapters(part_number, chapter_number)')
     .eq('chapter_id', chapterId)
-    .order('created_at', { ascending: true });
+    .order('chunk_index', { ascending: true });
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });

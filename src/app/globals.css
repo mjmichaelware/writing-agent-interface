@@ -266,21 +266,22 @@ body {
   font-family: var(--font-prose, 'EB Garamond', Georgia, serif);
   font-style: italic;
   font-size: 1rem;
-  color: var(--text-body);
-  border: 1px solid rgba(201, 169, 110, 0.35);
-  padding: 0.75rem 2.25rem;
+  color: #c9a96e;
+  border: 1px solid #c9a96e;
+  padding: 1rem 2.5rem;
   background: transparent;
   transition:
-    background var(--duration-medium) var(--ease-spring),
-    border-color var(--duration-medium) var(--ease-spring);
+    background 400ms var(--ease-spring),
+    color 400ms var(--ease-spring),
+    border-color 400ms var(--ease-spring);
   cursor: pointer;
   letter-spacing: 0.018em;
   border-radius: 0;
 }
 
 .primary-button:hover {
-  background: rgba(201, 169, 110, 0.07);
-  border-color: rgba(201, 169, 110, 0.6);
+  background: #c9a96e;
+  color: #0a0a0a;
 }
 
 /* --- Paragraph Scroll States ------------------------------ */
@@ -348,6 +349,44 @@ p[data-tone="descent"] { color: var(--descent) !important; }
 }
 
 /* --- Animations ------------------------------------------- */
+
+/* Panel slide in/out */
+.panel-enter { animation: panelEnter 700ms var(--ease-spring) forwards; }
+.panel-exit { animation: panelExit 500ms var(--ease-spring) forwards; }
+
+@keyframes panelEnter {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes panelExit {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(100%); opacity: 0; }
+}
+
+/* Tab indicator slide */
+.tab-indicator {
+  transition: transform 400ms var(--ease-spring), width 400ms var(--ease-spring);
+}
+
+/* Manuscript dim under panel */
+.canvas-dimmed {
+  filter: blur(1.5px);
+  opacity: 0.2;
+  transition: filter 700ms var(--ease-spring), opacity 700ms var(--ease-spring);
+  pointer-events: none;
+}
+
+/* Gold flash on paragraph navigation */
+.paragraph-flash {
+  animation: paragraphFlash 1200ms var(--ease-spring);
+}
+
+@keyframes paragraphFlash {
+  0% { background: rgba(201, 169, 110, 0); }
+  20% { background: rgba(201, 169, 110, 0.15); }
+  100% { background: rgba(201, 169, 110, 0); }
+}
 
 @keyframes kinetic-fall {
   0%   { transform: translateY(0px) rotate(0deg); opacity: 1; filter: blur(0px); }

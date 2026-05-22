@@ -26,16 +26,22 @@ const CHAPTER_TITLES: Record<number, string> = {
 export default function ManuscriptCore({
   blocks,
   chapterSlug,
+  partNumber = "I"
 }: {
-  blocks: string[];
+  blocks: (string | { 
+    id: string; 
+    content: string; 
+    archetypal_weights?: any; 
+    dualism_map?: any;
+  })[];
   chapterSlug: string;
+  partNumber?: string;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   const handleLoadChapter = (n: number) => {
-    bus.emit("nav:velocity_scroll", { speed: 1 });
-    // This will trigger a route change or data fetch in a real scenario
+    bus.emit("scroll:begin", { target: "title" });
     console.log(`Loading chapter ${n}`);
   };
 
@@ -54,13 +60,10 @@ export default function ManuscriptCore({
         const dist = Math.abs(centerY - pCenter);
         const maxDist = window.innerHeight * 0.6;
         
-        // Normalized distance 0 to 1
         const normDist = Math.min(1, dist / maxDist);
-        
-        // Apply spring-damped logic via CSS variables
-        const blurValue = normDist * 8; // Max 8px blur
-        const opacityValue = 1 - (normDist * 0.7); // Min 0.3 opacity
-        const translateY = normDist * 10; // Subtle drift
+        const blurValue = normDist * 8; 
+        const opacityValue = 1 - (normDist * 0.7); 
+        const translateY = normDist * 10; 
 
         p.style.setProperty("--arc-blur", blurValue.toString());
         p.style.opacity = opacityValue.toString();
@@ -72,7 +75,6 @@ export default function ManuscriptCore({
     };
 
     frameId = requestAnimationFrame(runKinematics);
-
     return () => cancelAnimationFrame(frameId);
   }, []);
 
@@ -89,8 +91,19 @@ export default function ManuscriptCore({
           el.dataset.state = entry.isIntersecting ? "active" : "inactive";
 
           if (entry.isIntersecting) {
-            const index = el.dataset.index || el.id || "0";
-            bus.emit("scroll:focus", { paraIndex: index });
+            const index = el.dataset.index || "0";
+            const block = blocks[parseInt(index)];
+            
+            // Feature 200: Semantic Focus Payload
+            const payload = {
+              paraIndex: index,
+              content: typeof block === "string" ? block : block.content,
+              weights: typeof block === "string" ? {} : block.archetypal_weights,
+              dualisms: typeof block === "string" ? {} : block.dualism_map,
+              partNumber
+            };
+            
+            bus.emit("scroll:focus", payload);
           }
         }
       },
@@ -102,18 +115,13 @@ export default function ManuscriptCore({
     );
 
     observerRef.current = observer;
-    
-    // Observe front-matter sections
     root.querySelectorAll("section[id]").forEach((s) => observer.observe(s));
-    // Observe paragraphs
     root.querySelectorAll("p[data-para]").forEach((p) => observer.observe(p));
 
     const handleSemanticParse = (data: { dualism: number; archetype: number }) => {
       const spans = root.querySelectorAll<HTMLElement>("[data-resonance]");
-
       spans.forEach((span) => {
         const weight = Number.parseFloat(span.dataset.weight || "0");
-
         if (weight > data.dualism / 100) {
           span.classList.add("animate-kinetic-fall");
         } else {
@@ -122,13 +130,24 @@ export default function ManuscriptCore({
       });
     };
 
-    const unsubscribe = bus.on("engine:semantic_parse", handleSemanticParse);
+    const handleNavigate = (data: { id: string }) => {
+        const target = root.querySelector(`[data-id="${data.id}"], [id="${data.id}"]`) as HTMLElement;
+        if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "center" });
+            target.classList.add("paragraph-flash");
+            setTimeout(() => target.classList.remove("paragraph-flash"), 1200);
+        }
+    };
+
+    const unsubscribeSemantic = bus.on("engine:semantic_parse", handleSemanticParse);
+    const unsubscribeNav = bus.on("navigate:paragraph", handleNavigate);
 
     return () => {
       observer.disconnect();
-      unsubscribe();
+      unsubscribeSemantic();
+      unsubscribeNav();
     };
-  }, [chapterSlug]);
+  }, [chapterSlug, blocks, partNumber]);
 
   return (
     <div
@@ -138,22 +157,29 @@ export default function ManuscriptCore({
       <TitleCover />
       <Dedication />
       <Synopsis />
-      <AboutAuthor />
+      <div id="author"><AboutAuthor /></div>
       <TableOfContents TITLES={CHAPTER_TITLES} onLoadChapter={handleLoadChapter} />
 
       <div className="max-w-2xl mx-auto pt-32">
         <h2 className="section-label text-center mb-32">Chapter {chapterSlug}</h2>
-        {blocks.map((text, idx) => (
-          <p
-            key={idx}
-            data-para
-            data-index={idx}
-            data-state="inactive"
-            className="prose-paragraph kinetic-word"
-          >
-            {text}
-          </p>
-        ))}
+        {blocks.map((block, idx) => {
+          const text = typeof block === "string" ? block : block.content;
+          const id = typeof block === "string" ? `para-${idx}` : block.id;
+
+          return (
+            <p
+              key={id}
+              data-para
+              data-index={idx}
+              data-id={id}
+              id={id}
+              data-state="inactive"
+              className="prose-paragraph kinetic-word"
+            >
+              {text}
+            </p>
+          );
+        })}
       </div>
     </div>
   );

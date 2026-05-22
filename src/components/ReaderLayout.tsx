@@ -1,41 +1,49 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef } from "react";
+import { bus } from "@/core/runtimeEngine";
 
-import { NarrativeProvider } from "@/context/NarrativeContext";
-interface ReaderLayoutProps {
-  children: React.ReactNode;
-}
-
-export default function ReaderLayout({ children }: ReaderLayoutProps) {
-  const [viewportHeight, setViewportHeight] = useState("100vh");
+/**
+ * READER LAYOUT: THE HARDWARE VIEWPORT
+ * * Manages the root 3D perspective context for the 4-layer UI.
+ * * Reacts to panel events by rotating the entire manuscript canvas.
+ */
+export default function ReaderLayout({ children }: { children: React.ReactNode }) {
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const syncViewport = () => {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty("--nos-stable-vh", `${vh}px`);
-      setViewportHeight(`${window.innerHeight}px`);
+    const onToggle = (state: { isOpen: boolean }) => {
+      const el = wrapperRef.current;
+      if (!el) return;
+      if (state.isOpen) {
+        // Feature 160: 3D Perspective Shift
+        el.style.transform = "rotateY(-12deg) translateZ(-100px) translateX(4%)";
+        el.style.filter = "blur(3px) brightness(0.5)";
+        el.style.pointerEvents = "none";
+      } else {
+        el.style.transform = "rotateY(0deg) translateZ(0px) translateX(0%)";
+        el.style.filter = "blur(0px) brightness(1)";
+        el.style.pointerEvents = "auto";
+      }
     };
 
-    syncViewport();
-
-    window.addEventListener("resize", syncViewport, { passive: true });
-    window.addEventListener("orientationchange", syncViewport, { passive: true });
+    const unsubPanelOpen = bus.on("panel:open", () => onToggle({ isOpen: true }));
+    const unsubPanelClose = bus.on("panel:close", () => onToggle({ isOpen: false }));
 
     return () => {
-      window.removeEventListener("resize", syncViewport);
-      window.removeEventListener("orientationchange", syncViewport);
+      unsubPanelOpen();
+      unsubPanelClose();
     };
   }, []);
 
   return (
-    <main
-      className="relative isolate w-full min-h-screen bg-[var(--bg-void)] text-[var(--text-body)] antialiased"
-      style={{ minHeight: viewportHeight }}
-    >
-      <NarrativeProvider>{children}</NarrativeProvider>
-    </main>
+    <div className="w-full min-h-screen bg-[#0a0a0a] text-[#e8e4dc] antialiased" style={{ perspective: "2000px" }}>
+      <div 
+        ref={wrapperRef} 
+        className="w-full h-full transform-gpu transition-all duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] origin-left will-change-[transform,filter]"
+      >
+        {children}
+      </div>
+    </div>
   );
 }

@@ -15,6 +15,10 @@ function getOpenAI() {
   return new OpenAI({ apiKey });
 }
 
+/**
+ * ENGINE PLANE: NARRATIVE INGESTION PIPELINE
+ * * Feature 200: Vertex AI Semantic Weighting
+ */
 export async function ingestChapter(
   partNumber: string,
   chapterNumber: number,
@@ -23,15 +27,15 @@ export async function ingestChapter(
   rawXmlText: string
 ) {
   const supabase = getSupabase();
-  const openai = getOpenAI();
+  const openai = getOpenAI(); // Still used for embeddings for consistency
+  const vertex = GoogleSwarm.getVertexAI();
+  const model = vertex.getGenerativeModel({ model: 'gemini-1.5-pro' });
 
   if (!supabase) throw new Error("Supabase credentials not configured");
   if (!openai) throw new Error("OpenAI API key not configured");
 
-  // Feature 190: Audit Ingestion with Google BigQuery
   await GoogleSwarm.logIntegrity('ingestion_start', { manifestId, partNumber, chapterNumber });
 
-  // 1. Establish Canonical Chapter Node
   const { data: chapter, error: chapterError } = await supabase
     .from('chapters')
     .upsert({
@@ -45,46 +49,35 @@ export async function ingestChapter(
 
   if (chapterError || !chapter) throw chapterError || new Error("Failed to insert/upsert chapter");
 
-  // Mirror chapter to BigQuery
   await GoogleSwarm.mirrorChapter(chapter);
 
-  // 2. XML Stripping & Semantic Chunking
   const cleanText = rawXmlText.replace(/<[^>]*>?/gm, ''); 
   const paragraphs = cleanText.split(/\n\s*\n/).filter((p) => p.trim().length > 0);
 
-  // 3. Engine Plane: Semantic Enrichment Pass
   let chunkIndex = 0;
   for (const pText of paragraphs) {
-    // Generate Embedding via OpenAI (Optimized for speed and consistency)
     const embedResponse = await openai.embeddings.create({
       model: "text-embedding-3-small",
       input: pText,
     });
     const embedding = embedResponse.data[0].embedding;
 
-    // Tenth System / Engine Plane - LLM Semantic Weighting
-    const enrichmentResponse = await openai.chat.completions.create({
-      model: 'gpt-4o',
-      response_format: { type: 'json_object' },
-      messages: [
-        {
-          role: 'system',
-          content: `You are the NOS Orchestration Engine. Analyze the text and return JSON:
-          {
-            "archetypal_weights": { "shadow": 0.0, "persona": 0.0, "anima": 0.0, "self": 0.0, "hero": 0.0 },
-            "dualism_map": { "sacred": 0.0, "descent": 0.0 },
-            "hebrew_terms": ["Hebron"],
-            "biblical_references": [{ "text": "...", "book": "...", "chapter": 0, "verse": 0 }],
-            "metadata": { "scene_id": "...", "time_of_day": "...", "weather": "...", "character_present": "...", "internal_state": "..." }
-          }`
-        },
-        { role: 'user', content: pText },
-      ],
-    });
+    // Tenth System / Engine Plane - Google Vertex AI Semantic Pass
+    const prompt = `You are the NOS Orchestration Engine. Analyze the text and return JSON:
+      {
+        "archetypal_weights": { "shadow": 0.0, "persona": 0.0, "anima": 0.0, "self": 0.0, "hero": 0.0 },
+        "dualism_map": { "sacred": 0.0, "descent": 0.0 },
+        "hebrew_terms": [],
+        "biblical_references": [{ "text": "...", "book": "...", "chapter": 0, "verse": 0 }],
+        "metadata": { "internal_state": "..." }
+      }
+      TEXT: ${pText}`;
 
-    const enrichment = JSON.parse(enrichmentResponse.choices[0].message.content || '{}');
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const jsonText = response.text().replace(/```json|```/g, '').trim();
+    const enrichment = JSON.parse(jsonText);
 
-    // 4. Persistence Plane
     const { data: paragraphData, error: pError } = await supabase
       .from('paragraphs')
       .insert({
@@ -102,22 +95,14 @@ export async function ingestChapter(
 
     if (pError) throw pError;
 
-    // Mirror paragraph to BigQuery
     if (paragraphData) {
       await GoogleSwarm.mirrorParagraph({
         ...paragraphData,
         chapter_number: chapter.chapter_number,
         part_number: chapter.part_number,
       });
-      
-      await GoogleSwarm.logIntegrity('paragraph.ingested', {
-        id: paragraphData.id,
-        chapter_id: paragraphData.chapter_id,
-        chunk_index: chunkIndex,
-      });
     }
 
-    // 5. Cross-Reference Plane
     if (paragraphData && enrichment.biblical_references?.length > 0) {
       const refs = enrichment.biblical_references.map((ref: any) => ({
         paragraph_id: paragraphData.id,

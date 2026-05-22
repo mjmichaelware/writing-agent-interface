@@ -11,27 +11,35 @@ export default function TitleCover() {
   const navLinks = [
     { label: "Dedication", target: "dedication" },
     { label: "Synopsis", target: "synopsis" },
-    { label: "About Author", target: "author" },
+    { label: "About the Author", target: "author" },
     { label: "Table of Contents", target: "toc" },
   ];
 
   return (
-    <section id="title" className="relative h-screen w-full flex flex-col items-center justify-center text-center px-6">
-      <div className="z-10 animate-fade-in">
-        <h1 className="title-display text-[var(--accent-gold)] mb-4">
+    <section 
+        id="title" 
+        className="relative h-screen w-full flex flex-col items-center justify-center text-center px-6 overflow-hidden"
+    >
+      {/* Feature 100: Prestige Title Overlay */}
+      <div className="z-10 animate-fade-in flex flex-col items-center">
+        
+        <h1 
+            className="font-hebrew text-[#c9a96e] mb-4"
+            style={{ fontSize: "clamp(2.8rem, 10vw, 6.5rem)", lineHeight: 1.1 }}
+        >
           The Weight of the Sky
         </h1>
         
-        <p className="font-serif italic text-[var(--text-muted)] uppercase tracking-[0.25em] text-sm md:text-xl mb-12">
+        <p className="font-serif italic text-[#8a857c] uppercase tracking-[0.25em] text-sm md:text-xl mb-12">
           An Archetypal Tale
         </p>
 
-        <nav className="flex gap-8 mb-16">
+        <nav className="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-16">
           {navLinks.map((link) => (
             <button
               key={link.label}
               onClick={() => bus.emit('scroll:begin', { target: link.target })}
-              className="font-serif italic text-[var(--accent-gold)] text-sm border-b border-transparent hover:border-[var(--accent-gold)] transition-all duration-300"
+              className="toc-row font-serif italic text-[#c9a96e] text-sm md:text-base"
             >
               {link.label}
             </button>
@@ -40,11 +48,14 @@ export default function TitleCover() {
 
         <button
           onClick={handleBegin}
-          className="font-serif italic text-[var(--accent-gold)] border border-[var(--accent-gold)]/40 px-10 py-4 hover:bg-[var(--accent-gold)] hover:text-[var(--bg-void)] transition-all duration-500 tracking-wider"
+          className="primary-button font-serif italic text-[#c9a96e] tracking-wider"
         >
           Begin Reading
         </button>
       </div>
+
+      {/* Note: Backdrop bg.png is managed by Layer 2 Cinema at z-10. 
+          The TitleCover is at Layer 3 Canvas z-20. */}
     </section>
   );
 }

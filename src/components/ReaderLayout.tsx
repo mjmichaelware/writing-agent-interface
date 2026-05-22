@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 
+import { NarrativeProvider } from "@/context/NarrativeContext";
 interface ReaderLayoutProps {
   children: React.ReactNode;
 }
@@ -34,7 +35,7 @@ export default function ReaderLayout({ children }: ReaderLayoutProps) {
       className="relative isolate w-full min-h-screen bg-[var(--bg-void)] text-[var(--text-body)] antialiased"
       style={{ minHeight: viewportHeight }}
     >
-      {children}
+      <NarrativeProvider>{children}</NarrativeProvider>
     </main>
   );
 }

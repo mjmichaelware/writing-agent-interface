@@ -5,7 +5,7 @@
 
 /* --- CSS Custom Properties --------------------------------- */
 :root {
-  /* Color Palette — Aesthetic Mandate §5 */
+  /* Color Palette — Aesthetic Mandate §5 & Feature 140 (OLED True Black) */
   --bg-void: #0a0a0a;
   --text-body: #e8e4dc;
   --text-muted: #8a857c;
@@ -18,38 +18,35 @@
   --text-primary: #e8e4dc;
   --text-secondary: #8a857c;
 
-  /* Typography */
+  /* Typography — Feature 115 (True Native Typography) */
   --leading-prose: 1.7;
   --measure: 65ch;
   --font-size-prose: clamp(1.125rem, 2.5vw, 1.5rem);
   --indent-prose: clamp(1rem, 4vw, 4rem);
 
-  /* Kinetic Typography Physics — §2 Project Checkpoint */
-  --arc-mass: 0;
-  --arc-tension: 0;
-  --arc-blur: 0;
-  --arc-drift: 0;
-
-  /* Reader Controls */
-  --reader-font-scale: 1;
-  --reader-line-height: 1.7;
-  --reader-sensitivity: 0.5;
-  --reader-color-shift: 0;
-  --reader-distortion: 0.5;
-  --reader-blur: 0.5;
-  --reader-contrast: 1;
-  --reader-warmth: 0;
-
-  /* Measured viewport properties (written by useDeviceCapability) */
-  --measured-vw: 100vw;
-  --measured-vh: 100vh;
-
-  /* Motion Easing */
+  /* Motion Easing — Part II */
   --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-out: cubic-bezier(0.0, 0.0, 0.2, 1);
-  --duration-fast: 300ms;
-  --duration-medium: 500ms;
-  --duration-slow: 800ms;
+  --duration-fast: 350ms;
+  --duration-medium: 700ms;
+  --duration-slow: 1200ms;
+}
+
+.title-display {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-weight: 700;
+  font-size: clamp(2.8rem, 10vw, 6.5rem);
+  letter-spacing: -0.01em;
+  line-height: 1.04;
+  text-shadow: 0 2px 60px rgba(0, 0, 0, 0.9);
+}
+
+.animate-fade-in {
+  animation: fadeIn var(--duration-slow) var(--ease-spring) forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* --- Base Reset -------------------------------------------- */

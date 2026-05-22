@@ -60,4 +60,39 @@ export class GoogleSwarm {
       console.warn("Integrity logging failed:", e.message);
     }
   }
+
+  static async mirrorChapter(chapter: any) {
+    const bq = this.getBigQuery();
+    try {
+      await bq.dataset('narrative_os').table('chapters').insert([{
+        id: chapter.id,
+        manifest_id: chapter.manifest_id,
+        part_number: chapter.part_number,
+        chapter_number: chapter.chapter_number,
+        status: chapter.status,
+        created_at: new Date().toISOString()
+      }]);
+    } catch (e) {
+      console.warn("Chapter mirroring failed:", e.message);
+    }
+  }
+
+  static async mirrorParagraph(para: any) {
+    const bq = this.getBigQuery();
+    try {
+      await bq.dataset('narrative_os').table('paragraphs').insert([{
+        id: para.id,
+        chapter_id: para.chapter_id,
+        chapter_number: para.chapter_number,
+        part_number: para.part_number,
+        chunk_index: para.chunk_index,
+        content: para.content,
+        archetypal_weights: JSON.stringify(para.archetypal_weights),
+        dualism_map: JSON.stringify(para.dualism_map),
+        created_at: new Date().toISOString()
+      }]);
+    } catch (e) {
+      console.warn("Paragraph mirroring failed:", e.message);
+    }
+  }
 }

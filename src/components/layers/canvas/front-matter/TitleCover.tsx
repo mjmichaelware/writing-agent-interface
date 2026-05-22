@@ -4,30 +4,47 @@ import React from "react";
 import { bus } from "@/core/runtimeEngine";
 
 export default function TitleCover() {
-  const onBeginReading = () => {
-    bus.emit("scroll:focus", { paraIndex: "1" });
+  const handleBegin = () => {
+    bus.emit('scroll:begin', { target: 'dedication' });
   };
 
+  const navLinks = [
+    { label: "Dedication", target: "dedication" },
+    { label: "Synopsis", target: "synopsis" },
+    { label: "About Author", target: "author" },
+    { label: "Table of Contents", target: "toc" },
+  ];
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-[95vh] text-center px-4 relative z-20">
-      <h1 className="title-display mb-12 animate-ethereal-breathe">
-        THE WEIGHT
-        <br />
-        OF THE
-        <br />
-        SKY
-      </h1>
+    <section id="title" className="relative h-screen w-full flex flex-col items-center justify-center text-center px-6">
+      <div className="z-10 animate-fade-in">
+        <h1 className="title-display text-[var(--accent-gold)] mb-4">
+          The Weight of the Sky
+        </h1>
+        
+        <p className="font-serif italic text-[var(--text-muted)] uppercase tracking-[0.25em] text-sm md:text-xl mb-12">
+          An Archetypal Tale
+        </p>
 
-      <p className="font-serif text-[clamp(1rem,2.5vw,1.25rem)] text-[var(--text-muted,#8a857c)] mb-20 tracking-[0.25em] uppercase">
-        Michael Alonza P. Ware
-      </p>
+        <nav className="flex gap-8 mb-16">
+          {navLinks.map((link) => (
+            <button
+              key={link.label}
+              onClick={() => bus.emit('scroll:begin', { target: link.target })}
+              className="font-serif italic text-[var(--accent-gold)] text-sm border-b border-transparent hover:border-[var(--accent-gold)] transition-all duration-300"
+            >
+              {link.label}
+            </button>
+          ))}
+        </nav>
 
-      <button
-        onClick={onBeginReading}
-        className="primary-button uppercase tracking-[0.3em] text-xs"
-      >
-        Begin Reading
-      </button>
-    </div>
+        <button
+          onClick={handleBegin}
+          className="font-serif italic text-[var(--accent-gold)] border border-[var(--accent-gold)]/40 px-10 py-4 hover:bg-[var(--accent-gold)] hover:text-[var(--bg-void)] transition-all duration-500 tracking-wider"
+        >
+          Begin Reading
+        </button>
+      </div>
+    </section>
   );
 }

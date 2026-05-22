@@ -45,11 +45,15 @@ export async function ingestChapter(
 
   if (chapterError || !chapter) throw chapterError || new Error("Failed to insert/upsert chapter");
 
+  // Mirror chapter to BigQuery
+  await GoogleSwarm.mirrorChapter(chapter);
+
   // 2. XML Stripping & Semantic Chunking
   const cleanText = rawXmlText.replace(/<[^>]*>?/gm, ''); 
   const paragraphs = cleanText.split(/\n\s*\n/).filter((p) => p.trim().length > 0);
 
   // 3. Engine Plane: Semantic Enrichment Pass
+  let chunkIndex = 0;
   for (const pText of paragraphs) {
     // Generate Embedding via OpenAI (Optimized for speed and consistency)
     const embedResponse = await openai.embeddings.create({
@@ -86,6 +90,7 @@ export async function ingestChapter(
       .insert({
         chapter_id: chapter.id,
         content: pText,
+        chunk_index: chunkIndex,
         embedding,
         archetypal_weights: enrichment.archetypal_weights || {},
         dualism_map: enrichment.dualism_map || {},
@@ -96,6 +101,21 @@ export async function ingestChapter(
       .single();
 
     if (pError) throw pError;
+
+    // Mirror paragraph to BigQuery
+    if (paragraphData) {
+      await GoogleSwarm.mirrorParagraph({
+        ...paragraphData,
+        chapter_number: chapter.chapter_number,
+        part_number: chapter.part_number,
+      });
+      
+      await GoogleSwarm.logIntegrity('paragraph.ingested', {
+        id: paragraphData.id,
+        chapter_id: paragraphData.chapter_id,
+        chunk_index: chunkIndex,
+      });
+    }
 
     // 5. Cross-Reference Plane
     if (paragraphData && enrichment.biblical_references?.length > 0) {
@@ -108,6 +128,7 @@ export async function ingestChapter(
       }));
       await supabase.from('biblical_references').insert(refs);
     }
+    chunkIndex++;
   }
 
   await GoogleSwarm.logIntegrity('ingestion_complete', { manifestId, paragraphCount: paragraphs.length });

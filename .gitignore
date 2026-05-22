@@ -20,3 +20,11 @@ build/
 *.tsbuildinfo
 .sandbox/
 .agent-context/
+
+# Google Cloud service account credentials
+service-account*.json
+*-service-account.json
+gcp-credentials*.json
+google-credentials*.json
+.gcp/
+credentials.json

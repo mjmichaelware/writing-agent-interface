@@ -14,7 +14,7 @@ export default function Layer4Panel() {
   const panelRef = useRef<HTMLDivElement>(null);
 
   const TABS = [
-    { id: "HYPERLINKS", label: "Parallelisms & Dualisms", component: <HyperlinksGraph /> },
+    { id: "HYPERLINKS", label: "Parallelisms & Dualisms" },
     { id: "BIBLICAL", label: "Biblical References", component: <BiblicalReferencesDirectory /> },
     { id: "ARCHETYPES", label: "Archetypes", component: <ArchetypesDirectory /> },
     { id: "SETTINGS", label: "Chapter Settings", component: <StylesTab /> },
@@ -92,7 +92,11 @@ export default function Layer4Panel() {
 
           {/* Active Component */}
           <div className="flex-1 overflow-y-auto pb-12 scrollbar-hide">
-            {TABS[activeTab].component}
+            {isOpen && TABS[activeTab].id === "HYPERLINKS" ? (
+                <HyperlinksGraph />
+            ) : (
+                TABS[activeTab].component
+            )}
           </div>
         </div>
       </div>

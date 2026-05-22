@@ -220,17 +220,23 @@ export default function HyperlinksGraph() {
       <svg ref={svgRef} className="w-full h-full" />
       
       {/* Legend */}
-      <div className="absolute top-4 left-4 flex flex-col gap-2 pointer-events-none">
-        {["sacred", "descent", "shadow", "anima", "self"].map(a => (
-            <div key={a} className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: ({
-                    sacred: "#e8d4a0",
-                    descent: "#6b2c2c",
-                    shadow: "#0a0a0a",
-                    anima: "#c9a96e",
-                    self: "#d4af37"
-                } as any)[a] }} />
-                <span className="font-hebrew text-[8px] uppercase tracking-widest text-[#8a857c]">{a}</span>
+      <div className="absolute bottom-6 left-6 flex flex-col gap-2 pointer-events-none font-serif italic text-[0.8125rem] text-[#8a857c]">
+        {[
+            { id: "sacred", color: "#e8d4a0" },
+            { id: "descent", color: "#6b2c2c" },
+            { id: "shadow", color: "#2a2a2a", border: "1px solid #8a857c" },
+            { id: "anima", color: "#c9a96e" },
+            { id: "self", color: "#c5a059" }
+        ].map(item => (
+            <div key={item.id} className="flex items-center gap-2">
+                <div 
+                    className="w-2 h-2 rounded-full" 
+                    style={{ 
+                        backgroundColor: item.color,
+                        border: item.border || 'none'
+                    }} 
+                />
+                <span className="capitalize">{item.id}</span>
             </div>
         ))}
       </div>

@@ -40,7 +40,7 @@ export default function ReaderLayout({ children }: { children: React.ReactNode }
     <div className="w-full min-h-screen bg-[#0a0a0a] text-[#e8e4dc] antialiased" style={{ perspective: "2000px" }}>
       <div 
         ref={wrapperRef} 
-        className="w-full h-full transform-gpu transition-all duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] origin-left will-change-[transform,filter]"
+        className="w-full h-full transition-all duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] origin-left"
       >
         {children}
       </div>

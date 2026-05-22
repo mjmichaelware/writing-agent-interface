@@ -54,18 +54,20 @@ export default function Page() {
   };
 
   return (
-    <ReaderLayout>
-      <Layer1Void />
-      <Layer2Cinema />
-      <Layer3Canvas>
-        <ManuscriptCore 
-            blocks={blocks} 
-            chapterSlug={chapterNum.toString()} 
-            partNumber={partNumber} 
-            onLoadChapter={handleChapterChange}
-        />
-      </Layer3Canvas>
+    <>
+      <ReaderLayout>
+        <Layer1Void />
+        <Layer2Cinema />
+        <Layer3Canvas>
+          <ManuscriptCore 
+              blocks={blocks} 
+              chapterSlug={chapterNum.toString()} 
+              partNumber={partNumber} 
+              onLoadChapter={handleChapterChange}
+          />
+        </Layer3Canvas>
+      </ReaderLayout>
       <Layer4Panel />
-    </ReaderLayout>
+    </>
   );
 }

@@ -1,47 +1,57 @@
-"use client";
-
-import React, { useState } from "react";
+import React from "react";
 import ReaderLayout from "@/components/ReaderLayout";
 import Layer1Void from "@/components/layers/Layer1Void";
 import Layer2Cinema from "@/components/layers/Layer2Cinema";
 import Layer3Canvas from "@/components/layers/Layer3Canvas";
 import Layer4Panel from "@/components/layers/Layer4Panel";
-import TitleCover from "@/components/ui/front-matter/TitleCover";
-import Dedication from "@/components/ui/front-matter/Dedication";
-import Synopsis from "@/components/ui/front-matter/Synopsis";
-import AboutAuthor from "@/components/ui/front-matter/AboutAuthor";
-import TableOfContents from "@/components/ui/front-matter/TableOfContents";
-import ManuscriptCore from "@/components/ManuscriptCore";
-import { NarrativeProvider } from "@/context/NarrativeContext";
 
-export default function Page() {
-  const [activeChapterId, setActiveChapterId] = useState<string | null>(null);
+export const dynamic = "force-dynamic";
+
+async function getChapterData(slug: string) {
+  const baseUrl =
+    process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "http://localhost:3000";
+
+  try {
+    const res = await fetch(`${baseUrl}/api/chapters?slug=${slug}`, {
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      return {
+        slug,
+        blocks: [],
+        error: "This chapter is not yet available.",
+      };
+    }
+
+    const data = await res.json();
+
+    return {
+      slug,
+      blocks: Array.isArray(data.blocks) ? data.blocks : [],
+      metadata: data.metadata ?? {},
+      total: data.total ?? 0,
+    };
+  } catch {
+    return {
+      slug,
+      blocks: [],
+      error: "This chapter is not yet available.",
+    };
+  }
+}
+
+export default async function Page() {
+  const chapterData = await getChapterData("7");
 
   return (
-    <NarrativeProvider>
-      <ReaderLayout>
-        <Layer1Void />
-
-        {/* Background Layers */}
-        <Layer2Cinema chapterSlug={activeChapterId || "7"} blocks={[]} />
-        <Layer3Canvas chapterId={activeChapterId} />
-
-        {/* Main Content Flow */}
-        <div className="relative z-30 w-full">
-          <TitleCover />
-
-          <Dedication />
-
-          <Synopsis />
-
-          <AboutAuthor />
-
-          <TableOfContents onSelect={setActiveChapterId} />
-
-          {/* The manuscript is now rendered inside Layer3Canvas */}
-        </div>
-        <Layer4Panel />
-      </ReaderLayout>
-    </NarrativeProvider>
+    <ReaderLayout>
+      <Layer1Void />
+      <Layer2Cinema chapterSlug="7" />
+      <Layer3Canvas chapterData={chapterData} />
+      <Layer4Panel />
+    </ReaderLayout>
   );
 }

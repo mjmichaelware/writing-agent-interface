@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { AgentService } from "@/services/bridge/agent.service";
+import { motion, AnimatePresence } from "framer-motion";
 
 type Status = "LOCKED" | "READY" | "RUNNING" | "COMPLETE" | "ERROR";
 
@@ -15,11 +16,11 @@ export default function SystemTab() {
 
   const submitPin = (value: string) => {
     if (value === "1003") {
-      setTimeout(() => { setUnlocked(true); setStatus("READY"); }, 300);
+      setTimeout(() => { setUnlocked(true); setStatus("READY"); }, 400);
       return;
     }
     setError(true);
-    setTimeout(() => { setPin(""); setError(false); }, 500);
+    setTimeout(() => { setPin(""); setError(false); }, 600);
   };
 
   const handleKey = (key: string) => {
@@ -41,7 +42,7 @@ export default function SystemTab() {
         input,
         "Weight of the Sky — Writing Agent Console"
       );
-      setOutput(data.response || data.result || JSON.stringify(data, null, 2));
+      setOutput(data.result || JSON.stringify(data, null, 2));
       setStatus("COMPLETE");
     } catch (err) {
       setStatus("ERROR");
@@ -49,187 +50,97 @@ export default function SystemTab() {
     }
   };
 
-  // PIN Gate
   if (!unlocked) {
     return (
-      <div
-        className="min-h-full flex flex-col"
-        style={{ background: "radial-gradient(circle at 50% 0%, rgba(201,169,110,0.09) 0%, transparent 50%)" }}
-      >
-        <div className="px-8 pt-10 pb-6">
-          <p className="section-label mb-2">System Gateway</p>
-          <h2 className="font-serif text-3xl text-[var(--text-body)] leading-tight">
-            Private kernel<br />
-            <span className="italic text-[var(--text-muted)]">authorization.</span>
-          </h2>
-          <p className="mt-4 font-serif text-sm leading-[1.75] text-[var(--text-muted)]">
-            Unlocks the protected author-side intelligence without exposing internal system metadata to the reader surface.
-          </p>
-        </div>
-
-        {/* PIN dots */}
-        <div className="flex justify-center gap-5 mb-10">
-          {[0, 1, 2, 3].map((i) => (
-            <div
-              key={i}
-              className="w-3 h-3 rounded-full transition-all duration-300"
-              style={{
-                background: error
-                  ? "var(--descent)"
-                  : i < pin.length
-                  ? "var(--text-body)"
-                  : "rgba(255,255,255,0.12)",
-                boxShadow: error
-                  ? "0 0 14px rgba(107,44,44,0.7)"
-                  : i < pin.length
-                  ? "0 0 12px rgba(232,228,220,0.35)"
-                  : "none",
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Keypad */}
-        <div className="px-8">
-          <div
-            className="rounded-2xl p-5"
-            style={{
-              background: "rgba(0,0,0,0.35)",
-              border: "1px solid rgba(255,255,255,0.07)",
-              backdropFilter: "blur(16px)",
-              WebkitBackdropFilter: "blur(16px)",
-            }}
-          >
-            <div className="grid grid-cols-3 gap-3">
-              {["1","2","3","4","5","6","7","8","9","DEL","0","ENT"].map((key) => (
-                <button
-                  key={key}
-                  onClick={() => handleKey(key)}
-                  className="aspect-square rounded-xl font-serif text-base text-[var(--text-muted)] transition-all duration-200 active:scale-95"
-                  style={{
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1px solid rgba(255,255,255,0.07)",
-                  }}
-                  onMouseEnter={e => {
-                    (e.currentTarget as HTMLButtonElement).style.background = "rgba(201,169,110,0.1)";
-                    (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(201,169,110,0.3)";
-                    (e.currentTarget as HTMLButtonElement).style.color = "var(--text-body)";
-                  }}
-                  onMouseLeave={e => {
-                    (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.04)";
-                    (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.07)";
-                    (e.currentTarget as HTMLButtonElement).style.color = "var(--text-muted)";
-                  }}
-                >
-                  {key === "DEL" ? "⌫" : key === "ENT" ? "↵" : key}
-                </button>
-              ))}
-            </div>
+      <div className="min-h-full flex flex-col items-center justify-center relative overflow-hidden bg-[#050507]">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,_rgba(201,169,110,0.05)_0%,_transparent_60%)]" />
+        
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="w-full max-w-[320px] z-10 px-8"
+        >
+          <div className="text-center mb-12">
+            <div className="text-[10px] tracking-[0.4em] text-[var(--accent-gold)] uppercase font-bold mb-4">Kernel Access</div>
+            <h2 className="font-serif text-3xl text-[var(--text-body)] leading-tight italic">
+              Authorization Required.
+            </h2>
           </div>
-        </div>
+
+          <div className="flex justify-center gap-6 mb-12">
+            {[0, 1, 2, 3].map((i) => (
+              <motion.div
+                key={i}
+                animate={{ 
+                  scale: i < pin.length ? 1.2 : 1,
+                  backgroundColor: error ? "#6b2c2c" : i < pin.length ? "#e8e4dc" : "rgba(255,255,255,0.05)"
+                }}
+                className="w-4 h-4 rounded-full border border-white/5 shadow-2xl"
+              />
+            ))}
+          </div>
+
+          <div className="grid grid-cols-3 gap-3">
+            {["1","2","3","4","5","6","7","8","9","DEL","0","ENT"].map((key) => (
+              <button
+                key={key}
+                onClick={() => handleKey(key)}
+                className="aspect-square rounded-2xl bg-white/[0.02] border border-white/[0.05] font-serif text-lg text-[var(--text-muted)] hover:bg-[var(--accent-gold)]/10 hover:text-white transition-all active:scale-95"
+              >
+                {key === "DEL" ? "⌫" : key === "ENT" ? "↵" : key}
+              </button>
+            ))}
+          </div>
+        </motion.div>
       </div>
     );
   }
 
-  // Unlocked — Writing Agent Console
   return (
-    <div
-      className="min-h-full flex flex-col"
-      style={{ background: "radial-gradient(circle at 50% 0%, rgba(16,185,129,0.08) 0%, transparent 50%)" }}
-    >
-      <div className="px-8 pt-10 pb-6">
-        <div className="flex items-center gap-2 mb-3">
-          <div
-            className="w-2 h-2 rounded-full animate-pulse-gold"
-            style={{ background: "#10b981" }}
-          />
-          <p
-            className="font-serif italic text-xs"
-            style={{ color: "#10b981" }}
-          >
-            Writing Agent — {status}
-          </p>
+    <div className="min-h-full flex flex-col bg-[#050507] p-8">
+      <div className="flex items-center justify-between mb-12">
+        <div>
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-2 h-2 rounded-full bg-[#10b981] shadow-[0_0_12px_#10b981] animate-pulse" />
+            <span className="text-[9px] tracking-[0.3em] text-[#10b981] uppercase font-bold">Author Intel v4.0</span>
+          </div>
+          <h2 className="font-serif text-3xl text-[var(--text-body)] italic leading-tight">Narrative Swarm.</h2>
         </div>
-        <h2 className="font-serif text-3xl text-[var(--text-body)] leading-tight">
-          Author-side<br />
-          <span className="italic text-[var(--text-muted)]">narrative intelligence.</span>
-        </h2>
-        <p className="mt-3 font-serif text-sm leading-[1.75] text-[var(--text-muted)]">
-          Query motifs, continuity, symbolism, chapter logic, or revision strategy through the protected kernel.
-        </p>
+        <div className="flex gap-4">
+          <a href="/analyze" className="px-4 py-2 rounded-full border border-white/10 text-[9px] tracking-widest uppercase hover:bg-white/5 transition-all">Doc Analyzer</a>
+        </div>
       </div>
 
-      <div className="px-6 flex-1 flex flex-col gap-4 pb-8">
-        <div className="flex gap-2">
-          <a 
-            href="/analyze"
-            className="flex-1 rounded-xl py-2 px-4 border border-[var(--accent-gold)]/30 text-[var(--accent-gold)] font-serif text-xs text-center hover:bg-[var(--accent-gold)]/10 transition-all"
-          >
-            Open Document Analyzer
-          </a>
-          <button
-            className="flex-1 rounded-xl py-2 px-4 border border-white/10 text-white font-serif text-xs text-center opacity-40 cursor-default"
-          >
-            System Diagnostic
-          </button>
-        </div>
-
-        <div
-          className="rounded-2xl p-1"
-          style={{
-            background: "rgba(0,0,0,0.4)",
-            border: "1px solid rgba(16,185,129,0.15)",
-            backdropFilter: "blur(16px)",
-            WebkitBackdropFilter: "blur(16px)",
-          }}
-        >
+      <div className="flex-1 flex flex-col gap-8">
+        <div className="relative group">
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            className="w-full h-36 resize-none bg-transparent p-4 font-serif text-sm leading-[1.75] text-[var(--text-body)] outline-none placeholder:text-[var(--text-muted)] placeholder:italic"
-            placeholder="Ask the narrative engine what this chapter is hiding..."
+            className="w-full h-48 bg-white/[0.02] border border-white/5 rounded-[32px] p-8 font-serif text-base text-[var(--text-body)] outline-none placeholder:text-white/10 resize-none transition-all focus:border-[#10b981]/30 focus:bg-white/[0.04]"
+            placeholder="Query the kernel for narrative drift..."
           />
+          <button
+            onClick={execute}
+            disabled={!input.trim() || status === "RUNNING"}
+            className="absolute bottom-6 right-6 px-6 py-3 rounded-full bg-[#10b981] text-black text-[10px] tracking-widest uppercase font-bold hover:scale-105 active:scale-95 transition-all disabled:opacity-20"
+          >
+            {status === "RUNNING" ? "Processing..." : "Execute"}
+          </button>
         </div>
 
-        <button
-          onClick={execute}
-          disabled={!input.trim() || status === "RUNNING"}
-          className="w-full rounded-2xl py-3.5 font-serif italic text-sm transition-all duration-300 disabled:opacity-30"
-          style={{
-            border: "1px solid rgba(16,185,129,0.3)",
-            color: "#10b981",
-            background: status === "RUNNING"
-              ? "rgba(16,185,129,0.08)"
-              : "transparent",
-          }}
-          onMouseEnter={e => {
-            if (input.trim() && status !== "RUNNING") {
-              (e.currentTarget as HTMLButtonElement).style.background = "rgba(16,185,129,0.1)";
-            }
-          }}
-          onMouseLeave={e => {
-            (e.currentTarget as HTMLButtonElement).style.background =
-              status === "RUNNING" ? "rgba(16,185,129,0.08)" : "transparent";
-          }}
-        >
-          {status === "RUNNING" ? "Consulting the kernel..." : "Execute query"}
-        </button>
-
-        {output && (
-          <div
-            className="rounded-2xl p-5 flex-1 overflow-auto"
-            style={{
-              background: "rgba(0,0,0,0.45)",
-              border: "1px solid rgba(255,255,255,0.07)",
-              backdropFilter: "blur(12px)",
-              WebkitBackdropFilter: "blur(12px)",
-            }}
-          >
-            <pre className="font-serif text-xs leading-[1.8] text-[var(--text-muted)] whitespace-pre-wrap">
-              {output}
-            </pre>
-          </div>
-        )}
+        <AnimatePresence>
+          {output && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex-1 rounded-[32px] bg-black/40 border border-white/5 p-8 overflow-auto scrollbar-hide"
+            >
+              <pre className="font-serif text-sm leading-[1.8] text-[var(--text-muted)] whitespace-pre-wrap">
+                {output}
+              </pre>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

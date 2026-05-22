@@ -1,13 +1,21 @@
 import { TextToSpeechClient } from '@google-cloud/text-to-speech';
 import { NextResponse } from 'next/server';
 
-const client = new TextToSpeechClient({
-  credentials: {
-    client_email: process.env.GOOGLE_CLIENT_EMAIL,
-    private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
-  },
-  projectId: process.env.GOOGLE_CLOUD_PROJECT,
-});
+function getClient() {
+  const email = process.env.GOOGLE_CLIENT_EMAIL;
+  const key = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
+  const project = process.env.GOOGLE_CLOUD_PROJECT;
+
+  if (!email || !key || !project) return null;
+
+  return new TextToSpeechClient({
+    credentials: {
+      client_email: email,
+      private_key: key,
+    },
+    projectId: project,
+  });
+}
 
 export async function POST(request: Request) {
   try {
@@ -17,7 +25,12 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'text is required' }, { status: 400 });
     }
 
-    // Feature 32: Prestige Voice Configuration
+    const client = getClient();
+    if (!client) {
+      return NextResponse.json({ error: 'Google Cloud credentials not configured' }, { status: 503 });
+    }
+
+    // Feature 32: Prestige Voice Configuration (Wavenet-D, Studio Quality)
     const [response] = await client.synthesizeSpeech({
       input: { text },
       voice: { languageCode: 'en-US', name: 'en-US-Wavenet-D', ssmlGender: 'MALE' },

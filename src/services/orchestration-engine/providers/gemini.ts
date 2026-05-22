@@ -8,8 +8,20 @@ export class GeminiProvider implements LLMProvider {
   constructor() {
     const project = process.env.GOOGLE_CLOUD_PROJECT;
     const location = process.env.GOOGLE_CLOUD_LOCATION || 'us-central1';
+    const email = process.env.GOOGLE_CLIENT_EMAIL;
+    const key = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
+
     if (project) {
-      this.vertexAI = new VertexAI({ project, location });
+      this.vertexAI = new VertexAI({ 
+        project, 
+        location,
+        googleAuthOptions: email && key ? {
+          credentials: {
+            client_email: email,
+            private_key: key,
+          }
+        } : undefined
+      });
     }
   }
 

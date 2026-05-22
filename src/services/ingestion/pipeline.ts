@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
-import { VertexAI } from '@google-cloud/vertexai';
 import OpenAI from 'openai';
+import { GoogleSwarm } from '../orchestration-engine/google-swarm';
 
 function getSupabase() {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -15,13 +15,6 @@ function getOpenAI() {
   return new OpenAI({ apiKey });
 }
 
-function getVertexAI() {
-  const project = process.env.GOOGLE_CLOUD_PROJECT;
-  const location = process.env.GOOGLE_CLOUD_LOCATION || 'us-central1';
-  if (!project) return null;
-  return new VertexAI({ project, location });
-}
-
 export async function ingestChapter(
   partNumber: string,
   chapterNumber: number,
@@ -31,11 +24,13 @@ export async function ingestChapter(
 ) {
   const supabase = getSupabase();
   const openai = getOpenAI();
-  const vertexAI = getVertexAI();
 
   if (!supabase) throw new Error("Supabase credentials not configured");
   if (!openai) throw new Error("OpenAI API key not configured");
-  if (!vertexAI) throw new Error("Google Cloud Project not configured for Vertex AI");
+
+  // Feature 190: Audit Ingestion with Google BigQuery
+  await GoogleSwarm.logIntegrity('ingestion_start', { manifestId, partNumber, chapterNumber });
+
   // 1. Establish Canonical Chapter Node
   const { data: chapter, error: chapterError } = await supabase
     .from('chapters')
@@ -57,8 +52,6 @@ export async function ingestChapter(
   // 3. Engine Plane: Semantic Enrichment Pass
   for (const pText of paragraphs) {
     // Generate Embedding via OpenAI (Optimized for speed and consistency)
-    if (!openai) throw new Error("OpenAI API key not configured");
-    
     const embedResponse = await openai.embeddings.create({
       model: "text-embedding-3-small",
       input: pText,
@@ -87,7 +80,7 @@ export async function ingestChapter(
 
     const enrichment = JSON.parse(enrichmentResponse.choices[0].message.content || '{}');
 
-    // 4. Persistence into Postgres
+    // 4. Persistence Plane
     const { data: paragraphData, error: pError } = await supabase
       .from('paragraphs')
       .insert({
@@ -104,7 +97,8 @@ export async function ingestChapter(
 
     if (pError) throw pError;
 
-    if (enrichment.biblical_references && enrichment.biblical_references.length > 0) {
+    // 5. Cross-Reference Plane
+    if (paragraphData && enrichment.biblical_references?.length > 0) {
       const refs = enrichment.biblical_references.map((ref: any) => ({
         paragraph_id: paragraphData.id,
         reference_text: ref.text,
@@ -115,6 +109,8 @@ export async function ingestChapter(
       await supabase.from('biblical_references').insert(refs);
     }
   }
+
+  await GoogleSwarm.logIntegrity('ingestion_complete', { manifestId, paragraphCount: paragraphs.length });
 
   return { success: true, chapterId: chapter.id, parsedCount: paragraphs.length };
 }

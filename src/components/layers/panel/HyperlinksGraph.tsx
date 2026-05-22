@@ -25,18 +25,42 @@ interface Link extends d3.SimulationLinkDatum<Node> {
 export default function HyperlinksGraph() {
   const svgRef = useRef<SVGSVGElement>(null);
   const [data, setData] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
+
     async function fetchGraph() {
       try {
-        const res = await fetch("/api/graph");
+        const res = await fetch("/api/graph", { signal: controller.signal });
+        clearTimeout(timeoutId);
+        
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+        
         const json = await res.json();
-        if (json.dualisms) setData(json.dualisms);
-      } catch (err) {
+        if (json.dualisms) {
+          setData(json.dualisms);
+        } else {
+          setData([]);
+        }
+      } catch (err: any) {
         console.error("Graph fetch failed:", err);
+        if (err.name === 'AbortError') {
+          setError("Request timed out");
+        } else {
+          setError(err.message);
+        }
+      } finally {
+        setIsLoading(false);
       }
     }
     fetchGraph();
+    return () => {
+      clearTimeout(timeoutId);
+      controller.abort();
+    };
   }, []);
 
   useEffect(() => {
@@ -211,8 +235,14 @@ export default function HyperlinksGraph() {
         ))}
       </div>
 
-      {!data.length && (
+      {!isLoading && !data.length && (
         <div className="absolute inset-0 flex items-center justify-center font-serif italic text-[#8a857c]">
+          {error ? "No semantic data available" : "No semantic connections found"}
+        </div>
+      )}
+
+      {isLoading && (
+        <div className="absolute inset-0 flex items-center justify-center font-serif italic text-[#8a857c] animate-pulse">
           Scanning semantic topology...
         </div>
       )}

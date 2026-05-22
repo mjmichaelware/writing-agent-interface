@@ -2,23 +2,25 @@ import { createClient } from '@supabase/supabase-js';
 import { VertexAI } from '@google-cloud/vertexai';
 import OpenAI from 'openai';
 
-// Data Plane - Supabase
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-const supabase = createClient(supabaseUrl, supabaseKey);
+function getSupabase() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!supabaseUrl || !supabaseKey) return null;
+  return createClient(supabaseUrl, supabaseKey);
+}
 
-// Tenth System - Orchestration
-// We use Vertex AI for embeddings as per Directive Phase 1 update
-const project = process.env.GOOGLE_CLOUD_PROJECT || 'weight-of-the-sky';
-const location = process.env.GOOGLE_CLOUD_LOCATION || 'us-central1';
-const vertexAI = new VertexAI({ project, location });
-const generativeModel = vertexAI.getGenerativeModel({
-  model: 'gemini-1.5-flash',
-});
+function getOpenAI() {
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) return null;
+  return new OpenAI({ apiKey });
+}
 
-// For semantic enrichment, we continue using OpenAI or can switch to Gemini.
-// The user requested Multi-LLM Orchestration.
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+function getVertexAI() {
+  const project = process.env.GOOGLE_CLOUD_PROJECT;
+  const location = process.env.GOOGLE_CLOUD_LOCATION || 'us-central1';
+  if (!project) return null;
+  return new VertexAI({ project, location });
+}
 
 export async function ingestChapter(
   partNumber: string,
@@ -27,19 +29,26 @@ export async function ingestChapter(
   manifestId: string,
   rawXmlText: string
 ) {
+  const supabase = getSupabase();
+  const openai = getOpenAI();
+  const vertexAI = getVertexAI();
+
+  if (!supabase) throw new Error("Supabase credentials not configured");
+  if (!openai) throw new Error("OpenAI API key not configured");
+  if (!vertexAI) throw new Error("Google Cloud Project not configured for Vertex AI");
   // 1. Establish Canonical Chapter Node
   const { data: chapter, error: chapterError } = await supabase
     .from('chapters')
-    .insert({
+    .upsert({
       part_number: partNumber,
       chapter_number: chapterNumber,
       status,
       manifest_id: manifestId,
-    })
+    }, { onConflict: 'manifest_id' })
     .select()
     .single();
 
-  if (chapterError || !chapter) throw chapterError || new Error("Failed to insert chapter");
+  if (chapterError || !chapter) throw chapterError || new Error("Failed to insert/upsert chapter");
 
   // 2. XML Stripping & Semantic Chunking
   const cleanText = rawXmlText.replace(/<[^>]*>?/gm, ''); 
@@ -47,11 +56,14 @@ export async function ingestChapter(
 
   // 3. Engine Plane: Semantic Enrichment Pass
   for (const pText of paragraphs) {
-    // Generate Embedding via Vertex AI (Feature 51: text-embedding-004/005)
-    // Using the Vertex AI SDK for "actual hashing"
-    const embedModel = vertexAI.preview.getGenerativeModel({ model: 'text-embedding-004' });
-    const embedResponse = await embedModel.embedContent(pText);
-    const embedding = embedResponse.embedding.values;
+    // Generate Embedding via OpenAI (Optimized for speed and consistency)
+    if (!openai) throw new Error("OpenAI API key not configured");
+    
+    const embedResponse = await openai.embeddings.create({
+      model: "text-embedding-3-small",
+      input: pText,
+    });
+    const embedding = embedResponse.data[0].embedding;
 
     // Tenth System / Engine Plane - LLM Semantic Weighting
     const enrichmentResponse = await openai.chat.completions.create({

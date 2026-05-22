@@ -160,6 +160,20 @@ export default function SystemTab() {
       </div>
 
       <div className="px-6 flex-1 flex flex-col gap-4 pb-8">
+        <div className="flex gap-2">
+          <a 
+            href="/analyze"
+            className="flex-1 rounded-xl py-2 px-4 border border-[var(--accent-gold)]/30 text-[var(--accent-gold)] font-serif text-xs text-center hover:bg-[var(--accent-gold)]/10 transition-all"
+          >
+            Open Document Analyzer
+          </a>
+          <button
+            className="flex-1 rounded-xl py-2 px-4 border border-white/10 text-white font-serif text-xs text-center opacity-40 cursor-default"
+          >
+            System Diagnostic
+          </button>
+        </div>
+
         <div
           className="rounded-2xl p-1"
           style={{

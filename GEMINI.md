@@ -18,3 +18,28 @@ Before structural changes or when seeking lore/logic, reference the core archite
 - **Tier 2 (Logic)**: 077, 084, 097, 104, 123, 124, 134
 - **Tier 3 (Diag/Archive)**: 139, 140, 154, 199
 - Also refer to: `.trashed-1781206417-Writing Agent App. Source Doc. (8) [COMBINED].txt`
+## SESSION CONTEXT (read at every session start)
+
+On startup, before responding to any operator command, read these
+directories in order:
+
+### Tier 1 — Critical Project Identity (read first, hold all)
+`.agent-context/tier1-critical/` — 17 files defining the project's
+spine: source docs, AI checkpoints, the Aesthetic Mandate, both
+Claude assessments, the OMEGA prompt, the 4-layer UI/UX inventory,
+the IMPOSSIBLE_TARGETS structure, the project handoff context.
+
+### Tier 2 — Large Audits & Universal Mandates
+`.agent-context/tier2-large/` — 6 files including the
+CONTRADICTION_MAP, drive sync diffs, NEW_SEC_DOC v1/v2, and the
+NOS_INTEGRATION_BLUEPRINT (the system architecture authority).
+
+### Tier 3 — Runtime Checkpoints
+`.agent-context/tier3-checkpoints/` — 4 files including
+NOS_Master_Blueprints, NOS_Master_Diagnostic, Project Checkpoint 2,
+and the Termux session checkpoint.
+
+Hold all of this in working memory for the entire session. Reference
+files by tier and position number (e.g. "tier1/04" for
+AI_CHECKPOINT_FINAL) when citing context in responses.
+

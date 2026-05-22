@@ -1,25 +1,27 @@
 import { NextResponse } from 'next/server';
-import { orchestrateAgent } from '@/services/orchestration-engine/router';
+import { llmRouter } from '@/services/orchestration-engine/router';
 
 export async function POST(request: Request) {
   try {
-    const { role, prompt, context } = await request.json();
+    const { prompt, context, role, preferredProvider } = await request.json();
 
-    if (!role || !prompt) {
-      return NextResponse.json({ error: 'role and prompt are required' }, { status: 400 });
+    if (!prompt) {
+      return NextResponse.json({ error: 'prompt is required' }, { status: 400 });
     }
 
-    const result = await orchestrateAgent(role, prompt, context);
+    const response = await llmRouter.route({
+      systemPrompt: role || "You are the Autonomous Principal Systems Architect and UI/UX Engineer for the Narrative Operating System.",
+      context,
+      prompt,
+    }, preferredProvider);
 
-    // If result is from OpenAI/Groq it will have a specific shape, 
-    // if from Vertex AI it might be a string.
-    let content = result;
-    if (typeof result === 'object' && result.choices) {
-      content = result.choices[0].message.content;
-    }
-
-    return NextResponse.json({ result: content });
+    return NextResponse.json({ 
+      result: response.content,
+      provider: response.provider,
+      model: response.model
+    });
   } catch (error: any) {
+    console.error("Agent execution failed:", error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

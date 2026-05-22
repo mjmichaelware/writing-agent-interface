@@ -19,3 +19,4 @@ build/
 # TypeScript Build Info Cache Matrix
 *.tsbuildinfo
 .sandbox/
+.agent-context/

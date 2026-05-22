@@ -36,7 +36,7 @@ export default function Layer3Canvas({ chapterId }: { chapterId: string | null }
       }}
     >
       <div className="w-full min-h-full relative">
-        {chapterId && <ManuscriptCore chapterId={chapterId} />}
+        {chapterId && <ManuscriptCore chapterId={chapterId} ttsEnabled={controls.tts} />}
       </div>
       <ReaderControlPanel controls={controls} setControls={setControls} />
     </div>

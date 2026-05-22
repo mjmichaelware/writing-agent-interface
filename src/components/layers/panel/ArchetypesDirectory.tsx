@@ -4,11 +4,14 @@ import React, { useEffect, useState } from "react";
 import { bus } from "@/core/runtimeEngine";
 import { AgentService, type ArchetypeRecord } from "@/services/bridge/agent.service";
 
+import { useNarrative } from "@/context/NarrativeContext";
+
 export default function ArchetypesDirectory() {
+  const { state } = useNarrative();
+  const { archetypalWeights, focusedId } = state;
   const [archetypes, setArchetypes] = useState<ArchetypeRecord[]>([]);
   const [active, setActive] = useState<ArchetypeRecord | null>(null);
   const [status, setStatus] = useState<"loading" | "ready" | "empty">("loading");
-  const [activeParaIndex, setActiveParaIndex] = useState<number>(0);
 
   useEffect(() => {
     let mounted = true;
@@ -25,11 +28,17 @@ export default function ArchetypesDirectory() {
     return () => { mounted = false; };
   }, []);
 
+  // Highlight archetype based on active paragraph weights
   useEffect(() => {
-    return bus.on("scroll:focus", (data: any) => {
-      setActiveParaIndex(data?.paraIndex ?? 0);
-    });
-  }, []);
+    if (!archetypalWeights) return;
+    
+    // Simple logic: pick the archetype with highest weight
+    const keys = Object.keys(archetypalWeights) as (keyof typeof archetypalWeights)[];
+    const maxKey = keys.reduce((a, b) => (archetypalWeights[a] || 0) > (archetypalWeights[b] || 0) ? a : b, keys[0]);
+    
+    const found = archetypes.find(a => a.name.toLowerCase().includes(maxKey.toLowerCase()));
+    if (found) setActive(found);
+  }, [archetypalWeights, archetypes]);
 
   return (
     <div className="min-h-full flex flex-col" style={{ background: "radial-gradient(circle at top, rgba(201,169,110,0.06) 0%, transparent 50%)" }}>
@@ -45,7 +54,7 @@ export default function ArchetypesDirectory() {
           className="mt-3 font-serif italic text-xs"
           style={{ color: "rgba(201,169,110,0.55)" }}
         >
-          Reading position: paragraph {activeParaIndex}
+          Active Focus: {focusedId || "None"}
         </div>
         {status === "loading" && (
           <p className="mt-4 font-serif italic text-sm text-[var(--text-muted)] animate-pulse-gold">

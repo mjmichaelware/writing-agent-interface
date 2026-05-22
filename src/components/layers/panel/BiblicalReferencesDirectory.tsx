@@ -76,7 +76,7 @@ export default function BiblicalReferencesDirectory() {
               >
                 {item.ref}
               </div>
-              <div className="font-serif italic text-base text-[var(--text-body)] leading-snug">
+              <div className="font-hebrew italic text-base text-[var(--text-body)] leading-snug">
                 {item.title}
               </div>
             </button>

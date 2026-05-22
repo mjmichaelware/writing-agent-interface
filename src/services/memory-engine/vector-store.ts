@@ -1,26 +1,39 @@
 import { Pool } from "pg";
 
 export class VectorStore {
-  private pool: Pool;
+  private pool: Pool | null = null;
 
   constructor() {
-    this.pool = new Pool({
-      connectionString: process.env.DATABASE_URL,
-      ssl: { rejectUnauthorized: false },
-      max: 5,
-      idleTimeoutMillis: 30000,
-      connectionTimeoutMillis: 10000,
-    });
+    const connectionString = process.env.DATABASE_URL;
+    if (connectionString) {
+      this.pool = new Pool({
+        connectionString,
+        ssl: { rejectUnauthorized: false },
+        max: 5,
+        idleTimeoutMillis: 30000,
+        connectionTimeoutMillis: 10000,
+      });
+    }
+  }
+
+  private async query(text: string, params?: any[]) {
+    if (!this.pool) {
+      throw new Error("Postgres connection string not configured (DATABASE_URL)");
+    }
+    return this.pool.query(text, params);
   }
 
   async initializeSchema() {
-    await this.pool.query(`
+    await this.query(`
       CREATE EXTENSION IF NOT EXISTS vector;
       CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
       CREATE TABLE IF NOT EXISTS chapters (
         id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
         manifest_id TEXT UNIQUE,
+        part_number TEXT,
+        chapter_number INT,
+        status TEXT,
         thematic_embedding vector(1536),
         created_at TIMESTAMP DEFAULT NOW()
       );
@@ -30,6 +43,21 @@ export class VectorStore {
         chapter_id UUID REFERENCES chapters(id) ON DELETE CASCADE,
         chunk_index INT,
         content TEXT,
+        embedding vector(1536),
+        archetypal_weights JSONB DEFAULT '{}',
+        dualism_map JSONB DEFAULT '{}',
+        hebrew_spans JSONB DEFAULT '[]',
+        metadata JSONB DEFAULT '{}',
+        created_at TIMESTAMP DEFAULT NOW()
+      );
+
+      CREATE TABLE IF NOT EXISTS biblical_references (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        paragraph_id UUID REFERENCES paragraphs(id) ON DELETE CASCADE,
+        reference_text TEXT,
+        book TEXT,
+        chapter INT,
+        verse INT,
         created_at TIMESTAMP DEFAULT NOW()
       );
 
@@ -39,7 +67,7 @@ export class VectorStore {
   }
 
   async insertChapter(manifestId: string, embedding: number[]): Promise<string> {
-    const res = await this.pool.query(
+    const res = await this.query(
       `INSERT INTO chapters (manifest_id, thematic_embedding)
        VALUES ($1, $2)
        ON CONFLICT (manifest_id)
@@ -52,7 +80,7 @@ export class VectorStore {
   }
 
   async clearParagraphs(chapterId: string) {
-    await this.pool.query(
+    await this.query(
       `DELETE FROM paragraphs
        WHERE chapter_id = $1`,
       [chapterId]
@@ -60,7 +88,7 @@ export class VectorStore {
   }
 
   async insertParagraph(chapterId: string, chunkIndex: number, content: string) {
-    await this.pool.query(
+    await this.query(
       `INSERT INTO paragraphs (
          chapter_id,
          chunk_index,
@@ -72,7 +100,7 @@ export class VectorStore {
   }
 
   async getChapterByManifestId(manifestId: string): Promise<string | null> {
-    const res = await this.pool.query(
+    const res = await this.query(
       `SELECT id
        FROM chapters
        WHERE manifest_id = $1
@@ -84,7 +112,7 @@ export class VectorStore {
   }
 
   async searchTopChapter(embedding: number[]): Promise<string | null> {
-    const res = await this.pool.query(
+    const res = await this.query(
       `SELECT id
        FROM chapters
        ORDER BY thematic_embedding <=> $1
@@ -96,7 +124,7 @@ export class VectorStore {
   }
 
   async getParagraphsByChapter(chapterId: string): Promise<string[]> {
-    const res = await this.pool.query(
+    const res = await this.query(
       `SELECT content
        FROM paragraphs
        WHERE chapter_id = $1
@@ -114,7 +142,7 @@ export class VectorStore {
     content: string;
     para_index: number;
   }[]> {
-    const res = await this.pool.query(
+    const res = await this.query(
       `SELECT
          p.content,
          p.chunk_index,
@@ -147,7 +175,7 @@ export class VectorStore {
     chapters: string;
     para_index: number;
   }[]> {
-    const res = await this.pool.query(
+    const res = await this.query(
       `SELECT
          p.chunk_index,
          p.content,
@@ -172,3 +200,4 @@ export class VectorStore {
     }));
   }
 }
+

@@ -2,17 +2,35 @@
  * Feature 15: HTML Tokenizer Engine
  * Client-side utility that splits plain string blocks into individual nested words 
  * wrapped in <span> tags with physics bindings.
+ * 
+ * Feature 12: Hebrew Typography Rendering
+ * Wrap biblical proper nouns and Hebrew terms in <span class="font-hebrew">.
  */
+const BIBLICAL_NOUNS = [
+  "Hebron", "Hermon", "Mamre", "Beelzebub", "Megiddo", "Sak", 
+  "Aviel", "Dan", "Kasha", "Dagon", "Dahl", "Rafa"
+];
+
 export function tokenize(text: string): string {
-  // Split by whitespace but keep the whitespace as tokens if needed
-  // For simplicity, we split by words and wrap them.
   return text
     .split(/(\s+)/)
     .map((token) => {
       if (/\s+/.test(token)) {
         return token;
       }
-      return `<span class="kinetic-word transition-all duration-700 hover:text-[var(--accent-gold)]">${token}</span>`;
+      
+      const cleanToken = token.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+      const isBiblical = BIBLICAL_NOUNS.some(n => cleanToken.toLowerCase() === n.toLowerCase());
+      
+      const classes = [
+        "kinetic-word",
+        "transition-all",
+        "duration-700",
+        "hover:text-[var(--accent-gold)]",
+        isBiblical ? "font-hebrew text-[var(--accent-gold)]" : ""
+      ].filter(Boolean).join(" ");
+
+      return `<span class="${classes}">${token}</span>`;
     })
     .join('');
 }

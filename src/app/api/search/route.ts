@@ -2,15 +2,28 @@ import { createClient } from '@supabase/supabase-js';
 import { VertexAI } from '@google-cloud/vertexai';
 import { NextResponse } from 'next/server';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-const supabase = createClient(supabaseUrl, supabaseKey);
+function getSupabase() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!supabaseUrl || !supabaseKey) return null;
+  return createClient(supabaseUrl, supabaseKey);
+}
 
-const project = process.env.GOOGLE_CLOUD_PROJECT || 'weight-of-the-sky';
-const location = process.env.GOOGLE_CLOUD_LOCATION || 'us-central1';
-const vertexAI = new VertexAI({ project, location });
+function getVertexAI() {
+  const project = process.env.GOOGLE_CLOUD_PROJECT;
+  const location = process.env.GOOGLE_CLOUD_LOCATION || 'us-central1';
+  if (!project) return null;
+  return new VertexAI({ project, location });
+}
 
 export async function POST(request: Request) {
+  const supabase = getSupabase();
+  const vertexAI = getVertexAI();
+
+  if (!supabase || !vertexAI) {
+    return NextResponse.json({ error: 'System components not configured' }, { status: 503 });
+  }
+
   const { query } = await request.json();
 
   if (!query) {
@@ -33,5 +46,5 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
-  return NextResponse.json(data);
+  return NextResponse.json({ results: data });
 }

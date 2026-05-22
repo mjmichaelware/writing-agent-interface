@@ -1,4 +1,9 @@
 import { CorpusLoader } from "../services/memory-engine/corpus-loader";
+import * as dotenv from "dotenv";
+import path from "path";
+
+// Load .env.local explicitly
+dotenv.config({ path: path.join(process.cwd(), ".env.local") });
 
 async function main() {
   const loader = new CorpusLoader();

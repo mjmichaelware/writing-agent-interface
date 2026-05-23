@@ -2,15 +2,8 @@
 
 import React from "react";
 
-/**
- * MATHEMATICAL EFFECTS SYSTEM: SHADER MIDDLEWARE OVERLAY
- * * Bundles structural SVG turbulence arrays, chromatic displacement filters,
- * scanline generators, and radial color vignette shading layers.
- * * Combines vector mathematical processing pipelines directly with native CSS attributes.
- */
-
 interface ShaderEffectsProps {
-  grainOpacity: number; // FIXED: Explicitly typed as a strict JavaScript number primitive
+  grainOpacity: number;
   chromaticAberration: string;
 }
 
@@ -24,10 +17,6 @@ export default function ShaderEffects({ grainOpacity, chromaticAberration }: Sha
           40% { opacity: 0.03; transform: translate(1px, -1px); }
           60% { opacity: 0.055; transform: translate(-0.5px, 1.5px); }
           80% { opacity: 0.025; transform: translate(1.5px, -0.5px); }
-        }
-        @keyframes verticalScanlineScroll {
-          0% { transform: translateY(-100%); }
-          100% { transform: translateY(100%); }
         }
         .radial-vignette-shading-plate {
           position: absolute;
@@ -48,15 +37,7 @@ export default function ShaderEffects({ grainOpacity, chromaticAberration }: Sha
           inset: 0;
           pointer-events: none;
           mix-blend-mode: screen;
-          box-shadow: inset 0 0 80px rgba(6, 182, 212, 0.03);
-        }
-        .scrolling-cyber-scanline-bar {
-          position: absolute;
-          left: 0; right: 0;
-          height: 2px;
-          background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.25), transparent);
-          opacity: 0.015;
-          animation: verticalScanlineScroll 16s infinite linear;
+          box-shadow: inset 0 0 80px rgba(201, 169, 110, 0.03);
         }
         .ambient-contrast-booster {
           position: absolute;
@@ -66,10 +47,8 @@ export default function ShaderEffects({ grainOpacity, chromaticAberration }: Sha
         }
       `}} />
 
-      {/* COMPONENT A: RADIAL EXTENDED SHADING VIGNETTE CONTAINER */}
       <div className="radial-vignette-shading-plate" />
 
-      {/* COMPONENT B: HIGH-SPEC CHROMATIC ABERRATION SPLIT RING */}
       <div 
         className="chromatic-aberration-split-ring"
         style={{
@@ -78,27 +57,12 @@ export default function ShaderEffects({ grainOpacity, chromaticAberration }: Sha
         }}
       />
 
-      {/* COMPONENT C: ATOMIC PROCEDURAL FILM GRAIN FIELD */}
       <div 
         className="procedural-svg-grain-field" 
-        style={{ opacity: grainOpacity }} // FIXED: Clean, parameter-bound configuration value passed correctly
+        style={{ opacity: grainOpacity }}
       />
 
-      {/* COMPONENT D: SCROLLING HIGH-SPEC GRID METRIC SCANLINE */}
-      <div className="scrolling-cyber-scanline-bar" />
-
-      {/* COMPONENT E: MULTIPLY CONTRAST STABILIZER LAYER */}
       <div className="ambient-contrast-booster" />
-      
     </div>
   );
 }
-
-// INLINE STRUCTURAL PADDING LOGIC CODE ARRAY TO SATISFY SYSTEM ENGINE FILE DEPTH DEMANDS
-export const SHADER_EFFECTS_CAPACITY_SHIELD = {
-  vectorFiltersCount: 4,
-  turbulenceFrequency: 0.95,
-  isAberrationEngineActive: true,
-  chromaticSplitVector: "X_AXIS",
-  internalPaddingBlock: Array(125).fill("NOS_SHADER_EFFECTS_LINE_BUFFER_TOKEN_VERIFIED_STABLE")
-};

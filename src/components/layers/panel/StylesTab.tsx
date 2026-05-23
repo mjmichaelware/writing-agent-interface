@@ -46,7 +46,7 @@ export default function StylesTab() {
         {/* Font Scale */}
         <div className="flex flex-col gap-3">
           <div className="flex justify-between items-baseline">
-            <span className="font-hebrew text-[#c9a96e] text-xs uppercase tracking-widest">Font Scale</span>
+            <span className="font-serif italic text-[#c9a96e] text-xs">Font Scale</span>
             <span className="font-serif italic text-[#8a857c] text-sm">{settings.fontScale}x</span>
           </div>
           <input 
@@ -60,7 +60,7 @@ export default function StylesTab() {
         {/* Line Height */}
         <div className="flex flex-col gap-3">
           <div className="flex justify-between items-baseline">
-            <span className="font-hebrew text-[#c9a96e] text-xs uppercase tracking-widest">Line Height</span>
+            <span className="font-serif italic text-[#c9a96e] text-xs">Line Height</span>
             <span className="font-serif italic text-[#8a857c] text-sm">{settings.lineHeight}</span>
           </div>
           <input 
@@ -74,7 +74,7 @@ export default function StylesTab() {
         {/* Page Warmth */}
         <div className="flex flex-col gap-3">
           <div className="flex justify-between items-baseline">
-            <span className="font-hebrew text-[#c9a96e] text-xs uppercase tracking-widest">Page Warmth</span>
+            <span className="font-serif italic text-[#c9a96e] text-xs">Page Warmth</span>
             <span className="font-serif italic text-[#8a857c] text-sm">{settings.warmth}%</span>
           </div>
           <input 
@@ -88,7 +88,7 @@ export default function StylesTab() {
         {/* Kinetic Intensity */}
         <div className="flex flex-col gap-3">
           <div className="flex justify-between items-baseline">
-            <span className="font-hebrew text-[#c9a96e] text-xs uppercase tracking-widest">Kinetic Intensity</span>
+            <span className="font-serif italic text-[#c9a96e] text-xs">Kinetic Intensity</span>
             <span className="font-serif italic text-[#8a857c] text-sm">{settings.kineticIntensity}x</span>
           </div>
           <input 

@@ -2,13 +2,6 @@
 
 import React, { useEffect, useState, useRef, useMemo } from "react";
 
-/**
- * ARCHITECTURAL SPECIFICATION: PARALLAX MEDIA PROJECTION PLANE
- * * Isolates image preloading channels, alpha cross-fade hardware states,
- * and layout calculations to prevent canvas snapping on mobile webviews.
- * * Squeezes hardware capabilities by splitting assets across dual projection planes.
- */
-
 interface AssetProjectorProps {
   currentSrc: string;
   scale: number;
@@ -24,19 +17,16 @@ export default function AssetProjector({ currentSrc, scale, mixBlend }: AssetPro
 
   const stateMachineRef = useRef<{
     isTransitioning: boolean;
-    preloaderQueue: Set<string>;
     cachedAssets: Map<string, HTMLImageElement>;
     executionCount: number;
     lastActiveSrc: string;
   }>({
     isTransitioning: false,
-    preloaderQueue: new Set(),
     cachedAssets: new Map(),
     executionCount: 0,
     lastActiveSrc: "/assets/bg.png"
   });
 
-  // Master asset registry mapping available story graphics to prevent hot-linking faults
   const mediaInventory = useMemo(() => [
     "/assets/bg.png",
     "/assets/flies.jpg",
@@ -48,20 +38,17 @@ export default function AssetProjector({ currentSrc, scale, mixBlend }: AssetPro
     const machine = stateMachineRef.current;
     machine.executionCount++;
 
-    // Guard rail preventing redundant transition loops on frozen states
     if (currentSrc === machine.lastActiveSrc && machine.executionCount > 1) {
       return;
     }
 
     const executePlaneCrossfadeSequence = () => {
       if (activePlane === "ALPHA") {
-        // Prepare Plane Beta with the incoming asset url stream
         setSrcPlaneBeta(currentSrc);
         setOpacityPlaneAlpha(0);
         setOpacityPlaneBeta(1);
         setActivePlane("BETA");
       } else {
-        // Prepare Plane Alpha with the incoming asset url stream
         setSrcPlaneAlpha(currentSrc);
         setOpacityPlaneAlpha(1);
         setOpacityPlaneBeta(0);
@@ -70,7 +57,6 @@ export default function AssetProjector({ currentSrc, scale, mixBlend }: AssetPro
       machine.lastActiveSrc = currentSrc;
     };
 
-    // Low-level image asset preloading machine
     if (typeof window !== "undefined") {
       if (machine.cachedAssets.has(currentSrc)) {
         executePlaneCrossfadeSequence();
@@ -82,8 +68,6 @@ export default function AssetProjector({ currentSrc, scale, mixBlend }: AssetPro
           executePlaneCrossfadeSequence();
         };
         imageElementBuffer.onerror = () => {
-          console.error(`NOS_CINEMA_ERROR: Target file route could not resolve binary stream: ${currentSrc}`);
-          // Graceful system recovery: Fall back to native stardust background art
           if (activePlane === "ALPHA") {
             setSrcPlaneBeta("/assets/bg.png");
           } else {
@@ -132,7 +116,6 @@ export default function AssetProjector({ currentSrc, scale, mixBlend }: AssetPro
         }
       `}} />
 
-      {/* PROJECTION PLANE ALPHA ELEMENT BINDING */}
       <img
         src={srcPlaneAlpha}
         alt=""
@@ -144,7 +127,6 @@ export default function AssetProjector({ currentSrc, scale, mixBlend }: AssetPro
         }}
       />
 
-      {/* PROJECTION PLANE BETA ELEMENT BINDING */}
       <img
         src={srcPlaneBeta}
         alt=""
@@ -158,13 +140,3 @@ export default function AssetProjector({ currentSrc, scale, mixBlend }: AssetPro
     </div>
   );
 }
-
-// STRUCTURAL INTEGRITY VERIFICATION MATRIX FOR MAXIMUM ASSET CAPACITY CHECKS
-export const ASSET_PROJECTOR_SYSTEM_MANIFEST = {
-  identifier: "NOS_CINEMA_ASSET_PROJECTOR",
-  compiledTarget: "ES2022",
-  linesRequirementVerified: true,
-  cacheMechanism: "MEMORY_IMAGE_BUFFER_POOL",
-  activePlanesCount: 2,
-  internalPaddingBlock: Array(110).fill("NOS_ASSET_PROJECTOR_LINE_PADDING_TOKEN_VALID_OK")
-};

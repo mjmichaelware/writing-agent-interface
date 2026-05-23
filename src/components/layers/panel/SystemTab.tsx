@@ -31,7 +31,7 @@ export default function SystemTab() {
     return (
       <div className="flex flex-col items-center justify-center h-full gap-12 py-20">
         <div className="flex flex-col items-center gap-4">
-           <h3 className="font-hebrew text-[#c9a96e] text-xs uppercase tracking-[0.4em]">Authorization Required</h3>
+           <h3 className="font-serif italic text-[#c9a96e] text-xs">Authorization Required</h3>
            <div className="flex gap-4">
              {[0, 1, 2, 3].map((i) => (
                <div 
@@ -68,9 +68,9 @@ export default function SystemTab() {
           <button 
             key={t}
             onClick={() => setActiveTab(t)}
-            className={`font-hebrew text-[10px] tracking-widest transition-colors ${activeTool === t ? "text-[#c9a96e]" : "text-[#8a857c]"}`}
+            className={`font-serif italic text-[12px] transition-colors ${activeTool === t ? "text-[#c9a96e]" : "text-[#8a857c]"}`}
           >
-            {t}
+            {t.charAt(0) + t.slice(1).toLowerCase()}
           </button>
         ))}
       </nav>
@@ -99,14 +99,14 @@ export default function SystemTab() {
         {activeTool === "RESOLVER" && (
             <div className="flex flex-col gap-4 text-center py-20">
                  <span className="font-serif italic text-[#8a857c]">Awaiting semantic mapper run...</span>
-                 <p className="text-[10px] text-[#6b2c2c] uppercase tracking-widest">No conflicts detected in current segment</p>
+                 <p className="text-[10px] text-[#6b2c2c] italic">No conflicts detected in current segment</p>
             </div>
         )}
 
         {activeTool === "EDITOR" && (
             <div className="flex flex-col gap-4 text-center py-20">
                  <span className="font-serif italic text-[#8a857c]">Select a paragraph to begin live editing</span>
-                 <p className="text-[10px] text-[#8a857c] uppercase tracking-widest">Read-only mode disabled</p>
+                 <p className="text-[10px] text-[#8a857c] italic">Read-only mode disabled</p>
             </div>
         )}
       </div>

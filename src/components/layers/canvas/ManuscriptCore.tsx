@@ -54,7 +54,7 @@ export default function ManuscriptCore({
 
     const runKinematics = () => {
       const centerY = window.innerHeight / 2;
-      const paras = root.querySelectorAll<HTMLElement>("p[data-para], section[id]");
+      const paras = root.querySelectorAll<HTMLElement>("p[data-para]");
 
       paras.forEach((p) => {
         const rect = p.getBoundingClientRect();
@@ -63,9 +63,9 @@ export default function ManuscriptCore({
         const maxDist = window.innerHeight * 0.6;
         
         const normDist = Math.min(1, dist / maxDist);
-        const blurValue = normDist * 8; 
-        const opacityValue = 1 - (normDist * 0.7); 
-        const translateY = normDist * 10; 
+        const blurValue = normDist * 3; // Reduced from 8 to 3 for less aggressive blur
+        const opacityValue = 1 - (normDist * 0.5); // Increased min opacity (max reduction is 0.5 instead of 0.7)
+        const translateY = normDist * 5; // Reduced transform from 10 to 5
 
         p.style.setProperty("--arc-blur", blurValue.toString());
         p.style.opacity = opacityValue.toString();

@@ -1,61 +1,56 @@
 "use client";
 
 import React from "react";
-import { bus } from "@/core/runtimeEngine";
+import { motion } from "framer-motion";
+import { smoothScroll } from "@/utils/smoothScroll";
 
 export default function TitleCover() {
-  const handleBegin = () => {
-    bus.emit('scroll:begin', { target: 'dedication' });
-  };
-
-  const navLinks = [
-    { label: "Dedication", target: "dedication" },
-    { label: "Synopsis", target: "synopsis" },
-    { label: "About the Author", target: "author" },
-    { label: "Table of Contents", target: "toc" },
-  ];
-
   return (
-    <section 
-        id="title" 
-        className="relative h-screen w-full flex flex-col items-center justify-center text-center px-6 overflow-hidden"
-    >
-      {/* Feature 100: Prestige Title Overlay */}
-      <div className="z-10 animate-fade-in flex flex-col items-center">
-        
-        <h1 
-            className="font-hebrew text-[#c9a96e] mb-4"
-            style={{ fontSize: "clamp(2.8rem, 10vw, 6.5rem)", lineHeight: 1.1 }}
-        >
-          The Weight of the Sky
-        </h1>
-        
-        <p className="font-serif italic text-[#8a857c] uppercase tracking-[0.25em] text-sm md:text-xl mb-12">
-          An Archetypal Tale
-        </p>
-
-        <nav className="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-16">
-          {navLinks.map((link) => (
-            <button
-              key={link.label}
-              onClick={() => bus.emit('scroll:begin', { target: link.target })}
-              className="toc-row font-serif italic text-[#c9a96e] text-sm md:text-base"
-            >
-              {link.label}
-            </button>
-          ))}
-        </nav>
-
-        <button
-          onClick={handleBegin}
-          className="primary-button font-serif italic text-[#c9a96e] tracking-wider"
-        >
+    <section id="title-page" className="relative min-h-screen flex flex-col items-center justify-center text-center px-6">
+      
+      {/* Title block, vertically centered */}
+      <motion.h1 
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
+        className="title-display"
+      >
+        The Weight of the Sky
+      </motion.h1>
+      
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.8, duration: 1.4 }}
+        className="title-subtitle"
+      >
+        An Archetypal Tale
+      </motion.p>
+      
+      {/* Nav row - horizontal with gap-12 (3rem) */}
+      <motion.nav
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.4, duration: 1.2 }}
+        className="title-nav"
+      >
+        <button onClick={() => smoothScroll('dedication')}>Dedication</button>
+        <button onClick={() => smoothScroll('synopsis')}>Synopsis</button>
+        <button onClick={() => smoothScroll('about')}>About the Author</button>
+        <button className="primary-button" onClick={() => smoothScroll('toc')}>
           Begin Reading
         </button>
-      </div>
-
-      {/* Note: Backdrop bg.png is managed by Layer 2 Cinema at z-10. 
-          The TitleCover is at Layer 3 Canvas z-20. */}
+      </motion.nav>
+      
+      {/* Byline at bottom */}
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2.0, duration: 1.2 }}
+        className="title-byline"
+      >
+        By Michael Alonza Prentice Ware
+      </motion.p>
     </section>
   );
 }

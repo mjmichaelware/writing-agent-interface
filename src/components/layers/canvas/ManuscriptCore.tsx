@@ -162,7 +162,7 @@ export default function ManuscriptCore({
       <div id="author"><AboutAuthor /></div>
       <TableOfContents TITLES={CHAPTER_TITLES} onLoadChapter={handleLoadChapter} />
 
-      <div className="max-w-2xl mx-auto pt-32">
+      <div className="w-full max-w-[min(65ch,90vw)] mx-auto pt-32">
         <h2 className="section-label text-center mb-32">Chapter {chapterSlug}</h2>
         {blocks.map((block, idx) => {
           const text = typeof block === "string" ? block : block.content;

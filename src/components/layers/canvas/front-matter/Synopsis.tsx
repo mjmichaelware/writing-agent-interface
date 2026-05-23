@@ -9,7 +9,7 @@ export default function Synopsis() {
       className="min-h-[70vh] flex flex-col justify-center px-6 scroll-mt-24"
     >
       <h2 className="section-label text-center mb-10">Synopsis</h2>
-      <div className="mx-auto w-full max-w-2xl">
+      <div className="mx-auto w-full max-w-[min(65ch,90vw)]">
         <p className="manuscript-paragraph-segment">
           Hebron, 1003 BCE. King David rules Judah, but the Philistines still
           hold the iron and the high places. Inside a house slowly suffocating

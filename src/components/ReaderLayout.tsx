@@ -37,10 +37,10 @@ export default function ReaderLayout({ children }: { children: React.ReactNode }
   }, []);
 
   return (
-    <div className="w-full min-h-screen bg-[#0a0a0a] text-[#e8e4dc] antialiased" style={{ perspective: "2000px" }}>
+    <div className="w-full min-h-screen bg-[#0a0a0a] text-[#e8e4dc] antialiased">
       <div 
         ref={wrapperRef} 
-        className="w-full h-full transition-all duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] origin-left"
+        className="w-full h-full"
       >
         {children}
       </div>

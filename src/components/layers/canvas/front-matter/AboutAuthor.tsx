@@ -9,7 +9,7 @@ export default function AboutAuthor() {
       className="min-h-[55vh] flex flex-col justify-center px-6 scroll-mt-24"
     >
       <h2 className="section-label text-center mb-10">About the Author</h2>
-      <div className="mx-auto w-full max-w-2xl">
+      <div className="mx-auto w-full max-w-[min(65ch,90vw)]">
         <p className="manuscript-paragraph-segment">
           Michael Alonza Prentice Ware is composing <em>The Weight of the Sky</em>
           {" "}on a discipline of one chapter every two weeks. He is a student of

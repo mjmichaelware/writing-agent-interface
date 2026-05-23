@@ -120,7 +120,6 @@ body {
   hanging-punctuation: first last;
   font-feature-settings: "kern" 1, "liga" 1, "onum" 1, "calt" 1;
   text-rendering: optimizeLegibility;
-  max-width: var(--measure);
   contain: content;
   margin-bottom: 2rem;
 }

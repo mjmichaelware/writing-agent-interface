@@ -6,7 +6,7 @@ export default function Loading() {
   return (
     <ReaderLayout>
       <Layer1Void />
-      <div className="relative z-20 w-full min-h-screen flex flex-col pt-32 px-6 max-w-2xl mx-auto opacity-70">
+      <div className="relative z-20 reader-column min-h-screen flex flex-col pt-32 opacity-70">
         <div className="h-10 w-2/3 bg-white/5 animate-pulse rounded-md mx-auto mb-32" />
         
         {[...Array(6)].map((_, i) => (

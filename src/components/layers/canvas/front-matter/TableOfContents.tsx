@@ -35,7 +35,7 @@ export default function TableOfContents({ TITLES, onLoadChapter }: Props) {
     <section id="toc" className="min-h-screen px-6 scroll-mt-24 pb-32">
       <h2 className="section-label text-center">Table of Contents</h2>
 
-      <div className="mx-auto w-full max-w-[min(65ch,90vw)]">
+      <div className="reader-column">
         <h3 className="toc-part-heading">Part I — The Journey</h3>
         {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
           <Row key={n} num={n} title={TITLES[n]} onClick={() => onLoadChapter(n)} />

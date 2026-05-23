@@ -168,7 +168,7 @@ export default function ManuscriptCore({
   return (
     <div
       ref={containerRef}
-      className="w-full mx-auto pb-[50vh] px-6 md:px-0"
+      className="reader-column pb-[50vh]"
     >
       <TitleCover />
       <Dedication />
@@ -176,7 +176,7 @@ export default function ManuscriptCore({
       <div id="author"><AboutAuthor /></div>
       <TableOfContents TITLES={CHAPTER_TITLES} onLoadChapter={handleLoadChapter} />
 
-      <div className="w-full max-w-[min(65ch,90vw)] mx-auto pt-32">
+      <div className="reader-column pt-32">
         <h2 id="chapter-content" className="section-label text-center mb-32">Chapter {chapterSlug}</h2>
         {blocks.length === 0 ? (
           <p className="prose-paragraph text-center text-[#8a857c] italic">

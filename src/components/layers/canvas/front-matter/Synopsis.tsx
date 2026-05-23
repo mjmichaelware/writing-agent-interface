@@ -9,7 +9,7 @@ export default function Synopsis() {
       className="min-h-[70vh] flex flex-col justify-center px-6 scroll-mt-24"
     >
       <h2 className="section-label text-center mb-10">Synopsis</h2>
-      <div className="mx-auto w-full max-w-[min(65ch,90vw)]">
+      <div className="reader-column">
         <p className="manuscript-paragraph-segment">
           In <span className="font-hebrew">Hebron</span> in 1003 BCE, during the early days of King <span className="font-hebrew">David</span>'s rule over <span className="font-hebrew">Judah</span>, 
           sixteen-year-old <span className="font-hebrew">Dan</span> lives inside an oppressive home paralyzed by his father's hoarding grief. 

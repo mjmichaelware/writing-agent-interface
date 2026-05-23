@@ -15,21 +15,9 @@ export default function Dedication() {
           fontSize: "1.6rem",
           lineHeight: 1.5,
           color: "var(--text-body)",
-          marginBottom: "1rem",
         }}
       >
-        For James Lee Ware
-      </p>
-      <p
-        style={{
-          fontFamily: "var(--font-prose)",
-          fontStyle: "italic",
-          fontSize: "1.2rem",
-          color: "var(--text-body)",
-          opacity: 0.85,
-        }}
-      >
-        (in order to keep Curious)
+        James Lee Ware (In order to keep Curious)
       </p>
     </section>
   );

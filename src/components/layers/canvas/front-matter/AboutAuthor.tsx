@@ -11,18 +11,13 @@ export default function AboutAuthor() {
       <h2 className="section-label text-center mb-10">About the Author</h2>
       <div className="mx-auto w-full max-w-[min(65ch,90vw)]">
         <p className="manuscript-paragraph-segment">
-          Michael Alonza Prentice Ware is composing <em>The Weight of the Sky</em>
-          {" "}on a discipline of one chapter every two weeks. He is a student of
-          Computer Science at Weber State University, where his research interest
-          is machine learning alignment and explainable AI &mdash; the work of
-          forcing a system to render its reasoning legible to the human auditing
-          it.
-        </p>
-        <p className="manuscript-paragraph-segment">
-          The same instinct shapes the book: a boy who can step into the
-          dreamscape, and must still account for what he saw there. Outside of
-          his studies, he plays classical piano and reads widely across
-          philosophy and the Spanish and Russian classics.
+          Michael Alonza Prentice Ware is a systems architecture specialist. 
+          He is pursuing a Bachelor of Science in Computer Science at Weber 
+          State University, focusing his development research on Machine 
+          Learning Alignment Governance and Explainable AI (XAI). Outside 
+          of layout engineering, he practices classical piano for three 
+          hours daily following the Russian method and Alexander technique 
+          principles.
         </p>
       </div>
     </section>

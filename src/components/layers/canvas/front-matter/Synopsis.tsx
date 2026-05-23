@@ -11,26 +11,15 @@ export default function Synopsis() {
       <h2 className="section-label text-center mb-10">Synopsis</h2>
       <div className="mx-auto w-full max-w-[min(65ch,90vw)]">
         <p className="manuscript-paragraph-segment">
-          Hebron, 1003 BCE. King David rules Judah, but the Philistines still
-          hold the iron and the high places. Inside a house slowly suffocating
-          under his father&rsquo;s hoarded grief, sixteen-year-old Dan lives
-          in two worlds &mdash; the ordinary one, and the dreamscape, a
-          layered universe assembled from the smallest unit of creativity.
-          Dan can walk it consciously. He can change what he finds there.
-        </p>
-        <p className="manuscript-paragraph-segment">
-          When his attempt to wake his father from a private idolatry shatters
-          the family, Dan is cast out. What begins as a flight from home
-          becomes a pilgrimage north toward Mount Hermon &mdash; the closest
-          point in the world to the spirit realm. Along the way the gods he
-          has rejected come for him: in the well at Bethlehem, in the secret
-          council of the low gods, in the swarming pit beneath Megiddo where
-          the Lord of the Flies has been waiting.
-        </p>
-        <p className="manuscript-paragraph-segment">
-          <em>The Weight of the Sky</em> is a debut novel about pride, grief,
-          and what it costs to look up. It is the first book in an archetypal
-          cycle.
+          In <span className="font-hebrew">Hebron</span> in 1003 BCE, during the early days of King 
+          <span className="font-hebrew"> David</span>'s rule over <span className="font-hebrew">Judah</span>, 
+          sixteen-year-old <span className="font-hebrew">Dan</span> lives inside an oppressive home 
+          paralyzed by his father's hoarding grief. <span className="font-hebrew">Dan</span> is a dreamwalker, 
+          a visionary uniquely capable of consciously stepping into a hidden world constructed from minute 
+          cells of universal dust. When his deep interventions fracture his family, <span className="font-hebrew">Dan</span> 
+          is cast out, forced to embark on a punishing physical trek northward toward Mount <span className="font-hebrew">Hermon</span> 
+          to find the ultimate source of reality. His path demands a brutal expenditure of tissue and will, 
+          shattering his physical voice and bringing him face-to-face with an infinite cycle of conflict written in the stars.
         </p>
       </div>
     </section>

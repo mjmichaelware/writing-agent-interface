@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { bus } from "@/core/runtimeEngine";
 import AssetProjector from "@/components/layers/cinema/AssetProjector";
-import { resolveAssetByMeaning } from "@/data/cinema";
+import { resolveAssetByMeaning, resolveAssetByKeyword } from "@/data/cinema";
 
 /**
  * LAYER 2: CINEMA PLANE
@@ -18,13 +18,22 @@ export default function Layer2Cinema() {
     const unsubIntensity = bus.on('cinema:setIntensity', (val: number) => setIntensity(val));
     
     const unsubFocus = bus.on('scroll:focus', (data: any) => {
-        // Feature 200: Resolve by Semantic Meaning
-        // Data contains weights, dualisms, and partNumber from Supabase/Vertex AI
-        const asset = resolveAssetByMeaning(
-            data.weights || {}, 
-            data.dualisms || {}, 
-            data.partNumber || "I"
-        );
+        const hasWeights = data.weights && Object.keys(data.weights).length > 0;
+        
+        let asset;
+        if (hasWeights) {
+            asset = resolveAssetByMeaning(
+                data.weights, 
+                data.dualisms || {}, 
+                data.partNumber || "I"
+            );
+        } else {
+            asset = resolveAssetByKeyword(
+                parseInt(data.paraIndex) || 0,
+                data.chapterSlug || "7"
+            );
+        }
+        
         setCurrentAsset(asset);
     });
 

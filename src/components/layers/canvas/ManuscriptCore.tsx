@@ -52,9 +52,16 @@ export default function ManuscriptCore({
     const root = containerRef.current;
     if (!root) return;
 
+    let paras = root.querySelectorAll<HTMLElement>("p[data-para]");
+
+    // MutationObserver to update cached paras when content changes
+    const mutationObserver = new MutationObserver(() => {
+      paras = root.querySelectorAll<HTMLElement>("p[data-para]");
+    });
+    mutationObserver.observe(root, { childList: true, subtree: true });
+
     const runKinematics = () => {
       const centerY = window.innerHeight / 2;
-      const paras = root.querySelectorAll<HTMLElement>("p[data-para]");
 
       paras.forEach((p) => {
         const rect = p.getBoundingClientRect();
@@ -77,7 +84,10 @@ export default function ManuscriptCore({
     };
 
     frameId = requestAnimationFrame(runKinematics);
-    return () => cancelAnimationFrame(frameId);
+    return () => {
+      cancelAnimationFrame(frameId);
+      mutationObserver.disconnect();
+    };
   }, []);
 
   useEffect(() => {
@@ -102,7 +112,8 @@ export default function ManuscriptCore({
               content: typeof block === "string" ? block : block.content,
               weights: typeof block === "string" ? {} : block.archetypal_weights,
               dualisms: typeof block === "string" ? {} : block.dualism_map,
-              partNumber
+              partNumber,
+              chapterSlug
             };
             
             bus.emit("scroll:focus", payload);
@@ -163,25 +174,31 @@ export default function ManuscriptCore({
       <TableOfContents TITLES={CHAPTER_TITLES} onLoadChapter={handleLoadChapter} />
 
       <div className="w-full max-w-[min(65ch,90vw)] mx-auto pt-32">
-        <h2 className="section-label text-center mb-32">Chapter {chapterSlug}</h2>
-        {blocks.map((block, idx) => {
-          const text = typeof block === "string" ? block : block.content;
-          const id = typeof block === "string" ? `para-${idx}` : block.id;
+        <h2 id="chapter-content" className="section-label text-center mb-32">Chapter {chapterSlug}</h2>
+        {blocks.length === 0 ? (
+          <p className="prose-paragraph text-center text-[#8a857c] italic">
+            This chapter is not yet available.
+          </p>
+        ) : (
+          blocks.map((block, idx) => {
+            const text = typeof block === "string" ? block : block.content;
+            const id = typeof block === "string" ? `para-${idx}` : block.id;
 
-          return (
-            <p
-              key={id}
-              data-para
-              data-index={idx}
-              data-id={id}
-              id={id}
-              data-state="inactive"
-              className="prose-paragraph kinetic-word"
-            >
-              {text}
-            </p>
-          );
-        })}
+            return (
+              <p
+                key={id}
+                data-para
+                data-index={idx}
+                data-id={id}
+                id={id}
+                data-state="inactive"
+                className="prose-paragraph kinetic-word"
+              >
+                {text}
+              </p>
+            );
+          })
+        )}
       </div>
     </div>
   );

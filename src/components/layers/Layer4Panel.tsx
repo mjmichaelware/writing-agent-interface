@@ -46,28 +46,43 @@ export default function Layer4Panel() {
 
   return (
     <>
-      {/* Dismiss Zone (Top 15vh) */}
-      {isOpen && (
-        <div 
-          className="fixed inset-0 z-[45] bg-transparent h-[15vh]" 
-          onClick={() => {
-            setIsOpen(false);
-            bus.emit("panel:close", {});
-          }}
-        />
-      )}
+      {/* Persistent Floating Menu Button */}
+      <button
+        onClick={() => {
+          const newState = !isOpen;
+          setIsOpen(newState);
+          bus.emit(newState ? "panel:open" : "panel:close", {});
+        }}
+        className={`fixed bottom-8 right-8 z-[60] w-14 h-14 bg-black/60 border border-[#c9a96e]/30 rounded-full flex items-center justify-center text-[#c9a96e] backdrop-blur-xl hover:bg-[#c9a96e]/10 transition-all duration-500 shadow-[0_0_30px_rgba(0,0,0,0.8)] ${isOpen ? 'rotate-90 opacity-0 pointer-events-none' : 'rotate-0 opacity-100'}`}
+      >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
 
       {/* Layer 4 Projector Panel */}
       <div
         ref={panelRef}
-        className={`fixed inset-x-0 bottom-0 z-50 h-[85vh] bg-[#0a0a0a]/90 backdrop-blur-[24px] border-t border-[#c9a96e]/20 transition-transform duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] shadow-[0_-20px_60px_rgba(0,0,0,0.8)] ${
-          isOpen ? "translate-y-0" : "translate-y-full"
+        className={`fixed inset-0 z-50 bg-[#0a0a0a]/95 backdrop-blur-[32px] transition-all duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
-        <div className="max-w-5xl mx-auto h-full flex flex-col px-6 md:px-12 py-8">
+        <button
+          onClick={() => {
+            setIsOpen(false);
+            bus.emit("panel:close", {});
+          }}
+          className="absolute top-8 right-8 z-[60] p-2 text-[#8a857c] hover:text-[#c9a96e] transition-colors"
+        >
+          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        <div className="max-w-5xl mx-auto h-full flex flex-col px-6 md:px-12 py-16">
           
           {/* Tab Navigation */}
-          <nav className="relative flex justify-between items-center w-full mb-12 border-b border-white/5 pb-4 overflow-x-auto no-scrollbar">
+          <nav className="relative flex justify-between items-center w-full mb-16 border-b border-white/5 pb-6 overflow-x-auto no-scrollbar">
             {TABS.map((tab, idx) => (
               <button
                 key={tab.id}

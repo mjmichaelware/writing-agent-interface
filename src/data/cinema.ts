@@ -52,8 +52,23 @@ export function resolveAssetByMeaning(
   return DEFAULT_ASSET;
 }
 
-// Legacy keyword fallback (being phased out)
-export function resolveAssetByKeyword(content: string, chapterSlug: string): string {
-  // ... existing keyword logic for safety ...
-  return DEFAULT_ASSET;
+// Legacy fallback mapping
+export const CINEMA_ASSETS: Record<string, string[]> = {
+  "7": [
+    "/assets/bg.png",
+    "/assets/moonlight.jpg",
+    "/assets/flies.jpg",
+    "/assets/megiddo1.jpg",
+    "/assets/megiddo2.jpg"
+  ]
+};
+
+export function resolveAssetByKeyword(paraIndex: number, chapterSlug: string): string {
+  const assets = CINEMA_ASSETS[chapterSlug] || [DEFAULT_ASSET];
+  const CINEMA_PARAGRAPHS_PER_IMAGE = 12;
+  const index = Math.min(
+    Math.floor(paraIndex / CINEMA_PARAGRAPHS_PER_IMAGE),
+    assets.length - 1
+  );
+  return assets[index];
 }

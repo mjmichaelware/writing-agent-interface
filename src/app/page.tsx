@@ -39,6 +39,8 @@ export default function Page() {
                   .map(p => p.trim())
                   .filter(p => p.length > 0 && !p.startsWith("Chapter"));
                 setBlocks(paragraphs);
+            } else {
+                setBlocks([]);
             }
         }
       } catch (err) {
@@ -50,7 +52,6 @@ export default function Page() {
 
   const handleChapterChange = (n: number) => {
       setChapterNum(n);
-      window.scrollTo(0, 0);
   };
 
   return (

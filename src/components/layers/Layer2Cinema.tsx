@@ -19,6 +19,9 @@ export default function Layer2Cinema() {
     
     const unsubFocus = bus.on('scroll:focus', (data: any) => {
         const hasWeights = data.weights && Object.keys(data.weights).length > 0;
+        const paraIndex = parseInt(data.paraIndex) || 0;
+        const chapterSlug = data.chapterSlug || "7";
+        const content = data.content || "";
         
         let asset;
         if (hasWeights) {
@@ -29,12 +32,26 @@ export default function Layer2Cinema() {
             );
         } else {
             asset = resolveAssetByKeyword(
-                parseInt(data.paraIndex) || 0,
-                data.chapterSlug || "7"
+                paraIndex,
+                chapterSlug
             );
         }
-        
-        setCurrentAsset(asset);
+
+        // Feature 3.6: Generative Cinema Logic
+        // If we are on the default asset and have enough content, trigger a generative run
+        if (asset === "/assets/bg.png" && content.length > 100) {
+            const prompt = `A cinematic oil painting in 19th-century romantic landscape style, deep Levantine shadows, 1003 BCE Hebron atmosphere: ${content.substring(0, 150)}...`;
+            fetch(`/api/visualize?prompt=${encodeURIComponent(prompt)}`)
+                .then(res => res.json())
+                .then(json => {
+                    if (json.imageUrl) {
+                        setCurrentAsset(json.imageUrl);
+                    }
+                })
+                .catch(err => console.error("Generative cinema failure:", err));
+        } else {
+            setCurrentAsset(asset);
+        }
     });
 
     return () => {

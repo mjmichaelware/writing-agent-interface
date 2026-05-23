@@ -9,18 +9,19 @@ import AboutAuthor from "./front-matter/AboutAuthor";
 import TableOfContents from "./front-matter/TableOfContents";
 
 const CHAPTER_TITLES: Record<number, string> = {
-  1: "The Well at Bethlehem",
-  2: "The Ash of Hebron",
-  3: "The Iron and the High Places",
-  4: "The Dreamscape Partition",
-  5: "The Flight of the Rejected",
-  6: "The Secret Council",
-  7: "The Swarming Pit",
-  8: "The Lord of Flies",
-  9: "The Gate of Hermon",
-  10: "The Deception",
-  11: "The Reveal",
-  13: "The Union",
+  1: "Stardust to Stardust",
+  2: "Living Sacrifice",
+  3: "Lift Up",
+  4: "Pilgrimage",
+  5: "The Snare",
+  6: "Beelzebub Beelzebub",
+  7: "The Pit",
+  8: "Sea People",
+  9: "The Ascent",
+  10: "Forsaken",
+  11: "Forsaken (II)",
+  12: "[pending: XII]",
+  13: "Exodus",
 };
 
 export default function ManuscriptCore({
@@ -43,8 +44,10 @@ export default function ManuscriptCore({
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   const handleLoadChapter = (n: number) => {
-    bus.emit("scroll:begin", { target: "title" });
     if (onLoadChapter) onLoadChapter(n);
+    setTimeout(() => {
+        bus.emit("scroll:begin", { target: "chapter-content" });
+    }, 100);
   };
 
   useEffect(() => {

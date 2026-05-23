@@ -11,8 +11,9 @@ export default function Layer3Canvas({ children }: { children: React.ReactNode }
       const targetEl = document.getElementById(data.target);
       if (!targetEl) return;
 
-      const targetY = targetEl.offsetTop;
+      const rect = targetEl.getBoundingClientRect();
       const startY = window.scrollY;
+      const targetY = rect.top + startY;
       const distance = targetY - startY;
       const duration = 1200;
       let start: number | null = null;

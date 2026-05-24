@@ -1,104 +1,139 @@
 "use client";
-
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { bus } from "@/core/runtimeEngine";
 
-interface ArchetypePeak {
+type Paragraph = {
   id: string;
-  chapter_number: number;
-  dominant: string;
   content: string;
-}
+  chapter_number?: number;
+  archetypal_weights?: { self?: number; anima?: number; shadow?: number; persona?: number; hero?: number };
+};
+
+const ARCHETYPE_COLORS: Record<string, string> = {
+  self: "#c9a96e", anima: "#e8d4a0", shadow: "#2a2a2a",
+  persona: "#8a857c", hero: "#d4a574",
+};
 
 export default function ArchetypesDirectory() {
-  const [timeline, setTimeline] = useState<ArchetypePeak[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [paragraphs, setParagraphs] = useState<Paragraph[] | null>(null);
+  const [activeArc, setActiveArc] = useState<{ dom: string; weights: any } | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function fetchArchetypes() {
-      try {
-        const res = await fetch("/api/manuscript?chapterId=all");
-        const paragraphs = await res.json();
-        
-        const peaks: ArchetypePeak[] = paragraphs
-          .filter((p: any) => p.archetypal_weights && Object.keys(p.archetypal_weights).length > 0)
-          .map((p: any) => {
-            const weights = p.archetypal_weights;
-            const dominant = Object.entries(weights).reduce(
-              (a, b) => ((b[1] as number) > (a[1] as number) ? b : a),
-              ["none", 0]
-            )[0];
-
-            return {
-              id: p.id,
-              chapter_number: p.chapters?.chapter_number || 0,
-              dominant,
-              content: p.content
-            };
-          });
-
-        setTimeline(peaks);
-      } catch (err) {
-        console.error("Failed to fetch archetypes:", err);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchArchetypes();
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000);
+    fetch("/api/graph", { signal: controller.signal })
+      .then(r => r.json())
+      .then(d => {
+        clearTimeout(timeout);
+        const ps: Paragraph[] = (d.dualisms || []).filter((p: any) => 
+          p && p.archetypal_weights && typeof p.archetypal_weights === "object"
+        );
+        setParagraphs(ps);
+      })
+      .catch(e => {
+        clearTimeout(timeout);
+        setError(e.name === "AbortError" 
+          ? "Archetype timeline timed out" 
+          : "Could not load archetypes");
+      });
+    return () => { clearTimeout(timeout); controller.abort(); };
   }, []);
 
-  const handleJump = (id: string) => {
-    bus.emit("navigate:paragraph", { id });
-    bus.emit("ui:menu_close", {});
+  useEffect(() => {
+    const handleFocus = (e: any) => {
+      if (!e?.weights) return;
+      const w = e.weights;
+      let max = 0; let dom = "self";
+      for (const k of Object.keys(w)) {
+        if ((w[k] || 0) > max) { max = w[k]; dom = k; }
+      }
+      setActiveArc({ dom, weights: w });
+    };
+    bus.on("scroll:focus", handleFocus);
+    return () => { bus.off("scroll:focus", handleFocus); };
+  }, []);
+
+  const dominant = (w: any) => {
+    let max = 0; let dom = "self";
+    for (const k of Object.keys(w || {})) {
+      if ((w[k] || 0) > max) { max = w[k]; dom = k; }
+    }
+    return dom;
   };
 
-  const COLORS: Record<string, string> = {
-    self: "#c9a96e",
-    anima: "#e8d4a0",
-    shadow: "#0a0a0a", // Needs outline
-    persona: "#8a857c",
-  };
+  if (error) return <div className="panel-empty-state">{error}</div>;
+  if (!paragraphs) return <div className="panel-loading">Loading archetype timeline…</div>;
+  if (paragraphs.length === 0) 
+    return <div className="panel-empty-state">No archetype data available yet</div>;
+
+  const byChapter: Record<number, Paragraph[]> = {};
+  for (const p of paragraphs) {
+    const ch = p.chapter_number ?? 0;
+    if (!byChapter[ch]) byChapter[ch] = [];
+    byChapter[ch].push(p);
+  }
 
   return (
-    <div className="flex flex-col gap-8">
-      <h2 className="font-serif italic text-[#8a857c] text-center mb-8">Psychological Landscape</h2>
-
-      {loading ? (
-        <p className="font-serif italic text-[#8a857c] text-center py-20">Mapping the collective unconscious...</p>
-      ) : timeline.length === 0 ? (
-        <p className="font-serif italic text-[#8a857c] text-center py-20">Archetypal peaks will emerge as the story unfolds.</p>
-      ) : (
-        <div className="relative border-l border-white/5 ml-4 pl-8 flex flex-col gap-12">
-          {timeline.map((peak, idx) => (
-            <div key={peak.id} className="relative group cursor-pointer" onClick={() => handleJump(peak.id)}>
-              
-              {/* Chapter Marker */}
-              {(idx === 0 || timeline[idx-1].chapter_number !== peak.chapter_number) && (
-                <div className="absolute -left-12 top-0 transform -translate-x-1/2">
-                   <span className="font-hebrew text-[10px] text-[#c9a96e]/40 uppercase tracking-tighter">
-                     Ch {peak.chapter_number}
-                   </span>
-                </div>
-              )}
-
-              {/* Archetype Peak Dot */}
-              <div 
-                className={`absolute -left-[37px] top-1.5 w-3 h-3 rounded-full transition-transform duration-500 group-hover:scale-150 ${peak.dominant === 'shadow' ? 'border border-white' : ''}`}
-                style={{ backgroundColor: COLORS[peak.dominant] || "#444" }}
-              />
-
-              <div className="flex flex-col gap-1">
-                <span className="font-hebrew text-[#e8d4a0] text-xs uppercase tracking-widest opacity-60">
-                  {peak.dominant}
-                </span>
-                <p className="font-serif italic text-[#8a857c] text-sm line-clamp-2 group-hover:text-[#e8e4dc] transition-colors">
-                  "{peak.content}"
-                </p>
-              </div>
-            </div>
-          ))}
+    <div>
+      <h2 className="panel-heading">Archetypes</h2>
+      {activeArc && (
+        <div className="archetype-live">
+          <span style={{ color: "var(--text-muted)" }}>Active paragraph:</span>{" "}
+          <strong style={{ 
+            color: ARCHETYPE_COLORS[activeArc.dom] || "var(--accent-gold)", 
+            textTransform: "capitalize", fontFamily: "var(--font-title)" 
+          }}>
+            {activeArc.dom}
+          </strong>
         </div>
       )}
+      <div className="archetype-timeline">
+        {Object.keys(byChapter).sort((a, b) => +a - +b).map(ch => (
+          <div key={ch} className="archetype-chapter">
+            <div className="archetype-chapter-label">
+              Chapter {ch === "0" ? "—" : ch}
+            </div>
+            <div className="archetype-rail">
+              {byChapter[+ch].map((p, idx) => {
+                const dom = dominant(p.archetypal_weights);
+                return (
+                  <button key={p.id}
+                    className="archetype-dot"
+                    style={{ 
+                      background: ARCHETYPE_COLORS[dom] || "#c9a96e",
+                      border: dom === "shadow" ? "1px solid #8a857c" : "none",
+                      left: `${(idx / Math.max(1, byChapter[+ch].length - 1)) * 100}%`,
+                    }}
+                    title={dom}
+                    onClick={() => {
+                      bus.emit("navigate:paragraph", { id: p.id });
+                      bus.emit("panel:close");
+                    }}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="dualism-legend">
+        <div className="dualism-legend-item">
+          <span className="dualism-dot" style={{ background: "#c9a96e" }} /><span>Self</span>
+        </div>
+        <div className="dualism-legend-item">
+          <span className="dualism-dot" style={{ background: "#e8d4a0" }} /><span>Anima</span>
+        </div>
+        <div className="dualism-legend-item">
+          <span className="dualism-dot" style={{ background: "#2a2a2a", border: "1px solid #8a857c" }} /><span>Shadow</span>
+        </div>
+        <div className="dualism-legend-item">
+          <span className="dualism-dot" style={{ background: "#8a857c" }} /><span>Persona</span>
+        </div>
+        <div className="dualism-legend-item">
+          <span className="dualism-dot" style={{ background: "#d4a574" }} /><span>Hero</span>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,78 +1,122 @@
 "use client";
+import { useEffect, useState } from "react";
 
-import React, { useState } from "react";
-import { AgentService } from "@/services/bridge/agent.service";
+const PIN = "1003";
+const KEY = "nos-author-unlocked";
 
-export default function WritingAgentConsole() {
-  const [input, setInput] = useState("");
-  const [status, setStatus] = useState<"IDLE" | "RUNNING" | "COMPLETE" | "ERROR">("IDLE");
-  const [output, setOutput] = useState("");
+export default function AuthorGateway() {
+  const [unlocked, setUnlocked] = useState(false);
+  const [entry, setEntry] = useState("");
+  const [error, setError] = useState("");
+  const [agentInput, setAgentInput] = useState("");
+  const [agentResponse, setAgentResponse] = useState("");
+  const [agentLoading, setAgentLoading] = useState(false);
 
-  const handleExecute = async () => {
+  useEffect(() => {
     try {
-      setStatus("RUNNING");
-      setOutput("");
+      if (localStorage.getItem(KEY) === "true") setUnlocked(true);
+    } catch {}
+  }, []);
 
-      const data = await AgentService.queryNarrative(
-        input,
-        "Current Chapter"
-      );
-
-      setOutput(
-        data.response ||
-        data.result ||
-        JSON.stringify(data, null, 2)
-      );
-
-      setStatus("COMPLETE");
-    } catch (err) {
-      setStatus("ERROR");
-
-      setOutput(
-        err instanceof Error
-          ? err.message
-          : "Agent Kernel disconnected."
-      );
+  const tryUnlock = (val: string) => {
+    if (val === PIN) {
+      setUnlocked(true); setError("");
+      try { localStorage.setItem(KEY, "true"); } catch {}
+    } else if (val.length === 4) {
+      setError("Incorrect"); setEntry("");
+      setTimeout(() => setError(""), 1500);
     }
   };
 
+  const lock = () => {
+    setUnlocked(false); setEntry("");
+    try { localStorage.removeItem(KEY); } catch {}
+  };
+
+  const askAgent = async () => {
+    if (!agentInput.trim()) return;
+    setAgentLoading(true); setAgentResponse("");
+    try {
+      const res = await fetch("/api/agent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: agentInput }),
+      });
+      const data = await res.json();
+      setAgentResponse(data.response || data.text || JSON.stringify(data));
+    } catch (e: any) {
+      setAgentResponse(`Error: ${e.message}`);
+    } finally { setAgentLoading(false); }
+  };
+
+  if (!unlocked) {
+    return (
+      <div>
+        <h2 className="panel-heading">Author Gateway</h2>
+        <p className="gateway-prose">Enter operator PIN to proceed.</p>
+        <div className="gateway-pin-wrap">
+          <input
+            type="tel" inputMode="numeric" pattern="[0-9]*" maxLength={4}
+            value={entry}
+            onChange={e => {
+              const v = e.target.value.replace(/\D/g, "").slice(0, 4);
+              setEntry(v); tryUnlock(v);
+            }}
+            autoFocus className="gateway-pin-input"
+            placeholder="• • • •"
+          />
+          {error && <p className="gateway-error">{error}</p>}
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-full p-6 text-[#e8e4dc] bg-[radial-gradient(circle_at_50%_0%,rgba(16,185,129,.12),transparent_45%)]">
-      <div className="mb-6">
-        <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.35em] text-emerald-400">
-          <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-          Writing Agent / {status}
-        </div>
-
-        <div className="mt-2 font-serif text-2xl italic">
-          Private kernel gateway.
-        </div>
-      </div>
-
-      <div className="rounded-3xl border border-emerald-500/10 bg-black/40 p-4 shadow-2xl">
+    <div>
+      <h2 className="panel-heading">Author Gateway</h2>
+      <p className="gateway-status">Operator Active · Telemetry Online</p>
+      
+      <section style={{ marginTop: "1.5rem" }}>
+        <h3 className="panel-section-heading">Writing Agent</h3>
         <textarea
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          className="h-36 w-full resize-none rounded-2xl border border-white/10 bg-[#050507] p-4 font-serif text-sm leading-7 text-zinc-300 outline-none transition focus:border-emerald-500/40"
-          placeholder="Ask the narrative engine what the chapter is hiding..."
+          value={agentInput}
+          onChange={e => setAgentInput(e.target.value)}
+          placeholder="Ask the swarm about the manuscript…"
+          className="gateway-textarea" rows={3}
         />
-
-        <button
-          onClick={handleExecute}
-          disabled={!input.trim() || status === "RUNNING"}
-          className="mt-4 w-full rounded-full border border-emerald-500/30 px-4 py-3 text-[10px] uppercase tracking-widest text-emerald-300 transition hover:bg-emerald-500/10 disabled:opacity-30"
-        >
-          {status === "RUNNING"
-            ? "Consulting Kernel..."
-            : "Execute Query"}
+        <button onClick={askAgent} disabled={agentLoading}
+          className="gateway-button">
+          {agentLoading ? "Thinking…" : "Send"}
         </button>
-      </div>
+        {agentResponse && <div className="gateway-response">{agentResponse}</div>}
+      </section>
 
-      {output && (
-        <pre className="mt-5 max-h-56 overflow-auto whitespace-pre-wrap rounded-2xl border border-white/10 bg-black/50 p-4 text-[10px] leading-5 text-zinc-400">
-          {output}
-        </pre>
-      )}
+      <section style={{ marginTop: "2rem" }}>
+        <h3 className="panel-section-heading">Document Analyzer</h3>
+        <p className="gateway-prose">
+          Upload affordance — POSTs to /api/analyze-document
+        </p>
+        <input type="file" 
+          accept=".txt,.pdf,.png,.jpg,.jpeg,.webp"
+          className="gateway-fileinput"
+          onChange={async (e) => {
+            const file = e.target.files?.[0];
+            if (!file) return;
+            const fd = new FormData();
+            fd.append("file", file);
+            try {
+              const res = await fetch("/api/analyze-document", { 
+                method: "POST", body: fd 
+              });
+              const d = await res.json();
+              setAgentResponse(d.summary || JSON.stringify(d));
+            } catch (err: any) {
+              setAgentResponse(`Error: ${err.message}`);
+            }
+          }} />
+      </section>
+
+      <button onClick={lock} className="gateway-lock">Lock gateway</button>
     </div>
   );
 }

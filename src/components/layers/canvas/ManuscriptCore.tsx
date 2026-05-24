@@ -147,7 +147,9 @@ export default function ManuscriptCore({
     };
 
     const handleNavigate = (data: { id: string }) => {
-        const target = root.querySelector(`[data-id="${data.id}"], [id="${data.id}"]`) as HTMLElement;
+        if (!data?.id) return;
+        const target = document.querySelector(`[data-paragraph-id="${data.id}"]`) 
+                || document.querySelector(`[data-para-id="${data.id}"]`);
         if (target) {
             target.scrollIntoView({ behavior: "smooth", block: "center" });
             target.classList.add("paragraph-flash");
@@ -192,7 +194,7 @@ export default function ManuscriptCore({
                 key={id}
                 data-para
                 data-index={idx}
-                data-id={id}
+                data-paragraph-id={id}
                 id={id}
                 data-state="inactive"
                 className="prose-paragraph kinetic-word"

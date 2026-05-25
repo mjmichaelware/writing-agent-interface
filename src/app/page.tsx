@@ -58,7 +58,7 @@ export default function Page() {
     <>
       <ReaderLayout>
         <Layer1Void />
-        <Layer2Cinema />
+        <Layer2Cinema chapterSlug={chapterNum.toString()} />
         <Layer3Canvas>
           <ManuscriptCore 
               blocks={blocks} 
@@ -67,8 +67,8 @@ export default function Page() {
               onLoadChapter={handleChapterChange}
           />
         </Layer3Canvas>
+        <Layer4Panel />
       </ReaderLayout>
-      <Layer4Panel />
     </>
   );
 }

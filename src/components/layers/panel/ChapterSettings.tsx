@@ -1,15 +1,14 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 
-type Settings = {
+type S = {
   typeSize: number; lineHeight: number; sensitivity: number;
   color: number; distortion: number; blur: number;
   contrast: number; warmth: number;
   fontFamily: "serif" | "sans" | "mono";
   motion: boolean; bionic: boolean; audio: boolean;
 };
-
-const DEFAULTS: Settings = {
+const D: S = {
   typeSize: 1, lineHeight: 1.7, sensitivity: 0.5,
   color: 0.25, distortion: 0.15, blur: 0.15,
   contrast: 1, warmth: 0.25,
@@ -17,7 +16,7 @@ const DEFAULTS: Settings = {
 };
 const KEY = "nos-reader-physics-v1";
 
-function applyToRoot(s: Settings) {
+function apply(s: S) {
   const r = document.documentElement.style;
   r.setProperty("--reader-font-scale", String(s.typeSize));
   r.setProperty("--reader-line-height", String(s.lineHeight));
@@ -27,10 +26,6 @@ function applyToRoot(s: Settings) {
   r.setProperty("--reader-blur", String(s.blur));
   r.setProperty("--reader-contrast", String(s.contrast));
   r.setProperty("--reader-warmth", String(s.warmth));
-  r.setProperty("--reader-font-family", 
-    s.fontFamily === "serif" ? "var(--font-prose)" :
-    s.fontFamily === "sans"  ? "system-ui, sans-serif" :
-                                "ui-monospace, monospace");
   document.body.dataset.motion = s.motion ? "on" : "off";
   document.body.dataset.bionic = s.bionic ? "on" : "off";
   document.body.dataset.audio = s.audio ? "on" : "off";
@@ -38,57 +33,71 @@ function applyToRoot(s: Settings) {
 }
 
 export default function ChapterSettings() {
-  const [s, setS] = useState<Settings>(DEFAULTS);
+  const [s, setS] = useState<S>(D);
   const loaded = useRef(false);
 
   useEffect(() => {
     try {
       const raw = localStorage.getItem(KEY);
-      const init = raw ? { ...DEFAULTS, ...JSON.parse(raw) } : DEFAULTS;
-      setS(init); applyToRoot(init);
-    } catch { applyToRoot(DEFAULTS); }
+      const init = raw ? { ...D, ...JSON.parse(raw) } : D;
+      setS(init); apply(init);
+    } catch { apply(D); }
     loaded.current = true;
   }, []);
 
   useEffect(() => {
     if (!loaded.current) return;
-    applyToRoot(s);
+    apply(s);
     try { localStorage.setItem(KEY, JSON.stringify(s)); } catch {}
   }, [s]);
 
-  const setField = <K extends keyof Settings>(k: K, v: Settings[K]) => 
-    setS(prev => ({ ...prev, [k]: v }));
-  const reset = () => setS(DEFAULTS);
+  const set = <K extends keyof S>(k: K, v: S[K]) => setS(p => ({ ...p, [k]: v }));
 
-  const Slider = ({ label, k, min, max, step }: 
-    { label: string; k: keyof Settings; min: number; max: number; step: number }) => (
-    <label className="reader-control">
+  const slider = (label: string, k: keyof S, min: number, max: number, step: number) => (
+    <label key={k as string} style={{
+      display: "flex", flexDirection: "column", gap: "0.375rem",
+      fontFamily: "Georgia, serif", fontStyle: "italic",
+      fontSize: "0.75rem", color: "#8a857c"
+    }}>
       <span>{label}</span>
       <input type="range" min={min} max={max} step={step}
         value={s[k] as number}
-        onChange={e => setField(k, parseFloat(e.target.value) as any)} />
+        onChange={e => set(k, parseFloat(e.target.value) as any)}
+        style={{ width: "100%", accentColor: "#c9a96e" }} />
     </label>
   );
 
   return (
     <div>
-      <h2 className="panel-heading">Chapter Settings</h2>
-      <div className="reader-controls-grid">
-        <Slider label="Type Size"    k="typeSize"    min={0.85} max={1.45} step={0.01} />
-        <Slider label="Line Height"  k="lineHeight"  min={1.35} max={2.2}  step={0.01} />
-        <Slider label="Sensitivity"  k="sensitivity" min={0}    max={1}    step={0.01} />
-        <Slider label="Color"        k="color"       min={0}    max={1}    step={0.01} />
-        <Slider label="Distortion"   k="distortion"  min={0}    max={1}    step={0.01} />
-        <Slider label="Blur"         k="blur"        min={0}    max={1}    step={0.01} />
-        <Slider label="Contrast"     k="contrast"    min={0.75} max={1.5}  step={0.01} />
-        <Slider label="Warmth"       k="warmth"      min={0}    max={0.75} step={0.01} />
+      <h2 className="panel-h2">Chapter Settings</h2>
+      <div style={{
+        display: "grid", gridTemplateColumns: "1fr 1fr",
+        gap: "0.75rem 1.25rem", marginBottom: "1.5rem"
+      }}>
+        {slider("Type Size","typeSize",0.85,1.45,0.01)}
+        {slider("Line Height","lineHeight",1.35,2.2,0.01)}
+        {slider("Sensitivity","sensitivity",0,1,0.01)}
+        {slider("Color","color",0,1,0.01)}
+        {slider("Distortion","distortion",0,1,0.01)}
+        {slider("Blur","blur",0,1,0.01)}
+        {slider("Contrast","contrast",0.75,1.5,0.01)}
+        {slider("Warmth","warmth",0,0.75,0.01)}
       </div>
-      <div className="reader-pills">
-        {(["serif", "sans", "mono"] as const).map(f => (
-          <button key={f}
-            onClick={() => setField("fontFamily", f)}
-            className={`reader-pill ${s.fontFamily === f ? "active" : ""}`}>
-            {f}
+      <div style={{
+        display: "flex", justifyContent: "center", gap: "0.75rem",
+        marginBottom: "1.25rem", flexWrap: "wrap"
+      }}>
+        {(["motion","bionic","audio"] as const).map(t => (
+          <button key={t} onClick={() => set(t, !s[t])} style={{
+            fontFamily: "Georgia, serif", fontStyle: "italic",
+            fontSize: "0.8125rem",
+            color: s[t] ? "#c9a96e" : "#8a857c",
+            background: "transparent",
+            border: `1px solid ${s[t] ? "#c9a96e" : "rgba(201,169,110,0.2)"}`,
+            padding: "0.5rem 1.25rem", cursor: "pointer",
+            textTransform: "capitalize"
+          }}>
+            {t} {s[t] ? "on" : "off"}
           </button>
         ))}
       </div>

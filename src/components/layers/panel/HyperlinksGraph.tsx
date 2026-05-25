@@ -8,149 +8,110 @@ type Link = { source: string; target: string };
 
 export default function HyperlinksGraph() {
   const svgRef = useRef<SVGSVGElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
   const [data, setData] = useState<{ nodes: Node[]; links: Link[] } | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 5000);
-    fetch("/api/graph", { signal: controller.signal })
+    const c = new AbortController();
+    const t = setTimeout(() => c.abort(), 6000);
+    fetch("/api/graph", { signal: c.signal })
       .then(r => r.json())
       .then(d => {
-        clearTimeout(timeout);
-        const nodes: Node[] = (d.dualisms || []).filter((n: any) => 
-          n && n.dualism_map && typeof n.dualism_map === "object"
-        );
+        clearTimeout(t);
+        const nodes: Node[] = (d.dualisms || []).filter((n: any) =>
+          n && n.dualism_map && typeof n.dualism_map === "object");
         const links: Link[] = [];
-        const dKeys = ["sacred", "descent", "shadow", "persona", "anima"];
+        const keys = ["sacred","descent","shadow","persona","anima"];
         for (let i = 0; i < nodes.length; i++) {
           for (let j = i + 1; j < nodes.length; j++) {
-            const shared = dKeys.some(k =>
-              (nodes[i].dualism_map?.[k] || 0) > 0.1 && 
-              (nodes[j].dualism_map?.[k] || 0) > 0.1
-            );
-            if (shared) links.push({ source: nodes[i].id, target: nodes[j].id });
+            if (keys.some(k => (nodes[i].dualism_map?.[k] || 0) > 0.1 &&
+                               (nodes[j].dualism_map?.[k] || 0) > 0.1)) {
+              links.push({ source: nodes[i].id, target: nodes[j].id });
+            }
           }
         }
         setData({ nodes, links });
       })
       .catch(e => {
-        clearTimeout(timeout);
-        setError(e.name === "AbortError" 
-          ? "Constellation timed out — semantic graph unavailable" 
-          : "Could not load constellation");
+        clearTimeout(t);
+        setError(e.name === "AbortError" ? "Constellation timed out" : "Could not load constellation");
       });
-    return () => { clearTimeout(timeout); controller.abort(); };
+    return () => { clearTimeout(t); c.abort(); };
   }, []);
 
   useEffect(() => {
-    if (!data || !svgRef.current || !containerRef.current) return;
+    if (!data || !svgRef.current || !wrapRef.current) return;
     const svg = d3.select(svgRef.current);
     svg.selectAll("*").remove();
-    
-    const width = containerRef.current.clientWidth;
-    const height = containerRef.current.clientHeight;
-    svg.attr("viewBox", `0 0 ${width} ${height}`);
+    const w = wrapRef.current.clientWidth;
+    const h = wrapRef.current.clientHeight;
+    svg.attr("viewBox", `0 0 ${w} ${h}`);
 
-    const dominantDualism = (dm: any) => {
-      const dKeys = ["sacred", "descent", "shadow", "persona", "anima"];
-      let max = 0; let dom = "self";
-      for (const k of dKeys) {
-        if ((dm?.[k] || 0) > max) { max = dm[k]; dom = k; }
-      }
-      return dom;
+    const dom = (m: any) => {
+      const keys = ["sacred","descent","shadow","persona","anima"];
+      let max = 0, d = "self";
+      for (const k of keys) if ((m?.[k] || 0) > max) { max = m[k]; d = k; }
+      return d;
     };
-    const colorFor = (dual: string) => ({
+    const color = (k: string) => ({
       sacred: "#e8d4a0", descent: "#6b2c2c", shadow: "#2a2a2a",
-      persona: "#8a857c", anima: "#c9a96e", self: "#c9a96e"
-    } as any)[dual] || "#c9a96e";
+      persona: "#8a857c", anima: "#c9a96e", self: "#c9a96e",
+    } as any)[k] || "#c9a96e";
+
+    const g = svg.append("g");
+    const zoom = d3.zoom<SVGSVGElement, unknown>().scaleExtent([0.5, 4])
+      .on("zoom", (e) => g.attr("transform", e.transform.toString()));
+    svg.call(zoom as any);
 
     const sim = d3.forceSimulation(data.nodes as any)
       .force("charge", d3.forceManyBody().strength(-40))
-      .force("link", d3.forceLink(data.links)
-        .id((d: any) => d.id).distance(50).strength(0.4))
-      .force("center", d3.forceCenter(width / 2, height / 2))
-      .force("collide", d3.forceCollide().radius((d: any) => 
+      .force("link", d3.forceLink(data.links).id((d: any) => d.id).distance(50).strength(0.4))
+      .force("center", d3.forceCenter(w / 2, h / 2))
+      .force("collide", d3.forceCollide().radius((d: any) =>
         Math.max(4, Math.sqrt((d.content?.length || 50) / 6)) + 2));
 
-    const link = svg.append("g")
-      .selectAll("line")
-      .data(data.links)
-      .join("line")
-      .attr("stroke", "#c9a96e")
-      .attr("stroke-opacity", 0.25)
-      .attr("stroke-width", 0.5);
+    const link = g.append("g").selectAll("line").data(data.links).join("line")
+      .attr("stroke", "#c9a96e").attr("stroke-opacity", 0.25).attr("stroke-width", 0.5);
 
-    const node = svg.append("g")
-      .selectAll("circle")
-      .data(data.nodes)
-      .join("circle")
+    const node = g.append("g").selectAll("circle").data(data.nodes).join("circle")
       .attr("r", (d: any) => Math.max(3, Math.sqrt((d.content?.length || 50) / 6)))
-      .attr("fill", (d: any) => colorFor(dominantDualism(d.dualism_map)))
-      .attr("stroke", (d: any) => 
-        dominantDualism(d.dualism_map) === "shadow" ? "#8a857c" : "none")
+      .attr("fill", (d: any) => color(dom(d.dualism_map)))
+      .attr("stroke", (d: any) => dom(d.dualism_map) === "shadow" ? "#8a857c" : "none")
       .attr("stroke-width", 1)
       .style("cursor", "pointer")
-      .style("transition", "r 350ms cubic-bezier(0.22, 1, 0.36, 1)")
-      .on("mouseover", function() { d3.select(this).attr("r", (d: any) => 
-        Math.max(3, Math.sqrt((d.content?.length || 50) / 6)) + 2); })
-      .on("mouseout", function() { d3.select(this).attr("r", (d: any) => 
-        Math.max(3, Math.sqrt((d.content?.length || 50) / 6))); })
-      .on("click", (event, d: any) => {
+      .on("click", (_e, d: any) => {
         bus.emit("navigate:paragraph", { id: d.id });
         bus.emit("panel:close");
       });
 
     sim.on("tick", () => {
-      link
-        .attr("x1", (d: any) => d.source.x)
-        .attr("y1", (d: any) => d.source.y)
-        .attr("x2", (d: any) => d.target.x)
-        .attr("y2", (d: any) => d.target.y);
+      link.attr("x1", (d: any) => d.source.x).attr("y1", (d: any) => d.source.y)
+          .attr("x2", (d: any) => d.target.x).attr("y2", (d: any) => d.target.y);
       node.attr("cx", (d: any) => d.x).attr("cy", (d: any) => d.y);
     });
-
     return () => { sim.stop(); };
   }, [data]);
 
-  if (error) return <div className="panel-empty-state">{error}</div>;
+  if (error) return <div className="panel-empty">{error}</div>;
   if (!data) return <div className="panel-loading">Loading constellation…</div>;
-  if (data.nodes.length === 0) 
-    return <div className="panel-empty-state">No dualism data available yet</div>;
+  if (data.nodes.length === 0) return <div className="panel-empty">No dualism data yet</div>;
 
   return (
-    <div className="hyperlinks-container">
-      <h2 className="panel-heading">Parallelisms & Dualisms</h2>
-      <div ref={containerRef} className="hyperlinks-svg-wrap">
-        <svg ref={svgRef} className="hyperlinks-svg" />
+    <div style={{ height: "100%", display: "flex", flexDirection: "column" }}>
+      <h2 className="panel-h2">Parallelisms &amp; Dualisms</h2>
+      <p className="panel-sub">{data.nodes.length} paragraphs · {data.links.length} thematic links</p>
+      <div ref={wrapRef} style={{ flex: 1, minHeight: 280, position: "relative" }}>
+        <svg ref={svgRef} style={{ width: "100%", height: "100%", display: "block" }} />
       </div>
-      <div className="dualism-legend">
-        <div className="dualism-legend-item">
-          <span className="dualism-dot" style={{ background: "#e8d4a0" }} />
-          <span>Sacred</span>
-        </div>
-        <div className="dualism-legend-item">
-          <span className="dualism-dot" style={{ background: "#6b2c2c" }} />
-          <span>Descent</span>
-        </div>
-        <div className="dualism-legend-item">
-          <span className="dualism-dot" 
-            style={{ background: "#2a2a2a", border: "1px solid #8a857c" }} />
-          <span>Shadow</span>
-        </div>
-        <div className="dualism-legend-item">
-          <span className="dualism-dot" style={{ background: "#8a857c" }} />
-          <span>Persona</span>
-        </div>
-        <div className="dualism-legend-item">
-          <span className="dualism-dot" style={{ background: "#c9a96e" }} />
-          <span>Anima</span>
-        </div>
+      <div className="legend">
+        {[["#e8d4a0","Sacred"],["#6b2c2c","Descent"],["#2a2a2a","Shadow"],["#8a857c","Persona"],["#c9a96e","Anima"]].map(([c,n]) => (
+          <div key={n} className="legend-item">
+            <span className="legend-dot" style={{ background: c, border: n === "Shadow" ? "1px solid #8a857c" : "none" }} />
+            <span>{n}</span>
+          </div>
+        ))}
       </div>
-      <p className="hyperlinks-hint">
-        Tap any node to navigate to that paragraph. Connected paragraphs share thematic poles.
-      </p>
     </div>
   );
 }

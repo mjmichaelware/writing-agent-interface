@@ -1,25 +1,47 @@
-import { promises as fs } from 'fs';
-import path from 'path';
+import { createClient } from '@supabase/supabase-js';
+import OpenAI from 'openai';
 
-/**
- * [span_6](start_span)MASTER BRAIN: Corpus Searcher v11.8[span_6](end_span)
- * Consolidates 181 nodes into a definitive searchable manifest.
- */
-export class CorpusSearcher {
-  private manifestPath = path.join(process.cwd(), 'src', 'data-layer', 'nos_manifest.json');
+function getSupabase() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!supabaseUrl || !supabaseKey) return null;
+  return createClient(supabaseUrl, supabaseKey);
+}
 
-  public async consolidateManifest() {
-    console.log("[MASTER BRAIN] Consolidating 181 nodes...");
-    // 1. Scan src/data-layer/ingestion-buffer/gdrive_raw/
-    // 2. Cross-reference with src/data-layer/version-archive/ema_history.json
-    // 3. Score 'Final' drafts as 1.0; Drafts A/B/C as 0.5
-    [span_7](start_span)// 4. Output to nos_manifest.json[span_7](end_span)
-    return { status: "Consolidated", nodes: 181 };
-  }
+function getOpenAI() {
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) return null;
+  return new OpenAI({ apiKey });
+}
 
-  public async query(term: string) {
-    // Selects the 'Final' version of any chapter over drafts
-    console.log(`[MASTER BRAIN] Searching for: ${term}`);
+// System 9: Document Analyzer - Corpus Searcher
+export async function searchCorpus(extractedText: string) {
+  const supabase = getSupabase();
+  const openai = getOpenAI();
+
+  if (!supabase || !openai) {
+    console.warn("Supabase or OpenAI not configured for searchCorpus");
     return [];
   }
+
+  // 1. Generate Embedding via OpenAI
+  const embedResponse = await openai.embeddings.create({
+    model: "text-embedding-3-small",
+    input: extractedText.slice(0, 8000), // OpenAI limit
+  });
+  const embedding = embedResponse.data[0].embedding;
+
+  // 2. Vector Search via Supabase RPC
+  const { data, error } = await supabase.rpc('match_paragraphs', {
+    query_embedding: embedding,
+    match_threshold: 0.3, // Lower threshold for external document matching
+    match_count: 5,
+  });
+
+  if (error) {
+    console.error("Search RPC failed:", error.message);
+    return [];
+  }
+  
+  return data;
 }

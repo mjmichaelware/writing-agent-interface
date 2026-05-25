@@ -1,32 +1,49 @@
 "use client";
-import React from 'react';
-import { useSidebarState, useSidebarDispatch } from '@/context/SidebarContext';
 
-export const ReaderLayout = ({ children, activeEntry }: { children: React.ReactNode, activeEntry?: any }) => {
-  const { isOpen } = useSidebarState();
-  const { toggle } = useSidebarDispatch();
+import React, { useEffect, useRef } from "react";
+import { bus } from "@/core/runtimeEngine";
+
+/**
+ * READER LAYOUT: THE HARDWARE VIEWPORT
+ * * Manages the root 3D perspective context for the 4-layer UI.
+ * * Reacts to panel events by rotating the entire manuscript canvas.
+ */
+export default function ReaderLayout({ children }: { children: React.ReactNode }) {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const onToggle = (state: { isOpen: boolean }) => {
+      const el = wrapperRef.current;
+      if (!el) return;
+      if (state.isOpen) {
+        // Feature 160: 3D Perspective Shift
+        el.style.transform = "rotateY(-12deg) translateZ(-100px) translateX(4%)";
+        el.style.filter = "blur(3px) brightness(0.5)";
+        el.style.pointerEvents = "none";
+      } else {
+        el.style.transform = "rotateY(0deg) translateZ(0px) translateX(0%)";
+        el.style.filter = "blur(0px) brightness(1)";
+        el.style.pointerEvents = "auto";
+      }
+    };
+
+    const unsubPanelOpen = bus.on("panel:open", () => onToggle({ isOpen: true }));
+    const unsubPanelClose = bus.on("panel:close", () => onToggle({ isOpen: false }));
+
+    return () => {
+      unsubPanelOpen();
+      unsubPanelClose();
+    };
+  }, []);
 
   return (
-    <div className="grid h-screen w-full transition-[grid-template-columns] duration-500 bg-black overflow-hidden" 
-         style={{ gridTemplateColumns: isOpen ? '1fr 25%' : '1fr 0%' }}>
-      <main className="h-full overflow-y-auto relative">
-        <div className="max-w-prose mx-auto">{children}</div>
-        {!isOpen && <button onClick={() => toggle()} className="fixed right-0 top-1/2 -translate-y-1/2 w-2 h-24 bg-zinc-800 hover:bg-amber-600 rounded-l-full z-50" />}
-      </main>
-      <aside className={`h-full bg-zinc-950 border-l border-zinc-900 overflow-y-auto z-40 ${!isOpen ? 'hidden' : 'block'}`}>
-        <div className="p-8 flex flex-col space-y-12">
-          <button onClick={() => toggle()} className="text-zinc-500 text-left text-xs uppercase tracking-widest">[ Close ]</button>
-          <div className="space-y-6">
-            <h2 className="text-amber-500 text-[10px] uppercase tracking-[0.3em] font-sans">Archetypal Context</h2>
-            {activeEntry ? (
-              <div className="animate-reveal space-y-4">
-                <h3 className="text-2xl font-serif italic text-white">{activeEntry.archetype}</h3>
-                <p className="text-sm text-zinc-400 leading-relaxed">{activeEntry.historicalContext}</p>
-              </div>
-            ) : <p className="text-zinc-700 italic text-sm text-center">Selecting active purview...</p>}
-          </div>
-        </div>
-      </aside>
+    <div className="w-full min-h-screen bg-[#0a0a0a] text-[#e8e4dc] antialiased">
+      <div 
+        ref={wrapperRef} 
+        className="w-full h-full"
+      >
+        {children}
+      </div>
     </div>
   );
-};
+}

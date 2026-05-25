@@ -20,20 +20,20 @@ export type ControlPanelState = {
 };
 
 const DEFAULTS: ControlPanelState = {
-  baseColor: '#e4e4e7',
-  descentColor: '#b91c1c',
-  sacredColor: '#34d399',
-  properColor: '#f59e0b',
-  fontScale: 1,
-  lineHeight: 2,
+  baseColor: '#e8e4dc',
+  descentColor: '#6b2c2c',
+  sacredColor: '#e8d4a0',
+  properColor: '#c9a96e',
+  fontScale: 1.125,
+  lineHeight: 1.7,
   letterSpacing: 0,
   characters: {
-    Dan: { color: '#fbbf24', weight: '600', italic: false },
-    Aviel: { color: '#a78bfa', weight: '600', italic: false },
-    Sak: { color: '#34d399', weight: '700', italic: true },
-    Megiddo: { color: '#dc2626', weight: '600', italic: false },
-    Dagon: { color: '#7c3aed', weight: '700', italic: false },
-    Izabel: { color: '#ec4899', weight: '600', italic: true },
+    Dan:     { color: '#d4a574', weight: '600', italic: false },
+    Aviel:   { color: '#a89bb5', weight: '500', italic: false },
+    Sak:     { color: '#9ab28a', weight: '600', italic: true  },
+    Megiddo: { color: '#8c3a3a', weight: '600', italic: false },
+    Dagon:   { color: '#6b4a7a', weight: '700', italic: false },
+    Izabel:  { color: '#b88a9a', weight: '500', italic: true  },
   },
 };
 

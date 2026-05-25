@@ -1,0 +1,79 @@
+"use client";
+
+import React, { useEffect, useState } from "react";
+import { bus } from "@/core/runtimeEngine";
+import AssetProjector from "@/components/layers/cinema/AssetProjector";
+import { resolveAssetByMeaning, resolveAssetByKeyword } from "@/data/cinema";
+
+/**
+ * LAYER 2: CINEMA PLANE
+ * * Manages the high-fidelity background projection system.
+ * * Feature 200: Meaning-Driven Asset Swapping.
+ */
+export default function Layer2Cinema() {
+  const [intensity, setIntensity] = useState(0.4);
+  const [currentAsset, setCurrentAsset] = useState("/assets/bg.png");
+
+  useEffect(() => {
+    const unsubIntensity = bus.on('cinema:setIntensity', (val: number) => setIntensity(val));
+    
+    const unsubFocus = bus.on('scroll:focus', (data: any) => {
+        const hasWeights = data.weights && Object.keys(data.weights).length > 0;
+        const paraIndex = parseInt(data.paraIndex) || 0;
+        const chapterSlug = data.chapterSlug || "7";
+        const content = data.content || "";
+        
+        let asset;
+        if (hasWeights) {
+            asset = resolveAssetByMeaning(
+                data.weights, 
+                data.dualisms || {}, 
+                data.partNumber || "I"
+            );
+        } else {
+            asset = resolveAssetByKeyword(
+                paraIndex,
+                chapterSlug
+            );
+        }
+
+        // Feature 3.6: Generative Cinema Logic
+        // If we are on the default asset and have enough content, trigger a generative run
+        if (asset === "/assets/bg.png" && content.length > 100) {
+            const prompt = `A cinematic oil painting in 19th-century romantic landscape style, deep Levantine shadows, 1003 BCE Hebron atmosphere: ${content.substring(0, 150)}...`;
+            fetch(`/api/visualize?prompt=${encodeURIComponent(prompt)}`)
+                .then(res => res.json())
+                .then(json => {
+                    if (json.imageUrl) {
+                        setCurrentAsset(json.imageUrl);
+                    }
+                })
+                .catch(err => console.error("Generative cinema failure:", err));
+        } else {
+            setCurrentAsset(asset);
+        }
+    });
+
+    return () => {
+        unsubIntensity();
+        unsubFocus();
+    };
+  }, []);
+
+  return (
+    <div className="fixed inset-0 z-10 pointer-events-none overflow-hidden bg-[var(--bg-void)]">
+      <div 
+        className="absolute inset-0 transition-opacity duration-[2000ms] ease-out"
+        style={{ opacity: intensity }}
+      >
+        <AssetProjector 
+            currentSrc={currentAsset} 
+            scale={1.12} 
+            mixBlend="normal" 
+        />
+      </div>
+      
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/95 pointer-events-none" />
+    </div>
+  );
+}

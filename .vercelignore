@@ -1,0 +1,5 @@
+.next
+.git
+.sandbox
+node_modules
+*.log

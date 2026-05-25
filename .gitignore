@@ -1,4 +1,8 @@
-# Nerve Center (Internal Build Machinery)
+node_modules
+.next
+.vercel
+.sandbox
+*.log# Nerve Center (Internal Build Machinery)
 system/
 .env.local
 
@@ -10,3 +14,17 @@ node_modules/
 .next/
 out/
 build/
+.vercel
+
+# TypeScript Build Info Cache Matrix
+*.tsbuildinfo
+.sandbox/
+.agent-context/
+
+# Google Cloud service account credentials
+service-account*.json
+*-service-account.json
+gcp-credentials*.json
+google-credentials*.json
+.gcp/
+credentials.json

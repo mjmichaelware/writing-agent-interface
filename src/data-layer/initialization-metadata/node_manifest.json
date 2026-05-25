@@ -87,7 +87,7 @@
     },
     {
       "id": "Chapter_2",
-      "aim": "a tribal ascent from a king’s stronghold to the outskirts of his dominion; a rise from the dust of the south to the final, indifferent peak of Mount Hermon, the marker where the true promise dies in the ice. You choose the ascent, my boy? Then understand this:",
+      "aim": "a tribal ascent from a king\u2019s stronghold to the outskirts of his dominion; a rise from the dust of the south to the final, indifferent peak of Mount Hermon, the marker where the true promise dies in the ice. You choose the ascent, my boy? Then understand this:",
       "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_2:_Living_Sacrifice.txt"
     },
     {
@@ -302,11 +302,8 @@
     },
     {
       "id": "(G)_Final_)_Chapter:_10_-_Fors",
-      "aim": "it makes no entrance and sends no herald. One moment the body is a tool in full service to a will; the next moment there is a will and there is a body and they are no longer in the same arrangement. The weight on the sternum had been building since before the chant began, building the way stalactite builds: one cold deposit compounding on another, until the structure is suddenly, completely, irrevocably there. First the sternum—not the weight of stone but heavier, the specific density of absolute certainty pressing down with no interest in argument. Then the limbs, which did not grow heavy but held—caught between the beat and the silence like a pendulum arrested at the summit of its arc, suspended in the interval where will and flesh were being carefully separated with the calm precision of a craftsman who has performed this work before. Her throat sealed. Her eyes fixed on the dark weave of the tent above and would not move. Her chest continued the minimum: breath as technical necessity rather than living act. She was awake in her living awareness and a sealed jar in her flesh, a prisoner in a house of clay that had forgotten how to open its own doors.",
-      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(G)_Final_)_Chapter:_10_-_Forsaken.txt",
-      "is_premium": true,
-      "price": 1.99,
-      "page_prescription": "DIRECTION: High-contrast shadows. The weight of the sternum as a physical anchor."
+      "aim": "it makes no entrance and sends no herald. One moment the body is a tool in full service to a will; the next moment there is a will and there is a body and they are no longer in the same arrangement. The weight on the sternum had been building since before the chant began, building the way stalactite builds: one cold deposit compounding on another, until the structure is suddenly, completely, irrevocably there. First the sternum\u2014not the weight of stone but heavier, the specific density of absolute certainty pressing down with no interest in argument. Then the limbs, which did not grow heavy but held\u2014caught between the beat and the silence like a pendulum arrested at the summit of its arc, suspended in the interval where will and flesh were being carefully separated with the calm precision of a craftsman who has performed this work before. Her throat sealed. Her eyes fixed on the dark weave of the tent above and would not move. Her chest continued the minimum: breath as technical necessity rather than living act. She was awake in her living awareness and a sealed jar in her flesh, a prisoner in a house of clay that had forgotten how to open its own doors.",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(G)_Final_)_Chapter:_10_-_Forsaken.txt"
     },
     {
       "id": "(I)_(Notes)_Chapter:_1_Stardus",
@@ -509,14 +506,14 @@
       "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/13.0_GENERAL_PRINCIPLES.txt"
     },
     {
-      "id": "2.0_Critique_／_Analysis_Guide.",
+      "id": "2.0_Critique_\uff0f_Analysis_Guide.",
       "aim": "[PENDING SEMANTIC ANALYSIS]",
-      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/2.0_Critique_／_Analysis_Guide.txt"
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/2.0_Critique_\uff0f_Analysis_Guide.txt"
     },
     {
       "id": "2.0_This_is_the_critical_adjus",
       "aim": "[PENDING SEMANTIC ANALYSIS]",
-      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/2.0_This_is_the_critical_adjustment—the_final_layer_that_elevates_philosophical_storytelling_into_timeless,_devastating_human_tragedy.txt"
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/2.0_This_is_the_critical_adjustment\u2014the_final_layer_that_elevates_philosophical_storytelling_into_timeless,_devastating_human_tragedy.txt"
     },
     {
       "id": "3.0_Final_.txt",
@@ -594,14 +591,14 @@
       "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/7.0_Nuclear_Edit!!!!_(CRITICAL!_DIRE!_EMERGENCY!!!).txt"
     },
     {
-      "id": "8.0_Pacing／Redundancy.txt",
+      "id": "8.0_Pacing\uff0fRedundancy.txt",
       "aim": "[PENDING SEMANTIC ANALYSIS]",
-      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/8.0_Pacing／Redundancy.txt"
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/8.0_Pacing\uff0fRedundancy.txt"
     },
     {
       "id": "8._0_This_is_the_final,_most_c",
       "aim": "[PENDING SEMANTIC ANALYSIS]",
-      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/8._0_This_is_the_final,_most_crucial_step:_ensuring_the_narrative's_structure_is_so_perfectly_weighted_that_the_profound_sadness—the_weeping_of_self-recognition—is_not_a_chance_event,_but_an_earned,_inevitable_catharsis_for_the_reader.txt"
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/8._0_This_is_the_final,_most_crucial_step:_ensuring_the_narrative's_structure_is_so_perfectly_weighted_that_the_profound_sadness\u2014the_weeping_of_self-recognition\u2014is_not_a_chance_event,_but_an_earned,_inevitable_catharsis_for_the_reader.txt"
     },
     {
       "id": "9.0_Aesthetic.txt",
@@ -675,7 +672,7 @@
     },
     {
       "id": "Chapter_10",
-      "aim": "it makes no entrance, sends no herald. One moment the body is a tool in full service to a will; the next moment there is a will and there is a body and they are no longer in the same arrangement. It does not approach. It is simply the knowledge working backwards through the awareness—the cold certainty finding itself already present, the possession having preceded the accounting of it. The weight on the sternum had been building since before the chant began, since before the lamp went out, building the way stalactite builds: one cold deposit compounding on another, until the structure is suddenly, completely, irrevocably there.",
+      "aim": "it makes no entrance, sends no herald. One moment the body is a tool in full service to a will; the next moment there is a will and there is a body and they are no longer in the same arrangement. It does not approach. It is simply the knowledge working backwards through the awareness\u2014the cold certainty finding itself already present, the possession having preceded the accounting of it. The weight on the sternum had been building since before the chant began, since before the lamp went out, building the way stalactite builds: one cold deposit compounding on another, until the structure is suddenly, completely, irrevocably there.",
       "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10_Version_F.txt"
     },
     {
@@ -894,19 +891,19 @@
       "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/chapter_11.2.txt"
     },
     {
-      "id": "•(G)_Chapter:_1_Stardust_to_St",
+      "id": "\u2022(G)_Chapter:_1_Stardust_to_St",
       "aim": "[PENDING SEMANTIC ANALYSIS]",
-      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/•(G)_Chapter:_1_Stardust_to_Stardust_.txt"
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/\u2022(G)_Chapter:_1_Stardust_to_Stardust_.txt"
     },
     {
       "id": "Chapter_2",
       "aim": "[PENDING SEMANTIC ANALYSIS]",
-      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/•(G)_Chapter_2-_Living_Sacrifice.txt"
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/\u2022(G)_Chapter_2-_Living_Sacrifice.txt"
     },
     {
       "id": "Chapter_1",
       "aim": "[PENDING SEMANTIC ANALYSIS]",
-      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/﻿Chapter_1-_Stardust_to_Stardust.txt"
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/\ufeffChapter_1-_Stardust_to_Stardust.txt"
     }
   ]
 }

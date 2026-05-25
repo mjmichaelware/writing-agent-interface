@@ -1,7 +1,7 @@
 export default function Head() {
   return (
     <>
-      <link rel="preload" as="image" href="/bg.png" />
+      <link rel="preload" as="image" href="/assets/bg.png" />
     </>
   );
 }

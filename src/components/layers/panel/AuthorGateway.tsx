@@ -7,65 +7,72 @@ const KEY = "nos-author-unlocked";
 export default function AuthorGateway() {
   const [unlocked, setUnlocked] = useState(false);
   const [entry, setEntry] = useState("");
-  const [error, setError] = useState("");
-  const [agentInput, setAgentInput] = useState("");
-  const [agentResponse, setAgentResponse] = useState("");
-  const [agentLoading, setAgentLoading] = useState(false);
+  const [err, setErr] = useState("");
+  const [agentIn, setAgentIn] = useState("");
+  const [agentOut, setAgentOut] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    try {
-      if (localStorage.getItem(KEY) === "true") setUnlocked(true);
-    } catch {}
+    try { if (localStorage.getItem(KEY) === "true") setUnlocked(true); } catch {}
   }, []);
 
-  const tryUnlock = (val: string) => {
-    if (val === PIN) {
-      setUnlocked(true); setError("");
+  const tryUnlock = (v: string) => {
+    if (v === PIN) {
+      setUnlocked(true); setErr("");
       try { localStorage.setItem(KEY, "true"); } catch {}
-    } else if (val.length === 4) {
-      setError("Incorrect"); setEntry("");
-      setTimeout(() => setError(""), 1500);
+    } else if (v.length === 4) {
+      setErr("Incorrect"); setEntry("");
+      setTimeout(() => setErr(""), 1500);
     }
   };
 
-  const lock = () => {
-    setUnlocked(false); setEntry("");
-    try { localStorage.removeItem(KEY); } catch {}
-  };
-
   const askAgent = async () => {
-    if (!agentInput.trim()) return;
-    setAgentLoading(true); setAgentResponse("");
+    if (!agentIn.trim()) return;
+    setLoading(true); setAgentOut("");
     try {
       const res = await fetch("/api/agent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt: agentInput }),
+        body: JSON.stringify({ prompt: agentIn })
       });
-      const data = await res.json();
-      setAgentResponse(data.response || data.text || JSON.stringify(data));
+      const d = await res.json();
+      setAgentOut(d.response || d.text || d.result || JSON.stringify(d));
     } catch (e: any) {
-      setAgentResponse(`Error: ${e.message}`);
-    } finally { setAgentLoading(false); }
+      setAgentOut(`Error: ${e.message}`);
+    } finally { setLoading(false); }
   };
 
   if (!unlocked) {
     return (
       <div>
-        <h2 className="panel-heading">Author Gateway</h2>
-        <p className="gateway-prose">Enter operator PIN to proceed.</p>
-        <div className="gateway-pin-wrap">
-          <input
-            type="tel" inputMode="numeric" pattern="[0-9]*" maxLength={4}
+        <h2 className="panel-h2">Author Gateway</h2>
+        <p style={{
+          fontFamily: "Georgia, serif", fontStyle: "italic",
+          color: "#8a857c", textAlign: "center", fontSize: "0.9375rem",
+          margin: "0.5rem 0"
+        }}>Enter operator PIN.</p>
+        <div style={{
+          display: "flex", flexDirection: "column", alignItems: "center",
+          gap: "0.75rem", margin: "1.5rem 0"
+        }}>
+          <input type="tel" inputMode="numeric" pattern="[0-9]*" maxLength={4}
             value={entry}
             onChange={e => {
               const v = e.target.value.replace(/\D/g, "").slice(0, 4);
               setEntry(v); tryUnlock(v);
             }}
-            autoFocus className="gateway-pin-input"
-            placeholder="• • • •"
-          />
-          {error && <p className="gateway-error">{error}</p>}
+            autoFocus placeholder="• • • •"
+            style={{
+              fontSize: "1.75rem", letterSpacing: "0.5em",
+              textAlign: "center", color: "#c9a96e",
+              background: "transparent", border: "none",
+              borderBottom: "1px solid rgba(201,169,110,0.4)",
+              padding: "0.5rem 0", width: "8rem", outline: "none"
+            }} />
+          {err && <p style={{
+            fontFamily: "Georgia, serif", fontStyle: "italic",
+            color: "#6b2c2c", fontSize: "0.8125rem", margin: 0
+          }}>{err}</p>}
         </div>
       </div>
     );
@@ -73,50 +80,69 @@ export default function AuthorGateway() {
 
   return (
     <div>
-      <h2 className="panel-heading">Author Gateway</h2>
-      <p className="gateway-status">Operator Active · Telemetry Online</p>
-      
+      <h2 className="panel-h2">Author Gateway</h2>
+      <p style={{
+        fontFamily: "Georgia, serif", fontStyle: "italic",
+        color: "#c9a96e", textAlign: "center", fontSize: "0.9375rem",
+        margin: "0.5rem 0"
+      }}>Operator Active · Telemetry Online</p>
+
       <section style={{ marginTop: "1.5rem" }}>
-        <h3 className="panel-section-heading">Writing Agent</h3>
-        <textarea
-          value={agentInput}
-          onChange={e => setAgentInput(e.target.value)}
-          placeholder="Ask the swarm about the manuscript…"
-          className="gateway-textarea" rows={3}
-        />
-        <button onClick={askAgent} disabled={agentLoading}
-          className="gateway-button">
-          {agentLoading ? "Thinking…" : "Send"}
-        </button>
-        {agentResponse && <div className="gateway-response">{agentResponse}</div>}
+        <h3 className="panel-h3">Writing Agent</h3>
+        <textarea value={agentIn} onChange={e => setAgentIn(e.target.value)}
+          placeholder="Ask the swarm about the manuscript…" rows={3}
+          style={{
+            width: "100%", margin: "0.5rem 0",
+            fontFamily: "Georgia, serif", fontSize: "0.9375rem",
+            color: "#e8e4dc", background: "rgba(255,255,255,0.03)",
+            border: "1px solid rgba(201,169,110,0.15)",
+            padding: "0.75rem", resize: "vertical", outline: "none"
+          }} />
+        <button onClick={askAgent} disabled={loading} style={{
+          fontFamily: "Georgia, serif", fontStyle: "italic",
+          fontSize: "0.875rem", color: "#c9a96e",
+          background: "transparent", border: "1px solid #c9a96e",
+          padding: "0.5rem 1.5rem", cursor: loading ? "not-allowed" : "pointer",
+          opacity: loading ? 0.5 : 1
+        }}>{loading ? "Thinking…" : "Send"}</button>
+        {agentOut && <div style={{
+          marginTop: "1rem", padding: "1rem",
+          background: "rgba(255,255,255,0.03)",
+          borderLeft: "2px solid #c9a96e",
+          fontFamily: "Georgia, serif", fontSize: "0.9375rem",
+          color: "#e8e4dc", lineHeight: 1.6, whiteSpace: "pre-wrap"
+        }}>{agentOut}</div>}
       </section>
 
       <section style={{ marginTop: "2rem" }}>
-        <h3 className="panel-section-heading">Document Analyzer</h3>
-        <p className="gateway-prose">
-          Upload affordance — POSTs to /api/analyze-document
-        </p>
-        <input type="file" 
-          accept=".txt,.pdf,.png,.jpg,.jpeg,.webp"
-          className="gateway-fileinput"
+        <h3 className="panel-h3">Document Analyzer</h3>
+        <input type="file" accept=".txt,.pdf,.png,.jpg,.jpeg,.webp"
+          style={{
+            display: "block", margin: "0.5rem 0",
+            fontFamily: "Georgia, serif", fontSize: "0.8125rem", color: "#8a857c"
+          }}
           onChange={async (e) => {
             const file = e.target.files?.[0];
             if (!file) return;
-            const fd = new FormData();
-            fd.append("file", file);
+            const fd = new FormData(); fd.append("file", file);
             try {
-              const res = await fetch("/api/analyze-document", { 
-                method: "POST", body: fd 
-              });
+              const res = await fetch("/api/analyze-document", { method: "POST", body: fd });
               const d = await res.json();
-              setAgentResponse(d.summary || JSON.stringify(d));
-            } catch (err: any) {
-              setAgentResponse(`Error: ${err.message}`);
-            }
+              setAgentOut(d.summary || JSON.stringify(d));
+            } catch (err: any) { setAgentOut(`Error: ${err.message}`); }
           }} />
       </section>
 
-      <button onClick={lock} className="gateway-lock">Lock gateway</button>
+      <button onClick={() => {
+        setUnlocked(false); setEntry("");
+        try { localStorage.removeItem(KEY); } catch {}
+      }} style={{
+        display: "block", margin: "2rem auto 0",
+        fontFamily: "Georgia, serif", fontStyle: "italic",
+        fontSize: "0.75rem", color: "#8a857c",
+        background: "transparent", border: "none", cursor: "pointer",
+        padding: "0.5rem 1rem"
+      }}>Lock gateway</button>
     </div>
   );
 }

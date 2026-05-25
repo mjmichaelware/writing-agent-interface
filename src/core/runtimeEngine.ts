@@ -1,32 +1,22 @@
-type Handler<T> = (data: T) => void;
-
 class EventBus {
   private static instance: EventBus;
-  private events: Record<string, Set<Handler<any>>> = {};
-
-  private constructor() {}
-
-  public static getInstance(): EventBus {
+  private listeners: Map<string, Set<(payload: any) => void>> = new Map();
+  static getInstance() {
     if (!EventBus.instance) EventBus.instance = new EventBus();
     return EventBus.instance;
   }
-
-  on<T>(event: string, handler: Handler<T>): () => void {
-    if (!this.events[event]) this.events[event] = new Set();
-    this.events[event].add(handler);
-    return () => this.events[event].delete(handler);
+  on(event: string, handler: (payload: any) => void) {
+    if (!this.listeners.has(event)) this.listeners.set(event, new Set());
+    this.listeners.get(event)!.add(handler);
   }
-
-  off<T>(event: string, handler: Handler<T>) {
-    this.events[event]?.delete(handler);
+  off(event: string, handler: (payload: any) => void) {
+    this.listeners.get(event)?.delete(handler);
   }
-
-  emit<T>(event: string, data: T) {
-    this.events[event]?.forEach((handler) => handler(data));
+  emit(event: string, payload?: any) {
+    this.listeners.get(event)?.forEach(h => {
+      try { h(payload); } catch (e) { console.error("EventBus handler error:", e); }
+    });
   }
 }
-
-const bus = EventBus.getInstance();
-export { bus };
-export default bus;
-export { EventBus };
+export const bus = EventBus.getInstance();
+export function getRuntime() { return { bus }; }

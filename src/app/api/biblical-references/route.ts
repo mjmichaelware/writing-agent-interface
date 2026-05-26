@@ -5,13 +5,19 @@ export async function GET() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key) {
-    return NextResponse.json({ error: "Supabase not configured" }, { status: 503 });
+    return NextResponse.json({ error: "Supabase not configured", references: [] }, { status: 200 });
   }
-  const supabase = createClient(url, key);
-  const { data, error } = await supabase
-    .from("biblical_references")
-    .select("*")
-    .order("scripture_book", { ascending: true });
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-  return NextResponse.json({ references: data || [] });
+  try {
+    const supabase = createClient(url, key);
+    const { data, error } = await supabase
+      .from("biblical_references")
+      .select("*")
+      .order("scripture_book", { ascending: true });
+    if (error) {
+      return NextResponse.json({ error: error.message, references: [] }, { status: 200 });
+    }
+    return NextResponse.json({ references: data || [] });
+  } catch (e: any) {
+    return NextResponse.json({ error: e.message, references: [] }, { status: 200 });
+  }
 }

@@ -2,22 +2,19 @@
 import { useEffect, useState, useRef, Suspense, lazy, Component, ReactNode } from "react";
 import { bus } from "@/core/runtimeEngine";
 
+// Lazy-loaded tab components
 const HyperlinksGraph = lazy(() => import("./panel/HyperlinksGraph"));
 const BiblicalReferencesDirectory = lazy(() => import("./panel/BiblicalReferencesDirectory"));
 const ArchetypesDirectory = lazy(() => import("./panel/ArchetypesDirectory"));
 const ChapterSettings = lazy(() => import("./panel/ChapterSettings"));
 const AuthorGateway = lazy(() => import("./panel/AuthorGateway"));
 
+// Error Boundary for UI isolation
 class TabBoundary extends Component<{ children: ReactNode; name: string }, { err: any }> {
   constructor(p: any) { super(p); this.state = { err: null }; }
   static getDerivedStateFromError(err: any) { return { err }; }
-  componentDidCatch(err: any) { console.error("Tab crash:", this.props.name, err); }
   render() {
-    if (this.state.err) {
-      return <div style={{ padding: "2.5rem 1rem", textAlign: "center", color: "#8a857c", fontFamily: "Georgia, serif", fontStyle: "italic" }}>
-        {this.props.name} crashed: {String(this.state.err?.message || this.state.err)}
-      </div>;
-    }
+    if (this.state.err) return <div style={{ padding: "1rem", color: "#6b2c2c" }}>{this.props.name} failed.</div>;
     return this.props.children;
   }
 }
@@ -33,25 +30,10 @@ const TABS = [
 export default function Layer4Panel() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<string>("HYPERLINKS");
-  const [headerVisible, setHeaderVisible] = useState(false);
-  const lastScrollY = useRef(0);
-
-  useEffect(() => {
-    let raf = 0;
-    const onScroll = () => {
-      if (raf) return;
-      raf = requestAnimationFrame(() => {
-        const y = window.scrollY;
-        const d = y - lastScrollY.current;
-        if (y < 100) setHeaderVisible(false);
-        else if (d < -8) setHeaderVisible(true);
-        else if (d > 8) setHeaderVisible(false);
-        lastScrollY.current = y; raf = 0;
-      });
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => { window.removeEventListener("scroll", onScroll); if (raf) cancelAnimationFrame(raf); };
-  }, []);
+  
+  const gold = "#c9a96e";
+  const body = "#050507";
+  const text = "#e8e4dc";
 
   useEffect(() => {
     const onOpen = (e: any) => {
@@ -59,143 +41,70 @@ export default function Layer4Panel() {
       setIsOpen(true);
     };
     const onClose = () => setIsOpen(false);
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") return onClose();
-      if (e.key.toLowerCase() === "m") return bus.emit("panel:open", { tabId: activeTab });
-      const n = parseInt(e.key);
-      if (n >= 1 && n <= 5) bus.emit("panel:open", { tabId: TABS[n - 1].id });
-    };
     bus.on("panel:open", onOpen);
     bus.on("panel:close", onClose);
-    window.addEventListener("keydown", onKey);
-    return () => {
-      bus.off("panel:open", onOpen);
-      bus.off("panel:close", onClose);
-      window.removeEventListener("keydown", onKey);
-    };
-  }, [activeTab]);
+    return () => { bus.off("panel:open", onOpen); bus.off("panel:close", onClose); };
+  }, []);
 
   const Active = TABS.find(t => t.id === activeTab);
-  const gold = "#c9a96e";
-  const muted = "#8a857c";
-  const body = "#e8e4dc";
 
   return (
     <>
-      {/* Right-edge gold bar — VERY VISIBLE, z-index in the millions */}
+      {/* 1. Toggle Bar (Right Edge) */}
       <button
         onClick={() => isOpen ? bus.emit("panel:close") : bus.emit("panel:open", { tabId: activeTab })}
-        aria-label={isOpen ? "Close panel" : "Open panel"}
         style={{
           position: "fixed", right: 0, top: "50vh",
           transform: "translateY(-50%)",
-          zIndex: 2147483645,
+          zIndex: 2147483646,
           width: "1.75rem", height: "5rem",
           background: "transparent", border: "none", cursor: "pointer",
           display: "flex", alignItems: "center", justifyContent: "flex-end",
-          padding: 0,
+          padding: 0
         }}>
         <span style={{
           display: "block", width: "5px", height: "100%",
-          background: gold,
-          opacity: isOpen ? 1 : 0.85,
-          boxShadow: `0 0 20px ${gold}99`,
-          transition: "all 350ms cubic-bezier(0.22, 1, 0.36, 1)",
+          background: gold, opacity: isOpen ? 1 : 0.85,
+          boxShadow: `0 0 20px ${gold}99`
         }} />
       </button>
 
-      {/* Scroll-aware top header */}
-      <header style={{
-        position: "fixed", top: 0, left: 0, right: 0,
-        zIndex: 2147483644,
-        display: "flex", justifyContent: "center", gap: "1.5rem",
-        padding: "1rem 0.75rem", flexWrap: "wrap",
-        background: "linear-gradient(to bottom, rgba(10,10,10,0.92), rgba(10,10,10,0.5) 60%, transparent)",
-        backdropFilter: "blur(8px)",
-        WebkitBackdropFilter: "blur(8px)",
-        transform: headerVisible ? "translateY(0)" : "translateY(-100%)",
-        opacity: headerVisible ? 1 : 0,
-        pointerEvents: headerVisible ? "auto" : "none",
-        transition: "transform 500ms cubic-bezier(0.22, 1, 0.36, 1), opacity 500ms",
-      }}>
-        {TABS.map(t => (
-          <button key={t.id}
-            onClick={() => bus.emit("panel:open", { tabId: t.id })}
-            style={{
-              fontFamily: "Georgia, serif", fontStyle: "italic",
-              fontSize: "0.8125rem", color: muted,
-              background: "transparent", border: "none", cursor: "pointer",
-              padding: "0.25rem 0",
-            }}>
-            {t.label}
-          </button>
-        ))}
-      </header>
-
-      {/* Backdrop dimmer */}
-      <div onClick={() => bus.emit("panel:close")} aria-hidden="true"
-        style={{
-          position: "fixed", inset: 0,
-          zIndex: 2147483646,
-          background: isOpen ? "rgba(0,0,0,0.55)" : "rgba(0,0,0,0)",
-          backdropFilter: isOpen ? "blur(4px)" : "blur(0)",
-          WebkitBackdropFilter: isOpen ? "blur(4px)" : "blur(0)",
-          pointerEvents: isOpen ? "auto" : "none",
-          transition: "background 500ms cubic-bezier(0.22, 1, 0.36, 1), backdrop-filter 500ms",
-        }} />
-
-      {/* Centered floating panel */}
-      <div role="dialog" aria-modal="true"
-        style={{
-          position: "fixed", top: "50vh", left: "50vw",
-          transform: `translate(-50%, -50%) scale(${isOpen ? 1 : 0.96})`,
-          width: "min(720px, calc(100vw - 1.5rem))",
-          height: "min(80vh, 760px)",
+      {/* 2. Drawer Container (Supremacy Layer) */}
+      {isOpen && (
+        <div style={{
+          position: "fixed", top: "5vh", right: "2rem",
+          width: "min(90vw, 400px)", height: "90vh",
+          backgroundColor: body, border: `1px solid ${gold}`,
           zIndex: 2147483647,
-          background: "rgba(10,10,10,0.97)",
-          backdropFilter: "blur(32px)",
-          WebkitBackdropFilter: "blur(32px)",
-          border: `1px solid rgba(201,169,110,0.3)`,
-          boxShadow: "0 30px 80px rgba(0,0,0,0.85)",
-          opacity: isOpen ? 1 : 0,
-          pointerEvents: isOpen ? "auto" : "none",
-          display: "flex", flexDirection: "column", overflow: "hidden",
-          transition: "opacity 600ms cubic-bezier(0.22, 1, 0.36, 1), transform 600ms",
+          borderRadius: "8px", padding: "1rem",
+          boxShadow: "0 0 50px rgba(0,0,0,0.8)",
+          display: "flex", flexDirection: "column"
         }}>
-        <nav role="tablist"
-          style={{
-            display: "flex", justifyContent: "center", alignItems: "center",
-            gap: "1rem", padding: "1rem 0.75rem 0.75rem",
-            borderBottom: "1px solid rgba(201,169,110,0.1)",
-            flexWrap: "wrap",
-          }}>
-          {TABS.map(t => (
-            <button key={t.id}
-              onClick={() => setActiveTab(t.id)}
-              role="tab" aria-selected={activeTab === t.id}
-              style={{
-                fontFamily: "Georgia, serif", fontStyle: "italic",
-                fontSize: "0.8125rem",
-                color: activeTab === t.id ? gold : muted,
-                background: "transparent", border: "none", cursor: "pointer",
-                padding: "0.25rem 0", position: "relative",
-                borderBottom: activeTab === t.id ? `1px solid ${gold}` : "1px solid transparent",
-                transition: "color 350ms cubic-bezier(0.22, 1, 0.36, 1), border-color 350ms",
-              }}>
-              {t.label}
-            </button>
-          ))}
-        </nav>
-        <div style={{ flex: 1, overflowY: "auto", padding: "1.5rem 1.25rem 2rem" }}>
-          {Active && (
-            <TabBoundary name={Active.label}>
-              <Suspense fallback={<div style={{ padding: "2.5rem 1rem", textAlign: "center", color: muted, fontFamily: "Georgia, serif", fontStyle: "italic" }}>Loading {Active.label}…</div>}>
-                <Active.Component />
-              </Suspense>
-            </TabBoundary>
-          )}
+          {/* Tab Headers */}
+          <div style={{ display: "flex", gap: "0.25rem", marginBottom: "1rem", overflowX: "auto", paddingBottom: "0.5rem" }}>
+            {TABS.map(t => (
+              <button key={t.id} onClick={() => setActiveTab(t.id)}
+                style={{ 
+                  background: activeTab === t.id ? gold : "transparent",
+                  color: activeTab === t.id ? "#000" : gold,
+                  border: `1px solid ${gold}`, padding: "0.4rem 0.6rem", 
+                  cursor: "pointer", fontSize: "0.7rem", fontFamily: "monospace" 
+                }}>
+                {t.label}
+              </button>
+            ))}
+          </div>
+          
+          {/* Active Content */}
+          <div style={{ flex: 1, overflowY: "auto" }}>
+            <Suspense fallback={<div style={{ color: gold }}>Initializing...</div>}>
+              <TabBoundary name={activeTab}>
+                {Active && <Active.Component />}
+              </TabBoundary>
+            </Suspense>
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }

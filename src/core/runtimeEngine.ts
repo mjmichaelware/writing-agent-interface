@@ -14,7 +14,7 @@ class EventBus {
   }
   emit(event: string, payload?: any) {
     this.listeners.get(event)?.forEach(h => {
-      try { h(payload); } catch (e) { console.error("EventBus handler error:", e); }
+      try { h(payload); } catch (e) { console.error("Bus handler error:", e); }
     });
   }
 }

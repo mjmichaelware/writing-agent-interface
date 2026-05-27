@@ -55,8 +55,12 @@ export default function Page() {
   };
 
   return (
-    <>
+    <main className="relative w-full min-h-screen overflow-hidden">
       <div id="DEPLOY-PROOF-MARKER" style={{ position: "fixed", top: 8, left: 8, zIndex: 99999, background: "#c9a96e", color: "#0a0a0a" }}>NOS-V4-LIVE</div>
+      
+      {/* Layer 4 is now at the root, unaffected by ReaderLayout transforms */}
+      <Layer4Panel />
+
       <ReaderLayout>
         <Layer1Void />
         <Layer2Cinema chapterSlug={chapterNum.toString()} />
@@ -68,8 +72,7 @@ export default function Page() {
               onLoadChapter={handleChapterChange}
           />
         </Layer3Canvas>
-        <Layer4Panel />
       </ReaderLayout>
-    </>
+    </main>
   );
 }

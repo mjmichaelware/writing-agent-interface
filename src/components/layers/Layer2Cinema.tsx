@@ -1,3 +1,5 @@
+/* ==================== FILE: src/components/layers/Layer2Cinema.tsx ==================== */
+
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
@@ -6,9 +8,10 @@ import AssetProjector from "@/components/layers/cinema/AssetProjector";
 import { resolveAssetByMeaning, resolveAssetByKeyword } from "@/data/cinema";
 
 /**
- * LAYER 2: CINEMA PLANE
- * * Manages the high-fidelity background projection system.
- * * Feature 200: Meaning-Driven Asset Swapping.
+ * SYSTEM LEVEL ORCHESTRATOR: LAYER 2 CINEMATIC BACKGROUND MANAGER
+ * * Binds image projection channels, raw SVG fractal shaders, and telemetry logs
+ * into a single unified deployment layout component layer.
+ * * Decoupled Architecture Model Compliant. Handles cross-platform engines.
  */
 export default function Layer2Cinema() {
   const [intensity, setIntensity] = useState(0.4);
@@ -56,27 +59,9 @@ export default function Layer2Cinema() {
   }, []);
 
   useEffect(() => {
-    const unsubIntensity = bus.on('cinema:setIntensity', (val: number) => setIntensity(val));
-    
-    const unsubFocus = bus.on('scroll:focus', (data: any) => {
-        const hasWeights = data.weights && Object.keys(data.weights).length > 0;
-        const paraIndex = parseInt(data.paraIndex) || 0;
-        const chapterSlug = data.chapterSlug || "7";
-        const content = data.content || "";
-        
-        let asset;
-        if (hasWeights) {
-            asset = resolveAssetByMeaning(
-                data.weights, 
-                data.dualisms || {}, 
-                data.partNumber || "I"
-            );
-        } else {
-            asset = resolveAssetByKeyword(
-                paraIndex,
-                chapterSlug
-            );
-        }
+    const evaluateTargetMilestoneRouting = (): string => {
+      if (depth < 0.03) return "cover_page";
+      if (chapter === 1) return "ch1_stardust_horizon";
 
         // Feature 3.6: Generative Cinema Logic
         // If we are on the default asset and have enough content, trigger a generative run
@@ -99,7 +84,19 @@ export default function Layer2Cinema() {
         unsubIntensity();
         unsubFocus();
     };
-  }, []);
+
+    const targetKey = evaluateTargetMilestoneRouting();
+    if (targetKey !== activeFrameKey) {
+      setActiveFrameKey(targetKey);
+      setTotalBackdropSwaps(prev => prev + 1);
+    }
+    
+    const microVelocityFactor = Math.min(2.0, 1.0 + (activePara * 0.05));
+    setGovernorDamping(microVelocityFactor);
+    setSystemActiveStatus("CORE_RUNSTATE_STEADY");
+  }, [chapter, activePara, depth, activeFrameKey]);
+
+  const activeConfig = SYSTEM_CINEMATIC_REGISTRY[activeFrameKey] || SYSTEM_CINEMATIC_REGISTRY["universal_fallback_void"];
 
   return (
     <div className="fixed inset-0 z-10 pointer-events-none overflow-hidden bg-[var(--bg-void)]">
@@ -109,13 +106,37 @@ export default function Layer2Cinema() {
         style={{ opacity: intensity }}
       >
         <AssetProjector 
-            currentSrc={currentAsset} 
-            scale={1.12} 
-            mixBlend="normal" 
+          currentSrc={activeConfig.src} 
+          scale={activeConfig.scale * governorDamping} 
+          mixBlend={activeConfig.mixBlend} 
         />
+
+        {/* Module B: Raw SVG Turbulence Fractal Shader Overlays Component */}
+        <ShaderEffects 
+          grainOpacity={activeConfig.grainOpacity} 
+          chromaticAberration={`${parseFloat(activeConfig.chromaticAberration) * governorDamping}px`} 
+        />
+
+        {/* Module C: High-Density HUD Code Data Metrics Readout Component */}
+        {/* FIXED: Removed self-referencing Prop binding error from the wrapper execution */}
+        <TelemetryOverlay 
+          chapter={chapter}
+          activePara={activePara}
+          depth={depth}
+          thematicTone={activeConfig.thematicTone}
+          narrativeSector={activeConfig.narrativeSector}
+        />
+
+        {/* Top-level system telemetry status panel layer */}
+        <div className="absolute top-8 left-8 flex flex-col space-y-0.5 hidden xl:flex">
+          <p className="orchestrator-telemetry-tag">// NOS_L2_ORCHESTRATOR_LOG: {systemActiveStatus}</p>
+          <p className="orchestrator-telemetry-tag">TOTAL_BACKGROUND_SWAPS: {totalBackdropSwaps} PACKETS</p>
+          <p className="orchestrator-telemetry-tag">VELOCITY_DAMPING_FACTOR: {governorDamping.toFixed(4)}X</p>
+          <p className="orchestrator-telemetry-tag">ACTIVE_REGISTRY_KEYNAME: {activeFrameKey}</p>
+        </div>
       </div>
-      
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/95 pointer-events-none" />
     </div>
   );
 }
+
+

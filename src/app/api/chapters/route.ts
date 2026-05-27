@@ -25,7 +25,18 @@ const CANON: Record<string, { dir: string; file: string }> = {
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  const slug = searchParams.get('slug') || '7';
+  const slug = searchParams.get('slug');
+
+  if (!slug) {
+    // Return all chapters metadata for the TOC/Switcher
+    const allChapters = Object.keys(CANON).map(s => ({
+      chapter_number: parseInt(s),
+      slug: s,
+      id: s, // Using slug as id for fallback
+    }));
+    return NextResponse.json(allChapters);
+  }
+
   const entry = CANON[slug];
 
   if (!entry) {

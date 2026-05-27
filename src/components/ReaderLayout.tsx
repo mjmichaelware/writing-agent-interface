@@ -27,12 +27,15 @@ export default function ReaderLayout({ children }: { children: React.ReactNode }
       }
     };
 
-    const unsubPanelOpen = bus.on("panel:open", () => onToggle({ isOpen: true }));
-    const unsubPanelClose = bus.on("panel:close", () => onToggle({ isOpen: false }));
+    const onOpen = () => onToggle({ isOpen: true });
+    const onClose = () => onToggle({ isOpen: false });
+
+    bus.on("panel:open", onOpen);
+    bus.on("panel:close", onClose);
 
     return () => {
-      unsubPanelOpen();
-      unsubPanelClose();
+      bus.off("panel:open", onOpen);
+      bus.off("panel:close", onClose);
     };
   }, []);
 

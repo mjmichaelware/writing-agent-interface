@@ -1,145 +1,75 @@
-/* ==================== FILE: src/app/page.tsx ==================== */
-
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
-import { getRuntime } from "@/runtime/runtimeContext";
-import { initAudioListener } from "@/runtime/listeners/audioListener";
-import { initDistortionListener } from "@/runtime/listeners/distortionListener";
-import { initThematicListener } from "@/runtime/listeners/thematicListener";
-import { useControlPanel } from "@/runtime/controlPanel";
-
+import React, { useEffect, useState } from "react";
+import ReaderLayout from "@/components/ReaderLayout";
 import Layer1Void from "@/components/layers/Layer1Void";
 import Layer2Cinema from "@/components/layers/Layer2Cinema";
 import Layer3Canvas from "@/components/layers/Layer3Canvas";
 import Layer4Panel from "@/components/layers/Layer4Panel";
+import ManuscriptCore from "@/components/layers/canvas/ManuscriptCore";
 
-const TITLES: Record<number, string> = {
-  1: "I. Stardust to Stardust",
-  2: "II. Living Sacrifice",
-  3: "III. Lift Up",
-  4: "IV. Pilgrimage",
-  5: "V. The Snare",
-  6: "VI. Beelzebub, Beelzebub",
-  7: "VII. The Pit",
-  8: "VIII. Sea People",
-  9: "IX. The Ascent",
-  10: "X. Forsaken",
-  11: "XI. Forsaken (II)",
-  13: "XIII. Exodus",
-  24: "XXIV. Second to Last",
-};
-const CHAPTER_NUMS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 24];
-
-export default function HomePage() {
-  const { bus } = getRuntime();
-  const cp = useControlPanel();
-
-  const [chapter, setChapter] = useState<number>(7);
-  const [paragraphs, setParagraphs] = useState<string[]>([]);
+export default function Page() {
+  const [blocks, setBlocks] = useState<any[]>([]);
+  const [partNumber, setPartNumber] = useState("I");
+  const [chapterNum, setChapterNum] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [depth, setDepth] = useState(0);
-  const [activePara, setActivePara] = useState(0);
-  const [panelOpen, setPanelOpen] = useState(false);
-
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const topCanvasRef = useRef<HTMLDivElement>(null);
-  const dedicationRef = useRef<HTMLDivElement>(null);
-  const blurbRef = useRef<HTMLDivElement>(null);
-  const authorRef = useRef<HTMLDivElement>(null);
-  const tocRef = useRef<HTMLDivElement>(null);
-  const manuscriptRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    initAudioListener(bus);
-    initDistortionListener(bus);
-    initThematicListener(bus);
-  }, [bus]);
+    async function loadChapter() {
+      try {
+        // Feature 205: Fetch from Supabase Hash Registry
+        const chaptersRes = await fetch(`/api/chapters`);
+        const chapters = await chaptersRes.json();
+        
+        // Find by number
+        const activeChapter = chapters.find((c: any) => c.chapter_number === chapterNum);
 
-  useEffect(() => {
-    const p = new URLSearchParams(window.location.search);
-    const ch = p.get("ch");
-    if (ch !== null) {
-      const parsed = parseInt(ch, 10);
-      if (TITLES[parsed] !== undefined) setChapter(parsed);
+        if (activeChapter) {
+            const manuscriptRes = await fetch(`/api/manuscript?chapterId=${activeChapter.id}`);
+            const data = await manuscriptRes.json();
+            setBlocks(data);
+            setPartNumber(activeChapter.part_number || "I");
+        } else {
+            // Fallback: Local TXT
+            const localRes = await fetch(`/data/chapters/${chapterNum}.txt`);
+            if (localRes.ok) {
+                const text = await localRes.text();
+                const paragraphs = text
+                  .split(/\n\s*\n/)
+                  .map(p => p.trim())
+                  .filter(p => p.length > 0 && !p.startsWith("Chapter"));
+                setBlocks(paragraphs);
+            } else {
+                setBlocks([]);
+            }
+        }
+      } catch (err) {
+        console.error("Failed to load chapter data:", err);
+      }
     }
-  }, []);
+    loadChapter();
+  }, [chapterNum]);
 
-  useEffect(() => {
-    const ac = new AbortController();
-    setLoading(true);
-    setError(null);
-    fetch(`/api/chapters?slug=${chapter}`, { signal: ac.signal })
-      .then((r) => r.json())
-      .then((d) => {
-        if (d.error) { setError(d.error); setParagraphs([]); }
-        else if (d.blocks?.length > 0) { setParagraphs(d.blocks); }
-        else { setParagraphs([]); }
-        setLoading(false);
-        (bus as any).emit("chapter:load", { id: chapter });
-      })
-      .catch((e) => {
-        if (e.name !== "AbortError") { setError(e.message); setLoading(false); }
-      });
-    return () => ac.abort();
-  }, [chapter, bus]);
-
-  const handleScroll = () => {
-    const el = scrollContainerRef.current;
-    if (!el) return;
-
-    const max = el.scrollHeight - el.clientHeight;
-    const d = max > 0 ? el.scrollTop / max : 0;
-    setDepth(d);
-    (bus as any).emit("scroll:update", { depth: d });
-
-    const paras = el.querySelectorAll("[data-para]");
-    let active = 0;
-    paras.forEach((pEl, i) => {
-      const r = pEl.getBoundingClientRect();
-      if (r.top < window.innerHeight * 0.5) active = i;
-    });
-    setActivePara(active);
-  };
-
-  const go = (delta: number) => {
-    const currentIdx = CHAPTER_NUMS.indexOf(chapter);
-    if (currentIdx !== -1 && CHAPTER_NUMS[currentIdx + delta] !== undefined) {
-      setChapter(CHAPTER_NUMS[currentIdx + delta]);
-      setTimeout(() => { manuscriptRef.current?.scrollIntoView({ behavior: "smooth" }); }, 50);
-    }
+  const handleChapterChange = (n: number) => {
+      setChapterNum(n);
   };
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden bg-black text-zinc-100 font-sans selection:bg-cyan-950/60">
-      <Layer1Void />
-      <Layer2Cinema chapter={chapter} activePara={activePara} depth={depth} />
-      
-      {/* Locked Hardware-Accelerated Container Viewport Frame */}
-      <div 
-        ref={scrollContainerRef}
-        onScroll={handleScroll}
-        className="absolute inset-0 w-full h-full overflow-y-auto overflow-x-hidden z-20 scroll-smooth"
-        style={{
-          maskImage: 'linear-gradient(to bottom, transparent 0vh, black 12vh, black 88vh, transparent 100vh)',
-          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0vh, black 12vh, black 88vh, transparent 100vh)'
-        }}
-      >
-        <Layer3Canvas
-          chapter={chapter} setChapter={setChapter} paragraphs={paragraphs} loading={loading} error={error}
-          depth={depth} go={go} titleOpacity={1 - depth * 4} titleScale={1}
-          topCanvasRef={topCanvasRef} dedicationRef={dedicationRef} blurbRef={blurbRef} authorRef={authorRef} tocRef={tocRef} manuscriptRef={manuscriptRef}
-          TITLES={TITLES} CHAPTER_NUMS={CHAPTER_NUMS} state={cp.state}
-        />
-      </div>
-
-      <Layer4Panel
-        open={panelOpen} onClose={() => setPanelOpen(false)} cp={cp} chapter={chapter} setChapter={setChapter}
-        manuscriptRef={manuscriptRef} TITLES={TITLES} CHAPTER_NUMS={CHAPTER_NUMS} depth={depth} setOpen={setPanelOpen}
-      />
-    </div>
+    <>
+      <div id="DEPLOY-PROOF-MARKER" style={{ position: "fixed", top: 8, left: 8, zIndex: 99999, background: "#c9a96e", color: "#0a0a0a" }}>NOS-V4-LIVE</div>
+      <ReaderLayout>
+        <Layer1Void />
+        <Layer2Cinema chapterSlug={chapterNum.toString()} />
+        <Layer3Canvas>
+          <ManuscriptCore 
+              blocks={blocks} 
+              chapterSlug={chapterNum.toString()} 
+              partNumber={partNumber} 
+              onLoadChapter={handleChapterChange}
+          />
+        </Layer3Canvas>
+        <Layer4Panel />
+      </ReaderLayout>
+    </>
   );
 }
-
-

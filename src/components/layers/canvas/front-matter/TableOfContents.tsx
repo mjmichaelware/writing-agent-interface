@@ -4,7 +4,7 @@ import React from "react";
 
 const ROMAN: Record<number, string> = {
   1: "I", 2: "II", 3: "III", 4: "IV", 5: "V", 6: "VI",
-  7: "VII", 8: "VIII", 9: "IX", 10: "X", 11: "XI", 13: "XIII",
+  7: "VII", 8: "VIII", 9: "IX", 10: "X", 11: "XI", 13: "XIII", 24: "XXIV",
 };
 
 interface Props {
@@ -49,7 +49,8 @@ export default function TableOfContents({ TITLES, onLoadChapter }: Props) {
         <Pending numeral="XIV–XVII" />
 
         <h3 className="toc-part-heading">Part III — The Cosmic Union</h3>
-        <Pending numeral="XVIII–XXIV" />
+        <Pending numeral="XVIII–XXIII" />
+        <Row num={24} title={TITLES[24]} onClick={() => onLoadChapter(24)} />
 
         <h3 className="toc-part-heading">Epilogue</h3>
         <Pending numeral="XXV" />

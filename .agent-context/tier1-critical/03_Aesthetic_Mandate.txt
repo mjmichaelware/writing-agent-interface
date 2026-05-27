@@ -1,0 +1,406 @@
+﻿Aesthetic & Implementation Mandate
+
+
+**Read this entire document before writing any code. Do not begin work until you have parsed all 17 sections. After reading, list which files you will modify and confirm you understood the aesthetic anchors. Then write complete, untruncated code.**
+
+
+---
+
+
+## 0. Your Role
+
+
+You are implementing a literary, cinematic web reader for a novel set in 1003 BCE Hebron. You are NOT building a developer dashboard, a SaaS app, a portfolio site, a "futuristic" interface, or anything that resembles a terminal. The aesthetic ceiling is **prestige cinema and fine bookbinding** — Dune, Penguin Classics, Apple product pages — not Stripe documentation or Linear's product page.
+
+
+If your instinct is to add monospace text, cyan glow, terminal labels (`// SECTION`, `NODE 0X`, `BLOCK`, `EXTRACTION FAILED`), or `tracking-widest uppercase` headers, override it. That instinct is wrong here. It is the single failure mode this prompt is written to prevent.
+
+
+---
+
+
+## 1. Project Facts (Locked — Do Not Refactor)
+
+
+- Framework: Next.js 14 App Router, TypeScript, React, Tailwind
+- Root: `src/app/page.tsx` IS the reader. There is no `/reader` subdirectory.
+- Layer architecture (already split, do not collapse back into one file):
+  - **Layer 1 Void** (z-0): `src/components/layers/Layer1Void.tsx` — fixed black void, pointer-events-none. **SHOULD BE ~5 LINES.** Currently 337 LOC, which means diagnostic/HUD code has leaked in. Extract it.
+  - **Layer 2 Cinema** (z-10): `src/components/layers/Layer2Cinema.tsx` — fixed image projector, cross-fades based on `activePara` index
+  - **Layer 3 Canvas** (z-20): `src/components/layers/Layer3Canvas.tsx` — scroll viewport, front matter + manuscript
+  - **Layer 4 Panel** (z-40/50): `src/components/layers/Layer4Panel.tsx` — header + drawer
+- Scroll source: the **document/window**. Never refactor scroll to a container ref. Never set `body { overflow: hidden }`. `useScroll()` is called without a target.
+- Asset paths: every asset lives at `/assets/[filename]`. The Moon Boy is `/assets/bg.png`. Never `/bg.png` — that 404s.
+
+
+---
+
+
+## 2. Aesthetic Anchors
+
+
+Match the visual register of these specific references. If your output cannot plausibly sit next to them, redo it.
+
+
+- **Dune (2021) opening titles** — vast negative space, slow fades, sparse typography, weight and silence
+- **Penguin Classics Deluxe Editions** — serif type with gravity, restrained palette, page treated as a designed object
+- **Apple product pages** (current iPad/iPhone marketing) — generous whitespace, full-bleed imagery, type as the hero, no chrome around content, slow scroll-driven reveals
+- **Letterboxd film detail pages** — editorial layout, image-forward, prose feels like prose
+- **The Criterion Channel homepage** — moody, cinematic, restrained motion, color used sparingly
+
+
+---
+
+
+## 3. Banned Aesthetics (Critical Failure 2)
+
+
+Do not produce any of the following:
+
+
+- Monospace fonts anywhere except actual code snippets
+- ALL CAPS tracked-out headers (`tracking-[0.4em] uppercase`, `tracking-widest uppercase`)
+- Cyan, electric blue, or neon green accents on text or buttons
+- Glow shadows on text (`text-shadow: 0 0 30px cyan`, heavy `drop-shadow-2xl`)
+- Terminal-style labels: `// ACCREDITATION`, `// SYNOPSIS SUMMARY`, `// BIOGRAPHY VAULT`, `// CANVAS INDEX`, `NODE 0X`, `BLOCK`, `STREAM`, `EXTRACTION FAILED`, `MANUSCRIPT ARRAY NULL`, `PREV BLOCK / NEXT BLOCK`, `Parsing active manuscript stream...`
+- Rigid bordered boxes around prose (`border border-zinc-800 p-6 rounded-sm bg-zinc-950/40`)
+- Hex color codes visible to users
+- "Cyber," "matrix," "neural," "node," or "concordance" language in any user-facing label
+- Bouncing chevron arrows as scroll hints
+
+
+---
+
+
+## 4. Typography
+
+
+- **Title** (THE WEIGHT OF THE SKY): `var(--font-hebrew)` if loaded, fallback to a serif display face. Confirm the font is loaded in `src/app/layout.tsx` via `next/font`. If it is not, load it.
+- **Body prose and section labels**: a literary serif with weight and history. Load **EB Garamond** or **Cormorant Garamond** or **Spectral** via `next/font/google`. Times New Roman is forbidden — it is the airport paperback default.
+- **Section labels** (Dedication, Synopsis, About the Author, Table of Contents): the **same body serif** in small caps or italic. **Not monospace. Not uppercase tracked.**
+- Line height for prose: **1.7**. Not 2.0. Not 1.5.
+- Body text color: warm off-white `#e8e4dc`, never pure white on pure black
+- Background: near-black `#0a0a0a`, never `#000000`
+
+
+---
+
+
+## 5. Color Palette
+
+
+- Background: `#0a0a0a`
+- Body text: `#e8e4dc` (warm parchment)
+- Muted text: `#8a857c` (warm gray)
+- Accent (hover states only, sparingly): muted gold `#c9a96e` or warm amber `#d4a574`
+- Sacred-word highlight (for the thematic listener): pale gold `#e8d4a0`
+- Descent-word highlight: deep red-brown `#6b2c2c` (NOT bright red)
+
+
+**No cyan. No green. No electric blue. No neon anything.**
+
+
+---
+
+
+## 6. The Title Page
+
+
+This is the cover of the book. Treat it that way.
+
+
+- Full viewport: `min-h-screen`
+- Moon Boy (`/assets/bg.png`) as the full-bleed background image, `object-cover`, slightly desaturated and darkened toward the bottom edge with a soft vertical gradient (`from-transparent to-[#0a0a0a]`). **Do not use `mix-blend-luminosity`** — that destroys the image.
+- Title centered vertically: "The Weight of the Sky" in the Hebrew font, large (`text-6xl md:text-8xl`), tracked normally (not `tracking-widest`), warm parchment color with a subtle text shadow for legibility against the image — **not a glow**
+- Subtitle directly below title: "An Archetypal Tale" in italic serif, NOT uppercase, NOT tracked, in muted parchment
+- Framer Motion entrance: title fades in with `duration: 1.8` and `y: 30 → 0` ease-out; subtitle delayed `delay: 0.8` with `duration: 1.4`. **Duration and delay are in SECONDS, not milliseconds. `duration: 1000` is a 16-minute fade. Don't do that.**
+- Navigation buttons (Dedication / Synopsis / About the Author / Begin Reading): thin underlined text links in the serif, lowercase or small caps, generously spaced (`gap-12`). "Begin Reading" is the only button with a subtle outlined treatment to distinguish it as primary. Hover: warm-gold underline animates in from left. **No filled cyan buttons.**
+- Byline at the bottom of the title viewport: "By Michael Alonza Prentice Ware" in small italic serif, muted parchment, centered
+
+
+---
+
+
+## 7. Continuous Scroll Flow
+
+
+One seamless scroll, no route changes. Sections in this exact order:
+
+
+1. **Title Page** (`#title-page`) — full viewport, Moon Boy background
+2. **Dedication** (`#dedication`) — `min-h-[60vh]`, centered, italic serif
+3. **Synopsis** (`#blurb`) — `min-h-[70vh]`, prose in a `max-w-2xl` column, no border
+4. **About the Author** (`#about`) — `min-h-[60vh]`, same prose treatment
+5. **Table of Contents** (`#toc`) — `min-h-screen`, the 25-part canonical matrix
+6. **Reading** (`#reading`) — manuscript prose, loads chapter via `/api/chapters?slug=N`
+
+
+Between sections: generous breathing room (`space-y-48` or larger). No section dividers. No `border-t border-zinc-900` between sections. Let the white space do the work.
+
+
+---
+
+
+## 8. Canonical Front Matter Text — VERBATIM
+
+
+These are non-negotiable. Do not paraphrase. Do not summarize. Do not invent additional characters, witches, daughters, or plot details.
+
+
+**Dedication:**
+
+
+> James Lee Ware (In order to keep Curious)
+
+
+**Synopsis:**
+
+
+> In Hebron in 1003 BCE, during the early days of King David's rule over Judah, sixteen-year-old Dan lives inside an oppressive home paralyzed by his father's hoarding grief. Dan is a dreamwalker, a visionary uniquely capable of consciously stepping into a hidden world constructed from minute cells of universal dust. When his deep interventions fracture his family, Dan is cast out, forced to embark on a punishing physical trek northward toward Mount Hermon to find the ultimate source of reality. His path demands a brutal expenditure of tissue and will, shattering his physical voice and bringing him face-to-face with an infinite cycle of conflict written in the stars.
+
+
+**About the Author:**
+
+
+> Michael Alonza Prentice Ware is a systems architecture specialist. He is pursuing a Bachelor of Science in Computer Science at Weber State University, focusing his development research on Machine Learning Alignment Governance and Explainable AI (XAI). Outside of layout engineering, he practices classical piano for three hours daily following the Russian method and Alexander technique principles.
+
+
+---
+
+
+## 9. Table of Contents — 25 Nodes, 9-8-7-1 Structure
+
+
+- **Part I: The Journey** (Chapters 1–9): Stardust to Stardust, Living Sacrifice, Lift Up, Pilgrimage, The Snare, Beelzebub Beelzebub, The Pit, Sea People, The Ascent
+- **Part II: The Deception & Reveal** (Chapters 10–17): Forsaken, Forsaken (II), [pending: XII], Exodus, [pending: XIV–XVII]
+- **Part III: The Cosmic Union** (Chapters 18–24): all pending
+- **Epilogue**: The Unresolved Question: Why
+
+
+Format: each chapter is a row with the title in serif on the left, Roman numeral on the right in muted parchment. Hover: row brightens, warm-gold left border slides in (`light-sweep` style). Pending chapters render at 40% opacity, italic "pending," not clickable. **No `NODE 0X` labels. No grid lines. No `border-b border-zinc-900` on every row** — only a hairline between Parts.
+
+
+Important: only Chapter 7 is currently published at `public/data/chapters/7.txt`. Other chapter buttons should still render — the API will 404 until those files are added. Render the empty/error state elegantly: "This chapter is not yet available." in muted parchment serif. Not "EXTRACTION FAILED."
+
+
+---
+
+
+## 10. The Global CSS File — `src/app/globals.css`
+
+
+One global stylesheet governs all visual tokens. The layer files consume CSS custom properties and utility classes defined here. Do NOT inline visual tokens (colors, fonts, line heights) in the layer files.
+
+
+Define in `:root`:
+- `--bg-void: #0a0a0a`
+- `--text-body: #e8e4dc`
+- `--text-muted: #8a857c`
+- `--accent-gold: #c9a96e`
+- `--accent-amber: #d4a574`
+- `--sacred: #e8d4a0`
+- `--descent: #6b2c2c`
+- `--font-prose: 'EB Garamond', Georgia, serif`
+- `--font-title: var(--font-hebrew), 'EB Garamond', serif`
+- `--leading-prose: 1.7`
+
+
+Provide these utility classes:
+- `.prose-paragraph` — body text styling with proper leading, indent on first paragraph, justify
+- `.title-display` — title styling for the cover
+- `.section-label` — small-caps serif section headers (Dedication, Synopsis, etc.)
+- `.toc-row` — TOC row with light-sweep hover
+- `.toc-disabled` — pending chapter rows
+- `.primary-button` — the "Begin Reading" button (NOT monospace, NOT cyan)
+- `@keyframes lightSweep` — slow left-to-right gradient hover animation
+
+
+**Do not put `body { overflow: hidden }`. The document scrolls. The window is the scroll source.**
+
+
+---
+
+
+## 11. Listeners Must Fire
+
+
+`initAudioListener(bus)`, `initDistortionListener(bus)`, `initThematicListener(bus)` must be initialized in `useEffect` on the orchestrator (`src/app/page.tsx`) and must actually mutate `useControlPanel` state. The thematic listener reads the active paragraph's tone, dispatches color updates so sacred passages render in pale gold and descent passages render in deep red-brown. If the existing listener files contain placeholder logic (`text.includes('fall')`), upgrade them — but do not break the existing event signatures.
+
+
+---
+
+
+## 12. Layer 2 Cinema Backdrop
+
+
+- Cross-fades based on `activePara` from the orchestrator scroll listener
+- `CINEMA_ASSETS[String(chapter)]` is a `Record<string, string[]>` keyed by chapter slug — preserve this shape
+- Fallback when no chapter-specific asset: `/assets/bg.png`
+- Image filter at depth: subtle desaturation and brightness reduction via CSS `filter`
+- **Never apply `maskImage: 'linear-gradient(...)'` to any scrolling div** — that triggers Critical Failure 1 (Layer 2 Masking Bug). The browser will paint solid black and block the images.
+
+
+---
+
+
+## 13. The `data-para` Attribute (Why Scroll Tracking Is Failing)
+
+
+The orchestrator's scroll listener queries `document.querySelectorAll("[data-para]")` to compute `activePara`. **Every paragraph rendered in the manuscript section MUST have a `data-para={i}` attribute on its wrapper `<div>`.** If the paragraph component drops this attribute during a rewrite, the scroll tracker collapses to zero and Layer 2 stops swapping images. The operator is currently seeing this exact failure mode — images don't change on natural scroll, only on manual click. Fix: verify `data-para` is present on the wrapper around each `<TaggedParagraph>` in `ManuscriptCore.tsx`.
+
+
+---
+
+
+## 14. Layer 1 Cleanup (Source of the "Green Numbers" Bleed)
+
+
+Layer 1 Void is currently 337 lines with three nested files (`void/CanvasCore.tsx` 322 LOC, `void/SystemDiagnostics.tsx` 341 LOC, `void/InteractionField.tsx` 343 LOC). A black void should be **five lines.** Telemetry, diagnostics, HUD overlays, and any interaction code have leaked into the bedrock layer. This is why the operator sees "green numbers in the background watching the application work."
+
+
+Refactor:
+- `Layer1Void.tsx` returns exactly: `<div className="fixed inset-0 bg-[var(--bg-void)] z-0 pointer-events-none" />` and nothing else
+- Anything UI-related from the `void/` subdirectory: move to Layer 4 (`panel/`)
+- Anything that is leftover scaffold or unused diagnostic code: delete
+- Confirm no `console`, no debug `<div>`, no telemetry text is rendering inside Layer 1
+
+
+---
+
+
+## 15. Critical Failures From the Project Checkpoint
+
+
+1. **Layer 2 Masking Bug** — never apply `maskImage` to a scrolling div
+2. **Generic Boilerplate Bug** — no cyber labels, no terminal aesthetic, no monospace, no `tracking-[0.4em] uppercase`
+3. **Asset Pathing Bug** — always `/assets/[filename]`, never `/bg.png` or `public/assets/...`
+4. **XML Data Bleed** — API routes must filter XML tags from prose with `cleaned.replace(/<[^>]*>/g, '\n')` before returning the `blocks` array
+
+
+---
+
+
+## 16. Output Requirements
+
+
+- Output **COMPLETE** files. Do not truncate. If a file is long, ship the whole thing.
+- Show every file you change: `src/app/globals.css`, `src/app/page.tsx`, `src/app/layout.tsx` (for font loading), `src/components/layers/Layer1Void.tsx`, `src/components/layers/Layer2Cinema.tsx`, `src/components/layers/Layer3Canvas.tsx`, `src/components/layers/Layer4Panel.tsx`, and any subcomponent under `canvas/`, `cinema/`, `panel/`, or `void/` you touch.
+- Before writing code, list the files you will modify and confirm you read sections 0–15.
+- After writing code, list the visual outcomes the operator should verify on mobile and desktop.
+- Do not propose terminal commands without including the full file contents that go with them.
+
+
+---
+
+
+## 17. Before You Begin — Self-Check
+
+
+Ask yourself:
+
+
+- Would this layout sit comfortably next to a Penguin Classics Deluxe Edition on a shelf? If no, redo.
+- Would a literary fiction reader on a quiet evening feel this is for them? If no, redo.
+- Is there a single piece of monospace text, cyan glow, or `tracking-[0.4em] uppercase` header outside of actual code? If yes, redo.
+- Is the prose set in EB Garamond, Cormorant Garamond, or Spectral — not Times, not Georgia alone, not `font-serif`? If no, redo.
+- Does the title page look like a book cover or a SaaS landing page? If the latter, redo.
+- Is Layer 1 exactly five lines? If no, redo.
+- Does every manuscript paragraph wrapper have `data-para={i}`? If no, redo.
+Got it — that's a clean architectural call. The redirect is dead weight. Here's the revised fix list to paste back:
+
+
+---
+
+
+**Fixes to your previous OmniCanvas blueprint. Apply ALL of these. Keep everything else you already had.**
+
+
+**1. Architecture correction — collapse `/reader` into the root route.** `src/app/page.tsx` must BE the reader, not redirect to one. Do this:
+
+
+- Delete the redirect currently in `src/app/page.tsx`
+- Move the full contents of `src/app/reader/page.tsx` into `src/app/page.tsx`
+- Delete the entire `src/app/reader/` directory
+- Update any internal links pointing to `/reader` so they point to `/` instead (check Navigate tab, runtime diagnostic links, any `<Link href="/reader">`)
+- The `?ch=` query param logic stays — it just now reads from `/` instead of `/reader`
+
+
+The reader IS the app. There is no separate landing page.
+
+
+**2. Framer bug.** Change:
+`const backdropOpacity = useTransform(scrollYProgress, [0, 0.15], [14]);`
+to:
+`const backdropOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);`
+
+
+**3. Do NOT remove any of the following — they already exist and must be preserved:**
+- The `useControlPanel` hook and all its state (fontScale, lineHeight, letterSpacing, baseColor, descentColor, sacredColor, properColor, per-character color/weight/italic)
+- The 3-tab `UnifiedPanel`: Style / Navigate / System
+- Chapter switching: `TITLES` dict for chapters 1–11 + 13, `CHAPTER_NUMS` grid, Prev/Next buttons, `?ch=` URL param, smooth scroll-to-top on change
+- `/api/search` wired to the System tab's "Search 181 Nodes" input
+- Runtime EventBus: `getRuntime()`, `bus.emit("chapter:load")`, `bus.emit("scroll:update")` on every scroll tick
+- The three listeners initialized on mount: `initAudioListener(bus)`, `initDistortionListener(bus)`, `initThematicListener(bus)`
+- Per-chapter cinema assets keyed by slug: `CINEMA_ASSETS[slug] || ["/bg.png"]` — DO NOT flatten this to a Ch 7–only array
+- `TaggedParagraph` component with `classifyWord` per-token styling (including `**bold**` proper-noun handling and `isDescent` for paragraphs 13+)
+- Loading state ("Retrieving manuscript…"), error state (red border box), empty state ("Chapter N not found")
+- Radial-gradient red-glow overlay tied to depth in Layer 2
+- Chapter title displayed in the fixed header
+- The `/runtime` diagnostic link in the Navigate tab
+
+
+**4. Front-matter to ADD at the top of the Layer 3 scroll canvas (above the chapter loop):**
+- Title block: "THE WEIGHT OF THE SKY" + author byline
+- Dedication
+- Synopsis (the Blurb)
+- About the Author
+- 25-part Table of Contents (9-8-7-1 structure), Chapter VII highlighted as current
+
+
+Front-matter should only render when `chapter === 7` on initial load (or however you want to gate it) — decide whether it shows on every chapter or only the first load. Recommend: show it only when the URL has no `?ch=` param, so navigating to a specific chapter skips straight to the prose.
+
+
+**5. Use the EXACT canonical text from `Manuscript_Content.txt` — do not paraphrase. Specifically:**
+
+
+*Dedication (keep as-is):*
+> "James Lee Ware (In order to keep Curious)"
+
+
+*Synopsis — REPLACE your current paraphrase with this verbatim:*
+> In Hebron in 1003 BCE, during the early days of King David's rule over Judah, sixteen-year-old Dan lives inside an oppressive home paralyzed by his father's hoarding grief. Dan is a dreamwalker, a visionary uniquely capable of consciously stepping into a hidden world constructed from minute cells of universal dust. When his deep interventions fracture his family, Dan is cast out, forced to embark on a punishing physical trek northward toward Mount Hermon to find the ultimate source of reality. His path demands a brutal expenditure of tissue and will, shattering his physical voice and bringing him face-to-face with an infinite cycle of conflict written in the stars.
+
+
+*About the Author — REPLACE with this verbatim:*
+> Michael Alonza Prentice Ware is a systems architecture specialist. He is pursuing a Bachelor of Science in Computer Science at Weber State University, focusing his development research on Machine Learning Alignment Governance and Explainable AI (XAI). Outside of layout engineering, he practices classical piano for three hours daily following the Russian method and Alexander technique principles.
+
+
+*TOC — keep the 9-8-7-1 structure. Do NOT invent a witch / ancient entity / immortal daughter passage. That is not canonical.*
+
+
+**6. Photos to keep referenced:**
+- `/bg.png` (Moon Boy, entry asset, fades on scroll)
+- `/assets/moonlight.jpg` and `/assets/flies.jpg` (Chapter 7 narrative beats, scroll-bound)
+- `/assets/michael.jpg` (author avatar in the Control Panel header)
+- All other per-chapter assets already mapped in `CINEMA_ASSETS[slug]` — preserve the Record shape
+
+
+**7. Control Panel additions to keep from your blueprint:**
+- Michael avatar (`/assets/michael.jpg`) in the drawer header next to the operator name
+- "Biblical References" and "Narrative Foreshadowing" buttons — add them to the System tab alongside the existing "Search 181 Nodes" input, do NOT remove the existing search
+
+
+**8. 4-layer z-index hierarchy — keep exactly:**
+- Layer 1: z-0 base void, fixed, pointer-events-none
+- Layer 2: z-10 cinema backdrop, fixed, pointer-events-none, scroll-bound image swap via `Math.floor(activePara / CINEMA_PARAGRAPHS_PER_IMAGE)`
+- Layer 3: z-20 relative scroll canvas (front-matter → chapter blocks)
+- Layer 4: header at z-40, drawer at z-50
+
+
+**Output the full corrected `src/app/page.tsx` as one file. There is no `src/app/reader/page.tsx` anymore — the reader IS the root. Do not drop any imports or features listed above.**
+
+
+---
+
+
+Paste that whole block. One thing to flag: deleting `src/app/reader/` means anything anywhere in the codebase that hardcodes `/reader` (links, redirects, fetches, sitemap entries, og tags, etc.) will 404. Tell NotebookLM to grep the codebase for `/reader` and report back everything it finds before you push.

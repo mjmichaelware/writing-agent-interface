@@ -1,10 +1,11 @@
 {
   "name": "writing-agent-interface",
   "version": "1.0.0",
+  "private": true,
   "scripts": {
-    "build": "next build"
+    "build": "next build --webpack"
   },
   "dependencies": {
-    "next": "15.2.1"
+    "next": "14.2.0"
   }
 }

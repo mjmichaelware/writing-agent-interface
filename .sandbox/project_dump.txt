@@ -1,0 +1,1311 @@
+===== pwd =====
+/data/data/com.termux/files/home/writing-agent-interface
+
+===== tree (3 levels, no node_modules/.next/.git) =====
+.
+├── README.md
+├── build_files.sh
+├── drive_updated.json
+├── emotion_audit.txt
+├── extract_deep_history.py
+├── file_list.txt
+├── final_ch7_metadata.json
+├── full_audit_list.txt
+├── next-env.d.ts
+├── next.config.js
+├── nos_audit.sh
+├── nos_connection_test.txt
+├── nos_full_audit.txt
+├── nos_full_handshake_report.txt
+├── nos_identity_audit.txt
+├── nos_invoke.sh
+├── nos_logic_dump.txt
+├── nos_manifest.json
+├── nos_nervous_system_audit.txt
+├── nos_omni_handshake.txt
+├── nos_repair_report.txt
+├── nos_sync.sh
+├── package-lock.json
+├── package.json
+├── postcss.config.js
+├── project_dump.txt
+├── public
+│   ├── bg.png
+│   └── data
+│       └── chapters
+├── src
+│   ├── actions
+│   │   ├── ingest.action.ts
+│   │   ├── retrieve.action.ts
+│   │   ├── update-memory.action.ts
+│   │   └── write.action.ts
+│   ├── app
+│   │   ├── api
+│   │   ├── characters
+│   │   ├── dashboard
+│   │   ├── globals.css
+│   │   ├── graph
+│   │   ├── head.tsx
+│   │   ├── layout.tsx
+│   │   ├── memory
+│   │   ├── page.tsx
+│   │   ├── reader
+│   │   ├── runtime
+│   │   ├── search
+│   │   └── timeline
+│   ├── components
+│   │   └── ui
+│   ├── core
+│   │   ├── IMemoryEngine.ts
+│   │   ├── INarrativeGraphEngine.ts
+│   │   ├── IRetrievalEngine.ts
+│   │   ├── IWritingAgent.ts
+│   │   ├── document-types.ts
+│   │   ├── engine-constants.ts
+│   │   ├── graph-types.ts
+│   │   ├── narrative-types.ts
+│   │   ├── runtimeEngine.ts
+│   │   └── system-utils.ts
+│   ├── data
+│   │   └── chapter7-raw.txt
+│   ├── data-layer
+│   │   ├── 07_Build_Manifests
+│   │   ├── aggregation-engine
+│   │   ├── disposal-bin
+│   │   ├── entities
+│   │   ├── ingestion-buffer
+│   │   ├── initialization-metadata
+│   │   ├── logic-governance
+│   │   ├── reference-data
+│   │   ├── static-assets
+│   │   └── version-archive
+│   ├── features
+│   │   ├── audioListener.ts
+│   │   ├── distortionListener.ts
+│   │   └── thematicListener.ts
+│   ├── hooks
+│   │   ├── useAgent.ts
+│   │   ├── useGraph.ts
+│   │   ├── useMemory.ts
+│   │   └── useRetrieval.ts
+│   ├── runtime
+│   │   └── runtimeContext.ts
+│   ├── services
+│   │   ├── analytics-engine
+│   │   ├── document-analyzer
+│   │   ├── image-engine
+│   │   ├── memory-engine
+│   │   ├── narrative-graph-engine
+│   │   ├── orchestration-engine
+│   │   ├── retrieval-engine
+│   │   └── writing-agent
+│   └── store
+│       ├── app.store.ts
+│       ├── graph.store.ts
+│       ├── memory.store.ts
+│       └── session.store.ts
+├── system
+│   ├── 07_Build_Manifests
+│   │   └── session_logs
+│   ├── error-handler
+│   ├── process-manager
+│   ├── resource-manager
+│   │   ├── active_dualisms.json
+│   │   └── manifest.json
+│   └── runtime
+│       └── active_state.json
+├── tailwind.config.ts
+└── tsconfig.json
+
+51 directories, 63 files
+
+===== package.json =====
+{
+  "name": "creative-intelligence-interface",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "framer-motion": "^12.38.0",
+    "groq-sdk": "^0.8.0",
+    "howler": "^2.2.4",
+    "lucide-react": "^0.454.0",
+    "next": "^14.2.35",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "reactflow": "^11.11.4",
+    "zustand": "^5.0.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.0",
+    "@types/node": "^20.19.41",
+    "@types/react": "^18.3.28",
+    "@types/react-dom": "^18.3.7",
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.14",
+    "tailwindcss": "^4.3.0",
+    "typescript": "^5.6.3"
+  }
+}
+
+===== tailwind.config.ts =====
+import type { Config } from 'tailwindcss'
+
+const config: Config = {
+  content: [
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+export default config
+
+===== tailwind.config.js =====
+(missing)
+
+===== tailwind.config.mjs =====
+(missing)
+
+===== tailwind.config.cjs =====
+(missing)
+
+===== postcss.config.js =====
+module.exports = {
+  plugins: {
+    '@tailwindcss/postcss': {},
+    autoprefixer: {},
+  },
+}
+
+===== postcss.config.mjs =====
+(missing)
+
+===== next.config.js =====
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true,
+  },
+}
+module.exports = nextConfig
+
+===== next.config.mjs =====
+(missing)
+
+===== next.config.ts =====
+(missing)
+
+===== tsconfig.json =====
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+
+===== src/app/globals.css =====
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #000000;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+
+===== src/app/layout.tsx =====
+import type { Metadata } from 'next';
+import { Frank_Ruhl_Libre } from 'next/font/google';
+import './globals.css';
+
+const hebrewFont = Frank_Ruhl_Libre({
+  subsets: ['hebrew'],
+  weight: ['400', '500', '700'],
+  variable: '--font-hebrew',
+});
+
+export const metadata: Metadata = {
+  title: 'The Weight of the Sky | Michael Alonza P. Ware',
+  description: 'An Archetypal Tale. A literary novel exploring descent and ascent, sacrifice, and witness.',
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en" className={hebrewFont.variable}>
+      <head>
+        <link rel="preload" as="image" href="/bg.png" />
+        <meta name="theme-color" content="#000000" />
+      </head>
+      <body>{children}</body>
+    </html>
+  );
+}
+
+===== src/app/page.tsx =====
+"use client";
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+
+export default function WritingAgentInterface() {
+  const [paragraphs, setParagraphs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const containerRef = useRef(null);
+  const chapter7Ref = useRef(null);
+  
+  // SCROLL TRACKING
+  const { scrollYProgress: pageScroll } = useScroll({ target: containerRef });
+  const { scrollYProgress: chapterScroll } = useScroll({ 
+    target: chapter7Ref,
+    offset: ["start end", "end start"]
+  });
+
+  // LAYER 0: THE MOON BACKDROP FADE
+  const moonOpacity = useTransform(pageScroll, [0, 0.15, 0.3], [1, 0.5, 0]);
+
+  useEffect(() => {
+    fetch('/data/chapters/7.txt')
+      .then(res => res.text())
+      .then(text => {
+        const cleaned = text.replace(/\*\*/g, '').replace(/\*/g, '');
+        const blocks = cleaned.split(/\n\s*\n/).filter(p => p.trim().length > 0);
+        setParagraphs(blocks);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
+  const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+
+  // THE SYSTEM: Dynamic Text Styling
+  const getDynamicStyle = (index) => {
+    const progress = index / Math.max(1, paragraphs.length - 1);
+    if (progress < 0.2) return 'text-slate-200';
+    if (progress < 0.4) return 'text-emerald-400/90';
+    if (progress < 0.6) return 'text-amber-500/80';
+    if (progress < 0.8) return 'text-red-700'; // The color of old blood
+    return 'text-zinc-500';
+  };
+
+  return (
+    <div ref={containerRef} className="relative bg-black min-h-screen selection:bg-emerald-500/30">
+      
+      {/* LAYER 0: THE BACKDROP (Always Moon, No Galaxy Fallback) */}
+      <motion.img 
+        src="/bg.png?v=5" 
+        style={{ opacity: moonOpacity }}
+        className="fixed inset-0 w-full h-full object-contain z-0 pointer-events-none"
+      />
+
+      {/* FRONT LAYER: THE TEXT (The System) */}
+      <div className="relative z-10" style={{ fontFamily: 'var(--font-hebrew), serif' }}>
+        
+        {/* TITLE SECTION */}
+        <section className="min-h-screen flex flex-col items-center justify-center text-center p-6">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 2 }}>
+            <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-white drop-shadow-[0_0_20px_rgba(0,0,0,1)] leading-none">
+              THE WEIGHT<br/>OF THE SKY
+            </h1>
+            <p className="text-cyan-500 tracking-[0.5em] uppercase text-[10px] mt-6">An Archetypal Tale</p>
+          </motion.div>
+          
+          <div className="w-full max-w-xs space-y-4 mt-24 font-sans">
+            <button onClick={() => scrollTo('dedication')} className="w-full py-4 border border-white/10 bg-black/40 text-[9px] uppercase tracking-[0.5em] backdrop-blur-md">Dedication</button>
+            <button onClick={() => scrollTo('blurb')} className="w-full py-4 border border-white/10 bg-black/40 text-[9px] uppercase tracking-[0.5em] backdrop-blur-md">The Blurb</button>
+            <button onClick={() => scrollTo('chapter7')} className="w-full py-4 border border-white/30 bg-white/5 text-[9px] uppercase tracking-[0.6em] backdrop-blur-md">Begin Reading</button>
+          </div>
+          <p className="text-[10px] tracking-[0.5em] text-slate-500 uppercase mt-20">Michael Alonza P. Ware</p>
+        </section>
+
+        {/* DEDICATION SECTION */}
+        <section id="dedication" className="min-h-screen flex flex-col items-center justify-center bg-black/60 border-y border-white/5">
+          <h2 className="text-[9px] uppercase tracking-[0.6em] text-slate-500 mb-8 font-sans">Dedication</h2>
+          <p className="max-w-xl text-center italic text-4xl text-emerald-400/80 px-8">"For James Lee Ware."</p>
+        </section>
+
+        {/* BLURB SECTION (Full Restore) */}
+        <section id="blurb" className="min-h-screen flex flex-col items-center justify-center p-8 md:p-24 bg-zinc-950/90">
+          <h2 className="text-[9px] uppercase tracking-[0.6em] text-slate-500 mb-16 font-sans">The Blurb</h2>
+          <div className="max-w-2xl text-center space-y-8 text-lg md:text-xl leading-relaxed">
+            <p>In 1003 BCE Hebron, a young boy named Dan possesses a rare gift: he can walk the dreamscape with full consciousness, moving between the layers of divine truth.</p>
+            <p>A journey from the lowlands of pride to the heights of love. A father left behind. A sister born from the depths of hell itself. And the ultimate question: Is clarity worth the cost of silence?</p>
+            <p className="italic text-emerald-400/70">The Weight of the Sky is an archetypal tale set at the threshold where gods still walk the earth, and every step upward demands a sacrifice the heart never wants to give.</p>
+          </div>
+        </section>
+
+        {/* THE MANUSCRIPT (With Distortion System) */}
+        <article ref={chapter7Ref} id="chapter7" className="max-w-2xl mx-auto py-60 px-6 bg-black/95">
+          <h2 className="text-center text-zinc-700 uppercase tracking-[1em] text-[10px] mb-60 italic font-sans">VII. The Pit</h2>
+          <div className="space-y-20">
+            {loading ? (
+              <p className="text-center text-zinc-800 animate-pulse">Retrieving...</p>
+            ) : (
+              paragraphs.map((para, i) => (
+                <motion.p
+                  key={i}
+                  initial={{ opacity: 0, y: 50, filter: "blur(15px)", skewX: -6 }}
+                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", skewX: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 1.4, ease: "easeOut" }}
+                  className={`${getDynamicStyle(i)} text-2xl md:text-3xl leading-[1.9]`}
+                  style={{ textIndent: "4rem", textAlign: "justify" }}
+                >
+                  {para}
+                </motion.p>
+              ))
+            )}
+          </div>
+        </article>
+      </div>
+    </div>
+  );
+}
+
+===== src/app/reader/page.tsx =====
+"use client";
+
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { getRuntime } from "@/runtime/runtimeContext";
+import { initAudioListener } from "@/features/audioListener";
+import { initDistortionListener } from "@/features/distortionListener";
+import { initThematicListener } from "@/features/thematicListener";
+
+type Block = {
+  id: string;
+  text: string;
+  tone?: "neutral" | "intense" | "sacred";
+};
+
+type Chapter = {
+  id: number;
+  title: string;
+  blocks: Block[];
+};
+
+export default function Reader() {
+  const { bus, engine } = getRuntime();
+  const [state, setState] = useState(engine.getState());
+  const [chapter, setChapter] = useState<Chapter | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [blockIndex, setBlockIndex] = useState(0);
+
+  useEffect(() => {
+    initAudioListener(bus);
+    initDistortionListener(bus);
+    initThematicListener(bus);
+
+    const update = (s: any) => setState({ ...s });
+    bus.on("state:change", update);
+
+    // Fetch chapter from API
+    fetch(`/api/chapters?slug=${state.chapter}`)
+      .then(res => res.json())
+      .then(data => {
+        setChapter(data);
+        bus.emit("chapter:load", data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Failed to load chapter:", err);
+        setLoading(false);
+      });
+
+    return () => {};
+  }, [bus, state.chapter]);
+
+  const block = chapter?.blocks[blockIndex] || {
+    text: "Loading chapter...",
+    tone: "neutral",
+  };
+
+  useEffect(() => {
+    if (block.text !== "Loading chapter...") {
+      bus.emit("block:render", block);
+    }
+  }, [blockIndex, bus, block]);
+
+  const advance = () => {
+    if (blockIndex < (chapter?.blocks.length || 0) - 1) {
+      setBlockIndex(blockIndex + 1);
+      bus.emit("scroll:update", { depth: blockIndex + 1 });
+    }
+  };
+
+  const retreat = () => {
+    if (blockIndex > 0) {
+      setBlockIndex(blockIndex - 1);
+      bus.emit("scroll:update", { depth: blockIndex - 1 });
+    }
+  };
+
+  if (loading) {
+    return (
+      <main className="min-h-screen bg-black text-white flex items-center justify-center">
+        <p className="text-gray-400">Loading chapter...</p>
+      </main>
+    );
+  }
+
+  return (
+    <main className="min-h-screen bg-black text-white p-6 md:p-10">
+      <div className="max-w-2xl mx-auto space-y-8">
+
+        <div className="flex items-center justify-between">
+          <div className="text-xs text-gray-500 uppercase tracking-widest">
+            Chapter {state.chapter} • Block {blockIndex + 1} / {chapter?.blocks.length || 0}
+          </div>
+          <Link href="/" className="text-xs text-cyan-400 uppercase hover:text-cyan-300">
+            ← Back
+          </Link>
+        </div>
+
+        <h2 className="text-xs uppercase tracking-[0.3em] text-slate-500 font-light">
+          {chapter?.title || "Chapter"}
+        </h2>
+
+        <div className="py-12 border-l border-slate-700/50 pl-6">
+          <p className="text-lg md:text-2xl font-serif leading-relaxed">
+            {block.text}
+          </p>
+          <p className="text-xs text-slate-600 mt-4">Tone: {block.tone}</p>
+        </div>
+
+        <div className="flex gap-4 justify-center">
+          <button
+            onClick={retreat}
+            disabled={blockIndex === 0}
+            className="border border-white/20 px-4 py-2 text-xs uppercase tracking-widest disabled:opacity-30 hover:border-white/50 transition-colors"
+          >
+            ← Previous
+          </button>
+          <button
+            onClick={advance}
+            disabled={blockIndex === (chapter?.blocks.length || 0) - 1}
+            className="border border-white/20 px-4 py-2 text-xs uppercase tracking-widest disabled:opacity-30 hover:border-white/50 transition-colors"
+          >
+            Next →
+          </button>
+        </div>
+
+        <div className="text-xs text-gray-600 text-center pt-8">
+          Dynamic chapter parser • Device-responsive blocks
+        </div>
+      </div>
+    </main>
+  );
+}
+
+===== existing tsx/ts files under src/ =====
+----- src/app/api/chapters/route.ts -----
+import { NextRequest, NextResponse } from 'next/server';
+
+export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const slug = searchParams.get('slug') || '7';
+
+  try {
+    const res = await fetch(`/data/chapters/${slug}.txt`, { cache: 'no-store' });
+    if (!res.ok) throw new Error('Not found');
+    
+    const rawText = await res.text();
+    const words = rawText.split(/\s+/).filter(w => w.length > 0);
+    const blocks = [];
+    for (let i = 0; i < words.length; i += 200) {
+      blocks.push(words.slice(i, i + 200).join(' '));
+    }
+
+    return NextResponse.json({
+      title: `Chapter ${slug}`,
+      blocks: blocks,
+      totalBlocks: blocks.length
+    });
+  } catch (e) {
+    return NextResponse.json({ error: 'Retrieval failed', fallback: true }, { status: 404 });
+  }
+}
+
+----- src/app/api/visualize/route.ts -----
+
+----- src/app/api/analyze-document/route.ts -----
+
+----- src/app/page.tsx -----
+"use client";
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+
+export default function WritingAgentInterface() {
+  const [paragraphs, setParagraphs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const containerRef = useRef(null);
+  const chapter7Ref = useRef(null);
+  
+  // SCROLL TRACKING
+  const { scrollYProgress: pageScroll } = useScroll({ target: containerRef });
+  const { scrollYProgress: chapterScroll } = useScroll({ 
+    target: chapter7Ref,
+    offset: ["start end", "end start"]
+  });
+
+  // LAYER 0: THE MOON BACKDROP FADE
+  const moonOpacity = useTransform(pageScroll, [0, 0.15, 0.3], [1, 0.5, 0]);
+
+  useEffect(() => {
+    fetch('/data/chapters/7.txt')
+      .then(res => res.text())
+      .then(text => {
+        const cleaned = text.replace(/\*\*/g, '').replace(/\*/g, '');
+        const blocks = cleaned.split(/\n\s*\n/).filter(p => p.trim().length > 0);
+        setParagraphs(blocks);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
+  const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+
+  // THE SYSTEM: Dynamic Text Styling
+  const getDynamicStyle = (index) => {
+    const progress = index / Math.max(1, paragraphs.length - 1);
+    if (progress < 0.2) return 'text-slate-200';
+    if (progress < 0.4) return 'text-emerald-400/90';
+    if (progress < 0.6) return 'text-amber-500/80';
+    if (progress < 0.8) return 'text-red-700'; // The color of old blood
+    return 'text-zinc-500';
+  };
+
+  return (
+    <div ref={containerRef} className="relative bg-black min-h-screen selection:bg-emerald-500/30">
+      
+      {/* LAYER 0: THE BACKDROP (Always Moon, No Galaxy Fallback) */}
+      <motion.img 
+        src="/bg.png?v=5" 
+        style={{ opacity: moonOpacity }}
+        className="fixed inset-0 w-full h-full object-contain z-0 pointer-events-none"
+      />
+
+      {/* FRONT LAYER: THE TEXT (The System) */}
+      <div className="relative z-10" style={{ fontFamily: 'var(--font-hebrew), serif' }}>
+        
+        {/* TITLE SECTION */}
+        <section className="min-h-screen flex flex-col items-center justify-center text-center p-6">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 2 }}>
+            <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-white drop-shadow-[0_0_20px_rgba(0,0,0,1)] leading-none">
+              THE WEIGHT<br/>OF THE SKY
+            </h1>
+            <p className="text-cyan-500 tracking-[0.5em] uppercase text-[10px] mt-6">An Archetypal Tale</p>
+          </motion.div>
+          
+          <div className="w-full max-w-xs space-y-4 mt-24 font-sans">
+            <button onClick={() => scrollTo('dedication')} className="w-full py-4 border border-white/10 bg-black/40 text-[9px] uppercase tracking-[0.5em] backdrop-blur-md">Dedication</button>
+            <button onClick={() => scrollTo('blurb')} className="w-full py-4 border border-white/10 bg-black/40 text-[9px] uppercase tracking-[0.5em] backdrop-blur-md">The Blurb</button>
+            <button onClick={() => scrollTo('chapter7')} className="w-full py-4 border border-white/30 bg-white/5 text-[9px] uppercase tracking-[0.6em] backdrop-blur-md">Begin Reading</button>
+          </div>
+          <p className="text-[10px] tracking-[0.5em] text-slate-500 uppercase mt-20">Michael Alonza P. Ware</p>
+        </section>
+
+        {/* DEDICATION SECTION */}
+        <section id="dedication" className="min-h-screen flex flex-col items-center justify-center bg-black/60 border-y border-white/5">
+          <h2 className="text-[9px] uppercase tracking-[0.6em] text-slate-500 mb-8 font-sans">Dedication</h2>
+          <p className="max-w-xl text-center italic text-4xl text-emerald-400/80 px-8">"For James Lee Ware."</p>
+        </section>
+
+        {/* BLURB SECTION (Full Restore) */}
+        <section id="blurb" className="min-h-screen flex flex-col items-center justify-center p-8 md:p-24 bg-zinc-950/90">
+          <h2 className="text-[9px] uppercase tracking-[0.6em] text-slate-500 mb-16 font-sans">The Blurb</h2>
+          <div className="max-w-2xl text-center space-y-8 text-lg md:text-xl leading-relaxed">
+            <p>In 1003 BCE Hebron, a young boy named Dan possesses a rare gift: he can walk the dreamscape with full consciousness, moving between the layers of divine truth.</p>
+            <p>A journey from the lowlands of pride to the heights of love. A father left behind. A sister born from the depths of hell itself. And the ultimate question: Is clarity worth the cost of silence?</p>
+            <p className="italic text-emerald-400/70">The Weight of the Sky is an archetypal tale set at the threshold where gods still walk the earth, and every step upward demands a sacrifice the heart never wants to give.</p>
+          </div>
+        </section>
+
+        {/* THE MANUSCRIPT (With Distortion System) */}
+        <article ref={chapter7Ref} id="chapter7" className="max-w-2xl mx-auto py-60 px-6 bg-black/95">
+          <h2 className="text-center text-zinc-700 uppercase tracking-[1em] text-[10px] mb-60 italic font-sans">VII. The Pit</h2>
+          <div className="space-y-20">
+            {loading ? (
+              <p className="text-center text-zinc-800 animate-pulse">Retrieving...</p>
+            ) : (
+              paragraphs.map((para, i) => (
+                <motion.p
+                  key={i}
+                  initial={{ opacity: 0, y: 50, filter: "blur(15px)", skewX: -6 }}
+                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", skewX: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 1.4, ease: "easeOut" }}
+                  className={`${getDynamicStyle(i)} text-2xl md:text-3xl leading-[1.9]`}
+                  style={{ textIndent: "4rem", textAlign: "justify" }}
+                >
+                  {para}
+                </motion.p>
+              ))
+            )}
+          </div>
+        </article>
+      </div>
+    </div>
+  );
+}
+
+----- src/app/layout.tsx -----
+import type { Metadata } from 'next';
+import { Frank_Ruhl_Libre } from 'next/font/google';
+import './globals.css';
+
+const hebrewFont = Frank_Ruhl_Libre({
+  subsets: ['hebrew'],
+  weight: ['400', '500', '700'],
+  variable: '--font-hebrew',
+});
+
+export const metadata: Metadata = {
+  title: 'The Weight of the Sky | Michael Alonza P. Ware',
+  description: 'An Archetypal Tale. A literary novel exploring descent and ascent, sacrifice, and witness.',
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en" className={hebrewFont.variable}>
+      <head>
+        <link rel="preload" as="image" href="/bg.png" />
+        <meta name="theme-color" content="#000000" />
+      </head>
+      <body>{children}</body>
+    </html>
+  );
+}
+
+----- src/app/dashboard/page.tsx -----
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
+
+export default function DashboardPage() {
+  return (
+    <div className="min-h-[100dvh] bg-slate-950 text-slate-200 p-8 flex flex-col items-center justify-center font-sans">
+      <Link href="/" className="absolute top-8 left-8 text-cyan-600 hover:text-cyan-400 flex items-center gap-2 transition-colors group">
+        <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" /> 
+        <span className="uppercase tracking-[0.2em] text-xs font-semibold">Return to Hub</span>
+      </Link>
+      <h1 className="text-3xl font-light tracking-[0.3em] uppercase text-white mb-4">dashboard</h1>
+      <p className="text-slate-500 tracking-widest text-sm animate-pulse uppercase">Module Offline / Awaiting Component Injection...</p>
+    </div>
+  );
+}
+
+----- src/app/memory/page.tsx -----
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
+
+export default function MemoryPage() {
+  return (
+    <div className="min-h-[100dvh] bg-slate-950 text-slate-200 p-8 flex flex-col items-center justify-center font-sans">
+      <Link href="/" className="absolute top-8 left-8 text-cyan-600 hover:text-cyan-400 flex items-center gap-2 transition-colors group">
+        <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" /> 
+        <span className="uppercase tracking-[0.2em] text-xs font-semibold">Return to Hub</span>
+      </Link>
+      <h1 className="text-3xl font-light tracking-[0.3em] uppercase text-white mb-4">memory</h1>
+      <p className="text-slate-500 tracking-widest text-sm animate-pulse uppercase">Module Offline / Awaiting Component Injection...</p>
+    </div>
+  );
+}
+
+----- src/app/graph/page.tsx -----
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
+
+export default function GraphPage() {
+  return (
+    <div className="min-h-[100dvh] bg-slate-950 text-slate-200 p-8 flex flex-col items-center justify-center font-sans">
+      <Link href="/" className="absolute top-8 left-8 text-cyan-600 hover:text-cyan-400 flex items-center gap-2 transition-colors group">
+        <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" /> 
+        <span className="uppercase tracking-[0.2em] text-xs font-semibold">Return to Hub</span>
+      </Link>
+      <h1 className="text-3xl font-light tracking-[0.3em] uppercase text-white mb-4">graph</h1>
+      <p className="text-slate-500 tracking-widest text-sm animate-pulse uppercase">Module Offline / Awaiting Component Injection...</p>
+    </div>
+  );
+}
+
+----- src/app/timeline/page.tsx -----
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
+
+export default function TimelinePage() {
+  return (
+    <div className="min-h-[100dvh] bg-slate-950 text-slate-200 p-8 flex flex-col items-center justify-center font-sans">
+      <Link href="/" className="absolute top-8 left-8 text-cyan-600 hover:text-cyan-400 flex items-center gap-2 transition-colors group">
+        <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" /> 
+        <span className="uppercase tracking-[0.2em] text-xs font-semibold">Return to Hub</span>
+      </Link>
+      <h1 className="text-3xl font-light tracking-[0.3em] uppercase text-white mb-4">timeline</h1>
+      <p className="text-slate-500 tracking-widest text-sm animate-pulse uppercase">Module Offline / Awaiting Component Injection...</p>
+    </div>
+  );
+}
+
+----- src/app/search/page.tsx -----
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
+
+export default function SearchPage() {
+  return (
+    <div className="min-h-[100dvh] bg-slate-950 text-slate-200 p-8 flex flex-col items-center justify-center font-sans">
+      <Link href="/" className="absolute top-8 left-8 text-cyan-600 hover:text-cyan-400 flex items-center gap-2 transition-colors group">
+        <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" /> 
+        <span className="uppercase tracking-[0.2em] text-xs font-semibold">Return to Hub</span>
+      </Link>
+      <h1 className="text-3xl font-light tracking-[0.3em] uppercase text-white mb-4">search</h1>
+      <p className="text-slate-500 tracking-widest text-sm animate-pulse uppercase">Module Offline / Awaiting Component Injection...</p>
+    </div>
+  );
+}
+
+----- src/app/runtime/page.tsx -----
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
+
+export default function RuntimePage() {
+  return (
+    <div className="min-h-[100dvh] bg-slate-950 text-slate-200 p-8 flex flex-col items-center justify-center font-sans">
+      <Link href="/" className="absolute top-8 left-8 text-cyan-600 hover:text-cyan-400 flex items-center gap-2 transition-colors group">
+        <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" /> 
+        <span className="uppercase tracking-[0.2em] text-xs font-semibold">Return to Hub</span>
+      </Link>
+      <h1 className="text-3xl font-light tracking-[0.3em] uppercase text-white mb-4">runtime</h1>
+      <p className="text-slate-500 tracking-widest text-sm animate-pulse uppercase">Module Offline / Awaiting Component Injection...</p>
+    </div>
+  );
+}
+
+----- src/app/characters/page.tsx -----
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
+
+export default function CharactersPage() {
+  return (
+    <div className="min-h-[100dvh] bg-slate-950 text-slate-200 p-8 flex flex-col items-center justify-center font-sans">
+      <Link href="/" className="absolute top-8 left-8 text-cyan-600 hover:text-cyan-400 flex items-center gap-2 transition-colors group">
+        <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" /> 
+        <span className="uppercase tracking-[0.2em] text-xs font-semibold">Return to Hub</span>
+      </Link>
+      <h1 className="text-3xl font-light tracking-[0.3em] uppercase text-white mb-4">characters</h1>
+      <p className="text-slate-500 tracking-widest text-sm animate-pulse uppercase">Module Offline / Awaiting Component Injection...</p>
+    </div>
+  );
+}
+
+----- src/app/reader/page.tsx -----
+"use client";
+
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { getRuntime } from "@/runtime/runtimeContext";
+import { initAudioListener } from "@/features/audioListener";
+import { initDistortionListener } from "@/features/distortionListener";
+import { initThematicListener } from "@/features/thematicListener";
+
+type Block = {
+  id: string;
+  text: string;
+  tone?: "neutral" | "intense" | "sacred";
+};
+
+type Chapter = {
+  id: number;
+  title: string;
+  blocks: Block[];
+};
+
+export default function Reader() {
+  const { bus, engine } = getRuntime();
+  const [state, setState] = useState(engine.getState());
+  const [chapter, setChapter] = useState<Chapter | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [blockIndex, setBlockIndex] = useState(0);
+
+  useEffect(() => {
+    initAudioListener(bus);
+    initDistortionListener(bus);
+    initThematicListener(bus);
+
+    const update = (s: any) => setState({ ...s });
+    bus.on("state:change", update);
+
+    // Fetch chapter from API
+    fetch(`/api/chapters?slug=${state.chapter}`)
+      .then(res => res.json())
+      .then(data => {
+        setChapter(data);
+        bus.emit("chapter:load", data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Failed to load chapter:", err);
+        setLoading(false);
+      });
+
+    return () => {};
+  }, [bus, state.chapter]);
+
+  const block = chapter?.blocks[blockIndex] || {
+    text: "Loading chapter...",
+    tone: "neutral",
+  };
+
+  useEffect(() => {
+    if (block.text !== "Loading chapter...") {
+      bus.emit("block:render", block);
+    }
+  }, [blockIndex, bus, block]);
+
+  const advance = () => {
+    if (blockIndex < (chapter?.blocks.length || 0) - 1) {
+      setBlockIndex(blockIndex + 1);
+      bus.emit("scroll:update", { depth: blockIndex + 1 });
+    }
+  };
+
+  const retreat = () => {
+    if (blockIndex > 0) {
+      setBlockIndex(blockIndex - 1);
+      bus.emit("scroll:update", { depth: blockIndex - 1 });
+    }
+  };
+
+  if (loading) {
+    return (
+      <main className="min-h-screen bg-black text-white flex items-center justify-center">
+        <p className="text-gray-400">Loading chapter...</p>
+      </main>
+    );
+  }
+
+  return (
+    <main className="min-h-screen bg-black text-white p-6 md:p-10">
+      <div className="max-w-2xl mx-auto space-y-8">
+
+        <div className="flex items-center justify-between">
+          <div className="text-xs text-gray-500 uppercase tracking-widest">
+            Chapter {state.chapter} • Block {blockIndex + 1} / {chapter?.blocks.length || 0}
+          </div>
+          <Link href="/" className="text-xs text-cyan-400 uppercase hover:text-cyan-300">
+            ← Back
+          </Link>
+        </div>
+
+        <h2 className="text-xs uppercase tracking-[0.3em] text-slate-500 font-light">
+          {chapter?.title || "Chapter"}
+        </h2>
+
+        <div className="py-12 border-l border-slate-700/50 pl-6">
+          <p className="text-lg md:text-2xl font-serif leading-relaxed">
+            {block.text}
+          </p>
+          <p className="text-xs text-slate-600 mt-4">Tone: {block.tone}</p>
+        </div>
+
+        <div className="flex gap-4 justify-center">
+          <button
+            onClick={retreat}
+            disabled={blockIndex === 0}
+            className="border border-white/20 px-4 py-2 text-xs uppercase tracking-widest disabled:opacity-30 hover:border-white/50 transition-colors"
+          >
+            ← Previous
+          </button>
+          <button
+            onClick={advance}
+            disabled={blockIndex === (chapter?.blocks.length || 0) - 1}
+            className="border border-white/20 px-4 py-2 text-xs uppercase tracking-widest disabled:opacity-30 hover:border-white/50 transition-colors"
+          >
+            Next →
+          </button>
+        </div>
+
+        <div className="text-xs text-gray-600 text-center pt-8">
+          Dynamic chapter parser • Device-responsive blocks
+        </div>
+      </div>
+    </main>
+  );
+}
+
+----- src/app/head.tsx -----
+export default function Head() {
+  return (
+    <>
+      <link rel="preload" as="image" href="/bg.png" />
+    </>
+  );
+}
+
+----- src/components/ui/editor.tsx -----
+
+----- src/components/ui/sidebar.tsx -----
+
+----- src/components/ui/timeline.tsx -----
+
+----- src/components/ui/graph-view.tsx -----
+
+----- src/components/ui/memory-panel.tsx -----
+
+----- src/components/ui/character-view.tsx -----
+
+----- src/services/orchestration-engine/orchestration-engine.ts -----
+
+----- src/services/orchestration-engine/context-builder.ts -----
+
+----- src/services/orchestration-engine/pipeline.ts -----
+
+----- src/services/orchestration-engine/prompt-assembler.ts -----
+
+----- src/services/orchestration-engine/runtime-controller.ts -----
+
+----- src/services/memory-engine/memory-engine.ts -----
+
+----- src/services/memory-engine/memory-kernel.ts -----
+
+----- src/services/memory-engine/corpus-loader.ts -----
+import { promises as fs } from 'fs';
+import path from 'path';
+
+export class CorpusLoader {
+  private corpusPath: string;
+
+  constructor() {
+    // Dynamically locates the gdrive_raw folder in the Next.js environment
+    this.corpusPath = path.join(process.cwd(), 'src', 'data-layer', 'ingestion-buffer', 'gdrive_raw');
+  }
+
+  public async loadAllFiles(): Promise<{ filename: string; content: string }[]> {
+    const files = await fs.readdir(this.corpusPath);
+    const loadedFiles = [];
+
+    for (const file of files) {
+      // Ignore hidden files and non-text files
+      if (!file.startsWith('.') && file.endsWith('.txt')) {
+        const filePath = path.join(this.corpusPath, file);
+        const content = await fs.readFile(filePath, 'utf-8');
+        loadedFiles.push({ filename: file, content });
+      }
+    }
+    
+    return loadedFiles;
+  }
+}
+
+----- src/services/memory-engine/text-processor.ts -----
+
+----- src/services/memory-engine/embedding-processor.ts -----
+
+----- src/services/memory-engine/vector-store.ts -----
+
+----- src/services/memory-engine/document-store.ts -----
+
+----- src/services/memory-engine/integrity-validator.ts -----
+
+----- src/services/retrieval-engine/retrieval-engine.ts -----
+
+----- src/services/retrieval-engine/retrieval-kernel.ts -----
+
+----- src/services/retrieval-engine/vector-searcher.ts -----
+
+----- src/services/retrieval-engine/fulltext-searcher.ts -----
+
+----- src/services/retrieval-engine/relevance-ranker.ts -----
+
+----- src/services/retrieval-engine/context-filter.ts -----
+
+----- src/services/retrieval-engine/result-aggregator.ts -----
+
+----- src/services/narrative-graph-engine/narrative-graph-engine.ts -----
+
+----- src/services/narrative-graph-engine/graph-kernel.ts -----
+
+----- src/services/narrative-graph-engine/node-builder.ts -----
+
+----- src/services/narrative-graph-engine/edge-builder.ts -----
+
+----- src/services/narrative-graph-engine/graph-querier.ts -----
+
+----- src/services/narrative-graph-engine/path-finder.ts -----
+
+----- src/services/narrative-graph-engine/consistency-analyzer.ts -----
+
+----- src/services/narrative-graph-engine/connection-analyzer.ts -----
+
+----- src/services/narrative-graph-engine/graph-serializer.ts -----
+
+----- src/services/writing-agent/writing-agent.ts -----
+
+----- src/services/writing-agent/agent-kernel.ts -----
+
+----- src/services/writing-agent/task-executor.ts -----
+
+----- src/services/writing-agent/generation-executor.ts -----
+
+----- src/services/writing-agent/memory-controller.ts -----
+
+----- src/services/writing-agent/prompt-controller.ts -----
+
+----- src/services/writing-agent/output-processor.ts -----
+
+----- src/services/writing-agent/constraint-validator.ts -----
+
+----- src/services/analytics-engine/mapping/dualism_logic.ts -----
+
+----- src/services/analytics-engine/logic/coefficient_engine.ts -----
+
+----- src/services/image-engine/prompter.ts -----
+
+----- src/services/image-engine/executor.ts -----
+
+----- src/services/document-analyzer/parser.ts -----
+
+----- src/services/document-analyzer/corpus-searcher.ts -----
+import { CorpusLoader } from '../memory-engine/corpus-loader';
+
+export class CorpusSearcher {
+  private loader: CorpusLoader;
+
+  constructor() {
+    this.loader = new CorpusLoader();
+  }
+
+  // Searches the 181 files for lore related to the extracted threat
+  public async searchLore(keyword: string): Promise<string[]> {
+    const allFiles = await this.loader.loadAllFiles();
+    const results: string[] = [];
+
+    for (const file of allFiles) {
+      if (file.content.toLowerCase().includes(keyword.toLowerCase())) {
+        // Grab a 300-character window around the keyword for context
+        const index = file.content.toLowerCase().indexOf(keyword.toLowerCase());
+        const snippet = file.content.substring(Math.max(0, index - 100), Math.min(file.content.length, index + 200));
+        results.push(`[Source: ${file.filename}] ...${snippet}...`);
+      }
+    }
+    return results;
+  }
+}
+
+----- src/services/document-analyzer/synthesis-engine.ts -----
+
+----- src/hooks/useMemory.ts -----
+
+----- src/hooks/useRetrieval.ts -----
+
+----- src/hooks/useGraph.ts -----
+
+----- src/hooks/useAgent.ts -----
+
+----- src/store/app.store.ts -----
+
+----- src/store/memory.store.ts -----
+
+----- src/store/graph.store.ts -----
+
+----- src/store/session.store.ts -----
+
+----- src/actions/ingest.action.ts -----
+
+----- src/actions/write.action.ts -----
+
+----- src/actions/retrieve.action.ts -----
+
+----- src/actions/update-memory.action.ts -----
+
+----- src/core/IMemoryEngine.ts -----
+
+----- src/core/IRetrievalEngine.ts -----
+
+----- src/core/INarrativeGraphEngine.ts -----
+
+----- src/core/IWritingAgent.ts -----
+
+----- src/core/narrative-types.ts -----
+
+----- src/core/document-types.ts -----
+
+----- src/core/graph-types.ts -----
+
+----- src/core/engine-constants.ts -----
+
+----- src/core/system-utils.ts -----
+
+----- src/core/runtimeEngine.ts -----
+export type EventType =
+  | "chapter:load"
+  | "block:render"
+  | "scroll:update"
+  | "state:change";
+
+export type CommandType =
+  | "SET_CHAPTER"
+  | "SET_MODE"
+  | "ADVANCE_BLOCK";
+
+export class EventBus {
+  private listeners: Record<string, Function[]> = {};
+
+  on(event: EventType, fn: Function) {
+    this.listeners[event] = this.listeners[event] || [];
+    this.listeners[event].push(fn);
+  }
+
+  emit(event: EventType, payload: any) {
+    (this.listeners[event] || []).forEach(fn => fn(payload));
+  }
+}
+
+export interface State {
+  chapter: number;
+  blockIndex: number;
+  mode: "safe" | "cinematic";
+}
+
+export class RuntimeEngine {
+  private state: State = {
+    chapter: 7,
+    blockIndex: 0,
+    mode: "safe",
+  };
+
+  constructor(public events: EventBus) {}
+
+  getState() {
+    return this.state;
+  }
+
+  dispatch(command: { type: CommandType; payload?: any }) {
+    switch (command.type) {
+      case "SET_CHAPTER":
+        this.state.chapter = command.payload;
+        break;
+      case "SET_MODE":
+        this.state.mode = command.payload;
+        break;
+      case "ADVANCE_BLOCK":
+        const direction = command.payload ?? 1;
+        this.state.blockIndex = Math.max(0, this.state.blockIndex + direction);
+        break;
+    }
+    this.events.emit("state:change", this.state);
+  }
+}
+
+----- src/features/audioListener.ts -----
+import { EventBus } from "@/core/runtimeEngine";
+
+export function initAudioListener(bus: EventBus) {
+  bus.on("block:render", (block: any) => {
+    const tone = block?.tone;
+    const intensity = tone === "sacred" ? 0.8 : tone === "intense" ? 1.0 : 0.4;
+    console.log("[AUDIO] tone:", tone, "intensity:", intensity);
+  });
+
+  bus.on("scroll:update", (data: any) => {
+    const depth = data.depth;
+    const volumeCurve = Math.min(1, 0.3 + depth * 0.15);
+    console.log("[AUDIO] scroll depth:", depth, "volume:", volumeCurve);
+  });
+}
+
+----- src/features/thematicListener.ts -----
+import { EventBus } from "@/core/runtimeEngine";
+
+export function initThematicListener(bus: EventBus) {
+  bus.on("chapter:load", (chapter: any) => {
+    console.log("[THEME] chapter", chapter?.id, "loaded");
+  });
+
+  bus.on("state:change", (state: any) => {
+    const mode = state.mode === "cinematic" ? "MYTHIC_OVERLAY" : "BASELINE_NARRATIVE";
+    console.log("[THEME] mode:", mode, "block:", state.blockIndex);
+  });
+}
+
+----- src/features/distortionListener.ts -----
+import { EventBus } from "@/core/runtimeEngine";
+
+export function initDistortionListener(bus: EventBus) {
+  bus.on("block:render", (block: any) => {
+    const intensity = block?.tone === "intense" ? 1 : block?.tone === "sacred" ? 0.7 : 0.3;
+    console.log("[DISTORTION] tone intensity:", intensity);
+  });
+
+  bus.on("scroll:update", (data: any) => {
+    const depth = data.depth;
+    const warp = depth * 0.1;
+    console.log("[DISTORTION] scroll depth:", depth, "warp:", warp);
+  });
+}
+
+----- src/runtime/runtimeContext.ts -----
+"use client";
+
+import { EventBus, RuntimeEngine } from "@/core/runtimeEngine";
+
+let busInstance: EventBus | null = null;
+let engineInstance: RuntimeEngine | null = null;
+
+export function getRuntime() {
+  if (!busInstance) {
+    busInstance = new EventBus();
+    engineInstance = new RuntimeEngine(busInstance);
+  }
+
+  return {
+    bus: busInstance,
+    engine: engineInstance!,
+  };
+}
+

@@ -1,0 +1,1312 @@
+=== NARRATIVE OS MASTER DIAGNOSTIC REPORT ===
+Timestamp: Sun May 17 21:38:09 MDT 2026
+
+
+=== PHASE 1: SKELETON (Structure & Weight) ===
+>>> npm run build
+
+> creative-intelligence-interface@1.0.0 build
+> next build
+
+⚠ `eslint` configuration in next.config.js is no longer supported. See more info here: https://nextjs.org/docs/app/api-reference/cli/next#next-lint-options
+⚠ Invalid next.config.js options detected: 
+⚠     Unrecognized key(s) in object: 'outputFileTracingExcludes' at "experimental"
+⚠     Unrecognized key(s) in object: 'eslint'
+⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+⚠ `experimental.outputFileTracingExcludes` has been moved to `outputFileTracingExcludes`. Please update your next.config.js file accordingly.
+  Skipping creating a lockfile at /data/data/com.termux/files/home/writing-agent-interface/.next/lock because we're using WASM bindings
+▲ Next.js 16.2.6 (Turbopack)
+- Environments: .env.local
+- Experiments (use with caution):
+  ? outputFileTracingExcludes (invalid experimental key)
+
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack is not supported on this platform (android/arm64) because native bindings are not available. Only WebAssembly (WASM) bindings were loaded, and Turbopack requires native bindings.
+
+To build on this platform, use Webpack instead:
+  next build --webpack
+
+For more information, see: https://nextjs.org/docs/app/api-reference/turbopack#supported-platforms
+    at ignore-listed frames
+
+>>> du -sh ./* | sort -hr
+356M	./node_modules
+4.4M	./src
+466K	./public
+256K	./full_codebase_dump.txt
+192K	./ui_ux_dump.txt
+152K	./tsconfig.tsbuildinfo
+128K	./package-lock.json
+45K	./system
+36K	./scripts
+36K	./nos_manifest.json
+32K	./NOS_Critical_Files_Dump.txt
+12K	./system_logic_audit.txt
+12K	./NOS_Runtime_Discovery_Dump.txt
+8.0K	./NOS_Responsive_Style_Config_Dump.txt
+8.0K	./NOS_Remaining_23_Matrix_Dump.txt
+8.0K	./NOS_Layout_Search_Discovery_Dump.txt
+4.0K	./tsconfig.json
+4.0K	./tsc.log
+4.0K	./test-db.js
+4.0K	./tailwind.config.ts
+4.0K	./run_nos_diagnostics.sh
+4.0K	./postcss.config.js
+4.0K	./package.json
+4.0K	./next.config.js
+4.0K	./next-env.d.ts
+4.0K	./et --hard 42b7570
+4.0K	./eslint.config.js
+4.0K	./build.log
+4.0K	./README.md
+4.0K	./NOS_Panel_Runtime_EMA_Dump.txt
+4.0K	./NOS_Core_Engine_Discovery_Dump.txt
+4.0K	./ManuscriptCore.tsx
+
+>>> Lines of Code
+     0 src/hooks/useChapterLoader.ts
+     0 src/hooks/useChapterRoute.ts
+     0 src/hooks/useListenerBus.ts
+     0 src/hooks/useScrollTracker.ts
+     0 src/services/analytics-engine/logic/coefficient_engine.ts
+     0 src/services/analytics-engine/mapping/dualism_logic.ts
+     0 src/services/document-analyzer/parser.ts
+     0 src/services/document-analyzer/synthesis-engine.ts
+     0 src/services/image-engine/executor.ts
+     0 src/services/image-engine/prompter.ts
+     0 src/services/memory-engine/document-store.ts
+     0 src/services/memory-engine/integrity-validator.ts
+     0 src/services/memory-engine/memory-engine.ts
+     0 src/services/memory-engine/memory-kernel.ts
+     0 src/services/narrative-graph-engine/connection-analyzer.ts
+     0 src/services/narrative-graph-engine/consistency-analyzer.ts
+     0 src/services/narrative-graph-engine/edge-builder.ts
+     0 src/services/narrative-graph-engine/graph-kernel.ts
+     0 src/services/narrative-graph-engine/graph-querier.ts
+     0 src/services/narrative-graph-engine/graph-serializer.ts
+     0 src/services/narrative-graph-engine/node-builder.ts
+     0 src/services/narrative-graph-engine/path-finder.ts
+     0 src/services/orchestration-engine/context-builder.ts
+     0 src/services/orchestration-engine/orchestration-engine.ts
+     0 src/services/orchestration-engine/pipeline.ts
+     0 src/services/orchestration-engine/prompt-assembler.ts
+     0 src/services/orchestration-engine/runtime-controller.ts
+     0 src/services/writing-agent/agent-kernel.ts
+     0 src/services/writing-agent/constraint-validator.ts
+     0 src/services/writing-agent/generation-executor.ts
+     0 src/services/writing-agent/memory-controller.ts
+     0 src/services/writing-agent/output-processor.ts
+     0 src/services/writing-agent/prompt-controller.ts
+     0 src/services/writing-agent/task-executor.ts
+     0 src/styles/animations.css
+     0 src/styles/components.css
+     0 src/styles/tokens.css
+     0 src/styles/typography.css
+     1 src/actions/retrieve.action.ts
+     1 src/actions/update-memory.action.ts
+     1 src/actions/write.action.ts
+     1 src/core/document-types.ts
+     1 src/core/engine-constants.ts
+     1 src/core/narrative-types.ts
+     1 src/hooks/useAgent.ts
+     1 src/hooks/useGraph.ts
+     1 src/hooks/useMemory.ts
+     1 src/hooks/useRetrieval.ts
+     1 src/store/app.store.ts
+     1 src/store/graph.store.ts
+     1 src/store/memory.store.ts
+     1 src/store/session.store.ts
+     2 src/app/api/analyze-document/route.ts
+     2 src/app/api/corpus/route.ts
+     2 src/app/api/execute/route.ts
+     2 src/components/ui/character-view.tsx
+     2 src/components/ui/graph-view.tsx
+     2 src/components/ui/memory-panel.tsx
+     2 src/components/ui/timeline.tsx
+     4 src/services/memory-engine/text-processor.ts
+     5 src/components/layers/Layer1Void.tsx
+     5 src/utils/tokenize.ts
+     7 src/app/head.tsx
+    11 src/services/writing-agent/writing-agent.ts
+    12 src/app/api/manuscript/route.ts
+    12 src/features/thematicListener.ts
+    13 src/actions/ingest.action.ts
+    13 src/core/IMemoryEngine.ts
+    14 src/features/distortionListener.ts
+    15 src/app/api/search/route.ts
+    15 src/app/characters/page.tsx
+    15 src/app/dashboard/page.tsx
+    15 src/app/graph/page.tsx
+    15 src/app/memory/page.tsx
+    15 src/app/search/page.tsx
+    15 src/app/timeline/page.tsx
+    15 src/features/audioListener.ts
+    15 src/lib/narrative/indexStore.ts
+    15 src/services/image-engine/image-generator.ts
+    15 src/services/narrative-graph-engine/narrative-graph-engine.ts
+    16 src/app/api/graph/route.ts
+    17 src/app/api/visualize/route.ts
+    17 src/components/layers/panel/StatusTab.tsx
+    17 src/core/IRetrievalEngine.ts
+    17 src/core/IWritingAgent.ts
+    20 src/services/memory-engine/embedding-processor.ts
+    22 src/data/cinema.ts
+    23 src/core/types.ts
+    25 src/app/api/agent/route.ts
+    27 src/app/api/chapters/route.ts
+    27 src/core/INarrativeGraphEngine.ts
+    27 src/lib/narrative/fileService.ts
+    30 src/components/layers/canvas/front-matter/AboutAuthor.tsx
+    30 src/core/system-utils.ts
+    36 src/components/layers/canvas/front-matter/Dedication.tsx
+    38 src/components/layers/canvas/front-matter/Synopsis.tsx
+    40 src/app/layout.tsx
+    41 src/context/SidebarContext.tsx
+    44 src/runtime/runtimeContext.tsx
+    53 src/components/layers/panel/IndexTab.tsx
+    64 src/components/layers/canvas/front-matter/TableOfContents.tsx
+    71 src/core/runtimeEngine.ts
+    73 src/components/layers/panel/SystemTab.tsx
+    88 src/runtime/controlPanel.ts
+    89 src/components/ui/OmniText.tsx
+    91 src/components/ui/ScopedBackdrop.tsx
+    93 src/components/layers/Layer2Cinema.tsx
+    94 src/services/memory-engine/corpus-loader.ts
+   104 src/components/layers/cinema/ShaderEffects.tsx
+   106 src/components/layers/canvas/front-matter/TitleCover.tsx
+   118 src/components/layers/canvas/ManuscriptCore.tsx
+   121 src/components/layers/Layer3Canvas.tsx
+   122 src/services/memory-engine/vector-store.ts
+   125 src/components/ui/sidebar.tsx
+   136 src/components/ReaderLayout.tsx
+   158 src/components/ui/editor.tsx
+   170 src/components/layers/cinema/AssetProjector.tsx
+   175 src/components/layers/Layer4Panel.tsx
+   180 src/app/page.tsx
+   206 src/components/layers/panel/StylesTab.tsx
+   211 src/components/layers/cinema/TelemetryOverlay.tsx
+   218 src/app/globals.css
+   336 src/app/runtime/page.tsx
+  4005 total
+
+>>> Dependency Tree (React/Next)
+├── @types/react-dom@18.3.7
+├── @types/react@18.3.28
+├── lucide-react@0.454.0
+├── next@16.2.6
+├── react-dom@18.3.1
+├── react@18.3.1
+├── reactflow@11.11.4
+├── typescript@5.9.3
+
+>>> Next.js Info
+/data/data/com.termux/files/usr/bin/sh: 1: yarn: not found
+/data/data/com.termux/files/usr/bin/sh: 1: pnpm: not found
+
+Operating System:
+  Platform: android
+  Arch: arm64
+  Version: #1 SMP PREEMPT Sun Nov 30 12:19:45 UTC 2025
+  Available memory (MB): 3641
+  Available CPU cores: N/A
+Binaries:
+  Node: 25.8.2
+  npm: 11.14.1
+  Yarn: N/A
+  pnpm: N/A
+Relevant Packages:
+  next: 16.2.6 // Latest available version is detected (16.2.6).
+  eslint-config-next: N/A
+  react: 18.3.1
+  react-dom: 18.3.1
+  typescript: 5.9.3
+Next.js Config:
+  output: N/A
+
+
+=== PHASE 2: NERVOUS SYSTEM (Events & Memory Leaks) ===
+>>> Rogue EventBus Instances
+src/app/page.tsx:18:const bus = new EventBus();
+src/runtime/runtimeContext.tsx:18:    if (!busInstance) busInstance = new EventBus();
+src/runtime/runtimeContext.tsx:40:  if (!busInstance) busInstance = new EventBus();
+
+>>> Rogue DOM Listeners
+src/components/ReaderLayout.tsx:58:    window.addEventListener("resize", recalculateStableVerticalBounds, { passive: true });
+src/components/ReaderLayout.tsx:59:    window.addEventListener("orientationchange", recalculateStableVerticalBounds, { passive: true });
+
+>>> Leaking useState in 3D Canvas
+src/components/layers/Layer4Panel.tsx:3:import React, { useState } from "react";
+src/components/layers/Layer4Panel.tsx:31:  const [activeTab, setActiveTab] = useState<Tab>("chapters");
+src/components/layers/panel/StylesTab.tsx:3:import React, { useMemo, useState, useEffect } from "react";
+src/components/layers/panel/StylesTab.tsx:23:  const [localFontScale, setLocalFontScale] = useState<number>(cp.state?.fontScale || 1.0);
+src/components/layers/panel/StylesTab.tsx:24:  const [localLetterSpacing, setLocalLetterSpacing] = useState<number>(cp.state?.letterSpacing || 0.02);
+src/components/layers/panel/StylesTab.tsx:25:  const [activeProfileLabel, setActiveProfileLabel] = useState<string>("PROSE_STEADY_DEFAULT");
+src/components/layers/panel/StylesTab.tsx:26:  const [renderCount, setRenderCount] = useState<number>(0);
+src/components/layers/cinema/AssetProjector.tsx:3:import React, { useEffect, useState, useRef, useMemo } from "react";
+src/components/layers/cinema/AssetProjector.tsx:19:  const [activePlane, setActivePlane] = useState<"ALPHA" | "BETA">("ALPHA");
+src/components/layers/cinema/AssetProjector.tsx:20:  const [srcPlaneAlpha, setSrcPlaneAlpha] = useState("/assets/bg.png");
+src/components/layers/cinema/AssetProjector.tsx:21:  const [srcPlaneBeta, setSrcPlaneBeta] = useState("/assets/bg.png");
+src/components/layers/cinema/AssetProjector.tsx:22:  const [opacityPlaneAlpha, setOpacityPlaneAlpha] = useState(1);
+src/components/layers/cinema/AssetProjector.tsx:23:  const [opacityPlaneBeta, setOpacityPlaneBeta] = useState(0);
+src/components/layers/cinema/TelemetryOverlay.tsx:3:import React, { useEffect, useState, useRef, useMemo } from "react";
+src/components/layers/cinema/TelemetryOverlay.tsx:62:  const [computedVectorX, setComputedVectorX] = useState<number>(1003);
+src/components/layers/cinema/TelemetryOverlay.tsx:63:  const [computedVectorY, setComputedVectorY] = useState<number>(181);
+src/components/layers/cinema/TelemetryOverlay.tsx:64:  const [liveStreamHash, setLiveStreamHash] = useState<string>("0xACE1");
+src/components/layers/cinema/TelemetryOverlay.tsx:65:  const [userPlatformAgent, setUserPlatformAgent] = useState<string>("CORE_ENGINE_STABLE");
+src/components/layers/cinema/TelemetryOverlay.tsx:66:  const [interfaceFpsCache, setInterfaceFpsCache] = useState<number>(60);
+src/components/layers/cinema/TelemetryOverlay.tsx:67:  const [hardwareLoadWeight, setHardwareLoadWeight] = useState<string>("NOMINAL");
+src/components/layers/cinema/TelemetryOverlay.tsx:68:  const [executionCycleDelta, setExecutionCycleDelta] = useState<number>(0);
+src/components/layers/cinema/TelemetryOverlay.tsx:69:  const [operationalCyclesCount, setOperationalCyclesCount] = useState<number>(0);
+src/components/layers/cinema/TelemetryOverlay.tsx:70:  const [isDataBusLocked, setIsDataBusLocked] = useState<boolean>(false);
+src/components/layers/cinema/TelemetryOverlay.tsx:71:  const [governorFrequencyHz, setGovernorFrequencyHz] = useState<number>(1000);
+src/app/page.tsx:3:import React, { useEffect, useRef, useState } from "react";
+src/app/page.tsx:40:  const [chapter, setChapter] = useState<number | null>(null);
+src/app/page.tsx:41:  const [paragraphs, setParagraphs] = useState<string[]>([]);
+src/app/page.tsx:42:  const [loading, setLoading] = useState(false);
+src/app/page.tsx:43:  const [error, setError] = useState<string | null>(null);
+src/app/page.tsx:44:  const [depth, setDepth] = useState(0);
+src/app/page.tsx:45:  const [activePara, setActivePara] = useState(0);
+src/app/page.tsx:46:  const [panelOpen, setPanelOpen] = useState(false);
+src/app/runtime/page.tsx:3:import React, { useState, useEffect, useRef, useCallback } from "react";
+src/app/runtime/page.tsx:53:  const [state, setState] = useState<RuntimeState>(engine.getState());
+src/app/runtime/page.tsx:54:  const [log, setLog] = useState<EventLogEntry[]>([]);
+src/app/runtime/page.tsx:56:  const [audio, setAudio] = useState({ tone: "—", intensity: 0, volume: 0.3, depth: 0 });
+src/app/runtime/page.tsx:57:  const [dist, setDist] = useState({ intensity: 0.3, warp: 0, depth: 0 });
+src/app/runtime/page.tsx:58:  const [theme, setTheme] = useState({ chapter: 7, overlay: "BASELINE_NARRATIVE" });
+src/app/runtime/page.tsx:59:  const [gray, setGray] = useState(0.4);
+src/app/runtime/page.tsx:60:  const [contrast, setContrast] = useState(1.2);
+src/app/runtime/page.tsx:61:  const [bright, setBright] = useState(0.7);
+src/app/runtime/page.tsx:62:  const [blur, setBlur] = useState(0);
+src/app/runtime/page.tsx:63:  const [showTags, setShowTags] = useState(true);
+src/app/runtime/page.tsx:64:  const [showIndent, setShowIndent] = useState(true);
+src/app/runtime/page.tsx:65:  const [showDescent, setShowDescent] = useState(false);
+src/app/runtime/page.tsx:66:  const [term, setTerm] = useState("");
+src/app/runtime/page.tsx:67:  const [results, setResults] = useState<any[]>([]);
+src/app/runtime/page.tsx:68:  const [sMeta, setSMeta] = useState({ normalized: "", count: 0 });
+
+>>> Active Event Subscribers (bus.on)
+src/app/runtime/page.tsx:100:    bus.on("scroll:update", onScroll);
+src/app/runtime/page.tsx:101:    bus.on("block:render", onBlock);
+src/app/runtime/page.tsx:102:    bus.on("chapter:load", onChapter);
+src/app/runtime/page.tsx:103:    bus.on("state:change", onStateChange);
+src/features/audioListener.ts:4:  bus.on("block:render", (block: any) => {
+src/features/audioListener.ts:10:  bus.on("scroll:update", (data: any) => {
+src/features/thematicListener.ts:4:  bus.on("chapter:load", (chapter: any) => {
+src/features/thematicListener.ts:8:  bus.on("state:change", (state: any) => {
+src/features/distortionListener.ts:4:  bus.on("block:render", (block: any) => {
+src/features/distortionListener.ts:9:  bus.on("scroll:update", (data: any) => {
+
+>>> Active Event Triggers (bus.emit)
+src/app/page.tsx:93:      bus.emit("scroll:update", { depth: scrollDepth, activePara: currentActive });
+src/app/page.tsx:121:        bus.emit("chapter:load", { id: chapter });
+src/app/runtime/page.tsx:117:      bus.emit("scroll:update", { depth });
+
+
+=== PHASE 3: BRAIN (APIs & Memory Engine) ===
+>>> Database Connection Test
+DB CONNECTED: { now: 2026-05-18T03:38:26.203Z }
+
+>>> Groq API Ping
+HTTP/2 404 
+
+>>> Supabase API Ping
+HTTP/2 404 
+
+>>> Environment Variable Injections
+src/app/api/agent/route.ts:8:    const expected = process.env.AUTHOR_MASTER_PIN;
+src/services/memory-engine/embedding-processor.ts:8:      apiKey: process.env.OPENAI_API_KEY!,
+src/services/memory-engine/vector-store.ts:8:      connectionString: process.env.DATABASE_URL,
+
+>>> Vercel Cloud Environment
+Retrieving project…
+> Environment Variables found for mjmichaelwares-projects/writing-agent-interface [153ms]
+
+ name               value               environments                created    
+ DATABASE_URL       Encrypted           Preview, Production         12h ago    
+ OPENAI_API_KEY     Encrypted           Preview                     12h ago    
+
+
+
+=== PHASE 4: PULSE (Internal Compass & Logic) ===
+>>> Manifest Node Verification
+{
+  "nodes": [
+    {
+      "id": "Chapter_8",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)Chapter_8:_Sea_People.txt"
+    },
+    {
+      "id": "(A)_Chapter:_1_Stardust_to_Sta",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter:_1_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1:_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_2-_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_2:_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_3-_Lift_Up.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_3_-_Lift_Up.txt"
+    },
+    {
+      "id": "Chapter_5",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_5_-_The_Snare.txt"
+    },
+    {
+      "id": "Chapter_6",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_6:_Beelzebub,_Beelzebub.txt"
+    },
+    {
+      "id": "Chapter_8",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)Chapter_8:_Sea_People.txt"
+    },
+    {
+      "id": "(B)_Chapter:_1_Stardust_to_Sta",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter:_1_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1:_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_2-_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "a tribal ascent from a king\u2019s stronghold to the outskirts of his dominion; a rise from the dust of the south to the final, indifferent peak of Mount Hermon, the marker where the true promise dies in the ice. You choose the ascent, my boy? Then understand this:",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_2:_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_3-_Lift_Up.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_3:_Lift_Up.txt"
+    },
+    {
+      "id": "Chapter_5",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_5-_The_Snare.txt"
+    },
+    {
+      "id": "Chapter_6",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_6_-_Beelzebub,_Beelzebub.txt"
+    },
+    {
+      "id": "Chapter_7",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_7:_The_Pit.txt"
+    },
+    {
+      "id": "Chapter_9",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_9:_The_Ascent.txt"
+    },
+    {
+      "id": "(B)_Stardust_to_Stardust.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_8",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)Chapter_8:_Sea_People.txt"
+    },
+    {
+      "id": "(C)_Chapter:_1_-_Stardust_to_S",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_1_-_Stardust_to_Stardust_.txt"
+    },
+    {
+      "id": "(C)_Chapter:_7_-_The_Pit.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_7_-_The_Pit.txt"
+    },
+    {
+      "id": "(C)_Chapter:_Stardust_to_Stard",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_1-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_2-_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_3-_Lift_Up.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_3_-_Lift_Up.txt"
+    },
+    {
+      "id": "Chapter_4",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_4-_Pilgrimage.txt"
+    },
+    {
+      "id": "Chapter_4",
+      "aim": "the fear of pure verticality, the terror of standing up without a terrestrial tether, the unbearable loneliness of a soul untethered from the earth. And for young dan, the night had been a long, whispering journey indeed; though light danced in his vision from distant stars, they were the cold a-tonal frequencies of the unmanifest, promising no solace, only the frigid fire of separation and the immutable truth of his solitude.",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_4_-_Pilgrimage.txt"
+    },
+    {
+      "id": "Chapter_6",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_6-_Beelzebub,_Beelzebub.txt"
+    },
+    {
+      "id": "(D)_Chapter:_7_-_The_Pit.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter:_7_-_The_Pit.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter_2-_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter_2_-_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_1-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_2-_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_2_-_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_3-_Lift_Up.txt"
+    },
+    {
+      "id": "(F)_Chapter:_1_Stardust_to_Sta",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter:_1_Stardust_to_Stardust_.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_1:_Stardust_to_Stardust_.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_2-_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_3-_Lift_Up.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_1:_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_2-_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_3-_Lift_Up.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_3:_Lift_Up.txt"
+    },
+    {
+      "id": "Chapter_5",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_5_-_The_Snare.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(G)_Chapter_1:_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(G)_Chapter_2-_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(G)_Chapter_3-_Lift_Up.txt"
+    },
+    {
+      "id": "(G)_Final_)_Chapter:_10_-_Fors",
+      "aim": "it makes no entrance and sends no herald. One moment the body is a tool in full service to a will; the next moment there is a will and there is a body and they are no longer in the same arrangement. The weight on the sternum had been building since before the chant began, building the way stalactite builds: one cold deposit compounding on another, until the structure is suddenly, completely, irrevocably there. First the sternum\u2014not the weight of stone but heavier, the specific density of absolute certainty pressing down with no interest in argument. Then the limbs, which did not grow heavy but held\u2014caught between the beat and the silence like a pendulum arrested at the summit of its arc, suspended in the interval where will and flesh were being carefully separated with the calm precision of a craftsman who has performed this work before. Her throat sealed. Her eyes fixed on the dark weave of the tent above and would not move. Her chest continued the minimum: breath as technical necessity rather than living act. She was awake in her living awareness and a sealed jar in her flesh, a prisoner in a house of clay that had forgotten how to open its own doors.",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(G)_Final_)_Chapter:_10_-_Forsaken.txt"
+    },
+    {
+      "id": "(I)_(Notes)_Chapter:_1_Stardus",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(I)_(Notes)_Chapter:_1_Stardust_to_Stardust_.txt"
+    },
+    {
+      "id": "(I)_Chapter:_1_Stardust_to_Sta",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(I)_Chapter:_1_Stardust_to_Stardust_.txt"
+    },
+    {
+      "id": "(N)_CHAPTER_1-_STARDUST_TO_STA",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(N)_CHAPTER_1-_STARDUST_TO_STARDUST.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(N)_Chapter_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "(Notes)_(P)_Chapter:_1_-_Stard",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_(P)_Chapter:_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_Chapter_2-_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_Chapter_2:_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(O)_Chapter_1-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "(P)_Chapter:_1_-_Stardust_to_S",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(P)_Chapter:_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_10",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Prompt_Guide_(E))_Chapter_10:_Forsaken.txt"
+    },
+    {
+      "id": "(R) Chapter: 1 - Stardust to S",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(R) Chapter: 1 - Stardust to Stardust .txt"
+    },
+    {
+      "id": "(R)_Chapter:_1_-_Stardust_to_S",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(R)_Chapter:_1_-_Stardust_to_Stardust_.txt"
+    },
+    {
+      "id": "Chapter_10",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Revision_Prompt_(D))_Chapter_10:_Forsaken.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Revision_Prompt_(N)__Chapter_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Revisions)_Chapter_1:_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "v2",
+      "aim": "",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(SDP)_v2.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1:_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1_-_Stardust_to_Stardust.docx.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1__Stardust_to_Stardust_(1).txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1__Stardust_to_Stardust_(2).txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Z)_Chapter_1:_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_1:_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_2-_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_3:_Lift_Up.txt"
+    },
+    {
+      "id": "Chapter_4",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_4:_Pilgrimage.txt"
+    },
+    {
+      "id": "Chapter_7",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_7:_The_Pit.txt"
+    },
+    {
+      "id": "Chapter_8",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_8:_Sea_People.txt"
+    },
+    {
+      "id": "Chapter_9",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_9:_The_Ascent.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/-Final_Chapter_1_Revision_Prompt-.txt"
+    },
+    {
+      "id": "1.0_Revision.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/1.0_Revision.txt"
+    },
+    {
+      "id": "10.0_Blueprint_for_The_Ascent_",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/10.0_Blueprint_for_The_Ascent_of_Daniel:_The_Archetype_of_Sacrifice_(NYT_Bestseller_Focus).txt"
+    },
+    {
+      "id": "10.0_MASTER_SYSTEM_FOR_CHAPTER",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/10.0_MASTER_SYSTEM_FOR_CHAPTER_REVISION.txt"
+    },
+    {
+      "id": "10.0_Mass_Market.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/10.0_Mass_Market.txt"
+    },
+    {
+      "id": "11.0_Error_Catalog.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/11.0_Error_Catalog.txt"
+    },
+    {
+      "id": "11.0_Final_Revision.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/11.0_Final_Revision.txt"
+    },
+    {
+      "id": "11.0_Marketability_.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/11.0_Marketability_.txt"
+    },
+    {
+      "id": "12.0_Perfection.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/12.0_Perfection.txt"
+    },
+    {
+      "id": "13.0_Claude.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/13.0_Claude.txt"
+    },
+    {
+      "id": "13.0_GENERAL_PRINCIPLES.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/13.0_GENERAL_PRINCIPLES.txt"
+    },
+    {
+      "id": "2.0_Critique_\uff0f_Analysis_Guide.",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/2.0_Critique_\uff0f_Analysis_Guide.txt"
+    },
+    {
+      "id": "2.0_This_is_the_critical_adjus",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/2.0_This_is_the_critical_adjustment\u2014the_final_layer_that_elevates_philosophical_storytelling_into_timeless,_devastating_human_tragedy.txt"
+    },
+    {
+      "id": "3.0_Final_.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/3.0_Final_.txt"
+    },
+    {
+      "id": "3.0_Literary_&_Archetypal_Fusi",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/3.0_Literary_&_Archetypal_Fusion_Rulebook_(The_Cat_God_&_The_Primal_Self).txt"
+    },
+    {
+      "id": "3.0_Scientific_Guide.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/3.0_Scientific_Guide.txt"
+    },
+    {
+      "id": "4.0_(12_Rules_For_Life).txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/4.0_(12_Rules_For_Life).txt"
+    },
+    {
+      "id": "4.0_Emotional_&_Archetypal_Edi",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/4.0_Emotional_&_Archetypal_Editing_Rulebook_(Visceral_Empathy_Focus).txt"
+    },
+    {
+      "id": "4.0_Psychology_Guide.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/4.0_Psychology_Guide.txt"
+    },
+    {
+      "id": "4.0_REVISED.txt",
+      "aim": "",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/4.0_REVISED.txt"
+    },
+    {
+      "id": "5.0_Final_Guide.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/5.0_Final_Guide.txt"
+    },
+    {
+      "id": "5.0_Psychology_Guide.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/5.0_Psychology_Guide.txt"
+    },
+    {
+      "id": "6.0_Core_Editing_Rules_for_The",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt"
+    },
+    {
+      "id": "6.0_HIGHEST_PRIORITY_(Read_thi",
+      "aim": "Repeating the same thematic keywords (gravimetric claim, downward pull, Snare) so often that they lose their impact.",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/6.0_HIGHEST_PRIORITY_(Read_this_first_and_then_again_last)_.txt"
+    },
+    {
+      "id": "6.0_SYNTHESIS_MANDATE.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/6.0_SYNTHESIS_MANDATE.txt"
+    },
+    {
+      "id": "6.0_Supreme_Generative_Constra",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/6.0_Supreme_Generative_Constraint.txt"
+    },
+    {
+      "id": "7.0_Chapter_Refinery.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/7.0_Chapter_Refinery.txt"
+    },
+    {
+      "id": "7.0_Nuclear_Edit!!!!_(CRITICAL",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/7.0_Nuclear_Edit!!!!_(CRITICAL!_DIRE!_EMERGENCY!!!).txt"
+    },
+    {
+      "id": "8.0_Pacing\uff0fRedundancy.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/8.0_Pacing\uff0fRedundancy.txt"
+    },
+    {
+      "id": "8._0_This_is_the_final,_most_c",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/8._0_This_is_the_final,_most_crucial_step:_ensuring_the_narrative's_structure_is_so_perfectly_weighted_that_the_profound_sadness\u2014the_weeping_of_self-recognition\u2014is_not_a_chance_event,_but_an_earned,_inevitable_catharsis_for_the_reader.txt"
+    },
+    {
+      "id": "9.0_Aesthetic.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/9.0_Aesthetic.txt"
+    },
+    {
+      "id": "9.0_Stones.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/9.0_Stones.txt"
+    },
+    {
+      "id": "v1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/ALITTERAS_SYSTEM_BLUEPRINT_v1.txt"
+    },
+    {
+      "id": "Chapter 3 - Commerciality and ",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter 3 - Commerciality and Marketing 3.0.txt"
+    },
+    {
+      "id": "Chapter2_Weight_of_the_Sky.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter2_Weight_of_the_Sky.txt"
+    },
+    {
+      "id": "Chapter:_10_-_MASTER_BRIEFING.",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_10_-_MASTER_BRIEFING.txt"
+    },
+    {
+      "id": "Chapter:_1_-_Stardust_to_Stard",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter:_1_Proof_of_Authorship",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_1_Proof_of_Authorship_1.0.txt"
+    },
+    {
+      "id": "Chapter:_1_Proof_of_Authorship",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_1_Proof_of_Authorship_1.1.txt"
+    },
+    {
+      "id": "Chapter:_8_(Final).txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_8_(Final).txt"
+    },
+    {
+      "id": "Chapter_10",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10.1.txt"
+    },
+    {
+      "id": "Chapter_10",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10.5.txt"
+    },
+    {
+      "id": "Chapter_10",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10:_Forsaken.txt"
+    },
+    {
+      "id": "Chapter_10",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10_Forsaken_FINAL_DEFINITIVE.txt"
+    },
+    {
+      "id": "Chapter_10",
+      "aim": "it makes no entrance, sends no herald. One moment the body is a tool in full service to a will; the next moment there is a will and there is a body and they are no longer in the same arrangement. It does not approach. It is simply the knowledge working backwards through the awareness\u2014the cold certainty finding itself already present, the possession having preceded the accounting of it. The weight on the sternum had been building since before the chant began, since before the lamp went out, building the way stalactite builds: one cold deposit compounding on another, until the structure is suddenly, completely, irrevocably there.",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10_Version_F.txt"
+    },
+    {
+      "id": "Chapter_11",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_11.8.txt"
+    },
+    {
+      "id": "Chapter_11",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_11._Forsaken.txt"
+    },
+    {
+      "id": "Chapter_13",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_13:_Exodus.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1:_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_-_Stardust_to_Stardust.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Integration.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[Core concept]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Integration_2.0.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Integration_Prompt.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "Dan's age (16), the duration (7 years), Dagon's Philistine origin, and the political setting (Hebron/King David). |",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Merge_Prompt.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Version_O.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2:_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2_-_Analysis_&_Guides_1.0.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2_-_Commerciality_and_Marketing_3.0.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2_-_Master_Revision_Prompt_2.0.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2nd_to_last.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3:_Lift_Up.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3_-_Master_Revision_Prompt_2.0.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3_Analysis_&_Guides.txt"
+    },
+    {
+      "id": "Chapter_3",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3_Integration_Prompt.txt"
+    },
+    {
+      "id": "Chapter_4",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_4:_Pilgrimage.txt"
+    },
+    {
+      "id": "Chapter_5",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_5:_The_Snare.txt"
+    },
+    {
+      "id": "Chapter_6",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_6:_Beelzebub,_Beelzebub.txt"
+    },
+    {
+      "id": "Chapter_8",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_8.1.txt"
+    },
+    {
+      "id": "Chapter_8",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_8:_Sea_People.txt"
+    },
+    {
+      "id": "Chapter_9",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_9:_The_Ascent.txt"
+    },
+    {
+      "id": "Could_you_condense_that_chapte",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Could_you_condense_that_chapter_by_500_to_1,000_w....txt"
+    },
+    {
+      "id": "Critique_2.2.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Critique_2.2.txt"
+    },
+    {
+      "id": "Final Revision (Generalized Fo",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Final Revision (Generalized For All Chapters).txt"
+    },
+    {
+      "id": "Go_ahead_and_write_out_the_cha",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Go_ahead_and_write_out_the_chapter_keep_in_mind_t....txt"
+    },
+    {
+      "id": "MANUSCRIPT_AUTOPSY.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/MANUSCRIPT_AUTOPSY.txt"
+    },
+    {
+      "id": "Narnia_.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Narnia_.txt"
+    },
+    {
+      "id": "Purple_Prose_Prompt.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Purple_Prose_Prompt.txt"
+    },
+    {
+      "id": "THE_WEIGHT_OF_THE_SKY-_MASTER_",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/THE_WEIGHT_OF_THE_SKY-_MASTER_COMPENDIUM_(SINGULARITY_v.txt"
+    },
+    {
+      "id": "The_-Version_X-_Meta-Prompt.tx",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/The_-Version_X-_Meta-Prompt.txt"
+    },
+    {
+      "id": "The_Weight_of_the_Sky:_The_Fal",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/The_Weight_of_the_Sky:_The_Fall_into_Megiddo.txt"
+    },
+    {
+      "id": "The_scrape.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/The_scrape.txt"
+    },
+    {
+      "id": "v2",
+      "aim": "ASCEND (The Light): * Theme: White/Gold/Green.",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/ToALITTERAS_ECOSYSTEM_v2.txt"
+    },
+    {
+      "id": "Untitled_document.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Untitled_document.txt"
+    },
+    {
+      "id": "Version_A.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Version_A.txt"
+    },
+    {
+      "id": "Version_B.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Version_B.txt"
+    },
+    {
+      "id": "WOS_Ch7_The_Pit.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/WOS_Ch7_The_Pit.txt"
+    },
+    {
+      "id": "Whole_Book.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/Whole_Book.txt"
+    },
+    {
+      "id": "chapter_11.2.txt",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/chapter_11.2.txt"
+    },
+    {
+      "id": "\u2022(G)_Chapter:_1_Stardust_to_St",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/\u2022(G)_Chapter:_1_Stardust_to_Stardust_.txt"
+    },
+    {
+      "id": "Chapter_2",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/\u2022(G)_Chapter_2-_Living_Sacrifice.txt"
+    },
+    {
+      "id": "Chapter_1",
+      "aim": "[PENDING SEMANTIC ANALYSIS]",
+      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/\ufeffChapter_1-_Stardust_to_Stardust.txt"
+    }
+  ]
+}
+>>> API Route Audits
+src/app/api/execute/route.ts:2:export async function POST() { return NextResponse.json({ status: "online" }); }
+src/app/api/agent/route.ts:3:export async function POST(request: NextRequest) {
+src/app/api/corpus/route.ts:2:export async function GET() { return NextResponse.json({ status: "online" }); }
+src/app/api/graph/route.ts:3:export async function GET() {
+src/app/api/manuscript/route.ts:4:export async function GET() {
+src/app/api/search/route.ts:4:export async function GET(req: Request) {
+src/app/api/chapters/route.ts:6:export async function GET(req: NextRequest) {
+src/app/api/visualize/route.ts:6:export async function GET(request: NextRequest) {
+src/app/api/analyze-document/route.ts:2:export async function POST() { return NextResponse.json({ status: "online" }); }
+
+>>> Package Scripts
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "ingest": "tsx src/actions/ingest.action.ts"
+  },
+  "dependencies": {
+    "framer-motion": "^12.38.0",
+    "groq-sdk": "^0.8.0",
+    "howler": "^2.2.4",
+    "lucide-react": "^0.454.0",
+
+
+=== PHASE 5: GLASS (Viewport & Interactions) ===
+>>> Hardware-Accelerated Observers
+
+>>> Touch Targets (onClick)
+src/components/ui/editor.tsx:146:            onClick={executeSaveOperationPipeline}
+src/components/ui/sidebar.tsx:44:  const handleLinkExecutionClick = (linkId: string, path: string) => {
+src/components/ui/sidebar.tsx:92:          onClick={() => setIsSidebarOpen(false)}
+src/components/ui/sidebar.tsx:107:              onClick={() => handleLinkExecutionClick(link.id, link.path)}
+src/components/ReaderLayout.tsx:130:        onClick={onOverlayClick}
+src/components/layers/Layer4Panel.tsx:44:            onClick={() => setOpen(!open)}
+src/components/layers/Layer4Panel.tsx:78:                    onClick={() => setActiveTab(tab)}
+src/components/layers/Layer4Panel.tsx:103:                        onClick={() => {
+src/components/layers/panel/StylesTab.tsx:162:            onClick={forceLayoutResetToBaseline}
+src/components/layers/panel/StylesTab.tsx:173:            onClick={activateHighContrastCompactProfile}
+src/components/layers/panel/IndexTab.tsx:36:            onClick={() => {
+src/components/layers/panel/SystemTab.tsx:38:          <button onClick={runSearch} disabled={searching} className="bg-cyan-950 border border-cyan-800 text-cyan-400 px-3 py-2 text-xs rounded-xs font-bold active:scale-95 transition-transform">
+src/components/layers/panel/SystemTab.tsx:56:            onClick={() => setHyperlinksEnabled(!hyperlinksEnabled)}
+src/components/layers/canvas/front-matter/TitleCover.tsx:84:        <button onClick={() => onJump("dedication")} className="nav-link">Dedication</button>
+src/components/layers/canvas/front-matter/TitleCover.tsx:85:        <button onClick={() => onJump("synopsis")} className="nav-link">Synopsis</button>
+src/components/layers/canvas/front-matter/TitleCover.tsx:86:        <button onClick={() => onJump("about")} className="nav-link">About the Author</button>
+src/components/layers/canvas/front-matter/TitleCover.tsx:87:        <button onClick={() => onJump("toc")} className="nav-link">Table of Contents</button>
+src/components/layers/canvas/front-matter/TitleCover.tsx:88:        <button onClick={onBeginReading} className="primary-button">Begin Reading</button>
+src/components/layers/canvas/front-matter/TableOfContents.tsx:15:function Row({ num, title, onClick }: { num: number; title: string; onClick: () => void }) {
+src/components/layers/canvas/front-matter/TableOfContents.tsx:17:    <button onClick={onClick} className="toc-row">
+src/components/layers/canvas/front-matter/TableOfContents.tsx:41:          <Row key={n} num={n} title={TITLES[n]} onClick={() => onLoadChapter(n)} />
+src/components/layers/canvas/front-matter/TableOfContents.tsx:45:        <Row num={10} title={TITLES[10]} onClick={() => onLoadChapter(10)} />
+src/components/layers/canvas/front-matter/TableOfContents.tsx:46:        <Row num={11} title={TITLES[11]} onClick={() => onLoadChapter(11)} />
+src/components/layers/canvas/front-matter/TableOfContents.tsx:48:        <Row num={13} title={TITLES[13]} onClick={() => onLoadChapter(13)} />
+
+>>> Git Status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	run_nos_diagnostics.sh
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+>>> Latest Commit Timeline
+commit f05b2d20cbcf919d9609346e200cfe16173ea133
+Author: mjmichaelware <michaelware433@yahoo.com>
+Date:   Sun May 17 10:07:50 2026 -0600
+
+    feat: smart paragraph splitter handles both blank-line and single-line formatted chapters

@@ -1,30 +1,5 @@
-node_modules
-.next
-.vercel
-.sandbox
-*.log# Nerve Center (Internal Build Machinery)
-system/
-.env.local
-
-# Build Manifests (AI Protocols)
-system/07_Build_Manifests/
-
-# Software Junk
-node_modules/
 .next/
-out/
+node_modules/
+package-lock.json
 build/
-.vercel
-
-# TypeScript Build Info Cache Matrix
-*.tsbuildinfo
-.sandbox/
-.agent-context/
-
-# Google Cloud service account credentials
-service-account*.json
-*-service-account.json
-gcp-credentials*.json
-google-credentials*.json
-.gcp/
-credentials.json
+.env.local

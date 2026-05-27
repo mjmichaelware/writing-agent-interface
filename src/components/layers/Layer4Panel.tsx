@@ -51,7 +51,13 @@ export default function Layer4Panel() {
   const Active = TABS.find(t => t.id === activeTab);
 
   return (
-    <>
+    <div id="NOS_PANEL_ROOT" style={{ 
+      position: "fixed", 
+      top: 0, 
+      right: 0, 
+      zIndex: 2147483647, 
+      pointerEvents: "auto" 
+    }}>
       {/* 1. Toggle Bar (Right Edge) */}
       <button
         onClick={() => isOpen ? bus.emit("panel:close") : bus.emit("panel:open", { tabId: activeTab })}
@@ -107,6 +113,6 @@ export default function Layer4Panel() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }

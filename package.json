@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build --webpack",
+    "build": "if [ \"$VERCEL\" = \"1\" ]; then next build; else next build --webpack; fi",
     "start": "next start",
     "lint": "next lint"
   },

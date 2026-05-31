@@ -37,6 +37,10 @@ export default function Layer4Panel() {
   const lastScrollY = useRef(0);
 
   useEffect(() => {
+    console.log("NOS Layer4Panel persistent mount active");
+  }, []);
+
+  useEffect(() => {
     let raf = 0;
     const onScroll = () => {
       if (raf) return;
@@ -89,17 +93,18 @@ export default function Layer4Panel() {
         style={{
           position: "fixed", right: 0, top: "50vh",
           transform: "translateY(-50%)",
-          zIndex: 2147483645,
-          width: "1.75rem", height: "5rem",
+          zIndex: 2147483647,
+          width: "2.5rem", height: "6rem",
           background: "transparent", border: "none", cursor: "pointer",
           display: "flex", alignItems: "center", justifyContent: "flex-end",
           padding: 0,
         }}>
         <span style={{
-          display: "block", width: "5px", height: "100%",
+          display: "block", width: "8px", height: "100%",
           background: gold,
-          opacity: isOpen ? 1 : 0.85,
-          boxShadow: `0 0 20px ${gold}99`,
+          opacity: isOpen ? 1 : 0.8,
+          boxShadow: `0 0 25px ${gold}`,
+          borderRadius: "4px 0 0 4px",
           transition: "all 350ms cubic-bezier(0.22, 1, 0.36, 1)",
         }} />
       </button>

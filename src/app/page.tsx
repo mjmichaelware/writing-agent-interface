@@ -17,45 +17,38 @@ export default function Page() {
   useEffect(() => {
     async function loadChapter() {
       try {
-        // Feature 205: Fetch from Supabase Hash Registry
         const chaptersRes = await fetch(`/api/chapters`);
         const chapters = await chaptersRes.json();
         
-        if (!Array.isArray(chapters)) {
-          console.error("API /api/chapters did not return an array", chapters);
-          return;
-        }
-
-        // Find by number
-        const activeChapter = chapters.find((c: any) => c.chapter_number === chapterNum);
-
-        if (activeChapter) {
+        if (Array.isArray(chapters)) {
+          const activeChapter = chapters.find((c: any) => c.chapter_number === chapterNum);
+          if (activeChapter) {
             const manuscriptRes = await fetch(`/api/manuscript?chapterId=${activeChapter.id}`);
             const data = await manuscriptRes.json();
             
-            if (Array.isArray(data)) {
+            if (Array.isArray(data) && data.length > 0) {
               setBlocks(data);
               setPartNumber(activeChapter.part_number || "I");
-            } else {
-              console.error("API /api/manuscript did not return an array", data);
-              setBlocks([]);
+              return;
             }
+          }
+        }
+        
+        // Fallback: Local TXT in public folder (available on Vercel)
+        const localRes = await fetch(`/data/chapters/${chapterNum}.txt`);
+        if (localRes.ok) {
+          const text = await localRes.text();
+          const paragraphs = text
+            .split(/\n\s*\n/)
+            .map(p => p.trim())
+            .filter(p => p.length > 0 && !p.startsWith("Chapter"));
+          setBlocks(paragraphs);
         } else {
-            // Fallback: Local TXT
-            const localRes = await fetch(`/data/chapters/${chapterNum}.txt`);
-            if (localRes.ok) {
-                const text = await localRes.text();
-                const paragraphs = text
-                  .split(/\n\s*\n/)
-                  .map(p => p.trim())
-                  .filter(p => p.length > 0 && !p.startsWith("Chapter"));
-                setBlocks(paragraphs);
-            } else {
-                setBlocks([]);
-            }
+          setBlocks([]);
         }
       } catch (err) {
         console.error("Failed to load chapter data:", err);
+        setBlocks([]);
       }
     }
     loadChapter();
@@ -67,8 +60,7 @@ export default function Page() {
 
   return (
     <main className="relative w-full min-h-screen overflow-hidden">
-      {/* Layer 4 is now at the root, unaffected by ReaderLayout transforms */}
-      <Layer4Panel />
+      {/* Layer 4 is mounted in layout.tsx for root-level persistence and max z-index */}
 
       <ReaderLayout>
         <Layer1Void />

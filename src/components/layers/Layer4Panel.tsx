@@ -37,6 +37,10 @@ export default function Layer4Panel() {
   const lastScrollY = useRef(0);
 
   useEffect(() => {
+    console.log("NOS Layer4Panel persistent mount active");
+  }, []);
+
+  useEffect(() => {
     let raf = 0;
     const onScroll = () => {
       if (raf) return;

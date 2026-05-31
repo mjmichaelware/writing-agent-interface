@@ -51,7 +51,7 @@ export default function ArchetypesDirectory() {
   const center = { padding: "2.5rem 1rem", textAlign: "center" as const, color: muted, fontFamily: "Georgia, serif", fontStyle: "italic" as const };
   if (error) return <div style={center}>{error}</div>;
   if (!ps) return <div style={center}>Loading archetype timeline…</div>;
-  if (ps.length === 0) return <div style={center}>No archetype data yet</div>;
+  if (!Array.isArray(ps) || ps.length === 0) return <div style={center}>No archetype data yet</div>;
 
   const by: Record<number, P[]> = {};
   for (const p of ps) { const ch = p.chapter_number ?? 0; (by[ch] = by[ch] || []).push(p); }

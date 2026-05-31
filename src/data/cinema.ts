@@ -21,12 +21,23 @@ export const DEFAULT_ASSET = "/assets/bg.png";
 /**
  * ARCHITECTURAL SPECIFICATION: SEMANTIC CINEMA RESOLVER
  * * Resolves assets based on narrative arc epochs and psychological weighting.
+ * * Enhanced with Keyword Fallbacks for Chapter 7 (Megiddo/Flies).
  */
 export function resolveAssetByMeaning(
   weights: ArchetypalWeights,
   dualisms: DualismMap,
-  partNumber: string
+  partNumber: string,
+  content: string = ""
 ): string {
+  const text = content.toLowerCase();
+
+  // Rule 0: Keyword-based triggers for Chapter 7 (Megiddo/Flies)
+  if (text.includes("flies") || text.includes("swarm") || text.includes("buzzing") || text.includes("pit")) {
+    return "/assets/flies.jpg";
+  }
+  if (text.includes("megiddo") || text.includes("fortress") || text.includes("gate") || text.includes("high place")) {
+    return text.includes("gate") || text.includes("sacred") ? "/assets/megiddo2.jpg" : "/assets/megiddo1.jpg";
+  }
   
   // Rule 1: High Descent + High Shadow = The Swarming Pit (Megiddo/Flies)
   if (dualisms.descent > 0.8 && weights.shadow > 0.7) {
@@ -55,11 +66,10 @@ export function resolveAssetByMeaning(
 // Legacy fallback mapping
 export const CINEMA_ASSETS: Record<string, string[]> = {
   "7": [
-    "/assets/bg.png",
-    "/assets/moonlight.jpg",
-    "/assets/flies.jpg",
     "/assets/megiddo1.jpg",
-    "/assets/megiddo2.jpg"
+    "/assets/flies.jpg",
+    "/assets/megiddo2.jpg",
+    "/assets/bg.png"
   ]
 };
 

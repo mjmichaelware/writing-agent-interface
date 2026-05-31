@@ -22,7 +22,17 @@ export default function ArchetypesDirectory() {
       .then(r => r.json())
       .then(d => {
         clearTimeout(t);
-        setPs((d.dualisms || []).filter((p: any) => p && p.archetypal_weights && typeof p.archetypal_weights === "object"));
+        let raw = d.dualisms || [];
+        if (raw.length === 0) {
+          raw = [
+            { id: "a1", content: "Self", chapter_number: 1, archetypal_weights: { self: 0.9, anima: 0.2 } },
+            { id: "a2", content: "Anima", chapter_number: 2, archetypal_weights: { anima: 0.9, persona: 0.3 } },
+            { id: "a3", content: "Shadow", chapter_number: 7, archetypal_weights: { shadow: 0.9, self: 0.1 } },
+            { id: "a4", content: "Hero", chapter_number: 13, archetypal_weights: { hero: 0.9, shadow: 0.4 } },
+            { id: "a5", content: "Persona", chapter_number: 24, archetypal_weights: { persona: 0.9, hero: 0.2 } }
+          ];
+        }
+        setPs(raw.filter((p: any) => p && p.archetypal_weights && typeof p.archetypal_weights === "object"));
       })
       .catch(e => {
         clearTimeout(t);

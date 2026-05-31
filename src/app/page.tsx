@@ -56,7 +56,13 @@ export default function Page() {
 
   return (
     <main className="relative w-full min-h-screen overflow-hidden">
-      <div id="DEPLOY-PROOF-MARKER" style={{ position: "fixed", top: 8, left: 8, zIndex: 99999, background: "#c9a96e", color: "#0a0a0a" }}>NOS-V4-LIVE</div>
+      <div id="DEPLOY-PROOF-MARKER" style={{
+        position: "fixed", top: 8, left: 8, zIndex: 99999,
+        background: "#c9a96e", color: "#0a0a0a",
+        padding: "4px 10px", fontFamily: "monospace",
+        fontSize: "10px", letterSpacing: "0.1em",
+        borderRadius: 2, opacity: 0.85, pointerEvents: "none"
+      }}>NOS-V4-LIVE</div>
       
       {/* Layer 4 is now at the root, unaffected by ReaderLayout transforms */}
       <Layer4Panel />

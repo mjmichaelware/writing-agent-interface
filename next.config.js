@@ -1,22 +1,7 @@
-const path = require('path');
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  turbopack: {},
-  typescript: {
-    ignoreBuildErrors: true,
+  experimental: {
+    turbopack: false,
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  webpack: (config) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      '@': path.resolve(__dirname, 'src'),
-    };
-    config.experiments = { ...config.experiments, topLevelAwait: true };
-    return config;
-  },
-};
-
-module.exports = nextConfig;
+}
+module.exports = nextConfig

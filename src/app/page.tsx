@@ -21,14 +21,25 @@ export default function Page() {
         const chaptersRes = await fetch(`/api/chapters`);
         const chapters = await chaptersRes.json();
         
+        if (!Array.isArray(chapters)) {
+          console.error("API /api/chapters did not return an array", chapters);
+          return;
+        }
+
         // Find by number
         const activeChapter = chapters.find((c: any) => c.chapter_number === chapterNum);
 
         if (activeChapter) {
             const manuscriptRes = await fetch(`/api/manuscript?chapterId=${activeChapter.id}`);
             const data = await manuscriptRes.json();
-            setBlocks(data);
-            setPartNumber(activeChapter.part_number || "I");
+            
+            if (Array.isArray(data)) {
+              setBlocks(data);
+              setPartNumber(activeChapter.part_number || "I");
+            } else {
+              console.error("API /api/manuscript did not return an array", data);
+              setBlocks([]);
+            }
         } else {
             // Fallback: Local TXT
             const localRes = await fetch(`/data/chapters/${chapterNum}.txt`);

@@ -30,7 +30,7 @@ export default function BiblicalReferencesDirectory() {
   const center = { padding: "2.5rem 1rem", textAlign: "center" as const, color: muted, fontFamily: "Georgia, serif", fontStyle: "italic" as const };
   if (error) return <div style={center}>{error}</div>;
   if (!refs) return <div style={center}>Loading references…</div>;
-  if (refs.length === 0) return <div style={center}>No references indexed yet</div>;
+  if (!Array.isArray(refs) || refs.length === 0) return <div style={center}>No references indexed yet</div>;
 
   const grouped: Record<string, Ref[]> = {};
   for (const r of refs) {

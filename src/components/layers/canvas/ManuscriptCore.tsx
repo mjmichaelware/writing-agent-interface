@@ -112,20 +112,28 @@ export default function ManuscriptCore({
           el.dataset.state = entry.isIntersecting ? "active" : "inactive";
 
           if (entry.isIntersecting) {
-            const index = el.dataset.index || "0";
-            const block = blocks[parseInt(index)];
+            const sectionId = el.id;
+            const index = el.dataset.index;
             
-            // Feature 200: Semantic Focus Payload
-            const payload = {
-              paraIndex: index,
-              content: typeof block === "string" ? block : block.content,
-              weights: typeof block === "string" ? {} : block.archetypal_weights,
-              dualisms: typeof block === "string" ? {} : block.dualism_map,
-              partNumber,
-              chapterSlug
-            };
-            
-            bus.emit("scroll:focus", payload);
+            if (index !== undefined) {
+              const block = blocks[parseInt(index)];
+              const payload = {
+                paraIndex: index,
+                content: typeof block === "string" ? block : block?.content || "",
+                weights: typeof block === "string" ? {} : block?.archetypal_weights || {},
+                dualisms: typeof block === "string" ? {} : block?.dualism_map || {},
+                partNumber,
+                chapterSlug
+              };
+              bus.emit("scroll:focus", payload);
+            } else if (sectionId) {
+              // Front Matter Section
+              bus.emit("scroll:focus", {
+                sectionId,
+                chapterSlug: "0", // Context for Front Matter
+                content: sectionId
+              });
+            }
           }
         }
       },

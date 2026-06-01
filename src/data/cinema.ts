@@ -38,6 +38,11 @@ export function resolveAssetByMeaning(
   if (text.includes("megiddo") || text.includes("fortress") || text.includes("gate") || text.includes("high place")) {
     return text.includes("gate") || text.includes("sacred") ? "/assets/megiddo2.jpg" : "/assets/megiddo1.jpg";
   }
+
+  // Rule 0.1: Front Matter Context
+  if (content === "title-page") {
+    return "/assets/boy-and-moon.png";
+  }
   
   // Rule 1: High Descent + High Shadow = The Swarming Pit (Megiddo/Flies)
   if (dualisms.descent > 0.8 && weights.shadow > 0.7) {
@@ -65,6 +70,10 @@ export function resolveAssetByMeaning(
 
 // Legacy fallback mapping
 export const CINEMA_ASSETS: Record<string, string[]> = {
+  "0": [
+    "/assets/boy-and-moon.png",
+    "/assets/bg.png"
+  ],
   "7": [
     "/assets/megiddo1.jpg",
     "/assets/flies.jpg",

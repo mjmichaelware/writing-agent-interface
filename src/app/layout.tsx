@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Frank_Ruhl_Libre, EB_Garamond } from "next/font/google";
 import "./globals.css";
 import Layer4Panel from "@/components/layers/Layer4Panel";
+import RuntimeInitializer from "@/components/RuntimeInitializer";
 
 const frankRuhl = Frank_Ruhl_Libre({
   subsets: ["hebrew", "latin"],
@@ -42,6 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <body className="bg-[var(--bg-void)] text-[var(--text-body)] antialiased selection:bg-[var(--accent-gold)]/25">
+        <RuntimeInitializer />
         {children}
         <Layer4Panel />
       </body>

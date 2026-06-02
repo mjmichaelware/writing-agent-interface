@@ -31,7 +31,10 @@ export default function ChapterSettings() {
   useEffect(() => {
     if (!loaded.current) return;
     apply(s);
-    try { localStorage.setItem(KEY, JSON.stringify(s)); } catch {}
+    try { 
+      localStorage.setItem(KEY, JSON.stringify(s)); 
+      bus.emit("audio:toggle_tts", s.audio);
+    } catch {}
   }, [s]);
   const set = <K extends keyof S>(k: K, v: S[K]) => setS(p => ({ ...p, [k]: v }));
   const slider = (label: string, k: keyof S, min: number, max: number, step: number) => (

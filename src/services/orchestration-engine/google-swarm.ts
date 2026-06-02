@@ -12,44 +12,60 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
  */
 export class GoogleSwarm {
   private static getCredentials() {
+    const email = process.env.GOOGLE_CLIENT_EMAIL;
+    const key = process.env.GOOGLE_PRIVATE_KEY;
+    if (!email || !key) return null;
     return {
-      client_email: process.env.GOOGLE_CLIENT_EMAIL,
-      private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+      client_email: email,
+      private_key: key.replace(/\\n/g, '\n'),
     };
   }
 
   static getBigQuery() {
-    return new BigQuery({ credentials: this.getCredentials(), projectId: "the-weight-of-the-sky" });
+    const creds = this.getCredentials();
+    if (!creds) return null;
+    return new BigQuery({ credentials: creds, projectId: "the-weight-of-the-sky" });
   }
 
   static getStorage() {
-    return new Storage({ credentials: this.getCredentials(), projectId: "the-weight-of-the-sky" });
+    const creds = this.getCredentials();
+    if (!creds) return null;
+    return new Storage({ credentials: creds, projectId: "the-weight-of-the-sky" });
   }
 
   static getSecrets() {
-    return new SecretManagerServiceClient({ credentials: this.getCredentials(), projectId: "the-weight-of-the-sky" });
+    const creds = this.getCredentials();
+    if (!creds) return null;
+    return new SecretManagerServiceClient({ credentials: creds, projectId: "the-weight-of-the-sky" });
   }
 
   static getTTS() {
-    return new TextToSpeechClient({ credentials: this.getCredentials(), projectId: "the-weight-of-the-sky" });
+    const creds = this.getCredentials();
+    if (!creds) return null;
+    return new TextToSpeechClient({ credentials: creds, projectId: "the-weight-of-the-sky" });
   }
 
   static getVertexAI() {
+    const creds = this.getCredentials();
+    if (!creds) return null;
     return new VertexAI({ 
-      project: "439008308970", // Numeric Project Number
+      project: "the-weight-of-the-sky",
       location: 'us-central1',
       googleAuthOptions: {
-        credentials: this.getCredentials()
+        credentials: creds
       }
     });
   }
 
   static getGoogleAI() {
-    return new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
+    const key = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
+    if (!key) return null;
+    return new GoogleGenerativeAI(key);
   }
 
   static async getSecret(name: string) {
     const client = this.getSecrets();
+    if (!client) return null;
     const [version] = await client.accessSecretVersion({
       name: `projects/the-weight-of-the-sky/secrets/${name}/versions/latest`,
     });
@@ -59,6 +75,7 @@ export class GoogleSwarm {
   // Feature 195: System Integrity Monitoring
   static async logIntegrity(event: string, metadata: any) {
     const bq = this.getBigQuery();
+    if (!bq) return;
     try {
       await bq.dataset('narrative_os').table('integrity_logs').insert([{
         event,
@@ -66,12 +83,13 @@ export class GoogleSwarm {
         timestamp: new Date().toISOString()
       }]);
     } catch (e) {
-      console.warn("Integrity logging failed:", e.message);
+      // Silently fail if BigQuery is not ready
     }
   }
 
   static async mirrorChapter(chapter: any) {
     const bq = this.getBigQuery();
+    if (!bq) return;
     try {
       await bq.dataset('narrative_os').table('chapters').insert([{
         id: chapter.id,
@@ -82,12 +100,13 @@ export class GoogleSwarm {
         created_at: new Date().toISOString()
       }]);
     } catch (e) {
-      console.warn("Chapter mirroring failed:", e.message);
+      // Silent
     }
   }
 
   static async mirrorParagraph(para: any) {
     const bq = this.getBigQuery();
+    if (!bq) return;
     try {
       await bq.dataset('narrative_os').table('paragraphs').insert([{
         id: para.id,
@@ -101,7 +120,7 @@ export class GoogleSwarm {
         created_at: new Date().toISOString()
       }]);
     } catch (e) {
-      console.warn("Paragraph mirroring failed:", e.message);
+      // Silent
     }
   }
 }

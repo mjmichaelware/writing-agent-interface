@@ -93,6 +93,44 @@ export default function SystemTab() {
               <li className="flex gap-2"><span>•</span> Dahl Visceral Restraint</li>
               <li className="flex gap-2"><span>•</span> Rhetoric of Negation</li>
             </ul>
+
+            <h3 className="panel-section-heading">Document Analyzer</h3>
+            <div className="space-y-2">
+              <input 
+                type="file" 
+                id="doc-upload" 
+                className="hidden" 
+                onChange={async (e) => {
+                  const file = e.target.files?.[0];
+                  if (!file) return;
+                  setLoading(true);
+                  const reader = new FileReader();
+                  reader.onload = async () => {
+                    const base64 = (reader.result as string).split(',')[1];
+                    try {
+                      const res = await fetch("/api/analyze-document", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ fileBase64: base64, mimeType: file.type, pin: "9187" })
+                      });
+                      const data = await res.json();
+                      setResponse(data.analysis || data.error);
+                    } catch (err: any) {
+                      setResponse("Analysis failed: " + err.message);
+                    } finally {
+                      setLoading(false);
+                    }
+                  };
+                  reader.readAsDataURL(file);
+                }}
+              />
+              <button 
+                onClick={() => document.getElementById('doc-upload')?.click()}
+                className="w-full text-left p-2 text-[10px] border border-white/10 hover:bg-white/5 text-[#8a857c] uppercase tracking-widest"
+              >
+                Upload Document / Image
+              </button>
+            </div>
           </div>
 
           {/* Prompt & Editor Area */}

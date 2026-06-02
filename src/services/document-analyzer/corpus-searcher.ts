@@ -1,12 +1,5 @@
-import { createClient } from '@supabase/supabase-js';
 import OpenAI from 'openai';
-
-function getSupabase() {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!supabaseUrl || !supabaseKey) return null;
-  return createClient(supabaseUrl, supabaseKey);
-}
+import { query } from '../../lib/db';
 
 function getOpenAI() {
   const apiKey = process.env.OPENAI_API_KEY;
@@ -15,33 +8,40 @@ function getOpenAI() {
 }
 
 // System 9: Document Analyzer - Corpus Searcher
+// Perform semantic search across the WoS corpus via the same embeddings
 export async function searchCorpus(extractedText: string) {
-  const supabase = getSupabase();
   const openai = getOpenAI();
-
-  if (!supabase || !openai) {
-    console.warn("Supabase or OpenAI not configured for searchCorpus");
+  if (!openai) {
+    console.warn("OpenAI not configured for searchCorpus");
     return [];
   }
 
-  // 1. Generate Embedding via OpenAI
-  const embedResponse = await openai.embeddings.create({
-    model: "text-embedding-3-small",
-    input: extractedText.slice(0, 8000), // OpenAI limit
-  });
-  const embedding = embedResponse.data[0].embedding;
+  try {
+    // 1. Generate Embedding via OpenAI
+    const embedResponse = await openai.embeddings.create({
+      model: "text-embedding-3-small",
+      input: extractedText.slice(0, 8000),
+    });
+    const embedding = embedResponse.data[0].embedding;
 
-  // 2. Vector Search via Supabase RPC
-  const { data, error } = await supabase.rpc('match_paragraphs', {
-    query_embedding: embedding,
-    match_threshold: 0.3, // Lower threshold for external document matching
-    match_count: 5,
-  });
+    // 2. Vector Search via Direct SQL
+    const { rows: results } = await query(
+      `SELECT
+        id,
+        content,
+        archetypal_weights,
+        dualism_map,
+        1 - (embedding <=> $1::vector) AS similarity
+      FROM paragraphs
+      WHERE 1 - (embedding <=> $1::vector) > 0.3
+      ORDER BY similarity DESC
+      LIMIT 5`,
+      [JSON.stringify(embedding)]
+    );
 
-  if (error) {
-    console.error("Search RPC failed:", error.message);
+    return results;
+  } catch (e: any) {
+    console.error("searchCorpus failed:", e.message);
     return [];
   }
-  
-  return data;
 }

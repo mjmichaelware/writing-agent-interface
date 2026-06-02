@@ -1,73 +1,71 @@
-/* ==================== FILE: src/app/api/chapters/route.ts ==================== */
-
 import { NextRequest, NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import path from 'path';
-
-const GDRIVE = 'src/data-layer/ingestion-buffer/gdrive_raw';
-
-// Canonical file per chapter slug
-const CANON: Record<string, { dir: string; file: string }> = {
-  '1':  { dir: GDRIVE, file: '(Final)_Chapter_1_-_Stardust_to_Stardust.txt' },
-  '2':  { dir: GDRIVE, file: '(Final)_Chapter_2-_Living_Sacrifice.txt' },
-  '3':  { dir: GDRIVE, file: '(Final)_Chapter_3-_Lift_Up.txt' },
-  '4':  { dir: GDRIVE, file: 'Chapter_4:_Pilgrimage.txt' },
-  '5':  { dir: GDRIVE, file: '(Final)_Chapter_5_-_The_Snare.txt' },
-  '6':  { dir: GDRIVE, file: 'Chapter_6:_Beelzebub,_Beelzebub.txt' },
-  '7':  { dir: 'public/data/chapters', file: '7.txt' },
-  '8':  { dir: GDRIVE, file: 'Chapter:_8_(Final).txt' },
-  '9':  { dir: GDRIVE, file: 'Chapter_9:_The_Ascent.txt' },
-  '10': { dir: GDRIVE, file: 'Chapter_10_Forsaken_FINAL_DEFINITIVE.txt' },
-  '11': { dir: GDRIVE, file: 'Chapter_11._Forsaken.txt' },
-  '13': { dir: GDRIVE, file: 'Chapter_13:_Exodus.txt' },
-  '24': { dir: GDRIVE, file: 'Chapter_2nd_to_last.txt' },
-};
+import { query } from '@/lib/db';
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const slug = searchParams.get('slug');
 
-  if (!slug) {
-    // Return all chapters metadata for the TOC/Switcher
-    const allChapters = Object.keys(CANON).map(s => ({
-      chapter_number: parseInt(s),
-      slug: s,
-      id: s, // Using slug as id for fallback
-    }));
-    return NextResponse.json(allChapters);
-  }
-
-  const entry = CANON[slug];
-
-  if (!entry) {
-    return NextResponse.json(
-      { error: `Chapter ${slug} not in canonical map`, available: Object.keys(CANON) },
-      { status: 404 }
-    );
-  }
-
   try {
-    const filePath = path.join(process.cwd(), entry.dir, entry.file);
-    const raw = await fs.readFile(filePath, 'utf-8');
-    const cleaned = raw.replace(/^\uFEFF/, '').replace(/\r/g, '');
-    const isXML = cleaned.trim().startsWith('<');
-
-    if (isXML) {
-      return NextResponse.json({ slug, xml: cleaned, blocks: [], source: entry.file });
+    if (!slug) {
+      // Return all chapters metadata for the TOC/Switcher from Supabase
+      const { rows: chapters } = await query(
+        `SELECT id, part_number, chapter_number, status, manifest_id 
+         FROM chapters 
+         ORDER BY part_number, chapter_number ASC`
+      );
+      return NextResponse.json(chapters);
     }
 
-    const blocks = cleaned
-      .split(/\n\s*\n/)
-      .map(b => b.trim())
-      .filter(b => b.length > 0);
+    // Try to find the chapter by manifest_id (man_XX) or chapter_number
+    let chapterQuery = `SELECT * FROM chapters WHERE manifest_id = $1`;
+    let chapterParams = [slug.startsWith('man_') ? slug : `man_${slug.padStart(2, '0')}`];
 
-    return NextResponse.json({ slug, xml: null, blocks, source: entry.file });
+    // Fallback: check if slug is just a number
+    if (isNaN(parseInt(slug)) === false && !slug.startsWith('man_')) {
+      chapterQuery = `SELECT * FROM chapters WHERE chapter_number = $1 OR manifest_id = $2 LIMIT 1`;
+      chapterParams = [parseInt(slug), `man_${slug.padStart(2, '0')}`];
+    }
+
+    const { rows: chapters } = await query(chapterQuery, chapterParams);
+
+    if (chapters.length === 0) {
+      return NextResponse.json(
+        { error: `Chapter ${slug} not found in database` },
+        { status: 404 }
+      );
+    }
+
+    const chapter = chapters[0];
+
+    // Get paragraphs for this chapter
+    const { rows: paragraphs } = await query(
+      `SELECT id, content, chunk_index, archetypal_weights, dualism_map, hebrew_spans, metadata
+       FROM paragraphs 
+       WHERE chapter_id = $1 
+       ORDER BY chunk_index ASC`,
+      [chapter.id]
+    );
+
+    return NextResponse.json({
+      id: chapter.id,
+      manifest_id: chapter.manifest_id,
+      chapter_number: chapter.chapter_number,
+      part_number: chapter.part_number,
+      status: chapter.status,
+      blocks: paragraphs.map(p => ({
+        id: p.id,
+        content: p.content,
+        archetypal_weights: p.archetypal_weights,
+        dualism_map: p.dualism_map,
+        hebrew_spans: p.hebrew_spans,
+        metadata: p.metadata
+      }))
+    });
   } catch (e: any) {
+    console.error("API Chapters Error:", e);
     return NextResponse.json(
-      { error: `Could not read ${entry.file}: ${e.message}`, slug, attempted: entry.file },
+      { error: `Database error: ${e.message}` },
       { status: 500 }
     );
   }
 }
-
-

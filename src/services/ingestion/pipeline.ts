@@ -15,6 +15,34 @@ function getOpenAI() {
   return new OpenAI({ apiKey });
 }
 
+// Extractor for Hebrew typography terms
+function extractHebrewSpans(text: string) {
+  const hebrewTerms = ['Hebron', 'Hermon', 'Mamre', 'Beelzebub', 'Megiddo', 'Sak', 'Rafa'];
+  const spans: any[] = [];
+  hebrewTerms.forEach(term => {
+    let index = text.indexOf(term);
+    while (index !== -1) {
+      spans.push({ term, start: index, length: term.length });
+      index = text.indexOf(term, index + 1);
+    }
+  });
+  return spans;
+}
+
+// Extractor for XML metadata
+function extractEmaMetadata(xmlText: string) {
+  const metadata: any = {};
+  const sceneMatch = xmlText.match(/<scene\s+id="([^"]+)"/);
+  const timeMatch = xmlText.match(/time_of_day="([^"]+)"/);
+  const weatherMatch = xmlText.match(/weather="([^"]+)"/);
+  
+  if (sceneMatch) metadata.scene_id = sceneMatch[1];
+  if (timeMatch) metadata.time_of_day = timeMatch[1];
+  if (weatherMatch) metadata.weather = weatherMatch[1];
+  
+  return metadata;
+}
+
 /**
  * ENGINE PLANE: NARRATIVE INGESTION PIPELINE
  * * Feature 200: Meaning-Driven Semantic Weighting
@@ -50,6 +78,9 @@ export async function ingestChapter(
 
   await GoogleSwarm.mirrorChapter(chapter);
 
+  const chapterMetadata = extractEmaMetadata(rawXmlText);
+
+  // Strip XML for paragraph chunking
   const cleanText = rawXmlText.replace(/<[^>]*>?/gm, ''); 
   const paragraphs = cleanText.split(/\n\s*\n/).filter((p) => p.trim().length > 0);
 
@@ -67,7 +98,8 @@ export async function ingestChapter(
           Return an object with a "results" array. Each item must have:
           "archetypal_weights": { "shadow": 0.0, "persona": 0.0, "anima": 0.0, "self": 0.0, "hero": 0.0 },
           "dualism_map": { "sacred": 0.0, "descent": 0.0 },
-          "biblical_references": [{ "text": "...", "book": "...", "chapter": 0, "verse": 0 }]` 
+          "biblical_references": [{ "text": "...", "book": "...", "chapter": 0, "verse": 0 }],
+          "hyperlinks": [{ "theme_node_a": "...", "theme_node_b": "...", "link_type": "dualism" }]` 
         },
         { role: "user", content: JSON.stringify(batch) }
       ],
@@ -79,6 +111,7 @@ export async function ingestChapter(
     for (let j = 0; j < batch.length; j++) {
       const pText = batch[j];
       const enrichment = enrichedBatch[j] || {};
+      const hebrewSpans = extractHebrewSpans(pText);
 
       const embedResponse = await openai.embeddings.create({
         model: "text-embedding-3-small",
@@ -95,13 +128,15 @@ export async function ingestChapter(
           embedding,
           archetypal_weights: enrichment.archetypal_weights || {},
           dualism_map: enrichment.dualism_map || {},
-          metadata: { batch_index: i },
+          hebrew_spans: hebrewSpans,
+          metadata: { ...chapterMetadata, batch_index: i },
         })
         .select()
         .single();
 
       if (pError) throw pError;
 
+      // Insert Biblical References
       if (paragraphData && enrichment.biblical_references?.length > 0) {
         const refs = enrichment.biblical_references.map((ref: any) => ({
           paragraph_id: paragraphData.id,
@@ -112,6 +147,17 @@ export async function ingestChapter(
         }));
         await supabase.from('biblical_references').insert(refs);
       }
+      
+      // Insert Hyperlinks/Dualisms
+      if (paragraphData && enrichment.hyperlinks?.length > 0) {
+        const links = enrichment.hyperlinks.map((link: any) => ({
+          paragraph_id: paragraphData.id,
+          theme_node_a: link.theme_node_a,
+          theme_node_b: link.theme_node_b,
+          link_type: link.link_type || 'dualism'
+        }));
+        await supabase.from('hyperlinks').insert(links);
+      }
 
       await GoogleSwarm.mirrorParagraph({
         ...paragraphData,
@@ -121,7 +167,8 @@ export async function ingestChapter(
     }
 
     console.log(`Ingested paragraphs ${i} to ${i + batch.length - 1} for Chapter ${chapterNumber}`);
-    await new Promise(resolve => setTimeout(resolve, 100));
+    // Throttle to respect API limits
+    await new Promise(resolve => setTimeout(resolve, 200));
   }
 
   await GoogleSwarm.logIntegrity('ingestion_complete', { manifestId, paragraphCount: paragraphs.length });

@@ -21,15 +21,32 @@ export class CorpusLoader {
     const manifest = JSON.parse(fs.readFileSync(this.manifestPath, 'utf-8'));
     const nodes = manifest.nodes || [];
 
-    // Filter for canonical chapters or specific IDs we want to ingest
-    const toIngest = nodes.filter((node: any) => 
-      node.file_path.endsWith('.txt') && 
-      (node.id.startsWith('Chapter_') || node.id.includes('Stardust')) &&
-      !node.file_path.includes('Notes') && 
-      !node.file_path.includes('Prompt')
-    );
+    // Smart filtering: Group by chapter number and pick the best version
+    const chapterMap: Record<number, any> = {};
 
-    console.log(`Starting ingestion of ${toIngest.length} nodes...`);
+    nodes.forEach((node: any) => {
+      if (!node.file_path.endsWith('.txt')) return;
+      if (node.file_path.includes('Notes') || node.file_path.includes('Prompt') || node.file_path.includes('Revision')) return;
+
+      const chapterMatch = node.file_path.match(/Chapter[:_]\s*(\d+)/i) || node.id.match(/Chapter_(\d+)/i);
+      if (!chapterMatch) return;
+
+      const chapterNumber = parseInt(chapterMatch[1], 10);
+      
+      // Heuristic for "best" version: (Final) > (G) > (F) > (A)
+      const priority = 
+        node.file_path.includes('(Final)') ? 100 :
+        node.file_path.includes('(G)') ? 90 :
+        node.file_path.includes('(F)') ? 80 :
+        node.file_path.includes('(A)') ? 70 : 10;
+
+      if (!chapterMap[chapterNumber] || priority > (chapterMap[chapterNumber].priority || 0)) {
+        chapterMap[chapterNumber] = { ...node, priority };
+      }
+    });
+
+    const toIngest = Object.values(chapterMap);
+    console.log(`Starting intelligent ingestion of ${toIngest.length} canonical chapters...`);
 
     for (const node of toIngest) {
       try {
@@ -41,25 +58,25 @@ export class CorpusLoader {
 
         const content = fs.readFileSync(fullPath, 'utf-8');
         
-        // Extract metadata from ID or path
-        const chapterMatch = node.id.match(/Chapter_(\d+)/i);
-        const chapterNumber = chapterMatch ? parseInt(chapterMatch[1], 10) : 0;
+        const chapterMatch = node.file_path.match(/Chapter[:_]\s*(\d+)/i) || node.id.match(/Chapter_(\d+)/i);
+        const chapterNumber = parseInt(chapterMatch![1], 10);
+        
         const partNumber = chapterNumber <= 9 ? "1" : chapterNumber <= 17 ? "2" : "3";
-        const status = node.id.toLowerCase().includes('draft') ? 'drafted' : 'drafted'; // Default to drafted for now
+        const manifestId = `man_${chapterNumber.toString().padStart(2, '0')}`;
 
-        console.log(`Ingesting: ${node.id} (${node.file_path})`);
+        console.log(`[INGEST] Ch ${chapterNumber} | Source: ${node.file_path} | Target: ${manifestId}`);
         
         await ingestChapter(
           partNumber,
           chapterNumber,
-          status,
-          node.id,
+          'drafted',
+          manifestId,
           content
         );
 
-        console.log(`✓ Success: ${node.id}`);
+        console.log(`✓ Success: Ch ${chapterNumber}`);
       } catch (err) {
-        console.error(`✗ Failed to ingest ${node.id}:`, err);
+        console.error(`✗ Failed to ingest Ch ${node.id}:`, err);
       }
     }
   }

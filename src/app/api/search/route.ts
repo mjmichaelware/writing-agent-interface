@@ -1,13 +1,6 @@
-import { createClient } from '@supabase/supabase-js';
-import { VertexAI } from '@google-cloud/vertexai';
 import { NextResponse } from 'next/server';
-
-function getSupabase() {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!supabaseUrl || !supabaseKey) return null;
-  return createClient(supabaseUrl, supabaseKey);
-}
+import { query } from '@/lib/db';
+import { VertexAI } from '@google-cloud/vertexai';
 
 function getVertexAI() {
   const project = process.env.GOOGLE_CLOUD_PROJECT;
@@ -17,34 +10,43 @@ function getVertexAI() {
 }
 
 export async function POST(request: Request) {
-  const supabase = getSupabase();
   const vertexAI = getVertexAI();
 
-  if (!supabase || !vertexAI) {
-    return NextResponse.json({ error: 'System components not configured' }, { status: 503 });
+  if (!vertexAI) {
+    return NextResponse.json({ error: 'Vertex AI not configured' }, { status: 503 });
   }
 
-  const { query } = await request.json();
+  const { query: searchQuery } = await request.json();
 
-  if (!query) {
+  if (!searchQuery) {
     return NextResponse.json({ error: 'query is required' }, { status: 400 });
   }
 
-  // 1. Generate Embedding via Vertex AI
-  const embedModel = vertexAI.preview.getGenerativeModel({ model: 'text-embedding-004' });
-  const embedResponse = await embedModel.embedContent(query);
-  const embedding = embedResponse.embedding.values;
+  try {
+    // 1. Generate Embedding via Vertex AI
+    const embedModel = vertexAI.preview.getGenerativeModel({ model: 'text-embedding-004' });
+    const embedResponse = await embedModel.embedContent(searchQuery);
+    const embedding = embedResponse.embedding.values;
 
-  // 2. Vector Search via Supabase RPC
-  const { data, error } = await supabase.rpc('match_paragraphs', {
-    query_embedding: embedding,
-    match_threshold: 0.5,
-    match_count: 10,
-  });
+    // 2. Vector Search via SQL (replaces Supabase RPC for direct pg usage)
+    const { rows: results } = await query(
+      `SELECT
+        id,
+        chapter_id,
+        content,
+        archetypal_weights,
+        dualism_map,
+        1 - (embedding <=> $1::vector) AS similarity
+      FROM paragraphs
+      WHERE 1 - (embedding <=> $1::vector) > 0.5
+      ORDER BY similarity DESC
+      LIMIT 10`,
+      [JSON.stringify(embedding)]
+    );
 
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ results });
+  } catch (e: any) {
+    console.error("Search API Error:", e);
+    return NextResponse.json({ error: e.message }, { status: 500 });
   }
-
-  return NextResponse.json({ results: data });
 }

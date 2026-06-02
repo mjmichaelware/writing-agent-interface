@@ -33,6 +33,7 @@ export default function ManuscriptCore({
     content: string; 
     archetypal_weights?: any; 
     dualism_map?: any;
+    hebrew_spans?: any[];
   })[];
   chapterSlug: string;
   partNumber?: string;
@@ -45,6 +46,8 @@ export default function ManuscriptCore({
   const handleLoadChapter = (n: number) => {
     if (onLoadChapter) onLoadChapter(n);
     setTimeout(() => {
+        const target = document.getElementById("chapter-content");
+        if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
         bus.emit("scroll:begin", { target: "chapter-content" });
     }, 100);
   };
@@ -56,7 +59,6 @@ export default function ManuscriptCore({
 
     let paras = root.querySelectorAll<HTMLElement>("p[data-para]");
 
-    // MutationObserver to update cached paras when content changes
     const mutationObserver = new MutationObserver(() => {
       paras = root.querySelectorAll<HTMLElement>("p[data-para]");
     });
@@ -79,14 +81,36 @@ export default function ManuscriptCore({
         const maxDist = window.innerHeight * 0.6;
         
         const normDist = Math.min(1, dist / maxDist);
-        const blurValue = normDist * 3; // Reduced from 8 to 3 for less aggressive blur
-        const opacityValue = 1 - (normDist * 0.5); // Increased min opacity (max reduction is 0.5 instead of 0.7)
-        const translateY = normDist * 5; // Reduced transform from 10 to 5
+        const blurValue = normDist * 2.5; 
+        const opacityValue = 1 - (normDist * 0.6);
+        
+        // Feature 11-14: Kinetic Distortions driven by weights
+        const index = parseInt(p.dataset.index || "0");
+        const block = blocks[index];
+        if (typeof block !== 'string') {
+          const weights = block?.archetypal_weights || {};
+          const dualisms = block?.dualism_map || {};
+          
+          const mass = (weights.shadow || 0) * 1.5 + (dualisms.descent || 0) * 2;
+          const tension = (weights.persona || 0) * 1.2;
+          const drift = (weights.anima || 0) * 3;
+          
+          p.style.setProperty("--arc-mass", (mass * normDist).toString());
+          p.style.setProperty("--arc-tension", (tension * normDist).toString());
+          p.style.setProperty("--arc-drift", (drift * normDist).toString());
+        }
 
         p.style.setProperty("--arc-blur", blurValue.toString());
         p.style.opacity = opacityValue.toString();
-        p.style.filter = `blur(${blurValue}px)`;
-        p.style.transform = `translateY(${translateY}px)`;
+        
+        // Only apply heavy filters when inactive to save performance
+        if (p.dataset.state === "inactive") {
+            p.style.filter = `blur(${blurValue}px)`;
+            p.style.transform = `translateY(${normDist * 10}px)`;
+        } else {
+            p.style.filter = "none";
+            p.style.transform = "none";
+        }
       });
 
       frameId = requestAnimationFrame(runKinematics);
@@ -97,7 +121,7 @@ export default function ManuscriptCore({
       cancelAnimationFrame(frameId);
       mutationObserver.disconnect();
     };
-  }, []);
+  }, [blocks]);
 
   useEffect(() => {
     const root = containerRef.current;
@@ -127,10 +151,9 @@ export default function ManuscriptCore({
               };
               bus.emit("scroll:focus", payload);
             } else if (sectionId) {
-              // Front Matter Section
               bus.emit("scroll:focus", {
                 sectionId,
-                chapterSlug: "0", // Context for Front Matter
+                chapterSlug: "0",
                 content: sectionId
               });
             }
@@ -148,22 +171,9 @@ export default function ManuscriptCore({
     root.querySelectorAll("section[id]").forEach((s) => observer.observe(s));
     root.querySelectorAll("p[data-para]").forEach((p) => observer.observe(p));
 
-    const handleSemanticParse = (data: { dualism: number; archetype: number }) => {
-      const spans = root.querySelectorAll<HTMLElement>("[data-resonance]");
-      spans.forEach((span) => {
-        const weight = Number.parseFloat(span.dataset.weight || "0");
-        if (weight > data.dualism / 100) {
-          span.classList.add("animate-kinetic-fall");
-        } else {
-          span.classList.remove("animate-kinetic-fall");
-        }
-      });
-    };
-
     const handleNavigate = (data: { id: string }) => {
         if (!data?.id) return;
-        const target = document.querySelector(`[data-paragraph-id="${data.id}"]`) 
-                || document.querySelector(`[data-para-id="${data.id}"]`);
+        const target = document.querySelector(`[data-paragraph-id="${data.id}"]`);
         if (target) {
             target.scrollIntoView({ behavior: "smooth", block: "center" });
             target.classList.add("paragraph-flash");
@@ -171,21 +181,43 @@ export default function ManuscriptCore({
         }
     };
 
-    const unsubscribeSemantic = bus.on("engine:semantic_parse", handleSemanticParse);
     const unsubscribeNav = bus.on("navigate:paragraph", handleNavigate);
 
     return () => {
       observer.disconnect();
-      unsubscribeSemantic();
       unsubscribeNav();
     };
   }, [chapterSlug, blocks, partNumber]);
 
+  // Helper to wrap Hebrew terms
+  const renderText = (text: string) => {
+    const hebrewTerms = ['Hebron', 'Hermon', 'Mamre', 'Beelzebub', 'Megiddo', 'Sak', 'Rafa'];
+    let result: React.ReactNode[] = [text];
+    
+    hebrewTerms.forEach(term => {
+      const newResult: React.ReactNode[] = [];
+      result.forEach(node => {
+        if (typeof node === 'string') {
+          const parts = node.split(new RegExp(`(${term})`, 'g'));
+          parts.forEach((part, i) => {
+            if (part === term) {
+              newResult.push(<span key={`${term}-${i}`} className="font-hebrew">{part}</span>);
+            } else if (part) {
+              newResult.push(part);
+            }
+          });
+        } else {
+          newResult.push(node);
+        }
+      });
+      result = newResult;
+    });
+    
+    return result;
+  };
+
   return (
-    <div
-      ref={containerRef}
-      className="reader-column pb-[50vh]"
-    >
+    <div ref={containerRef} className="reader-column pb-[50vh]">
       <TitleCover />
       <Dedication />
       <Synopsis />

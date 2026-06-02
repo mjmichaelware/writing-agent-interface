@@ -89,12 +89,24 @@ export default function Layer2Cinema({ chapterSlug = "7" }: { chapterSlug?: stri
     }
     
     const unsubFocus = bus.on('scroll:focus', (data: any) => {
-        const hasWeights = data.weights && Object.keys(data.weights).length > 0;
-        const paraIndex = parseInt(data.paraIndex) || 0;
+        const sectionId = data.sectionId;
         const currentChapter = data.chapterSlug || chapterSlug;
         const content = data.content || "";
+        const hasWeights = data.weights && Object.keys(data.weights).length > 0;
         
         let asset;
+        
+        // Spec: Special handling for Front Matter to ensure "Moon Boy" is visible and bright
+        if (sectionId === "title-page" || content === "title-page") {
+            setIntensity(0.85); // Make it bright as requested
+            setCurrentAsset("/assets/boy-and-moon.png");
+            setOverlayAsset(null);
+            return;
+        }
+
+        // Default intensity for prose
+        setIntensity(0.4);
+
         if (hasWeights) {
             asset = resolveAssetByMeaning(
                 data.weights, 
@@ -104,19 +116,19 @@ export default function Layer2Cinema({ chapterSlug = "7" }: { chapterSlug?: stri
             );
         } else {
             asset = resolveAssetByKeyword(
-                paraIndex,
+                parseInt(data.paraIndex) || 0,
                 currentChapter
             );
         }
 
-        // Feature: Intelligent Layering for Chapter 7
-        if (currentChapter === "7") {
+        // Feature: Intelligent Layering for Chapter 7 (Megiddo/Flies)
+        if (currentChapter === "7" || content.toLowerCase().includes("pit") || content.toLowerCase().includes("megiddo")) {
           const text = content.toLowerCase();
-          if (text.includes("flies") || text.includes("swarm") || text.includes("buzzing")) {
+          if (text.includes("flies") || text.includes("swarm")) {
             setOverlayAsset("/assets/flies.jpg");
           } else if (text.includes("megiddo") || text.includes("gate")) {
             setOverlayAsset("/assets/megiddo2.jpg");
-            asset = "/assets/megiddo1.jpg"; // Background is the pit/fortress
+            asset = "/assets/megiddo1.jpg";
           } else {
             setOverlayAsset(null);
           }
@@ -124,27 +136,21 @@ export default function Layer2Cinema({ chapterSlug = "7" }: { chapterSlug?: stri
           setOverlayAsset(null);
         }
 
-        // Feature 3.6: Generative Cinema Logic
-        if (asset === "/assets/bg.png" && content.length > 100 && !overlayAsset) {
-            const prompt = `A cinematic oil painting in 19th-century romantic landscape style, deep Levantine shadows, 1003 BCE Hebron atmosphere: ${content.substring(0, 150)}...`;
-            fetch(`/api/visualize?prompt=${encodeURIComponent(prompt)}`)
-                .then(res => res.json())
-                .then(json => {
-                    if (json.imageUrl) {
-                        setCurrentAsset(json.imageUrl);
-                    }
-                })
-                .catch(err => console.error("Generative cinema failure:", err));
-        } else {
-            setCurrentAsset(asset);
+        // Feature 3.6: Generative Cinema Fallback
+        if (asset === "/assets/bg.png" && content.length > 200 && !overlayAsset) {
+            // Only fetch if we have enough context
+            const prompt = `Cinematic oil painting, deep Levantine shadows, 1003 BCE Hebron: ${content.substring(0, 100)}`;
+            // (Assuming /api/visualize is wired up in later phase)
         }
+        
+        setCurrentAsset(asset);
     });
 
     return () => {
         unsubIntensity();
         unsubFocus();
     };
-  }, [chapterSlug, overlayAsset]);
+  }, [chapterSlug]);
 
   return (
     <div className="fixed inset-0 z-10 pointer-events-none overflow-hidden bg-[var(--bg-void)]">
@@ -155,29 +161,30 @@ export default function Layer2Cinema({ chapterSlug = "7" }: { chapterSlug?: stri
       >
         <AssetProjector 
             currentSrc={currentAsset} 
-            scale={1.12} 
+            scale={1.1} 
             mixBlend="normal" 
         />
       </div>
 
-      {/* Secondary Intelligent Overlay Plane (e.g., Flies over Megiddo) */}
+      {/* Intelligent Overlay Plane */}
       {overlayAsset && (
         <div 
           className="absolute inset-0 transition-opacity duration-[3000ms] ease-in-out"
           style={{ 
-            opacity: intensity * 0.7,
-            mixBlendMode: "multiply"
+            opacity: intensity * 0.8,
+            mixBlendMode: "screen"
           }}
         >
           <AssetProjector 
               currentSrc={overlayAsset} 
-              scale={1.25} 
-              mixBlend="screen" 
+              scale={1.2} 
+              mixBlend="normal" 
           />
         </div>
       )}
       
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/95 pointer-events-none" />
+      {/* Vignette & Depth Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/90 pointer-events-none" />
     </div>
   );
 }

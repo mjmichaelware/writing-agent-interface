@@ -4,7 +4,7 @@ import * as d3 from "d3";
 import { bus } from "@/core/runtimeEngine";
 
 type Node = { id: string; content: string; dualism_map: any; chapter_id?: string };
-type Link = { source: string; target: string };
+type Link = { source: string; target: string; type?: string; weight?: number };
 
 export default function HyperlinksGraph() {
   const svgRef = useRef<SVGSVGElement>(null);
@@ -13,115 +13,161 @@ export default function HyperlinksGraph() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const c = new AbortController();
-    const t = setTimeout(() => c.abort(), 8000);
-    fetch("/api/graph", { signal: c.signal })
+    fetch("/api/graph")
       .then(r => r.json())
       .then(d => {
-        clearTimeout(t);
-        let rawNodes = d.dualisms || [];
-        
-        // Mock data if empty for "beautiful layout charts" requirement
-        if (rawNodes.length === 0) {
-          rawNodes = [
-            { id: "m1", content: "The sacred fire of the altar.", dualism_map: { sacred: 0.9, anima: 0.4 } },
-            { id: "m2", content: "The descent into the swarming pit.", dualism_map: { descent: 0.9, shadow: 0.8 } },
-            { id: "m3", content: "Shadows lengthening at the Megiddo gate.", dualism_map: { shadow: 0.9, persona: 0.5 } },
-            { id: "m4", content: "Anima rising in the moonlight.", dualism_map: { anima: 0.9, sacred: 0.3 } },
-            { id: "m5", content: "The persona of the priest-king.", dualism_map: { persona: 0.9, sacred: 0.2 } },
-            { id: "m6", content: "Sacred stones of the high place.", dualism_map: { sacred: 0.85, anima: 0.5 } },
-            { id: "m7", content: "Descent into the valley of flies.", dualism_map: { descent: 0.85, shadow: 0.9 } },
-            { id: "m8", content: "The hero facing his shadow.", dualism_map: { shadow: 0.7, persona: 0.8 } }
-          ];
-        }
+        const rawNodes = d.paragraphs || [];
+        const rawLinks = d.hyperlinks || [];
 
-        const nodes: Node[] = rawNodes.filter((n: any) =>
-          n && n.dualism_map && typeof n.dualism_map === "object");
-        const links: Link[] = [];
-        const keys = ["sacred","descent","shadow","persona","anima"];
-        for (let i = 0; i < nodes.length; i++) {
-          for (let j = i + 1; j < nodes.length; j++) {
-            if (keys.some(k => (nodes[i].dualism_map?.[k] || 0) > 0.1 &&
-                               (nodes[j].dualism_map?.[k] || 0) > 0.1)) {
-              links.push({ source: nodes[i].id, target: nodes[j].id });
+        const nodes: Node[] = rawNodes.map((n: any) => ({
+          id: n.id,
+          content: n.content,
+          dualism_map: n.dualism_map || {},
+          chapter_id: n.chapter_id
+        }));
+
+        // Use explicit links from the database
+        const links: Link[] = rawLinks.map((l: any) => ({
+          source: l.paragraph_id,
+          target: nodes.find(n => n.id === l.theme_node_b)?.id || l.theme_node_b, // Simple mapping for now
+          type: l.link_type,
+          weight: l.weight
+        })).filter((l: any) => l.source && l.target);
+
+        // Add implicit links based on shared archetypes if few explicit links exist
+        if (links.length < 5) {
+          const keys = ["sacred","descent","shadow","persona","anima"];
+          for (let i = 0; i < nodes.length; i++) {
+            for (let j = i + 1; j < nodes.length; j++) {
+              if (keys.some(k => (nodes[i].dualism_map?.[k] || 0) > 0.4 &&
+                                 (nodes[j].dualism_map?.[k] || 0) > 0.4)) {
+                links.push({ source: nodes[i].id, target: nodes[j].id, type: 'implicit' });
+              }
             }
           }
         }
+
         setData({ nodes, links });
       })
       .catch(e => {
-        clearTimeout(t);
-        setError(e.name === "AbortError" ? "Timed out" : `Error: ${e.message}`);
+        setError(`Error: ${e.message}`);
       });
-    return () => { clearTimeout(t); c.abort(); };
   }, []);
 
   useEffect(() => {
     if (!data || !svgRef.current || !wrapRef.current) return;
     const svg = d3.select(svgRef.current);
     svg.selectAll("*").remove();
+    
     const w = wrapRef.current.clientWidth || 400;
-    const h = wrapRef.current.clientHeight || 320;
-    svg.attr("viewBox", `0 0 ${w} ${h}`);
-    const dom = (m: any) => {
-      const keys = ["sacred","descent","shadow","persona","anima"];
-      let max = 0, x = "self";
-      for (const k of keys) if ((m?.[k] || 0) > max) { max = m[k]; x = k; }
-      return x;
-    };
-    const color = (k: string) => ({
-      sacred: "#e8d4a0", descent: "#6b2c2c", shadow: "#2a2a2a",
-      persona: "#8a857c", anima: "#c9a96e", self: "#c9a96e",
-    } as any)[k] || "#c9a96e";
+    const h = wrapRef.current.clientHeight || 400;
+    
     const g = svg.append("g");
-    const zoom = d3.zoom<SVGSVGElement, unknown>().scaleExtent([0.5, 4])
+    
+    const zoom = d3.zoom<SVGSVGElement, unknown>().scaleExtent([0.1, 8])
       .on("zoom", (e) => g.attr("transform", e.transform.toString()));
     svg.call(zoom as any);
-    const sim = d3.forceSimulation(data.nodes as any)
-      .force("charge", d3.forceManyBody().strength(-40))
-      .force("link", d3.forceLink(data.links).id((d: any) => d.id).distance(50).strength(0.4))
+
+    const simulation = d3.forceSimulation(data.nodes as any)
+      .force("link", d3.forceLink(data.links).id((d: any) => d.id).distance(100))
+      .force("charge", d3.forceManyBody().strength(-150))
       .force("center", d3.forceCenter(w / 2, h / 2))
-      .force("collide", d3.forceCollide().radius((d: any) =>
-        Math.max(4, Math.sqrt((d.content?.length || 50) / 6)) + 2));
-    const link = g.append("g").selectAll("line").data(data.links).join("line")
-      .attr("stroke", "#c9a96e").attr("stroke-opacity", 0.25).attr("stroke-width", 0.5);
-    const node = g.append("g").selectAll("circle").data(data.nodes).join("circle")
-      .attr("r", (d: any) => Math.max(3, Math.sqrt((d.content?.length || 50) / 6)))
-      .attr("fill", (d: any) => color(dom(d.dualism_map)))
-      .attr("stroke", (d: any) => dom(d.dualism_map) === "shadow" ? "#8a857c" : "none")
-      .attr("stroke-width", 1)
-      .style("cursor", "pointer")
+      .force("collide", d3.forceCollide().radius(30));
+
+    const link = g.append("g")
+      .selectAll("line")
+      .data(data.links)
+      .join("line")
+      .attr("stroke", "#c9a96e")
+      .attr("stroke-opacity", 0.2)
+      .attr("stroke-width", (d: any) => (d.weight || 1) * 0.5);
+
+    const node = g.append("g")
+      .selectAll("circle")
+      .data(data.nodes)
+      .join("circle")
+      .attr("r", 6)
+      .attr("fill", (d: any) => {
+        const m = d.dualism_map || {};
+        if (m.sacred > 0.5) return "#e8d4a0";
+        if (m.descent > 0.5) return "#6b2c2c";
+        if (m.shadow > 0.5) return "#2a2a2a";
+        return "#c9a96e";
+      })
+      .attr("stroke", "#0a0a0a")
+      .attr("stroke-width", 1.5)
+      .call(d3.drag<SVGCircleElement, any>()
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended) as any)
       .on("click", (_e, d: any) => {
         bus.emit("navigate:paragraph", { id: d.id });
         bus.emit("panel:close");
       });
-    sim.on("tick", () => {
-      link.attr("x1", (d: any) => d.source.x).attr("y1", (d: any) => d.source.y)
-          .attr("x2", (d: any) => d.target.x).attr("y2", (d: any) => d.target.y);
-      node.attr("cx", (d: any) => d.x).attr("cy", (d: any) => d.y);
+
+    node.append("title").text((d: any) => d.content.substring(0, 100) + "...");
+
+    simulation.on("tick", () => {
+      link
+        .attr("x1", (d: any) => d.source.x)
+        .attr("y1", (d: any) => d.source.y)
+        .attr("x2", (d: any) => d.target.x)
+        .attr("y2", (d: any) => d.target.y);
+
+      node
+        .attr("cx", (d: any) => d.x)
+        .attr("cy", (d: any) => d.y);
     });
-    return () => { sim.stop(); };
+
+    function dragstarted(event: any) {
+      if (!event.active) simulation.alphaTarget(0.3).restart();
+      event.subject.fx = event.subject.x;
+      event.subject.fy = event.subject.y;
+    }
+
+    function dragged(event: any) {
+      event.subject.fx = event.x;
+      event.subject.fy = event.y;
+    }
+
+    function dragended(event: any) {
+      if (!event.active) simulation.alphaTarget(0);
+      event.subject.fx = null;
+      event.subject.fy = null;
+    }
+
+    return () => simulation.stop();
   }, [data]);
 
-  const muted = "#8a857c";
-  if (error) return <div style={{ padding: "2.5rem 1rem", textAlign: "center", color: muted, fontFamily: "Georgia, serif", fontStyle: "italic" }}>{error}</div>;
-  if (!data) return <div style={{ padding: "2.5rem 1rem", textAlign: "center", color: muted, fontFamily: "Georgia, serif", fontStyle: "italic" }}>Loading constellation…</div>;
-  if (data.nodes.length === 0) return <div style={{ padding: "2.5rem 1rem", textAlign: "center", color: muted, fontFamily: "Georgia, serif", fontStyle: "italic" }}>No dualism data yet</div>;
+  if (error) return <div className="panel-empty">{error}</div>;
+  if (!data) return <div className="panel-loading">Mapping narrative connections...</div>;
 
   return (
-    <div style={{ height: "100%", display: "flex", flexDirection: "column" }}>
-      <h2 style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "1.5rem", color: "#c9a96e", margin: "0 0 0.25rem", textAlign: "center" }}>Parallelisms &amp; Dualisms</h2>
-      <p style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "0.8125rem", color: muted, textAlign: "center", margin: "0 0 0.75rem" }}>{data.nodes.length} paragraphs · {data.links.length} thematic links</p>
-      <div ref={wrapRef} style={{ flex: 1, minHeight: 280, position: "relative" }}>
-        <svg ref={svgRef} style={{ width: "100%", height: "100%", display: "block" }} />
+    <div className="flex flex-col h-full animate-fade-in">
+      <h2 className="panel-h2">Parallelisms & Dualisms</h2>
+      <p className="panel-sub">{data.nodes.length} nodes · {data.links.length} connections</p>
+      
+      <div ref={wrapRef} className="flex-1 min-h-[400px] relative overflow-hidden bg-black/20 rounded border border-white/5">
+        <svg ref={svgRef} className="w-full h-full cursor-move" />
       </div>
-      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "0.875rem", padding: "0.875rem 0 0", fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "0.75rem", color: muted }}>
-        {[["#e8d4a0","Sacred"],["#6b2c2c","Descent"],["#2a2a2a","Shadow"],["#8a857c","Persona"],["#c9a96e","Anima"]].map(([c,n]) => (
-          <div key={n} style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
-            <span style={{ display: "inline-block", width: 10, height: 10, borderRadius: "50%", background: c, border: n === "Shadow" ? "1px solid #8a857c" : "none" }} />
-            <span>{n}</span>
-          </div>
-        ))}
+
+      <div className="legend">
+        <div className="legend-item">
+          <span className="legend-dot" style={{ background: "#e8d4a0" }} />
+          <span>Sacred</span>
+        </div>
+        <div className="legend-item">
+          <span className="legend-dot" style={{ background: "#6b2c2c" }} />
+          <span>Descent</span>
+        </div>
+        <div className="legend-item">
+          <span className="legend-dot" style={{ background: "#2a2a2a", border: "1px solid #8a857c" }} />
+          <span>Shadow</span>
+        </div>
+        <div className="legend-item">
+          <span className="legend-dot" style={{ background: "#c9a96e" }} />
+          <span>Other</span>
+        </div>
       </div>
     </div>
   );

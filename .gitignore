@@ -48,3 +48,5 @@ system/07_Build_Manifests/session_logs/
 
 # vercel
 .vercel/
+.vercel
+.env*

@@ -1,0 +1,177 @@
+=== API routes ===
+src/app/api/agent/route.ts
+src/app/api/analyze-document/route.ts
+src/app/api/biblical-references/route.ts
+src/app/api/chapters/route.ts
+src/app/api/corpus/route.ts
+src/app/api/execute/route.ts
+src/app/api/graph/route.ts
+src/app/api/health/route.ts
+src/app/api/manuscript/route.ts
+src/app/api/search/route.ts
+src/app/api/tts/route.ts
+src/app/api/visualize/route.ts
+
+=== /api/chapters ===
+import { NextRequest, NextResponse } from 'next/server';
+import { query } from '@/lib/db';
+
+export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const slug = searchParams.get('slug');
+
+  try {
+    if (!slug) {
+      // Return all chapters metadata for the TOC/Switcher from Supabase
+      const { rows: chapters } = await query(
+        `SELECT id, part_number, chapter_number, status, manifest_id 
+         FROM chapters 
+         ORDER BY part_number, chapter_number ASC`
+      );
+      return NextResponse.json(chapters);
+    }
+
+    // Try to find the chapter by manifest_id (man_XX) or chapter_number
+    let chapterQuery = `SELECT * FROM chapters WHERE manifest_id = $1`;
+    let chapterParams = [slug.startsWith('man_') ? slug : `man_${slug.padStart(2, '0')}`];
+
+    // Fallback: check if slug is just a number
+    if (isNaN(parseInt(slug)) === false && !slug.startsWith('man_')) {
+      chapterQuery = `SELECT * FROM chapters WHERE chapter_number = $1 OR manifest_id = $2 LIMIT 1`;
+      chapterParams = [parseInt(slug), `man_${slug.padStart(2, '0')}`];
+    }
+
+    const { rows: chapters } = await query(chapterQuery, chapterParams);
+
+    if (chapters.length === 0) {
+      return NextResponse.json(
+        { error: `Chapter ${slug} not found in database` },
+        { status: 404 }
+      );
+    }
+
+    const chapter = chapters[0];
+
+    // Get paragraphs for this chapter
+    const { rows: paragraphs } = await query(
+      `SELECT id, content, chunk_index, archetypal_weights, dualism_map, hebrew_spans, metadata
+       FROM paragraphs 
+       WHERE chapter_id = $1 
+       ORDER BY chunk_index ASC`,
+      [chapter.id]
+    );
+
+    return NextResponse.json({
+      id: chapter.id,
+      manifest_id: chapter.manifest_id,
+      chapter_number: chapter.chapter_number,
+      part_number: chapter.part_number,
+      status: chapter.status,
+      blocks: paragraphs.map(p => ({
+        id: p.id,
+        content: p.content,
+        archetypal_weights: p.archetypal_weights,
+        dualism_map: p.dualism_map,
+        hebrew_spans: p.hebrew_spans,
+        metadata: p.metadata
+      }))
+    });
+  } catch (e: any) {
+    console.error("API Chapters Error:", e);
+    return NextResponse.json(
+      { error: `Database error: ${e.message}` },
+      { status: 500 }
+    );
+  }
+}
+
+=== /api/manuscript ===
+import { createClient } from '@supabase/supabase-js';
+import { NextResponse } from 'next/server';
+
+function getSupabase() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!supabaseUrl || !supabaseKey) return null;
+  return createClient(supabaseUrl, supabaseKey);
+}
+
+export async function GET(request: Request) {
+  const supabase = getSupabase();
+  if (!supabase) {
+    return NextResponse.json({ error: 'Supabase credentials not configured' }, { status: 503 });
+  }
+
+  const { searchParams } = new URL(request.url);
+  const chapterId = searchParams.get('chapterId');
+
+  if (!chapterId) {
+    return NextResponse.json({ error: 'chapterId is required' }, { status: 400 });
+  }
+
+  const { data, error } = await supabase
+    .from('paragraphs')
+    .select('*, biblical_references(*), chapters(part_number, chapter_number)')
+    .eq('chapter_id', chapterId)
+    .order('chunk_index', { ascending: true });
+
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+
+  return NextResponse.json(data);
+}
+=== biblical/hyperlink route references ===
+src/app/api/graph/route.ts:8:      `SELECT id, content, dualism_map, chapter_id
+src/app/api/graph/route.ts:10:       WHERE dualism_map IS NOT NULL AND dualism_map != '{}'::jsonb`
+src/app/api/graph/route.ts:13:    // Also fetch explicit hyperlinks/dualisms
+src/app/api/graph/route.ts:14:    const { rows: hyperlinks } = await query(
+src/app/api/graph/route.ts:16:       FROM hyperlinks`
+src/app/api/graph/route.ts:21:      hyperlinks
+src/app/api/manuscript/route.ts:26:    .select('*, biblical_references(*), chapters(part_number, chapter_number)')
+src/app/api/search/route.ts:37:        archetypal_weights,
+src/app/api/search/route.ts:38:        dualism_map,
+src/app/api/chapters/route.ts:42:      `SELECT id, content, chunk_index, archetypal_weights, dualism_map, hebrew_spans, metadata
+src/app/api/chapters/route.ts:58:        archetypal_weights: p.archetypal_weights,
+src/app/api/chapters/route.ts:59:        dualism_map: p.dualism_map,
+src/app/api/chapters/route.ts:60:        hebrew_spans: p.hebrew_spans,
+src/app/api/biblical-references/route.ts:7:      `SELECT * FROM biblical_references ORDER BY book ASC, chapter ASC, verse ASC`
+src/app/globals.css:131:.hyperlinks-graph-container {
+src/app/globals.css:147:.hyperlinks-graph-svg {
+src/components/layers/panel/HyperlinksGraph.tsx:6:type Node = { id: string; content: string; dualism_map: any; chapter_id?: string };
+src/components/layers/panel/HyperlinksGraph.tsx:20:        const rawLinks = d.hyperlinks || [];
+src/components/layers/panel/HyperlinksGraph.tsx:25:          dualism_map: n.dualism_map || {},
+src/components/layers/panel/HyperlinksGraph.tsx:42:              if (keys.some(k => (nodes[i].dualism_map?.[k] || 0) > 0.4 &&
+src/components/layers/panel/HyperlinksGraph.tsx:43:                                 (nodes[j].dualism_map?.[k] || 0) > 0.4)) {
+src/components/layers/panel/HyperlinksGraph.tsx:91:        const m = d.dualism_map || {};
+src/components/layers/panel/ArchetypesDirectory.tsx:5:type P = { id: string; content: string; chapter_number?: number; archetypal_weights?: any };
+src/components/layers/panel/ArchetypesDirectory.tsx:21:        setPs(raw.filter((p: any) => p && p.archetypal_weights && Object.keys(p.archetypal_weights).length > 0));
+src/components/layers/panel/ArchetypesDirectory.tsx:71:                const d = dom(p.archetypal_weights);
+src/components/layers/canvas/ManuscriptCore.tsx:37:    archetypal_weights?: any; 
+src/components/layers/canvas/ManuscriptCore.tsx:38:    dualism_map?: any;
+src/components/layers/canvas/ManuscriptCore.tsx:39:    hebrew_spans?: any[];
+src/components/layers/canvas/ManuscriptCore.tsx:86:          const weights = block?.archetypal_weights || {};
+src/components/layers/canvas/ManuscriptCore.tsx:87:          const dualisms = block?.dualism_map || {};
+src/components/layers/canvas/ManuscriptCore.tsx:142:                weights: typeof block === "string" ? {} : block?.archetypal_weights || {},
+src/components/layers/canvas/ManuscriptCore.tsx:143:                dualisms: typeof block === "string" ? {} : block?.dualism_map || {},
+src/services/orchestration-engine/google-swarm.ts:118:        archetypal_weights: JSON.stringify(para.archetypal_weights),
+src/services/orchestration-engine/google-swarm.ts:119:        dualism_map: JSON.stringify(para.dualism_map),
+src/services/memory-engine/vector-store.ts:47:        archetypal_weights JSONB DEFAULT '{}',
+src/services/memory-engine/vector-store.ts:48:        dualism_map JSONB DEFAULT '{}',
+src/services/memory-engine/vector-store.ts:49:        hebrew_spans JSONB DEFAULT '[]',
+src/services/memory-engine/vector-store.ts:54:      CREATE TABLE IF NOT EXISTS biblical_references (
+src/services/document-analyzer/corpus-searcher.ts:32:        archetypal_weights,
+src/services/document-analyzer/corpus-searcher.ts:33:        dualism_map,
+src/services/ingestion/pipeline.ts:92:          "archetypal_weights": { "shadow": 0.0, "persona": 0.0, "anima": 0.0, "self": 0.0, "hero": 0.0 },
+src/services/ingestion/pipeline.ts:93:          "dualism_map": { "sacred": 0.0, "descent": 0.0 },
+src/services/ingestion/pipeline.ts:94:          "biblical_references": [{ "text": "...", "book": "...", "chapter": 0, "verse": 0 }],
+src/services/ingestion/pipeline.ts:95:          "hyperlinks": [{ "theme_node_a": "...", "theme_node_b": "...", "link_type": "dualism" }]` 
+src/services/ingestion/pipeline.ts:119:          archetypal_weights, dualism_map, hebrew_spans, metadata
+src/services/ingestion/pipeline.ts:124:          enrichment.archetypal_weights || {},
+src/services/ingestion/pipeline.ts:125:          enrichment.dualism_map || {},
+src/services/ingestion/pipeline.ts:133:      if (paragraphData && enrichment.biblical_references?.length > 0) {
+src/services/ingestion/pipeline.ts:134:        for (const ref of enrichment.biblical_references) {
+src/services/ingestion/pipeline.ts:136:            `INSERT INTO biblical_references (paragraph_id, reference_text, book, chapter, verse)
+src/services/ingestion/pipeline.ts:143:      if (paragraphData && enrichment.hyperlinks?.length > 0) {
+src/services/ingestion/pipeline.ts:144:        for (const link of enrichment.hyperlinks) {
+src/services/ingestion/pipeline.ts:146:            `INSERT INTO hyperlinks (paragraph_id, theme_node_a, theme_node_b, link_type)

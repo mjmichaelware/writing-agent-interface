@@ -1,0 +1,3577 @@
+[
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/00_protocols/agents.md",
+    "bytes": 19303,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 2,
+      "layer_to_cinema_sources": 38,
+      "worldbuilding_lore": 2,
+      "synopsis_compendiums": 2,
+      "protocols": 18,
+      "revision_snapshots": 12
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/00_protocols/agents_readme.md",
+    "bytes": 240,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 1,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 1,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/014_writing_agent_app._source_doc._(8)_[combined]_(1).txt",
+    "bytes": 21404,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 23,
+      "worldbuilding_lore": 7,
+      "synopsis_compendiums": 2,
+      "protocols": 17,
+      "revision_snapshots": 13
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/024_aesthetic_implementation_mandate_1.txt",
+    "bytes": 22064,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 17,
+      "layer_to_cinema_sources": 78,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 14,
+      "protocols": 5,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/034_aim_blueprint.txt",
+    "bytes": 20674,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 88,
+      "worldbuilding_lore": 6,
+      "synopsis_compendiums": 1,
+      "protocols": 14,
+      "revision_snapshots": 9
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/071_claude_honest_assessment_20260513.md",
+    "bytes": 13228,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 4,
+      "layer_to_cinema_sources": 20,
+      "worldbuilding_lore": 5,
+      "synopsis_compendiums": 3,
+      "protocols": 0,
+      "revision_snapshots": 14
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/072_claude_honest_assessment_v2_20260513.md",
+    "bytes": 15520,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 22,
+      "layer_to_cinema_sources": 38,
+      "worldbuilding_lore": 2,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 18
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/097_gemini_cli_penultimate_omega_prompt.txt",
+    "bytes": 43126,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 11,
+      "layer_to_cinema_sources": 64,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 6,
+      "protocols": 21,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/107_here_is_the_absolute_technical_structural_and_behavioral_inventory_of_every_single_element_that_must_exist_within_your_4_layer_ui_ux_narrative_runtime_environment.txt",
+    "bytes": 14873,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 9,
+      "layer_to_cinema_sources": 65,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 10,
+      "protocols": 7,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/160_project_handoff_complete_context_2.md",
+    "bytes": 11881,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 7,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 1,
+      "protocols": 5,
+      "revision_snapshots": 6
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_2_large_universal/097_gemini_cli_penultimate_omega_prompt.txt",
+    "bytes": 43126,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 11,
+      "layer_to_cinema_sources": 64,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 6,
+      "protocols": 21,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_2_large_universal/134_nos_integration_blueprint.txt",
+    "bytes": 55932,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 5,
+      "layer_to_cinema_sources": 99,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 9,
+      "protocols": 16,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_3_checkpoints/139_nos_master_blueprints.txt",
+    "bytes": 46457,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 182,
+      "worldbuilding_lore": 12,
+      "synopsis_compendiums": 1,
+      "protocols": 19,
+      "revision_snapshots": 25
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_3_checkpoints/140_nos_master_diagnostic.txt",
+    "bytes": 57625,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 4,
+      "layer_to_cinema_sources": 119,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 1,
+      "protocols": 4,
+      "revision_snapshots": 1
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_3_checkpoints/154_project_checkpoint_2.txt",
+    "bytes": 70787,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 4,
+      "layer_to_cinema_sources": 39,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 9,
+      "protocols": 14,
+      "revision_snapshots": 4
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/10.0_mass_market.txt",
+    "bytes": 13975,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 23,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 3,
+      "protocols": 9,
+      "revision_snapshots": 4
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/11.0_error_catalog.txt",
+    "bytes": 7944,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 11,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 2,
+      "protocols": 5,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/11.0_final_revision.txt",
+    "bytes": 7590,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 14,
+      "worldbuilding_lore": 8,
+      "synopsis_compendiums": 1,
+      "protocols": 1,
+      "revision_snapshots": 10
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/13.0_claude.txt",
+    "bytes": 8216,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 10,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 0,
+      "protocols": 7,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/13.0_general_principles.txt",
+    "bytes": 19474,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 1,
+      "layer_to_cinema_sources": 24,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 1,
+      "protocols": 19,
+      "revision_snapshots": 9
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/2.0_critique_\uff0f_analysis_guide.txt",
+    "bytes": 13169,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 15,
+      "worldbuilding_lore": 5,
+      "synopsis_compendiums": 0,
+      "protocols": 8,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/4.0_emotional_&_archetypal_editing_rulebook_(visceral_empathy_focus).txt",
+    "bytes": 3895,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 9,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 0,
+      "protocols": 7,
+      "revision_snapshots": 1
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/4.0_psychology_guide.txt",
+    "bytes": 12831,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 9,
+      "worldbuilding_lore": 9,
+      "synopsis_compendiums": 0,
+      "protocols": 4,
+      "revision_snapshots": 4
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/5.0_psychology_guide.txt",
+    "bytes": 12868,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 9,
+      "worldbuilding_lore": 9,
+      "synopsis_compendiums": 0,
+      "protocols": 5,
+      "revision_snapshots": 4
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/6.0_core_editing_rules_for_thematic_&_archetypal_hyperlinking.txt",
+    "bytes": 3736,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 6,
+      "worldbuilding_lore": 6,
+      "synopsis_compendiums": 1,
+      "protocols": 4,
+      "revision_snapshots": 1
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/9.0_stones.txt",
+    "bytes": 3317,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 4,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_chapter_7_the_pit.txt",
+    "bytes": 21400,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 16,
+      "worldbuilding_lore": 7,
+      "synopsis_compendiums": 0,
+      "protocols": 2,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter2_weight_of_the_sky.txt",
+    "bytes": 19769,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 0,
+      "protocols": 1,
+      "revision_snapshots": 1
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_10_forsaken.txt",
+    "bytes": 17281,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 1,
+      "layer_to_cinema_sources": 7,
+      "worldbuilding_lore": 5,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 1
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_10_forsaken_final_definitive.txt",
+    "bytes": 28345,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 4,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 0,
+      "protocols": 1,
+      "revision_snapshots": 1
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_10_version_f.txt",
+    "bytes": 26347,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 9,
+      "worldbuilding_lore": 2,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 1
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_11.2.txt",
+    "bytes": 24874,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 6,
+      "worldbuilding_lore": 6,
+      "synopsis_compendiums": 0,
+      "protocols": 2,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_11.8.txt",
+    "bytes": 21365,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 8,
+      "worldbuilding_lore": 8,
+      "synopsis_compendiums": 0,
+      "protocols": 2,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_13_exodus.txt",
+    "bytes": 17060,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 4,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 1,
+      "protocols": 1,
+      "revision_snapshots": 1
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_1_integration_2.0.txt",
+    "bytes": 18717,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 1,
+      "layer_to_cinema_sources": 22,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 2,
+      "protocols": 5,
+      "revision_snapshots": 4
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_1_merge_prompt.txt",
+    "bytes": 16922,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 23,
+      "worldbuilding_lore": 2,
+      "synopsis_compendiums": 0,
+      "protocols": 3,
+      "revision_snapshots": 8
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_1_version_o.txt",
+    "bytes": 31718,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 4,
+      "worldbuilding_lore": 2,
+      "synopsis_compendiums": 0,
+      "protocols": 2,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_2nd_to_last.txt",
+    "bytes": 7543,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 4,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 0,
+      "protocols": 1,
+      "revision_snapshots": 1
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_8.1.txt",
+    "bytes": 28338,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 7,
+      "worldbuilding_lore": 7,
+      "synopsis_compendiums": 0,
+      "protocols": 2,
+      "revision_snapshots": 1
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/critique_2.2.txt",
+    "bytes": 13767,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 25,
+      "worldbuilding_lore": 8,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 11
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/d_chapter_7_the_pit.txt",
+    "bytes": 19331,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 10,
+      "worldbuilding_lore": 7,
+      "synopsis_compendiums": 0,
+      "protocols": 2,
+      "revision_snapshots": 6
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/final_chapter_7_the_pit.txt",
+    "bytes": 27420,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 7,
+      "worldbuilding_lore": 7,
+      "synopsis_compendiums": 0,
+      "protocols": 1,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/g_chapter_1_stardust_to_stardust.txt",
+    "bytes": 20133,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 8,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 0,
+      "protocols": 1,
+      "revision_snapshots": 7
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/g_final_chapter_10_forsaken.txt",
+    "bytes": 18992,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 10,
+      "worldbuilding_lore": 2,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/i_chapter_1_stardust_to_stardust.txt",
+    "bytes": 30796,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 4,
+      "worldbuilding_lore": 2,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/i_notes_chapter_1_stardust_to_stardust.txt",
+    "bytes": 30806,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 4,
+      "worldbuilding_lore": 2,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/notes_p_chapter_1_stardust_to_stardust.txt",
+    "bytes": 26546,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 5,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 0,
+      "protocols": 2,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/p_chapter_1_stardust_to_stardust.txt",
+    "bytes": 25593,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 5,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 0,
+      "protocols": 2,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/revision_prompt_n_chapter_1_stardust_to_stardust.txt",
+    "bytes": 25907,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 7,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 0,
+      "protocols": 7,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/the_weight_of_the_sky_the_fall_into_megiddo.txt",
+    "bytes": 12645,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 9,
+      "worldbuilding_lore": 8,
+      "synopsis_compendiums": 0,
+      "protocols": 2,
+      "revision_snapshots": 5
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/untitled_document.txt",
+    "bytes": 10474,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 5,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 0,
+      "protocols": 3,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/wos_ch7_the_pit.txt",
+    "bytes": 17321,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 12,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 0,
+      "protocols": 1,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/reports/perfect_weight/01_file_manifest.tsv",
+    "bytes": 34616,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 172,
+      "worldbuilding_lore": 8,
+      "synopsis_compendiums": 2,
+      "protocols": 8,
+      "revision_snapshots": 27
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/reports/perfect_weight/01_repo_inventory.md",
+    "bytes": 5588,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 32,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 0,
+      "protocols": 3,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/reports/perfect_weight/02_context_classification.json",
+    "bytes": 17829,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 3,
+      "layer_to_cinema_sources": 35,
+      "worldbuilding_lore": 14,
+      "synopsis_compendiums": 5,
+      "protocols": 12,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/reports/perfect_weight/02_context_classification.md",
+    "bytes": 13715,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 3,
+      "layer_to_cinema_sources": 35,
+      "worldbuilding_lore": 14,
+      "synopsis_compendiums": 5,
+      "protocols": 12,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/reports/perfect_weight/03_code_data_map.md",
+    "bytes": 353638,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 106,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 2,
+      "protocols": 4,
+      "revision_snapshots": 4
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/reports/perfect_weight/07_panel_truth_audit.md",
+    "bytes": 3879,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 10,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/reports/perfect_weight/08_next_100_actions.md",
+    "bytes": 5826,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 11,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 0,
+      "protocols": 3,
+      "revision_snapshots": 7
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/reports/perfect_weight/09_weight_of_the_sky_perfection_readme.md",
+    "bytes": 694549,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 3,
+      "layer_to_cinema_sources": 68,
+      "worldbuilding_lore": 15,
+      "synopsis_compendiums": 5,
+      "protocols": 16,
+      "revision_snapshots": 6
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/reports/xml_recovery/materialize_ooxml_run.log",
+    "bytes": 280,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 1,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/reports/xml_recovery/share_google_docs_with_service_account.md",
+    "bytes": 685,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/014_writing_agent_app._source_doc._(8)_[combined]_(1).txt",
+    "bytes": 21404,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 23,
+      "worldbuilding_lore": 7,
+      "synopsis_compendiums": 2,
+      "protocols": 17,
+      "revision_snapshots": 13
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/024_aesthetic_implementation_mandate_1.txt",
+    "bytes": 22064,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 17,
+      "layer_to_cinema_sources": 78,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 14,
+      "protocols": 5,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/034_aim_blueprint.txt",
+    "bytes": 20674,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 88,
+      "worldbuilding_lore": 6,
+      "synopsis_compendiums": 1,
+      "protocols": 14,
+      "revision_snapshots": 9
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/071_claude_honest_assessment_20260513.md",
+    "bytes": 13228,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 4,
+      "layer_to_cinema_sources": 20,
+      "worldbuilding_lore": 5,
+      "synopsis_compendiums": 3,
+      "protocols": 0,
+      "revision_snapshots": 14
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/072_claude_honest_assessment_v2_20260513.md",
+    "bytes": 15520,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 22,
+      "layer_to_cinema_sources": 38,
+      "worldbuilding_lore": 2,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 18
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/097_gemini_cli_penultimate_omega_prompt.txt",
+    "bytes": 43126,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 11,
+      "layer_to_cinema_sources": 64,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 6,
+      "protocols": 21,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/107_here_is_the_absolute_technical_structural_and_behavioral_inventory_of_every_single_element_that_must_exist_within_your_4_layer_ui_ux_narrative_runtime_environment.txt",
+    "bytes": 14873,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 9,
+      "layer_to_cinema_sources": 65,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 10,
+      "protocols": 7,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/160_project_handoff_complete_context_2.md",
+    "bytes": 11881,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 7,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 1,
+      "protocols": 5,
+      "revision_snapshots": 6
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_2_large_universal/097_gemini_cli_penultimate_omega_prompt.txt",
+    "bytes": 43126,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 11,
+      "layer_to_cinema_sources": 64,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 6,
+      "protocols": 21,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_2_large_universal/134_nos_integration_blueprint.txt",
+    "bytes": 55932,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 5,
+      "layer_to_cinema_sources": 99,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 9,
+      "protocols": 16,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_3_checkpoints/139_nos_master_blueprints.txt",
+    "bytes": 46457,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 182,
+      "worldbuilding_lore": 12,
+      "synopsis_compendiums": 1,
+      "protocols": 19,
+      "revision_snapshots": 25
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_3_checkpoints/140_nos_master_diagnostic.txt",
+    "bytes": 57625,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 4,
+      "layer_to_cinema_sources": 119,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 1,
+      "protocols": 4,
+      "revision_snapshots": 1
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_3_checkpoints/154_project_checkpoint_2.txt",
+    "bytes": 70787,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 4,
+      "layer_to_cinema_sources": 39,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 9,
+      "protocols": 14,
+      "revision_snapshots": 4
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/README.md",
+    "bytes": 2687,
+    "suggested_bucket": "layer_to_cinema_sources",
+    "scores": {
+      "typography_sources": 8,
+      "layer_to_cinema_sources": 24,
+      "worldbuilding_lore": 11,
+      "synopsis_compendiums": 9,
+      "protocols": 3,
+      "revision_snapshots": 19
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/00_protocols/.gitkeep",
+    "bytes": 0,
+    "suggested_bucket": "manual_sort_inbox",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/.gitkeep",
+    "bytes": 0,
+    "suggested_bucket": "manual_sort_inbox",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/02_typography_sources/.gitkeep",
+    "bytes": 0,
+    "suggested_bucket": "manual_sort_inbox",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/03_layer_to_cinema_sources/.gitkeep",
+    "bytes": 0,
+    "suggested_bucket": "manual_sort_inbox",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/04_current_final_drafts/.gitkeep",
+    "bytes": 0,
+    "suggested_bucket": "manual_sort_inbox",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/05_revision_snapshots/.gitkeep",
+    "bytes": 0,
+    "suggested_bucket": "manual_sort_inbox",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/06_ooxml_current/.gitkeep",
+    "bytes": 0,
+    "suggested_bucket": "manual_sort_inbox",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/07_ooxml_revision_exports/.gitkeep",
+    "bytes": 0,
+    "suggested_bucket": "manual_sort_inbox",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/08_worldbuilding_lore/.gitkeep",
+    "bytes": 0,
+    "suggested_bucket": "manual_sort_inbox",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/09_synopsis_compendiums/.gitkeep",
+    "bytes": 0,
+    "suggested_bucket": "manual_sort_inbox",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/.gitkeep",
+    "bytes": 0,
+    "suggested_bucket": "manual_sort_inbox",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/.gitkeep",
+    "bytes": 0,
+    "suggested_bucket": "manual_sort_inbox",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/reports/xml_recovery/google_export_run.log",
+    "bytes": 11631,
+    "suggested_bucket": "manual_sort_inbox",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/reports/xml_recovery/google_xml_extraction_audit.md",
+    "bytes": 452,
+    "suggested_bucket": "manual_sort_inbox",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/reports/xml_recovery/materialized_ooxml_manifest.json",
+    "bytes": 2,
+    "suggested_bucket": "manual_sort_inbox",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/12_supabase_indexes/.gitkeep",
+    "bytes": 0,
+    "suggested_bucket": "manual_sort_inbox",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/99_manual_sort_inbox/.gitkeep",
+    "bytes": 0,
+    "suggested_bucket": "manual_sort_inbox",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/99_quarantine_do_not_ingest/.gitkeep",
+    "bytes": 0,
+    "suggested_bucket": "manual_sort_inbox",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/00_protocols/agent_read_context_index.md",
+    "bytes": 3752,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 2,
+      "synopsis_compendiums": 0,
+      "protocols": 6,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/later_queue/174_refined_lore_singularity.txt",
+    "bytes": 4657573,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 5,
+      "synopsis_compendiums": 0,
+      "protocols": 8,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/016_229_1.txt",
+    "bytes": 12355,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 60,
+      "synopsis_compendiums": 5,
+      "protocols": 85,
+      "revision_snapshots": 26
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/026_ai_checkpoint_final.txt",
+    "bytes": 1572831,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 8,
+      "worldbuilding_lore": 70,
+      "synopsis_compendiums": 7,
+      "protocols": 94,
+      "revision_snapshots": 32
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/029_ai_information_intuition.md",
+    "bytes": 26047,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 5,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 7,
+      "protocols": 29,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/031_ai_ready_checkpoint.txt",
+    "bytes": 1724056,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 2,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 58,
+      "synopsis_compendiums": 5,
+      "protocols": 80,
+      "revision_snapshots": 22
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/075_comparison.txt",
+    "bytes": 38959,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 13,
+      "synopsis_compendiums": 5,
+      "protocols": 127,
+      "revision_snapshots": 96
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/111_impossible_targets.txt",
+    "bytes": 4146,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 25,
+      "synopsis_compendiums": 1,
+      "protocols": 51,
+      "revision_snapshots": 7
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_2_large_universal/084_drive_not_local_raw.txt",
+    "bytes": 32123,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 13,
+      "synopsis_compendiums": 5,
+      "protocols": 128,
+      "revision_snapshots": 97
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_3_checkpoints/199_termux_checkpoint_w_gemini_1_1.txt",
+    "bytes": 30774,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 1,
+      "worldbuilding_lore": 11,
+      "synopsis_compendiums": 21,
+      "protocols": 72,
+      "revision_snapshots": 35
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/1.0_revision.txt",
+    "bytes": 21666,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 11,
+      "worldbuilding_lore": 12,
+      "synopsis_compendiums": 1,
+      "protocols": 57,
+      "revision_snapshots": 15
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/10.0_master_system_for_chapter_revision.txt",
+    "bytes": 12722,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 19,
+      "worldbuilding_lore": 2,
+      "synopsis_compendiums": 3,
+      "protocols": 25,
+      "revision_snapshots": 24
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/3.0_final_.txt",
+    "bytes": 6905,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 5,
+      "synopsis_compendiums": 0,
+      "protocols": 10,
+      "revision_snapshots": 7
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/4.0_(12_rules_for_life).txt",
+    "bytes": 3660,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 4,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 0,
+      "protocols": 20,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/4.0_revised.txt",
+    "bytes": 30624,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 17,
+      "worldbuilding_lore": 8,
+      "synopsis_compendiums": 0,
+      "protocols": 21,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/5.0_final_guide.txt",
+    "bytes": 9382,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 8,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 1,
+      "protocols": 20,
+      "revision_snapshots": 7
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/6.0_highest_priority_(read_this_first_and_then_again_last)_.txt",
+    "bytes": 20099,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 19,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 0,
+      "protocols": 47,
+      "revision_snapshots": 9
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/6.0_supreme_generative_constraint.txt",
+    "bytes": 11330,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 7,
+      "worldbuilding_lore": 5,
+      "synopsis_compendiums": 0,
+      "protocols": 39,
+      "revision_snapshots": 9
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/6.0_synthesis_mandate.txt",
+    "bytes": 8427,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 6,
+      "worldbuilding_lore": 6,
+      "synopsis_compendiums": 0,
+      "protocols": 35,
+      "revision_snapshots": 10
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/7.0_chapter_refinery.txt",
+    "bytes": 3603,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 0,
+      "protocols": 8,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/7.0_nuclear_edit!!!!_(critical!_dire!_emergency!!!).txt",
+    "bytes": 23510,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 12,
+      "worldbuilding_lore": 18,
+      "synopsis_compendiums": 1,
+      "protocols": 21,
+      "revision_snapshots": 8
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/9.0_aesthetic.txt",
+    "bytes": 8465,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 6,
+      "worldbuilding_lore": 6,
+      "synopsis_compendiums": 0,
+      "protocols": 33,
+      "revision_snapshots": 10
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/a_chapter_1_stardust_to_stardust.txt",
+    "bytes": 20031,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 6,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 0,
+      "protocols": 29,
+      "revision_snapshots": 7
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/a_chapter_1_stardust_to_stardust_copy_2.txt",
+    "bytes": 21370,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 6,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 0,
+      "protocols": 31,
+      "revision_snapshots": 9
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/a_chapter_1_stardust_to_stardust_copy_3.txt",
+    "bytes": 21228,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 5,
+      "synopsis_compendiums": 0,
+      "protocols": 23,
+      "revision_snapshots": 8
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/a_chapter_1_stardust_to_stardust_copy_4.txt",
+    "bytes": 22015,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 4,
+      "worldbuilding_lore": 9,
+      "synopsis_compendiums": 0,
+      "protocols": 26,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/a_chapter_3_lift_up.txt",
+    "bytes": 22650,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 1,
+      "worldbuilding_lore": 5,
+      "synopsis_compendiums": 0,
+      "protocols": 24,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/a_chapter_3_lift_up_copy_2.txt",
+    "bytes": 20360,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 8,
+      "synopsis_compendiums": 0,
+      "protocols": 16,
+      "revision_snapshots": 6
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/a_chapter_5_the_snare.txt",
+    "bytes": 19805,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 2,
+      "synopsis_compendiums": 0,
+      "protocols": 19,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/alitteras_system_blueprint_v1.txt",
+    "bytes": 3044,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 1,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 2,
+      "revision_snapshots": 1
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_chapter_1_stardust_to_stardust.txt",
+    "bytes": 20323,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 7,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 0,
+      "protocols": 29,
+      "revision_snapshots": 7
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_chapter_1_stardust_to_stardust_copy_2.txt",
+    "bytes": 19605,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 6,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 0,
+      "protocols": 30,
+      "revision_snapshots": 6
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_chapter_1_stardust_to_stardust_copy_3.txt",
+    "bytes": 21506,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 5,
+      "synopsis_compendiums": 0,
+      "protocols": 23,
+      "revision_snapshots": 8
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_chapter_1_stardust_to_stardust_copy_4.txt",
+    "bytes": 21458,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 6,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 0,
+      "protocols": 31,
+      "revision_snapshots": 9
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_chapter_3_lift_up.txt",
+    "bytes": 20517,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 8,
+      "synopsis_compendiums": 0,
+      "protocols": 16,
+      "revision_snapshots": 5
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_chapter_3_lift_up_copy_2.txt",
+    "bytes": 20545,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 0,
+      "protocols": 21,
+      "revision_snapshots": 4
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_chapter_5_the_snare.txt",
+    "bytes": 20546,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 8,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 0,
+      "protocols": 27,
+      "revision_snapshots": 7
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_stardust_to_stardust.txt",
+    "bytes": 20047,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 6,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 0,
+      "protocols": 24,
+      "revision_snapshots": 7
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/c_chapter_1_stardust_to_stardust.txt",
+    "bytes": 21142,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 10,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 15,
+      "revision_snapshots": 12
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/c_chapter_1_stardust_to_stardust_copy_2.txt",
+    "bytes": 21548,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 6,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 0,
+      "protocols": 31,
+      "revision_snapshots": 9
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/c_chapter_1_stardust_to_stardust_copy_3.txt",
+    "bytes": 21212,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 6,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 0,
+      "protocols": 31,
+      "revision_snapshots": 10
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/c_chapter_3_lift_up.txt",
+    "bytes": 20200,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 7,
+      "synopsis_compendiums": 0,
+      "protocols": 16,
+      "revision_snapshots": 5
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/c_chapter_3_lift_up_copy_2.txt",
+    "bytes": 21752,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 0,
+      "protocols": 21,
+      "revision_snapshots": 4
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/c_chapter_stardust_to_stardust.txt",
+    "bytes": 21088,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 6,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 0,
+      "protocols": 29,
+      "revision_snapshots": 7
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_10_master_briefing.txt",
+    "bytes": 21887,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 7,
+      "worldbuilding_lore": 6,
+      "synopsis_compendiums": 1,
+      "protocols": 18,
+      "revision_snapshots": 8
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_1_integration.txt",
+    "bytes": 5703,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 2,
+      "synopsis_compendiums": 0,
+      "protocols": 11,
+      "revision_snapshots": 1
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_1_integration_prompt.txt",
+    "bytes": 7124,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 1,
+      "worldbuilding_lore": 2,
+      "synopsis_compendiums": 0,
+      "protocols": 12,
+      "revision_snapshots": 7
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_1_stardust_to_stardust.txt",
+    "bytes": 19162,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 5,
+      "worldbuilding_lore": 5,
+      "synopsis_compendiums": 0,
+      "protocols": 24,
+      "revision_snapshots": 6
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_1_stardust_to_stardust_copy_2.txt",
+    "bytes": 20564,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 6,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 0,
+      "protocols": 28,
+      "revision_snapshots": 8
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_1_stardust_to_stardust_copy_3.txt",
+    "bytes": 22126,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 6,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 0,
+      "protocols": 24,
+      "revision_snapshots": 9
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_1_stardust_to_stardust_copy_4.txt",
+    "bytes": 19245,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 5,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 0,
+      "protocols": 23,
+      "revision_snapshots": 8
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_2_analysis_and_guides_1.0.txt",
+    "bytes": 17501,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 7,
+      "worldbuilding_lore": 9,
+      "synopsis_compendiums": 2,
+      "protocols": 15,
+      "revision_snapshots": 14
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_2_commerciality_and_marketing_3.0.txt",
+    "bytes": 16963,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 18,
+      "worldbuilding_lore": 9,
+      "synopsis_compendiums": 0,
+      "protocols": 35,
+      "revision_snapshots": 30
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_2_master_revision_prompt_2.0.txt",
+    "bytes": 15223,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 26,
+      "worldbuilding_lore": 6,
+      "synopsis_compendiums": 5,
+      "protocols": 33,
+      "revision_snapshots": 13
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_3_analysis_and_guides.txt",
+    "bytes": 18857,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 6,
+      "worldbuilding_lore": 6,
+      "synopsis_compendiums": 2,
+      "protocols": 39,
+      "revision_snapshots": 25
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_3_commerciality_and_marketing_3.0.txt",
+    "bytes": 4796,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 1,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 0,
+      "protocols": 22,
+      "revision_snapshots": 10
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_3_integration_prompt.txt",
+    "bytes": 4388,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 0,
+      "protocols": 13,
+      "revision_snapshots": 13
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_3_lift_up.txt",
+    "bytes": 19636,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 1,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 0,
+      "protocols": 20,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_3_lift_up_copy_2.txt",
+    "bytes": 19673,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 1,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 0,
+      "protocols": 20,
+      "revision_snapshots": 1
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_3_master_revision_prompt_2.0.txt",
+    "bytes": 7210,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 1,
+      "protocols": 26,
+      "revision_snapshots": 20
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_5_the_snare.txt",
+    "bytes": 19304,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 2,
+      "synopsis_compendiums": 0,
+      "protocols": 19,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/could_you_condense_that_chapter_by_500_to_1_000_w....txt",
+    "bytes": 30850,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 19,
+      "revision_snapshots": 1
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/d_chapter_1_stardust_to_stardust.txt",
+    "bytes": 23090,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 4,
+      "worldbuilding_lore": 2,
+      "synopsis_compendiums": 0,
+      "protocols": 30,
+      "revision_snapshots": 9
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/e_chapter_1_stardust_to_stardust.txt",
+    "bytes": 21595,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 5,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 0,
+      "protocols": 28,
+      "revision_snapshots": 6
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/e_chapter_1_stardust_to_stardust_copy_2.txt",
+    "bytes": 23083,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 5,
+      "worldbuilding_lore": 2,
+      "synopsis_compendiums": 0,
+      "protocols": 27,
+      "revision_snapshots": 10
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/f_chapter_1_stardust_to_stardust_copy_2.txt",
+    "bytes": 27311,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 0,
+      "protocols": 14,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/f_chapter_3_lift_up.txt",
+    "bytes": 18867,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 5,
+      "synopsis_compendiums": 0,
+      "protocols": 7,
+      "revision_snapshots": 6
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/final_chapter_1_revision_prompt.txt",
+    "bytes": 8940,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 1,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 9,
+      "protocols": 47,
+      "revision_snapshots": 41
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/final_chapter_1_stardust_to_stardust.txt",
+    "bytes": 20429,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 5,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 0,
+      "protocols": 29,
+      "revision_snapshots": 9
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/final_chapter_1_stardust_to_stardust_copy_2.txt",
+    "bytes": 21106,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 6,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 0,
+      "protocols": 31,
+      "revision_snapshots": 11
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/final_chapter_3_lift_up.txt",
+    "bytes": 20516,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 8,
+      "synopsis_compendiums": 0,
+      "protocols": 16,
+      "revision_snapshots": 6
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/final_chapter_3_lift_up_copy_2.txt",
+    "bytes": 19556,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 5,
+      "synopsis_compendiums": 0,
+      "protocols": 20,
+      "revision_snapshots": 5
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/final_chapter_5_the_snare.txt",
+    "bytes": 20558,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 8,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 0,
+      "protocols": 27,
+      "revision_snapshots": 8
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/final_revision_generalized_for_all_chapters.txt",
+    "bytes": 6989,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 5,
+      "synopsis_compendiums": 0,
+      "protocols": 10,
+      "revision_snapshots": 8
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/g_chapter_3_lift_up.txt",
+    "bytes": 18859,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 5,
+      "synopsis_compendiums": 0,
+      "protocols": 7,
+      "revision_snapshots": 6
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/narnia.txt",
+    "bytes": 11465,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 2,
+      "synopsis_compendiums": 0,
+      "protocols": 21,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/prompt_guide_e_chapter_10_forsaken.txt",
+    "bytes": 21521,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 0,
+      "protocols": 7,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/purple_prose_prompt.txt",
+    "bytes": 2541,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 2,
+      "protocols": 3,
+      "revision_snapshots": 1
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/r_chapter_1_stardust_to_stardust_copy_2.txt",
+    "bytes": 22451,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 4,
+      "worldbuilding_lore": 2,
+      "synopsis_compendiums": 0,
+      "protocols": 17,
+      "revision_snapshots": 4
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/revision_prompt_d_chapter_10_forsaken.txt",
+    "bytes": 20937,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 6,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 3,
+      "protocols": 8,
+      "revision_snapshots": 5
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/revisions_chapter_1_stardust_to_stardust.txt",
+    "bytes": 19376,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 5,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 0,
+      "protocols": 27,
+      "revision_snapshots": 7
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/sdp_v2.txt",
+    "bytes": 20901,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 19,
+      "worldbuilding_lore": 10,
+      "synopsis_compendiums": 0,
+      "protocols": 23,
+      "revision_snapshots": 5
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/the_scrape.txt",
+    "bytes": 18320,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 6,
+      "worldbuilding_lore": 5,
+      "synopsis_compendiums": 0,
+      "protocols": 11,
+      "revision_snapshots": 8
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/the_version_x_meta_prompt.txt",
+    "bytes": 2456,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 8,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/version_a.txt",
+    "bytes": 19536,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 5,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 0,
+      "protocols": 22,
+      "revision_snapshots": 14
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/version_b.txt",
+    "bytes": 19366,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 5,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 0,
+      "protocols": 24,
+      "revision_snapshots": 5
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/x_chapter_1_stardust_to_stardust.docx.txt",
+    "bytes": 20047,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 6,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 0,
+      "protocols": 24,
+      "revision_snapshots": 7
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/x_chapter_1_stardust_to_stardust.txt",
+    "bytes": 19237,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 5,
+      "worldbuilding_lore": 5,
+      "synopsis_compendiums": 0,
+      "protocols": 25,
+      "revision_snapshots": 6
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/x_chapter_1_stardust_to_stardust_1.txt",
+    "bytes": 20127,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 5,
+      "worldbuilding_lore": 5,
+      "synopsis_compendiums": 0,
+      "protocols": 25,
+      "revision_snapshots": 6
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/x_chapter_1_stardust_to_stardust_2.txt",
+    "bytes": 22477,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 5,
+      "worldbuilding_lore": 6,
+      "synopsis_compendiums": 0,
+      "protocols": 32,
+      "revision_snapshots": 7
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/x_chapter_1_stardust_to_stardust_copy_2.txt",
+    "bytes": 20060,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 6,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 0,
+      "protocols": 24,
+      "revision_snapshots": 8
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/z_chapter_1_stardust_to_stardust.txt",
+    "bytes": 21441,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 0,
+      "protocols": 22,
+      "revision_snapshots": 7
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/reports/perfect_weight/04_uiux_extract.md",
+    "bytes": 215426,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 12,
+      "worldbuilding_lore": 9,
+      "synopsis_compendiums": 1,
+      "protocols": 46,
+      "revision_snapshots": 9
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/reports/perfect_weight/05_contradiction_fork_map.md",
+    "bytes": 95779,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 12,
+      "worldbuilding_lore": 13,
+      "synopsis_compendiums": 0,
+      "protocols": 23,
+      "revision_snapshots": 10
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/later_queue/174_refined_lore_singularity.txt",
+    "bytes": 4657573,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 5,
+      "synopsis_compendiums": 0,
+      "protocols": 8,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/016_229_1.txt",
+    "bytes": 12355,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 60,
+      "synopsis_compendiums": 5,
+      "protocols": 85,
+      "revision_snapshots": 26
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/026_ai_checkpoint_final.txt",
+    "bytes": 1572831,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 8,
+      "worldbuilding_lore": 70,
+      "synopsis_compendiums": 7,
+      "protocols": 94,
+      "revision_snapshots": 32
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/029_ai_information_intuition.md",
+    "bytes": 26047,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 5,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 7,
+      "protocols": 29,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/031_ai_ready_checkpoint.txt",
+    "bytes": 1724056,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 2,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 58,
+      "synopsis_compendiums": 5,
+      "protocols": 80,
+      "revision_snapshots": 22
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/075_comparison.txt",
+    "bytes": 38959,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 13,
+      "synopsis_compendiums": 5,
+      "protocols": 127,
+      "revision_snapshots": 96
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/111_impossible_targets.txt",
+    "bytes": 4146,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 25,
+      "synopsis_compendiums": 1,
+      "protocols": 51,
+      "revision_snapshots": 7
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_2_large_universal/084_drive_not_local_raw.txt",
+    "bytes": 32123,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 13,
+      "synopsis_compendiums": 5,
+      "protocols": 128,
+      "revision_snapshots": 97
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_3_checkpoints/199_termux_checkpoint_w_gemini_1_1.txt",
+    "bytes": 30774,
+    "suggested_bucket": "protocols",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 1,
+      "worldbuilding_lore": 11,
+      "synopsis_compendiums": 21,
+      "protocols": 72,
+      "revision_snapshots": 35
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/013_writing_agent_app._source_doc._(4)_[termux].txt.txt",
+    "bytes": 44105,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 30,
+      "synopsis_compendiums": 1,
+      "protocols": 39,
+      "revision_snapshots": 84
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/095_gdrive_raw_full_inventory.txt",
+    "bytes": 6534,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 10,
+      "synopsis_compendiums": 1,
+      "protocols": 25,
+      "revision_snapshots": 27
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_2_large_universal/077_contradiction_map.txt",
+    "bytes": 164769,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 7,
+      "worldbuilding_lore": 13,
+      "synopsis_compendiums": 0,
+      "protocols": 8,
+      "revision_snapshots": 17
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_2_large_universal/123_new_sec_doc_1_1.txt",
+    "bytes": 32142,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 3,
+      "layer_to_cinema_sources": 23,
+      "worldbuilding_lore": 13,
+      "synopsis_compendiums": 1,
+      "protocols": 22,
+      "revision_snapshots": 25
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_2_large_universal/124_new_sec_doc_1_2.txt",
+    "bytes": 43659,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 3,
+      "layer_to_cinema_sources": 23,
+      "worldbuilding_lore": 13,
+      "synopsis_compendiums": 1,
+      "protocols": 22,
+      "revision_snapshots": 25
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/10.0_blueprint_for_the_ascent_of_daniel:_the_archetype_of_sacrifice_(nyt_bestseller_focus).txt",
+    "bytes": 4609,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 9
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/11.0_marketability_.txt",
+    "bytes": 6356,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 4,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 0,
+      "protocols": 2,
+      "revision_snapshots": 6
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/2.0_this_is_the_critical_adjustment\u2014the_final_layer_that_elevates_philosophical_storytelling_into_timeless,_devastating_human_tragedy.txt",
+    "bytes": 4533,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 4,
+      "worldbuilding_lore": 2,
+      "synopsis_compendiums": 0,
+      "protocols": 2,
+      "revision_snapshots": 8
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/8.0_pacing\uff0fredundancy.txt",
+    "bytes": 15094,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 10,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 1,
+      "protocols": 13,
+      "revision_snapshots": 16
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/8._0_this_is_the_final,_most_crucial_step:_ensuring_the_narrative's_structure_is_so_perfectly_weighted_that_the_profound_sadness\u2014the_weeping_of_self-recognition\u2014is_not_a_chance_event,_but_an_earned,_inevitable_catharsis_for_the_reader.txt",
+    "bytes": 4265,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 6,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 0,
+      "protocols": 2,
+      "revision_snapshots": 8
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/a_chapter_2_living_sacrifice.txt",
+    "bytes": 19743,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 0,
+      "protocols": 1,
+      "revision_snapshots": 9
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/a_chapter_2_living_sacrifice_copy_2.txt",
+    "bytes": 18467,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 1,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 8
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_chapter_2_living_sacrifice.txt",
+    "bytes": 19692,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 0,
+      "protocols": 1,
+      "revision_snapshots": 9
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_chapter_2_living_sacrifice_copy_2.txt",
+    "bytes": 19234,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 2,
+      "synopsis_compendiums": 0,
+      "protocols": 1,
+      "revision_snapshots": 8
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_chapter_9_the_ascent.txt",
+    "bytes": 20049,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 5,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 7
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/c_chapter_2_living_sacrifice.txt",
+    "bytes": 18680,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 0,
+      "protocols": 1,
+      "revision_snapshots": 11
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/c_chapter_8_sea_people.txt",
+    "bytes": 17219,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 9,
+      "synopsis_compendiums": 0,
+      "protocols": 2,
+      "revision_snapshots": 11
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_10.5.txt",
+    "bytes": 27367,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 6
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_1_proof_of_authorship_1.1.txt",
+    "bytes": 17600,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 6,
+      "synopsis_compendiums": 0,
+      "protocols": 1,
+      "revision_snapshots": 13
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_2_living_sacrifice.txt",
+    "bytes": 18574,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 7,
+      "synopsis_compendiums": 0,
+      "protocols": 1,
+      "revision_snapshots": 9
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_8_final.txt",
+    "bytes": 17241,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 9,
+      "synopsis_compendiums": 0,
+      "protocols": 2,
+      "revision_snapshots": 12
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_9_the_ascent.txt",
+    "bytes": 27768,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 7
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_9_the_ascent_copy_2.txt",
+    "bytes": 27027,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 7
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/d_chapter_2_living_sacrifice.txt",
+    "bytes": 18607,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 0,
+      "protocols": 1,
+      "revision_snapshots": 11
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/d_chapter_2_living_sacrifice_copy_2.txt",
+    "bytes": 19019,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 9,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 15
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/e_chapter_2_living_sacrifice.txt",
+    "bytes": 23222,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 8,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 11
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/e_chapter_2_living_sacrifice_copy_2.txt",
+    "bytes": 10827,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 7
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/e_chapter_3_lift_up.txt",
+    "bytes": 16482,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 4
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/f_chapter_1_stardust_to_stardust.txt",
+    "bytes": 12506,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 5
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/f_chapter_1_stardust_to_stardust_copy_3.txt",
+    "bytes": 15479,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 5,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 9
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/f_chapter_2_living_sacrifice.txt",
+    "bytes": 22306,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 10,
+      "worldbuilding_lore": 2,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 14
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/final_chapter_2_living_sacrifice.txt",
+    "bytes": 19743,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 0,
+      "protocols": 1,
+      "revision_snapshots": 10
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/g_chapter_2_living_sacrifice.txt",
+    "bytes": 22378,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 11,
+      "worldbuilding_lore": 3,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 14
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/manuscript_autopsy.txt",
+    "bytes": 3998,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/n_chapter_1_stardust_to_stardust_copy_2.txt",
+    "bytes": 18278,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 1,
+      "worldbuilding_lore": 2,
+      "synopsis_compendiums": 0,
+      "protocols": 2,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/notes_chapter_2_living_sacrifice.txt",
+    "bytes": 30359,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 8,
+      "worldbuilding_lore": 2,
+      "synopsis_compendiums": 0,
+      "protocols": 18,
+      "revision_snapshots": 29
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/r_chapter_1_stardust_to_stardust.txt",
+    "bytes": 21556,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/toalitteras_ecosystem_v2.txt",
+    "bytes": 3991,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 1,
+      "synopsis_compendiums": 0,
+      "protocols": 2,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/reports/perfect_weight/06_supabase_snapshot.md",
+    "bytes": 264,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/reports/xml_recovery/source_xml_supabase_schema_proposal.sql",
+    "bytes": 1335,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 0,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/013_writing_agent_app._source_doc._(4)_[termux].txt.txt",
+    "bytes": 44105,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 30,
+      "synopsis_compendiums": 1,
+      "protocols": 39,
+      "revision_snapshots": 84
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/095_gdrive_raw_full_inventory.txt",
+    "bytes": 6534,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 10,
+      "synopsis_compendiums": 1,
+      "protocols": 25,
+      "revision_snapshots": 27
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_2_large_universal/077_contradiction_map.txt",
+    "bytes": 164769,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 7,
+      "worldbuilding_lore": 13,
+      "synopsis_compendiums": 0,
+      "protocols": 8,
+      "revision_snapshots": 17
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_2_large_universal/123_new_sec_doc_1_1.txt",
+    "bytes": 32142,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 3,
+      "layer_to_cinema_sources": 23,
+      "worldbuilding_lore": 13,
+      "synopsis_compendiums": 1,
+      "protocols": 22,
+      "revision_snapshots": 25
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_2_large_universal/124_new_sec_doc_1_2.txt",
+    "bytes": 43659,
+    "suggested_bucket": "revision_snapshots",
+    "scores": {
+      "typography_sources": 3,
+      "layer_to_cinema_sources": 23,
+      "worldbuilding_lore": 13,
+      "synopsis_compendiums": 1,
+      "protocols": 22,
+      "revision_snapshots": 25
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_2_large_universal/104_give_me_the_terminal_commands_to_f_get_that.pdf",
+    "bytes": 32975,
+    "suggested_bucket": "typography_sources",
+    "scores": {
+      "typography_sources": 12,
+      "layer_to_cinema_sources": 1,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_2_large_universal/104_give_me_the_terminal_commands_to_f_get_that.pdf",
+    "bytes": 32975,
+    "suggested_bucket": "typography_sources",
+    "scores": {
+      "typography_sources": 12,
+      "layer_to_cinema_sources": 1,
+      "worldbuilding_lore": 0,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/089_first_future_feature.txt",
+    "bytes": 11324,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 9,
+      "worldbuilding_lore": 15,
+      "synopsis_compendiums": 1,
+      "protocols": 7,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/12.0_perfection.txt",
+    "bytes": 6433,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 4,
+      "worldbuilding_lore": 5,
+      "synopsis_compendiums": 2,
+      "protocols": 4,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/3.0_literary_&_archetypal_fusion_rulebook_(the_cat_god_&_the_primal_self).txt",
+    "bytes": 5085,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 4,
+      "worldbuilding_lore": 5,
+      "synopsis_compendiums": 0,
+      "protocols": 5,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/3.0_scientific_guide.txt",
+    "bytes": 10075,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 5,
+      "worldbuilding_lore": 15,
+      "synopsis_compendiums": 0,
+      "protocols": 3,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/a_chapter_6_beelzebub_beelzebub.txt",
+    "bytes": 21965,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 1,
+      "worldbuilding_lore": 11,
+      "synopsis_compendiums": 0,
+      "protocols": 4,
+      "revision_snapshots": 1
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/a_chapter_8_sea_people.txt",
+    "bytes": 22969,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 14,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 1
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_chapter_6_beelzebub_beelzebub.txt",
+    "bytes": 22160,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 1,
+      "worldbuilding_lore": 10,
+      "synopsis_compendiums": 0,
+      "protocols": 4,
+      "revision_snapshots": 1
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_chapter_8_sea_people.txt",
+    "bytes": 19612,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 12,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 4
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/c_chapter_4_pilgrimage.txt",
+    "bytes": 17991,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 0,
+      "protocols": 2,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/c_chapter_4_pilgrimage_copy_2.txt",
+    "bytes": 19881,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 5,
+      "worldbuilding_lore": 9,
+      "synopsis_compendiums": 0,
+      "protocols": 5,
+      "revision_snapshots": 7
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/c_chapter_6_beelzebub_beelzebub.txt",
+    "bytes": 23717,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 1,
+      "worldbuilding_lore": 10,
+      "synopsis_compendiums": 0,
+      "protocols": 4,
+      "revision_snapshots": 1
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/c_chapter_7_the_pit.txt",
+    "bytes": 27331,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 6,
+      "worldbuilding_lore": 7,
+      "synopsis_compendiums": 0,
+      "protocols": 2,
+      "revision_snapshots": 1
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_10.1.txt",
+    "bytes": 20311,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 1,
+      "worldbuilding_lore": 7,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_11._forsaken.txt",
+    "bytes": 26263,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 7,
+      "worldbuilding_lore": 8,
+      "synopsis_compendiums": 0,
+      "protocols": 1,
+      "revision_snapshots": 0
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_1_proof_of_authorship_1.0.txt",
+    "bytes": 13182,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 1,
+      "worldbuilding_lore": 6,
+      "synopsis_compendiums": 0,
+      "protocols": 1,
+      "revision_snapshots": 5
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_2_living_sacrifice_copy_2.txt",
+    "bytes": 19181,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 12,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 8
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_4_pilgrimage.txt",
+    "bytes": 18326,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 0,
+      "protocols": 2,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_4_pilgrimage_copy_2.txt",
+    "bytes": 18833,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 2,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 0,
+      "protocols": 2,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_6_beelzebub_beelzebub.txt",
+    "bytes": 21547,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 1,
+      "worldbuilding_lore": 11,
+      "synopsis_compendiums": 0,
+      "protocols": 4,
+      "revision_snapshots": 1
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_7_the_pit.txt",
+    "bytes": 27116,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 6,
+      "worldbuilding_lore": 7,
+      "synopsis_compendiums": 0,
+      "protocols": 2,
+      "revision_snapshots": 1
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_8_sea_people.txt",
+    "bytes": 22969,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 14,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 1
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_8_sea_people_copy_2.txt",
+    "bytes": 24065,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 13,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/g_chapter_1_stardust_to_stardust_copy_2.txt",
+    "bytes": 19186,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 4,
+      "worldbuilding_lore": 5,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 3
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/g_chapter_2_living_sacrifice_copy_2.txt",
+    "bytes": 22989,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 1,
+      "worldbuilding_lore": 4,
+      "synopsis_compendiums": 0,
+      "protocols": 3,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/go_ahead_and_write_out_the_chapter_keep_in_mind_t....txt",
+    "bytes": 26548,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 4,
+      "worldbuilding_lore": 16,
+      "synopsis_compendiums": 0,
+      "protocols": 1,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/n_chapter_1_stardust_to_stardust.txt",
+    "bytes": 23311,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 1,
+      "worldbuilding_lore": 6,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/notes_chapter_2_living_sacrifice_copy_2.txt",
+    "bytes": 26308,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 3,
+      "worldbuilding_lore": 12,
+      "synopsis_compendiums": 0,
+      "protocols": 0,
+      "revision_snapshots": 11
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/o_chapter_1_stardust_to_stardust.txt",
+    "bytes": 18374,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 1,
+      "worldbuilding_lore": 2,
+      "synopsis_compendiums": 0,
+      "protocols": 2,
+      "revision_snapshots": 2
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/the_weight_of_the_sky_master_compendium_singularity_v.txt",
+    "bytes": 6562,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 1,
+      "worldbuilding_lore": 15,
+      "synopsis_compendiums": 2,
+      "protocols": 3,
+      "revision_snapshots": 1
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/whole_book.txt",
+    "bytes": 23683,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 5,
+      "worldbuilding_lore": 17,
+      "synopsis_compendiums": 0,
+      "protocols": 4,
+      "revision_snapshots": 1
+    }
+  },
+  {
+    "path": "data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/089_first_future_feature.txt",
+    "bytes": 11324,
+    "suggested_bucket": "worldbuilding_lore",
+    "scores": {
+      "typography_sources": 0,
+      "layer_to_cinema_sources": 9,
+      "worldbuilding_lore": 15,
+      "synopsis_compendiums": 1,
+      "protocols": 7,
+      "revision_snapshots": 0
+    }
+  }
+]

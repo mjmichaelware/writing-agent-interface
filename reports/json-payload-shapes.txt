@@ -1,0 +1,123 @@
+Pager usage is off.
+Border style is 2.
+=== dualism_map JSON shapes ===
++-----------+-------+
+| json_type | count |
++-----------+-------+
+| object    |  3742 |
++-----------+-------+
+(1 row)
+
+
+=== archetypal_weights JSON shapes ===
++-----------+-------+
+| json_type | count |
++-----------+-------+
+| object    |  3742 |
++-----------+-------+
+(1 row)
+
+
+=== hebrew_spans JSON shapes ===
++-----------+-------+
+| json_type | count |
++-----------+-------+
+| array     |   966 |
++-----------+-------+
+(1 row)
+
+
+=== top dualism_map keys ===
++---------+-------+
+|   key   | count |
++---------+-------+
+| sacred  |  3742 |
+| descent |  3742 |
++---------+-------+
+(2 rows)
+
+
+=== top archetypal_weights keys ===
++---------+-------+
+|   key   | count |
++---------+-------+
+| shadow  |  3742 |
+| persona |  3742 |
+| self    |  3742 |
+| hero    |  3742 |
+| anima   |  3742 |
++---------+-------+
+(5 rows)
+
+
+=== sample dualism_map payloads ===
++-------------+----------------+-------------+---------------------------------+
+| manifest_id | chapter_number | chunk_index |           dualism_map           |
++-------------+----------------+-------------+---------------------------------+
+| Chapter_1   |              1 |             | {"sacred": 0, "descent": 0}     |
+| Chapter_1   |              1 |             | {"sacred": 0, "descent": 0.8}   |
+| Chapter_1   |              1 |             | {"sacred": 0.2, "descent": 0.8} |
+| Chapter_1   |              1 |             | {"sacred": 0.3, "descent": 0.7} |
+| Chapter_1   |              1 |             | {"sacred": 0.3, "descent": 0.7} |
+| Chapter_1   |              1 |             | {"sacred": 0, "descent": 0.7}   |
+| Chapter_1   |              1 |             | {"sacred": 0.2, "descent": 0.8} |
+| Chapter_1   |              1 |             | {"sacred": 0.6, "descent": 0}   |
+| Chapter_1   |              1 |             | {"sacred": 0.5, "descent": 0.9} |
+| Chapter_1   |              1 |             | {"sacred": 0.2, "descent": 0.8} |
++-------------+----------------+-------------+---------------------------------+
+(10 rows)
+
+
+=== sample archetypal_weights payloads ===
++-------------+----------------+-------------+-------------------------------------------------------------------------+
+| manifest_id | chapter_number | chunk_index |                           archetypal_weights                            |
++-------------+----------------+-------------+-------------------------------------------------------------------------+
+| Chapter_1   |              1 |             | {"hero": 0, "self": 0, "anima": 0, "shadow": 0, "persona": 0}           |
+| Chapter_1   |              1 |             | {"hero": 0.3, "self": 0.2, "anima": 0, "shadow": 0.7, "persona": 0.2}   |
+| Chapter_1   |              1 |             | {"hero": 0.4, "self": 0.1, "anima": 0, "shadow": 0.4, "persona": 0.1}   |
+| Chapter_1   |              1 |             | {"hero": 0.1, "self": 0.2, "anima": 0.6, "shadow": 0.7, "persona": 0.1} |
+| Chapter_1   |              1 |             | {"hero": 0, "self": 0, "anima": 0.2, "shadow": 0.8, "persona": 0}       |
+| Chapter_1   |              1 |             | {"hero": 0, "self": 0.1, "anima": 0, "shadow": 0.4, "persona": 0}       |
+| Chapter_1   |              1 |             | {"hero": 0.1, "self": 0.1, "anima": 0, "shadow": 0.7, "persona": 0.1}   |
+| Chapter_1   |              1 |             | {"hero": 0.2, "self": 0.4, "anima": 0.2, "shadow": 0.2, "persona": 0}   |
+| Chapter_1   |              1 |             | {"hero": 0.6, "self": 0.4, "anima": 0.3, "shadow": 0.7, "persona": 0.2} |
+| Chapter_1   |              1 |             | {"hero": 0, "self": 0, "anima": 0, "shadow": 0.8, "persona": 0.2}       |
++-------------+----------------+-------------+-------------------------------------------------------------------------+
+(10 rows)
+
+
+=== sample hebrew_spans payloads ===
++-------------+----------------+-------------+-------------------+
+| manifest_id | chapter_number | chunk_index |   hebrew_spans    |
++-------------+----------------+-------------+-------------------+
+| Chapter_1   |              1 |             | ["Hebron"]        |
+| Chapter_1   |              1 |             | ["Hebron"]        |
+| Chapter_1   |              1 |             | ["Hebron"]        |
+| Chapter_1   |              1 |             | ["Hebron"]        |
+| Chapter_1   |              1 |             | ["Hebron"]        |
+| Chapter_1   |              1 |             | ["Zuna", "Aviel"] |
+| Chapter_1   |              1 |             | ["Hebron"]        |
+| Chapter_1   |              1 |             | ["Hebron"]        |
+| Chapter_1   |              1 |             | ["Hebron"]        |
+| Chapter_1   |              1 |             | ["Hebron"]        |
++-------------+----------------+-------------+-------------------+
+(10 rows)
+
+
+=== sample metadata payloads ===
++-------------+----------------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| manifest_id | chapter_number | chunk_index |                                                                                            metadata                                                                                            |
++-------------+----------------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Chapter_1   |              1 |             | {"weather": "unknown", "scene_id": "Chapter 1", "time_of_day": "unknown", "internal_state": "unknown", "character_present": "unknown"}                                                         |
+| Chapter_1   |              1 |             | {"weather": "unknown", "scene_id": "unknown", "time_of_day": "night", "internal_state": "fearful", "character_present": "boy"}                                                                 |
+| Chapter_1   |              1 |             | {"weather": "none", "scene_id": "1", "time_of_day": "night", "internal_state": "anxious determination", "character_present": "boy"}                                                            |
+| Chapter_1   |              1 |             | {"weather": "unknown", "scene_id": "house_dilapidation_scene", "time_of_day": "unknown", "internal_state": "grief-stricken, burdened", "character_present": "Father Aviel"}                    |
+| Chapter_1   |              1 |             | {"weather": "oppressively heavy", "scene_id": "1", "time_of_day": "unknown", "internal_state": "struggling against overwhelming decay and futility", "character_present": "narrator/observer"} |
+| Chapter_1   |              1 |             | {"weather": "dry_inner_environment", "scene_id": "desolate_ruins", "time_of_day": "indeterminate", "internal_state": "thirst and desolation", "character_present": "none"}                     |
+| Chapter_1   |              1 |             | {"weather": "cold", "scene_id": "1", "time_of_day": "uncertain", "internal_state": "reflective and disturbed", "character_present": "Dan"}                                                     |
+| Chapter_1   |              1 |             | {"weather": "void", "scene_id": "dreamscape001", "time_of_day": "timeless", "internal_state": "contemplative", "character_present": "none"}                                                    |
+| Chapter_1   |              1 |             | {"weather": "indoors - undefined", "scene_id": "reckoning_house", "time_of_day": "night", "internal_state": "reflective, determined", "character_present": "Dan"}                              |
+| Chapter_1   |              1 |             | {"weather": "unknown", "scene_id": "creeping_to_door", "time_of_day": "night", "internal_state": "cautious, stealthy", "character_present": "Dan"}                                             |
++-------------+----------------+-------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+(10 rows)
+

@@ -1,0 +1,77 @@
+[
+  {
+    "directory": "data/runtime_sources/weight_of_the_sky/00_protocols",
+    "files": 4,
+    "bytes": 23295
+  },
+  {
+    "directory": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs",
+    "files": 30,
+    "bytes": 8871069
+  },
+  {
+    "directory": "data/runtime_sources/weight_of_the_sky/02_typography_sources",
+    "files": 1,
+    "bytes": 0
+  },
+  {
+    "directory": "data/runtime_sources/weight_of_the_sky/03_layer_to_cinema_sources",
+    "files": 1,
+    "bytes": 0
+  },
+  {
+    "directory": "data/runtime_sources/weight_of_the_sky/04_current_final_drafts",
+    "files": 1,
+    "bytes": 0
+  },
+  {
+    "directory": "data/runtime_sources/weight_of_the_sky/05_revision_snapshots",
+    "files": 1,
+    "bytes": 0
+  },
+  {
+    "directory": "data/runtime_sources/weight_of_the_sky/06_ooxml_current",
+    "files": 1,
+    "bytes": 0
+  },
+  {
+    "directory": "data/runtime_sources/weight_of_the_sky/07_ooxml_revision_exports",
+    "files": 1,
+    "bytes": 0
+  },
+  {
+    "directory": "data/runtime_sources/weight_of_the_sky/08_worldbuilding_lore",
+    "files": 1,
+    "bytes": 0
+  },
+  {
+    "directory": "data/runtime_sources/weight_of_the_sky/09_synopsis_compendiums",
+    "files": 1,
+    "bytes": 0
+  },
+  {
+    "directory": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines",
+    "files": 182,
+    "bytes": 3250422
+  },
+  {
+    "directory": "data/runtime_sources/weight_of_the_sky/11_agent_context",
+    "files": 47,
+    "bytes": 10326563
+  },
+  {
+    "directory": "data/runtime_sources/weight_of_the_sky/12_supabase_indexes",
+    "files": 1,
+    "bytes": 0
+  },
+  {
+    "directory": "data/runtime_sources/weight_of_the_sky/99_manual_sort_inbox",
+    "files": 1,
+    "bytes": 0
+  },
+  {
+    "directory": "data/runtime_sources/weight_of_the_sky/99_quarantine_do_not_ingest",
+    "files": 1,
+    "bytes": 0
+  }
+]

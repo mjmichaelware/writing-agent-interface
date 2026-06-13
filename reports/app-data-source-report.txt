@@ -1,0 +1,15 @@
+=== Where the app loads chapters from ===
+src/app/api/manuscript/route.ts:25:    .from('paragraphs')
+src/app/page.tsx:20:        const chaptersRes = await fetch(`/api/chapters`);
+src/app/page.tsx.bak:21:        const chaptersRes = await fetch(`/api/chapters`);
+src/components/ui/front-matter/TableOfContents.tsx:16:    fetch('/api/chapters')
+src/components/layers/panel/SystemTab.tsx:18:      fetch("/api/chapters")
+src/components/layers/panel/BiblicalReferencesDirectory.tsx:32:  if (refs.length === 0) return <div className="panel-empty">No biblical references indexed yet</div>;
+src/components/layers/panel/BiblicalReferencesDirectory.tsx:71:      <p className="panel-sub">{refs.length} references across {books.length} books</p>
+src/services/memory-engine/corpus-loader.ts:17:    if (!fs.existsSync(this.manifestPath)) {
+src/services/memory-engine/corpus-loader.ts:21:    const manifest = JSON.parse(fs.readFileSync(this.manifestPath, 'utf-8'));
+src/services/memory-engine/corpus-loader.ts:54:        if (!fs.existsSync(fullPath)) {
+src/services/memory-engine/corpus-loader.ts:59:        const content = fs.readFileSync(fullPath, 'utf-8');
+src/lib/narrative/fileService.ts:14:  const raw = await fs.readFile(file.filename, "utf8");
+scripts/data-lineage-audit.sh:19:  -E "public/data/chapters|chapters|paragraphs|chapter7|chapter_?id|fileService|readFile|fs\\.|supabase" \
+scripts/data-lineage-audit.sh:46:find public/data/chapters -type f 2>/dev/null | sort | tee -a reports/data-lineage-audit.txt

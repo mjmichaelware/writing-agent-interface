@@ -1,0 +1,85 @@
+# Strict Code Runtime Path Audit
+
+This excludes staged documents, data-layer manifests, generated reports, copied runtime-source data, and corpus files.
+
+- Scanned code files: 159
+- Real code hits: 76
+
+## Real code references
+
+- `src/lib/runtime-source-paths.ts` L7: `// data/runtime_sources/weight_of_the_sky/ is runtime manuscript/source data.`
+- `src/lib/runtime-source-paths.ts` L9: `export const RUNTIME_SOURCE_ROOT = "data/runtime_sources/weight_of_the_sky";`
+- `src/lib/runtime-source-paths.ts` L11: `export const RUNTIME_SOURCE_PATHS = {`
+- `src/lib/runtime-source-paths.ts` L12: `protocols: "data/runtime_sources/weight_of_the_sky/00_protocols",`
+- `src/lib/runtime-source-paths.ts` L13: `rendererActiveInputs: "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs",`
+- `src/lib/runtime-source-paths.ts` L14: `typographySources: "data/runtime_sources/weight_of_the_sky/02_typography_sources",`
+- `src/lib/runtime-source-paths.ts` L15: `layerToCinemaSources: "data/runtime_sources/weight_of_the_sky/03_layer_to_cinema_sources",`
+- `src/lib/runtime-source-paths.ts` L16: `currentFinalDrafts: "data/runtime_sources/weight_of_the_sky/04_current_final_drafts",`
+- `src/lib/runtime-source-paths.ts` L17: `revisionSnapshots: "data/runtime_sources/weight_of_the_sky/05_revision_snapshots",`
+- `src/lib/runtime-source-paths.ts` L18: `currentOoxml: "data/runtime_sources/weight_of_the_sky/06_ooxml_current",`
+- `src/lib/runtime-source-paths.ts` L19: `revisionOoxml: "data/runtime_sources/weight_of_the_sky/07_ooxml_revision_exports",`
+- `src/lib/runtime-source-paths.ts` L20: `worldbuildingLore: "data/runtime_sources/weight_of_the_sky/08_worldbuilding_lore",`
+- `src/lib/runtime-source-paths.ts` L21: `synopsisCompendiums: "data/runtime_sources/weight_of_the_sky/09_synopsis_compendiums",`
+- `src/lib/runtime-source-paths.ts` L22: `ingestionBaselines: "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines",`
+- `src/lib/runtime-source-paths.ts` L23: `agentContext: "data/runtime_sources/weight_of_the_sky/11_agent_context",`
+- `src/lib/runtime-source-paths.ts` L24: `supabaseIndexes: "data/runtime_sources/weight_of_the_sky/12_supabase_indexes",`
+- `src/lib/runtime-source-paths.ts` L25: `manualSortInbox: "data/runtime_sources/weight_of_the_sky/99_manual_sort_inbox",`
+- `src/lib/runtime-source-paths.ts` L26: `quarantineDoNotIngest: "data/runtime_sources/weight_of_the_sky/99_quarantine_do_not_ingest",`
+- `src/lib/runtime-source-paths.ts` L30: `gdriveRawTextBaseline: "src/data-layer/ingestion-buffer/gdrive_raw",`
+- `src/lib/runtime-source-paths.ts` L31: `gdriveDocxIntake: "src/data-layer/ingestion-buffer/gdrive_docx_intake",`
+- `src/lib/runtime-source-paths.ts` L32: `gdriveOoxmlRaw: "src/data-layer/ingestion-buffer/gdrive_ooxml_raw",`
+- `src/lib/runtime-source-paths.ts` L33: `readmeDocs: "src/data-layer/ingestion-buffer/readme_docs",`
+- `src/lib/runtime-source-reader.ts` L16: `export const RUNTIME_SOURCE_ROOT = "data/runtime_sources/weight_of_the_sky";`
+- `src/lib/runtime-source-reader.ts` L18: `export const RUNTIME_SOURCE_PATHS = {`
+- `src/lib/runtime-source-reader.ts` L19: `protocols: "data/runtime_sources/weight_of_the_sky/00_protocols",`
+- `src/lib/runtime-source-reader.ts` L20: `rendererActiveInputs: "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs",`
+- `src/lib/runtime-source-reader.ts` L21: `typographySources: "data/runtime_sources/weight_of_the_sky/02_typography_sources",`
+- `src/lib/runtime-source-reader.ts` L22: `layerToCinemaSources: "data/runtime_sources/weight_of_the_sky/03_layer_to_cinema_sources",`
+- `src/lib/runtime-source-reader.ts` L23: `currentFinalDrafts: "data/runtime_sources/weight_of_the_sky/04_current_final_drafts",`
+- `src/lib/runtime-source-reader.ts` L24: `revisionSnapshots: "data/runtime_sources/weight_of_the_sky/05_revision_snapshots",`
+- `src/lib/runtime-source-reader.ts` L25: `currentOoxml: "data/runtime_sources/weight_of_the_sky/06_ooxml_current",`
+- `src/lib/runtime-source-reader.ts` L26: `revisionOoxml: "data/runtime_sources/weight_of_the_sky/07_ooxml_revision_exports",`
+- `src/lib/runtime-source-reader.ts` L27: `worldbuildingLore: "data/runtime_sources/weight_of_the_sky/08_worldbuilding_lore",`
+- `src/lib/runtime-source-reader.ts` L28: `synopsisCompendiums: "data/runtime_sources/weight_of_the_sky/09_synopsis_compendiums",`
+- `src/lib/runtime-source-reader.ts` L29: `ingestionBaselines: "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines",`
+- `src/lib/runtime-source-reader.ts` L30: `agentContext: "data/runtime_sources/weight_of_the_sky/11_agent_context",`
+- `src/lib/runtime-source-reader.ts` L31: `supabaseIndexes: "data/runtime_sources/weight_of_the_sky/12_supabase_indexes",`
+- `src/lib/runtime-source-reader.ts` L32: `manualSortInbox: "data/runtime_sources/weight_of_the_sky/99_manual_sort_inbox",`
+- `src/lib/runtime-source-reader.ts` L33: `quarantineDoNotIngest: "data/runtime_sources/weight_of_the_sky/99_quarantine_do_not_ingest",`
+- `src/lib/runtime-source-reader.ts` L138: `const root = path.resolve(process.cwd(), RUNTIME_SOURCE_ROOT);`
+- `src/lib/runtime-source-reader.ts` L180: `root: RUNTIME_SOURCE_ROOT,`
+- `scripts/archive-google-docs-by-local-names.mjs` L9: `TARGET_DIRS.push("src/data-layer/ingestion-buffer/gdrive_raw");`
+- `scripts/data-lineage-audit.sh` L42: `find src/data-layer/ingestion-buffer/gdrive_raw -type f 2>/dev/null | wc -l | tee -a reports/data-lineage-audit.txt`
+- `scripts/filename_standardization/standardize_context_filenames.py` L11: `Path("src/data-layer/ingestion-buffer/readme_docs"),`
+- `scripts/filename_standardization/standardize_context_filenames.py` L118: `readme_root = Path("src/data-layer/ingestion-buffer/readme_docs")`
+- `scripts/filename_standardization/standardize_context_filenames.py` L132: `Path("reports/readme_docs_staged_files.txt").write_text("\n".join(x["path"] for x in staged) + "\n", encoding="utf-8")`
+- `scripts/filename_standardization/standardize_context_filenames.py` L143: `"`src/data-layer/ingestion-buffer/readme_docs/`",`
+- `scripts/nos_sync.sh` L5: `for file in src/data-layer/ingestion-buffer/gdrive_raw/*.txt; do`
+- `scripts/perfect_weight/00_generate_perfection_scripts.py` L37: `find src/data-layer/ingestion-buffer/readme_docs -type f -printf '%p\t%s bytes\n' 2>/dev/null | sort || true`
+- `scripts/perfect_weight/00_generate_perfection_scripts.py` L53: `base = Path("src/data-layer/ingestion-buffer/readme_docs")`
+- `scripts/perfect_weight/00_generate_perfection_scripts.py` L132: `base = Path("src/data-layer/ingestion-buffer/readme_docs")`
+- `scripts/perfect_weight/00_generate_perfection_scripts.py` L163: `base = Path("src/data-layer/ingestion-buffer/readme_docs")`
+- `scripts/perfect_weight/00_generate_perfection_scripts.py` L354: `"Keep gdrive_raw intact.",`
+- `scripts/perfect_weight/00_generate_perfection_scripts.py` L355: `"Keep readme_docs intact.",`
+- `scripts/perfect_weight/00_generate_perfection_scripts.py` L433: `lines.append("Primary source context: `src/data-layer/ingestion-buffer/readme_docs/`")`
+- `scripts/perfect_weight/01_inventory.sh` L21: `find src/data-layer/ingestion-buffer/readme_docs -type f -printf '%p\t%s bytes\n' 2>/dev/null | sort || true`
+- `scripts/perfect_weight/02_context_classifier.py` L5: `base = Path("src/data-layer/ingestion-buffer/readme_docs")`
+- `scripts/perfect_weight/04_uiux_extract.py` L5: `base = Path("src/data-layer/ingestion-buffer/readme_docs")`
+- `scripts/perfect_weight/05_contradiction_fork_map.py` L5: `base = Path("src/data-layer/ingestion-buffer/readme_docs")`
+- `scripts/perfect_weight/08_next_100_actions.py` L79: `"Keep gdrive_raw intact.",`
+- `scripts/perfect_weight/08_next_100_actions.py` L80: `"Keep readme_docs intact.",`
+- `scripts/perfect_weight/09_master_readme_builder.py` L19: `lines.append("Primary source context: `src/data-layer/ingestion-buffer/readme_docs/`")`
+- `scripts/stage-numbered-download-readme-docs.py` L8: `DEST_ROOT = Path("src/data-layer/ingestion-buffer/readme_docs")`
+- `scripts/stage-numbered-download-readme-docs.py` L22: `("tier_1_core", "095", "gdrive_raw_FULL_inventory.txt"),`
+- `scripts/stage-numbered-download-readme-docs.py` L111: `Path("reports/readme_docs_stage_manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")`
+- `scripts/stage-numbered-download-readme-docs.py` L112: `Path("reports/readme_docs_missing.json").write_text(json.dumps(missing, indent=2), encoding="utf-8")`
+- `scripts/stage-numbered-download-readme-docs.py` L121: `"`src/data-layer/ingestion-buffer/readme_docs/`",`
+- `scripts/stage-numbered-download-readme-docs.py` L139: `print("Wrote reports/readme_docs_stage_manifest.json")`
+- `scripts/stage-numbered-download-readme-docs.py` L140: `print("Wrote reports/readme_docs_missing.json")`
+- `scripts/xml_recovery/audit_google_xml_extraction.sh` L13: `echo "## Local gdrive_raw text targets"`
+- `scripts/xml_recovery/audit_google_xml_extraction.sh` L15: `if [ -d "src/data-layer/ingestion-buffer/gdrive_raw" ]; then`
+- `scripts/xml_recovery/audit_google_xml_extraction.sh` L16: `echo "- gdrive_raw file count: $(find src/data-layer/ingestion-buffer/gdrive_raw -type f | wc -l)"`
+- `scripts/xml_recovery/audit_google_xml_extraction.sh` L18: `echo "- gdrive_raw missing"`
+- `scripts/xml_recovery/audit_google_xml_extraction.sh` L22: `echo "- gdrive_ooxml_raw file count: $(find src/data-layer/ingestion-buffer/gdrive_ooxml_raw -type f 2>/dev/null | wc -l || echo 0)"`
+- `scripts/xml_recovery/materialize_ooxml_raw.py` L9: `DEST = Path("src/data-layer/ingestion-buffer/gdrive_ooxml_raw")`
+- `scripts/xml_recovery/materialize_ooxml_raw.py` L53: `Path("reports/gdrive_ooxml_raw_files.txt").write_text("\n".join(m["dest"] for m in manifest) + "\n", encoding="utf-8")`

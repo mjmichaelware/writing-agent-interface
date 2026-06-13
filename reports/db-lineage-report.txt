@@ -1,0 +1,101 @@
+Pager usage is off.
+Output format is aligned.
+Border style is 2.
+=== TABLE COUNTS ===
++---------------------+-------+
+|     table_name      | count |
++---------------------+-------+
+| documents           |     0 |
+| chapters            |    50 |
+| paragraphs          |  4112 |
+| biblical_references |     0 |
+| hyperlinks          |     0 |
++---------------------+-------+
+(5 rows)
+
+
+=== CHAPTER DUPLICATE GROUPS ===
++----------------+--------------+------------------+---------------------------------------------------------------------------------------------------------+
+| chapter_number | chapter_rows | total_paragraphs |                                           manifest_breakdown                                            |
++----------------+--------------+------------------+---------------------------------------------------------------------------------------------------------+
+|              1 |            3 |             1954 | Chapter_1 = 1536 | 72377df9ad2575fc0a97523937ff9e451cadef7811fae2a443aa5daa3a2a351b = 360 | man_01 = 58 |
+|              2 |            3 |              991 | Chapter_2 = 601 | b51340f0b8f0a7c309c2626aacd9d4c052170764b74ba787ad4f37d7cd8c156f = 338 | man_02 = 52  |
+|              3 |            3 |              268 | Chapter_3 = 202 | 857d3e50364461e0b6d5da420c508abc236a79cec9ff58e2504703474c106c07 = 64 | man_03 = 2    |
+|              4 |            3 |              151 | d8ecbb62ae56200bcafc3fdf820fe7ca9e055ea8c4ae38d50b9bc4d6da180826 = 62 | Chapter_4 = 58 | man_04 = 31    |
+|              5 |            3 |               28 | Chapter_5 = 16 | 3b0ede4310eca0fccf88e100972d161048f12333411bb4e14c4f6956eaacf039 = 8 | man_05 = 4      |
+|              6 |            3 |               14 | Chapter_6 = 8 | d6ba919b48876cea009e1e10d2debde5a2afd47c0bee512339a2b9890c7aacba = 4 | man_06 = 2       |
+|              7 |            3 |              147 | fe21c269662112e63ae92118f80d1d68c5a94cb5fb3950a0d8cb1d0f3092b245 = 142 | Chapter_7 = 3 | man_07 = 2     |
+|              8 |            3 |              108 | a02f56e5ac0abd966aef2541b27fa8e4f9c5d36a2f7287d2c7bf7b46c026c6c7 = 58 | Chapter_8 = 47 | man_08 = 3     |
+|              9 |            3 |               37 | Chapter_9 = 16 | 08c436a8abb618701b29882882af371876b6533e5c52510fdc1d7a32df970895 = 14 | man_09 = 7     |
+|             10 |            3 |              229 | Chapter_10 = 155 | ee97d6e6c16fe69851f0b11afe8419bd0db3c81bdaca8c8aa3180907983828f4 = 72 | man_10 = 2   |
+|             11 |            3 |              173 | 96980a3e89e556c8e4fcec9f322095c3aa882e78b90e532669353869b056c573 = 78 | Chapter_11 = 56 | man_11 = 39   |
+|             12 |            1 |                0 | man_12 = 0                                                                                              |
+|             13 |            3 |               12 | 960479e956f95dc5674a44b34a4c5bc562dced3d80c43f4622b3c4ad2acc50e9 = 6 | man_13 = 3 | Chapter_13 = 3      |
+|             14 |            1 |                0 | man_14 = 0                                                                                              |
+|             15 |            1 |                0 | man_15 = 0                                                                                              |
+|             16 |            1 |                0 | man_16 = 0                                                                                              |
+|             17 |            1 |                0 | man_17 = 0                                                                                              |
+|             18 |            1 |                0 | man_18 = 0                                                                                              |
+|             19 |            1 |                0 | man_19 = 0                                                                                              |
+|             20 |            1 |                0 | man_20 = 0                                                                                              |
+|             21 |            1 |                0 | man_21 = 0                                                                                              |
+|             22 |            1 |                0 | man_22 = 0                                                                                              |
+|             23 |            1 |                0 | man_23 = 0                                                                                              |
+|             24 |            1 |                0 | man_24 = 0                                                                                              |
+|             25 |            2 |                0 | man_epilogue = 0 | man_25 = 0                                                                           |
++----------------+--------------+------------------+---------------------------------------------------------------------------------------------------------+
+(25 rows)
+
+
+=== MANIFEST FAMILY COUNTS ===
++----------------+--------------+----------------+
+|     family     | chapter_rows | paragraph_rows |
++----------------+--------------+----------------+
+| Chapter_* rows |           12 |           2701 |
+| hash rows      |           12 |           1206 |
+| man_* rows     |           26 |            205 |
++----------------+--------------+----------------+
+(3 rows)
+
+
+=== JSON DERIVED DATA ALREADY INSIDE PARAGRAPHS ===
++------------------+------------------------+-----------------+------------------+--------------+
+| total_paragraphs | has_archetypal_weights | has_dualism_map | has_hebrew_spans | has_metadata |
++------------------+------------------------+-----------------+------------------+--------------+
+|             4112 |                   3742 |            3742 |              966 |         3473 |
++------------------+------------------------+-----------------+------------------+--------------+
+(1 row)
+
+
+=== EMPTY DERIVED TABLES ===
++---------------------+-------+
+|     table_name      | count |
++---------------------+-------+
+| biblical_references |     0 |
+| hyperlinks          |     0 |
++---------------------+-------+
+(2 rows)
+
+
+=== SAMPLE PARAGRAPHS FROM EACH MANIFEST FAMILY ===
++----------------+------------------------------------------------------------------+----------------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|     family     |                           manifest_id                            | chapter_number | chunk_index |                                                                                                                                                   preview                                                                                                                                                    |
++----------------+------------------------------------------------------------------+----------------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Chapter_* rows | Chapter_1                                                        |              1 |             | ﻿Chapter 1: Stardust to Stardust                                                                                                                                                                                                                                                                              |
+| Chapter_* rows | Chapter_1                                                        |              1 |             | The torch light, clenched in the boy's hand, trembled, casting suspicious, dancing shadows across the dim hallway. The frail flame scattered light like cheap copper. It shivered not from wind, but from the erratic tempo of the boy's muffled heart, a frantic drummer in a condemned dwelling.           |
+| Chapter_* rows | Chapter_1                                                        |              1 |             | Each barefoot step on the cold, unforgiving stone was a profound, private wager, where the slightest misstep risked the betrayal of a clank, a dry scrape, or any clatter that might announce his small, forbidden errand. This was no mere silence; it was a coiled, ancient emptiness that smelled of sulf |
+| Chapter_* rows | Chapter_1                                                        |              1 |             | The four-room house, which had once been a space warmed by a mother's songs, had ceased to be a simple structure. It had spread not merely into a ruin, but a physical testament to Father Aviel's catastrophic unraveling since her disappearance. The man had brought his own gods with him from the Weste |
+| Chapter_* rows | Chapter_1                                                        |              1 |             | Navigating its turns was not simple walking; one was forced to pick a path through the snare of matter, feeling its terrible, rooting gravity with every breath, as if the air itself possessed a viscous debt he was constantly struggling to pay. Piles of broken pottery shards and failed instruments—th |
+| hash rows      | 72377df9ad2575fc0a97523937ff9e451cadef7811fae2a443aa5daa3a2a351b |              1 |           0 | ﻿CHAPTER 1: STARDUST TO STARDUST                                                                                                                                                                                                                                                                              |
+| hash rows      | 72377df9ad2575fc0a97523937ff9e451cadef7811fae2a443aa5daa3a2a351b |              1 |           0 | ﻿CHAPTER 1: STARDUST TO STARDUST                                                                                                                                                                                                                                                                              |
+| hash rows      | 72377df9ad2575fc0a97523937ff9e451cadef7811fae2a443aa5daa3a2a351b |              1 |           0 | ﻿CHAPTER 1: STARDUST TO STARDUST                                                                                                                                                                                                                                                                              |
+| hash rows      | 72377df9ad2575fc0a97523937ff9e451cadef7811fae2a443aa5daa3a2a351b |              1 |           1 | Let me tell you about a boy named Dan, and the night he decided to save his father by breaking into his dreams.                                                                                                                                                                                              |
+| hash rows      | 72377df9ad2575fc0a97523937ff9e451cadef7811fae2a443aa5daa3a2a351b |              1 |           1 | Let me tell you about a boy named Dan, and the night he decided to save his father by breaking into his dreams.                                                                                                                                                                                              |
+| man_* rows     | man_01                                                           |              1 |           0 | ﻿Chapter 1: Stardust to Stardust                                                                                                                                                                                                                                                                              |
+| man_* rows     | man_01                                                           |              1 |           1 | The torch light, clenched in the boy's hand, trembled, casting suspicious, dancing shadows across the dim hallway. The frail flame scattered light like cheap copper. It shivered not from wind, but from the erratic tempo of the boy's muffled heart, a frantic drummer in a condemned dwelling.           |
+| man_* rows     | man_01                                                           |              1 |           2 | Each barefoot step on the cold, unforgiving stone was a profound, private wager, where the slightest misstep risked the betrayal of a clank, a dry scrape, or any clatter that might announce his small, forbidden errand. This was no mere silence; it was a coiled, ancient emptiness that smelled of sulf |
+| man_* rows     | man_01                                                           |              1 |           3 | The four-room house, which had once been a space warmed by a mother's songs, had ceased to be a simple structure. It had spread not merely into a ruin, but a physical testament to Father Aviel's catastrophic unraveling since her disappearance. The man had brought his own gods with him from the Weste |
+| man_* rows     | man_01                                                           |              1 |           4 | Navigating its turns was not simple walking; one was forced to pick a path through the snare of matter, feeling its terrible, rooting gravity with every breath, as if the air itself possessed a viscous debt he was constantly struggling to pay. Piles of broken pottery shards and failed instruments—th |
++----------------+------------------------------------------------------------------+----------------+-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+(15 rows)
+

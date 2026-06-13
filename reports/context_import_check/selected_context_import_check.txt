@@ -1,0 +1,207 @@
+PROJECT: /data/data/com.termux/files/home/Workspaces/writing-agent-interface
+CHECKING SELECTED CONTEXT IMPORTS
+==========================================================================================
+
+013  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: .trashed-1781165667-Writing Agent App. Source Doc. (4) [TERMUX].txt
+     - context_files/013.txt
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_1_core/013__Writing_Agent_App._Source_Doc._(4)_[TERMUX].txt.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/013_writing_agent_app._source_doc._(4)_[termux].txt.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/013_writing_agent_app._source_doc._(4)_[termux].txt.txt
+
+014  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: .trashed-1781206417-Writing Agent App. Source Doc. (8) [COMBINED].txt
+     - context_files/014.txt
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_1_core/014__Writing_Agent_App._Source_Doc._(8)_[COMBINED]_(1).txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/014_writing_agent_app._source_doc._(8)_[combined]_(1).txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/014_writing_agent_app._source_doc._(8)_[combined]_(1).txt
+
+016  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: 229 (1).txt
+     - context_files/016.txt
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_1_core/016__229_(1).txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/016_229_1.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/016_229_1.txt
+
+024  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: Aesthetic & Implementation Mandate (1).txt
+     - context_files/024.txt
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_1_core/024__Aesthetic___Implementation_Mandate_(1).txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/024_aesthetic_implementation_mandate_1.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/024_aesthetic_implementation_mandate_1.txt
+
+026  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: AI_CHECKPOINT_FINAL.txt
+     - context_files/026.txt
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_1_core/026__AI_CHECKPOINT_FINAL.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/026_ai_checkpoint_final.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/026_ai_checkpoint_final.txt
+
+029  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: AI_INFORMATION_INTUITION.md
+     - context_files/029.md
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_1_core/029__AI_INFORMATION_INTUITION.md
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/029_ai_information_intuition.md
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/029_ai_information_intuition.md
+
+031  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: AI_READY_CHECKPOINT.txt
+     - context_files/031.txt
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_1_core/031__AI_READY_CHECKPOINT.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/031_ai_ready_checkpoint.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/031_ai_ready_checkpoint.txt
+
+034  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: AIM BLUEPRINT.txt
+     - context_files/034.txt
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_1_core/034__AIM_BLUEPRINT.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/034_aim_blueprint.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/034_aim_blueprint.txt
+
+071  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: CLAUDE_HONEST_ASSESSMENT_20260513.md
+     - context_files/071.md
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_1_core/071__CLAUDE_HONEST_ASSESSMENT_20260513.md
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/071_claude_honest_assessment_20260513.md
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/071_claude_honest_assessment_20260513.md
+
+072  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: CLAUDE_HONEST_ASSESSMENT_v2_20260513.md
+     - context_files/072.md
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_1_core/072__CLAUDE_HONEST_ASSESSMENT_v2_20260513.md
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/072_claude_honest_assessment_v2_20260513.md
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/072_claude_honest_assessment_v2_20260513.md
+
+075  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: COMPARISON.txt
+     - context_files/075.txt
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_1_core/075__COMPARISON.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/075_comparison.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/075_comparison.txt
+
+077  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: CONTRADICTION_MAP.txt
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/077__CONTRADICTION_MAP.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_2_large_universal/077_contradiction_map.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_2_large_universal/077_contradiction_map.txt
+
+084  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: DRIVE_NOT_LOCAL_RAW.txt
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/084__DRIVE_NOT_LOCAL_RAW.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_2_large_universal/084_drive_not_local_raw.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_2_large_universal/084_drive_not_local_raw.txt
+
+089  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: First Future Feature.txt
+     - context_files/089.txt
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_1_core/089__First_Future_Feature.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/089_first_future_feature.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/089_first_future_feature.txt
+
+095  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: gdrive_raw_FULL_inventory.txt
+     - context_files/095.txt
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_1_core/095__gdrive_raw_FULL_inventory.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/095_gdrive_raw_full_inventory.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/095_gdrive_raw_full_inventory.txt
+
+097  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: GEMINI CLI PENULTIMATE OMEGA PROMPT.txt
+     - context_files/097.txt
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_1_core/097__GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/097__GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/097_gemini_cli_penultimate_omega_prompt.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_2_large_universal/097_gemini_cli_penultimate_omega_prompt.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/097_gemini_cli_penultimate_omega_prompt.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_2_large_universal/097_gemini_cli_penultimate_omega_prompt.txt
+
+104  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: Give me the terminal commands to f------ get that.pdf
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/104__Give_me_the_terminal_commands_to_f------_get_that.pdf
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_2_large_universal/104_give_me_the_terminal_commands_to_f_get_that.pdf
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_2_large_universal/104_give_me_the_terminal_commands_to_f_get_that.pdf
+
+107  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: Here is the absolute technical, structural, and behavioral inventory of every single element that must exist within your 4-layer UI-UX narrative runtime environment.txt
+     - context_files/107.txt
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_1_core/107__Here_is_the_absolute_technical,_structural,_and_behavioral_inventory_of_every_single_element_that_must_exist_within_your_4-layer_UI-UX_narrative_runtime_environment.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/107_here_is_the_absolute_technical_structural_and_behavioral_inventory_of_every_single_element_that_must_exist_within_your_4_layer_ui_ux_narrative_runtime_environment.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/107_here_is_the_absolute_technical_structural_and_behavioral_inventory_of_every_single_element_that_must_exist_within_your_4_layer_ui_ux_narrative_runtime_environment.txt
+
+111  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: IMPOSSIBLE_TARGETS.txt
+     - context_files/111.txt
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_1_core/111__IMPOSSIBLE_TARGETS.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/111_impossible_targets.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/111_impossible_targets.txt
+
+123  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: NEW SEC DOC (1) (1).txt
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/123__NEW_SEC_DOC_(1)_(1).txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_2_large_universal/123_new_sec_doc_1_1.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_2_large_universal/123_new_sec_doc_1_1.txt
+
+124  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: NEW SEC DOC (1) (2).txt
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/124__NEW_SEC_DOC_(1)_(2).txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_2_large_universal/124_new_sec_doc_1_2.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_2_large_universal/124_new_sec_doc_1_2.txt
+
+134  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: NOS_INTEGRATION_BLUEPRINT.txt
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/134__NOS_INTEGRATION_BLUEPRINT.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_2_large_universal/134_nos_integration_blueprint.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_2_large_universal/134_nos_integration_blueprint.txt
+
+139  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: NOS_Master_Blueprints.txt
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_3_checkpoints/139__NOS_Master_Blueprints.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_3_checkpoints/139_nos_master_blueprints.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_3_checkpoints/139_nos_master_blueprints.txt
+
+140  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: NOS_Master_Diagnostic.txt
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_3_checkpoints/140__NOS_Master_Diagnostic.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_3_checkpoints/140_nos_master_diagnostic.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_3_checkpoints/140_nos_master_diagnostic.txt
+
+154  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: Project Checkpoint 2.txt
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_3_checkpoints/154__Project_Checkpoint_2.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_3_checkpoints/154_project_checkpoint_2.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_3_checkpoints/154_project_checkpoint_2.txt
+
+160  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: PROJECT_HANDOFF_COMPLETE_CONTEXT-2.md
+     - context_files/160.md
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_1_core/160__PROJECT_HANDOFF_COMPLETE_CONTEXT-2.md
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/160_project_handoff_complete_context_2.md
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/160_project_handoff_complete_context_2.md
+
+174  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: REFINED_LORE_SINGULARITY.txt
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/later_queue/174__REFINED_LORE_SINGULARITY.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/later_queue/174_refined_lore_singularity.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/later_queue/174_refined_lore_singularity.txt
+
+199  IMPORTED_IN_PROJECT  AGENT_INDEX=YES
+     source-name: Termux Checkpoint (w- Gemini 1 (1).txt
+     - Workspaces/writing-agent-interface/src/data-layer/ingestion-buffer/readme_docs/tier_3_checkpoints/199__Termux_Checkpoint_(w-_Gemini_1_(1).txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_3_checkpoints/199_termux_checkpoint_w_gemini_1_1.txt
+     - Workspaces/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_3_checkpoints/199_termux_checkpoint_w_gemini_1_1.txt
+
+==========================================================================================
+SUMMARY
+{
+  "total": 28,
+  "found_in_project": 28,
+  "found_only_in_context_files": 0,
+  "missing": 0,
+  "agent_index_mentions": 28
+}
+
+DECISION:
+- Do not delete context_files yet.
+- Do not delete dumps/reports yet.
+- If files are ONLY_IN_HOME_CONTEXT_FILES, next step is COPY into project with real names.
+- If files are IMPORTED_IN_PROJECT but named only by number, next step is RENAME/COPY to real names inside project.

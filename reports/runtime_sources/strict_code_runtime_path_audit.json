@@ -1,0 +1,386 @@
+{
+  "scanned_code_files": 159,
+  "real_code_hits": 76,
+  "hits": [
+    {
+      "path": "src/lib/runtime-source-paths.ts",
+      "line": 7,
+      "text": "// data/runtime_sources/weight_of_the_sky/ is runtime manuscript/source data."
+    },
+    {
+      "path": "src/lib/runtime-source-paths.ts",
+      "line": 9,
+      "text": "export const RUNTIME_SOURCE_ROOT = \"data/runtime_sources/weight_of_the_sky\";"
+    },
+    {
+      "path": "src/lib/runtime-source-paths.ts",
+      "line": 11,
+      "text": "export const RUNTIME_SOURCE_PATHS = {"
+    },
+    {
+      "path": "src/lib/runtime-source-paths.ts",
+      "line": 12,
+      "text": "protocols: \"data/runtime_sources/weight_of_the_sky/00_protocols\","
+    },
+    {
+      "path": "src/lib/runtime-source-paths.ts",
+      "line": 13,
+      "text": "rendererActiveInputs: \"data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs\","
+    },
+    {
+      "path": "src/lib/runtime-source-paths.ts",
+      "line": 14,
+      "text": "typographySources: \"data/runtime_sources/weight_of_the_sky/02_typography_sources\","
+    },
+    {
+      "path": "src/lib/runtime-source-paths.ts",
+      "line": 15,
+      "text": "layerToCinemaSources: \"data/runtime_sources/weight_of_the_sky/03_layer_to_cinema_sources\","
+    },
+    {
+      "path": "src/lib/runtime-source-paths.ts",
+      "line": 16,
+      "text": "currentFinalDrafts: \"data/runtime_sources/weight_of_the_sky/04_current_final_drafts\","
+    },
+    {
+      "path": "src/lib/runtime-source-paths.ts",
+      "line": 17,
+      "text": "revisionSnapshots: \"data/runtime_sources/weight_of_the_sky/05_revision_snapshots\","
+    },
+    {
+      "path": "src/lib/runtime-source-paths.ts",
+      "line": 18,
+      "text": "currentOoxml: \"data/runtime_sources/weight_of_the_sky/06_ooxml_current\","
+    },
+    {
+      "path": "src/lib/runtime-source-paths.ts",
+      "line": 19,
+      "text": "revisionOoxml: \"data/runtime_sources/weight_of_the_sky/07_ooxml_revision_exports\","
+    },
+    {
+      "path": "src/lib/runtime-source-paths.ts",
+      "line": 20,
+      "text": "worldbuildingLore: \"data/runtime_sources/weight_of_the_sky/08_worldbuilding_lore\","
+    },
+    {
+      "path": "src/lib/runtime-source-paths.ts",
+      "line": 21,
+      "text": "synopsisCompendiums: \"data/runtime_sources/weight_of_the_sky/09_synopsis_compendiums\","
+    },
+    {
+      "path": "src/lib/runtime-source-paths.ts",
+      "line": 22,
+      "text": "ingestionBaselines: \"data/runtime_sources/weight_of_the_sky/10_ingestion_baselines\","
+    },
+    {
+      "path": "src/lib/runtime-source-paths.ts",
+      "line": 23,
+      "text": "agentContext: \"data/runtime_sources/weight_of_the_sky/11_agent_context\","
+    },
+    {
+      "path": "src/lib/runtime-source-paths.ts",
+      "line": 24,
+      "text": "supabaseIndexes: \"data/runtime_sources/weight_of_the_sky/12_supabase_indexes\","
+    },
+    {
+      "path": "src/lib/runtime-source-paths.ts",
+      "line": 25,
+      "text": "manualSortInbox: \"data/runtime_sources/weight_of_the_sky/99_manual_sort_inbox\","
+    },
+    {
+      "path": "src/lib/runtime-source-paths.ts",
+      "line": 26,
+      "text": "quarantineDoNotIngest: \"data/runtime_sources/weight_of_the_sky/99_quarantine_do_not_ingest\","
+    },
+    {
+      "path": "src/lib/runtime-source-paths.ts",
+      "line": 30,
+      "text": "gdriveRawTextBaseline: \"src/data-layer/ingestion-buffer/gdrive_raw\","
+    },
+    {
+      "path": "src/lib/runtime-source-paths.ts",
+      "line": 31,
+      "text": "gdriveDocxIntake: \"src/data-layer/ingestion-buffer/gdrive_docx_intake\","
+    },
+    {
+      "path": "src/lib/runtime-source-paths.ts",
+      "line": 32,
+      "text": "gdriveOoxmlRaw: \"src/data-layer/ingestion-buffer/gdrive_ooxml_raw\","
+    },
+    {
+      "path": "src/lib/runtime-source-paths.ts",
+      "line": 33,
+      "text": "readmeDocs: \"src/data-layer/ingestion-buffer/readme_docs\","
+    },
+    {
+      "path": "src/lib/runtime-source-reader.ts",
+      "line": 16,
+      "text": "export const RUNTIME_SOURCE_ROOT = \"data/runtime_sources/weight_of_the_sky\";"
+    },
+    {
+      "path": "src/lib/runtime-source-reader.ts",
+      "line": 18,
+      "text": "export const RUNTIME_SOURCE_PATHS = {"
+    },
+    {
+      "path": "src/lib/runtime-source-reader.ts",
+      "line": 19,
+      "text": "protocols: \"data/runtime_sources/weight_of_the_sky/00_protocols\","
+    },
+    {
+      "path": "src/lib/runtime-source-reader.ts",
+      "line": 20,
+      "text": "rendererActiveInputs: \"data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs\","
+    },
+    {
+      "path": "src/lib/runtime-source-reader.ts",
+      "line": 21,
+      "text": "typographySources: \"data/runtime_sources/weight_of_the_sky/02_typography_sources\","
+    },
+    {
+      "path": "src/lib/runtime-source-reader.ts",
+      "line": 22,
+      "text": "layerToCinemaSources: \"data/runtime_sources/weight_of_the_sky/03_layer_to_cinema_sources\","
+    },
+    {
+      "path": "src/lib/runtime-source-reader.ts",
+      "line": 23,
+      "text": "currentFinalDrafts: \"data/runtime_sources/weight_of_the_sky/04_current_final_drafts\","
+    },
+    {
+      "path": "src/lib/runtime-source-reader.ts",
+      "line": 24,
+      "text": "revisionSnapshots: \"data/runtime_sources/weight_of_the_sky/05_revision_snapshots\","
+    },
+    {
+      "path": "src/lib/runtime-source-reader.ts",
+      "line": 25,
+      "text": "currentOoxml: \"data/runtime_sources/weight_of_the_sky/06_ooxml_current\","
+    },
+    {
+      "path": "src/lib/runtime-source-reader.ts",
+      "line": 26,
+      "text": "revisionOoxml: \"data/runtime_sources/weight_of_the_sky/07_ooxml_revision_exports\","
+    },
+    {
+      "path": "src/lib/runtime-source-reader.ts",
+      "line": 27,
+      "text": "worldbuildingLore: \"data/runtime_sources/weight_of_the_sky/08_worldbuilding_lore\","
+    },
+    {
+      "path": "src/lib/runtime-source-reader.ts",
+      "line": 28,
+      "text": "synopsisCompendiums: \"data/runtime_sources/weight_of_the_sky/09_synopsis_compendiums\","
+    },
+    {
+      "path": "src/lib/runtime-source-reader.ts",
+      "line": 29,
+      "text": "ingestionBaselines: \"data/runtime_sources/weight_of_the_sky/10_ingestion_baselines\","
+    },
+    {
+      "path": "src/lib/runtime-source-reader.ts",
+      "line": 30,
+      "text": "agentContext: \"data/runtime_sources/weight_of_the_sky/11_agent_context\","
+    },
+    {
+      "path": "src/lib/runtime-source-reader.ts",
+      "line": 31,
+      "text": "supabaseIndexes: \"data/runtime_sources/weight_of_the_sky/12_supabase_indexes\","
+    },
+    {
+      "path": "src/lib/runtime-source-reader.ts",
+      "line": 32,
+      "text": "manualSortInbox: \"data/runtime_sources/weight_of_the_sky/99_manual_sort_inbox\","
+    },
+    {
+      "path": "src/lib/runtime-source-reader.ts",
+      "line": 33,
+      "text": "quarantineDoNotIngest: \"data/runtime_sources/weight_of_the_sky/99_quarantine_do_not_ingest\","
+    },
+    {
+      "path": "src/lib/runtime-source-reader.ts",
+      "line": 138,
+      "text": "const root = path.resolve(process.cwd(), RUNTIME_SOURCE_ROOT);"
+    },
+    {
+      "path": "src/lib/runtime-source-reader.ts",
+      "line": 180,
+      "text": "root: RUNTIME_SOURCE_ROOT,"
+    },
+    {
+      "path": "scripts/archive-google-docs-by-local-names.mjs",
+      "line": 9,
+      "text": "TARGET_DIRS.push(\"src/data-layer/ingestion-buffer/gdrive_raw\");"
+    },
+    {
+      "path": "scripts/data-lineage-audit.sh",
+      "line": 42,
+      "text": "find src/data-layer/ingestion-buffer/gdrive_raw -type f 2>/dev/null | wc -l | tee -a reports/data-lineage-audit.txt"
+    },
+    {
+      "path": "scripts/filename_standardization/standardize_context_filenames.py",
+      "line": 11,
+      "text": "Path(\"src/data-layer/ingestion-buffer/readme_docs\"),"
+    },
+    {
+      "path": "scripts/filename_standardization/standardize_context_filenames.py",
+      "line": 118,
+      "text": "readme_root = Path(\"src/data-layer/ingestion-buffer/readme_docs\")"
+    },
+    {
+      "path": "scripts/filename_standardization/standardize_context_filenames.py",
+      "line": 132,
+      "text": "Path(\"reports/readme_docs_staged_files.txt\").write_text(\"\\n\".join(x[\"path\"] for x in staged) + \"\\n\", encoding=\"utf-8\")"
+    },
+    {
+      "path": "scripts/filename_standardization/standardize_context_filenames.py",
+      "line": 143,
+      "text": "\"`src/data-layer/ingestion-buffer/readme_docs/`\","
+    },
+    {
+      "path": "scripts/nos_sync.sh",
+      "line": 5,
+      "text": "for file in src/data-layer/ingestion-buffer/gdrive_raw/*.txt; do"
+    },
+    {
+      "path": "scripts/perfect_weight/00_generate_perfection_scripts.py",
+      "line": 37,
+      "text": "find src/data-layer/ingestion-buffer/readme_docs -type f -printf '%p\\t%s bytes\\n' 2>/dev/null | sort || true"
+    },
+    {
+      "path": "scripts/perfect_weight/00_generate_perfection_scripts.py",
+      "line": 53,
+      "text": "base = Path(\"src/data-layer/ingestion-buffer/readme_docs\")"
+    },
+    {
+      "path": "scripts/perfect_weight/00_generate_perfection_scripts.py",
+      "line": 132,
+      "text": "base = Path(\"src/data-layer/ingestion-buffer/readme_docs\")"
+    },
+    {
+      "path": "scripts/perfect_weight/00_generate_perfection_scripts.py",
+      "line": 163,
+      "text": "base = Path(\"src/data-layer/ingestion-buffer/readme_docs\")"
+    },
+    {
+      "path": "scripts/perfect_weight/00_generate_perfection_scripts.py",
+      "line": 354,
+      "text": "\"Keep gdrive_raw intact.\","
+    },
+    {
+      "path": "scripts/perfect_weight/00_generate_perfection_scripts.py",
+      "line": 355,
+      "text": "\"Keep readme_docs intact.\","
+    },
+    {
+      "path": "scripts/perfect_weight/00_generate_perfection_scripts.py",
+      "line": 433,
+      "text": "lines.append(\"Primary source context: `src/data-layer/ingestion-buffer/readme_docs/`\")"
+    },
+    {
+      "path": "scripts/perfect_weight/01_inventory.sh",
+      "line": 21,
+      "text": "find src/data-layer/ingestion-buffer/readme_docs -type f -printf '%p\\t%s bytes\\n' 2>/dev/null | sort || true"
+    },
+    {
+      "path": "scripts/perfect_weight/02_context_classifier.py",
+      "line": 5,
+      "text": "base = Path(\"src/data-layer/ingestion-buffer/readme_docs\")"
+    },
+    {
+      "path": "scripts/perfect_weight/04_uiux_extract.py",
+      "line": 5,
+      "text": "base = Path(\"src/data-layer/ingestion-buffer/readme_docs\")"
+    },
+    {
+      "path": "scripts/perfect_weight/05_contradiction_fork_map.py",
+      "line": 5,
+      "text": "base = Path(\"src/data-layer/ingestion-buffer/readme_docs\")"
+    },
+    {
+      "path": "scripts/perfect_weight/08_next_100_actions.py",
+      "line": 79,
+      "text": "\"Keep gdrive_raw intact.\","
+    },
+    {
+      "path": "scripts/perfect_weight/08_next_100_actions.py",
+      "line": 80,
+      "text": "\"Keep readme_docs intact.\","
+    },
+    {
+      "path": "scripts/perfect_weight/09_master_readme_builder.py",
+      "line": 19,
+      "text": "lines.append(\"Primary source context: `src/data-layer/ingestion-buffer/readme_docs/`\")"
+    },
+    {
+      "path": "scripts/stage-numbered-download-readme-docs.py",
+      "line": 8,
+      "text": "DEST_ROOT = Path(\"src/data-layer/ingestion-buffer/readme_docs\")"
+    },
+    {
+      "path": "scripts/stage-numbered-download-readme-docs.py",
+      "line": 22,
+      "text": "(\"tier_1_core\", \"095\", \"gdrive_raw_FULL_inventory.txt\"),"
+    },
+    {
+      "path": "scripts/stage-numbered-download-readme-docs.py",
+      "line": 111,
+      "text": "Path(\"reports/readme_docs_stage_manifest.json\").write_text(json.dumps(manifest, indent=2), encoding=\"utf-8\")"
+    },
+    {
+      "path": "scripts/stage-numbered-download-readme-docs.py",
+      "line": 112,
+      "text": "Path(\"reports/readme_docs_missing.json\").write_text(json.dumps(missing, indent=2), encoding=\"utf-8\")"
+    },
+    {
+      "path": "scripts/stage-numbered-download-readme-docs.py",
+      "line": 121,
+      "text": "\"`src/data-layer/ingestion-buffer/readme_docs/`\","
+    },
+    {
+      "path": "scripts/stage-numbered-download-readme-docs.py",
+      "line": 139,
+      "text": "print(\"Wrote reports/readme_docs_stage_manifest.json\")"
+    },
+    {
+      "path": "scripts/stage-numbered-download-readme-docs.py",
+      "line": 140,
+      "text": "print(\"Wrote reports/readme_docs_missing.json\")"
+    },
+    {
+      "path": "scripts/xml_recovery/audit_google_xml_extraction.sh",
+      "line": 13,
+      "text": "echo \"## Local gdrive_raw text targets\""
+    },
+    {
+      "path": "scripts/xml_recovery/audit_google_xml_extraction.sh",
+      "line": 15,
+      "text": "if [ -d \"src/data-layer/ingestion-buffer/gdrive_raw\" ]; then"
+    },
+    {
+      "path": "scripts/xml_recovery/audit_google_xml_extraction.sh",
+      "line": 16,
+      "text": "echo \"- gdrive_raw file count: $(find src/data-layer/ingestion-buffer/gdrive_raw -type f | wc -l)\""
+    },
+    {
+      "path": "scripts/xml_recovery/audit_google_xml_extraction.sh",
+      "line": 18,
+      "text": "echo \"- gdrive_raw missing\""
+    },
+    {
+      "path": "scripts/xml_recovery/audit_google_xml_extraction.sh",
+      "line": 22,
+      "text": "echo \"- gdrive_ooxml_raw file count: $(find src/data-layer/ingestion-buffer/gdrive_ooxml_raw -type f 2>/dev/null | wc -l || echo 0)\""
+    },
+    {
+      "path": "scripts/xml_recovery/materialize_ooxml_raw.py",
+      "line": 9,
+      "text": "DEST = Path(\"src/data-layer/ingestion-buffer/gdrive_ooxml_raw\")"
+    },
+    {
+      "path": "scripts/xml_recovery/materialize_ooxml_raw.py",
+      "line": 53,
+      "text": "Path(\"reports/gdrive_ooxml_raw_files.txt\").write_text(\"\\n\".join(m[\"dest\"] for m in manifest) + \"\\n\", encoding=\"utf-8\")"
+    }
+  ]
+}

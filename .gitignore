@@ -50,3 +50,6 @@ system/07_Build_Manifests/session_logs/
 .vercel/
 .vercel
 .env*
+data/source_archive/
+secrets/
+*.json.key

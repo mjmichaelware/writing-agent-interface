@@ -1,0 +1,17 @@
+{
+  "archive_root": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z",
+  "target_dirs": [
+    "src/data-layer/ingestion-buffer/gdrive_raw"
+  ],
+  "local_name_targets": 181,
+  "drive_doc_candidates": 319,
+  "matched_targets": 165,
+  "weak_match_review_targets": 2,
+  "unmatched_targets": 14,
+  "unique_drive_docs_archived": 57,
+  "current_docx_saved": 57,
+  "total_ooxml_current_entries": 579,
+  "total_revision_records": 125,
+  "total_comments": 0,
+  "documents_with_errors": 0
+}

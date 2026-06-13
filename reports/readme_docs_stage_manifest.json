@@ -1,0 +1,263 @@
+[
+  {
+    "num": "013",
+    "tier": "tier_1_core",
+    "original_name": "Writing Agent App. Source Doc. (4) [TERMUX].txt.txt",
+    "source": "/sdcard/Download/Writing Agent App. Source Doc. (4) [TERMUX].txt.txt",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/013__Writing_Agent_App._Source_Doc._(4)_[TERMUX].txt.txt",
+    "bytes": 44105,
+    "sha256": "fdf1d5e850a5a83a37b2ed10025d2f9ea351740bc92cbc2d39911aae29d147a9"
+  },
+  {
+    "num": "016",
+    "tier": "tier_1_core",
+    "original_name": "229 (1).txt",
+    "source": "/sdcard/Download/229 (1).txt",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/016__229_(1).txt",
+    "bytes": 12355,
+    "sha256": "0afe3026ec2e96519834193bc82ed666e108cb0689a4fafa04d332f303be15b0"
+  },
+  {
+    "num": "024",
+    "tier": "tier_1_core",
+    "original_name": "Aesthetic & Implementation Mandate (1).txt",
+    "source": "/sdcard/Download/Aesthetic & Implementation Mandate (1).txt",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/024__Aesthetic___Implementation_Mandate_(1).txt",
+    "bytes": 22064,
+    "sha256": "bb6c1b8ad57690a3b2d68188c1650435040a51955ff2f5a1c663e37f8b4905a1"
+  },
+  {
+    "num": "026",
+    "tier": "tier_1_core",
+    "original_name": "AI_CHECKPOINT_FINAL.txt",
+    "source": "/sdcard/Download/AI_CHECKPOINT_FINAL.txt",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/026__AI_CHECKPOINT_FINAL.txt",
+    "bytes": 1572831,
+    "sha256": "ff10b751d9817584090f30ae90d2b563a70ea40559c0be45ad955853d251f9f9"
+  },
+  {
+    "num": "029",
+    "tier": "tier_1_core",
+    "original_name": "AI_INFORMATION_INTUITION.md",
+    "source": "/sdcard/Download/AI_INFORMATION_INTUITION.md",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/029__AI_INFORMATION_INTUITION.md",
+    "bytes": 26047,
+    "sha256": "205b5ba15395b1fdcabcc776cb45d95a49061163ab02a4669fe0a51a26eca725"
+  },
+  {
+    "num": "031",
+    "tier": "tier_1_core",
+    "original_name": "AI_READY_CHECKPOINT.txt",
+    "source": "/sdcard/Download/AI_READY_CHECKPOINT.txt",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/031__AI_READY_CHECKPOINT.txt",
+    "bytes": 1724056,
+    "sha256": "ceea94a4e820780d52d53e3c225ab050315f9568d7bc6ea759f07194f2c6383f"
+  },
+  {
+    "num": "034",
+    "tier": "tier_1_core",
+    "original_name": "AIM BLUEPRINT.txt",
+    "source": "/sdcard/Download/AIM BLUEPRINT.txt",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/034__AIM_BLUEPRINT.txt",
+    "bytes": 20674,
+    "sha256": "910125f240aa69c024a6a77a1bc00882838d4ec59239aaea930ba39876c8fcc4"
+  },
+  {
+    "num": "071",
+    "tier": "tier_1_core",
+    "original_name": "CLAUDE_HONEST_ASSESSMENT_20260513.md",
+    "source": "/sdcard/Download/CLAUDE_HONEST_ASSESSMENT_20260513.md",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/071__CLAUDE_HONEST_ASSESSMENT_20260513.md",
+    "bytes": 13228,
+    "sha256": "85a32b6ed8822e9e98966043958ca23e49c53db2f7ed36dd67f7c466b5f6b096"
+  },
+  {
+    "num": "072",
+    "tier": "tier_1_core",
+    "original_name": "CLAUDE_HONEST_ASSESSMENT_v2_20260513.md",
+    "source": "/sdcard/Download/CLAUDE_HONEST_ASSESSMENT_v2_20260513.md",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/072__CLAUDE_HONEST_ASSESSMENT_v2_20260513.md",
+    "bytes": 15520,
+    "sha256": "67c4f905fdfcc266a436bba329eba4edebd188f1f3dae4a8ea9f1e666bc2e6d4"
+  },
+  {
+    "num": "075",
+    "tier": "tier_1_core",
+    "original_name": "COMPARISON.txt",
+    "source": "/sdcard/Download/COMPARISON.txt",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/075__COMPARISON.txt",
+    "bytes": 38959,
+    "sha256": "fd8a792f5b744288d68b42d3a0cebf320289d8f40b5115c3724ecb1ef4ce6bc1"
+  },
+  {
+    "num": "095",
+    "tier": "tier_1_core",
+    "original_name": "gdrive_raw_FULL_inventory.txt",
+    "source": "/sdcard/Download/gdrive_raw_FULL_inventory.txt",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/095__gdrive_raw_FULL_inventory.txt",
+    "bytes": 6534,
+    "sha256": "297d41e13442ac6be7009c64113d20e1244ed7f08bdbeddf60d2647348cb688e"
+  },
+  {
+    "num": "097",
+    "tier": "tier_1_core",
+    "original_name": "GEMINI CLI PENULTIMATE OMEGA PROMPT.txt",
+    "source": "/sdcard/Download/GEMINI CLI PENULTIMATE OMEGA PROMPT.txt",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/097__GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt",
+    "bytes": 43126,
+    "sha256": "d17a50d837604f7a925c603c670e4b90680869c661ec1a29c7a302816495f30c"
+  },
+  {
+    "num": "089",
+    "tier": "tier_1_core",
+    "original_name": "First Future Feature.txt",
+    "source": "/sdcard/Download/First Future Feature.txt",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/089__First_Future_Feature.txt",
+    "bytes": 11324,
+    "sha256": "5f511c72bc379f209140591c0b54e244007d467a785cabc659ef2d0d71ac9460"
+  },
+  {
+    "num": "107",
+    "tier": "tier_1_core",
+    "original_name": "Here is the absolute technical, structural, and behavioral inventory of every single element that must exist within your 4-layer UI-UX narrative runtime environment.txt",
+    "source": "/sdcard/Download/Here is the absolute technical, structural, and behavioral inventory of every single element that must exist within your 4-layer UI-UX narrative runtime environment.txt",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/107__Here_is_the_absolute_technical,_structural,_and_behavioral_inventory_of_every_single_element_that_must_exist_within_your_4-layer_UI-UX_narrative_runtime_environment.txt",
+    "bytes": 14873,
+    "sha256": "01e740b7f4a508b1c103299dac6b6f7a9a82a250f4c6156cbe0ccd5ac476c3c2"
+  },
+  {
+    "num": "111",
+    "tier": "tier_1_core",
+    "original_name": "IMPOSSIBLE_TARGETS.txt",
+    "source": "/sdcard/Download/IMPOSSIBLE_TARGETS.txt",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/111__IMPOSSIBLE_TARGETS.txt",
+    "bytes": 4146,
+    "sha256": "c3d8f19e97369db207d5cbd8eb52ef3831258ac32167a57dbe26eeaede5c6c35"
+  },
+  {
+    "num": "160",
+    "tier": "tier_1_core",
+    "original_name": "PROJECT_HANDOFF_COMPLETE_CONTEXT-2.md",
+    "source": "/sdcard/Download/PROJECT_HANDOFF_COMPLETE_CONTEXT-2.md",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/160__PROJECT_HANDOFF_COMPLETE_CONTEXT-2.md",
+    "bytes": 11881,
+    "sha256": "a9fb559778e6c30413384a4fb7298a8be66ea4c0d06f0a3c41c49dc3d38ed89e"
+  },
+  {
+    "num": "014",
+    "tier": "tier_1_core",
+    "original_name": "Writing Agent App. Source Doc. (8) [COMBINED] (1).txt",
+    "source": "/sdcard/Download/Writing Agent App. Source Doc. (8) [COMBINED] (1).txt",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/014__Writing_Agent_App._Source_Doc._(8)_[COMBINED]_(1).txt",
+    "bytes": 21404,
+    "sha256": "9c15c8b96921a7c7ce3cedea4438345220260a2aa545d722036a5360eae8965f"
+  },
+  {
+    "num": "077",
+    "tier": "tier_2_large_universal",
+    "original_name": "CONTRADICTION_MAP.txt",
+    "source": "/sdcard/Download/CONTRADICTION_MAP.txt",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/077__CONTRADICTION_MAP.txt",
+    "bytes": 164769,
+    "sha256": "2ad8ed2975a0222370c61986c459de0615f7f73a637192f2c922849c0be447ac"
+  },
+  {
+    "num": "084",
+    "tier": "tier_2_large_universal",
+    "original_name": "DRIVE_NOT_LOCAL_RAW.txt",
+    "source": "/sdcard/Download/DRIVE_NOT_LOCAL_RAW.txt",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/084__DRIVE_NOT_LOCAL_RAW.txt",
+    "bytes": 32123,
+    "sha256": "a8ca80741b557601209a9f9375ddd5d043a2bbab403179969b0daad39e5810ee"
+  },
+  {
+    "num": "097",
+    "tier": "tier_2_large_universal",
+    "original_name": "GEMINI CLI PENULTIMATE OMEGA PROMPT.txt",
+    "source": "/sdcard/Download/GEMINI CLI PENULTIMATE OMEGA PROMPT.txt",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/097__GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt",
+    "bytes": 43126,
+    "sha256": "d17a50d837604f7a925c603c670e4b90680869c661ec1a29c7a302816495f30c"
+  },
+  {
+    "num": "104",
+    "tier": "tier_2_large_universal",
+    "original_name": "Give me the terminal commands to f------ get that.pdf",
+    "source": "/sdcard/Download/Give me the terminal commands to f------ get that.pdf",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/104__Give_me_the_terminal_commands_to_f------_get_that.pdf",
+    "bytes": 32975,
+    "sha256": "89f166606cbe4e1f5e2d055415147c04da997045b70665c52763455b7d0af877"
+  },
+  {
+    "num": "123",
+    "tier": "tier_2_large_universal",
+    "original_name": "NEW SEC DOC (1) (1).txt",
+    "source": "/sdcard/Download/NEW SEC DOC (1) (1).txt",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/123__NEW_SEC_DOC_(1)_(1).txt",
+    "bytes": 32142,
+    "sha256": "090b5126809cc86709da2e632136a4e0b6cc1dddecd1e09941896f1fdda29187"
+  },
+  {
+    "num": "124",
+    "tier": "tier_2_large_universal",
+    "original_name": "NEW SEC DOC (1) (2).txt",
+    "source": "/sdcard/Download/NEW SEC DOC (1) (2).txt",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/124__NEW_SEC_DOC_(1)_(2).txt",
+    "bytes": 43659,
+    "sha256": "3c98bebf00f8c6bce6a737309009b9445058349fa55a58f76e2e2c15073d06d6"
+  },
+  {
+    "num": "134",
+    "tier": "tier_2_large_universal",
+    "original_name": "NOS_INTEGRATION_BLUEPRINT.txt",
+    "source": "/sdcard/Download/NOS_INTEGRATION_BLUEPRINT.txt",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/134__NOS_INTEGRATION_BLUEPRINT.txt",
+    "bytes": 55932,
+    "sha256": "b409caa97b6fdfdb3efea9dd32337e7a9ce4ba3abc6288acc4cc770086f8029f"
+  },
+  {
+    "num": "139",
+    "tier": "tier_3_checkpoints",
+    "original_name": "NOS_Master_Blueprints.txt",
+    "source": "/sdcard/Download/NOS_Master_Blueprints.txt",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_3_checkpoints/139__NOS_Master_Blueprints.txt",
+    "bytes": 46457,
+    "sha256": "bc6f3a14a62a5c8c1832bea0b04c0e475b7d74b78f265bc18afaf6d15cebf122"
+  },
+  {
+    "num": "140",
+    "tier": "tier_3_checkpoints",
+    "original_name": "NOS_Master_Diagnostic.txt",
+    "source": "/sdcard/Download/NOS_Master_Diagnostic.txt",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_3_checkpoints/140__NOS_Master_Diagnostic.txt",
+    "bytes": 57625,
+    "sha256": "7515a5e6a6d419caa15be7bf8b77ec6c6430fecd48dcf81e2414cc1cea74ec86"
+  },
+  {
+    "num": "154",
+    "tier": "tier_3_checkpoints",
+    "original_name": "Project Checkpoint 2.txt",
+    "source": "/sdcard/Download/Project Checkpoint 2.txt",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_3_checkpoints/154__Project_Checkpoint_2.txt",
+    "bytes": 70787,
+    "sha256": "886b2f381ee5db3cbb49eae6aed22eadafe2643598fc913dfa75f52071dbb45f"
+  },
+  {
+    "num": "199",
+    "tier": "tier_3_checkpoints",
+    "original_name": "Termux Checkpoint (w- Gemini 1 (1).txt",
+    "source": "/sdcard/Download/Termux Checkpoint (w- Gemini 1 (1).txt",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/tier_3_checkpoints/199__Termux_Checkpoint_(w-_Gemini_1_(1).txt",
+    "bytes": 30774,
+    "sha256": "3271f06e9db200531304df6b80a4c45645182deb707d4a2445b9cef6e34374c6"
+  },
+  {
+    "num": "174",
+    "tier": "later_queue",
+    "original_name": "REFINED_LORE_SINGULARITY.txt",
+    "source": "/sdcard/Download/REFINED_LORE_SINGULARITY.txt",
+    "dest": "src/data-layer/ingestion-buffer/readme_docs/later_queue/174__REFINED_LORE_SINGULARITY.txt",
+    "bytes": 4657573,
+    "sha256": "668994807602bb5aa6d603b3bf05b0754b4b0516ad356e3156dbfc48585f4eb4"
+  }
+]

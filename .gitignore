@@ -53,3 +53,8 @@ system/07_Build_Manifests/session_logs/
 data/source_archive/
 secrets/
 *.json.key
+
+# Local raw ingestion/staging artifacts; preserve locally, do not commit raw OOXML/fonts or bulky runtime dumps.
+data/
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/
+src/data-layer/ingestion-buffer/readme_docs/

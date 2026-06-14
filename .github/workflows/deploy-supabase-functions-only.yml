@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - cleanup/standard-app-tree
     paths:
       - "supabase/functions/**"
       - ".github/workflows/deploy-supabase-functions-only.yml"

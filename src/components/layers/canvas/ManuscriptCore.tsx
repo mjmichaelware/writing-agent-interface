@@ -184,12 +184,18 @@ export default function ManuscriptCore({
     };
   }, [chapterSlug, blocks, partNumber]);
 
-  // Helper to wrap Hebrew terms
-  const renderText = (text: string) => {
-    const hebrewTerms = ['Hebron', 'Hermon', 'Mamre', 'Beelzebub', 'Megiddo', 'Sak', 'Rafa'];
+  // Helper to wrap terms with specific styling based on provided spans
+  const renderText = (text: string, hebrewSpans?: any[]) => { // hebrewSpans could be strings or objects
+    if (!hebrewSpans || hebrewSpans.length === 0) {
+      return text;
+    }
+
     let result: React.ReactNode[] = [text];
     
-    hebrewTerms.forEach(term => {
+    hebrewSpans.forEach(span => {
+      const term = typeof span === 'string' ? span : span.term; // Assuming span could be string or { term: string, ... }
+      if (!term) return; // Skip if term is not defined
+
       const newResult: React.ReactNode[] = [];
       result.forEach(node => {
         if (typeof node === 'string') {
@@ -240,7 +246,7 @@ export default function ManuscriptCore({
                 data-state="inactive"
                 className="prose-paragraph kinetic-word"
               >
-                {renderText(text)}
+                {renderText(text, typeof block === "string" ? undefined : block.hebrew_spans)}
               </p>
             );
           })

@@ -33,6 +33,12 @@
   --duration-fast: 350ms;
   --duration-medium: 700ms;
   --duration-slow: 1200ms;
+
+  /* Typography Engine Variables */
+  --arc-mass: 1;
+  --arc-tension: 0.5;
+  --arc-blur: 0px;
+  --arc-drift: 0px;
 }
 
 /* Phase 2: Title Page Components */
@@ -210,11 +216,7 @@ html {
 }
 
 body {
-  background-color: var(--bg-void);
-  color: var(--text-body);
-  font-family: var(--font-prose, 'EB Garamond', Georgia, serif);
-  line-height: var(--leading-prose);
-  overflow-x: hidden;
+  background-color: black; /* Layer 1: Fixed black void */
 }
 
 /* Frank Ruhl Libre for Hebrew names and display titles */

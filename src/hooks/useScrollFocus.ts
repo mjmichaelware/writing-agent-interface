@@ -1,38 +1,20 @@
-import { useState, useEffect, RefObject } from 'react';
+// Placeholder for useScrollFocus hook
+import { useEffect, useState } from 'react';
 
-export function useScrollFocus(containerRef: RefObject<HTMLElement>) {
-  const [focusedId, setFocusedId] = useState<string | null>(null);
+export function useScrollFocus() {
+  const [focusedElement, setFocusedElement] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
+    // Basic placeholder for scroll focus logic
     const handleScroll = () => {
-      if (!containerRef.current) return;
-
-      const children = Array.from(containerRef.current.children);
-      const viewportCenter = window.innerHeight / 2;
-
-      let closestId = null;
-      let minDistance = Infinity;
-
-      children.forEach((child) => {
-        const rect = child.getBoundingClientRect();
-        const distance = Math.abs(rect.top + rect.height / 2 - viewportCenter);
-
-        if (distance < minDistance) {
-          minDistance = distance;
-          closestId = child.id;
-        }
-      });
-
-      if (closestId !== focusedId) {
-        setFocusedId(closestId);
-      }
+      // In a real implementation, this would determine which element is "in focus"
+      // based on scroll position and viewport intersection.
+      console.log('Scroll focus logic active.');
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initial check
-
+    window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [containerRef, focusedId]);
+  }, []);
 
-  return focusedId;
+  return focusedElement;
 }

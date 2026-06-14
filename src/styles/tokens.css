@@ -1,0 +1,7 @@
+/* Typography Engine Variables */
+:root {
+  --arc-mass: 1; /* Controls intensity of displacement */
+  --arc-tension: 0.5; /* Controls letter-spacing impact */
+  --arc-blur: 0px; /* Controls blur intensity */
+  --arc-drift: 0px; /* Controls horizontal drift */
+}

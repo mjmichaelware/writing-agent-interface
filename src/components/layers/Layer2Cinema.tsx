@@ -34,31 +34,14 @@ export default function Layer2Cinema({ chapterSlug = "0" }: { chapterSlug?: stri
 
         if (hasWeights) {
             asset = resolveAssetByMeaning(
-                data.weights, 
-                data.dualisms || {}, 
+                data.weights,
+                data.dualisms || {},
                 data.partNumber || "I",
                 content
             );
         } else {
-            asset = resolveAssetByKeyword(
-                parseInt(data.paraIndex) || 0,
-                currentChapter
-            );
-        }
-
-        // Feature: Intelligent Layering for Chapter 7 (Megiddo/Flies)
-        if (currentChapter === "7" || content.toLowerCase().includes("pit") || content.toLowerCase().includes("megiddo")) {
-          const text = content.toLowerCase();
-          if (text.includes("flies") || text.includes("swarm")) {
-            setOverlayAsset("/assets/flies.jpg");
-          } else if (text.includes("megiddo") || text.includes("gate")) {
-            setOverlayAsset("/assets/megiddo2.jpg");
-            asset = "/assets/megiddo1.jpg";
-          } else {
-            setOverlayAsset(null);
-          }
-        } else {
-          setOverlayAsset(null);
+            // Fallback to a generic background image if no semantic weights
+            asset = "/assets/bg.png";
         }
 
         // Feature 3.6: Generative Cinema Fallback
@@ -100,8 +83,7 @@ export default function Layer2Cinema({ chapterSlug = "0" }: { chapterSlug?: stri
           className="absolute inset-0 transition-opacity duration-[3000ms] ease-in-out"
           style={{ 
             opacity: intensity * 0.8,
-            mixBlendMode: "screen"
-          }}
+            }}
         >
           <AssetProjector 
               currentSrc={overlayAsset} 

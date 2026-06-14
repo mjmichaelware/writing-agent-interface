@@ -1,0 +1,11 @@
+{
+  "generated_utc": "2026-06-14T20:39:35.813309+00:00",
+  "run_root": "docs/forensics/archive/20260614_143918_final_senior_polish",
+  "moved_backup_files": 4,
+  "moved_local_private_surfaces": 0,
+  "private_root": "/data/data/com.termux/files/home/.nos_private/writing-agent-interface",
+  "manifest": "docs/forensics/archive/20260614_143918_final_senior_polish/polish_move_manifest.tsv",
+  "skiplog": "docs/forensics/archive/20260614_143918_final_senior_polish/polish_skip_manifest.tsv",
+  "reflog": "docs/forensics/archive/20260614_143918_final_senior_polish/polish_reference_hits.tsv",
+  "rollback": "docs/forensics/archive/20260614_143918_final_senior_polish/polish_rollback.sh"
+}

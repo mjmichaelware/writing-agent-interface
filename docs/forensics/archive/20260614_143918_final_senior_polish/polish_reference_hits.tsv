@@ -1,0 +1,9 @@
+token	active_ref_file
+data/source_archive	.gitignore
+data/source_archive	scripts/xml_recovery/audit_google_xml_extraction.sh
+data/source_archive	scripts/xml_recovery/materialize_ooxml_raw.py
+data/source_archive	scripts/ingestion/google_drive/archive-google-docs-by-local-names.mjs
+secrets/	.gitignore
+secrets/	scripts/ingestion/google_drive/archive-google-docs-by-local-names.mjs
+secrets/	src/data-layer/ingestion-buffer/readme_docs/tier_1_core/160__PROJECT_HANDOFF_COMPLETE_CONTEXT-2.md
+secrets/	src/services/orchestration-engine/google-swarm.ts

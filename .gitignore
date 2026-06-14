@@ -75,3 +75,17 @@ secrets/
 
 # Android/Termux local export artifacts
 writing-agent-interface_senior_inventory_*.txt
+
+# Senior cleanup local/private/generated surfaces
+.env.local
+.vercel/
+.next/
+node_modules/
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+Build
+parse-by-meaning.js.draft
+
+# Local private material
+secrets/
+data/source_archive/

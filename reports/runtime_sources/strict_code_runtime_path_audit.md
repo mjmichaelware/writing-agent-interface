@@ -25,7 +25,7 @@ This excludes staged documents, data-layer manifests, generated reports, copied 
 - `src/lib/runtime-source-paths.ts` L24: `supabaseIndexes: "data/runtime_sources/weight_of_the_sky/12_supabase_indexes",`
 - `src/lib/runtime-source-paths.ts` L25: `manualSortInbox: "data/runtime_sources/weight_of_the_sky/99_manual_sort_inbox",`
 - `src/lib/runtime-source-paths.ts` L26: `quarantineDoNotIngest: "data/runtime_sources/weight_of_the_sky/99_quarantine_do_not_ingest",`
-- `src/lib/runtime-source-paths.ts` L30: `gdriveRawTextBaseline: "src/data-layer/ingestion-buffer/gdrive_raw",`
+- `src/lib/runtime-source-paths.ts` L30: `gdriveRawTextBaseline: "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw",`
 - `src/lib/runtime-source-paths.ts` L31: `gdriveDocxIntake: "src/data-layer/ingestion-buffer/gdrive_docx_intake",`
 - `src/lib/runtime-source-paths.ts` L32: `gdriveOoxmlRaw: "src/data-layer/ingestion-buffer/gdrive_ooxml_raw",`
 - `src/lib/runtime-source-paths.ts` L33: `readmeDocs: "src/data-layer/ingestion-buffer/readme_docs",`
@@ -48,13 +48,13 @@ This excludes staged documents, data-layer manifests, generated reports, copied 
 - `src/lib/runtime-source-reader.ts` L33: `quarantineDoNotIngest: "data/runtime_sources/weight_of_the_sky/99_quarantine_do_not_ingest",`
 - `src/lib/runtime-source-reader.ts` L138: `const root = path.resolve(process.cwd(), RUNTIME_SOURCE_ROOT);`
 - `src/lib/runtime-source-reader.ts` L180: `root: RUNTIME_SOURCE_ROOT,`
-- `scripts/archive-google-docs-by-local-names.mjs` L9: `TARGET_DIRS.push("src/data-layer/ingestion-buffer/gdrive_raw");`
-- `scripts/data-lineage-audit.sh` L42: `find src/data-layer/ingestion-buffer/gdrive_raw -type f 2>/dev/null | wc -l | tee -a reports/data-lineage-audit.txt`
+- `scripts/archive-google-docs-by-local-names.mjs` L9: `TARGET_DIRS.push("docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw");`
+- `scripts/data-lineage-audit.sh` L42: `find docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw -type f 2>/dev/null | wc -l | tee -a reports/data-lineage-audit.txt`
 - `scripts/filename_standardization/standardize_context_filenames.py` L11: `Path("src/data-layer/ingestion-buffer/readme_docs"),`
 - `scripts/filename_standardization/standardize_context_filenames.py` L118: `readme_root = Path("src/data-layer/ingestion-buffer/readme_docs")`
 - `scripts/filename_standardization/standardize_context_filenames.py` L132: `Path("reports/readme_docs_staged_files.txt").write_text("\n".join(x["path"] for x in staged) + "\n", encoding="utf-8")`
 - `scripts/filename_standardization/standardize_context_filenames.py` L143: `"`src/data-layer/ingestion-buffer/readme_docs/`",`
-- `scripts/nos_sync.sh` L5: `for file in src/data-layer/ingestion-buffer/gdrive_raw/*.txt; do`
+- `scripts/nos_sync.sh` L5: `for file in docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/*.txt; do`
 - `scripts/perfect_weight/00_generate_perfection_scripts.py` L37: `find src/data-layer/ingestion-buffer/readme_docs -type f -printf '%p\t%s bytes\n' 2>/dev/null | sort || true`
 - `scripts/perfect_weight/00_generate_perfection_scripts.py` L53: `base = Path("src/data-layer/ingestion-buffer/readme_docs")`
 - `scripts/perfect_weight/00_generate_perfection_scripts.py` L132: `base = Path("src/data-layer/ingestion-buffer/readme_docs")`
@@ -77,8 +77,8 @@ This excludes staged documents, data-layer manifests, generated reports, copied 
 - `scripts/stage-numbered-download-readme-docs.py` L139: `print("Wrote reports/readme_docs_stage_manifest.json")`
 - `scripts/stage-numbered-download-readme-docs.py` L140: `print("Wrote reports/readme_docs_missing.json")`
 - `scripts/xml_recovery/audit_google_xml_extraction.sh` L13: `echo "## Local gdrive_raw text targets"`
-- `scripts/xml_recovery/audit_google_xml_extraction.sh` L15: `if [ -d "src/data-layer/ingestion-buffer/gdrive_raw" ]; then`
-- `scripts/xml_recovery/audit_google_xml_extraction.sh` L16: `echo "- gdrive_raw file count: $(find src/data-layer/ingestion-buffer/gdrive_raw -type f | wc -l)"`
+- `scripts/xml_recovery/audit_google_xml_extraction.sh` L15: `if [ -d "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw" ]; then`
+- `scripts/xml_recovery/audit_google_xml_extraction.sh` L16: `echo "- gdrive_raw file count: $(find docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw -type f | wc -l)"`
 - `scripts/xml_recovery/audit_google_xml_extraction.sh` L18: `echo "- gdrive_raw missing"`
 - `scripts/xml_recovery/audit_google_xml_extraction.sh` L22: `echo "- gdrive_ooxml_raw file count: $(find src/data-layer/ingestion-buffer/gdrive_ooxml_raw -type f 2>/dev/null | wc -l || echo 0)"`
 - `scripts/xml_recovery/materialize_ooxml_raw.py` L9: `DEST = Path("src/data-layer/ingestion-buffer/gdrive_ooxml_raw")`

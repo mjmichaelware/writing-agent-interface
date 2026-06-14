@@ -141,7 +141,7 @@ readme += [
 manifest = []
 
 # Root protocol docs.
-for f in ["AGENTS.md", "AGENTS_README.md", "AGENT_READ_CONTEXT_INDEX.md"]:
+for f in ["AGENTS.md", "docs/agent_context/indexes/AGENTS_README.md", "docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md"]:
     copy_file(Path(f), RUNTIME / "00_protocols", "root_protocol", manifest)
 
 # Active renderer-readable staged context.
@@ -162,7 +162,7 @@ copy_tree(
 
 # Current 182 text baseline.
 copy_tree(
-    Path("src/data-layer/ingestion-buffer/gdrive_raw"),
+    Path("docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw"),
     RUNTIME / "10_ingestion_baselines/gdrive_raw_text_baseline",
     "gdrive_raw_text_baseline",
     manifest,

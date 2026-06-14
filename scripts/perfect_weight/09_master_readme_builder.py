@@ -18,7 +18,7 @@ lines.append("This report is generated. It does not replace source documents. It
 lines.append("")
 lines.append("Primary source context: `src/data-layer/ingestion-buffer/readme_docs/`")
 lines.append("Root agent instructions: `AGENTS.md`")
-lines.append("Source index: `AGENT_READ_CONTEXT_INDEX.md`")
+lines.append("Source index: `docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md`")
 lines.append("")
 
 for filename, title in parts:

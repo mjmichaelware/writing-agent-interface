@@ -1,0 +1,207 @@
+[
+  {
+    "name": ".agent-context",
+    "type": "dir",
+    "size": 3452
+  },
+  {
+    "name": ".env.local",
+    "type": "file",
+    "size": 1339
+  },
+  {
+    "name": ".git",
+    "type": "dir",
+    "size": 3452
+  },
+  {
+    "name": ".github",
+    "type": "dir",
+    "size": 3452
+  },
+  {
+    "name": ".gitignore",
+    "type": "file",
+    "size": 864
+  },
+  {
+    "name": ".next",
+    "type": "dir",
+    "size": 3452
+  },
+  {
+    "name": ".nos",
+    "type": "dir",
+    "size": 3452
+  },
+  {
+    "name": ".sandbox",
+    "type": "dir",
+    "size": 3452
+  },
+  {
+    "name": ".vercel",
+    "type": "dir",
+    "size": 3452
+  },
+  {
+    "name": ".vercelignore",
+    "type": "file",
+    "size": 39
+  },
+  {
+    "name": "AGENT_READ_CONTEXT_INDEX.md",
+    "type": "file",
+    "size": 3752
+  },
+  {
+    "name": "AGENTS.md",
+    "type": "file",
+    "size": 2435
+  },
+  {
+    "name": "AGENTS_README.md",
+    "type": "file",
+    "size": 240
+  },
+  {
+    "name": "Build",
+    "type": "file",
+    "size": 0
+  },
+  {
+    "name": "data",
+    "type": "dir",
+    "size": 3452
+  },
+  {
+    "name": "docs",
+    "type": "dir",
+    "size": 3452
+  },
+  {
+    "name": "eslint.config.js",
+    "type": "file",
+    "size": 137
+  },
+  {
+    "name": "export_blueprints.sh",
+    "type": "file",
+    "size": 16195
+  },
+  {
+    "name": "GEMINI.md",
+    "type": "file",
+    "size": 2596
+  },
+  {
+    "name": "next-env.d.ts",
+    "type": "file",
+    "size": 201
+  },
+  {
+    "name": "next.config.js",
+    "type": "file",
+    "size": 233
+  },
+  {
+    "name": "node_modules",
+    "type": "dir",
+    "size": 24576
+  },
+  {
+    "name": "nos_manifest.json",
+    "type": "file",
+    "size": 36678
+  },
+  {
+    "name": "package-lock.json",
+    "type": "file",
+    "size": 209458
+  },
+  {
+    "name": "package.json",
+    "type": "file",
+    "size": 1343
+  },
+  {
+    "name": "parse-by-meaning.js.draft",
+    "type": "file",
+    "size": 9476
+  },
+  {
+    "name": "postcss.config.js",
+    "type": "file",
+    "size": 93
+  },
+  {
+    "name": "public",
+    "type": "dir",
+    "size": 3452
+  },
+  {
+    "name": "README.md",
+    "type": "file",
+    "size": 343
+  },
+  {
+    "name": "reports",
+    "type": "dir",
+    "size": 3452
+  },
+  {
+    "name": "run_nos_diagnostics.sh",
+    "type": "file",
+    "size": 3383
+  },
+  {
+    "name": "scripts",
+    "type": "dir",
+    "size": 3452
+  },
+  {
+    "name": "secrets",
+    "type": "dir",
+    "size": 3452
+  },
+  {
+    "name": "src",
+    "type": "dir",
+    "size": 3452
+  },
+  {
+    "name": "supabase",
+    "type": "dir",
+    "size": 3452
+  },
+  {
+    "name": "system",
+    "type": "dir",
+    "size": 3452
+  },
+  {
+    "name": "tailwind.config.ts",
+    "type": "file",
+    "size": 248
+  },
+  {
+    "name": "test-db.js",
+    "type": "file",
+    "size": 302
+  },
+  {
+    "name": "tsconfig.json",
+    "type": "file",
+    "size": 1052
+  },
+  {
+    "name": "tsconfig.tsbuildinfo",
+    "type": "file",
+    "size": 281682
+  },
+  {
+    "name": "vercel.json",
+    "type": "file",
+    "size": 35
+  }
+]

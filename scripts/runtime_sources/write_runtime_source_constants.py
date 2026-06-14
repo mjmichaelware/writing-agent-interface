@@ -33,7 +33,7 @@ export const RUNTIME_SOURCE_PATHS = {
 } as const;
 
 export const LEGACY_INGESTION_BUFFER_PATHS = {
-  gdriveRawTextBaseline: "src/data-layer/ingestion-buffer/gdrive_raw",
+  gdriveRawTextBaseline: "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw",
   gdriveDocxIntake: "src/data-layer/ingestion-buffer/gdrive_docx_intake",
   gdriveOoxmlRaw: "src/data-layer/ingestion-buffer/gdrive_ooxml_raw",
   readmeDocs: "src/data-layer/ingestion-buffer/readme_docs",

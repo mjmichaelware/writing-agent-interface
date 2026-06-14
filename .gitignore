@@ -58,3 +58,20 @@ secrets/
 data/
 src/data-layer/ingestion-buffer/gdrive_ooxml_raw/
 src/data-layer/ingestion-buffer/readme_docs/
+
+# Senior cleanup local/generated surfaces
+.next/
+node_modules/
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+.env.local
+.vercel/
+Build
+parse-by-meaning.js.draft
+
+# Local-only raw and secret material
+data/
+secrets/
+
+# Android/Termux local export artifacts
+writing-agent-interface_senior_inventory_*.txt

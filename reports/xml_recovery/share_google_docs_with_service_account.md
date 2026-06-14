@@ -12,7 +12,7 @@ After sharing, run:
 
 ```bash
 cd /termux-home/Workspaces/Hybrid/writing-agent-interface
-GOOGLE_APPLICATION_CREDENTIALS=secrets/wos-drive-docs-reader.json node scripts/archive-google-docs-by-local-names.mjs src/data-layer/ingestion-buffer/gdrive_raw
+GOOGLE_APPLICATION_CREDENTIALS=secrets/wos-drive-docs-reader.json node scripts/archive-google-docs-by-local-names.mjs docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw
 python3 scripts/xml_recovery/materialize_ooxml_raw.py
 find src/data-layer/ingestion-buffer/gdrive_ooxml_raw -type f | wc -l
 ```

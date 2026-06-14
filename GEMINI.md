@@ -24,18 +24,18 @@ On startup, before responding to any operator command, read these
 directories in order:
 
 ### Tier 1 — Critical Project Identity (read first, hold all)
-`.agent-context/tier1-critical/` — 17 files defining the project's
+`docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier1-critical/` — 17 files defining the project's
 spine: source docs, AI checkpoints, the Aesthetic Mandate, both
 Claude assessments, the OMEGA prompt, the 4-layer UI/UX inventory,
 the IMPOSSIBLE_TARGETS structure, the project handoff context.
 
 ### Tier 2 — Large Audits & Universal Mandates
-`.agent-context/tier2-large/` — 6 files including the
+`docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier2-large/` — 6 files including the
 CONTRADICTION_MAP, drive sync diffs, NEW_SEC_DOC v1/v2, and the
 NOS_INTEGRATION_BLUEPRINT (the system architecture authority).
 
 ### Tier 3 — Runtime Checkpoints
-`.agent-context/tier3-checkpoints/` — 4 files including
+`docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier3-checkpoints/` — 4 files including
 NOS_Master_Blueprints, NOS_Master_Diagnostic, Project Checkpoint 2,
 and the Termux session checkpoint.
 

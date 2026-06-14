@@ -95,7 +95,7 @@
     {
       "path": "src/lib/runtime-source-paths.ts",
       "line": 30,
-      "text": "gdriveRawTextBaseline: \"src/data-layer/ingestion-buffer/gdrive_raw\","
+      "text": "gdriveRawTextBaseline: \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw\","
     },
     {
       "path": "src/lib/runtime-source-paths.ts",
@@ -210,12 +210,12 @@
     {
       "path": "scripts/archive-google-docs-by-local-names.mjs",
       "line": 9,
-      "text": "TARGET_DIRS.push(\"src/data-layer/ingestion-buffer/gdrive_raw\");"
+      "text": "TARGET_DIRS.push(\"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw\");"
     },
     {
       "path": "scripts/data-lineage-audit.sh",
       "line": 42,
-      "text": "find src/data-layer/ingestion-buffer/gdrive_raw -type f 2>/dev/null | wc -l | tee -a reports/data-lineage-audit.txt"
+      "text": "find docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw -type f 2>/dev/null | wc -l | tee -a reports/data-lineage-audit.txt"
     },
     {
       "path": "scripts/filename_standardization/standardize_context_filenames.py",
@@ -240,7 +240,7 @@
     {
       "path": "scripts/nos_sync.sh",
       "line": 5,
-      "text": "for file in src/data-layer/ingestion-buffer/gdrive_raw/*.txt; do"
+      "text": "for file in docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/*.txt; do"
     },
     {
       "path": "scripts/perfect_weight/00_generate_perfection_scripts.py",
@@ -355,12 +355,12 @@
     {
       "path": "scripts/xml_recovery/audit_google_xml_extraction.sh",
       "line": 15,
-      "text": "if [ -d \"src/data-layer/ingestion-buffer/gdrive_raw\" ]; then"
+      "text": "if [ -d \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw\" ]; then"
     },
     {
       "path": "scripts/xml_recovery/audit_google_xml_extraction.sh",
       "line": 16,
-      "text": "echo \"- gdrive_raw file count: $(find src/data-layer/ingestion-buffer/gdrive_raw -type f | wc -l)\""
+      "text": "echo \"- gdrive_raw file count: $(find docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw -type f | wc -l)\""
     },
     {
       "path": "scripts/xml_recovery/audit_google_xml_extraction.sh",

@@ -1,0 +1,10 @@
+{
+  "generated_utc": "2026-06-14T15:21:08.916270Z",
+  "run_root": "docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup",
+  "moves_attempted": 25,
+  "moved": 1,
+  "skipped": 24,
+  "rollback": "docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/rollback_moves.sh",
+  "manifest": "docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/move_manifest.tsv",
+  "skiplog": "docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/skip_manifest.tsv"
+}

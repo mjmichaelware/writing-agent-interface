@@ -12,8 +12,8 @@ OUT="reports/xml_recovery/google_xml_extraction_audit.md"
   echo
   echo "## Local gdrive_raw text targets"
   echo
-  if [ -d "src/data-layer/ingestion-buffer/gdrive_raw" ]; then
-    echo "- gdrive_raw file count: $(find src/data-layer/ingestion-buffer/gdrive_raw -type f | wc -l)"
+  if [ -d "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw" ]; then
+    echo "- gdrive_raw file count: $(find docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw -type f | wc -l)"
   else
     echo "- gdrive_raw missing"
   fi

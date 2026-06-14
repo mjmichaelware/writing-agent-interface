@@ -23,7 +23,7 @@ mkdir -p reports/runtime_sources
   echo
   echo "## Counts"
   for d in \
-    src/data-layer/ingestion-buffer/gdrive_raw \
+    docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw \
     src/data-layer/ingestion-buffer/readme_docs \
     src/data-layer/ingestion-buffer/gdrive_docx_intake \
     src/data-layer/ingestion-buffer/gdrive_ooxml_raw \

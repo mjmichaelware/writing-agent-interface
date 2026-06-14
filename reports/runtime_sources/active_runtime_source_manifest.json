@@ -15,7 +15,7 @@
     {
       "action": "copied",
       "label": "root_protocol",
-      "source": "AGENTS_README.md",
+      "source": "docs/agent_context/indexes/AGENTS_README.md",
       "dest": "data/runtime_sources/weight_of_the_sky/00_protocols/agents_readme.md",
       "bytes": 240,
       "sha256": "8bdbbdb59349743111e479bb1f61e4b3bfcc9e188b0dde1162f6cc335aaf91bc"
@@ -23,7 +23,7 @@
     {
       "action": "copied",
       "label": "root_protocol",
-      "source": "AGENT_READ_CONTEXT_INDEX.md",
+      "source": "docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md",
       "dest": "data/runtime_sources/weight_of_the_sky/00_protocols/agent_read_context_index.md",
       "bytes": 3752,
       "sha256": "0623a164ad3cb579f0923bc8d4f6eb329d19be86635ba92957222076deb50586"
@@ -495,7 +495,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(A)Chapter_8:_Sea_People.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)Chapter_8:_Sea_People.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/a_chapter_8_sea_people.txt",
       "bytes": 22969,
       "sha256": "899785761182e45b412ce4d101c004699bdd5aacd75f3aaadfb4d0eb696f6e4e"
@@ -503,7 +503,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter:_1_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter:_1_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/a_chapter_1_stardust_to_stardust.txt",
       "bytes": 20031,
       "sha256": "28590318b4fae25cff6e3cee1a06048ff260f13cc1013530e1d27dad2d8a4905"
@@ -511,7 +511,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1-_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_1-_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/a_chapter_1_stardust_to_stardust_copy_2.txt",
       "bytes": 21370,
       "sha256": "f40487d36d74603424ffe964db3446112e3f1b960a1f10fa8af307c7c3b968af"
@@ -519,7 +519,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1:_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_1:_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/a_chapter_1_stardust_to_stardust_copy_3.txt",
       "bytes": 21228,
       "sha256": "126b18314e1ab029e14f7dd285cda564c1a037aed3f13006dd4e91eddc48d5ab"
@@ -527,7 +527,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1_-_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_1_-_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/a_chapter_1_stardust_to_stardust_copy_4.txt",
       "bytes": 22015,
       "sha256": "dfdc70629facb81c42b26d28c0a73a88aeeecb6444e6e21f4e8a19fd239236d6"
@@ -535,7 +535,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_2-_Living_Sacrifice.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_2-_Living_Sacrifice.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/a_chapter_2_living_sacrifice.txt",
       "bytes": 19743,
       "sha256": "fcf512e159723ae554470e913a6ad87a6aa724e10e1adcf908e23d719706879d"
@@ -543,7 +543,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_2:_Living_Sacrifice.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_2:_Living_Sacrifice.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/a_chapter_2_living_sacrifice_copy_2.txt",
       "bytes": 18467,
       "sha256": "5f1322392d14770ad22a3e42741375b130077c939c2ce119a922cb0d0e9d52cb"
@@ -551,7 +551,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_3-_Lift_Up.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_3-_Lift_Up.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/a_chapter_3_lift_up.txt",
       "bytes": 22650,
       "sha256": "0576ba002b54e0a4ef58c7980fb21c02f2914443170091d4728687c593872643"
@@ -559,7 +559,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_3_-_Lift_Up.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_3_-_Lift_Up.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/a_chapter_3_lift_up_copy_2.txt",
       "bytes": 20360,
       "sha256": "dfad2370ac6697b2cf1262036cfa9dc100165572054c3e5ad9360495a0c6035f"
@@ -567,7 +567,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_5_-_The_Snare.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_5_-_The_Snare.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/a_chapter_5_the_snare.txt",
       "bytes": 19805,
       "sha256": "d4e5d73397c227a6748b593816cb29ca1908f9db663eb640ef01438ff939860e"
@@ -575,7 +575,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_6:_Beelzebub,_Beelzebub.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_6:_Beelzebub,_Beelzebub.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/a_chapter_6_beelzebub_beelzebub.txt",
       "bytes": 21965,
       "sha256": "d6ba919b48876cea009e1e10d2debde5a2afd47c0bee512339a2b9890c7aacba"
@@ -583,7 +583,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(B)Chapter_8:_Sea_People.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)Chapter_8:_Sea_People.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_chapter_8_sea_people.txt",
       "bytes": 19612,
       "sha256": "78dc7b5fba0c9f1935f2d03d415ebf47593f9379687929f72ae4241696495405"
@@ -591,7 +591,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter:_1_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter:_1_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_chapter_1_stardust_to_stardust.txt",
       "bytes": 20323,
       "sha256": "c8450e823b1c442a68bbae411ccb76270df467215a0b44bc7578bd7914989e1f"
@@ -599,7 +599,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1-_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_1-_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_chapter_1_stardust_to_stardust_copy_2.txt",
       "bytes": 19605,
       "sha256": "0c4117aa4f9a17592f165b7644353af88deaf870f796e9c0f47380c9c34a0694"
@@ -607,7 +607,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1:_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_1:_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_chapter_1_stardust_to_stardust_copy_3.txt",
       "bytes": 21506,
       "sha256": "b5095835452d4d731c0a7a1e191d25eafef8e56a5258bbe531b7fe549c303128"
@@ -615,7 +615,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1_-_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_1_-_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_chapter_1_stardust_to_stardust_copy_4.txt",
       "bytes": 21458,
       "sha256": "6b95150abd4d3ff0b37223024b5a6c777713ca6b1dded8431481e13f351d8410"
@@ -623,7 +623,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_2-_Living_Sacrifice.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_2-_Living_Sacrifice.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_chapter_2_living_sacrifice.txt",
       "bytes": 19692,
       "sha256": "4f706e1f5d589334da16713f098b0fb60bb5b5312fa1bffa32a2466ca6328225"
@@ -631,7 +631,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_2:_Living_Sacrifice.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_2:_Living_Sacrifice.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_chapter_2_living_sacrifice_copy_2.txt",
       "bytes": 19234,
       "sha256": "85220a2b63141214b46848d32109a20363ce405aff58111bd832d223e57dfcdf"
@@ -639,7 +639,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_3-_Lift_Up.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_3-_Lift_Up.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_chapter_3_lift_up.txt",
       "bytes": 20517,
       "sha256": "3d9d8da6073bd30cb6e9aacce9d855f9365b4cf1540308bacbcf8e753e0cf43d"
@@ -647,7 +647,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_3:_Lift_Up.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_3:_Lift_Up.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_chapter_3_lift_up_copy_2.txt",
       "bytes": 20545,
       "sha256": "7478872cad7ce34c034dd9f300064a42ac0704449478355d58aa14dd5316611a"
@@ -655,7 +655,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_5-_The_Snare.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_5-_The_Snare.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_chapter_5_the_snare.txt",
       "bytes": 20546,
       "sha256": "ad683e6697ef059092100b6fd6acda20d92fbd15151562e936488242d6ecee9b"
@@ -663,7 +663,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_6_-_Beelzebub,_Beelzebub.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_6_-_Beelzebub,_Beelzebub.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_chapter_6_beelzebub_beelzebub.txt",
       "bytes": 22160,
       "sha256": "5cc31fa80ca47feea9625cc4df31c077677c02293ff75cf5e8872a3a92ad533f"
@@ -671,7 +671,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_7:_The_Pit.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_7:_The_Pit.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_chapter_7_the_pit.txt",
       "bytes": 21400,
       "sha256": "24dedd6b39a682863d99b7a23dbdb00dbbc6fce07b5bde3722fe2e6da6c524d2"
@@ -679,7 +679,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_9:_The_Ascent.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_9:_The_Ascent.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_chapter_9_the_ascent.txt",
       "bytes": 20049,
       "sha256": "08c436a8abb618701b29882882af371876b6533e5c52510fdc1d7a32df970895"
@@ -687,7 +687,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/b_stardust_to_stardust.txt",
       "bytes": 20047,
       "sha256": "2f87ee40988db8da93ebbeded84f5c9114589e27b096553255032f93ac95dfee"
@@ -695,7 +695,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(C)Chapter_8:_Sea_People.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)Chapter_8:_Sea_People.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/c_chapter_8_sea_people.txt",
       "bytes": 17219,
       "sha256": "5a8485de48c479065c11f25d19907c32608f8c597b296734e83535bb99285bfc"
@@ -703,7 +703,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_1_-_Stardust_to_Stardust_.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter:_1_-_Stardust_to_Stardust_.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/c_chapter_1_stardust_to_stardust.txt",
       "bytes": 21142,
       "sha256": "1a96bb1fec0d74558af5b735b8ca427a1f4678770f7e87fdcc429b66fb4c74ac"
@@ -711,7 +711,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_7_-_The_Pit.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter:_7_-_The_Pit.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/c_chapter_7_the_pit.txt",
       "bytes": 27331,
       "sha256": "da8e66d64d3fb582fb10b20a2a91c23521cd595c51561cda212d504838031f6c"
@@ -719,7 +719,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter:_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/c_chapter_stardust_to_stardust.txt",
       "bytes": 21088,
       "sha256": "6d0ce0bb5426de515ab23d7cc40c9b661093b63a7da8cea169852257c51099b0"
@@ -727,7 +727,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_1-_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_1-_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/c_chapter_1_stardust_to_stardust_copy_2.txt",
       "bytes": 21548,
       "sha256": "2909bfe98ae04ca1e21a98042461df199e323a7b7309d18c9129648be0fd63ef"
@@ -735,7 +735,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_1_-_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_1_-_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/c_chapter_1_stardust_to_stardust_copy_3.txt",
       "bytes": 21212,
       "sha256": "c2621a15b2ea5bfd708d6e5854ddcd5dfc07b0216be11b36a5341633b3cd5bc8"
@@ -743,7 +743,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_2-_Living_Sacrifice.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_2-_Living_Sacrifice.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/c_chapter_2_living_sacrifice.txt",
       "bytes": 18680,
       "sha256": "5ece978793d556112bb75ae99783d2e7f1190ef03c72cdc38a69cf1f6f58af04"
@@ -751,7 +751,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_3-_Lift_Up.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_3-_Lift_Up.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/c_chapter_3_lift_up.txt",
       "bytes": 20200,
       "sha256": "fd6cf4a4a2d064ec7df4826c2ed32fd8ff8038551310953f61586fd898bc2578"
@@ -759,7 +759,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_3_-_Lift_Up.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_3_-_Lift_Up.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/c_chapter_3_lift_up_copy_2.txt",
       "bytes": 21752,
       "sha256": "504ddd9133cd364406ee2ee5b8834f06d86606e74c00e2d58a69f7a67f19ac14"
@@ -767,7 +767,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_4-_Pilgrimage.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_4-_Pilgrimage.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/c_chapter_4_pilgrimage.txt",
       "bytes": 17991,
       "sha256": "d8ecbb62ae56200bcafc3fdf820fe7ca9e055ea8c4ae38d50b9bc4d6da180826"
@@ -775,7 +775,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_4_-_Pilgrimage.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_4_-_Pilgrimage.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/c_chapter_4_pilgrimage_copy_2.txt",
       "bytes": 19881,
       "sha256": "f0e6ae6ae3902689c2d7e18a2bc18eb213def67dd7106f2cbfa55c7a8dd40d8d"
@@ -783,7 +783,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_6-_Beelzebub,_Beelzebub.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_6-_Beelzebub,_Beelzebub.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/c_chapter_6_beelzebub_beelzebub.txt",
       "bytes": 23717,
       "sha256": "a803dbd7af7719481a24a5de9a6ae90b1fa2126e86c3da127e187b6bae5e4061"
@@ -791,7 +791,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter:_7_-_The_Pit.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(D)_Chapter:_7_-_The_Pit.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/d_chapter_7_the_pit.txt",
       "bytes": 19331,
       "sha256": "a8999aa97258ab76664edd985a0a825234bcdd19a21095f204d8d61950c5793d"
@@ -799,7 +799,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter_1_-_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(D)_Chapter_1_-_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/d_chapter_1_stardust_to_stardust.txt",
       "bytes": 23090,
       "sha256": "229704dddec3ca52b16392d570006e3bc13fd67ee3b2b76bb9eafa40c7784a78"
@@ -807,7 +807,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter_2-_Living_Sacrifice.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(D)_Chapter_2-_Living_Sacrifice.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/d_chapter_2_living_sacrifice.txt",
       "bytes": 18607,
       "sha256": "f50d30783ec1f604c8bd92cce434bc8df5462b37505120dd42b886a36195a6db"
@@ -815,7 +815,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter_2_-_Living_Sacrifice.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(D)_Chapter_2_-_Living_Sacrifice.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/d_chapter_2_living_sacrifice_copy_2.txt",
       "bytes": 19019,
       "sha256": "9ad5e23d234485c5648ce63ddbaef700ab0b738fae4b01c7146c05c7b7ddc409"
@@ -823,7 +823,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_1-_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(E)_Chapter_1-_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/e_chapter_1_stardust_to_stardust.txt",
       "bytes": 21595,
       "sha256": "9a5584254f94099f2985fce6deb213a0e7254ff898d96a498a5f7d1d23ed8043"
@@ -831,7 +831,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_1_-_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(E)_Chapter_1_-_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/e_chapter_1_stardust_to_stardust_copy_2.txt",
       "bytes": 23083,
       "sha256": "8a1e5d0606c4fe3d380539fac8dd9d0d1df24d08595f6f268b071d23aad9d395"
@@ -839,7 +839,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_2-_Living_Sacrifice.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(E)_Chapter_2-_Living_Sacrifice.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/e_chapter_2_living_sacrifice.txt",
       "bytes": 23222,
       "sha256": "8262e86950e194f03896b2883a4c917c3e2acccb318f7e9b446fb18f0e56cb2d"
@@ -847,7 +847,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_2_-_Living_Sacrifice.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(E)_Chapter_2_-_Living_Sacrifice.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/e_chapter_2_living_sacrifice_copy_2.txt",
       "bytes": 10827,
       "sha256": "3773b4620c5bddaf9e333b88204a65d90fb7d4563ec29a9be0bc5c965f524e93"
@@ -855,7 +855,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_3-_Lift_Up.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(E)_Chapter_3-_Lift_Up.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/e_chapter_3_lift_up.txt",
       "bytes": 16482,
       "sha256": "e84f49ee2b1b4dcac958abb6e910e842354af27cfe35b1e40b49853739112042"
@@ -863,7 +863,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter:_1_Stardust_to_Stardust_.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(F)_Chapter:_1_Stardust_to_Stardust_.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/f_chapter_1_stardust_to_stardust.txt",
       "bytes": 12506,
       "sha256": "2a7d8e1b1e1635fe69189c94f52e37b9bc3e464cb2ec1cc9efa1f550e69762c0"
@@ -871,7 +871,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_1:_Stardust_to_Stardust_.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(F)_Chapter_1:_Stardust_to_Stardust_.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/f_chapter_1_stardust_to_stardust_copy_2.txt",
       "bytes": 27311,
       "sha256": "7449a3e80f9354dd366fc8894aa9b4ace77974dcf2473e58c821790617445696"
@@ -879,7 +879,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_1_-_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(F)_Chapter_1_-_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/f_chapter_1_stardust_to_stardust_copy_3.txt",
       "bytes": 15479,
       "sha256": "c96e2d8ffb705f884006e817448baca0a1abe84e0b43966571c24eb69e9e17a4"
@@ -887,7 +887,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_2-_Living_Sacrifice.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(F)_Chapter_2-_Living_Sacrifice.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/f_chapter_2_living_sacrifice.txt",
       "bytes": 22306,
       "sha256": "4b64666b749e83e41be2afc587ed98b23df86ee108b9575a3eb644ba948d4160"
@@ -895,7 +895,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_3-_Lift_Up.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(F)_Chapter_3-_Lift_Up.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/f_chapter_3_lift_up.txt",
       "bytes": 18867,
       "sha256": "5fffec9f8219d17f9dcb4951f21061641ced8e9a92415985bd06ae5a01464c80"
@@ -903,7 +903,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(Final) Chapter: 7 - The Pit.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Final) Chapter: 7 - The Pit.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/final_chapter_7_the_pit.txt",
       "bytes": 27420,
       "sha256": "fe21c269662112e63ae92118f80d1d68c5a94cb5fb3950a0d8cb1d0f3092b245"
@@ -911,7 +911,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_1:_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Final)_Chapter_1:_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/final_chapter_1_stardust_to_stardust.txt",
       "bytes": 20429,
       "sha256": "fed00aabd1f95dcc0aa7dbf6227fb6076230e4ae064f0ddb592ba85c600a3f28"
@@ -919,7 +919,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_1_-_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Final)_Chapter_1_-_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/final_chapter_1_stardust_to_stardust_copy_2.txt",
       "bytes": 21106,
       "sha256": "2f49c451b048e73249daec5c732eff040a81f7310b547eb6a36177a08723deda"
@@ -927,7 +927,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_2-_Living_Sacrifice.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Final)_Chapter_2-_Living_Sacrifice.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/final_chapter_2_living_sacrifice.txt",
       "bytes": 19743,
       "sha256": "f2a509eb8a6314cbdbc0dd9a3984fe09cb720101a4de0615dab3d6353db395d3"
@@ -935,7 +935,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_3-_Lift_Up.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Final)_Chapter_3-_Lift_Up.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/final_chapter_3_lift_up.txt",
       "bytes": 20516,
       "sha256": "a3cba70f46c50af68ae2cdb748915e80578e1bcd905624a4b077fdc99ea693fd"
@@ -943,7 +943,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_3:_Lift_Up.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Final)_Chapter_3:_Lift_Up.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/final_chapter_3_lift_up_copy_2.txt",
       "bytes": 19556,
       "sha256": "857d3e50364461e0b6d5da420c508abc236a79cec9ff58e2504703474c106c07"
@@ -951,7 +951,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_5_-_The_Snare.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Final)_Chapter_5_-_The_Snare.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/final_chapter_5_the_snare.txt",
       "bytes": 20558,
       "sha256": "3b0ede4310eca0fccf88e100972d161048f12333411bb4e14c4f6956eaacf039"
@@ -959,7 +959,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(G)_Chapter_1:_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(G)_Chapter_1:_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/g_chapter_1_stardust_to_stardust.txt",
       "bytes": 20133,
       "sha256": "89c8a077b36cf7d7463a6619b2fcfaa4ecc785d073632f23d26344d344b3a9de"
@@ -967,7 +967,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(G)_Chapter_2-_Living_Sacrifice.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(G)_Chapter_2-_Living_Sacrifice.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/g_chapter_2_living_sacrifice.txt",
       "bytes": 22378,
       "sha256": "988806fed6082dce256a1ed64029e1666ea73a31b5fabd11bbed1ac36457b2ff"
@@ -975,7 +975,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(G)_Chapter_3-_Lift_Up.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(G)_Chapter_3-_Lift_Up.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/g_chapter_3_lift_up.txt",
       "bytes": 18859,
       "sha256": "34458a660c47e3c50f0677e4bec665e2756f4c09b9a17a547293ec7c65a68fb3"
@@ -983,7 +983,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(G)_Final_)_Chapter:_10_-_Forsaken.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(G)_Final_)_Chapter:_10_-_Forsaken.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/g_final_chapter_10_forsaken.txt",
       "bytes": 18992,
       "sha256": "ee97d6e6c16fe69851f0b11afe8419bd0db3c81bdaca8c8aa3180907983828f4"
@@ -991,7 +991,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(I)_(Notes)_Chapter:_1_Stardust_to_Stardust_.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(I)_(Notes)_Chapter:_1_Stardust_to_Stardust_.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/i_notes_chapter_1_stardust_to_stardust.txt",
       "bytes": 30806,
       "sha256": "bf22ce21557a50c2fdc58559cbd033734c2fd219ece8d33b7420843ae38c8a7a"
@@ -999,7 +999,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(I)_Chapter:_1_Stardust_to_Stardust_.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(I)_Chapter:_1_Stardust_to_Stardust_.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/i_chapter_1_stardust_to_stardust.txt",
       "bytes": 30796,
       "sha256": "b312317429a1b16cffc80a3c0440af17c9b5114aa0881f411e798bf260abbb07"
@@ -1007,7 +1007,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(N)_CHAPTER_1-_STARDUST_TO_STARDUST.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(N)_CHAPTER_1-_STARDUST_TO_STARDUST.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/n_chapter_1_stardust_to_stardust.txt",
       "bytes": 23311,
       "sha256": "ff353a8f8b85d8a1c30402a7d73560085d1d521d179364d99c9e1b6cefb1f3e5"
@@ -1015,7 +1015,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(N)_Chapter_1_-_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(N)_Chapter_1_-_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/n_chapter_1_stardust_to_stardust_copy_2.txt",
       "bytes": 18278,
       "sha256": "a3f8a9ed315a4125f5f8914df359effa2b908efad91a31e582276963b4f55292"
@@ -1023,7 +1023,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_(P)_Chapter:_1_-_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Notes)_(P)_Chapter:_1_-_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/notes_p_chapter_1_stardust_to_stardust.txt",
       "bytes": 26546,
       "sha256": "a3e8fa05ebf22b500d11d6e9fc24af8a81837c7957221786e68ad467ac9d9268"
@@ -1031,7 +1031,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_Chapter_2-_Living_Sacrifice.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Notes)_Chapter_2-_Living_Sacrifice.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/notes_chapter_2_living_sacrifice.txt",
       "bytes": 30359,
       "sha256": "bc447f90628a83907bfe50e58deb5df537fd6b29c6ebd56a82d6a8bde1c418ac"
@@ -1039,7 +1039,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_Chapter_2:_Living_Sacrifice.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Notes)_Chapter_2:_Living_Sacrifice.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/notes_chapter_2_living_sacrifice_copy_2.txt",
       "bytes": 26308,
       "sha256": "bdb9be65b239eb1f6ce6f4c89dd8c20fb9fa40544e64184ee8bca1cbd90b1563"
@@ -1047,7 +1047,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(O)_Chapter_1-_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(O)_Chapter_1-_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/o_chapter_1_stardust_to_stardust.txt",
       "bytes": 18374,
       "sha256": "d3930d8c70127bdfff766f64fdbdc0b49569ff350eb4b34ea662c647f6e05b29"
@@ -1055,7 +1055,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(P)_Chapter:_1_-_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(P)_Chapter:_1_-_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/p_chapter_1_stardust_to_stardust.txt",
       "bytes": 25593,
       "sha256": "def6a20c031a95a97f99098eb8234027c5480db9358e3dd720ca14d2d4977c3f"
@@ -1063,7 +1063,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(Prompt_Guide_(E))_Chapter_10:_Forsaken.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Prompt_Guide_(E))_Chapter_10:_Forsaken.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/prompt_guide_e_chapter_10_forsaken.txt",
       "bytes": 21521,
       "sha256": "de4f89de5d2358aa19f4ef449f77895d53a3f9e5c4c1f61a75b8eed17dcd48cb"
@@ -1071,7 +1071,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(R) Chapter: 1 - Stardust to Stardust .txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(R) Chapter: 1 - Stardust to Stardust .txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/r_chapter_1_stardust_to_stardust.txt",
       "bytes": 21556,
       "sha256": "94ca5a54505afaddd9289656cda026140fd8e73393999ed7ea6ef07be114f878"
@@ -1079,7 +1079,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(R)_Chapter:_1_-_Stardust_to_Stardust_.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(R)_Chapter:_1_-_Stardust_to_Stardust_.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/r_chapter_1_stardust_to_stardust_copy_2.txt",
       "bytes": 22451,
       "sha256": "3e49fb5f77d05014bdd708ece13d57260d116ca7ac99fab500e8b7ccdd4e4c31"
@@ -1087,7 +1087,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(Revision_Prompt_(D))_Chapter_10:_Forsaken.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Revision_Prompt_(D))_Chapter_10:_Forsaken.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/revision_prompt_d_chapter_10_forsaken.txt",
       "bytes": 20937,
       "sha256": "a411b85dfefa6290a5c43c473e29c55225e5583d368e7acb4323cf87ce4b7e11"
@@ -1095,7 +1095,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(Revision_Prompt_(N)__Chapter_1_-_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Revision_Prompt_(N)__Chapter_1_-_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/revision_prompt_n_chapter_1_stardust_to_stardust.txt",
       "bytes": 25907,
       "sha256": "eee19afab413c6b236dbde984f1f23b94aa2f887e755b7ca5b3097f3aa1e2c7d"
@@ -1103,7 +1103,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(Revisions)_Chapter_1:_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Revisions)_Chapter_1:_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/revisions_chapter_1_stardust_to_stardust.txt",
       "bytes": 19376,
       "sha256": "84df8cece083daac32446a009797035b917b47d893ce731099bdd17c82f0e185"
@@ -1111,7 +1111,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(SDP)_v2.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(SDP)_v2.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/sdp_v2.txt",
       "bytes": 20901,
       "sha256": "462f0ec432f3770717b510047fefd18e5cfadf54dcd02ee3a58137ac4e03f646"
@@ -1119,7 +1119,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1:_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(X)_Chapter_1:_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/x_chapter_1_stardust_to_stardust.txt",
       "bytes": 19237,
       "sha256": "413bb490ceb065d81f246f805f4c5f51b6386691aeb1381794aa6c1219127819"
@@ -1127,7 +1127,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1_-_Stardust_to_Stardust.docx.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(X)_Chapter_1_-_Stardust_to_Stardust.docx.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/x_chapter_1_stardust_to_stardust.docx.txt",
       "bytes": 20047,
       "sha256": "2f87ee40988db8da93ebbeded84f5c9114589e27b096553255032f93ac95dfee"
@@ -1135,7 +1135,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1_-_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(X)_Chapter_1_-_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/x_chapter_1_stardust_to_stardust_copy_2.txt",
       "bytes": 20060,
       "sha256": "156dd36a3a3714a6dd8133801b703c9328fc1ed67140da4fff41fde8fb898851"
@@ -1143,7 +1143,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1__Stardust_to_Stardust_(1).txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(X)_Chapter_1__Stardust_to_Stardust_(1).txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/x_chapter_1_stardust_to_stardust_1.txt",
       "bytes": 20127,
       "sha256": "4731381a89e9a28e59734be8abfc3cb88c005b8d39e0933249d73fbdc388b1eb"
@@ -1151,7 +1151,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1__Stardust_to_Stardust_(2).txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(X)_Chapter_1__Stardust_to_Stardust_(2).txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/x_chapter_1_stardust_to_stardust_2.txt",
       "bytes": 22477,
       "sha256": "2c46394ae4504b53370f7b68346176e55a27ac25f2f1118986446c1c731d49c6"
@@ -1159,7 +1159,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/(Z)_Chapter_1:_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Z)_Chapter_1:_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/z_chapter_1_stardust_to_stardust.txt",
       "bytes": 21441,
       "sha256": "dc96cd4ccdbf6b867d47cdcf55a4a8ee622e2ddcc8ec642e8109de20d9f999bf"
@@ -1167,7 +1167,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_1:_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/*Chapter_1:_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_1_stardust_to_stardust.txt",
       "bytes": 19162,
       "sha256": "749f0ad8c461b893931d5d0092d9ceb819c83ab28f4db900d3e648e9233cf961"
@@ -1175,7 +1175,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_2-_Living_Sacrifice.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/*Chapter_2-_Living_Sacrifice.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_2_living_sacrifice.txt",
       "bytes": 18574,
       "sha256": "4deb4b6e57290eb1976af5fc14e6e78357bf9e5f2ac8f365bf6b92e26b326ce9"
@@ -1183,7 +1183,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_3:_Lift_Up.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/*Chapter_3:_Lift_Up.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_3_lift_up.txt",
       "bytes": 19636,
       "sha256": "7eb88abd798448b26c65138dc39207e16c171edb0fa70c1435e1ccea7eb6d077"
@@ -1191,7 +1191,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_4:_Pilgrimage.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/*Chapter_4:_Pilgrimage.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_4_pilgrimage.txt",
       "bytes": 18326,
       "sha256": "5976a29930ad6c4b52d2e0cafb0352ca73ca6c3e5e5058cb8d7588ea73ba08d7"
@@ -1199,7 +1199,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_7:_The_Pit.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/*Chapter_7:_The_Pit.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_7_the_pit.txt",
       "bytes": 27116,
       "sha256": "6f6dfb4544e6c73f224edadcb34de146d856b87e685f5cb209546bb594c3b325"
@@ -1207,7 +1207,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_8:_Sea_People.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/*Chapter_8:_Sea_People.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_8_sea_people.txt",
       "bytes": 22969,
       "sha256": "1c4226d86ff1fda2a138f732520fb534a49a6cbc9e3dbd6acaa8c9000f87a728"
@@ -1215,7 +1215,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_9:_The_Ascent.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/*Chapter_9:_The_Ascent.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_9_the_ascent.txt",
       "bytes": 27768,
       "sha256": "4607230c1af2a090130a5a530855de8441f15f4f3e1e439e34a0d489e0e76f54"
@@ -1223,7 +1223,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/-Final_Chapter_1_Revision_Prompt-.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/-Final_Chapter_1_Revision_Prompt-.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/final_chapter_1_revision_prompt.txt",
       "bytes": 8940,
       "sha256": "436c0d7219682e5c4a450cafac4f2888aa692ca51b98774b9beea8bd28f7f083"
@@ -1231,7 +1231,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/1.0_Revision.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/1.0_Revision.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/1.0_revision.txt",
       "bytes": 21666,
       "sha256": "fed2557694b216eeacc30777fc0d2290cef4a15360123b64b9b2f4edb320dad8"
@@ -1239,7 +1239,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/10.0_Blueprint_for_The_Ascent_of_Daniel:_The_Archetype_of_Sacrifice_(NYT_Bestseller_Focus).txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/10.0_Blueprint_for_The_Ascent_of_Daniel:_The_Archetype_of_Sacrifice_(NYT_Bestseller_Focus).txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/10.0_blueprint_for_the_ascent_of_daniel:_the_archetype_of_sacrifice_(nyt_bestseller_focus).txt",
       "bytes": 4609,
       "sha256": "805f49679d7f49b759afe34f4de2facb56febdb7dfeb0e75a4b27b9b86ef1b74"
@@ -1247,7 +1247,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/10.0_MASTER_SYSTEM_FOR_CHAPTER_REVISION.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/10.0_MASTER_SYSTEM_FOR_CHAPTER_REVISION.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/10.0_master_system_for_chapter_revision.txt",
       "bytes": 12722,
       "sha256": "47093bc06c033052deddec4720fc7e13cdd8ae02a847a947dd04758849624714"
@@ -1255,7 +1255,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/10.0_Mass_Market.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/10.0_Mass_Market.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/10.0_mass_market.txt",
       "bytes": 13975,
       "sha256": "7f9f1d62b23acaf0b5cb6f25f60e24acac0278b6c4add5f8f48e5b3c88906dbb"
@@ -1263,7 +1263,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/11.0_Error_Catalog.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/11.0_Error_Catalog.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/11.0_error_catalog.txt",
       "bytes": 7944,
       "sha256": "bfae4fd0ee28af70184b986dbad175d5f0df40cbeaf73c408ab4d96682de90c2"
@@ -1271,7 +1271,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/11.0_Final_Revision.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/11.0_Final_Revision.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/11.0_final_revision.txt",
       "bytes": 7590,
       "sha256": "ae977705455b465852d9206c7db7fb5a880477b6f4ba7bf66f98cdee84a208a7"
@@ -1279,7 +1279,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/11.0_Marketability_.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/11.0_Marketability_.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/11.0_marketability_.txt",
       "bytes": 6356,
       "sha256": "157ff87c644a9ffafa2ee8ba3cda3af573bb9cc10a28fcb883d698b808a37c92"
@@ -1287,7 +1287,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/12.0_Perfection.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/12.0_Perfection.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/12.0_perfection.txt",
       "bytes": 6433,
       "sha256": "def5de7ba75333018c56a1778c4de9cb2372b9b5eecf0f43e4b1708e5186c839"
@@ -1295,7 +1295,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/13.0_Claude.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/13.0_Claude.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/13.0_claude.txt",
       "bytes": 8216,
       "sha256": "989400fc0533181bae14222cc590154bba71b0486904e3a84c30fc37848d8df6"
@@ -1303,7 +1303,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/13.0_GENERAL_PRINCIPLES.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/13.0_GENERAL_PRINCIPLES.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/13.0_general_principles.txt",
       "bytes": 19474,
       "sha256": "61ce622829ce24021703e94da9c7a4df4b75ed46aba1bf4a1c1aad89846a633e"
@@ -1311,7 +1311,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/2.0_Critique_\uff0f_Analysis_Guide.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/2.0_Critique_\uff0f_Analysis_Guide.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/2.0_critique_\uff0f_analysis_guide.txt",
       "bytes": 13169,
       "sha256": "5a83a9fe71cd15986261b2c481dd09e16053763e7d491aefa6440affac80c97d"
@@ -1319,7 +1319,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/2.0_This_is_the_critical_adjustment\u2014the_final_layer_that_elevates_philosophical_storytelling_into_timeless,_devastating_human_tragedy.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/2.0_This_is_the_critical_adjustment\u2014the_final_layer_that_elevates_philosophical_storytelling_into_timeless,_devastating_human_tragedy.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/2.0_this_is_the_critical_adjustment\u2014the_final_layer_that_elevates_philosophical_storytelling_into_timeless,_devastating_human_tragedy.txt",
       "bytes": 4533,
       "sha256": "5c3d4506d9ed9f8746249268ca6446468a01730d36ebfaa626d99a90f19ebc32"
@@ -1327,7 +1327,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/3.0_Final_.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/3.0_Final_.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/3.0_final_.txt",
       "bytes": 6905,
       "sha256": "a027efe864e247c30d13320926942f23dd4569fb76c909dc6ac85882882f309c"
@@ -1335,7 +1335,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/3.0_Literary_&_Archetypal_Fusion_Rulebook_(The_Cat_God_&_The_Primal_Self).txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/3.0_Literary_&_Archetypal_Fusion_Rulebook_(The_Cat_God_&_The_Primal_Self).txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/3.0_literary_&_archetypal_fusion_rulebook_(the_cat_god_&_the_primal_self).txt",
       "bytes": 5085,
       "sha256": "089b3617b7dbc3b46ceb43a7053f55662dd11c5b931bc0b2453d8e66c5568a2d"
@@ -1343,7 +1343,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/3.0_Scientific_Guide.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/3.0_Scientific_Guide.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/3.0_scientific_guide.txt",
       "bytes": 10075,
       "sha256": "dae906012d1b7eaa87b9fc744afa1e972eae70a397eaccf08484e33dd1a66af8"
@@ -1351,7 +1351,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/4.0_(12_Rules_For_Life).txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/4.0_(12_Rules_For_Life).txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/4.0_(12_rules_for_life).txt",
       "bytes": 3660,
       "sha256": "037b84bf907c78cc61e2c625d501280fefe94377506abfde55097d803efacef5"
@@ -1359,7 +1359,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/4.0_Emotional_&_Archetypal_Editing_Rulebook_(Visceral_Empathy_Focus).txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/4.0_Emotional_&_Archetypal_Editing_Rulebook_(Visceral_Empathy_Focus).txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/4.0_emotional_&_archetypal_editing_rulebook_(visceral_empathy_focus).txt",
       "bytes": 3895,
       "sha256": "59ed13c0f886611dc08299da8b74306aa860383038e2a645b6436c04c9af25d8"
@@ -1367,7 +1367,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/4.0_Psychology_Guide.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/4.0_Psychology_Guide.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/4.0_psychology_guide.txt",
       "bytes": 12831,
       "sha256": "c8af75a24a78731af71893bfdfc5e579ec794f302c83a445f1e667dbd7dd0318"
@@ -1375,7 +1375,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/4.0_REVISED.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/4.0_REVISED.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/4.0_revised.txt",
       "bytes": 30624,
       "sha256": "18dc5308391af436012eb9c191997c1df6eb653e86694e74d3dd5e2bf818a8a6"
@@ -1383,7 +1383,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/5.0_Final_Guide.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/5.0_Final_Guide.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/5.0_final_guide.txt",
       "bytes": 9382,
       "sha256": "4918a6560b788218b4ce5c60b791ec5d26709ee323cdb1dca5f1ae9fcc6a332b"
@@ -1391,7 +1391,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/5.0_Psychology_Guide.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/5.0_Psychology_Guide.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/5.0_psychology_guide.txt",
       "bytes": 12868,
       "sha256": "47a1665ec81f1c1649914b775681811a9545e9e628d4cb99b2ba94e255c83045"
@@ -1399,7 +1399,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/6.0_core_editing_rules_for_thematic_&_archetypal_hyperlinking.txt",
       "bytes": 3736,
       "sha256": "8806764ecf11b79fd52cd76012ca7ca16d3ebf04608cc9272a42ea59aa43788e"
@@ -1407,7 +1407,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/6.0_HIGHEST_PRIORITY_(Read_this_first_and_then_again_last)_.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/6.0_HIGHEST_PRIORITY_(Read_this_first_and_then_again_last)_.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/6.0_highest_priority_(read_this_first_and_then_again_last)_.txt",
       "bytes": 20099,
       "sha256": "3c872c3bfc288fec2390b7abe5154e6b8fdf96c971adc1eb0eb4c8f2b4b98936"
@@ -1415,7 +1415,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/6.0_SYNTHESIS_MANDATE.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/6.0_SYNTHESIS_MANDATE.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/6.0_synthesis_mandate.txt",
       "bytes": 8427,
       "sha256": "4f12371b25ad8daac6c54da1ce8fcf0b928f720624075ddc44faf674a2cad4d2"
@@ -1423,7 +1423,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/6.0_Supreme_Generative_Constraint.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/6.0_Supreme_Generative_Constraint.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/6.0_supreme_generative_constraint.txt",
       "bytes": 11330,
       "sha256": "4641b15de882b6a254ed95ede26150e1a4143e7688fcb0cf102fb2ce97d1a418"
@@ -1431,7 +1431,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/7.0_Chapter_Refinery.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/7.0_Chapter_Refinery.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/7.0_chapter_refinery.txt",
       "bytes": 3603,
       "sha256": "cff9a0672fb9cde54adc1d1cec1f0420dd2cf9bef7c01081a9e2a51bc083daff"
@@ -1439,7 +1439,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/7.0_Nuclear_Edit!!!!_(CRITICAL!_DIRE!_EMERGENCY!!!).txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/7.0_Nuclear_Edit!!!!_(CRITICAL!_DIRE!_EMERGENCY!!!).txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/7.0_nuclear_edit!!!!_(critical!_dire!_emergency!!!).txt",
       "bytes": 23510,
       "sha256": "ec2abf8715582823676ed2185fa642d6af167fee06a2f902d8e066f18b9d9b75"
@@ -1447,7 +1447,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/8.0_Pacing\uff0fRedundancy.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/8.0_Pacing\uff0fRedundancy.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/8.0_pacing\uff0fredundancy.txt",
       "bytes": 15094,
       "sha256": "121ea1b757c56c1ae2d13079d6d0dc705b0e83ed0ea2deb671187d9430ab493c"
@@ -1455,7 +1455,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/8._0_This_is_the_final,_most_crucial_step:_ensuring_the_narrative's_structure_is_so_perfectly_weighted_that_the_profound_sadness\u2014the_weeping_of_self-recognition\u2014is_not_a_chance_event,_but_an_earned,_inevitable_catharsis_for_the_reader.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/8._0_This_is_the_final,_most_crucial_step:_ensuring_the_narrative's_structure_is_so_perfectly_weighted_that_the_profound_sadness\u2014the_weeping_of_self-recognition\u2014is_not_a_chance_event,_but_an_earned,_inevitable_catharsis_for_the_reader.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/8._0_this_is_the_final,_most_crucial_step:_ensuring_the_narrative's_structure_is_so_perfectly_weighted_that_the_profound_sadness\u2014the_weeping_of_self-recognition\u2014is_not_a_chance_event,_but_an_earned,_inevitable_catharsis_for_the_reader.txt",
       "bytes": 4265,
       "sha256": "c2728a04fac619b68d823b8435b642dddcd8e8a92954291e65f85a9dafce756b"
@@ -1463,7 +1463,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/9.0_Aesthetic.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/9.0_Aesthetic.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/9.0_aesthetic.txt",
       "bytes": 8465,
       "sha256": "91decb7105e2fd2e9dcc9e7ecfff1d0b9e753a0718f63686d6643d83d60269b4"
@@ -1471,7 +1471,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/9.0_Stones.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/9.0_Stones.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/9.0_stones.txt",
       "bytes": 3317,
       "sha256": "df4c319ba7dd2f13345fb32a9a9801599b210fccfcccaa5b8de4126a124ee609"
@@ -1479,7 +1479,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/ALITTERAS_SYSTEM_BLUEPRINT_v1.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/ALITTERAS_SYSTEM_BLUEPRINT_v1.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/alitteras_system_blueprint_v1.txt",
       "bytes": 3044,
       "sha256": "143a6ac5f394c159e58be3cd6722dd617d5a492d2a1fe037b79d240022c0a906"
@@ -1487,7 +1487,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter 3 - Commerciality and Marketing 3.0.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter 3 - Commerciality and Marketing 3.0.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_3_commerciality_and_marketing_3.0.txt",
       "bytes": 4796,
       "sha256": "a7485deb1a0d2d180600b744aceb830bad56a031b79083cb6c55232f1540f69b"
@@ -1495,7 +1495,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter2_Weight_of_the_Sky.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter2_Weight_of_the_Sky.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter2_weight_of_the_sky.txt",
       "bytes": 19769,
       "sha256": "8ad3806bdf66dc83675f3b12393f03326488530b59896feaa475e4d9c2f8aa85"
@@ -1503,7 +1503,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_10_-_MASTER_BRIEFING.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_10_-_MASTER_BRIEFING.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_10_master_briefing.txt",
       "bytes": 21887,
       "sha256": "110eff4dfbfd59b2f0fc36569e381680dfa2a664957ae819b61f749dc5f9191f"
@@ -1511,7 +1511,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_1_-_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_1_-_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_1_stardust_to_stardust_copy_2.txt",
       "bytes": 20564,
       "sha256": "40ae98a373f364f79c838929adecef0a8255863af2df6df51f2080014a090b70"
@@ -1519,7 +1519,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_1_Proof_of_Authorship_1.0.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_1_Proof_of_Authorship_1.0.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_1_proof_of_authorship_1.0.txt",
       "bytes": 13182,
       "sha256": "5cc779f65aee35a8d60dcb082538c3a4afef60d02539fc6ed266a4bea480f8ca"
@@ -1527,7 +1527,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_1_Proof_of_Authorship_1.1.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_1_Proof_of_Authorship_1.1.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_1_proof_of_authorship_1.1.txt",
       "bytes": 17600,
       "sha256": "1e287e1ced18b844829de36efdb600bbfea59461ca5689e83461efeefede9d84"
@@ -1535,7 +1535,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_8_(Final).txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_8_(Final).txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_8_final.txt",
       "bytes": 17241,
       "sha256": "a02f56e5ac0abd966aef2541b27fa8e4f9c5d36a2f7287d2c7bf7b46c026c6c7"
@@ -1543,7 +1543,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10.1.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_10.1.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_10.1.txt",
       "bytes": 20311,
       "sha256": "8bbcae289b2e8663096e93692435d3e3954c52e600caf76a6ce15c77ad955995"
@@ -1551,7 +1551,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10.5.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_10.5.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_10.5.txt",
       "bytes": 27367,
       "sha256": "102c94f8d1b21da62635207c29d5d59f8d093a6834db72862c75867b6abaf96b"
@@ -1559,7 +1559,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10:_Forsaken.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_10:_Forsaken.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_10_forsaken.txt",
       "bytes": 17281,
       "sha256": "709467bf5fda4afdcc4ba4a7a273382e7619e74b6faa8ba6cce56f4914557ede"
@@ -1567,7 +1567,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10_Forsaken_FINAL_DEFINITIVE.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_10_Forsaken_FINAL_DEFINITIVE.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_10_forsaken_final_definitive.txt",
       "bytes": 28345,
       "sha256": "3fa62b7d098773c1051829693664fd31f16b7ff29ef23e2c7215cc215295460d"
@@ -1575,7 +1575,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10_Version_F.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_10_Version_F.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_10_version_f.txt",
       "bytes": 26347,
       "sha256": "1f83b40c13f98acc8c032585acdc2d0b695f02808880a2a1326bab88bdd59680"
@@ -1583,7 +1583,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_11.8.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_11.8.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_11.8.txt",
       "bytes": 21365,
       "sha256": "96980a3e89e556c8e4fcec9f322095c3aa882e78b90e532669353869b056c573"
@@ -1591,7 +1591,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_11._Forsaken.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_11._Forsaken.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_11._forsaken.txt",
       "bytes": 26263,
       "sha256": "8d3f998fafb7852f66f9a055c6233295c82b0fdbb2450663ec63c7e3961d23e1"
@@ -1599,7 +1599,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_13:_Exodus.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_13:_Exodus.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_13_exodus.txt",
       "bytes": 17060,
       "sha256": "960479e956f95dc5674a44b34a4c5bc562dced3d80c43f4622b3c4ad2acc50e9"
@@ -1607,7 +1607,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1:_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_1:_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_1_stardust_to_stardust_copy_3.txt",
       "bytes": 22126,
       "sha256": "fdb3bca33cd62b25ea0fdb972186d12d184584618caebf1a9da66d1fdc938c3b"
@@ -1615,7 +1615,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_-_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_1_-_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_1_stardust_to_stardust_copy_4.txt",
       "bytes": 19245,
       "sha256": "dd482188850c8f217cc1be1f731aa98fd45ddd860b0a381f93a892f51d4a99c8"
@@ -1623,7 +1623,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Integration.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_1_Integration.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_1_integration.txt",
       "bytes": 5703,
       "sha256": "83c822cf538a92c8c74f010367dff078e261ede913458486c23fa4e80e953f74"
@@ -1631,7 +1631,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Integration_2.0.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_1_Integration_2.0.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_1_integration_2.0.txt",
       "bytes": 18717,
       "sha256": "d511e6889a5844b92512d03c8948c868ea4b6564323ffa9c4778794a0b9aef43"
@@ -1639,7 +1639,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Integration_Prompt.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_1_Integration_Prompt.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_1_integration_prompt.txt",
       "bytes": 7124,
       "sha256": "6f944df5c98f3189de5ee6aec61b676d446e7ba5a271a2480f035492eabc1026"
@@ -1647,7 +1647,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Merge_Prompt.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_1_Merge_Prompt.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_1_merge_prompt.txt",
       "bytes": 16922,
       "sha256": "8b49415c9e3f12be52786b688676930b0ac71414034087a141d2f5e849390e80"
@@ -1655,7 +1655,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Version_O.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_1_Version_O.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_1_version_o.txt",
       "bytes": 31718,
       "sha256": "9dca02d6617846d197060999a0dcd2efbcf2871594f56087ab90789ee8c62b8c"
@@ -1663,7 +1663,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2:_Living_Sacrifice.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_2:_Living_Sacrifice.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_2_living_sacrifice_copy_2.txt",
       "bytes": 19181,
       "sha256": "6c81f087ba494a2d042f846c9c8464141a4e1837fa20615e3bebc95beade1f54"
@@ -1671,7 +1671,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2_-_Analysis_&_Guides_1.0.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_2_-_Analysis_&_Guides_1.0.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_2_analysis_and_guides_1.0.txt",
       "bytes": 17501,
       "sha256": "14ac2a4f101049670c2c023e7201b9168af42c7ccf175434bc563bb41af2c4d4"
@@ -1679,7 +1679,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2_-_Commerciality_and_Marketing_3.0.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_2_-_Commerciality_and_Marketing_3.0.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_2_commerciality_and_marketing_3.0.txt",
       "bytes": 16963,
       "sha256": "4b36a5caf726f00c5d17d0871e704be96894cb11849d1e4c5e20341b05581fdf"
@@ -1687,7 +1687,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2_-_Master_Revision_Prompt_2.0.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_2_-_Master_Revision_Prompt_2.0.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_2_master_revision_prompt_2.0.txt",
       "bytes": 15223,
       "sha256": "be2f1be65c9dd478de2fa29b17ffaa5ae0617535ee7b744f7de3a8d1f98db117"
@@ -1695,7 +1695,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2nd_to_last.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_2nd_to_last.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_2nd_to_last.txt",
       "bytes": 7543,
       "sha256": "3d4e278a0349a7f47569f4502b324bf0ffbf97adb96568920bef23a877dc0776"
@@ -1703,7 +1703,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3:_Lift_Up.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_3:_Lift_Up.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_3_lift_up_copy_2.txt",
       "bytes": 19673,
       "sha256": "99e11bbe9eaf2b625f80b6afbfbcefe8df049b790a44ac8b3816871d68c0b091"
@@ -1711,7 +1711,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3_-_Master_Revision_Prompt_2.0.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_3_-_Master_Revision_Prompt_2.0.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_3_master_revision_prompt_2.0.txt",
       "bytes": 7210,
       "sha256": "607be23e17d6ceeace04228855ed86d7a0c053c162dacdd97569f46a4fdbc1a4"
@@ -1719,7 +1719,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3_Analysis_&_Guides.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_3_Analysis_&_Guides.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_3_analysis_and_guides.txt",
       "bytes": 18857,
       "sha256": "f0b6473ede6d48e5240e893d5ecc3011263938e4624d830f504a4c92fe6daa1b"
@@ -1727,7 +1727,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3_Integration_Prompt.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_3_Integration_Prompt.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_3_integration_prompt.txt",
       "bytes": 4388,
       "sha256": "4c0aee2074e7721ce6dfd28a367502a01de7913536bd0eaba1bb3406e3b3f1af"
@@ -1735,7 +1735,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_4:_Pilgrimage.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_4:_Pilgrimage.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_4_pilgrimage_copy_2.txt",
       "bytes": 18833,
       "sha256": "63b181b1f87727ee5202fe1f59a797a227f379a2446db5edd1cb47d50215b8a7"
@@ -1743,7 +1743,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_5:_The_Snare.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_5:_The_Snare.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_5_the_snare.txt",
       "bytes": 19304,
       "sha256": "504e4ad012551e123f652e6e9a86b61a870895e4c590796b9a2dd90fd51952de"
@@ -1751,7 +1751,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_6:_Beelzebub,_Beelzebub.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_6:_Beelzebub,_Beelzebub.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_6_beelzebub_beelzebub.txt",
       "bytes": 21547,
       "sha256": "5b7b91ab7dc53343297f6b32b4a59443e75b629c2f1484de0f093bc2ff802a37"
@@ -1759,7 +1759,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_8.1.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_8.1.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_8.1.txt",
       "bytes": 28338,
       "sha256": "ef95514e7432470db9a54a1e97d2c8bf05432735fa895646c44ef8b012dfd367"
@@ -1767,7 +1767,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_8:_Sea_People.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_8:_Sea_People.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_8_sea_people_copy_2.txt",
       "bytes": 24065,
       "sha256": "a3943e94157271c151474480bb14df00ce1e257c4a6e015be241dacf98f28472"
@@ -1775,7 +1775,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_9:_The_Ascent.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_9:_The_Ascent.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_9_the_ascent_copy_2.txt",
       "bytes": 27027,
       "sha256": "bb2740591c75d6dd0ee22abf60c25523302ff6758cfd3052f1b2c72e9ffe191b"
@@ -1783,7 +1783,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Could_you_condense_that_chapter_by_500_to_1,000_w....txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Could_you_condense_that_chapter_by_500_to_1,000_w....txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/could_you_condense_that_chapter_by_500_to_1_000_w....txt",
       "bytes": 30850,
       "sha256": "eab506d365537d22963b738a75764c8c9a658e594b582b1e2443e9695da8c6ff"
@@ -1791,7 +1791,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Critique_2.2.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Critique_2.2.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/critique_2.2.txt",
       "bytes": 13767,
       "sha256": "208de4e7cdbed2b90c425c88319bd17fdbce188638adb96861aa8d04761fe269"
@@ -1799,7 +1799,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Final Revision (Generalized For All Chapters).txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Final Revision (Generalized For All Chapters).txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/final_revision_generalized_for_all_chapters.txt",
       "bytes": 6989,
       "sha256": "948f2ec8073e1b05a05dd287d2b029a4abd739e03737afed176ef134ae77509a"
@@ -1807,7 +1807,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Go_ahead_and_write_out_the_chapter_keep_in_mind_t....txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Go_ahead_and_write_out_the_chapter_keep_in_mind_t....txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/go_ahead_and_write_out_the_chapter_keep_in_mind_t....txt",
       "bytes": 26548,
       "sha256": "5bf605e1ebd971c2528475678890f1caf68a59b43ba15ca4eeb4466acc46459f"
@@ -1815,7 +1815,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/MANUSCRIPT_AUTOPSY.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/MANUSCRIPT_AUTOPSY.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/manuscript_autopsy.txt",
       "bytes": 3998,
       "sha256": "896e019e71ba92e89b5c07f5f9773a94c079ef0881f9a3a11a203c42746706e6"
@@ -1823,7 +1823,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Narnia_.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Narnia_.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/narnia.txt",
       "bytes": 11465,
       "sha256": "9a56dbbd490de786ad8f6ac4da0fa01e24e7363f75d3f5a05913638d9e6d11b2"
@@ -1831,7 +1831,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Purple_Prose_Prompt.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Purple_Prose_Prompt.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/purple_prose_prompt.txt",
       "bytes": 2541,
       "sha256": "d977df03a7609338b44621fbb3621cfd61c59acd79ff10b705f8837cbd130c35"
@@ -1839,7 +1839,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/THE_WEIGHT_OF_THE_SKY-_MASTER_COMPENDIUM_(SINGULARITY_v.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/THE_WEIGHT_OF_THE_SKY-_MASTER_COMPENDIUM_(SINGULARITY_v.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/the_weight_of_the_sky_master_compendium_singularity_v.txt",
       "bytes": 6562,
       "sha256": "7f86ab925e53d48f6e32e07950f30b81b82bd4270b77b826b7392d7d35e86758"
@@ -1847,7 +1847,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/The_-Version_X-_Meta-Prompt.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/The_-Version_X-_Meta-Prompt.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/the_version_x_meta_prompt.txt",
       "bytes": 2456,
       "sha256": "06b7414f7be3fde293b719c0fcbee8700a4d784aa36d35f5ab6871c054f6d8b5"
@@ -1855,7 +1855,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/The_Weight_of_the_Sky:_The_Fall_into_Megiddo.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/The_Weight_of_the_Sky:_The_Fall_into_Megiddo.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/the_weight_of_the_sky_the_fall_into_megiddo.txt",
       "bytes": 12645,
       "sha256": "0779c017b9b2340a98fb9a39a87bc9849491fecf2d875cb54632427032aad74d"
@@ -1863,7 +1863,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/The_scrape.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/The_scrape.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/the_scrape.txt",
       "bytes": 18320,
       "sha256": "306d73cc10dde139ac497f709f17cb9db2f58ffe99e80e02d56059a3b65dab00"
@@ -1871,7 +1871,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/ToALITTERAS_ECOSYSTEM_v2.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/ToALITTERAS_ECOSYSTEM_v2.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/toalitteras_ecosystem_v2.txt",
       "bytes": 3991,
       "sha256": "4ff77a7fae6890360953bcf60fd31409ffd7c1ddd2754c8e4ec6c2e27e96cc9d"
@@ -1879,7 +1879,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Untitled_document.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Untitled_document.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/untitled_document.txt",
       "bytes": 10474,
       "sha256": "c76c360a7c7e7768e22f677f9de028088b3ca630754f0027c744c1b3d6bbb271"
@@ -1887,7 +1887,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Version_A.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Version_A.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/version_a.txt",
       "bytes": 19536,
       "sha256": "f9021d4951dc01a4776203566f90e64792639b6f77f55d1902a35df1a4c8541b"
@@ -1895,7 +1895,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Version_B.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Version_B.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/version_b.txt",
       "bytes": 19366,
       "sha256": "8d1807012e35af7acaa76dd53b818f8e08875a25014d9479c0fd2b926109aaae"
@@ -1903,7 +1903,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/WOS_Ch7_The_Pit.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/WOS_Ch7_The_Pit.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/wos_ch7_the_pit.txt",
       "bytes": 17321,
       "sha256": "e9bc6bc1f3c91c9856b548de65272a869f6bba3a945d4f681fb0ad8d0292c882"
@@ -1911,7 +1911,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/Whole_Book.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Whole_Book.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/whole_book.txt",
       "bytes": 23683,
       "sha256": "518da3e2362c54d0b8a27f106b957a43966a894555a39d0e66dd9f94c6f3a6fc"
@@ -1919,7 +1919,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/chapter_11.2.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/chapter_11.2.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_11.2.txt",
       "bytes": 24874,
       "sha256": "79ccd8474783826d57f79079af461c10c73bb96b4754515b698189e6d9b4ea45"
@@ -1927,7 +1927,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/\u2022(G)_Chapter:_1_Stardust_to_Stardust_.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/\u2022(G)_Chapter:_1_Stardust_to_Stardust_.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/g_chapter_1_stardust_to_stardust_copy_2.txt",
       "bytes": 19186,
       "sha256": "72377df9ad2575fc0a97523937ff9e451cadef7811fae2a443aa5daa3a2a351b"
@@ -1935,7 +1935,7 @@
     {
       "action": "copied",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/\u2022(G)_Chapter_2-_Living_Sacrifice.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/\u2022(G)_Chapter_2-_Living_Sacrifice.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/g_chapter_2_living_sacrifice_copy_2.txt",
       "bytes": 22989,
       "sha256": "b51340f0b8f0a7c309c2626aacd9d4c052170764b74ba787ad4f37d7cd8c156f"
@@ -1943,7 +1943,7 @@
     {
       "action": "already_present_same_hash",
       "label": "gdrive_raw_text_baseline",
-      "source": "src/data-layer/ingestion-buffer/gdrive_raw/\ufeffChapter_1-_Stardust_to_Stardust.txt",
+      "source": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/\ufeffChapter_1-_Stardust_to_Stardust.txt",
       "dest": "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline/chapter_1_stardust_to_stardust.txt",
       "bytes": 19162,
       "sha256": "749f0ad8c461b893931d5d0092d9ceb819c83ab28f4db900d3e648e9233cf961"

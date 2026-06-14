@@ -1,0 +1,2 @@
+action	source	destination	tracked	before_sha256	after_sha256	reason
+MOVED	ULTIMATE_OMEGA_DIRECTIVE.md	docs/agent_context/source_drop/legacy_root_directives/ULTIMATE_OMEGA_DIRECTIVE.md	tracked=True	before_sha256=9e0d04c4ff109a3bcd26339f3769889a193383718650371a5e44bedaaafb0a54	after_sha256=9e0d04c4ff109a3bcd26339f3769889a193383718650371a5e44bedaaafb0a54	reason=legacy directive source-drop; not root active config

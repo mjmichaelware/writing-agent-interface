@@ -1,0 +1,12 @@
+{
+  "generated_utc": "2026-06-14T15:43:26.601144+00:00",
+  "run_root": "docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup",
+  "root_misc_moved": 10,
+  "docs_source_drop_moved": 4,
+  "scripts_moved": 11,
+  "root_dump_like_moved": 0,
+  "manifest": "docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/absolute_move_manifest.tsv",
+  "skiplog": "docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/absolute_skip_manifest.tsv",
+  "rewrites": "docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/absolute_reference_rewrites.tsv",
+  "rollback": "docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/absolute_rollback_moves.sh"
+}

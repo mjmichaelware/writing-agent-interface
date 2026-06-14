@@ -186,41 +186,41 @@ This report proves the active runtime documents were read for typography and lay
 - L14: 151K 	 2026-05-17 12:38 	 ./tsconfig.tsbuildinfo
 - L16: 60K 	 2026-05-17 16:10 	 ./src/data-layer/version-archive/ema_history.json
 - L19: 36K 	 2026-05-17 16:10 	 ./src/data-layer/initialization-metadata/node_manifest.json
-- L23: 31K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Could_you_condense_that_chapter_by_500_to_1,000_w....txt
-- L24: 31K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Version_O.txt
-- L25: 31K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(I)_Chapter:_1_Stardust_to_Stardust_.txt
-- L26: 31K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(I)_(Notes)_Chapter:_1_Stardust_to_Stardust_.txt
-- L27: 30K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/4.0_REVISED.txt
-- L28: 30K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_Chapter_2-_Living_Sacrifice.txt
-- L31: 28K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_8.1.txt
-- L32: 28K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10_Forsaken_FINAL_DEFINITIVE.txt
-- L33: 28K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_9:_The_Ascent.txt
-- L36: 27K 	 2026-05-13 18:30 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(Final)
-- L37: 27K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_9:_The_Ascent.txt
-- L38: 27K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10.5.txt
-- L39: 27K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_7:_The_Pit.txt
-- L40: 27K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_1:_Stardust_to_Stardust_.txt
-- L41: 27K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_7_-_The_Pit.txt
-- L42: 26K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_Chapter_2:_Living_Sacrifice.txt
-- L43: 26K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_(P)_Chapter:_1_-_Stardust_to_Stardust.txt
-- L44: 26K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Go_ahead_and_write_out_the_chapter_keep_in_mind_t....txt
-- L45: 26K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_11._Forsaken.txt
-- L46: 26K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10_Version_F.txt
-- L47: 26K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(Revision_Prompt_(N)__Chapter_1_-_Stardust_to_Stardust.txt
-- L48: 25K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(P)_Chapter:_1_-_Stardust_to_Stardust.txt
-- L49: 25K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/chapter_11.2.txt
-- L50: 24K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Whole_Book.txt
-- L51: 24K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_8:_Sea_People.txt
-- L52: 24K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_6-_Beelzebub,_Beelzebub.txt
-- L53: 23K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/•(G)_Chapter_2-_Living_Sacrifice.txt
-- L54: 23K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/7.0_Nuclear_Edit!!!!_(CRITICAL!_DIRE!_EMERGENCY!!!).txt
-- L55: 23K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_8:_Sea_People.txt
-- L56: 23K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(N)_CHAPTER_1-_STARDUST_TO_STARDUST.txt
-- L57: 23K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_2-_Living_Sacrifice.txt
-- L58: 23K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_1_-_Stardust_to_Stardust.txt
-- L59: 23K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter_1_-_Stardust_to_Stardust.txt
-- L60: 23K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_3-_Lift_Up.txt
-- L61: 23K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(A)Chapter_8:_Sea_People.txt
+- L23: 31K 	 2026-05-17 16:10 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Could_you_condense_that_chapter_by_500_to_1,000_w....txt
+- L24: 31K 	 2026-05-17 16:10 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_1_Version_O.txt
+- L25: 31K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(I)_Chapter:_1_Stardust_to_Stardust_.txt
+- L26: 31K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(I)_(Notes)_Chapter:_1_Stardust_to_Stardust_.txt
+- L27: 30K 	 2026-05-17 16:10 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/4.0_REVISED.txt
+- L28: 30K 	 2026-05-17 16:10 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Notes)_Chapter_2-_Living_Sacrifice.txt
+- L31: 28K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_8.1.txt
+- L32: 28K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_10_Forsaken_FINAL_DEFINITIVE.txt
+- L33: 28K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/*Chapter_9:_The_Ascent.txt
+- L36: 27K 	 2026-05-13 18:30 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Final)
+- L37: 27K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_9:_The_Ascent.txt
+- L38: 27K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_10.5.txt
+- L39: 27K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/*Chapter_7:_The_Pit.txt
+- L40: 27K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(F)_Chapter_1:_Stardust_to_Stardust_.txt
+- L41: 27K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter:_7_-_The_Pit.txt
+- L42: 26K 	 2026-05-17 16:10 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Notes)_Chapter_2:_Living_Sacrifice.txt
+- L43: 26K 	 2026-05-17 16:10 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Notes)_(P)_Chapter:_1_-_Stardust_to_Stardust.txt
+- L44: 26K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Go_ahead_and_write_out_the_chapter_keep_in_mind_t....txt
+- L45: 26K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_11._Forsaken.txt
+- L46: 26K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_10_Version_F.txt
+- L47: 26K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Revision_Prompt_(N)__Chapter_1_-_Stardust_to_Stardust.txt
+- L48: 25K 	 2026-05-17 16:10 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(P)_Chapter:_1_-_Stardust_to_Stardust.txt
+- L49: 25K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/chapter_11.2.txt
+- L50: 24K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Whole_Book.txt
+- L51: 24K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_8:_Sea_People.txt
+- L52: 24K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_6-_Beelzebub,_Beelzebub.txt
+- L53: 23K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/•(G)_Chapter_2-_Living_Sacrifice.txt
+- L54: 23K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/7.0_Nuclear_Edit!!!!_(CRITICAL!_DIRE!_EMERGENCY!!!).txt
+- L55: 23K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/*Chapter_8:_Sea_People.txt
+- L56: 23K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(N)_CHAPTER_1-_STARDUST_TO_STARDUST.txt
+- L57: 23K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(E)_Chapter_2-_Living_Sacrifice.txt
+- L58: 23K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(E)_Chapter_1_-_Stardust_to_Stardust.txt
+- L59: 23K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(D)_Chapter_1_-_Stardust_to_Stardust.txt
+- L60: 23K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_3-_Lift_Up.txt
+- L61: 23K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)Chapter_8:_Sea_People.txt
 
 ## data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_2_large_universal/134_nos_integration_blueprint.txt
 - Bytes: 55932
@@ -478,7 +478,7 @@ This report proves the active runtime documents were read for typography and lay
 - L194: - Narrative Graph Engine (interfaces only)
 - L195: - Writing Agent (interfaces only)
 - L199: Data Layer:
-- L200: - 182+ chapter files in src/data-layer/ingestion-buffer/gdrive_raw/
+- L200: - 182+ chapter files in docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/
 - L208: - layout.tsx — Minimal metadata only
 - L209: - next.config.js — ignoreBuildErrors: true, ignoreEsLint: true
 - L212: Build Status:
@@ -654,7 +654,7 @@ This report proves the active runtime documents were read for typography and lay
 - L194: - Narrative Graph Engine (interfaces only)
 - L195: - Writing Agent (interfaces only)
 - L199: Data Layer:
-- L200: - 182+ chapter files in src/data-layer/ingestion-buffer/gdrive_raw/
+- L200: - 182+ chapter files in docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/
 - L208: - layout.tsx — Minimal metadata only
 - L209: - next.config.js — ignoreBuildErrors: true, ignoreEsLint: true
 - L212: Build Status:
@@ -992,7 +992,7 @@ This report proves the active runtime documents were read for typography and lay
 - Bytes: 13228
 - Renderer/typography/cinema hits: 25
 - L1: # CLAUDE'S HONEST ASSESSMENT — Native Viewport Engine Deployment
-- L23: - Assumed Chapter 7 was at `src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_7:_The_Pit.txt` inside the writing-agent-interface project — it wasn't.
+- L23: - Assumed Chapter 7 was at `docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_7:_The_Pit.txt` inside the writing-agent-interface project — it wasn't.
 - L30: I told Michael to `cp ~/mjmichaelware/boy-and-moon.png ~/writing-agent-interface/public/bg.png`. The file was already at `public/bg.png` — visible in the tree he gave me. He had to correct me.
 - L53: He was right. rclone returns file listings, not the full Drive API XML metadata (createdTime, modifiedTime, owner, version, etc.) — those require the Drive API directly via the OAuth token.
 - L56: Michael told me his EMA file likely had the metadata. Instead of immediately reading it, I asked him "where is it?" — when the path was visible in the tree he had already given me (`src/data-layer/version-archive/ema_history.json`).
@@ -1032,16 +1032,16 @@ This report proves the active runtime documents were read for typography and lay
 - L60: - **Fix Applied:** Extracted refresh_token from rclone config at `~/.config/rclone/rclone.conf` and built proper credentials.json
 - L78: - Built Python script using google-auth-oauthlib + googleapiclient
 - L84: - Built authorized_user credentials.json
-- L90: ls -1 ~/writing-agent-interface/src/data-layer/ingestion-buffer/gdrive_raw > ~/local_all.txt
+- L90: ls -1 ~/writing-agent-interface/docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw > ~/local_all.txt
 - L139: 5. Built new credentials.json with:
-- L155: User ran: `ls -1 ~/writing-agent-interface/src/data-layer/ingestion-buffer/gdrive_raw | head -50`
-- L165: - User confirmed the path: `~/writing-agent-interface/src/data-layer/ingestion-buffer/gdrive_raw`
+- L155: User ran: `ls -1 ~/writing-agent-interface/docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw | head -50`
+- L165: - User confirmed the path: `~/writing-agent-interface/docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw`
 - L215: python3 -c "from google.oauth2.credentials import Credentials; from googleapiclient.discovery import build; creds = Credentials.from_authorized_user_file('~/.gdrive_secrets/credentials.json', ['https://www.googleapis.com/auth/drive.readonly']); service = build('drive', 'v3', credentials=creds); print('Auth OK')"
 - L221: - Build sets: `local_normalized`, `drive_normalized`
 - L228: - Keep: Chapter, Protocol, Guide, Critique, Singularity, Blueprint, Weight of the Sky, etc.
 - L230: 5. **Build interactive checklist** (HTML artifact on phone)
 - L246: | Project root | `~/writing-agent-interface/` |
-- L247: | Local files (supposedly) | `~/writing-agent-interface/src/data-layer/ingestion-buffer/gdrive_raw/` |
+- L247: | Local files (supposedly) | `~/writing-agent-interface/docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/` |
 - L272: - **OS:** Termux (Android)
 - L274: - **Required packages:**
 - L288: - **UI:** Not wired to backend; pages exist but don't call APIs

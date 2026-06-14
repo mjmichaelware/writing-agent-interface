@@ -1,7 +1,7 @@
 {
   "archive_root": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z",
   "target_dirs": [
-    "src/data-layer/ingestion-buffer/gdrive_raw"
+    "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw"
   ],
   "local_name_targets": 181,
   "drive_doc_candidates": 319,

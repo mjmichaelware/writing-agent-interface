@@ -1,0 +1,164 @@
+[
+  {
+    "name": ".env.local",
+    "type": "file",
+    "size": 1339,
+    "root_policy": "keep"
+  },
+  {
+    "name": ".github",
+    "type": "dir",
+    "size": 3452,
+    "root_policy": "keep"
+  },
+  {
+    "name": ".gitignore",
+    "type": "file",
+    "size": 864,
+    "root_policy": "keep"
+  },
+  {
+    "name": ".next",
+    "type": "dir",
+    "size": 3452,
+    "root_policy": "review"
+  },
+  {
+    "name": ".vercel",
+    "type": "dir",
+    "size": 3452,
+    "root_policy": "keep"
+  },
+  {
+    "name": ".vercelignore",
+    "type": "file",
+    "size": 39,
+    "root_policy": "keep"
+  },
+  {
+    "name": "AGENTS.md",
+    "type": "file",
+    "size": 2435,
+    "root_policy": "keep"
+  },
+  {
+    "name": "data",
+    "type": "dir",
+    "size": 3452,
+    "root_policy": "keep"
+  },
+  {
+    "name": "docs",
+    "type": "dir",
+    "size": 3452,
+    "root_policy": "keep"
+  },
+  {
+    "name": "eslint.config.js",
+    "type": "file",
+    "size": 137,
+    "root_policy": "keep"
+  },
+  {
+    "name": "GEMINI.md",
+    "type": "file",
+    "size": 2752,
+    "root_policy": "keep"
+  },
+  {
+    "name": "next-env.d.ts",
+    "type": "file",
+    "size": 201,
+    "root_policy": "keep"
+  },
+  {
+    "name": "next.config.js",
+    "type": "file",
+    "size": 233,
+    "root_policy": "keep"
+  },
+  {
+    "name": "node_modules",
+    "type": "dir",
+    "size": 24576,
+    "root_policy": "keep"
+  },
+  {
+    "name": "package-lock.json",
+    "type": "file",
+    "size": 209458,
+    "root_policy": "keep"
+  },
+  {
+    "name": "package.json",
+    "type": "file",
+    "size": 1343,
+    "root_policy": "keep"
+  },
+  {
+    "name": "postcss.config.js",
+    "type": "file",
+    "size": 93,
+    "root_policy": "keep"
+  },
+  {
+    "name": "public",
+    "type": "dir",
+    "size": 3452,
+    "root_policy": "keep"
+  },
+  {
+    "name": "README.md",
+    "type": "file",
+    "size": 343,
+    "root_policy": "keep"
+  },
+  {
+    "name": "reports",
+    "type": "dir",
+    "size": 3452,
+    "root_policy": "keep"
+  },
+  {
+    "name": "scripts",
+    "type": "dir",
+    "size": 3452,
+    "root_policy": "keep"
+  },
+  {
+    "name": "secrets",
+    "type": "dir",
+    "size": 3452,
+    "root_policy": "keep"
+  },
+  {
+    "name": "src",
+    "type": "dir",
+    "size": 3452,
+    "root_policy": "keep"
+  },
+  {
+    "name": "supabase",
+    "type": "dir",
+    "size": 3452,
+    "root_policy": "keep"
+  },
+  {
+    "name": "tailwind.config.ts",
+    "type": "file",
+    "size": 248,
+    "root_policy": "keep"
+  },
+  {
+    "name": "tsconfig.json",
+    "type": "file",
+    "size": 1052,
+    "root_policy": "keep"
+  },
+  {
+    "name": "vercel.json",
+    "type": "file",
+    "size": 35,
+    "root_policy": "keep"
+  }
+]

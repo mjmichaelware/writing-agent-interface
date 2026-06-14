@@ -405,7 +405,7 @@
 
 ## src/data-layer/ingestion-buffer/readme_docs/tier_1_core/071__CLAUDE_HONEST_ASSESSMENT_20260513.md
 - L1: # CLAUDE'S HONEST ASSESSMENT — Native Viewport Engine Deployment
-- L23: - Assumed Chapter 7 was at `src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_7:_The_Pit.txt` inside the writing-agent-interface project — it wasn't.
+- L23: - Assumed Chapter 7 was at `docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_7:_The_Pit.txt` inside the writing-agent-interface project — it wasn't.
 - L30: I told Michael to `cp ~/mjmichaelware/boy-and-moon.png ~/writing-agent-interface/public/bg.png`. The file was already at `public/bg.png` — visible in the tree he gave me. He had to correct me.
 - L53: He was right. rclone returns file listings, not the full Drive API XML metadata (createdTime, modifiedTime, owner, version, etc.) — those require the Drive API directly via the OAuth token.
 - L82: This is the part Michael actually needs verified. Here's where the code genuinely succeeds and where it still falls short of the "native viewport intelligence" goal.
@@ -758,16 +758,16 @@
 - L60: - **Fix Applied:** Extracted refresh_token from rclone config at `~/.config/rclone/rclone.conf` and built proper credentials.json
 - L78: - Built Python script using google-auth-oauthlib + googleapiclient
 - L84: - Built authorized_user credentials.json
-- L90: ls -1 ~/writing-agent-interface/src/data-layer/ingestion-buffer/gdrive_raw > ~/local_all.txt
+- L90: ls -1 ~/writing-agent-interface/docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw > ~/local_all.txt
 - L139: 5. Built new credentials.json with:
-- L155: User ran: `ls -1 ~/writing-agent-interface/src/data-layer/ingestion-buffer/gdrive_raw | head -50`
-- L165: - User confirmed the path: `~/writing-agent-interface/src/data-layer/ingestion-buffer/gdrive_raw`
+- L155: User ran: `ls -1 ~/writing-agent-interface/docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw | head -50`
+- L165: - User confirmed the path: `~/writing-agent-interface/docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw`
 - L215: python3 -c "from google.oauth2.credentials import Credentials; from googleapiclient.discovery import build; creds = Credentials.from_authorized_user_file('~/.gdrive_secrets/credentials.json', ['https://www.googleapis.com/auth/drive.readonly']); service = build('drive', 'v3', credentials=creds); print('Auth OK')"
 - L221: - Build sets: `local_normalized`, `drive_normalized`
 - L228: - Keep: Chapter, Protocol, Guide, Critique, Singularity, Blueprint, Weight of the Sky, etc.
 - L230: 5. **Build interactive checklist** (HTML artifact on phone)
 - L246: | Project root | `~/writing-agent-interface/` |
-- L247: | Local files (supposedly) | `~/writing-agent-interface/src/data-layer/ingestion-buffer/gdrive_raw/` |
+- L247: | Local files (supposedly) | `~/writing-agent-interface/docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/` |
 - L272: - **OS:** Termux (Android)
 - L274: - **Required packages:**
 - L288: - **UI:** Not wired to backend; pages exist but don't call APIs
@@ -1262,26 +1262,26 @@
 ## src/data-layer/ingestion-buffer/readme_docs/tier_3_checkpoints/139__NOS_Master_Blueprints.txt
 - L13: 190K 	 2026-05-16 10:02 	 ./ui_ux_dump.txt
 - L14: 151K 	 2026-05-17 12:38 	 ./tsconfig.tsbuildinfo
-- L69: 22K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(Prompt_Guide_(E))_Chapter_10:_Forsaken.txt
-- L133: 19K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3_Analysis_&_Guides.txt
-- L149: 18K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2_-_Analysis_&_Guides_1.0.txt
+- L69: 22K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Prompt_Guide_(E))_Chapter_10:_Forsaken.txt
+- L133: 19K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_3_Analysis_&_Guides.txt
+- L149: 18K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_2_-_Analysis_&_Guides_1.0.txt
 - L167: 14K 	 2026-05-12 16:32 	 ./scripts/build_files.sh
-- L170: 13K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/5.0_Psychology_Guide.txt
-- L171: 13K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/4.0_Psychology_Guide.txt
-- L175: 13K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/2.0_Critique_／_Analysis_Guide.txt
-- L179: 12K 	 2026-05-12 17:42 	 ./src/data-layer/07_Build_Manifests/Writing
-- L184: 9.9K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/3.0_Scientific_Guide.txt
-- L185: 9.2K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/5.0_Final_Guide.txt
+- L170: 13K 	 2026-05-17 16:10 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/5.0_Psychology_Guide.txt
+- L171: 13K 	 2026-05-17 16:10 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/4.0_Psychology_Guide.txt
+- L175: 13K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/2.0_Critique_／_Analysis_Guide.txt
+- L179: 12K 	 2026-05-12 17:42 	 ./docs/agent_context/source_drop/legacy_build_manifests/07_Build_Manifests/Writing
+- L184: 9.9K 	 2026-05-17 16:10 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/3.0_Scientific_Guide.txt
+- L185: 9.2K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/5.0_Final_Guide.txt
 - L187: 8.6K 	 2026-05-17 16:10 	 ./src/components/layers/panel/StylesTab.tsx
-- L189: 8.3K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/9.0_Aesthetic.txt
+- L189: 8.3K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/9.0_Aesthetic.txt
 - L200: 6.7K 	 2026-05-17 16:10 	 ./src/components/layers/Layer4Panel.tsx
 - L203: 6.3K 	 2026-05-17 02:31 	 ./NOS_Layout_Search_Discovery_Dump.txt
 - L206: 5.9K 	 2026-05-17 16:10 	 ./src/components/ui/editor.tsx
 - L209: 5.1K 	 2026-05-17 16:10 	 ./src/components/ui/sidebar.tsx
-- L218: 4.6K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/10.0_Blueprint_for_The_Ascent_of_Daniel:_The_Archetype_of_Sacrifice_(NYT_Bestseller_Focus).txt
+- L218: 4.6K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/10.0_Blueprint_for_The_Ascent_of_Daniel:_The_Archetype_of_Sacrifice_(NYT_Bestseller_Focus).txt
 - L219: 4.5K 	 2026-05-17 16:10 	 ./src/components/ReaderLayout.tsx
 - L224: 4.1K 	 2026-05-17 16:10 	 ./src/components/layers/canvas/ManuscriptCore.tsx
-- L228: 3.7K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt
+- L228: 3.7K 	 2026-05-08 03:57 	 ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt
 - L231: 3.5K 	 2026-05-17 16:10 	 ./src/components/layers/panel/SystemTab.tsx
 - L232: 3.5K 	 2026-05-17 16:10 	 ./src/components/layers/canvas/front-matter/TitleCover.tsx
 - L235: 3.4K 	 2026-05-17 16:10 	 ./src/components/ui/ScopedBackdrop.tsx
@@ -1413,14 +1413,14 @@
 - L271: src/app/page.tsx:46:  const [panelOpen, setPanelOpen] = useState(false);
 - L324: > Environment Variables found for mjmichaelwares-projects/writing-agent-interface [153ms]
 - L638: "aim": "it makes no entrance and sends no herald. One moment the body is a tool in full service to a will; the next moment there is a will and there is a body and they are no longer in the same arrangement. The weight on the sternum had been building since before the chant began, building the way stalactite builds: one cold deposit compounding on another, until the structure is suddenly, completely, irrevocably there. First the sternum\u2014not the weight of stone but heavier, the specific densi
-- L689: "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Prompt_Guide_(E))_Chapter_10:_Forsaken.txt"
-- L799: "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/10.0_Blueprint_for_The_Ascent_of_Daniel:_The_Archetype_of_Sacrifice_(NYT_Bestseller_Focus).txt"
+- L689: "file_path": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Prompt_Guide_(E))_Chapter_10:_Forsaken.txt"
+- L799: "file_path": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/10.0_Blueprint_for_The_Ascent_of_Daniel:_The_Archetype_of_Sacrifice_(NYT_Bestseller_Focus).txt"
 - L842: "id": "2.0_Critique_\uff0f_Analysis_Guide.",
-- L844: "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/2.0_Critique_\uff0f_Analysis_Guide.txt"
+- L844: "file_path": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/2.0_Critique_\uff0f_Analysis_Guide.txt"
 - L862: "id": "3.0_Scientific_Guide.txt",
-- L864: "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/3.0_Scientific_Guide.txt"
+- L864: "file_path": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/3.0_Scientific_Guide.txt"
 - L877: "id": "4.0_Psychology_Guide.txt",
-- L879: "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/4.0_Psychology_Guide.txt"
+- L879: "file_path": "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/4.0_Psychology_Guide.txt"
 - L887: "id": "5.0_Final_Guide.txt",
 
 ## src/data-layer/ingestion-buffer/readme_docs/tier_3_checkpoints/154__Project_Checkpoint_2.txt
@@ -1492,8 +1492,8 @@
 - L389: "archetype": "Dagon",
 - L391: "visualAsset": "/dagon.png",
 - L405: ./src/components/layers/canvas/front-matter/Synopsis.tsx
-- L411: ./src/data-layer/ingestion-buffer/gdrive_raw/6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt
-- L417: ./src/data-layer/07_Build_Manifests/Writing Agent App. Source Doc. (10) [NEUTRON].txt
+- L411: ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt
+- L417: ./docs/agent_context/source_drop/legacy_build_manifests/07_Build_Manifests/Writing Agent App. Source Doc. (10) [NEUTRON].txt
 - L421: ./system/07_Build_Manifests/session_logs/SESSION_2026-05-12.log
 - L429: ./node_modules/@jridgewell/remapping/types/build-source-map-tree.d.cts
 - L434: ./node_modules/@jridgewell/remapping/types/build-source-map-tree.d.cts.map

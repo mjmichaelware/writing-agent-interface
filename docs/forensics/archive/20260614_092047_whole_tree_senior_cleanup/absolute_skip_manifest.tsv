@@ -1,0 +1,2 @@
+action	source	destination	reason	detail
+SKIP_MISSING	ULTIMATE_OMEGA_DIRECTIVE.md	docs/agent_context/source_drop/legacy_root_directives/ULTIMATE_OMEGA_DIRECTIVE.md__collision_1	legacy directive source-drop; not active root config	missing

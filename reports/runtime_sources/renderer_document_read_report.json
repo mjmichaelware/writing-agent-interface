@@ -1799,151 +1799,151 @@
       },
       {
         "line": 339,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(A)Chapter_8:_Sea_People.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)Chapter_8:_Sea_People.txt\""
       },
       {
         "line": 344,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter:_1_Stardust_to_Stardust.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter:_1_Stardust_to_Stardust.txt\""
       },
       {
         "line": 349,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1-_Stardust_to_Stardust.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_1-_Stardust_to_Stardust.txt\""
       },
       {
         "line": 354,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1:_Stardust_to_Stardust.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_1:_Stardust_to_Stardust.txt\""
       },
       {
         "line": 359,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1_-_Stardust_to_Stardust.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_1_-_Stardust_to_Stardust.txt\""
       },
       {
         "line": 364,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_2-_Living_Sacrifice.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_2-_Living_Sacrifice.txt\""
       },
       {
         "line": 369,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_2:_Living_Sacrifice.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_2:_Living_Sacrifice.txt\""
       },
       {
         "line": 374,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_3-_Lift_Up.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_3-_Lift_Up.txt\""
       },
       {
         "line": 379,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_3_-_Lift_Up.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_3_-_Lift_Up.txt\""
       },
       {
         "line": 384,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_5_-_The_Snare.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_5_-_The_Snare.txt\""
       },
       {
         "line": 389,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_6:_Beelzebub,_Beelzebub.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_6:_Beelzebub,_Beelzebub.txt\""
       },
       {
         "line": 394,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(B)Chapter_8:_Sea_People.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)Chapter_8:_Sea_People.txt\""
       },
       {
         "line": 399,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter:_1_Stardust_to_Stardust.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter:_1_Stardust_to_Stardust.txt\""
       },
       {
         "line": 404,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1-_Stardust_to_Stardust.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_1-_Stardust_to_Stardust.txt\""
       },
       {
         "line": 409,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1:_Stardust_to_Stardust.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_1:_Stardust_to_Stardust.txt\""
       },
       {
         "line": 414,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1_-_Stardust_to_Stardust.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_1_-_Stardust_to_Stardust.txt\""
       },
       {
         "line": 419,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_2-_Living_Sacrifice.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_2-_Living_Sacrifice.txt\""
       },
       {
         "line": 424,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_2:_Living_Sacrifice.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_2:_Living_Sacrifice.txt\""
       },
       {
         "line": 429,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_3-_Lift_Up.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_3-_Lift_Up.txt\""
       },
       {
         "line": 434,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_3:_Lift_Up.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_3:_Lift_Up.txt\""
       },
       {
         "line": 439,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_5-_The_Snare.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_5-_The_Snare.txt\""
       },
       {
         "line": 444,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_6_-_Beelzebub,_Beelzebub.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_6_-_Beelzebub,_Beelzebub.txt\""
       },
       {
         "line": 449,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_7:_The_Pit.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_7:_The_Pit.txt\""
       },
       {
         "line": 454,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_9:_The_Ascent.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_9:_The_Ascent.txt\""
       },
       {
         "line": 459,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(B)_Stardust_to_Stardust.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Stardust_to_Stardust.txt\""
       },
       {
         "line": 464,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(C)Chapter_8:_Sea_People.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)Chapter_8:_Sea_People.txt\""
       },
       {
         "line": 469,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_1_-_Stardust_to_Stardust_.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter:_1_-_Stardust_to_Stardust_.txt\""
       },
       {
         "line": 474,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_7_-_The_Pit.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter:_7_-_The_Pit.txt\""
       },
       {
         "line": 479,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_Stardust_to_Stardust.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter:_Stardust_to_Stardust.txt\""
       },
       {
         "line": 484,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_1-_Stardust_to_Stardust.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_1-_Stardust_to_Stardust.txt\""
       },
       {
         "line": 489,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_1_-_Stardust_to_Stardust.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_1_-_Stardust_to_Stardust.txt\""
       },
       {
         "line": 494,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_2-_Living_Sacrifice.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_2-_Living_Sacrifice.txt\""
       },
       {
         "line": 499,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_3-_Lift_Up.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_3-_Lift_Up.txt\""
       },
       {
         "line": 504,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_3_-_Lift_Up.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_3_-_Lift_Up.txt\""
       },
       {
         "line": 509,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_4-_Pilgrimage.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_4-_Pilgrimage.txt\""
       },
       {
         "line": 514,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_4_-_Pilgrimage.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_4_-_Pilgrimage.txt\""
       },
       {
         "line": 519,
-        "text": "\"file_path\": \"src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_6-_Beelzebub,_Beelzebub.txt\""
+        "text": "\"file_path\": \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_6-_Beelzebub,_Beelzebub.txt\""
       }
     ]
   },
@@ -1974,463 +1974,463 @@
       },
       {
         "line": 23,
-        "text": "31K \t 2026-05-17 16:10 \t ./src/data-layer/ingestion-buffer/gdrive_raw/Could_you_condense_that_chapter_by_500_to_1,000_w....txt"
+        "text": "31K \t 2026-05-17 16:10 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Could_you_condense_that_chapter_by_500_to_1,000_w....txt"
       },
       {
         "line": 24,
-        "text": "31K \t 2026-05-17 16:10 \t ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Version_O.txt"
+        "text": "31K \t 2026-05-17 16:10 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_1_Version_O.txt"
       },
       {
         "line": 25,
-        "text": "31K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(I)_Chapter:_1_Stardust_to_Stardust_.txt"
+        "text": "31K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(I)_Chapter:_1_Stardust_to_Stardust_.txt"
       },
       {
         "line": 26,
-        "text": "31K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(I)_(Notes)_Chapter:_1_Stardust_to_Stardust_.txt"
+        "text": "31K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(I)_(Notes)_Chapter:_1_Stardust_to_Stardust_.txt"
       },
       {
         "line": 27,
-        "text": "30K \t 2026-05-17 16:10 \t ./src/data-layer/ingestion-buffer/gdrive_raw/4.0_REVISED.txt"
+        "text": "30K \t 2026-05-17 16:10 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/4.0_REVISED.txt"
       },
       {
         "line": 28,
-        "text": "30K \t 2026-05-17 16:10 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_Chapter_2-_Living_Sacrifice.txt"
+        "text": "30K \t 2026-05-17 16:10 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Notes)_Chapter_2-_Living_Sacrifice.txt"
       },
       {
         "line": 31,
-        "text": "28K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_8.1.txt"
+        "text": "28K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_8.1.txt"
       },
       {
         "line": 32,
-        "text": "28K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10_Forsaken_FINAL_DEFINITIVE.txt"
+        "text": "28K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_10_Forsaken_FINAL_DEFINITIVE.txt"
       },
       {
         "line": 33,
-        "text": "28K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_9:_The_Ascent.txt"
+        "text": "28K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/*Chapter_9:_The_Ascent.txt"
       },
       {
         "line": 36,
-        "text": "27K \t 2026-05-13 18:30 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(Final)"
+        "text": "27K \t 2026-05-13 18:30 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Final)"
       },
       {
         "line": 37,
-        "text": "27K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_9:_The_Ascent.txt"
+        "text": "27K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_9:_The_Ascent.txt"
       },
       {
         "line": 38,
-        "text": "27K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10.5.txt"
+        "text": "27K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_10.5.txt"
       },
       {
         "line": 39,
-        "text": "27K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_7:_The_Pit.txt"
+        "text": "27K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/*Chapter_7:_The_Pit.txt"
       },
       {
         "line": 40,
-        "text": "27K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_1:_Stardust_to_Stardust_.txt"
+        "text": "27K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(F)_Chapter_1:_Stardust_to_Stardust_.txt"
       },
       {
         "line": 41,
-        "text": "27K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_7_-_The_Pit.txt"
+        "text": "27K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter:_7_-_The_Pit.txt"
       },
       {
         "line": 42,
-        "text": "26K \t 2026-05-17 16:10 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_Chapter_2:_Living_Sacrifice.txt"
+        "text": "26K \t 2026-05-17 16:10 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Notes)_Chapter_2:_Living_Sacrifice.txt"
       },
       {
         "line": 43,
-        "text": "26K \t 2026-05-17 16:10 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_(P)_Chapter:_1_-_Stardust_to_Stardust.txt"
+        "text": "26K \t 2026-05-17 16:10 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Notes)_(P)_Chapter:_1_-_Stardust_to_Stardust.txt"
       },
       {
         "line": 44,
-        "text": "26K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/Go_ahead_and_write_out_the_chapter_keep_in_mind_t....txt"
+        "text": "26K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Go_ahead_and_write_out_the_chapter_keep_in_mind_t....txt"
       },
       {
         "line": 45,
-        "text": "26K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_11._Forsaken.txt"
+        "text": "26K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_11._Forsaken.txt"
       },
       {
         "line": 46,
-        "text": "26K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10_Version_F.txt"
+        "text": "26K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_10_Version_F.txt"
       },
       {
         "line": 47,
-        "text": "26K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(Revision_Prompt_(N)__Chapter_1_-_Stardust_to_Stardust.txt"
+        "text": "26K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Revision_Prompt_(N)__Chapter_1_-_Stardust_to_Stardust.txt"
       },
       {
         "line": 48,
-        "text": "25K \t 2026-05-17 16:10 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(P)_Chapter:_1_-_Stardust_to_Stardust.txt"
+        "text": "25K \t 2026-05-17 16:10 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(P)_Chapter:_1_-_Stardust_to_Stardust.txt"
       },
       {
         "line": 49,
-        "text": "25K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/chapter_11.2.txt"
+        "text": "25K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/chapter_11.2.txt"
       },
       {
         "line": 50,
-        "text": "24K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/Whole_Book.txt"
+        "text": "24K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Whole_Book.txt"
       },
       {
         "line": 51,
-        "text": "24K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_8:_Sea_People.txt"
+        "text": "24K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_8:_Sea_People.txt"
       },
       {
         "line": 52,
-        "text": "24K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_6-_Beelzebub,_Beelzebub.txt"
+        "text": "24K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_6-_Beelzebub,_Beelzebub.txt"
       },
       {
         "line": 53,
-        "text": "23K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/\u2022(G)_Chapter_2-_Living_Sacrifice.txt"
+        "text": "23K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/\u2022(G)_Chapter_2-_Living_Sacrifice.txt"
       },
       {
         "line": 54,
-        "text": "23K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/7.0_Nuclear_Edit!!!!_(CRITICAL!_DIRE!_EMERGENCY!!!).txt"
+        "text": "23K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/7.0_Nuclear_Edit!!!!_(CRITICAL!_DIRE!_EMERGENCY!!!).txt"
       },
       {
         "line": 55,
-        "text": "23K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_8:_Sea_People.txt"
+        "text": "23K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/*Chapter_8:_Sea_People.txt"
       },
       {
         "line": 56,
-        "text": "23K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(N)_CHAPTER_1-_STARDUST_TO_STARDUST.txt"
+        "text": "23K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(N)_CHAPTER_1-_STARDUST_TO_STARDUST.txt"
       },
       {
         "line": 57,
-        "text": "23K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_2-_Living_Sacrifice.txt"
+        "text": "23K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(E)_Chapter_2-_Living_Sacrifice.txt"
       },
       {
         "line": 58,
-        "text": "23K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_1_-_Stardust_to_Stardust.txt"
+        "text": "23K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(E)_Chapter_1_-_Stardust_to_Stardust.txt"
       },
       {
         "line": 59,
-        "text": "23K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter_1_-_Stardust_to_Stardust.txt"
+        "text": "23K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(D)_Chapter_1_-_Stardust_to_Stardust.txt"
       },
       {
         "line": 60,
-        "text": "23K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_3-_Lift_Up.txt"
+        "text": "23K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_3-_Lift_Up.txt"
       },
       {
         "line": 61,
-        "text": "23K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(A)Chapter_8:_Sea_People.txt"
+        "text": "23K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)Chapter_8:_Sea_People.txt"
       },
       {
         "line": 62,
-        "text": "22K \t 2026-05-17 16:10 \t ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_10_-_MASTER_BRIEFING.txt"
+        "text": "22K \t 2026-05-17 16:10 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_10_-_MASTER_BRIEFING.txt"
       },
       {
         "line": 63,
-        "text": "22K \t 2026-05-17 16:10 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(R)_Chapter:_1_-_Stardust_to_Stardust_.txt"
+        "text": "22K \t 2026-05-17 16:10 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(R)_Chapter:_1_-_Stardust_to_Stardust_.txt"
       },
       {
         "line": 64,
-        "text": "22K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_6:_Beelzebub,_Beelzebub.txt"
+        "text": "22K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_6:_Beelzebub,_Beelzebub.txt"
       },
       {
         "line": 65,
-        "text": "22K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1:_Stardust_to_Stardust.txt"
+        "text": "22K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_1:_Stardust_to_Stardust.txt"
       },
       {
         "line": 66,
-        "text": "22K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/1.0_Revision.txt"
+        "text": "22K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/1.0_Revision.txt"
       },
       {
         "line": 67,
-        "text": "22K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1__Stardust_to_Stardust_(2).txt"
+        "text": "22K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(X)_Chapter_1__Stardust_to_Stardust_(2).txt"
       },
       {
         "line": 68,
-        "text": "22K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(R)"
+        "text": "22K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(R)"
       },
       {
         "line": 69,
-        "text": "22K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(Prompt_Guide_(E))_Chapter_10:_Forsaken.txt"
+        "text": "22K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Prompt_Guide_(E))_Chapter_10:_Forsaken.txt"
       },
       {
         "line": 70,
-        "text": "22K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(G)_Chapter_2-_Living_Sacrifice.txt"
+        "text": "22K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(G)_Chapter_2-_Living_Sacrifice.txt"
       },
       {
         "line": 71,
-        "text": "22K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_2-_Living_Sacrifice.txt"
+        "text": "22K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(F)_Chapter_2-_Living_Sacrifice.txt"
       },
       {
         "line": 72,
-        "text": "22K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_1-_Stardust_to_Stardust.txt"
+        "text": "22K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(E)_Chapter_1-_Stardust_to_Stardust.txt"
       },
       {
         "line": 73,
-        "text": "22K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_3_-_Lift_Up.txt"
+        "text": "22K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_3_-_Lift_Up.txt"
       },
       {
         "line": 74,
-        "text": "22K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_1-_Stardust_to_Stardust.txt"
+        "text": "22K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_1-_Stardust_to_Stardust.txt"
       },
       {
         "line": 75,
-        "text": "22K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_6_-_Beelzebub,_Beelzebub.txt"
+        "text": "22K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_6_-_Beelzebub,_Beelzebub.txt"
       },
       {
         "line": 76,
-        "text": "22K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1:_Stardust_to_Stardust.txt"
+        "text": "22K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_1:_Stardust_to_Stardust.txt"
       },
       {
         "line": 77,
-        "text": "22K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_6:_Beelzebub,_Beelzebub.txt"
+        "text": "22K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_6:_Beelzebub,_Beelzebub.txt"
       },
       {
         "line": 78,
-        "text": "22K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1_-_Stardust_to_Stardust.txt"
+        "text": "22K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_1_-_Stardust_to_Stardust.txt"
       },
       {
         "line": 79,
-        "text": "21K \t 2026-05-17 16:10 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(SDP)_v2.txt"
+        "text": "21K \t 2026-05-17 16:10 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(SDP)_v2.txt"
       },
       {
         "line": 80,
-        "text": "21K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_11.8.txt"
+        "text": "21K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_11.8.txt"
       },
       {
         "line": 81,
-        "text": "21K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_1_-_Stardust_to_Stardust.txt"
+        "text": "21K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_1_-_Stardust_to_Stardust.txt"
       },
       {
         "line": 82,
-        "text": "21K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(Z)_Chapter_1:_Stardust_to_Stardust.txt"
+        "text": "21K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Z)_Chapter_1:_Stardust_to_Stardust.txt"
       },
       {
         "line": 83,
-        "text": "21K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(Revision_Prompt_(D))_Chapter_10:_Forsaken.txt"
+        "text": "21K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Revision_Prompt_(D))_Chapter_10:_Forsaken.txt"
       },
       {
         "line": 84,
-        "text": "21K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_5_-_The_Snare.txt"
+        "text": "21K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Final)_Chapter_5_-_The_Snare.txt"
       },
       {
         "line": 85,
-        "text": "21K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_3-_Lift_Up.txt"
+        "text": "21K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Final)_Chapter_3-_Lift_Up.txt"
       },
       {
         "line": 86,
-        "text": "21K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_1_-_Stardust_to_Stardust.txt"
+        "text": "21K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Final)_Chapter_1_-_Stardust_to_Stardust.txt"
       },
       {
         "line": 87,
-        "text": "21K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_1_-_Stardust_to_Stardust.txt"
+        "text": "21K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_1_-_Stardust_to_Stardust.txt"
       },
       {
         "line": 88,
-        "text": "21K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_Stardust_to_Stardust.txt"
+        "text": "21K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter:_Stardust_to_Stardust.txt"
       },
       {
         "line": 89,
-        "text": "21K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_1_-_Stardust_to_Stardust_.txt"
+        "text": "21K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter:_1_-_Stardust_to_Stardust_.txt"
       },
       {
         "line": 90,
-        "text": "21K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_7:_The_Pit.txt"
+        "text": "21K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_7:_The_Pit.txt"
       },
       {
         "line": 91,
-        "text": "21K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_5-_The_Snare.txt"
+        "text": "21K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_5-_The_Snare.txt"
       },
       {
         "line": 92,
-        "text": "21K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_3:_Lift_Up.txt"
+        "text": "21K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_3:_Lift_Up.txt"
       },
       {
         "line": 93,
-        "text": "21K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_3-_Lift_Up.txt"
+        "text": "21K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_3-_Lift_Up.txt"
       },
       {
         "line": 94,
-        "text": "21K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1_-_Stardust_to_Stardust.txt"
+        "text": "21K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_1_-_Stardust_to_Stardust.txt"
       },
       {
         "line": 95,
-        "text": "21K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1:_Stardust_to_Stardust.txt"
+        "text": "21K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_1:_Stardust_to_Stardust.txt"
       },
       {
         "line": 96,
-        "text": "21K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1-_Stardust_to_Stardust.txt"
+        "text": "21K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_1-_Stardust_to_Stardust.txt"
       },
       {
         "line": 97,
-        "text": "20K \t 2026-05-17 16:10 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_2-_Living_Sacrifice.txt"
+        "text": "20K \t 2026-05-17 16:10 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Final)_Chapter_2-_Living_Sacrifice.txt"
       },
       {
         "line": 98,
-        "text": "20K \t 2026-05-17 16:10 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_4_-_Pilgrimage.txt"
+        "text": "20K \t 2026-05-17 16:10 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_4_-_Pilgrimage.txt"
       },
       {
         "line": 99,
-        "text": "20K \t 2026-05-17 16:10 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_2-_Living_Sacrifice.txt"
+        "text": "20K \t 2026-05-17 16:10 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_2-_Living_Sacrifice.txt"
       },
       {
         "line": 100,
-        "text": "20K \t 2026-05-17 16:10 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_2-_Living_Sacrifice.txt"
+        "text": "20K \t 2026-05-17 16:10 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_2-_Living_Sacrifice.txt"
       },
       {
         "line": 102,
-        "text": "20K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/Version_A.txt"
+        "text": "20K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Version_A.txt"
       },
       {
         "line": 103,
-        "text": "20K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3:_Lift_Up.txt"
+        "text": "20K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_3:_Lift_Up.txt"
       },
       {
         "line": 104,
-        "text": "20K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10.1.txt"
+        "text": "20K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_10.1.txt"
       },
       {
         "line": 105,
-        "text": "20K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter2_Weight_of_the_Sky.txt"
+        "text": "20K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter2_Weight_of_the_Sky.txt"
       },
       {
         "line": 106,
-        "text": "20K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/6.0_HIGHEST_PRIORITY_(Read_this_first_and_then_again_last)_.txt"
+        "text": "20K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/6.0_HIGHEST_PRIORITY_(Read_this_first_and_then_again_last)_.txt"
       },
       {
         "line": 107,
-        "text": "20K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/13.0_GENERAL_PRINCIPLES.txt"
+        "text": "20K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/13.0_GENERAL_PRINCIPLES.txt"
       },
       {
         "line": 108,
-        "text": "20K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_3:_Lift_Up.txt"
+        "text": "20K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/*Chapter_3:_Lift_Up.txt"
       },
       {
         "line": 109,
-        "text": "20K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1__Stardust_to_Stardust_(1).txt"
+        "text": "20K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(X)_Chapter_1__Stardust_to_Stardust_(1).txt"
       },
       {
         "line": 110,
-        "text": "20K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1_-_Stardust_to_Stardust.txt"
+        "text": "20K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(X)_Chapter_1_-_Stardust_to_Stardust.txt"
       },
       {
         "line": 111,
-        "text": "20K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1_-_Stardust_to_Stardust.docx.txt"
+        "text": "20K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(X)_Chapter_1_-_Stardust_to_Stardust.docx.txt"
       },
       {
         "line": 112,
-        "text": "20K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(G)_Chapter_1:_Stardust_to_Stardust.txt"
+        "text": "20K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(G)_Chapter_1:_Stardust_to_Stardust.txt"
       },
       {
         "line": 113,
-        "text": "20K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_3:_Lift_Up.txt"
+        "text": "20K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Final)_Chapter_3:_Lift_Up.txt"
       },
       {
         "line": 114,
-        "text": "20K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_1:_Stardust_to_Stardust.txt"
+        "text": "20K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Final)_Chapter_1:_Stardust_to_Stardust.txt"
       },
       {
         "line": 115,
-        "text": "20K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_3-_Lift_Up.txt"
+        "text": "20K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_3-_Lift_Up.txt"
       },
       {
         "line": 116,
-        "text": "20K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(B)_Stardust_to_Stardust.txt"
+        "text": "20K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Stardust_to_Stardust.txt"
       },
       {
         "line": 117,
-        "text": "20K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_9:_The_Ascent.txt"
+        "text": "20K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_9:_The_Ascent.txt"
       },
       {
         "line": 118,
-        "text": "20K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1-_Stardust_to_Stardust.txt"
+        "text": "20K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_1-_Stardust_to_Stardust.txt"
       },
       {
         "line": 119,
-        "text": "20K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter:_1_Stardust_to_Stardust.txt"
+        "text": "20K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter:_1_Stardust_to_Stardust.txt"
       },
       {
         "line": 120,
-        "text": "20K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(B)Chapter_8:_Sea_People.txt"
+        "text": "20K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)Chapter_8:_Sea_People.txt"
       },
       {
         "line": 121,
-        "text": "20K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_5_-_The_Snare.txt"
+        "text": "20K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_5_-_The_Snare.txt"
       },
       {
         "line": 122,
-        "text": "20K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_3_-_Lift_Up.txt"
+        "text": "20K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_3_-_Lift_Up.txt"
       },
       {
         "line": 123,
-        "text": "20K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter:_1_Stardust_to_Stardust.txt"
+        "text": "20K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter:_1_Stardust_to_Stardust.txt"
       },
       {
         "line": 124,
-        "text": "19K \t 2026-05-17 16:10 \t ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_4:_Pilgrimage.txt"
+        "text": "19K \t 2026-05-17 16:10 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_4:_Pilgrimage.txt"
       },
       {
         "line": 125,
-        "text": "19K \t 2026-05-17 16:10 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter_2-_Living_Sacrifice.txt"
+        "text": "19K \t 2026-05-17 16:10 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(D)_Chapter_2-_Living_Sacrifice.txt"
       },
       {
         "line": 126,
-        "text": "19K \t 2026-05-17 16:10 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_2-_Living_Sacrifice.txt"
+        "text": "19K \t 2026-05-17 16:10 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_2-_Living_Sacrifice.txt"
       },
       {
         "line": 127,
-        "text": "19K \t 2026-05-17 16:10 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_2:_Living_Sacrifice.txt"
+        "text": "19K \t 2026-05-17 16:10 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_2:_Living_Sacrifice.txt"
       },
       {
         "line": 128,
-        "text": "19K \t 2026-05-17 16:10 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_2:_Living_Sacrifice.txt"
+        "text": "19K \t 2026-05-17 16:10 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_2:_Living_Sacrifice.txt"
       },
       {
         "line": 129,
-        "text": "19K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/\ufeffChapter_1-_Stardust_to_Stardust.txt"
+        "text": "19K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/\ufeffChapter_1-_Stardust_to_Stardust.txt"
       },
       {
         "line": 130,
-        "text": "19K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/\u2022(G)_Chapter:_1_Stardust_to_Stardust_.txt"
+        "text": "19K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/\u2022(G)_Chapter:_1_Stardust_to_Stardust_.txt"
       },
       {
         "line": 131,
-        "text": "19K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/Version_B.txt"
+        "text": "19K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Version_B.txt"
       },
       {
         "line": 132,
-        "text": "19K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_5:_The_Snare.txt"
+        "text": "19K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_5:_The_Snare.txt"
       },
       {
         "line": 133,
-        "text": "19K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3_Analysis_&_Guides.txt"
+        "text": "19K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_3_Analysis_&_Guides.txt"
       },
       {
         "line": 134,
-        "text": "19K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2:_Living_Sacrifice.txt"
+        "text": "19K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_2:_Living_Sacrifice.txt"
       },
       {
         "line": 135,
-        "text": "19K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Integration_2.0.txt"
+        "text": "19K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_1_Integration_2.0.txt"
       },
       {
         "line": 136,
-        "text": "19K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_-_Stardust_to_Stardust.txt"
+        "text": "19K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_1_-_Stardust_to_Stardust.txt"
       },
       {
         "line": 137,
-        "text": "19K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_2-_Living_Sacrifice.txt"
+        "text": "19K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/*Chapter_2-_Living_Sacrifice.txt"
       },
       {
         "line": 138,
-        "text": "19K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_1:_Stardust_to_Stardust.txt"
+        "text": "19K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/*Chapter_1:_Stardust_to_Stardust.txt"
       },
       {
         "line": 139,
-        "text": "19K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1:_Stardust_to_Stardust.txt"
+        "text": "19K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(X)_Chapter_1:_Stardust_to_Stardust.txt"
       },
       {
         "line": 140,
-        "text": "19K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(Revisions)_Chapter_1:_Stardust_to_Stardust.txt"
+        "text": "19K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Revisions)_Chapter_1:_Stardust_to_Stardust.txt"
       },
       {
         "line": 141,
-        "text": "19K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(G)_Final_)_Chapter:_10_-_Forsaken.txt"
+        "text": "19K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(G)_Final_)_Chapter:_10_-_Forsaken.txt"
       },
       {
         "line": 142,
-        "text": "19K \t 2026-05-08 03:57 \t ./src/data-layer/ingestion-buffer/gdrive_raw/(G)_Chapter_3-_Lift_Up.txt"
+        "text": "19K \t 2026-05-08 03:57 \t ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(G)_Chapter_3-_Lift_Up.txt"
       }
     ]
   },
@@ -2601,7 +2601,7 @@
       },
       {
         "line": 182,
-        "text": "- \"src/data-layer/ingestion-buffer/gdrive_raw/**\""
+        "text": "- \"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/**\""
       },
       {
         "line": 193,
@@ -2857,7 +2857,7 @@
       },
       {
         "line": 598,
-        "text": "Per Project Checkpoint \u00a73, src/data-layer/ingestion-buffer/gdrive_raw/"
+        "text": "Per Project Checkpoint \u00a73, docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/"
       },
       {
         "line": 603,
@@ -2865,7 +2865,7 @@
       },
       {
         "line": 635,
-        "text": "\"src/data-layer/ingestion-buffer/gdrive_raw\""
+        "text": "\"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw\""
       },
       {
         "line": 707,
@@ -3655,7 +3655,7 @@
       },
       {
         "line": 175,
-        "text": "ls -la src/data-layer/ingestion-buffer/gdrive_raw/ 2>/dev/null"
+        "text": "ls -la docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/ 2>/dev/null"
       },
       {
         "line": 177,
@@ -3755,7 +3755,7 @@
       },
       {
         "line": 411,
-        "text": "./src/data-layer/ingestion-buffer/gdrive_raw/6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt"
+        "text": "./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt"
       },
       {
         "line": 412,
@@ -3779,7 +3779,7 @@
       },
       {
         "line": 417,
-        "text": "./src/data-layer/07_Build_Manifests/Writing Agent App. Source Doc. (10) [NEUTRON].txt"
+        "text": "./docs/agent_context/source_drop/legacy_build_manifests/07_Build_Manifests/Writing Agent App. Source Doc. (10) [NEUTRON].txt"
       },
       {
         "line": 419,
@@ -5008,7 +5008,7 @@
       },
       {
         "line": 200,
-        "text": "- 182+ chapter files in src/data-layer/ingestion-buffer/gdrive_raw/"
+        "text": "- 182+ chapter files in docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/"
       },
       {
         "line": 208,
@@ -6416,7 +6416,7 @@
       },
       {
         "line": 200,
-        "text": "- 182+ chapter files in src/data-layer/ingestion-buffer/gdrive_raw/"
+        "text": "- 182+ chapter files in docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/"
       },
       {
         "line": 208,
@@ -8183,7 +8183,7 @@
       },
       {
         "line": 23,
-        "text": "- Assumed Chapter 7 was at `src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_7:_The_Pit.txt` inside the writing-agent-interface project \u2014 it wasn't."
+        "text": "- Assumed Chapter 7 was at `docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_7:_The_Pit.txt` inside the writing-agent-interface project \u2014 it wasn't."
       },
       {
         "line": 30,
@@ -8334,7 +8334,7 @@
       },
       {
         "line": 90,
-        "text": "ls -1 ~/writing-agent-interface/src/data-layer/ingestion-buffer/gdrive_raw > ~/local_all.txt"
+        "text": "ls -1 ~/writing-agent-interface/docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw > ~/local_all.txt"
       },
       {
         "line": 139,
@@ -8342,11 +8342,11 @@
       },
       {
         "line": 155,
-        "text": "User ran: `ls -1 ~/writing-agent-interface/src/data-layer/ingestion-buffer/gdrive_raw | head -50`"
+        "text": "User ran: `ls -1 ~/writing-agent-interface/docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw | head -50`"
       },
       {
         "line": 165,
-        "text": "- User confirmed the path: `~/writing-agent-interface/src/data-layer/ingestion-buffer/gdrive_raw`"
+        "text": "- User confirmed the path: `~/writing-agent-interface/docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw`"
       },
       {
         "line": 215,
@@ -8370,7 +8370,7 @@
       },
       {
         "line": 247,
-        "text": "| Local files (supposedly) | `~/writing-agent-interface/src/data-layer/ingestion-buffer/gdrive_raw/` |"
+        "text": "| Local files (supposedly) | `~/writing-agent-interface/docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/` |"
       },
       {
         "line": 272,

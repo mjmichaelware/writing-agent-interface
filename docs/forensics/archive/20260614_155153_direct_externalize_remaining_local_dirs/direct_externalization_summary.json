@@ -1,0 +1,41 @@
+{
+  "generated_utc": "2026-06-14T21:51:57.864237+00:00",
+  "private_root": "/data/data/com.termux/files/home/.nos_private/writing-agent-interface",
+  "run_root": "/data/data/com.termux/files/home/Workspaces/Hybrid/writing-agent-interface/docs/forensics/archive/20260614_155153_direct_externalize_remaining_local_dirs",
+  "results": [
+    {
+      "source": "data/source_archive",
+      "before": {
+        "exists": true,
+        "files": 12537,
+        "dirs": 5649,
+        "bytes": 2675073031
+      },
+      "destination": "/data/data/com.termux/files/home/.nos_private/writing-agent-interface/source_archive__from_repo_20260614_215157",
+      "after": {
+        "exists": true,
+        "files": 12537,
+        "dirs": 5649,
+        "bytes": 2675073031
+      },
+      "status": "moved_outside_repo_tree"
+    },
+    {
+      "source": "secrets",
+      "before": {
+        "exists": true,
+        "files": 2,
+        "dirs": 0,
+        "bytes": 2699
+      },
+      "destination": "/data/data/com.termux/files/home/.nos_private/writing-agent-interface/secrets",
+      "after": {
+        "exists": true,
+        "files": 2,
+        "dirs": 0,
+        "bytes": 2699
+      },
+      "status": "moved_outside_repo_tree"
+    }
+  ]
+}

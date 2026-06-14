@@ -150,7 +150,7 @@ NUM   TYPE   SIZE        MODIFIED          NAME
 135   DIR    <DIR>       2026-05-20 07:05  NOS_LAYER_EXPORTS
 136   FILE   6.2 KB      2026-05-17 02:31  NOS_Layout_Search_Discovery_Dump.txt
 137   FILE   317.0 B     2026-05-13 23:34  nos_logic_dump.txt
-138   FILE   34.7 KB     2026-05-13 23:39  docs/forensics/nos/nos_manifest.json
+138   FILE   34.7 KB     2026-05-13 23:39  docs/forensics/nos/docs/forensics/nos/nos_manifest.json
 139   FILE   45.4 KB     2026-05-17 21:58  NOS_Master_Blueprints.txt
 140   FILE   56.3 KB     2026-05-17 21:38  NOS_Master_Diagnostic.txt
 141   FILE   397.0 B     2026-05-14 00:11  nos_nervous_system_audit.txt

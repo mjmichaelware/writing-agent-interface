@@ -1,6 +1,6 @@
 #!/bin/bash
 # Robust Sync: Sanitizes narrative characters (—, ') for the NOS Manifest
-echo '{"nodes": []}' > docs/forensics/nos/nos_manifest.json
+echo '{"nodes": []}' > docs/forensics/nos/docs/forensics/nos/nos_manifest.json
 
 for file in docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/*.txt; do
     [ -e "$file" ] || continue
@@ -24,7 +24,7 @@ raw = os.environ.get('FILE_AIM_RAW', '')
 # Isolate the meaning from the tag
 aim = raw.split(':', 1)[1].strip() if ':' in raw else '[PENDING SEMANTIC ANALYSIS]'
 
-with open('docs/forensics/nos/nos_manifest.json', 'r+') as f:
+with open('docs/forensics/nos/docs/forensics/nos/nos_manifest.json', 'r+') as f:
     data = json.load(f)
     data['nodes'].append({'id': id, 'aim': aim, 'file_path': path})
     f.seek(0)
@@ -32,4 +32,4 @@ with open('docs/forensics/nos/nos_manifest.json', 'r+') as f:
     f.truncate()
 "
 done
-echo "SYSTEM SYNC COMPLETE: The Brain (docs/forensics/nos/nos_manifest.json) is structurally sound."
+echo "SYSTEM SYNC COMPLETE: The Brain (docs/forensics/nos/docs/forensics/nos/nos_manifest.json) is structurally sound."

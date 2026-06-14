@@ -342,7 +342,7 @@ export const dynamic = "force-dynamic";
 async function fetchChapterData(slug: string) {
   try {
     const store = new VectorStore();
-    const manifestPath = path.join(process.cwd(), "docs/forensics/nos/nos_manifest.json");
+    const manifestPath = path.join(process.cwd(), "docs/forensics/nos/docs/forensics/nos/nos_manifest.json");
     const manifestRaw = await fs.readFile(manifestPath, "utf-8");
     const manifest = JSON.parse(manifestRaw || '{"nodes":[]}');
     const targetNode = (manifest.nodes || []).find((n: any) => String(n.id).toLowerCase().includes(`chapter_${slug}`));
@@ -402,7 +402,7 @@ export function initListener() {
 }
 CODE_EOF
 
-echo -e "\n\n>>> FILE 14: docs/forensics/nos/nos_manifest.json (Sanitized Canonical Clean Base)" >> "$DEST"
+echo -e "\n\n>>> FILE 14: docs/forensics/nos/docs/forensics/nos/nos_manifest.json (Sanitized Canonical Clean Base)" >> "$DEST"
 cat << 'CODE_EOF' >> "$DEST"
 {
   "nodes": [

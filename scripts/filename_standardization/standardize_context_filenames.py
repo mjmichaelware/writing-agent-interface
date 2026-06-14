@@ -160,7 +160,7 @@ lines += [
     "",
 ]
 
-Path("docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md").write_text("\n".join(lines), encoding="utf-8")
+Path("docs/agent_context/indexes/docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md").write_text("\n".join(lines), encoding="utf-8")
 
 # Write a repo-wide audit of suspicious names, but do not rename code.
 bad = []
@@ -172,7 +172,7 @@ for p in sorted(Path(".").rglob("*")):
         continue
     name = p.name
     recommended = standard_filename(name)
-    if recommended != name and name not in {"AGENTS.md", "docs/agent_context/indexes/AGENTS_README.md", "docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md", "README.md"}:
+    if recommended != name and name not in {"AGENTS.md", "docs/agent_context/indexes/docs/agent_context/indexes/AGENTS_README.md", "docs/agent_context/indexes/docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md", "README.md"}:
         bad.append({
             "path": sp,
             "name": name,

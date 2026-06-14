@@ -45,7 +45,7 @@ vercel env ls >> "$OUTPUT_FILE" 2>&1
 
 echo -e "\n\n=== PHASE 4: PULSE (Internal Compass & Logic) ===" >> "$OUTPUT_FILE"
 echo ">>> Manifest Node Verification" >> "$OUTPUT_FILE"
-cat docs/forensics/nos/nos_manifest.json >> "$OUTPUT_FILE" 2>&1
+cat docs/forensics/nos/docs/forensics/nos/nos_manifest.json >> "$OUTPUT_FILE" 2>&1
 echo -e "\n>>> API Route Audits" >> "$OUTPUT_FILE"
 grep -rn "export async function" src/app/api/ >> "$OUTPUT_FILE" 2>&1
 echo -e "\n>>> Package Scripts" >> "$OUTPUT_FILE"

@@ -15,7 +15,7 @@
     {
       "action": "copied",
       "label": "root_protocol",
-      "source": "docs/agent_context/indexes/AGENTS_README.md",
+      "source": "docs/agent_context/indexes/docs/agent_context/indexes/AGENTS_README.md",
       "dest": "data/runtime_sources/weight_of_the_sky/00_protocols/agents_readme.md",
       "bytes": 240,
       "sha256": "8bdbbdb59349743111e479bb1f61e4b3bfcc9e188b0dde1162f6cc335aaf91bc"
@@ -23,7 +23,7 @@
     {
       "action": "copied",
       "label": "root_protocol",
-      "source": "docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md",
+      "source": "docs/agent_context/indexes/docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md",
       "dest": "data/runtime_sources/weight_of_the_sky/00_protocols/agent_read_context_index.md",
       "bytes": 3752,
       "sha256": "0623a164ad3cb579f0923bc8d4f6eb329d19be86635ba92957222076deb50586"

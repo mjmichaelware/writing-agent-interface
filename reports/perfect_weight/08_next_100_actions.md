@@ -4,8 +4,8 @@
 001. Freeze the staged read-context structure and keep it copy-only.
 002. Verify the two formerly missing Writing Agent source docs are staged under visible names.
 003. Keep AGENTS.md as the root instruction file for all CLIs.
-004. Keep docs/agent_context/indexes/AGENTS_README.md as a short pointer to AGENTS.md.
-005. Preserve docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md as the numbered-source map.
+004. Keep docs/agent_context/indexes/docs/agent_context/indexes/AGENTS_README.md as a short pointer to AGENTS.md.
+005. Preserve docs/agent_context/indexes/docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md as the numbered-source map.
 006. Write a no-delete policy into every destructive-capable script.
 007. Keep reports in reports/perfect_weight instead of mixing them with source context.
 008. Record git status before every major change.

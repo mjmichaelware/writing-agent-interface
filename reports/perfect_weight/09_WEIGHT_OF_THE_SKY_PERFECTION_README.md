@@ -4,7 +4,7 @@ This report is generated. It does not replace source documents. It organizes wha
 
 Primary source context: `src/data-layer/ingestion-buffer/readme_docs/`
 Root agent instructions: `AGENTS.md`
-Source index: `docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md`
+Source index: `docs/agent_context/indexes/docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md`
 
 ---
 
@@ -22,8 +22,8 @@ Fri Jun 12 22:08:17 MDT 2026
  M package-lock.json
  M package.json
  M tsconfig.json
-?? docs/agent_context/indexes/AGENTS_README.md
-?? docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md
+?? docs/agent_context/indexes/docs/agent_context/indexes/AGENTS_README.md
+?? docs/agent_context/indexes/docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md
 ?? reports/
 ?? scripts/archive-google-docs-by-local-names.mjs
 ?? scripts/data-lineage-audit.sh
@@ -54,8 +54,8 @@ Fri Jun 12 22:08:17 MDT 2026
 ./.vercel/repo.json
 ./.vercelignore
 ./AGENTS.md
-./docs/agent_context/indexes/AGENTS_README.md
-./docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md
+./docs/agent_context/indexes/docs/agent_context/indexes/AGENTS_README.md
+./docs/agent_context/indexes/docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md
 ./Build
 ./GEMINI.md
 ./NOS_Core_Engine_Discovery_Dump.txt
@@ -66,7 +66,7 @@ Fri Jun 12 22:08:17 MDT 2026
 ./NOS_Responsive_Style_Config_Dump.txt
 ./NOS_Runtime_Discovery_Dump.txt
 ./README.md
-./docs/agent_context/source_drop/legacy_root_directives/ULTIMATE_OMEGA_DIRECTIVE.md
+./docs/agent_context/source_drop/legacy_root_directives/docs/agent_context/source_drop/legacy_root_directives/ULTIMATE_OMEGA_DIRECTIVE.md
 ./build.log
 ./build_debug.txt
 ./eslint.config.js
@@ -76,7 +76,7 @@ Fri Jun 12 22:08:17 MDT 2026
 ./import_audit.txt
 ./next-env.d.ts
 ./next.config.js
-./docs/forensics/nos/nos_manifest.json
+./docs/forensics/nos/docs/forensics/nos/nos_manifest.json
 ./package-lock.json
 ./package.json
 ./parse-by-meaning.js.draft
@@ -3578,8 +3578,8 @@ has_metadata=3473
 001. Freeze the staged read-context structure and keep it copy-only.
 002. Verify the two formerly missing Writing Agent source docs are staged under visible names.
 003. Keep AGENTS.md as the root instruction file for all CLIs.
-004. Keep docs/agent_context/indexes/AGENTS_README.md as a short pointer to AGENTS.md.
-005. Preserve docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md as the numbered-source map.
+004. Keep docs/agent_context/indexes/docs/agent_context/indexes/AGENTS_README.md as a short pointer to AGENTS.md.
+005. Preserve docs/agent_context/indexes/docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md as the numbered-source map.
 006. Write a no-delete policy into every destructive-capable script.
 007. Keep reports in reports/perfect_weight instead of mixing them with source context.
 008. Record git status before every major change.

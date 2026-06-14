@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 1. Sync the Authority Manifest to the Nervous System
-cp docs/forensics/nos/nos_manifest.json src/data-layer/initialization-metadata/node_manifest.json 2>/dev/null
+cp docs/forensics/nos/docs/forensics/nos/nos_manifest.json src/data-layer/initialization-metadata/node_manifest.json 2>/dev/null
 
 # 2. Define the Output File
 OUTFILE="nos_omni_handshake.txt"

@@ -141,7 +141,7 @@ readme += [
 manifest = []
 
 # Root protocol docs.
-for f in ["AGENTS.md", "docs/agent_context/indexes/AGENTS_README.md", "docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md"]:
+for f in ["AGENTS.md", "docs/agent_context/indexes/docs/agent_context/indexes/AGENTS_README.md", "docs/agent_context/indexes/docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md"]:
     copy_file(Path(f), RUNTIME / "00_protocols", "root_protocol", manifest)
 
 # Active renderer-readable staged context.

@@ -13,7 +13,7 @@ Hard rules:
 - Do not move anything.
 - Do not invent paths.
 - Use the paths shown below as canonical.
-- Merge AGENTS.md, docs/agent_context/indexes/AGENTS_README.md, docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md, and the canonical staged context index.
+- Merge AGENTS.md, docs/agent_context/indexes/docs/agent_context/indexes/AGENTS_README.md, docs/agent_context/indexes/docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md, and the canonical staged context index.
 - Explain that agents should read the index first, then selectively read tiered documents.
 - Explain that the staged context files are active project memory, not trash.
 - Explain that ~/context_files was only the old home-level holding area and is not the project source of truth.
@@ -68,7 +68,7 @@ The agent should first inspect:
 - `supabase`
 - `supabase/migrations`
 - `reports`
-- `docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md`
+- `docs/agent_context/indexes/docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md`
 - this `AGENTS.md`
 
 The agent should prefer actual code and actual database schema over old notes. The notes are important, but they are source context, not automatically current truth.
@@ -102,7 +102,7 @@ Priority folders:
 
 Read the index:
 
-`docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md`
+`docs/agent_context/indexes/docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md`
 
 The index maps staged files to their original numbered `/sdcard/Download` source list.
 
@@ -301,7 +301,7 @@ When documents conflict:
 
 - quote or summarize the conflict in a report
 
---- CURRENT docs/agent_context/indexes/AGENTS_README.md ---
+--- CURRENT docs/agent_context/indexes/docs/agent_context/indexes/AGENTS_README.md ---
 # Agent README
 
 The primary instruction file is `AGENTS.md`.
@@ -310,13 +310,13 @@ Read it before editing this repo.
 
 Also read:
 
-- `docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md`
+- `docs/agent_context/indexes/docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md`
 - `src/data-layer/ingestion-buffer/readme_docs/`
 - `reports/`
 
 Do not delete source context files.
 
---- CURRENT docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md ---
+--- CURRENT docs/agent_context/indexes/docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md ---
 # Agent Read Context Index
 
 These files were copied from `/sdcard/Download` into active project ingestion/read context.
@@ -362,8 +362,8 @@ Root path:
 --- CURRENT PROJECT TREE SNAPSHOT ---
 .
 ├── AGENTS.md
-├── docs/agent_context/indexes/AGENTS_README.md
-├── docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md
+├── docs/agent_context/indexes/docs/agent_context/indexes/AGENTS_README.md
+├── docs/agent_context/indexes/docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md
 ├── Build
 ├── GEMINI.md
 ├── NOS_Core_Engine_Discovery_Dump.txt
@@ -374,7 +374,7 @@ Root path:
 ├── NOS_Responsive_Style_Config_Dump.txt
 ├── NOS_Runtime_Discovery_Dump.txt
 ├── README.md
-├── docs/agent_context/source_drop/legacy_root_directives/ULTIMATE_OMEGA_DIRECTIVE.md
+├── docs/agent_context/source_drop/legacy_root_directives/docs/agent_context/source_drop/legacy_root_directives/ULTIMATE_OMEGA_DIRECTIVE.md
 ├── build.log
 ├── build_debug.txt
 ├── data
@@ -395,7 +395,7 @@ Root path:
 ├── import_audit.txt
 ├── next-env.d.ts
 ├── next.config.js
-├── docs/forensics/nos/nos_manifest.json
+├── docs/forensics/nos/docs/forensics/nos/nos_manifest.json
 ├── package-lock.json
 ├── package.json
 ├── parse-by-meaning.js.draft

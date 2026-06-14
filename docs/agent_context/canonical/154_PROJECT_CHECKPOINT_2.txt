@@ -500,7 +500,7 @@ drwx------. 3 u0_a448 u0_a448  3452 May 12 14:05  ..
 ./node_modules/next/dist/server/config-schema.js
 ./node_modules/next/dist/build/webpack/plugins/app-build-manifest-plugin.js
 ./node_modules/next/dist/build/webpack/plugins/build-manifest-plugin.js
-./docs/forensics/nos/nos_manifest.json
+./docs/forensics/nos/docs/forensics/nos/nos_manifest.json
 ~/writing-agent-interface $
 
 
@@ -513,7 +513,7 @@ drwx------. 3 u0_a448 u0_a448  3452 May 12 14:05  ..
 ├── full_codebase_dump.txt
 ├── next-env.d.ts
 ├── next.config.js
-├── docs/forensics/nos/nos_manifest.json
+├── docs/forensics/nos/docs/forensics/nos/nos_manifest.json
 ├── package-lock.json
 ├── package.json
 ├── postcss.config.js

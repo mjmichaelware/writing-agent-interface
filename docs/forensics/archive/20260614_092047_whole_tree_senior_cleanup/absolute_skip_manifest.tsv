@@ -1,2 +1,28 @@
 action	source	destination	reason	detail
 SKIP_MISSING	ULTIMATE_OMEGA_DIRECTIVE.md	docs/agent_context/source_drop/legacy_root_directives/ULTIMATE_OMEGA_DIRECTIVE.md__collision_1	legacy directive source-drop; not active root config	missing
+SKIP_MISSING	AGENT_READ_CONTEXT_INDEX.md	docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md__collision_1	project-local context index belongs under docs/agent_context/indexes	missing
+SKIP_MISSING	AGENTS_README.md	docs/agent_context/indexes/AGENTS_README.md__collision_1	small project-local agent readme pointer belongs under docs/agent_context/indexes	missing
+SKIP_MISSING	ULTIMATE_OMEGA_DIRECTIVE.md	docs/agent_context/source_drop/legacy_root_directives/ULTIMATE_OMEGA_DIRECTIVE.md__collision_1	legacy directive source-drop; not active root config	missing
+SKIP_MISSING	.agent-context	docs/agent_context/source_drop/legacy_agent_context/.agent-context__collision_1	legacy parallel agent context source-drop	missing
+SKIP_MISSING	.sandbox	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_sandbox__collision_1	root sandbox evidence preserved in forensics archive	missing
+SKIP_MISSING	.nos	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_nos__collision_1	root NOS local runtime/archive evidence preserved in forensics archive	missing
+SKIP_MISSING	system	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/legacy_system_root__collision_1	legacy root system surface preserved in forensics archive	missing
+SKIP_MISSING	Build	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_misc/Build__collision_1	nonstandard root file preserved in forensics archive	missing
+SKIP_MISSING	parse-by-meaning.js.draft	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_drafts/parse-by-meaning.js.draft__collision_1	draft root file preserved in forensics archive	missing
+SKIP_MISSING	tsconfig.tsbuildinfo	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/generated/tsconfig.tsbuildinfo__collision_1	generated TypeScript cache removed from root	missing
+SKIP_MISSING	nos_manifest.json	docs/forensics/nos/nos_manifest.json__collision_1	NOS manifest evidence belongs under docs/forensics/nos	missing
+SKIP_MISSING	docs/ai-context	docs/agent_context/source_drop/legacy_ai_context/docs_ai_context__collision_1	legacy AI context preserved as source_drop	missing
+SKIP_MISSING	src/data-layer/ingestion-buffer/gdrive_raw	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw__collision_1	raw manuscript staging belongs in source_drop, not src	missing
+SKIP_MISSING	src/data-layer/singularity/REFINED_LORE_SINGULARITY.txt	docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt__collision_1	large compendium source-drop, not active src code	missing
+SKIP_MISSING	src/data-layer/07_Build_Manifests	docs/agent_context/source_drop/legacy_build_manifests/07_Build_Manifests__collision_1	legacy build manifests belong in source_drop	missing
+SKIP_MISSING	run_nos_diagnostics.sh	scripts/diagnostics/run_nos_diagnostics.sh__collision_1	diagnostic script belongs under scripts/diagnostics	missing
+SKIP_MISSING	test-db.js	scripts/diagnostics/test-db.js__collision_1	diagnostic script belongs under scripts/diagnostics	missing
+SKIP_MISSING	export_blueprints.sh	scripts/archive/20260614_092047_whole_tree_senior_cleanup/export_blueprints.sh__collision_1	one-off blueprint export script belongs under scripts/archive	missing
+SKIP_MISSING	scripts/archive-google-docs-by-local-names.mjs	scripts/ingestion/google_drive/archive-google-docs-by-local-names.mjs__collision_1	Google Drive ingestion script belongs under scripts/ingestion/google_drive	missing
+SKIP_MISSING	scripts/extract_deep_history.py	scripts/ingestion/google_drive/extract_deep_history.py__collision_1	Google Drive extraction script belongs under scripts/ingestion/google_drive	missing
+SKIP_MISSING	scripts/stage-numbered-download-readme-docs.py	scripts/ingestion/context/stage-numbered-download-readme-docs.py__collision_1	Android Downloads/readme staging script belongs under scripts/ingestion/context	missing
+SKIP_MISSING	scripts/data-lineage-audit.sh	scripts/diagnostics/data-lineage-audit.sh__collision_1	diagnostic audit script belongs under scripts/diagnostics	missing
+SKIP_MISSING	scripts/nos_audit.sh	scripts/diagnostics/nos_audit.sh__collision_1	NOS diagnostic script belongs under scripts/diagnostics	missing
+SKIP_MISSING	scripts/nos_invoke.sh	scripts/nos/nos_invoke.sh__collision_1	NOS operational script belongs under scripts/nos	missing
+SKIP_MISSING	scripts/nos_sync.sh	scripts/nos/nos_sync.sh__collision_1	NOS operational script belongs under scripts/nos	missing
+SKIP_MISSING	scripts/build_files.sh	scripts/archive/20260614_092047_whole_tree_senior_cleanup/build_files.sh__collision_1	one-off generated build/export script belongs under scripts/archive	missing

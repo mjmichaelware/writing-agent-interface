@@ -6,7 +6,7 @@ Read it before editing this repo.
 
 Also read:
 
-- `docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md`
+- `docs/agent_context/indexes/docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md`
 - `src/data-layer/ingestion-buffer/readme_docs/`
 - `reports/`
 

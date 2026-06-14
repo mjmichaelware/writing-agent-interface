@@ -132,10 +132,10 @@ if missing:
     for item in missing:
         index_lines.append(f"- {item['num']} — {item['name']}")
 
-Path("docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md").write_text("\n".join(index_lines) + "\n", encoding="utf-8")
+Path("docs/agent_context/indexes/docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md").write_text("\n".join(index_lines) + "\n", encoding="utf-8")
 
 print(f"Copied/staged: {len(manifest)}")
 print(f"Missing: {len(missing)}")
 print("Wrote reports/readme_docs_stage_manifest.json")
 print("Wrote reports/readme_docs_missing.json")
-print("Wrote docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md")
+print("Wrote docs/agent_context/indexes/docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md")

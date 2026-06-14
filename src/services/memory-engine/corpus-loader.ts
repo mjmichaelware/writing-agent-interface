@@ -10,12 +10,12 @@ export interface CorpusFile {
 }
 
 export class CorpusLoader {
-  private manifestPath = path.join(process.cwd(), 'docs/forensics/nos/nos_manifest.json');
+  private manifestPath = path.join(process.cwd(), 'docs/forensics/nos/docs/forensics/nos/nos_manifest.json');
   private baseDir = path.join(process.cwd());
 
   async ingestCorpus(): Promise<void> {
     if (!fs.existsSync(this.manifestPath)) {
-      throw new Error("docs/forensics/nos/nos_manifest.json not found");
+      throw new Error("docs/forensics/nos/docs/forensics/nos/nos_manifest.json not found");
     }
 
     const manifest = JSON.parse(fs.readFileSync(this.manifestPath, 'utf-8'));

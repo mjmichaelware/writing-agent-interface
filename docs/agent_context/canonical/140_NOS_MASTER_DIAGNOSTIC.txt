@@ -41,7 +41,7 @@ For more information, see: https://nextjs.org/docs/app/api-reference/turbopack#s
 128K	./package-lock.json
 45K	./system
 36K	./scripts
-36K	./docs/forensics/nos/nos_manifest.json
+36K	./docs/forensics/nos/docs/forensics/nos/nos_manifest.json
 32K	./NOS_Critical_Files_Dump.txt
 12K	./system_logic_audit.txt
 12K	./NOS_Runtime_Discovery_Dump.txt

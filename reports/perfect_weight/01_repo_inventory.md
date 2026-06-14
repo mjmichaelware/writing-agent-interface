@@ -10,8 +10,8 @@ Fri Jun 12 22:08:17 MDT 2026
  M package-lock.json
  M package.json
  M tsconfig.json
-?? docs/agent_context/indexes/AGENTS_README.md
-?? docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md
+?? docs/agent_context/indexes/docs/agent_context/indexes/AGENTS_README.md
+?? docs/agent_context/indexes/docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md
 ?? reports/
 ?? scripts/archive-google-docs-by-local-names.mjs
 ?? scripts/data-lineage-audit.sh
@@ -42,8 +42,8 @@ Fri Jun 12 22:08:17 MDT 2026
 ./.vercel/repo.json
 ./.vercelignore
 ./AGENTS.md
-./docs/agent_context/indexes/AGENTS_README.md
-./docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md
+./docs/agent_context/indexes/docs/agent_context/indexes/AGENTS_README.md
+./docs/agent_context/indexes/docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md
 ./Build
 ./GEMINI.md
 ./NOS_Core_Engine_Discovery_Dump.txt
@@ -54,7 +54,7 @@ Fri Jun 12 22:08:17 MDT 2026
 ./NOS_Responsive_Style_Config_Dump.txt
 ./NOS_Runtime_Discovery_Dump.txt
 ./README.md
-./docs/agent_context/source_drop/legacy_root_directives/ULTIMATE_OMEGA_DIRECTIVE.md
+./docs/agent_context/source_drop/legacy_root_directives/docs/agent_context/source_drop/legacy_root_directives/ULTIMATE_OMEGA_DIRECTIVE.md
 ./build.log
 ./build_debug.txt
 ./eslint.config.js
@@ -64,7 +64,7 @@ Fri Jun 12 22:08:17 MDT 2026
 ./import_audit.txt
 ./next-env.d.ts
 ./next.config.js
-./docs/forensics/nos/nos_manifest.json
+./docs/forensics/nos/docs/forensics/nos/nos_manifest.json
 ./package-lock.json
 ./package.json
 ./parse-by-meaning.js.draft

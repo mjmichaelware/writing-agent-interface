@@ -89,3 +89,7 @@ parse-by-meaning.js.draft
 # Local private material
 secrets/
 data/source_archive/
+
+# Local private/heavy surfaces externalized from repo tree
+secrets/
+data/source_archive/

@@ -1,0 +1,11 @@
+{
+  "generated_utc": "2026-06-14T21:24:05.791666+00:00",
+  "run_root": "docs/forensics/archive/20260614_152330_externalize_local_private_surfaces",
+  "private_root": "/data/data/com.termux/files/home/.nos_private/writing-agent-interface",
+  "moved": 0,
+  "skipped": 2,
+  "manifest": "docs/forensics/archive/20260614_152330_externalize_local_private_surfaces/externalize_manifest.tsv",
+  "skiplog": "docs/forensics/archive/20260614_152330_externalize_local_private_surfaces/externalize_skip.tsv",
+  "active_reference_hits": "docs/forensics/archive/20260614_152330_externalize_local_private_surfaces/active_reference_hits.tsv",
+  "rollback": "docs/forensics/archive/20260614_152330_externalize_local_private_surfaces/rollback_externalize.sh"
+}

@@ -1,0 +1,11 @@
+./reports/name-matched-google-docs-archive-latest.json
+/data/data/com.termux/files/home/.gdrive_secrets/credentials.json
+/data/data/com.termux/files/home/.gemini/google_accounts.json
+/data/data/com.termux/files/home/.gemini/oauth_creds.json
+/data/data/com.termux/files/home/Workspaces/Hybrid/writing-agent-interface/reports/name-matched-google-docs-archive-latest.json
+/data/data/com.termux/files/home/Workspaces/Legacy/bliindaidating/.venv/lib/python3.12/site-packages/googleapiclient/discovery_cache/documents/oauth2.v2.json
+/data/data/com.termux/files/home/Workspaces/Legacy/bliindaidating/backend/venv/lib/python3.12/site-packages/googleapiclient/discovery_cache/documents/oauth2.v2.json
+/data/data/com.termux/files/home/google-cloud-sdk/platform/bq/discovery_next/bigqueryreservation_google_rest_v1.json
+/data/data/com.termux/files/home/google-cloud-sdk/platform/gsutil/third_party/apitools/apitools/scripts/testdata/fake_client_secrets.json
+/data/data/com.termux/files/home/google-cloud-sdk/platform/gsutil/third_party/apitools/apitools/scripts/testdata/noninstalled_client_secrets.json
+/data/data/com.termux/files/home/google-cloud-sdk/platform/gsutil/third_party/google-auth-library-python/tests/data/client_secrets.json

@@ -1,0 +1,8 @@
+raw_files=182
+matched_document_folders=57
+document_xml_count=57
+covered_raw_targets_by_matched_local_targets=166
+uncovered_raw_targets=16
+unique_raw_hashes=180
+unique_document_xml_hashes=57
+report_dir=docs/forensics/audits/xml_coverage_to_182_20260613_232839

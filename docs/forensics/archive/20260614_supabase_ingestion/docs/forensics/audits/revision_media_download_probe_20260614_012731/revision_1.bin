@@ -1,0 +1,15 @@
+{
+  "error": {
+    "code": 404,
+    "message": "Revision not found: 1.",
+    "errors": [
+      {
+        "message": "Revision not found: 1.",
+        "domain": "global",
+        "reason": "notFound",
+        "location": "revisionId",
+        "locationType": "parameter"
+      }
+    ]
+  }
+}

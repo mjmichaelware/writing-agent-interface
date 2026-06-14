@@ -1,0 +1,19 @@
+ M docs/agent_context/indexes/AGENT_CONTEXT_CANONICAL_INDEX.md
+ M scripts/extract_deep_history.py
+?? .github/workflows/deploy-supabase-edge.yml
+?? docs/agent_context/canonical/WAI_IDA_HANDOFF.md
+?? docs/forensics/archive/
+?? docs/forensics/audits/
+?? docs/forensics/logs/nos/20260614_supabase_ingestion_checkpoint.md
+?? scripts/apply-supabase-sql-via-psql.sh
+?? scripts/build-supabase-archive-manifest-stream.mjs
+?? scripts/build-supabase-archive-manifest.mjs
+?? scripts/drive-temporal-xml-reextract.mjs
+?? scripts/paired-drive-xml-reextract.mjs
+?? scripts/register-shards-via-psql.sh
+?? scripts/shard-supabase-manifests.sh
+?? scripts/supabase-cloud-verify.sh
+?? scripts/upload-supabase-shards-storage-only.sh
+?? scripts/upload-supabase-shards.sh
+?? supabase/migrations/20260614_043152_nos_ingestion_archive_schema.sql
+?? supabase/migrations/20260614_053756_nos_supabase_cloud_ingestion_integration.sql

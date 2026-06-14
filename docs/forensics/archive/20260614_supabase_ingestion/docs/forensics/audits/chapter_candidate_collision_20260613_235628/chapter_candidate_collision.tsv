@@ -1,0 +1,73 @@
+local_basename	status	best_score	best_category	best_drive_name	candidate_score	candidate_category	candidate_drive_name	candidate_drive_id	has_xml
+-Final_Chapter_1_Revision_Prompt-.txt	exact_or_contained	100	support_or_meta	-Final Chapter 1 Revision Prompt-	100	support_or_meta	-Final Chapter 1 Revision Prompt-	1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0	true
+(D)_Chapter:_7_-_The_Pit.txt	exact_or_contained	100	chapter_like	(D)_Chapter__7_-_The_Pit	100	chapter_like	(D)_Chapter__7_-_The_Pit	1N_kgc1nQhcDdho0MgY1Niam7DVBsou3PgH8d4Vcct34	true
+(Final)_Chapter_5_-_The_Snare.txt	exact_or_contained	100	chapter_like	(Final) Chapter 5 - The Snare	100	chapter_like	(Final) Chapter 5 - The Snare	1lMmVYvwHmYuExByWEwlh-rGpUbirDPG7uPeR4gFh37g	true
+(G)_Chapter_2-_Living_Sacrifice.txt	probable	77	chapter_like	•(G) Chapter 2- Living Sacrifice	77	chapter_like	•(G) Chapter 2- Living Sacrifice	1lIqobbwQqWNyBdBuqqoXp9HDT2ddOQ8nxzWIyCWas0s	true
+(G)_Chapter_3-_Lift_Up.txt	exact_or_contained	100	chapter_like	(G) Chapter 3- Lift Up	100	chapter_like	(G) Chapter 3- Lift Up	1XobNLLJg3YY72D9i_360V-UtttUbr_5mhgN1YdMsrTk	true
+(G)_Final_)_Chapter:_10_-_Forsaken.txt	weak_review	67	chapter_like	Chapter 10.5	67	chapter_like	Chapter 10.5	1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk	true
+(Notes)_(P)_Chapter:_1_-_Stardust_to_Stardust.txt	exact_or_contained	100	support_or_meta	(Notes) (P) Chapter: 1 - Stardust to Stardust	100	support_or_meta	(Notes) (P) Chapter: 1 - Stardust to Stardust	1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs	true
+(P)_Chapter:_1_-_Stardust_to_Stardust.txt	probable	78	support_or_meta	(Notes) (P) Chapter: 1 - Stardust to Stardust	78	support_or_meta	(Notes) (P) Chapter: 1 - Stardust to Stardust	1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs	true
+(Prompt_Guide_(E))_Chapter_10:_Forsaken.txt	exact_or_contained	100	support_or_meta	(Prompt Guide (E)) Chapter 10: Forsaken	100	support_or_meta	(Prompt Guide (E)) Chapter 10: Forsaken	1HgITZ_aQyru0299o0N46Bd_y_Mrj7p33mnT_hxuBBTo	true
+(Prompt_Guide_(E))_Chapter_10:_Forsaken.txt	exact_or_contained	100	support_or_meta	(Prompt Guide (E)) Chapter 10: Forsaken	67	chapter_like	Chapter 10.5	1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk	true
+(R) Chapter: 1 - Stardust to Stardust .txt	exact_or_contained	100	chapter_like	(R) Chapter: 1 - Stardust to Stardust 	100	chapter_like	(R) Chapter: 1 - Stardust to Stardust 	1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ	true
+(R)_Chapter:_1_-_Stardust_to_Stardust_.txt	exact_or_contained	100	chapter_like	(R) Chapter: 1 - Stardust to Stardust 	100	chapter_like	(R) Chapter: 1 - Stardust to Stardust 	1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ	true
+(Revision_Prompt_(D))_Chapter_10:_Forsaken.txt	weak_review	67	chapter_like	Chapter 10.5	67	chapter_like	Chapter 10.5	1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk	true
+•(G)_Chapter_2-_Living_Sacrifice.txt	exact_or_contained	100	chapter_like	•(G) Chapter 2- Living Sacrifice	100	chapter_like	•(G) Chapter 2- Living Sacrifice	1lIqobbwQqWNyBdBuqqoXp9HDT2ddOQ8nxzWIyCWas0s	true
+10.0_Mass_Market.txt	probable	74	support_or_meta	(Old) 10.0 Mass Market	74	support_or_meta	(Old) 10.0 Mass Market	1R-3ttk7q-CXeGPofkbQ-PJ92z4lx0JkEPYDwT_iA2UQ	true
+10.0_MASTER_SYSTEM_FOR_CHAPTER_REVISION.txt	exact_or_contained	100	support_or_meta	10.0 MASTER SYSTEM FOR CHAPTER REVISION	100	support_or_meta	10.0 MASTER SYSTEM FOR CHAPTER REVISION	1INT40kAV4aMrHxVqnOBWY5gMCo8_b19mCOs5B9pkkQA	true
+11.0_Final_Revision.txt	probable	74	support_or_meta	(Old) 11.0 Final Revision	74	support_or_meta	(Old) 11.0 Final Revision	1ASj5oM5yY1Ewa7IEk3aSACnn6_9PyH5zmr_3HTlLdXk	true
+11.0_Marketability_.txt	exact_or_contained	100	support_or_meta	11.0 Marketability 	100	support_or_meta	11.0 Marketability 	17LbSa_mXn1AqggY06lcrn7fIpIWkMisMZYIoNHofxs4	true
+2.0_Critique_／_Analysis_Guide.txt	weak_review	68	support_or_meta	2.0 Critique / Analysis Guide	68	support_or_meta	2.0 Critique / Analysis Guide	1-wIzrxfB8JuYdgegmFrYlL2xm0a00pyDgqP9sv584vc	true
+3.0_Scientific_Guide.txt	exact_or_contained	100	support_or_meta	3.0 Scientific Guide	100	support_or_meta	3.0 Scientific Guide	1AZfDiQMeHUvEpAUsBAIWVnSEoy7bG7ELWUKdhvrUaRw	true
+4.0_(12_Rules_For_Life).txt	probable	75	support_or_meta	(Old) 4.0 (12 Rules For Life)	75	support_or_meta	(Old) 4.0 (12 Rules For Life)	1phu5CFlnw6v32tGEvQff6d0Z0ZkVHofX2z8UE_6CQi8	true
+5.0_Final_Guide.txt	probable	73	support_or_meta	(Old) 5.0 Final Guide	73	support_or_meta	(Old) 5.0 Final Guide	1akR0oxKRMW0X0jItZ4y04smJRdWUw-fackyDVoKZ2qs	true
+5.0_Psychology_Guide.txt	exact_or_contained	100	support_or_meta	5.0 Psychology Guide	100	support_or_meta	5.0 Psychology Guide	1jtZWe7oV8kkRHeRpSfgGQXASkhpZLPlOrIdID314mP4	true
+6.0_HIGHEST_PRIORITY_(Read_this_first_and_then_again_last)_.txt	probable	84	support_or_meta	(Old) 6.0 HIGHEST PRIORITY (Read this first and then again last) 	84	support_or_meta	(Old) 6.0 HIGHEST PRIORITY (Read this first and then again last) 	1txdk_mVw0b0kGs2fKsP6VFMjluUnp3EBa5P71E-ldjA	true
+7.0_Nuclear_Edit!!!!_(CRITICAL!_DIRE!_EMERGENCY!!!).txt	probable	80	support_or_meta	(Old) 7.0 Nuclear Edit!!!! (CRITICAL! DIRE! EMERGENCY!!!)	80	support_or_meta	(Old) 7.0 Nuclear Edit!!!! (CRITICAL! DIRE! EMERGENCY!!!)	1s03hIKm0gYjPfC7c7rRBSq53JUB5WS74ER48Wyunmvo	true
+8.0_Pacing／Redundancy.txt	weak_review	67	other	8.0 Pacing/Redundancy	67	other	8.0 Pacing/Redundancy	1GSaV1KrrQvbPTYtjbTw7OvP6gbyti2-mx5hRhYnkuFM	true
+ALITTERAS_SYSTEM_BLUEPRINT_v1.txt	exact_or_contained	100	support_or_meta	ALITTERAS SYSTEM BLUEPRINT v1	100	support_or_meta	ALITTERAS SYSTEM BLUEPRINT v1	1g9I7QCgp6ZIulH3HOsPFrr6rkqmTSzGNXZx48D51OJU	true
+Chapter 3 - Commerciality and Marketing 3.0.txt	probable	74	support_or_meta	Chapter 3 - Commerciality and Marketing 3.0	74	support_or_meta	Chapter 3 - Commerciality and Marketing 3.0	1Tt4fIHXbKaE5yolknIN_uELwk9jXztqh8YMhLqjmtno	true
+Chapter_1_-_Stardust_to_Stardust.txt	probable	77	support_or_meta	(Notes) (P) Chapter: 1 - Stardust to Stardust	77	support_or_meta	(Notes) (P) Chapter: 1 - Stardust to Stardust	1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs	true
+Chapter_1_-_Stardust_to_Stardust.txt	probable	77	support_or_meta	(Notes) (P) Chapter: 1 - Stardust to Stardust	77	chapter_like	(R) Chapter: 1 - Stardust to Stardust 	1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ	true
+Chapter_1_Merge_Prompt.txt	exact_or_contained	100	support_or_meta	Chapter 1 Merge Prompt	100	support_or_meta	Chapter 1 Merge Prompt	18HWPiYaqH72RmXRxnaxF-FaELJke-Fm3t3RH-NRvWN0	true
+﻿Chapter_1-_Stardust_to_Stardust.txt	probable	77	support_or_meta	(Notes) (P) Chapter: 1 - Stardust to Stardust	77	support_or_meta	(Notes) (P) Chapter: 1 - Stardust to Stardust	1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs	true
+﻿Chapter_1-_Stardust_to_Stardust.txt	probable	77	support_or_meta	(Notes) (P) Chapter: 1 - Stardust to Stardust	77	chapter_like	(R) Chapter: 1 - Stardust to Stardust 	1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ	true
+Chapter_1:_Stardust_to_Stardust.txt	probable	77	support_or_meta	(Notes) (P) Chapter: 1 - Stardust to Stardust	77	support_or_meta	(Notes) (P) Chapter: 1 - Stardust to Stardust	1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs	true
+Chapter_1:_Stardust_to_Stardust.txt	probable	77	support_or_meta	(Notes) (P) Chapter: 1 - Stardust to Stardust	77	chapter_like	(R) Chapter: 1 - Stardust to Stardust 	1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ	true
+Chapter_10_Forsaken_FINAL_DEFINITIVE.txt	weak_review	67	chapter_like	Chapter 10.5	67	chapter_like	Chapter 10.5	1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk	true
+Chapter_10_Version_F.txt	weak_review	67	chapter_like	Chapter 10.5	67	chapter_like	Chapter 10.5	1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk	true
+Chapter_10:_Forsaken.txt	probable	74	chapter_like	(B) Chapter: 10 - Forsaken	74	chapter_like	(B) Chapter: 10 - Forsaken	1dAVOiCaa3g6lx3r7lLQZ6sxqVOYV5ZsgnfMpxgNJuyk	true
+Chapter_10:_Forsaken.txt	probable	74	chapter_like	(B) Chapter: 10 - Forsaken	74	support_or_meta	(Prompt Guide (E)) Chapter 10: Forsaken	1HgITZ_aQyru0299o0N46Bd_y_Mrj7p33mnT_hxuBBTo	true
+Chapter_10:_Forsaken.txt	probable	74	chapter_like	(B) Chapter: 10 - Forsaken	67	chapter_like	Chapter 10.5	1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk	true
+Chapter_10.1.txt	weak_review	67	chapter_like	Chapter 10.5	67	chapter_like	Chapter 10.5	1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk	true
+Chapter_10.5.txt	weak_review	67	chapter_like	Chapter 10.5	67	chapter_like	Chapter 10.5	1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk	true
+Chapter_13:_Exodus.txt	exact_or_contained	100	chapter_like	Chapter 13: Exodus	100	chapter_like	Chapter 13: Exodus	1EZfWlpCim0uysWjZ9QjGaCB7BQQUqyJQcSPRbj0GpI4	true
+Chapter_2_-_Analysis_&_Guides_1.0.txt	probable	72	support_or_meta	Chapter 2 - Analysis & Guides 1.0	72	support_or_meta	Chapter 2 - Analysis & Guides 1.0	1DtI8s5iosC54Zm0W44KcEa5-jdZ7HNAxSYah4J0uFIs	true
+Chapter_2:_Living_Sacrifice.txt	probable	76	chapter_like	•(G) Chapter 2- Living Sacrifice	76	chapter_like	•(G) Chapter 2- Living Sacrifice	1lIqobbwQqWNyBdBuqqoXp9HDT2ddOQ8nxzWIyCWas0s	true
+Chapter_2nd_to_last.txt	exact_or_contained	100	chapter_like	Chapter 2nd to last	100	chapter_like	Chapter 2nd to last	145L-3aHQH6XNn-lWhzeIBM46Do2DCuo_5lBckU_Y6k4	true
+Chapter_3_-_Master_Revision_Prompt_2.0.txt	probable	73	support_or_meta	Chapter 3 - Master Revision Prompt 2.0	73	support_or_meta	Chapter 3 - Master Revision Prompt 2.0	1mqT9TetHd_8Wja4TkABZhnS1FQpSDAHSvvTnKod1Bbk	true
+Chapter_3_Analysis_&_Guides.txt	exact_or_contained	100	support_or_meta	Chapter 3 Analysis & Guides	100	support_or_meta	Chapter 3 Analysis & Guides	1FVADnhWwf5nMiHoSjDb0p4Rj81pDRz08E4KhDFZUB2s	true
+Chapter_3_Integration_Prompt.txt	exact_or_contained	100	support_or_meta	Chapter 3 Integration Prompt	100	support_or_meta	Chapter 3 Integration Prompt	1HbyI6yEHBBS0Z8IgDF2awqoEoFCs89eG5_DevG3_IRI	true
+Chapter_3:_Lift_Up.txt	probable	74	chapter_like	(G) Chapter 3- Lift Up	74	chapter_like	(G) Chapter 3- Lift Up	1XobNLLJg3YY72D9i_360V-UtttUbr_5mhgN1YdMsrTk	true
+Chapter_4:_Pilgrimage.txt	probable	75	chapter_like	(Final) Chapter 4 - Pilgrimage	75	chapter_like	(Final) Chapter 4 - Pilgrimage	1opvdSohMWiVq6FgqotsGpFfKsjCDaI2KqTOHsQkwwDU	true
+Chapter_5:_The_Snare.txt	probable	74	chapter_like	(Final) Chapter 5 - The Snare	74	chapter_like	(Final) Chapter 5 - The Snare	1lMmVYvwHmYuExByWEwlh-rGpUbirDPG7uPeR4gFh37g	true
+Chapter_6:_Beelzebub,_Beelzebub.txt	probable	77	chapter_like	(Final) Chapter 6- Beelzebub, Beelzebub	77	chapter_like	(Final) Chapter 6- Beelzebub, Beelzebub	126VrnrFCOCIzrxXqDi8yHHjQYM0ODDGk772YKlL5eQg	true
+Chapter_9:_The_Ascent.txt	probable	75	chapter_like	(Final) Chapter 9: The Ascent	75	chapter_like	(Final) Chapter 9: The Ascent	1PIhcIFWBNQSVqjbZsCu08jpdQZy-YMBJyOmtCV_23u0	true
+Chapter:_1_-_Stardust_to_Stardust.txt	probable	77	support_or_meta	(Notes) (P) Chapter: 1 - Stardust to Stardust	77	support_or_meta	(Notes) (P) Chapter: 1 - Stardust to Stardust	1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs	true
+Chapter:_1_-_Stardust_to_Stardust.txt	probable	77	support_or_meta	(Notes) (P) Chapter: 1 - Stardust to Stardust	77	chapter_like	(R) Chapter: 1 - Stardust to Stardust 	1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ	true
+Chapter:_1_Proof_of_Authorship_1.0.txt	probable	72	support_or_meta	Chapter: 1 Proof of Authorship 1.0	72	support_or_meta	Chapter: 1 Proof of Authorship 1.0	1UJQ79YUROKhtLY73bppM6XQiXZLtkCnA6Qbn7HisMzk	true
+Chapter:_1_Proof_of_Authorship_1.0.txt	probable	72	support_or_meta	Chapter: 1 Proof of Authorship 1.0	72	support_or_meta	Chapter: 1 Proof of Authorship 1.1	1Q3f6XFlTodANFVbNr2ebSM5Mx4UnPWdre7NCwhopKgE	true
+Chapter:_1_Proof_of_Authorship_1.1.txt	probable	72	support_or_meta	Chapter: 1 Proof of Authorship 1.0	72	support_or_meta	Chapter: 1 Proof of Authorship 1.0	1UJQ79YUROKhtLY73bppM6XQiXZLtkCnA6Qbn7HisMzk	true
+Chapter:_1_Proof_of_Authorship_1.1.txt	probable	72	support_or_meta	Chapter: 1 Proof of Authorship 1.0	72	support_or_meta	Chapter: 1 Proof of Authorship 1.1	1Q3f6XFlTodANFVbNr2ebSM5Mx4UnPWdre7NCwhopKgE	true
+Chapter:_10_-_MASTER_BRIEFING.txt	exact_or_contained	100	support_or_meta	Chapter: 10 - MASTER BRIEFING	100	support_or_meta	Chapter: 10 - MASTER BRIEFING	1eEillHIiOZLGJ4vj0Bm_9zjn3KjvxSHb291Rn7qsT9o	true
+Chapter:_10_-_MASTER_BRIEFING.txt	exact_or_contained	100	support_or_meta	Chapter: 10 - MASTER BRIEFING	67	chapter_like	Chapter 10.5	1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk	true
+Chapter:_8_(Final).txt	exact_or_contained	100	chapter_like	Chapter: 8 (Final)	100	chapter_like	Chapter: 8 (Final)	1Oc5a8Cwy91Hg-xdfROvUtr8OjDCGRlw7lz7CBC_l5kI	true
+Chapter2_Weight_of_the_Sky.txt	exact_or_contained	100	chapter_like	Chapter2_Weight_of_the_Sky	100	chapter_like	Chapter2_Weight_of_the_Sky	1dBjRsoqexbBVZUYJTbZlybhH8cMGE1twD9kDtXh1kX8	true
+Critique_2.2.txt	weak_review	67	other	Critique 2.2	67	other	Critique 2.2	1ezVF2n-KfiIMcW_TGPLa0F9PYeFvu8hkbQiJ960TCog	true
+Final Revision (Generalized For All Chapters).txt	exact_or_contained	100	support_or_meta	Final Revision (Generalized For All Chapters)	100	support_or_meta	Final Revision (Generalized For All Chapters)	1E7XbIvODIR4MJFE1xEgvrztllRlZl1qgEgtmMHnpa90	true
+MANUSCRIPT_AUTOPSY.txt	exact_or_contained	100	support_or_meta	MANUSCRIPT AUTOPSY	100	support_or_meta	MANUSCRIPT AUTOPSY	16WAz5M7Vgdb7fDukQbPUBRvip4Co4784WpldwFfON40	true
+Purple_Prose_Prompt.txt	probable	74	support_or_meta	21.0 Purple Prose Prompt Protocol	74	support_or_meta	21.0 Purple Prose Prompt Protocol	18ij8f9pABf8aF9UkeLAgWhHovpEBjywHqeTq5Z2CGqw	true
+THE_WEIGHT_OF_THE_SKY-_MASTER_COMPENDIUM_(SINGULARITY_v.txt	weak_review	47	support_or_meta	Final Master Singularity Compendium: The Weight of the Sky	47	support_or_meta	Final Master Singularity Compendium: The Weight of the Sky	1DDzzszQ8wGUYyL1ijSd3WB1wXTHdOHzqKPX5dM2iAhI	true
+The_Weight_of_the_Sky:_The_Fall_into_Megiddo.txt	exact_or_contained	100	chapter_like	The Weight of the Sky: The Fall into Megiddo	100	chapter_like	The Weight of the Sky: The Fall into Megiddo	1m3WUXh2oiJ7Jb4RJYbHjsQNfQxH0sDnV5BAbAbJlzf0	true
+ToALITTERAS_ECOSYSTEM_v2.txt	exact_or_contained	100	support_or_meta	ToALITTERAS ECOSYSTEM v2	100	support_or_meta	ToALITTERAS ECOSYSTEM v2	1E_8U7x7RbqS_HJi3gOwOqAsHXEABBPUT4gIQ3Dqa8kM	true
+WOS_Ch7_The_Pit.txt	exact_or_contained	100	chapter_like	WOS_Ch7_The_Pit	100	chapter_like	WOS_Ch7_The_Pit	1ZmaR8NIPqxMhsyICXsv3gesiDd4pgmQtOFeEWe0VwWI	true

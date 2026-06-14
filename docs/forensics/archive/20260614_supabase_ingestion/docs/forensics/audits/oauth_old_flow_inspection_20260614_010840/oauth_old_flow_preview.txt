@@ -1,0 +1,25 @@
+
+===== scripts/extract_deep_history.py =====
+4: from google.oauth2.credentials import Credentials
+5: from google_auth_oauthlib.flow import InstalledAppFlow
+6: from google.auth.transport.requests import Request
+7: from googleapiclient.discovery import build
+9: SCOPES = ['https://www.googleapis.com/auth/drive.readonly']
+13: CREDENTIALS_PATH = os.path.join(SECRETS_DIR, 'credentials.json')
+14: TOKEN_PATH = os.path.join(SECRETS_DIR, 'token.json')
+23:     if os.path.exists(TOKEN_PATH):
+24:         creds = Credentials.from_authorized_user_file(TOKEN_PATH, SCOPES)
+26:         if creds and creds.expired and creds.refresh_token:
+29:             flow = InstalledAppFlow.from_client_secrets_file(CREDENTIALS_PATH, SCOPES)
+30:             # Using port 8080 as it's more stable for Termux/Android redirects
+31:             creds = flow.run_local_server(port=8080, open_browser=False)
+32:         with open(TOKEN_PATH, 'w') as token:
+33:             token.write(creds.to_json())
+47:     service = build('drive', 'v3', credentials=creds)
+
+===== reports/xml_recovery/google_archiver_user_oauth_run.log =====
+2: Listing visible Google Docs/DOCX/DOC files...
+67:   "archive_root": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z",
+
+===== reports/xml_recovery/materialize_after_user_oauth_run.log =====
+NO_MATCHES

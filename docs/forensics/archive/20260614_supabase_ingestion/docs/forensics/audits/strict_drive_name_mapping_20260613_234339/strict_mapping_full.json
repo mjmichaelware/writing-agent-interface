@@ -1,0 +1,3034 @@
+[
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/-Final_Chapter_1_Revision_Prompt-.txt",
+    "local_basename": "-Final_Chapter_1_Revision_Prompt-.txt",
+    "local_norm": "final chapter 1 revision prompt",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "-Final Chapter 1 Revision Prompt-",
+    "best_drive_id": "1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0",
+    "best_archive_folder": "0001__-Final_Chapter_1_Revision_Prompt-__1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0001__-Final_Chapter_1_Revision_Prompt-__1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0001__-Final_Chapter_1_Revision_Prompt-__1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0",
+        "drive_name": "-Final Chapter 1 Revision Prompt-",
+        "drive_id": "1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0",
+        "drive_norm": "final chapter 1 revision prompt",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0001__-Final_Chapter_1_Revision_Prompt-__1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1_-_Stardust_to_Stardust.txt",
+    "local_basename": "(A)_Chapter_1_-_Stardust_to_Stardust.txt",
+    "local_norm": "a chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1-_Stardust_to_Stardust.txt",
+    "local_basename": "(A)_Chapter_1-_Stardust_to_Stardust.txt",
+    "local_norm": "a chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1:_Stardust_to_Stardust.txt",
+    "local_basename": "(A)_Chapter_1:_Stardust_to_Stardust.txt",
+    "local_norm": "a chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_2-_Living_Sacrifice.txt",
+    "local_basename": "(A)_Chapter_2-_Living_Sacrifice.txt",
+    "local_norm": "a chapter 2 living sacrifice",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_2:_Living_Sacrifice.txt",
+    "local_basename": "(A)_Chapter_2:_Living_Sacrifice.txt",
+    "local_norm": "a chapter 2 living sacrifice",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_3_-_Lift_Up.txt",
+    "local_basename": "(A)_Chapter_3_-_Lift_Up.txt",
+    "local_norm": "a chapter 3 lift up",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_3-_Lift_Up.txt",
+    "local_basename": "(A)_Chapter_3-_Lift_Up.txt",
+    "local_norm": "a chapter 3 lift up",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_5_-_The_Snare.txt",
+    "local_basename": "(A)_Chapter_5_-_The_Snare.txt",
+    "local_norm": "a chapter 5 the snare",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_6:_Beelzebub,_Beelzebub.txt",
+    "local_basename": "(A)_Chapter_6:_Beelzebub,_Beelzebub.txt",
+    "local_norm": "a chapter 6 beelzebub, beelzebub",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter:_1_Stardust_to_Stardust.txt",
+    "local_basename": "(A)_Chapter:_1_Stardust_to_Stardust.txt",
+    "local_norm": "a chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)Chapter_8:_Sea_People.txt",
+    "local_basename": "(A)Chapter_8:_Sea_People.txt",
+    "local_norm": "a chapter 8 sea people",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1_-_Stardust_to_Stardust.txt",
+    "local_basename": "(B)_Chapter_1_-_Stardust_to_Stardust.txt",
+    "local_norm": "b chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1-_Stardust_to_Stardust.txt",
+    "local_basename": "(B)_Chapter_1-_Stardust_to_Stardust.txt",
+    "local_norm": "b chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1:_Stardust_to_Stardust.txt",
+    "local_basename": "(B)_Chapter_1:_Stardust_to_Stardust.txt",
+    "local_norm": "b chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_2-_Living_Sacrifice.txt",
+    "local_basename": "(B)_Chapter_2-_Living_Sacrifice.txt",
+    "local_norm": "b chapter 2 living sacrifice",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_2:_Living_Sacrifice.txt",
+    "local_basename": "(B)_Chapter_2:_Living_Sacrifice.txt",
+    "local_norm": "b chapter 2 living sacrifice",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_3-_Lift_Up.txt",
+    "local_basename": "(B)_Chapter_3-_Lift_Up.txt",
+    "local_norm": "b chapter 3 lift up",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_3:_Lift_Up.txt",
+    "local_basename": "(B)_Chapter_3:_Lift_Up.txt",
+    "local_norm": "b chapter 3 lift up",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_5-_The_Snare.txt",
+    "local_basename": "(B)_Chapter_5-_The_Snare.txt",
+    "local_norm": "b chapter 5 the snare",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_6_-_Beelzebub,_Beelzebub.txt",
+    "local_basename": "(B)_Chapter_6_-_Beelzebub,_Beelzebub.txt",
+    "local_norm": "b chapter 6 beelzebub, beelzebub",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_7:_The_Pit.txt",
+    "local_basename": "(B)_Chapter_7:_The_Pit.txt",
+    "local_norm": "b chapter 7 the pit",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_9:_The_Ascent.txt",
+    "local_basename": "(B)_Chapter_9:_The_Ascent.txt",
+    "local_norm": "b chapter 9 the ascent",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter:_1_Stardust_to_Stardust.txt",
+    "local_basename": "(B)_Chapter:_1_Stardust_to_Stardust.txt",
+    "local_norm": "b chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Stardust_to_Stardust.txt",
+    "local_basename": "(B)_Stardust_to_Stardust.txt",
+    "local_norm": "b stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)Chapter_8:_Sea_People.txt",
+    "local_basename": "(B)Chapter_8:_Sea_People.txt",
+    "local_norm": "b chapter 8 sea people",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_1_-_Stardust_to_Stardust.txt",
+    "local_basename": "(C)_Chapter_1_-_Stardust_to_Stardust.txt",
+    "local_norm": "c chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_1-_Stardust_to_Stardust.txt",
+    "local_basename": "(C)_Chapter_1-_Stardust_to_Stardust.txt",
+    "local_norm": "c chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_2-_Living_Sacrifice.txt",
+    "local_basename": "(C)_Chapter_2-_Living_Sacrifice.txt",
+    "local_norm": "c chapter 2 living sacrifice",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_3_-_Lift_Up.txt",
+    "local_basename": "(C)_Chapter_3_-_Lift_Up.txt",
+    "local_norm": "c chapter 3 lift up",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_3-_Lift_Up.txt",
+    "local_basename": "(C)_Chapter_3-_Lift_Up.txt",
+    "local_norm": "c chapter 3 lift up",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_4_-_Pilgrimage.txt",
+    "local_basename": "(C)_Chapter_4_-_Pilgrimage.txt",
+    "local_norm": "c chapter 4 pilgrimage",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_4-_Pilgrimage.txt",
+    "local_basename": "(C)_Chapter_4-_Pilgrimage.txt",
+    "local_norm": "c chapter 4 pilgrimage",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_6-_Beelzebub,_Beelzebub.txt",
+    "local_basename": "(C)_Chapter_6-_Beelzebub,_Beelzebub.txt",
+    "local_norm": "c chapter 6 beelzebub, beelzebub",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_1_-_Stardust_to_Stardust_.txt",
+    "local_basename": "(C)_Chapter:_1_-_Stardust_to_Stardust_.txt",
+    "local_norm": "c chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_7_-_The_Pit.txt",
+    "local_basename": "(C)_Chapter:_7_-_The_Pit.txt",
+    "local_norm": "c chapter 7 the pit",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_Stardust_to_Stardust.txt",
+    "local_basename": "(C)_Chapter:_Stardust_to_Stardust.txt",
+    "local_norm": "c chapter stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)Chapter_8:_Sea_People.txt",
+    "local_basename": "(C)Chapter_8:_Sea_People.txt",
+    "local_norm": "c chapter 8 sea people",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter_1_-_Stardust_to_Stardust.txt",
+    "local_basename": "(D)_Chapter_1_-_Stardust_to_Stardust.txt",
+    "local_norm": "d chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter_2_-_Living_Sacrifice.txt",
+    "local_basename": "(D)_Chapter_2_-_Living_Sacrifice.txt",
+    "local_norm": "d chapter 2 living sacrifice",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter_2-_Living_Sacrifice.txt",
+    "local_basename": "(D)_Chapter_2-_Living_Sacrifice.txt",
+    "local_norm": "d chapter 2 living sacrifice",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter:_7_-_The_Pit.txt",
+    "local_basename": "(D)_Chapter:_7_-_The_Pit.txt",
+    "local_norm": "d chapter 7 the pit",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "(D)_Chapter__7_-_The_Pit",
+    "best_drive_id": "1N_kgc1nQhcDdho0MgY1Niam7DVBsou3PgH8d4Vcct34",
+    "best_archive_folder": "0008__D__Chapter__7_-_The_Pit__1N_kgc1nQhcDdho0MgY1Niam7DVBsou3PgH8d4Vcct34",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0008__D__Chapter__7_-_The_Pit__1N_kgc1nQhcDdho0MgY1Niam7DVBsou3PgH8d4Vcct34",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0008__D__Chapter__7_-_The_Pit__1N_kgc1nQhcDdho0MgY1Niam7DVBsou3PgH8d4Vcct34",
+        "drive_name": "(D)_Chapter__7_-_The_Pit",
+        "drive_id": "1N_kgc1nQhcDdho0MgY1Niam7DVBsou3PgH8d4Vcct34",
+        "drive_norm": "d chapter 7 the pit",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0008__D__Chapter__7_-_The_Pit__1N_kgc1nQhcDdho0MgY1Niam7DVBsou3PgH8d4Vcct34/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_1_-_Stardust_to_Stardust.txt",
+    "local_basename": "(E)_Chapter_1_-_Stardust_to_Stardust.txt",
+    "local_norm": "e chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_1-_Stardust_to_Stardust.txt",
+    "local_basename": "(E)_Chapter_1-_Stardust_to_Stardust.txt",
+    "local_norm": "e chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_2_-_Living_Sacrifice.txt",
+    "local_basename": "(E)_Chapter_2_-_Living_Sacrifice.txt",
+    "local_norm": "e chapter 2 living sacrifice",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_2-_Living_Sacrifice.txt",
+    "local_basename": "(E)_Chapter_2-_Living_Sacrifice.txt",
+    "local_norm": "e chapter 2 living sacrifice",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_3-_Lift_Up.txt",
+    "local_basename": "(E)_Chapter_3-_Lift_Up.txt",
+    "local_norm": "e chapter 3 lift up",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_1_-_Stardust_to_Stardust.txt",
+    "local_basename": "(F)_Chapter_1_-_Stardust_to_Stardust.txt",
+    "local_norm": "f chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_1:_Stardust_to_Stardust_.txt",
+    "local_basename": "(F)_Chapter_1:_Stardust_to_Stardust_.txt",
+    "local_norm": "f chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_2-_Living_Sacrifice.txt",
+    "local_basename": "(F)_Chapter_2-_Living_Sacrifice.txt",
+    "local_norm": "f chapter 2 living sacrifice",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_3-_Lift_Up.txt",
+    "local_basename": "(F)_Chapter_3-_Lift_Up.txt",
+    "local_norm": "f chapter 3 lift up",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter:_1_Stardust_to_Stardust_.txt",
+    "local_basename": "(F)_Chapter:_1_Stardust_to_Stardust_.txt",
+    "local_norm": "f chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Final) Chapter: 7 - The Pit.txt",
+    "local_basename": "(Final) Chapter: 7 - The Pit.txt",
+    "local_norm": "final chapter 7 the pit",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_1_-_Stardust_to_Stardust.txt",
+    "local_basename": "(Final)_Chapter_1_-_Stardust_to_Stardust.txt",
+    "local_norm": "final chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_1:_Stardust_to_Stardust.txt",
+    "local_basename": "(Final)_Chapter_1:_Stardust_to_Stardust.txt",
+    "local_norm": "final chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_2-_Living_Sacrifice.txt",
+    "local_basename": "(Final)_Chapter_2-_Living_Sacrifice.txt",
+    "local_norm": "final chapter 2 living sacrifice",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_3-_Lift_Up.txt",
+    "local_basename": "(Final)_Chapter_3-_Lift_Up.txt",
+    "local_norm": "final chapter 3 lift up",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_3:_Lift_Up.txt",
+    "local_basename": "(Final)_Chapter_3:_Lift_Up.txt",
+    "local_norm": "final chapter 3 lift up",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_5_-_The_Snare.txt",
+    "local_basename": "(Final)_Chapter_5_-_The_Snare.txt",
+    "local_norm": "final chapter 5 the snare",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "(Final) Chapter 5 - The Snare",
+    "best_drive_id": "1lMmVYvwHmYuExByWEwlh-rGpUbirDPG7uPeR4gFh37g",
+    "best_archive_folder": "0005__Final_Chapter_5_-_The_Snare__1lMmVYvwHmYuExByWEwlh-rGpUbirDPG7uPeR4gFh37g",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0005__Final_Chapter_5_-_The_Snare__1lMmVYvwHmYuExByWEwlh-rGpUbirDPG7uPeR4gFh37g",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0005__Final_Chapter_5_-_The_Snare__1lMmVYvwHmYuExByWEwlh-rGpUbirDPG7uPeR4gFh37g",
+        "drive_name": "(Final) Chapter 5 - The Snare",
+        "drive_id": "1lMmVYvwHmYuExByWEwlh-rGpUbirDPG7uPeR4gFh37g",
+        "drive_norm": "final chapter 5 the snare",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0005__Final_Chapter_5_-_The_Snare__1lMmVYvwHmYuExByWEwlh-rGpUbirDPG7uPeR4gFh37g/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(G)_Chapter_1:_Stardust_to_Stardust.txt",
+    "local_basename": "(G)_Chapter_1:_Stardust_to_Stardust.txt",
+    "local_norm": "g chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(G)_Chapter_2-_Living_Sacrifice.txt",
+    "local_basename": "(G)_Chapter_2-_Living_Sacrifice.txt",
+    "local_norm": "g chapter 2 living sacrifice",
+    "status": "probable",
+    "best_score": 77,
+    "best_drive_name": "•(G) Chapter 2- Living Sacrifice",
+    "best_drive_id": "1lIqobbwQqWNyBdBuqqoXp9HDT2ddOQ8nxzWIyCWas0s",
+    "best_archive_folder": "0003__G_Chapter_2-_Living_Sacrifice__1lIqobbwQqWNyBdBuqqoXp9HDT2ddOQ8nxzWIyCWas0s",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0003__G_Chapter_2-_Living_Sacrifice__1lIqobbwQqWNyBdBuqqoXp9HDT2ddOQ8nxzWIyCWas0s",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0003__G_Chapter_2-_Living_Sacrifice__1lIqobbwQqWNyBdBuqqoXp9HDT2ddOQ8nxzWIyCWas0s",
+        "drive_name": "•(G) Chapter 2- Living Sacrifice",
+        "drive_id": "1lIqobbwQqWNyBdBuqqoXp9HDT2ddOQ8nxzWIyCWas0s",
+        "drive_norm": "• g chapter 2 living sacrifice",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0003__G_Chapter_2-_Living_Sacrifice__1lIqobbwQqWNyBdBuqqoXp9HDT2ddOQ8nxzWIyCWas0s/ooxml_current/word/document.xml",
+        "score": 77
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(G)_Chapter_3-_Lift_Up.txt",
+    "local_basename": "(G)_Chapter_3-_Lift_Up.txt",
+    "local_norm": "g chapter 3 lift up",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "(G) Chapter 3- Lift Up",
+    "best_drive_id": "1XobNLLJg3YY72D9i_360V-UtttUbr_5mhgN1YdMsrTk",
+    "best_archive_folder": "0004__G_Chapter_3-_Lift_Up__1XobNLLJg3YY72D9i_360V-UtttUbr_5mhgN1YdMsrTk",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0004__G_Chapter_3-_Lift_Up__1XobNLLJg3YY72D9i_360V-UtttUbr_5mhgN1YdMsrTk",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0004__G_Chapter_3-_Lift_Up__1XobNLLJg3YY72D9i_360V-UtttUbr_5mhgN1YdMsrTk",
+        "drive_name": "(G) Chapter 3- Lift Up",
+        "drive_id": "1XobNLLJg3YY72D9i_360V-UtttUbr_5mhgN1YdMsrTk",
+        "drive_norm": "g chapter 3 lift up",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0004__G_Chapter_3-_Lift_Up__1XobNLLJg3YY72D9i_360V-UtttUbr_5mhgN1YdMsrTk/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(G)_Final_)_Chapter:_10_-_Forsaken.txt",
+    "local_basename": "(G)_Final_)_Chapter:_10_-_Forsaken.txt",
+    "local_norm": "g final chapter 10 forsaken",
+    "status": "weak_review",
+    "best_score": 67,
+    "best_drive_name": "Chapter 10.5",
+    "best_drive_id": "1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+    "best_archive_folder": "0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "drive_name": "Chapter 10.5",
+        "drive_id": "1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "drive_norm": "chapter 10",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk/ooxml_current/word/document.xml",
+        "score": 67
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(I)_(Notes)_Chapter:_1_Stardust_to_Stardust_.txt",
+    "local_basename": "(I)_(Notes)_Chapter:_1_Stardust_to_Stardust_.txt",
+    "local_norm": "i notes chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(I)_Chapter:_1_Stardust_to_Stardust_.txt",
+    "local_basename": "(I)_Chapter:_1_Stardust_to_Stardust_.txt",
+    "local_norm": "i chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(N)_Chapter_1_-_Stardust_to_Stardust.txt",
+    "local_basename": "(N)_Chapter_1_-_Stardust_to_Stardust.txt",
+    "local_norm": "n chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(N)_CHAPTER_1-_STARDUST_TO_STARDUST.txt",
+    "local_basename": "(N)_CHAPTER_1-_STARDUST_TO_STARDUST.txt",
+    "local_norm": "n chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_(P)_Chapter:_1_-_Stardust_to_Stardust.txt",
+    "local_basename": "(Notes)_(P)_Chapter:_1_-_Stardust_to_Stardust.txt",
+    "local_norm": "notes p chapter 1 stardust to stardust",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "(Notes) (P) Chapter: 1 - Stardust to Stardust",
+    "best_drive_id": "1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+    "best_archive_folder": "0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+        "drive_name": "(Notes) (P) Chapter: 1 - Stardust to Stardust",
+        "drive_id": "1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+        "drive_norm": "notes p chapter 1 stardust to stardust",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_Chapter_2-_Living_Sacrifice.txt",
+    "local_basename": "(Notes)_Chapter_2-_Living_Sacrifice.txt",
+    "local_norm": "notes chapter 2 living sacrifice",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_Chapter_2:_Living_Sacrifice.txt",
+    "local_basename": "(Notes)_Chapter_2:_Living_Sacrifice.txt",
+    "local_norm": "notes chapter 2 living sacrifice",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(O)_Chapter_1-_Stardust_to_Stardust.txt",
+    "local_basename": "(O)_Chapter_1-_Stardust_to_Stardust.txt",
+    "local_norm": "o chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(P)_Chapter:_1_-_Stardust_to_Stardust.txt",
+    "local_basename": "(P)_Chapter:_1_-_Stardust_to_Stardust.txt",
+    "local_norm": "p chapter 1 stardust to stardust",
+    "status": "probable",
+    "best_score": 78,
+    "best_drive_name": "(Notes) (P) Chapter: 1 - Stardust to Stardust",
+    "best_drive_id": "1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+    "best_archive_folder": "0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+        "drive_name": "(Notes) (P) Chapter: 1 - Stardust to Stardust",
+        "drive_id": "1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+        "drive_norm": "notes p chapter 1 stardust to stardust",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs/ooxml_current/word/document.xml",
+        "score": 78
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Prompt_Guide_(E))_Chapter_10:_Forsaken.txt",
+    "local_basename": "(Prompt_Guide_(E))_Chapter_10:_Forsaken.txt",
+    "local_norm": "prompt guide e chapter 10 forsaken",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "(Prompt Guide (E)) Chapter 10: Forsaken",
+    "best_drive_id": "1HgITZ_aQyru0299o0N46Bd_y_Mrj7p33mnT_hxuBBTo",
+    "best_archive_folder": "0013__Prompt_Guide_E_Chapter_10_Forsaken__1HgITZ_aQyru0299o0N46Bd_y_Mrj7p33mnT_hxuBBTo",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0013__Prompt_Guide_E_Chapter_10_Forsaken__1HgITZ_aQyru0299o0N46Bd_y_Mrj7p33mnT_hxuBBTo",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0013__Prompt_Guide_E_Chapter_10_Forsaken__1HgITZ_aQyru0299o0N46Bd_y_Mrj7p33mnT_hxuBBTo",
+        "drive_name": "(Prompt Guide (E)) Chapter 10: Forsaken",
+        "drive_id": "1HgITZ_aQyru0299o0N46Bd_y_Mrj7p33mnT_hxuBBTo",
+        "drive_norm": "prompt guide e chapter 10 forsaken",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0013__Prompt_Guide_E_Chapter_10_Forsaken__1HgITZ_aQyru0299o0N46Bd_y_Mrj7p33mnT_hxuBBTo/ooxml_current/word/document.xml",
+        "score": 100
+      },
+      {
+        "archive_folder": "0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "drive_name": "Chapter 10.5",
+        "drive_id": "1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "drive_norm": "chapter 10",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk/ooxml_current/word/document.xml",
+        "score": 67
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(R) Chapter: 1 - Stardust to Stardust .txt",
+    "local_basename": "(R) Chapter: 1 - Stardust to Stardust .txt",
+    "local_norm": "r chapter 1 stardust to stardust",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "(R) Chapter: 1 - Stardust to Stardust ",
+    "best_drive_id": "1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+    "best_archive_folder": "0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+        "drive_name": "(R) Chapter: 1 - Stardust to Stardust ",
+        "drive_id": "1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+        "drive_norm": "r chapter 1 stardust to stardust",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(R)_Chapter:_1_-_Stardust_to_Stardust_.txt",
+    "local_basename": "(R)_Chapter:_1_-_Stardust_to_Stardust_.txt",
+    "local_norm": "r chapter 1 stardust to stardust",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "(R) Chapter: 1 - Stardust to Stardust ",
+    "best_drive_id": "1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+    "best_archive_folder": "0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+        "drive_name": "(R) Chapter: 1 - Stardust to Stardust ",
+        "drive_id": "1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+        "drive_norm": "r chapter 1 stardust to stardust",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Revision_Prompt_(D))_Chapter_10:_Forsaken.txt",
+    "local_basename": "(Revision_Prompt_(D))_Chapter_10:_Forsaken.txt",
+    "local_norm": "revision prompt d chapter 10 forsaken",
+    "status": "weak_review",
+    "best_score": 67,
+    "best_drive_name": "Chapter 10.5",
+    "best_drive_id": "1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+    "best_archive_folder": "0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "drive_name": "Chapter 10.5",
+        "drive_id": "1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "drive_norm": "chapter 10",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk/ooxml_current/word/document.xml",
+        "score": 67
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Revision_Prompt_(N)__Chapter_1_-_Stardust_to_Stardust.txt",
+    "local_basename": "(Revision_Prompt_(N)__Chapter_1_-_Stardust_to_Stardust.txt",
+    "local_norm": "revision prompt n chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Revisions)_Chapter_1:_Stardust_to_Stardust.txt",
+    "local_basename": "(Revisions)_Chapter_1:_Stardust_to_Stardust.txt",
+    "local_norm": "revisions chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(SDP)_v2.txt",
+    "local_basename": "(SDP)_v2.txt",
+    "local_norm": "sdp v2",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1__Stardust_to_Stardust_(1).txt",
+    "local_basename": "(X)_Chapter_1__Stardust_to_Stardust_(1).txt",
+    "local_norm": "x chapter 1 stardust to stardust 1",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1__Stardust_to_Stardust_(2).txt",
+    "local_basename": "(X)_Chapter_1__Stardust_to_Stardust_(2).txt",
+    "local_norm": "x chapter 1 stardust to stardust 2",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1_-_Stardust_to_Stardust.docx.txt",
+    "local_basename": "(X)_Chapter_1_-_Stardust_to_Stardust.docx.txt",
+    "local_norm": "x chapter 1 stardust to stardust docx",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1_-_Stardust_to_Stardust.txt",
+    "local_basename": "(X)_Chapter_1_-_Stardust_to_Stardust.txt",
+    "local_norm": "x chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1:_Stardust_to_Stardust.txt",
+    "local_basename": "(X)_Chapter_1:_Stardust_to_Stardust.txt",
+    "local_norm": "x chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Z)_Chapter_1:_Stardust_to_Stardust.txt",
+    "local_basename": "(Z)_Chapter_1:_Stardust_to_Stardust.txt",
+    "local_norm": "z chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_1:_Stardust_to_Stardust.txt",
+    "local_basename": "*Chapter_1:_Stardust_to_Stardust.txt",
+    "local_norm": "*chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_2-_Living_Sacrifice.txt",
+    "local_basename": "*Chapter_2-_Living_Sacrifice.txt",
+    "local_norm": "*chapter 2 living sacrifice",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_3:_Lift_Up.txt",
+    "local_basename": "*Chapter_3:_Lift_Up.txt",
+    "local_norm": "*chapter 3 lift up",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_4:_Pilgrimage.txt",
+    "local_basename": "*Chapter_4:_Pilgrimage.txt",
+    "local_norm": "*chapter 4 pilgrimage",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_7:_The_Pit.txt",
+    "local_basename": "*Chapter_7:_The_Pit.txt",
+    "local_norm": "*chapter 7 the pit",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_8:_Sea_People.txt",
+    "local_basename": "*Chapter_8:_Sea_People.txt",
+    "local_norm": "*chapter 8 sea people",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_9:_The_Ascent.txt",
+    "local_basename": "*Chapter_9:_The_Ascent.txt",
+    "local_norm": "*chapter 9 the ascent",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/•(G)_Chapter_2-_Living_Sacrifice.txt",
+    "local_basename": "•(G)_Chapter_2-_Living_Sacrifice.txt",
+    "local_norm": "• g chapter 2 living sacrifice",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "•(G) Chapter 2- Living Sacrifice",
+    "best_drive_id": "1lIqobbwQqWNyBdBuqqoXp9HDT2ddOQ8nxzWIyCWas0s",
+    "best_archive_folder": "0003__G_Chapter_2-_Living_Sacrifice__1lIqobbwQqWNyBdBuqqoXp9HDT2ddOQ8nxzWIyCWas0s",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0003__G_Chapter_2-_Living_Sacrifice__1lIqobbwQqWNyBdBuqqoXp9HDT2ddOQ8nxzWIyCWas0s",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0003__G_Chapter_2-_Living_Sacrifice__1lIqobbwQqWNyBdBuqqoXp9HDT2ddOQ8nxzWIyCWas0s",
+        "drive_name": "•(G) Chapter 2- Living Sacrifice",
+        "drive_id": "1lIqobbwQqWNyBdBuqqoXp9HDT2ddOQ8nxzWIyCWas0s",
+        "drive_norm": "• g chapter 2 living sacrifice",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0003__G_Chapter_2-_Living_Sacrifice__1lIqobbwQqWNyBdBuqqoXp9HDT2ddOQ8nxzWIyCWas0s/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/•(G)_Chapter:_1_Stardust_to_Stardust_.txt",
+    "local_basename": "•(G)_Chapter:_1_Stardust_to_Stardust_.txt",
+    "local_norm": "• g chapter 1 stardust to stardust",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/1.0_Revision.txt",
+    "local_basename": "1.0_Revision.txt",
+    "local_norm": "1 0 revision",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/10.0_Blueprint_for_The_Ascent_of_Daniel:_The_Archetype_of_Sacrifice_(NYT_Bestseller_Focus).txt",
+    "local_basename": "10.0_Blueprint_for_The_Ascent_of_Daniel:_The_Archetype_of_Sacrifice_(NYT_Bestseller_Focus).txt",
+    "local_norm": "10 0 blueprint for the ascent of daniel the archetype of sacrifice nyt bestseller focus",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/10.0_Mass_Market.txt",
+    "local_basename": "10.0_Mass_Market.txt",
+    "local_norm": "10 0 mass market",
+    "status": "probable",
+    "best_score": 74,
+    "best_drive_name": "(Old) 10.0 Mass Market",
+    "best_drive_id": "1R-3ttk7q-CXeGPofkbQ-PJ92z4lx0JkEPYDwT_iA2UQ",
+    "best_archive_folder": "0015__Old_10.0_Mass_Market__1R-3ttk7q-CXeGPofkbQ-PJ92z4lx0JkEPYDwT_iA2UQ",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0015__Old_10.0_Mass_Market__1R-3ttk7q-CXeGPofkbQ-PJ92z4lx0JkEPYDwT_iA2UQ",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0015__Old_10.0_Mass_Market__1R-3ttk7q-CXeGPofkbQ-PJ92z4lx0JkEPYDwT_iA2UQ",
+        "drive_name": "(Old) 10.0 Mass Market",
+        "drive_id": "1R-3ttk7q-CXeGPofkbQ-PJ92z4lx0JkEPYDwT_iA2UQ",
+        "drive_norm": "old 10 0 mass market",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0015__Old_10.0_Mass_Market__1R-3ttk7q-CXeGPofkbQ-PJ92z4lx0JkEPYDwT_iA2UQ/ooxml_current/word/document.xml",
+        "score": 74
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/10.0_MASTER_SYSTEM_FOR_CHAPTER_REVISION.txt",
+    "local_basename": "10.0_MASTER_SYSTEM_FOR_CHAPTER_REVISION.txt",
+    "local_norm": "10 0 master system for chapter revision",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "10.0 MASTER SYSTEM FOR CHAPTER REVISION",
+    "best_drive_id": "1INT40kAV4aMrHxVqnOBWY5gMCo8_b19mCOs5B9pkkQA",
+    "best_archive_folder": "0016__10.0_MASTER_SYSTEM_FOR_CHAPTER_REVISION__1INT40kAV4aMrHxVqnOBWY5gMCo8_b19mCOs5B9pkkQA",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0016__10.0_MASTER_SYSTEM_FOR_CHAPTER_REVISION__1INT40kAV4aMrHxVqnOBWY5gMCo8_b19mCOs5B9pkkQA",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0016__10.0_MASTER_SYSTEM_FOR_CHAPTER_REVISION__1INT40kAV4aMrHxVqnOBWY5gMCo8_b19mCOs5B9pkkQA",
+        "drive_name": "10.0 MASTER SYSTEM FOR CHAPTER REVISION",
+        "drive_id": "1INT40kAV4aMrHxVqnOBWY5gMCo8_b19mCOs5B9pkkQA",
+        "drive_norm": "10 0 master system for chapter revision",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0016__10.0_MASTER_SYSTEM_FOR_CHAPTER_REVISION__1INT40kAV4aMrHxVqnOBWY5gMCo8_b19mCOs5B9pkkQA/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/11.0_Error_Catalog.txt",
+    "local_basename": "11.0_Error_Catalog.txt",
+    "local_norm": "11 0 error catalog",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "11.0 Error Catalog",
+    "best_drive_id": "1zZY-E354TAZRM_Zzv9pfSmkvJtSHDJFpaP-uWne5Sac",
+    "best_archive_folder": "0017__11.0_Error_Catalog__1zZY-E354TAZRM_Zzv9pfSmkvJtSHDJFpaP-uWne5Sac",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0017__11.0_Error_Catalog__1zZY-E354TAZRM_Zzv9pfSmkvJtSHDJFpaP-uWne5Sac",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0017__11.0_Error_Catalog__1zZY-E354TAZRM_Zzv9pfSmkvJtSHDJFpaP-uWne5Sac",
+        "drive_name": "11.0 Error Catalog",
+        "drive_id": "1zZY-E354TAZRM_Zzv9pfSmkvJtSHDJFpaP-uWne5Sac",
+        "drive_norm": "11 0 error catalog",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0017__11.0_Error_Catalog__1zZY-E354TAZRM_Zzv9pfSmkvJtSHDJFpaP-uWne5Sac/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/11.0_Final_Revision.txt",
+    "local_basename": "11.0_Final_Revision.txt",
+    "local_norm": "11 0 final revision",
+    "status": "probable",
+    "best_score": 74,
+    "best_drive_name": "(Old) 11.0 Final Revision",
+    "best_drive_id": "1ASj5oM5yY1Ewa7IEk3aSACnn6_9PyH5zmr_3HTlLdXk",
+    "best_archive_folder": "0018__Old_11.0_Final_Revision__1ASj5oM5yY1Ewa7IEk3aSACnn6_9PyH5zmr_3HTlLdXk",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0018__Old_11.0_Final_Revision__1ASj5oM5yY1Ewa7IEk3aSACnn6_9PyH5zmr_3HTlLdXk",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0018__Old_11.0_Final_Revision__1ASj5oM5yY1Ewa7IEk3aSACnn6_9PyH5zmr_3HTlLdXk",
+        "drive_name": "(Old) 11.0 Final Revision",
+        "drive_id": "1ASj5oM5yY1Ewa7IEk3aSACnn6_9PyH5zmr_3HTlLdXk",
+        "drive_norm": "old 11 0 final revision",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0018__Old_11.0_Final_Revision__1ASj5oM5yY1Ewa7IEk3aSACnn6_9PyH5zmr_3HTlLdXk/ooxml_current/word/document.xml",
+        "score": 74
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/11.0_Marketability_.txt",
+    "local_basename": "11.0_Marketability_.txt",
+    "local_norm": "11 0 marketability",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "11.0 Marketability ",
+    "best_drive_id": "17LbSa_mXn1AqggY06lcrn7fIpIWkMisMZYIoNHofxs4",
+    "best_archive_folder": "0019__11.0_Marketability__17LbSa_mXn1AqggY06lcrn7fIpIWkMisMZYIoNHofxs4",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0019__11.0_Marketability__17LbSa_mXn1AqggY06lcrn7fIpIWkMisMZYIoNHofxs4",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0019__11.0_Marketability__17LbSa_mXn1AqggY06lcrn7fIpIWkMisMZYIoNHofxs4",
+        "drive_name": "11.0 Marketability ",
+        "drive_id": "17LbSa_mXn1AqggY06lcrn7fIpIWkMisMZYIoNHofxs4",
+        "drive_norm": "11 0 marketability",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0019__11.0_Marketability__17LbSa_mXn1AqggY06lcrn7fIpIWkMisMZYIoNHofxs4/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/12.0_Perfection.txt",
+    "local_basename": "12.0_Perfection.txt",
+    "local_norm": "12 0 perfection",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/13.0_Claude.txt",
+    "local_basename": "13.0_Claude.txt",
+    "local_norm": "13 0 claude",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/13.0_GENERAL_PRINCIPLES.txt",
+    "local_basename": "13.0_GENERAL_PRINCIPLES.txt",
+    "local_norm": "13 0 general principles",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "13.0 GENERAL PRINCIPLES",
+    "best_drive_id": "1PuQA-EZ6b3jclY7Kg_D6GaOrhuJ0Ni4K5SeCbgokRUM",
+    "best_archive_folder": "0020__13.0_GENERAL_PRINCIPLES__1PuQA-EZ6b3jclY7Kg_D6GaOrhuJ0Ni4K5SeCbgokRUM",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0020__13.0_GENERAL_PRINCIPLES__1PuQA-EZ6b3jclY7Kg_D6GaOrhuJ0Ni4K5SeCbgokRUM",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0020__13.0_GENERAL_PRINCIPLES__1PuQA-EZ6b3jclY7Kg_D6GaOrhuJ0Ni4K5SeCbgokRUM",
+        "drive_name": "13.0 GENERAL PRINCIPLES",
+        "drive_id": "1PuQA-EZ6b3jclY7Kg_D6GaOrhuJ0Ni4K5SeCbgokRUM",
+        "drive_norm": "13 0 general principles",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0020__13.0_GENERAL_PRINCIPLES__1PuQA-EZ6b3jclY7Kg_D6GaOrhuJ0Ni4K5SeCbgokRUM/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/2.0_Critique_／_Analysis_Guide.txt",
+    "local_basename": "2.0_Critique_／_Analysis_Guide.txt",
+    "local_norm": "2 0 critique analysis guide",
+    "status": "weak_review",
+    "best_score": 68,
+    "best_drive_name": "2.0 Critique / Analysis Guide",
+    "best_drive_id": "1-wIzrxfB8JuYdgegmFrYlL2xm0a00pyDgqP9sv584vc",
+    "best_archive_folder": "0021__2.0_Critique_Analysis_Guide__1-wIzrxfB8JuYdgegmFrYlL2xm0a00pyDgqP9sv584vc",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0021__2.0_Critique_Analysis_Guide__1-wIzrxfB8JuYdgegmFrYlL2xm0a00pyDgqP9sv584vc",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0021__2.0_Critique_Analysis_Guide__1-wIzrxfB8JuYdgegmFrYlL2xm0a00pyDgqP9sv584vc",
+        "drive_name": "2.0 Critique / Analysis Guide",
+        "drive_id": "1-wIzrxfB8JuYdgegmFrYlL2xm0a00pyDgqP9sv584vc",
+        "drive_norm": "analysis guide",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0021__2.0_Critique_Analysis_Guide__1-wIzrxfB8JuYdgegmFrYlL2xm0a00pyDgqP9sv584vc/ooxml_current/word/document.xml",
+        "score": 68
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/2.0_This_is_the_critical_adjustment—the_final_layer_that_elevates_philosophical_storytelling_into_timeless,_devastating_human_tragedy.txt",
+    "local_basename": "2.0_This_is_the_critical_adjustment—the_final_layer_that_elevates_philosophical_storytelling_into_timeless,_devastating_human_tragedy.txt",
+    "local_norm": "2 0 this is the critical adjustment—the final layer that elevates philosophical storytelling into timeless, devastating human tragedy",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/3.0_Final_.txt",
+    "local_basename": "3.0_Final_.txt",
+    "local_norm": "3 0 final",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/3.0_Literary_&_Archetypal_Fusion_Rulebook_(The_Cat_God_&_The_Primal_Self).txt",
+    "local_basename": "3.0_Literary_&_Archetypal_Fusion_Rulebook_(The_Cat_God_&_The_Primal_Self).txt",
+    "local_norm": "3 0 literary & archetypal fusion rulebook the cat god & the primal self",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/3.0_Scientific_Guide.txt",
+    "local_basename": "3.0_Scientific_Guide.txt",
+    "local_norm": "3 0 scientific guide",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "3.0 Scientific Guide",
+    "best_drive_id": "1AZfDiQMeHUvEpAUsBAIWVnSEoy7bG7ELWUKdhvrUaRw",
+    "best_archive_folder": "0022__3.0_Scientific_Guide__1AZfDiQMeHUvEpAUsBAIWVnSEoy7bG7ELWUKdhvrUaRw",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0022__3.0_Scientific_Guide__1AZfDiQMeHUvEpAUsBAIWVnSEoy7bG7ELWUKdhvrUaRw",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0022__3.0_Scientific_Guide__1AZfDiQMeHUvEpAUsBAIWVnSEoy7bG7ELWUKdhvrUaRw",
+        "drive_name": "3.0 Scientific Guide",
+        "drive_id": "1AZfDiQMeHUvEpAUsBAIWVnSEoy7bG7ELWUKdhvrUaRw",
+        "drive_norm": "3 0 scientific guide",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0022__3.0_Scientific_Guide__1AZfDiQMeHUvEpAUsBAIWVnSEoy7bG7ELWUKdhvrUaRw/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/4.0_(12_Rules_For_Life).txt",
+    "local_basename": "4.0_(12_Rules_For_Life).txt",
+    "local_norm": "4 0 12 rules for life",
+    "status": "probable",
+    "best_score": 75,
+    "best_drive_name": "(Old) 4.0 (12 Rules For Life)",
+    "best_drive_id": "1phu5CFlnw6v32tGEvQff6d0Z0ZkVHofX2z8UE_6CQi8",
+    "best_archive_folder": "0023__Old_4.0_12_Rules_For_Life__1phu5CFlnw6v32tGEvQff6d0Z0ZkVHofX2z8UE_6CQi8",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0023__Old_4.0_12_Rules_For_Life__1phu5CFlnw6v32tGEvQff6d0Z0ZkVHofX2z8UE_6CQi8",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0023__Old_4.0_12_Rules_For_Life__1phu5CFlnw6v32tGEvQff6d0Z0ZkVHofX2z8UE_6CQi8",
+        "drive_name": "(Old) 4.0 (12 Rules For Life)",
+        "drive_id": "1phu5CFlnw6v32tGEvQff6d0Z0ZkVHofX2z8UE_6CQi8",
+        "drive_norm": "old 4 0 12 rules for life",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0023__Old_4.0_12_Rules_For_Life__1phu5CFlnw6v32tGEvQff6d0Z0ZkVHofX2z8UE_6CQi8/ooxml_current/word/document.xml",
+        "score": 75
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/4.0_Emotional_&_Archetypal_Editing_Rulebook_(Visceral_Empathy_Focus).txt",
+    "local_basename": "4.0_Emotional_&_Archetypal_Editing_Rulebook_(Visceral_Empathy_Focus).txt",
+    "local_norm": "4 0 emotional & archetypal editing rulebook visceral empathy focus",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/4.0_Psychology_Guide.txt",
+    "local_basename": "4.0_Psychology_Guide.txt",
+    "local_norm": "4 0 psychology guide",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/4.0_REVISED.txt",
+    "local_basename": "4.0_REVISED.txt",
+    "local_norm": "4 0 revised",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/5.0_Final_Guide.txt",
+    "local_basename": "5.0_Final_Guide.txt",
+    "local_norm": "5 0 final guide",
+    "status": "probable",
+    "best_score": 73,
+    "best_drive_name": "(Old) 5.0 Final Guide",
+    "best_drive_id": "1akR0oxKRMW0X0jItZ4y04smJRdWUw-fackyDVoKZ2qs",
+    "best_archive_folder": "0024__Old_5.0_Final_Guide__1akR0oxKRMW0X0jItZ4y04smJRdWUw-fackyDVoKZ2qs",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0024__Old_5.0_Final_Guide__1akR0oxKRMW0X0jItZ4y04smJRdWUw-fackyDVoKZ2qs",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0024__Old_5.0_Final_Guide__1akR0oxKRMW0X0jItZ4y04smJRdWUw-fackyDVoKZ2qs",
+        "drive_name": "(Old) 5.0 Final Guide",
+        "drive_id": "1akR0oxKRMW0X0jItZ4y04smJRdWUw-fackyDVoKZ2qs",
+        "drive_norm": "old 5 0 final guide",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0024__Old_5.0_Final_Guide__1akR0oxKRMW0X0jItZ4y04smJRdWUw-fackyDVoKZ2qs/ooxml_current/word/document.xml",
+        "score": 73
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/5.0_Psychology_Guide.txt",
+    "local_basename": "5.0_Psychology_Guide.txt",
+    "local_norm": "5 0 psychology guide",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "5.0 Psychology Guide",
+    "best_drive_id": "1jtZWe7oV8kkRHeRpSfgGQXASkhpZLPlOrIdID314mP4",
+    "best_archive_folder": "0025__5.0_Psychology_Guide__1jtZWe7oV8kkRHeRpSfgGQXASkhpZLPlOrIdID314mP4",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0025__5.0_Psychology_Guide__1jtZWe7oV8kkRHeRpSfgGQXASkhpZLPlOrIdID314mP4",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0025__5.0_Psychology_Guide__1jtZWe7oV8kkRHeRpSfgGQXASkhpZLPlOrIdID314mP4",
+        "drive_name": "5.0 Psychology Guide",
+        "drive_id": "1jtZWe7oV8kkRHeRpSfgGQXASkhpZLPlOrIdID314mP4",
+        "drive_norm": "5 0 psychology guide",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0025__5.0_Psychology_Guide__1jtZWe7oV8kkRHeRpSfgGQXASkhpZLPlOrIdID314mP4/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt",
+    "local_basename": "6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt",
+    "local_norm": "6 0 core editing rules for thematic & archetypal hyperlinking",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/6.0_HIGHEST_PRIORITY_(Read_this_first_and_then_again_last)_.txt",
+    "local_basename": "6.0_HIGHEST_PRIORITY_(Read_this_first_and_then_again_last)_.txt",
+    "local_norm": "6 0 highest priority read this first and then again last",
+    "status": "probable",
+    "best_score": 84,
+    "best_drive_name": "(Old) 6.0 HIGHEST PRIORITY (Read this first and then again last) ",
+    "best_drive_id": "1txdk_mVw0b0kGs2fKsP6VFMjluUnp3EBa5P71E-ldjA",
+    "best_archive_folder": "0026__Old_6.0_HIGHEST_PRIORITY_Read_this_first_and_then_again_last__1txdk_mVw0b0kGs2fKsP6VFMjluUnp3EBa5P71E-ldjA",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0026__Old_6.0_HIGHEST_PRIORITY_Read_this_first_and_then_again_last__1txdk_mVw0b0kGs2fKsP6VFMjluUnp3EBa5P71E-ldjA",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0026__Old_6.0_HIGHEST_PRIORITY_Read_this_first_and_then_again_last__1txdk_mVw0b0kGs2fKsP6VFMjluUnp3EBa5P71E-ldjA",
+        "drive_name": "(Old) 6.0 HIGHEST PRIORITY (Read this first and then again last) ",
+        "drive_id": "1txdk_mVw0b0kGs2fKsP6VFMjluUnp3EBa5P71E-ldjA",
+        "drive_norm": "old 6 0 highest priority read this first and then again last",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0026__Old_6.0_HIGHEST_PRIORITY_Read_this_first_and_then_again_last__1txdk_mVw0b0kGs2fKsP6VFMjluUnp3EBa5P71E-ldjA/ooxml_current/word/document.xml",
+        "score": 84
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/6.0_Supreme_Generative_Constraint.txt",
+    "local_basename": "6.0_Supreme_Generative_Constraint.txt",
+    "local_norm": "6 0 supreme generative constraint",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "6.0 Supreme Generative Constraint",
+    "best_drive_id": "1BJe5JIvHzhwmC2hSPgEgaSBhyKaLnOZsnaf3V5RiDDU",
+    "best_archive_folder": "0027__6.0_Supreme_Generative_Constraint__1BJe5JIvHzhwmC2hSPgEgaSBhyKaLnOZsnaf3V5RiDDU",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0027__6.0_Supreme_Generative_Constraint__1BJe5JIvHzhwmC2hSPgEgaSBhyKaLnOZsnaf3V5RiDDU",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0027__6.0_Supreme_Generative_Constraint__1BJe5JIvHzhwmC2hSPgEgaSBhyKaLnOZsnaf3V5RiDDU",
+        "drive_name": "6.0 Supreme Generative Constraint",
+        "drive_id": "1BJe5JIvHzhwmC2hSPgEgaSBhyKaLnOZsnaf3V5RiDDU",
+        "drive_norm": "6 0 supreme generative constraint",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0027__6.0_Supreme_Generative_Constraint__1BJe5JIvHzhwmC2hSPgEgaSBhyKaLnOZsnaf3V5RiDDU/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/6.0_SYNTHESIS_MANDATE.txt",
+    "local_basename": "6.0_SYNTHESIS_MANDATE.txt",
+    "local_norm": "6 0 synthesis mandate",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "6.0 SYNTHESIS MANDATE",
+    "best_drive_id": "1DHekOzSR9Xn2QKY21-E0mc2GtnSlWQQX7oayHlF4Yys",
+    "best_archive_folder": "0028__6.0_SYNTHESIS_MANDATE__1DHekOzSR9Xn2QKY21-E0mc2GtnSlWQQX7oayHlF4Yys",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0028__6.0_SYNTHESIS_MANDATE__1DHekOzSR9Xn2QKY21-E0mc2GtnSlWQQX7oayHlF4Yys",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0028__6.0_SYNTHESIS_MANDATE__1DHekOzSR9Xn2QKY21-E0mc2GtnSlWQQX7oayHlF4Yys",
+        "drive_name": "6.0 SYNTHESIS MANDATE",
+        "drive_id": "1DHekOzSR9Xn2QKY21-E0mc2GtnSlWQQX7oayHlF4Yys",
+        "drive_norm": "6 0 synthesis mandate",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0028__6.0_SYNTHESIS_MANDATE__1DHekOzSR9Xn2QKY21-E0mc2GtnSlWQQX7oayHlF4Yys/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/7.0_Chapter_Refinery.txt",
+    "local_basename": "7.0_Chapter_Refinery.txt",
+    "local_norm": "7 0 chapter refinery",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/7.0_Nuclear_Edit!!!!_(CRITICAL!_DIRE!_EMERGENCY!!!).txt",
+    "local_basename": "7.0_Nuclear_Edit!!!!_(CRITICAL!_DIRE!_EMERGENCY!!!).txt",
+    "local_norm": "7 0 nuclear edit critical dire emergency",
+    "status": "probable",
+    "best_score": 80,
+    "best_drive_name": "(Old) 7.0 Nuclear Edit!!!! (CRITICAL! DIRE! EMERGENCY!!!)",
+    "best_drive_id": "1s03hIKm0gYjPfC7c7rRBSq53JUB5WS74ER48Wyunmvo",
+    "best_archive_folder": "0029__Old_7.0_Nuclear_Edit_CRITICAL_DIRE_EMERGENCY__1s03hIKm0gYjPfC7c7rRBSq53JUB5WS74ER48Wyunmvo",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0029__Old_7.0_Nuclear_Edit_CRITICAL_DIRE_EMERGENCY__1s03hIKm0gYjPfC7c7rRBSq53JUB5WS74ER48Wyunmvo",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0029__Old_7.0_Nuclear_Edit_CRITICAL_DIRE_EMERGENCY__1s03hIKm0gYjPfC7c7rRBSq53JUB5WS74ER48Wyunmvo",
+        "drive_name": "(Old) 7.0 Nuclear Edit!!!! (CRITICAL! DIRE! EMERGENCY!!!)",
+        "drive_id": "1s03hIKm0gYjPfC7c7rRBSq53JUB5WS74ER48Wyunmvo",
+        "drive_norm": "old 7 0 nuclear edit critical dire emergency",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0029__Old_7.0_Nuclear_Edit_CRITICAL_DIRE_EMERGENCY__1s03hIKm0gYjPfC7c7rRBSq53JUB5WS74ER48Wyunmvo/ooxml_current/word/document.xml",
+        "score": 80
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/8._0_This_is_the_final,_most_crucial_step:_ensuring_the_narrative's_structure_is_so_perfectly_weighted_that_the_profound_sadness—the_weeping_of_self-recognition—is_not_a_chance_event,_but_an_earned,_inevitable_catharsis_for_the_reader.txt",
+    "local_basename": "8._0_This_is_the_final,_most_crucial_step:_ensuring_the_narrative's_structure_is_so_perfectly_weighted_that_the_profound_sadness—the_weeping_of_self-recognition—is_not_a_chance_event,_but_an_earned,_inevitable_catharsis_for_the_reader.txt",
+    "local_norm": "8 0 this is the final, most crucial step ensuring the narrative s structure is so perfectly weighted that the profound sadness—the weeping of self recognition—is not a chance event, but an earned, inevitable catharsis for the reader",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/8.0_Pacing／Redundancy.txt",
+    "local_basename": "8.0_Pacing／Redundancy.txt",
+    "local_norm": "8 0 pacing redundancy",
+    "status": "weak_review",
+    "best_score": 67,
+    "best_drive_name": "8.0 Pacing/Redundancy",
+    "best_drive_id": "1GSaV1KrrQvbPTYtjbTw7OvP6gbyti2-mx5hRhYnkuFM",
+    "best_archive_folder": "0030__8.0_Pacing_Redundancy__1GSaV1KrrQvbPTYtjbTw7OvP6gbyti2-mx5hRhYnkuFM",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0030__8.0_Pacing_Redundancy__1GSaV1KrrQvbPTYtjbTw7OvP6gbyti2-mx5hRhYnkuFM",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0030__8.0_Pacing_Redundancy__1GSaV1KrrQvbPTYtjbTw7OvP6gbyti2-mx5hRhYnkuFM",
+        "drive_name": "8.0 Pacing/Redundancy",
+        "drive_id": "1GSaV1KrrQvbPTYtjbTw7OvP6gbyti2-mx5hRhYnkuFM",
+        "drive_norm": "redundancy",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0030__8.0_Pacing_Redundancy__1GSaV1KrrQvbPTYtjbTw7OvP6gbyti2-mx5hRhYnkuFM/ooxml_current/word/document.xml",
+        "score": 67
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/9.0_Aesthetic.txt",
+    "local_basename": "9.0_Aesthetic.txt",
+    "local_norm": "9 0 aesthetic",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/9.0_Stones.txt",
+    "local_basename": "9.0_Stones.txt",
+    "local_norm": "9 0 stones",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/ALITTERAS_SYSTEM_BLUEPRINT_v1.txt",
+    "local_basename": "ALITTERAS_SYSTEM_BLUEPRINT_v1.txt",
+    "local_norm": "alitteras system blueprint v1",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "ALITTERAS SYSTEM BLUEPRINT v1",
+    "best_drive_id": "1g9I7QCgp6ZIulH3HOsPFrr6rkqmTSzGNXZx48D51OJU",
+    "best_archive_folder": "0031__ALITTERAS_SYSTEM_BLUEPRINT_v1__1g9I7QCgp6ZIulH3HOsPFrr6rkqmTSzGNXZx48D51OJU",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0031__ALITTERAS_SYSTEM_BLUEPRINT_v1__1g9I7QCgp6ZIulH3HOsPFrr6rkqmTSzGNXZx48D51OJU",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0031__ALITTERAS_SYSTEM_BLUEPRINT_v1__1g9I7QCgp6ZIulH3HOsPFrr6rkqmTSzGNXZx48D51OJU",
+        "drive_name": "ALITTERAS SYSTEM BLUEPRINT v1",
+        "drive_id": "1g9I7QCgp6ZIulH3HOsPFrr6rkqmTSzGNXZx48D51OJU",
+        "drive_norm": "alitteras system blueprint v1",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0031__ALITTERAS_SYSTEM_BLUEPRINT_v1__1g9I7QCgp6ZIulH3HOsPFrr6rkqmTSzGNXZx48D51OJU/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter 3 - Commerciality and Marketing 3.0.txt",
+    "local_basename": "Chapter 3 - Commerciality and Marketing 3.0.txt",
+    "local_norm": "chapter 3 commerciality and marketing 3 0",
+    "status": "probable",
+    "best_score": 74,
+    "best_drive_name": "Chapter 3 - Commerciality and Marketing 3.0",
+    "best_drive_id": "1Tt4fIHXbKaE5yolknIN_uELwk9jXztqh8YMhLqjmtno",
+    "best_archive_folder": "0032__Chapter_3_-_Commerciality_and_Marketing_3.0__1Tt4fIHXbKaE5yolknIN_uELwk9jXztqh8YMhLqjmtno",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0032__Chapter_3_-_Commerciality_and_Marketing_3.0__1Tt4fIHXbKaE5yolknIN_uELwk9jXztqh8YMhLqjmtno",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0032__Chapter_3_-_Commerciality_and_Marketing_3.0__1Tt4fIHXbKaE5yolknIN_uELwk9jXztqh8YMhLqjmtno",
+        "drive_name": "Chapter 3 - Commerciality and Marketing 3.0",
+        "drive_id": "1Tt4fIHXbKaE5yolknIN_uELwk9jXztqh8YMhLqjmtno",
+        "drive_norm": "chapter 3 commerciality and marketing 3",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0032__Chapter_3_-_Commerciality_and_Marketing_3.0__1Tt4fIHXbKaE5yolknIN_uELwk9jXztqh8YMhLqjmtno/ooxml_current/word/document.xml",
+        "score": 74
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_-_Stardust_to_Stardust.txt",
+    "local_basename": "Chapter_1_-_Stardust_to_Stardust.txt",
+    "local_norm": "chapter 1 stardust to stardust",
+    "status": "probable",
+    "best_score": 77,
+    "best_drive_name": "(Notes) (P) Chapter: 1 - Stardust to Stardust",
+    "best_drive_id": "1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+    "best_archive_folder": "0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+        "drive_name": "(Notes) (P) Chapter: 1 - Stardust to Stardust",
+        "drive_id": "1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+        "drive_norm": "notes p chapter 1 stardust to stardust",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs/ooxml_current/word/document.xml",
+        "score": 77
+      },
+      {
+        "archive_folder": "0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+        "drive_name": "(R) Chapter: 1 - Stardust to Stardust ",
+        "drive_id": "1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+        "drive_norm": "r chapter 1 stardust to stardust",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ/ooxml_current/word/document.xml",
+        "score": 77
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Integration_2.0.txt",
+    "local_basename": "Chapter_1_Integration_2.0.txt",
+    "local_norm": "chapter 1 integration 2 0",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Integration_Prompt.txt",
+    "local_basename": "Chapter_1_Integration_Prompt.txt",
+    "local_norm": "chapter 1 integration prompt",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Integration.txt",
+    "local_basename": "Chapter_1_Integration.txt",
+    "local_norm": "chapter 1 integration",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Merge_Prompt.txt",
+    "local_basename": "Chapter_1_Merge_Prompt.txt",
+    "local_norm": "chapter 1 merge prompt",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "Chapter 1 Merge Prompt",
+    "best_drive_id": "18HWPiYaqH72RmXRxnaxF-FaELJke-Fm3t3RH-NRvWN0",
+    "best_archive_folder": "0034__Chapter_1_Merge_Prompt__18HWPiYaqH72RmXRxnaxF-FaELJke-Fm3t3RH-NRvWN0",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0034__Chapter_1_Merge_Prompt__18HWPiYaqH72RmXRxnaxF-FaELJke-Fm3t3RH-NRvWN0",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0034__Chapter_1_Merge_Prompt__18HWPiYaqH72RmXRxnaxF-FaELJke-Fm3t3RH-NRvWN0",
+        "drive_name": "Chapter 1 Merge Prompt",
+        "drive_id": "18HWPiYaqH72RmXRxnaxF-FaELJke-Fm3t3RH-NRvWN0",
+        "drive_norm": "chapter 1 merge prompt",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0034__Chapter_1_Merge_Prompt__18HWPiYaqH72RmXRxnaxF-FaELJke-Fm3t3RH-NRvWN0/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Version_O.txt",
+    "local_basename": "Chapter_1_Version_O.txt",
+    "local_norm": "chapter 1 version o",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/﻿Chapter_1-_Stardust_to_Stardust.txt",
+    "local_basename": "﻿Chapter_1-_Stardust_to_Stardust.txt",
+    "local_norm": "chapter 1 stardust to stardust",
+    "status": "probable",
+    "best_score": 77,
+    "best_drive_name": "(Notes) (P) Chapter: 1 - Stardust to Stardust",
+    "best_drive_id": "1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+    "best_archive_folder": "0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+        "drive_name": "(Notes) (P) Chapter: 1 - Stardust to Stardust",
+        "drive_id": "1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+        "drive_norm": "notes p chapter 1 stardust to stardust",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs/ooxml_current/word/document.xml",
+        "score": 77
+      },
+      {
+        "archive_folder": "0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+        "drive_name": "(R) Chapter: 1 - Stardust to Stardust ",
+        "drive_id": "1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+        "drive_norm": "r chapter 1 stardust to stardust",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ/ooxml_current/word/document.xml",
+        "score": 77
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1:_Stardust_to_Stardust.txt",
+    "local_basename": "Chapter_1:_Stardust_to_Stardust.txt",
+    "local_norm": "chapter 1 stardust to stardust",
+    "status": "probable",
+    "best_score": 77,
+    "best_drive_name": "(Notes) (P) Chapter: 1 - Stardust to Stardust",
+    "best_drive_id": "1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+    "best_archive_folder": "0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+        "drive_name": "(Notes) (P) Chapter: 1 - Stardust to Stardust",
+        "drive_id": "1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+        "drive_norm": "notes p chapter 1 stardust to stardust",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs/ooxml_current/word/document.xml",
+        "score": 77
+      },
+      {
+        "archive_folder": "0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+        "drive_name": "(R) Chapter: 1 - Stardust to Stardust ",
+        "drive_id": "1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+        "drive_norm": "r chapter 1 stardust to stardust",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ/ooxml_current/word/document.xml",
+        "score": 77
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10_Forsaken_FINAL_DEFINITIVE.txt",
+    "local_basename": "Chapter_10_Forsaken_FINAL_DEFINITIVE.txt",
+    "local_norm": "chapter 10 forsaken final definitive",
+    "status": "weak_review",
+    "best_score": 67,
+    "best_drive_name": "Chapter 10.5",
+    "best_drive_id": "1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+    "best_archive_folder": "0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "drive_name": "Chapter 10.5",
+        "drive_id": "1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "drive_norm": "chapter 10",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk/ooxml_current/word/document.xml",
+        "score": 67
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10_Version_F.txt",
+    "local_basename": "Chapter_10_Version_F.txt",
+    "local_norm": "chapter 10 version f",
+    "status": "weak_review",
+    "best_score": 67,
+    "best_drive_name": "Chapter 10.5",
+    "best_drive_id": "1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+    "best_archive_folder": "0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "drive_name": "Chapter 10.5",
+        "drive_id": "1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "drive_norm": "chapter 10",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk/ooxml_current/word/document.xml",
+        "score": 67
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10:_Forsaken.txt",
+    "local_basename": "Chapter_10:_Forsaken.txt",
+    "local_norm": "chapter 10 forsaken",
+    "status": "probable",
+    "best_score": 74,
+    "best_drive_name": "(B) Chapter: 10 - Forsaken",
+    "best_drive_id": "1dAVOiCaa3g6lx3r7lLQZ6sxqVOYV5ZsgnfMpxgNJuyk",
+    "best_archive_folder": "0011__B_Chapter_10_-_Forsaken__1dAVOiCaa3g6lx3r7lLQZ6sxqVOYV5ZsgnfMpxgNJuyk",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0011__B_Chapter_10_-_Forsaken__1dAVOiCaa3g6lx3r7lLQZ6sxqVOYV5ZsgnfMpxgNJuyk",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0011__B_Chapter_10_-_Forsaken__1dAVOiCaa3g6lx3r7lLQZ6sxqVOYV5ZsgnfMpxgNJuyk",
+        "drive_name": "(B) Chapter: 10 - Forsaken",
+        "drive_id": "1dAVOiCaa3g6lx3r7lLQZ6sxqVOYV5ZsgnfMpxgNJuyk",
+        "drive_norm": "b chapter 10 forsaken",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0011__B_Chapter_10_-_Forsaken__1dAVOiCaa3g6lx3r7lLQZ6sxqVOYV5ZsgnfMpxgNJuyk/ooxml_current/word/document.xml",
+        "score": 74
+      },
+      {
+        "archive_folder": "0013__Prompt_Guide_E_Chapter_10_Forsaken__1HgITZ_aQyru0299o0N46Bd_y_Mrj7p33mnT_hxuBBTo",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0013__Prompt_Guide_E_Chapter_10_Forsaken__1HgITZ_aQyru0299o0N46Bd_y_Mrj7p33mnT_hxuBBTo",
+        "drive_name": "(Prompt Guide (E)) Chapter 10: Forsaken",
+        "drive_id": "1HgITZ_aQyru0299o0N46Bd_y_Mrj7p33mnT_hxuBBTo",
+        "drive_norm": "prompt guide e chapter 10 forsaken",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0013__Prompt_Guide_E_Chapter_10_Forsaken__1HgITZ_aQyru0299o0N46Bd_y_Mrj7p33mnT_hxuBBTo/ooxml_current/word/document.xml",
+        "score": 74
+      },
+      {
+        "archive_folder": "0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "drive_name": "Chapter 10.5",
+        "drive_id": "1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "drive_norm": "chapter 10",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk/ooxml_current/word/document.xml",
+        "score": 67
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10.1.txt",
+    "local_basename": "Chapter_10.1.txt",
+    "local_norm": "chapter 10 1",
+    "status": "weak_review",
+    "best_score": 67,
+    "best_drive_name": "Chapter 10.5",
+    "best_drive_id": "1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+    "best_archive_folder": "0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "drive_name": "Chapter 10.5",
+        "drive_id": "1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "drive_norm": "chapter 10",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk/ooxml_current/word/document.xml",
+        "score": 67
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10.5.txt",
+    "local_basename": "Chapter_10.5.txt",
+    "local_norm": "chapter 10 5",
+    "status": "weak_review",
+    "best_score": 67,
+    "best_drive_name": "Chapter 10.5",
+    "best_drive_id": "1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+    "best_archive_folder": "0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "drive_name": "Chapter 10.5",
+        "drive_id": "1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "drive_norm": "chapter 10",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk/ooxml_current/word/document.xml",
+        "score": 67
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_11._Forsaken.txt",
+    "local_basename": "Chapter_11._Forsaken.txt",
+    "local_norm": "chapter 11 forsaken",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/chapter_11.2.txt",
+    "local_basename": "chapter_11.2.txt",
+    "local_norm": "chapter 11 2",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_11.8.txt",
+    "local_basename": "Chapter_11.8.txt",
+    "local_norm": "chapter 11 8",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_13:_Exodus.txt",
+    "local_basename": "Chapter_13:_Exodus.txt",
+    "local_norm": "chapter 13 exodus",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "Chapter 13: Exodus",
+    "best_drive_id": "1EZfWlpCim0uysWjZ9QjGaCB7BQQUqyJQcSPRbj0GpI4",
+    "best_archive_folder": "0037__Chapter_13_Exodus__1EZfWlpCim0uysWjZ9QjGaCB7BQQUqyJQcSPRbj0GpI4",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0037__Chapter_13_Exodus__1EZfWlpCim0uysWjZ9QjGaCB7BQQUqyJQcSPRbj0GpI4",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0037__Chapter_13_Exodus__1EZfWlpCim0uysWjZ9QjGaCB7BQQUqyJQcSPRbj0GpI4",
+        "drive_name": "Chapter 13: Exodus",
+        "drive_id": "1EZfWlpCim0uysWjZ9QjGaCB7BQQUqyJQcSPRbj0GpI4",
+        "drive_norm": "chapter 13 exodus",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0037__Chapter_13_Exodus__1EZfWlpCim0uysWjZ9QjGaCB7BQQUqyJQcSPRbj0GpI4/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2_-_Analysis_&_Guides_1.0.txt",
+    "local_basename": "Chapter_2_-_Analysis_&_Guides_1.0.txt",
+    "local_norm": "chapter 2 analysis & guides 1 0",
+    "status": "probable",
+    "best_score": 72,
+    "best_drive_name": "Chapter 2 - Analysis & Guides 1.0",
+    "best_drive_id": "1DtI8s5iosC54Zm0W44KcEa5-jdZ7HNAxSYah4J0uFIs",
+    "best_archive_folder": "0038__Chapter_2_-_Analysis_Guides_1.0__1DtI8s5iosC54Zm0W44KcEa5-jdZ7HNAxSYah4J0uFIs",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0038__Chapter_2_-_Analysis_Guides_1.0__1DtI8s5iosC54Zm0W44KcEa5-jdZ7HNAxSYah4J0uFIs",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0038__Chapter_2_-_Analysis_Guides_1.0__1DtI8s5iosC54Zm0W44KcEa5-jdZ7HNAxSYah4J0uFIs",
+        "drive_name": "Chapter 2 - Analysis & Guides 1.0",
+        "drive_id": "1DtI8s5iosC54Zm0W44KcEa5-jdZ7HNAxSYah4J0uFIs",
+        "drive_norm": "chapter 2 analysis & guides 1",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0038__Chapter_2_-_Analysis_Guides_1.0__1DtI8s5iosC54Zm0W44KcEa5-jdZ7HNAxSYah4J0uFIs/ooxml_current/word/document.xml",
+        "score": 72
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2_-_Commerciality_and_Marketing_3.0.txt",
+    "local_basename": "Chapter_2_-_Commerciality_and_Marketing_3.0.txt",
+    "local_norm": "chapter 2 commerciality and marketing 3 0",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2_-_Master_Revision_Prompt_2.0.txt",
+    "local_basename": "Chapter_2_-_Master_Revision_Prompt_2.0.txt",
+    "local_norm": "chapter 2 master revision prompt 2 0",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2:_Living_Sacrifice.txt",
+    "local_basename": "Chapter_2:_Living_Sacrifice.txt",
+    "local_norm": "chapter 2 living sacrifice",
+    "status": "probable",
+    "best_score": 76,
+    "best_drive_name": "•(G) Chapter 2- Living Sacrifice",
+    "best_drive_id": "1lIqobbwQqWNyBdBuqqoXp9HDT2ddOQ8nxzWIyCWas0s",
+    "best_archive_folder": "0003__G_Chapter_2-_Living_Sacrifice__1lIqobbwQqWNyBdBuqqoXp9HDT2ddOQ8nxzWIyCWas0s",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0003__G_Chapter_2-_Living_Sacrifice__1lIqobbwQqWNyBdBuqqoXp9HDT2ddOQ8nxzWIyCWas0s",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0003__G_Chapter_2-_Living_Sacrifice__1lIqobbwQqWNyBdBuqqoXp9HDT2ddOQ8nxzWIyCWas0s",
+        "drive_name": "•(G) Chapter 2- Living Sacrifice",
+        "drive_id": "1lIqobbwQqWNyBdBuqqoXp9HDT2ddOQ8nxzWIyCWas0s",
+        "drive_norm": "• g chapter 2 living sacrifice",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0003__G_Chapter_2-_Living_Sacrifice__1lIqobbwQqWNyBdBuqqoXp9HDT2ddOQ8nxzWIyCWas0s/ooxml_current/word/document.xml",
+        "score": 76
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2nd_to_last.txt",
+    "local_basename": "Chapter_2nd_to_last.txt",
+    "local_norm": "chapter 2nd to last",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "Chapter 2nd to last",
+    "best_drive_id": "145L-3aHQH6XNn-lWhzeIBM46Do2DCuo_5lBckU_Y6k4",
+    "best_archive_folder": "0040__Chapter_2nd_to_last__145L-3aHQH6XNn-lWhzeIBM46Do2DCuo_5lBckU_Y6k4",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0040__Chapter_2nd_to_last__145L-3aHQH6XNn-lWhzeIBM46Do2DCuo_5lBckU_Y6k4",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0040__Chapter_2nd_to_last__145L-3aHQH6XNn-lWhzeIBM46Do2DCuo_5lBckU_Y6k4",
+        "drive_name": "Chapter 2nd to last",
+        "drive_id": "145L-3aHQH6XNn-lWhzeIBM46Do2DCuo_5lBckU_Y6k4",
+        "drive_norm": "chapter 2nd to last",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0040__Chapter_2nd_to_last__145L-3aHQH6XNn-lWhzeIBM46Do2DCuo_5lBckU_Y6k4/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3_-_Master_Revision_Prompt_2.0.txt",
+    "local_basename": "Chapter_3_-_Master_Revision_Prompt_2.0.txt",
+    "local_norm": "chapter 3 master revision prompt 2 0",
+    "status": "probable",
+    "best_score": 73,
+    "best_drive_name": "Chapter 3 - Master Revision Prompt 2.0",
+    "best_drive_id": "1mqT9TetHd_8Wja4TkABZhnS1FQpSDAHSvvTnKod1Bbk",
+    "best_archive_folder": "0039__Chapter_3_-_Master_Revision_Prompt_2.0__1mqT9TetHd_8Wja4TkABZhnS1FQpSDAHSvvTnKod1Bbk",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0039__Chapter_3_-_Master_Revision_Prompt_2.0__1mqT9TetHd_8Wja4TkABZhnS1FQpSDAHSvvTnKod1Bbk",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0039__Chapter_3_-_Master_Revision_Prompt_2.0__1mqT9TetHd_8Wja4TkABZhnS1FQpSDAHSvvTnKod1Bbk",
+        "drive_name": "Chapter 3 - Master Revision Prompt 2.0",
+        "drive_id": "1mqT9TetHd_8Wja4TkABZhnS1FQpSDAHSvvTnKod1Bbk",
+        "drive_norm": "chapter 3 master revision prompt 2",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0039__Chapter_3_-_Master_Revision_Prompt_2.0__1mqT9TetHd_8Wja4TkABZhnS1FQpSDAHSvvTnKod1Bbk/ooxml_current/word/document.xml",
+        "score": 73
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3_Analysis_&_Guides.txt",
+    "local_basename": "Chapter_3_Analysis_&_Guides.txt",
+    "local_norm": "chapter 3 analysis & guides",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "Chapter 3 Analysis & Guides",
+    "best_drive_id": "1FVADnhWwf5nMiHoSjDb0p4Rj81pDRz08E4KhDFZUB2s",
+    "best_archive_folder": "0041__Chapter_3_Analysis_Guides__1FVADnhWwf5nMiHoSjDb0p4Rj81pDRz08E4KhDFZUB2s",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0041__Chapter_3_Analysis_Guides__1FVADnhWwf5nMiHoSjDb0p4Rj81pDRz08E4KhDFZUB2s",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0041__Chapter_3_Analysis_Guides__1FVADnhWwf5nMiHoSjDb0p4Rj81pDRz08E4KhDFZUB2s",
+        "drive_name": "Chapter 3 Analysis & Guides",
+        "drive_id": "1FVADnhWwf5nMiHoSjDb0p4Rj81pDRz08E4KhDFZUB2s",
+        "drive_norm": "chapter 3 analysis & guides",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0041__Chapter_3_Analysis_Guides__1FVADnhWwf5nMiHoSjDb0p4Rj81pDRz08E4KhDFZUB2s/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3_Integration_Prompt.txt",
+    "local_basename": "Chapter_3_Integration_Prompt.txt",
+    "local_norm": "chapter 3 integration prompt",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "Chapter 3 Integration Prompt",
+    "best_drive_id": "1HbyI6yEHBBS0Z8IgDF2awqoEoFCs89eG5_DevG3_IRI",
+    "best_archive_folder": "0033__Chapter_3_Integration_Prompt__1HbyI6yEHBBS0Z8IgDF2awqoEoFCs89eG5_DevG3_IRI",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0033__Chapter_3_Integration_Prompt__1HbyI6yEHBBS0Z8IgDF2awqoEoFCs89eG5_DevG3_IRI",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0033__Chapter_3_Integration_Prompt__1HbyI6yEHBBS0Z8IgDF2awqoEoFCs89eG5_DevG3_IRI",
+        "drive_name": "Chapter 3 Integration Prompt",
+        "drive_id": "1HbyI6yEHBBS0Z8IgDF2awqoEoFCs89eG5_DevG3_IRI",
+        "drive_norm": "chapter 3 integration prompt",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0033__Chapter_3_Integration_Prompt__1HbyI6yEHBBS0Z8IgDF2awqoEoFCs89eG5_DevG3_IRI/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3:_Lift_Up.txt",
+    "local_basename": "Chapter_3:_Lift_Up.txt",
+    "local_norm": "chapter 3 lift up",
+    "status": "probable",
+    "best_score": 74,
+    "best_drive_name": "(G) Chapter 3- Lift Up",
+    "best_drive_id": "1XobNLLJg3YY72D9i_360V-UtttUbr_5mhgN1YdMsrTk",
+    "best_archive_folder": "0004__G_Chapter_3-_Lift_Up__1XobNLLJg3YY72D9i_360V-UtttUbr_5mhgN1YdMsrTk",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0004__G_Chapter_3-_Lift_Up__1XobNLLJg3YY72D9i_360V-UtttUbr_5mhgN1YdMsrTk",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0004__G_Chapter_3-_Lift_Up__1XobNLLJg3YY72D9i_360V-UtttUbr_5mhgN1YdMsrTk",
+        "drive_name": "(G) Chapter 3- Lift Up",
+        "drive_id": "1XobNLLJg3YY72D9i_360V-UtttUbr_5mhgN1YdMsrTk",
+        "drive_norm": "g chapter 3 lift up",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0004__G_Chapter_3-_Lift_Up__1XobNLLJg3YY72D9i_360V-UtttUbr_5mhgN1YdMsrTk/ooxml_current/word/document.xml",
+        "score": 74
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_4:_Pilgrimage.txt",
+    "local_basename": "Chapter_4:_Pilgrimage.txt",
+    "local_norm": "chapter 4 pilgrimage",
+    "status": "probable",
+    "best_score": 75,
+    "best_drive_name": "(Final) Chapter 4 - Pilgrimage",
+    "best_drive_id": "1opvdSohMWiVq6FgqotsGpFfKsjCDaI2KqTOHsQkwwDU",
+    "best_archive_folder": "0010__Final_Chapter_4_-_Pilgrimage__1opvdSohMWiVq6FgqotsGpFfKsjCDaI2KqTOHsQkwwDU",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0010__Final_Chapter_4_-_Pilgrimage__1opvdSohMWiVq6FgqotsGpFfKsjCDaI2KqTOHsQkwwDU",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0010__Final_Chapter_4_-_Pilgrimage__1opvdSohMWiVq6FgqotsGpFfKsjCDaI2KqTOHsQkwwDU",
+        "drive_name": "(Final) Chapter 4 - Pilgrimage",
+        "drive_id": "1opvdSohMWiVq6FgqotsGpFfKsjCDaI2KqTOHsQkwwDU",
+        "drive_norm": "final chapter 4 pilgrimage",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0010__Final_Chapter_4_-_Pilgrimage__1opvdSohMWiVq6FgqotsGpFfKsjCDaI2KqTOHsQkwwDU/ooxml_current/word/document.xml",
+        "score": 75
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_5:_The_Snare.txt",
+    "local_basename": "Chapter_5:_The_Snare.txt",
+    "local_norm": "chapter 5 the snare",
+    "status": "probable",
+    "best_score": 74,
+    "best_drive_name": "(Final) Chapter 5 - The Snare",
+    "best_drive_id": "1lMmVYvwHmYuExByWEwlh-rGpUbirDPG7uPeR4gFh37g",
+    "best_archive_folder": "0005__Final_Chapter_5_-_The_Snare__1lMmVYvwHmYuExByWEwlh-rGpUbirDPG7uPeR4gFh37g",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0005__Final_Chapter_5_-_The_Snare__1lMmVYvwHmYuExByWEwlh-rGpUbirDPG7uPeR4gFh37g",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0005__Final_Chapter_5_-_The_Snare__1lMmVYvwHmYuExByWEwlh-rGpUbirDPG7uPeR4gFh37g",
+        "drive_name": "(Final) Chapter 5 - The Snare",
+        "drive_id": "1lMmVYvwHmYuExByWEwlh-rGpUbirDPG7uPeR4gFh37g",
+        "drive_norm": "final chapter 5 the snare",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0005__Final_Chapter_5_-_The_Snare__1lMmVYvwHmYuExByWEwlh-rGpUbirDPG7uPeR4gFh37g/ooxml_current/word/document.xml",
+        "score": 74
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_6:_Beelzebub,_Beelzebub.txt",
+    "local_basename": "Chapter_6:_Beelzebub,_Beelzebub.txt",
+    "local_norm": "chapter 6 beelzebub, beelzebub",
+    "status": "probable",
+    "best_score": 77,
+    "best_drive_name": "(Final) Chapter 6- Beelzebub, Beelzebub",
+    "best_drive_id": "126VrnrFCOCIzrxXqDi8yHHjQYM0ODDGk772YKlL5eQg",
+    "best_archive_folder": "0006__Final_Chapter_6-_Beelzebub_Beelzebub__126VrnrFCOCIzrxXqDi8yHHjQYM0ODDGk772YKlL5eQg",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0006__Final_Chapter_6-_Beelzebub_Beelzebub__126VrnrFCOCIzrxXqDi8yHHjQYM0ODDGk772YKlL5eQg",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0006__Final_Chapter_6-_Beelzebub_Beelzebub__126VrnrFCOCIzrxXqDi8yHHjQYM0ODDGk772YKlL5eQg",
+        "drive_name": "(Final) Chapter 6- Beelzebub, Beelzebub",
+        "drive_id": "126VrnrFCOCIzrxXqDi8yHHjQYM0ODDGk772YKlL5eQg",
+        "drive_norm": "final chapter 6 beelzebub, beelzebub",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0006__Final_Chapter_6-_Beelzebub_Beelzebub__126VrnrFCOCIzrxXqDi8yHHjQYM0ODDGk772YKlL5eQg/ooxml_current/word/document.xml",
+        "score": 77
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_8:_Sea_People.txt",
+    "local_basename": "Chapter_8:_Sea_People.txt",
+    "local_norm": "chapter 8 sea people",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_8.1.txt",
+    "local_basename": "Chapter_8.1.txt",
+    "local_norm": "chapter 8 1",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter_9:_The_Ascent.txt",
+    "local_basename": "Chapter_9:_The_Ascent.txt",
+    "local_norm": "chapter 9 the ascent",
+    "status": "probable",
+    "best_score": 75,
+    "best_drive_name": "(Final) Chapter 9: The Ascent",
+    "best_drive_id": "1PIhcIFWBNQSVqjbZsCu08jpdQZy-YMBJyOmtCV_23u0",
+    "best_archive_folder": "0009__Final_Chapter_9_The_Ascent__1PIhcIFWBNQSVqjbZsCu08jpdQZy-YMBJyOmtCV_23u0",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0009__Final_Chapter_9_The_Ascent__1PIhcIFWBNQSVqjbZsCu08jpdQZy-YMBJyOmtCV_23u0",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0009__Final_Chapter_9_The_Ascent__1PIhcIFWBNQSVqjbZsCu08jpdQZy-YMBJyOmtCV_23u0",
+        "drive_name": "(Final) Chapter 9: The Ascent",
+        "drive_id": "1PIhcIFWBNQSVqjbZsCu08jpdQZy-YMBJyOmtCV_23u0",
+        "drive_norm": "final chapter 9 the ascent",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0009__Final_Chapter_9_The_Ascent__1PIhcIFWBNQSVqjbZsCu08jpdQZy-YMBJyOmtCV_23u0/ooxml_current/word/document.xml",
+        "score": 75
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_1_-_Stardust_to_Stardust.txt",
+    "local_basename": "Chapter:_1_-_Stardust_to_Stardust.txt",
+    "local_norm": "chapter 1 stardust to stardust",
+    "status": "probable",
+    "best_score": 77,
+    "best_drive_name": "(Notes) (P) Chapter: 1 - Stardust to Stardust",
+    "best_drive_id": "1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+    "best_archive_folder": "0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+        "drive_name": "(Notes) (P) Chapter: 1 - Stardust to Stardust",
+        "drive_id": "1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+        "drive_norm": "notes p chapter 1 stardust to stardust",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs/ooxml_current/word/document.xml",
+        "score": 77
+      },
+      {
+        "archive_folder": "0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+        "drive_name": "(R) Chapter: 1 - Stardust to Stardust ",
+        "drive_id": "1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+        "drive_norm": "r chapter 1 stardust to stardust",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ/ooxml_current/word/document.xml",
+        "score": 77
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_1_Proof_of_Authorship_1.0.txt",
+    "local_basename": "Chapter:_1_Proof_of_Authorship_1.0.txt",
+    "local_norm": "chapter 1 proof of authorship 1 0",
+    "status": "probable",
+    "best_score": 72,
+    "best_drive_name": "Chapter: 1 Proof of Authorship 1.0",
+    "best_drive_id": "1UJQ79YUROKhtLY73bppM6XQiXZLtkCnA6Qbn7HisMzk",
+    "best_archive_folder": "0042__Chapter_1_Proof_of_Authorship_1.0__1UJQ79YUROKhtLY73bppM6XQiXZLtkCnA6Qbn7HisMzk",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0042__Chapter_1_Proof_of_Authorship_1.0__1UJQ79YUROKhtLY73bppM6XQiXZLtkCnA6Qbn7HisMzk",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0042__Chapter_1_Proof_of_Authorship_1.0__1UJQ79YUROKhtLY73bppM6XQiXZLtkCnA6Qbn7HisMzk",
+        "drive_name": "Chapter: 1 Proof of Authorship 1.0",
+        "drive_id": "1UJQ79YUROKhtLY73bppM6XQiXZLtkCnA6Qbn7HisMzk",
+        "drive_norm": "chapter 1 proof of authorship 1",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0042__Chapter_1_Proof_of_Authorship_1.0__1UJQ79YUROKhtLY73bppM6XQiXZLtkCnA6Qbn7HisMzk/ooxml_current/word/document.xml",
+        "score": 72
+      },
+      {
+        "archive_folder": "0043__Chapter_1_Proof_of_Authorship_1.1__1Q3f6XFlTodANFVbNr2ebSM5Mx4UnPWdre7NCwhopKgE",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0043__Chapter_1_Proof_of_Authorship_1.1__1Q3f6XFlTodANFVbNr2ebSM5Mx4UnPWdre7NCwhopKgE",
+        "drive_name": "Chapter: 1 Proof of Authorship 1.1",
+        "drive_id": "1Q3f6XFlTodANFVbNr2ebSM5Mx4UnPWdre7NCwhopKgE",
+        "drive_norm": "chapter 1 proof of authorship 1",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0043__Chapter_1_Proof_of_Authorship_1.1__1Q3f6XFlTodANFVbNr2ebSM5Mx4UnPWdre7NCwhopKgE/ooxml_current/word/document.xml",
+        "score": 72
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_1_Proof_of_Authorship_1.1.txt",
+    "local_basename": "Chapter:_1_Proof_of_Authorship_1.1.txt",
+    "local_norm": "chapter 1 proof of authorship 1 1",
+    "status": "probable",
+    "best_score": 72,
+    "best_drive_name": "Chapter: 1 Proof of Authorship 1.0",
+    "best_drive_id": "1UJQ79YUROKhtLY73bppM6XQiXZLtkCnA6Qbn7HisMzk",
+    "best_archive_folder": "0042__Chapter_1_Proof_of_Authorship_1.0__1UJQ79YUROKhtLY73bppM6XQiXZLtkCnA6Qbn7HisMzk",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0042__Chapter_1_Proof_of_Authorship_1.0__1UJQ79YUROKhtLY73bppM6XQiXZLtkCnA6Qbn7HisMzk",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0042__Chapter_1_Proof_of_Authorship_1.0__1UJQ79YUROKhtLY73bppM6XQiXZLtkCnA6Qbn7HisMzk",
+        "drive_name": "Chapter: 1 Proof of Authorship 1.0",
+        "drive_id": "1UJQ79YUROKhtLY73bppM6XQiXZLtkCnA6Qbn7HisMzk",
+        "drive_norm": "chapter 1 proof of authorship 1",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0042__Chapter_1_Proof_of_Authorship_1.0__1UJQ79YUROKhtLY73bppM6XQiXZLtkCnA6Qbn7HisMzk/ooxml_current/word/document.xml",
+        "score": 72
+      },
+      {
+        "archive_folder": "0043__Chapter_1_Proof_of_Authorship_1.1__1Q3f6XFlTodANFVbNr2ebSM5Mx4UnPWdre7NCwhopKgE",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0043__Chapter_1_Proof_of_Authorship_1.1__1Q3f6XFlTodANFVbNr2ebSM5Mx4UnPWdre7NCwhopKgE",
+        "drive_name": "Chapter: 1 Proof of Authorship 1.1",
+        "drive_id": "1Q3f6XFlTodANFVbNr2ebSM5Mx4UnPWdre7NCwhopKgE",
+        "drive_norm": "chapter 1 proof of authorship 1",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0043__Chapter_1_Proof_of_Authorship_1.1__1Q3f6XFlTodANFVbNr2ebSM5Mx4UnPWdre7NCwhopKgE/ooxml_current/word/document.xml",
+        "score": 72
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_10_-_MASTER_BRIEFING.txt",
+    "local_basename": "Chapter:_10_-_MASTER_BRIEFING.txt",
+    "local_norm": "chapter 10 master briefing",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "Chapter: 10 - MASTER BRIEFING",
+    "best_drive_id": "1eEillHIiOZLGJ4vj0Bm_9zjn3KjvxSHb291Rn7qsT9o",
+    "best_archive_folder": "0044__Chapter_10_-_MASTER_BRIEFING__1eEillHIiOZLGJ4vj0Bm_9zjn3KjvxSHb291Rn7qsT9o",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0044__Chapter_10_-_MASTER_BRIEFING__1eEillHIiOZLGJ4vj0Bm_9zjn3KjvxSHb291Rn7qsT9o",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0044__Chapter_10_-_MASTER_BRIEFING__1eEillHIiOZLGJ4vj0Bm_9zjn3KjvxSHb291Rn7qsT9o",
+        "drive_name": "Chapter: 10 - MASTER BRIEFING",
+        "drive_id": "1eEillHIiOZLGJ4vj0Bm_9zjn3KjvxSHb291Rn7qsT9o",
+        "drive_norm": "chapter 10 master briefing",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0044__Chapter_10_-_MASTER_BRIEFING__1eEillHIiOZLGJ4vj0Bm_9zjn3KjvxSHb291Rn7qsT9o/ooxml_current/word/document.xml",
+        "score": 100
+      },
+      {
+        "archive_folder": "0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "drive_name": "Chapter 10.5",
+        "drive_id": "1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "drive_norm": "chapter 10",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk/ooxml_current/word/document.xml",
+        "score": 67
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_8_(Final).txt",
+    "local_basename": "Chapter:_8_(Final).txt",
+    "local_norm": "chapter 8 final",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "Chapter: 8 (Final)",
+    "best_drive_id": "1Oc5a8Cwy91Hg-xdfROvUtr8OjDCGRlw7lz7CBC_l5kI",
+    "best_archive_folder": "0007__Chapter_8_Final__1Oc5a8Cwy91Hg-xdfROvUtr8OjDCGRlw7lz7CBC_l5kI",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0007__Chapter_8_Final__1Oc5a8Cwy91Hg-xdfROvUtr8OjDCGRlw7lz7CBC_l5kI",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0007__Chapter_8_Final__1Oc5a8Cwy91Hg-xdfROvUtr8OjDCGRlw7lz7CBC_l5kI",
+        "drive_name": "Chapter: 8 (Final)",
+        "drive_id": "1Oc5a8Cwy91Hg-xdfROvUtr8OjDCGRlw7lz7CBC_l5kI",
+        "drive_norm": "chapter 8 final",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0007__Chapter_8_Final__1Oc5a8Cwy91Hg-xdfROvUtr8OjDCGRlw7lz7CBC_l5kI/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Chapter2_Weight_of_the_Sky.txt",
+    "local_basename": "Chapter2_Weight_of_the_Sky.txt",
+    "local_norm": "chapter2 weight of the sky",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "Chapter2_Weight_of_the_Sky",
+    "best_drive_id": "1dBjRsoqexbBVZUYJTbZlybhH8cMGE1twD9kDtXh1kX8",
+    "best_archive_folder": "0045__Chapter2_Weight_of_the_Sky__1dBjRsoqexbBVZUYJTbZlybhH8cMGE1twD9kDtXh1kX8",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0045__Chapter2_Weight_of_the_Sky__1dBjRsoqexbBVZUYJTbZlybhH8cMGE1twD9kDtXh1kX8",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0045__Chapter2_Weight_of_the_Sky__1dBjRsoqexbBVZUYJTbZlybhH8cMGE1twD9kDtXh1kX8",
+        "drive_name": "Chapter2_Weight_of_the_Sky",
+        "drive_id": "1dBjRsoqexbBVZUYJTbZlybhH8cMGE1twD9kDtXh1kX8",
+        "drive_norm": "chapter2 weight of the sky",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0045__Chapter2_Weight_of_the_Sky__1dBjRsoqexbBVZUYJTbZlybhH8cMGE1twD9kDtXh1kX8/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Could_you_condense_that_chapter_by_500_to_1,000_w....txt",
+    "local_basename": "Could_you_condense_that_chapter_by_500_to_1,000_w....txt",
+    "local_norm": "could you condense that chapter by 500 to 1,000 w",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Critique_2.2.txt",
+    "local_basename": "Critique_2.2.txt",
+    "local_norm": "critique 2 2",
+    "status": "weak_review",
+    "best_score": 67,
+    "best_drive_name": "Critique 2.2",
+    "best_drive_id": "1ezVF2n-KfiIMcW_TGPLa0F9PYeFvu8hkbQiJ960TCog",
+    "best_archive_folder": "0046__Critique_2.2__1ezVF2n-KfiIMcW_TGPLa0F9PYeFvu8hkbQiJ960TCog",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0046__Critique_2.2__1ezVF2n-KfiIMcW_TGPLa0F9PYeFvu8hkbQiJ960TCog",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0046__Critique_2.2__1ezVF2n-KfiIMcW_TGPLa0F9PYeFvu8hkbQiJ960TCog",
+        "drive_name": "Critique 2.2",
+        "drive_id": "1ezVF2n-KfiIMcW_TGPLa0F9PYeFvu8hkbQiJ960TCog",
+        "drive_norm": "critique 2",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0046__Critique_2.2__1ezVF2n-KfiIMcW_TGPLa0F9PYeFvu8hkbQiJ960TCog/ooxml_current/word/document.xml",
+        "score": 67
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Final Revision (Generalized For All Chapters).txt",
+    "local_basename": "Final Revision (Generalized For All Chapters).txt",
+    "local_norm": "final revision generalized for all chapters",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "Final Revision (Generalized For All Chapters)",
+    "best_drive_id": "1E7XbIvODIR4MJFE1xEgvrztllRlZl1qgEgtmMHnpa90",
+    "best_archive_folder": "0047__Final_Revision_Generalized_For_All_Chapters__1E7XbIvODIR4MJFE1xEgvrztllRlZl1qgEgtmMHnpa90",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0047__Final_Revision_Generalized_For_All_Chapters__1E7XbIvODIR4MJFE1xEgvrztllRlZl1qgEgtmMHnpa90",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0047__Final_Revision_Generalized_For_All_Chapters__1E7XbIvODIR4MJFE1xEgvrztllRlZl1qgEgtmMHnpa90",
+        "drive_name": "Final Revision (Generalized For All Chapters)",
+        "drive_id": "1E7XbIvODIR4MJFE1xEgvrztllRlZl1qgEgtmMHnpa90",
+        "drive_norm": "final revision generalized for all chapters",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0047__Final_Revision_Generalized_For_All_Chapters__1E7XbIvODIR4MJFE1xEgvrztllRlZl1qgEgtmMHnpa90/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Go_ahead_and_write_out_the_chapter_keep_in_mind_t....txt",
+    "local_basename": "Go_ahead_and_write_out_the_chapter_keep_in_mind_t....txt",
+    "local_norm": "go ahead and write out the chapter keep in mind t",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/MANUSCRIPT_AUTOPSY.txt",
+    "local_basename": "MANUSCRIPT_AUTOPSY.txt",
+    "local_norm": "manuscript autopsy",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "MANUSCRIPT AUTOPSY",
+    "best_drive_id": "16WAz5M7Vgdb7fDukQbPUBRvip4Co4784WpldwFfON40",
+    "best_archive_folder": "0048__MANUSCRIPT_AUTOPSY__16WAz5M7Vgdb7fDukQbPUBRvip4Co4784WpldwFfON40",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0048__MANUSCRIPT_AUTOPSY__16WAz5M7Vgdb7fDukQbPUBRvip4Co4784WpldwFfON40",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0048__MANUSCRIPT_AUTOPSY__16WAz5M7Vgdb7fDukQbPUBRvip4Co4784WpldwFfON40",
+        "drive_name": "MANUSCRIPT AUTOPSY",
+        "drive_id": "16WAz5M7Vgdb7fDukQbPUBRvip4Co4784WpldwFfON40",
+        "drive_norm": "manuscript autopsy",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0048__MANUSCRIPT_AUTOPSY__16WAz5M7Vgdb7fDukQbPUBRvip4Co4784WpldwFfON40/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Narnia_.txt",
+    "local_basename": "Narnia_.txt",
+    "local_norm": "narnia",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "Narnia_",
+    "best_drive_id": "1KDPy4WOiZz35EmUTJFGdEXJjoDdD4QD2vUKLnwoic_M",
+    "best_archive_folder": "0049__Narnia__1KDPy4WOiZz35EmUTJFGdEXJjoDdD4QD2vUKLnwoic_M",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0049__Narnia__1KDPy4WOiZz35EmUTJFGdEXJjoDdD4QD2vUKLnwoic_M",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0049__Narnia__1KDPy4WOiZz35EmUTJFGdEXJjoDdD4QD2vUKLnwoic_M",
+        "drive_name": "Narnia_",
+        "drive_id": "1KDPy4WOiZz35EmUTJFGdEXJjoDdD4QD2vUKLnwoic_M",
+        "drive_norm": "narnia",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0049__Narnia__1KDPy4WOiZz35EmUTJFGdEXJjoDdD4QD2vUKLnwoic_M/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Purple_Prose_Prompt.txt",
+    "local_basename": "Purple_Prose_Prompt.txt",
+    "local_norm": "purple prose prompt",
+    "status": "probable",
+    "best_score": 74,
+    "best_drive_name": "21.0 Purple Prose Prompt Protocol",
+    "best_drive_id": "18ij8f9pABf8aF9UkeLAgWhHovpEBjywHqeTq5Z2CGqw",
+    "best_archive_folder": "0050__21.0_Purple_Prose_Prompt_Protocol__18ij8f9pABf8aF9UkeLAgWhHovpEBjywHqeTq5Z2CGqw",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0050__21.0_Purple_Prose_Prompt_Protocol__18ij8f9pABf8aF9UkeLAgWhHovpEBjywHqeTq5Z2CGqw",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0050__21.0_Purple_Prose_Prompt_Protocol__18ij8f9pABf8aF9UkeLAgWhHovpEBjywHqeTq5Z2CGqw",
+        "drive_name": "21.0 Purple Prose Prompt Protocol",
+        "drive_id": "18ij8f9pABf8aF9UkeLAgWhHovpEBjywHqeTq5Z2CGqw",
+        "drive_norm": "21 0 purple prose prompt protocol",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0050__21.0_Purple_Prose_Prompt_Protocol__18ij8f9pABf8aF9UkeLAgWhHovpEBjywHqeTq5Z2CGqw/ooxml_current/word/document.xml",
+        "score": 74
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/The_-Version_X-_Meta-Prompt.txt",
+    "local_basename": "The_-Version_X-_Meta-Prompt.txt",
+    "local_norm": "the version x meta prompt",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/The_scrape.txt",
+    "local_basename": "The_scrape.txt",
+    "local_norm": "the scrape",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/THE_WEIGHT_OF_THE_SKY-_MASTER_COMPENDIUM_(SINGULARITY_v.txt",
+    "local_basename": "THE_WEIGHT_OF_THE_SKY-_MASTER_COMPENDIUM_(SINGULARITY_v.txt",
+    "local_norm": "the weight of the sky master compendium singularity v",
+    "status": "weak_review",
+    "best_score": 47,
+    "best_drive_name": "Final Master Singularity Compendium: The Weight of the Sky",
+    "best_drive_id": "1DDzzszQ8wGUYyL1ijSd3WB1wXTHdOHzqKPX5dM2iAhI",
+    "best_archive_folder": "0051__Final_Master_Singularity_Compendium_The_Weight_of_the_Sky__1DDzzszQ8wGUYyL1ijSd3WB1wXTHdOHzqKPX5dM2iAhI",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0051__Final_Master_Singularity_Compendium_The_Weight_of_the_Sky__1DDzzszQ8wGUYyL1ijSd3WB1wXTHdOHzqKPX5dM2iAhI",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0051__Final_Master_Singularity_Compendium_The_Weight_of_the_Sky__1DDzzszQ8wGUYyL1ijSd3WB1wXTHdOHzqKPX5dM2iAhI",
+        "drive_name": "Final Master Singularity Compendium: The Weight of the Sky",
+        "drive_id": "1DDzzszQ8wGUYyL1ijSd3WB1wXTHdOHzqKPX5dM2iAhI",
+        "drive_norm": "final master singularity compendium the weight of the sky",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0051__Final_Master_Singularity_Compendium_The_Weight_of_the_Sky__1DDzzszQ8wGUYyL1ijSd3WB1wXTHdOHzqKPX5dM2iAhI/ooxml_current/word/document.xml",
+        "score": 47
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/The_Weight_of_the_Sky:_The_Fall_into_Megiddo.txt",
+    "local_basename": "The_Weight_of_the_Sky:_The_Fall_into_Megiddo.txt",
+    "local_norm": "the weight of the sky the fall into megiddo",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "The Weight of the Sky: The Fall into Megiddo",
+    "best_drive_id": "1m3WUXh2oiJ7Jb4RJYbHjsQNfQxH0sDnV5BAbAbJlzf0",
+    "best_archive_folder": "0052__The_Weight_of_the_Sky_The_Fall_into_Megiddo__1m3WUXh2oiJ7Jb4RJYbHjsQNfQxH0sDnV5BAbAbJlzf0",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0052__The_Weight_of_the_Sky_The_Fall_into_Megiddo__1m3WUXh2oiJ7Jb4RJYbHjsQNfQxH0sDnV5BAbAbJlzf0",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0052__The_Weight_of_the_Sky_The_Fall_into_Megiddo__1m3WUXh2oiJ7Jb4RJYbHjsQNfQxH0sDnV5BAbAbJlzf0",
+        "drive_name": "The Weight of the Sky: The Fall into Megiddo",
+        "drive_id": "1m3WUXh2oiJ7Jb4RJYbHjsQNfQxH0sDnV5BAbAbJlzf0",
+        "drive_norm": "the weight of the sky the fall into megiddo",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0052__The_Weight_of_the_Sky_The_Fall_into_Megiddo__1m3WUXh2oiJ7Jb4RJYbHjsQNfQxH0sDnV5BAbAbJlzf0/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/ToALITTERAS_ECOSYSTEM_v2.txt",
+    "local_basename": "ToALITTERAS_ECOSYSTEM_v2.txt",
+    "local_norm": "toalitteras ecosystem v2",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "ToALITTERAS ECOSYSTEM v2",
+    "best_drive_id": "1E_8U7x7RbqS_HJi3gOwOqAsHXEABBPUT4gIQ3Dqa8kM",
+    "best_archive_folder": "0053__ToALITTERAS_ECOSYSTEM_v2__1E_8U7x7RbqS_HJi3gOwOqAsHXEABBPUT4gIQ3Dqa8kM",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0053__ToALITTERAS_ECOSYSTEM_v2__1E_8U7x7RbqS_HJi3gOwOqAsHXEABBPUT4gIQ3Dqa8kM",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0053__ToALITTERAS_ECOSYSTEM_v2__1E_8U7x7RbqS_HJi3gOwOqAsHXEABBPUT4gIQ3Dqa8kM",
+        "drive_name": "ToALITTERAS ECOSYSTEM v2",
+        "drive_id": "1E_8U7x7RbqS_HJi3gOwOqAsHXEABBPUT4gIQ3Dqa8kM",
+        "drive_norm": "toalitteras ecosystem v2",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0053__ToALITTERAS_ECOSYSTEM_v2__1E_8U7x7RbqS_HJi3gOwOqAsHXEABBPUT4gIQ3Dqa8kM/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Untitled_document.txt",
+    "local_basename": "Untitled_document.txt",
+    "local_norm": "untitled document",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "Untitled document",
+    "best_drive_id": "1ltQkkFoUx_aa4yItr8RG-5mDB3AwaK4e5tKbnBQmS60",
+    "best_archive_folder": "0054__Untitled_document__1ltQkkFoUx_aa4yItr8RG-5mDB3AwaK4e5tKbnBQmS60",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0054__Untitled_document__1ltQkkFoUx_aa4yItr8RG-5mDB3AwaK4e5tKbnBQmS60",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0054__Untitled_document__1ltQkkFoUx_aa4yItr8RG-5mDB3AwaK4e5tKbnBQmS60",
+        "drive_name": "Untitled document",
+        "drive_id": "1ltQkkFoUx_aa4yItr8RG-5mDB3AwaK4e5tKbnBQmS60",
+        "drive_norm": "untitled document",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0054__Untitled_document__1ltQkkFoUx_aa4yItr8RG-5mDB3AwaK4e5tKbnBQmS60/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Version_A.txt",
+    "local_basename": "Version_A.txt",
+    "local_norm": "version a",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Version_B.txt",
+    "local_basename": "Version_B.txt",
+    "local_norm": "version b",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/Whole_Book.txt",
+    "local_basename": "Whole_Book.txt",
+    "local_norm": "whole book",
+    "status": "unmatched",
+    "best_score": 0,
+    "best_drive_name": "",
+    "best_drive_id": "",
+    "best_archive_folder": "",
+    "best_has_document_xml": false,
+    "candidates": []
+  },
+  {
+    "local_path": "src/data-layer/ingestion-buffer/gdrive_raw/WOS_Ch7_The_Pit.txt",
+    "local_basename": "WOS_Ch7_The_Pit.txt",
+    "local_norm": "wos ch7 the pit",
+    "status": "exact_or_contained",
+    "best_score": 100,
+    "best_drive_name": "WOS_Ch7_The_Pit",
+    "best_drive_id": "1ZmaR8NIPqxMhsyICXsv3gesiDd4pgmQtOFeEWe0VwWI",
+    "best_archive_folder": "0057__WOS_Ch7_The_Pit__1ZmaR8NIPqxMhsyICXsv3gesiDd4pgmQtOFeEWe0VwWI",
+    "best_has_document_xml": true,
+    "candidates": [
+      {
+        "archive_folder": "0057__WOS_Ch7_The_Pit__1ZmaR8NIPqxMhsyICXsv3gesiDd4pgmQtOFeEWe0VwWI",
+        "archive_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0057__WOS_Ch7_The_Pit__1ZmaR8NIPqxMhsyICXsv3gesiDd4pgmQtOFeEWe0VwWI",
+        "drive_name": "WOS_Ch7_The_Pit",
+        "drive_id": "1ZmaR8NIPqxMhsyICXsv3gesiDd4pgmQtOFeEWe0VwWI",
+        "drive_norm": "wos ch7 the pit",
+        "has_document_xml": true,
+        "document_xml": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0057__WOS_Ch7_The_Pit__1ZmaR8NIPqxMhsyICXsv3gesiDd4pgmQtOFeEWe0VwWI/ooxml_current/word/document.xml",
+        "score": 100
+      }
+    ]
+  }
+]

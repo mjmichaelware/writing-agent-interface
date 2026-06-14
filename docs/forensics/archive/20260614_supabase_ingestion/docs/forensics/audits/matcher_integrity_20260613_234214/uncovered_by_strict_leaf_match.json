@@ -1,0 +1,82 @@
+[
+  {
+    "basename": "(SDP)_v2.txt",
+    "path": "src/data-layer/ingestion-buffer/gdrive_raw/(SDP)_v2.txt",
+    "norm": "sdp v2"
+  },
+  {
+    "basename": "10.0_Blueprint_for_The_Ascent_of_Daniel:_The_Archetype_of_Sacrifice_(NYT_Bestseller_Focus).txt",
+    "path": "src/data-layer/ingestion-buffer/gdrive_raw/10.0_Blueprint_for_The_Ascent_of_Daniel:_The_Archetype_of_Sacrifice_(NYT_Bestseller_Focus).txt",
+    "norm": "10 0 blueprint for the ascent of daniel the archetype of sacrifice nyt bestseller focus"
+  },
+  {
+    "basename": "12.0_Perfection.txt",
+    "path": "src/data-layer/ingestion-buffer/gdrive_raw/12.0_Perfection.txt",
+    "norm": "12 0 perfection"
+  },
+  {
+    "basename": "13.0_Claude.txt",
+    "path": "src/data-layer/ingestion-buffer/gdrive_raw/13.0_Claude.txt",
+    "norm": "13 0 claude"
+  },
+  {
+    "basename": "2.0_This_is_the_critical_adjustment—the_final_layer_that_elevates_philosophical_storytelling_into_timeless,_devastating_human_tragedy.txt",
+    "path": "src/data-layer/ingestion-buffer/gdrive_raw/2.0_This_is_the_critical_adjustment—the_final_layer_that_elevates_philosophical_storytelling_into_timeless,_devastating_human_tragedy.txt",
+    "norm": "2 0 this is the critical adjustment—the final layer that elevates philosophical storytelling into timeless, devastating human tragedy"
+  },
+  {
+    "basename": "3.0_Literary_&_Archetypal_Fusion_Rulebook_(The_Cat_God_&_The_Primal_Self).txt",
+    "path": "src/data-layer/ingestion-buffer/gdrive_raw/3.0_Literary_&_Archetypal_Fusion_Rulebook_(The_Cat_God_&_The_Primal_Self).txt",
+    "norm": "3 0 literary & archetypal fusion rulebook the cat god & the primal self"
+  },
+  {
+    "basename": "4.0_Emotional_&_Archetypal_Editing_Rulebook_(Visceral_Empathy_Focus).txt",
+    "path": "src/data-layer/ingestion-buffer/gdrive_raw/4.0_Emotional_&_Archetypal_Editing_Rulebook_(Visceral_Empathy_Focus).txt",
+    "norm": "4 0 emotional & archetypal editing rulebook visceral empathy focus"
+  },
+  {
+    "basename": "4.0_Psychology_Guide.txt",
+    "path": "src/data-layer/ingestion-buffer/gdrive_raw/4.0_Psychology_Guide.txt",
+    "norm": "4 0 psychology guide"
+  },
+  {
+    "basename": "4.0_REVISED.txt",
+    "path": "src/data-layer/ingestion-buffer/gdrive_raw/4.0_REVISED.txt",
+    "norm": "4 0 revised"
+  },
+  {
+    "basename": "6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt",
+    "path": "src/data-layer/ingestion-buffer/gdrive_raw/6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt",
+    "norm": "6 0 core editing rules for thematic & archetypal hyperlinking"
+  },
+  {
+    "basename": "8._0_This_is_the_final,_most_crucial_step:_ensuring_the_narrative's_structure_is_so_perfectly_weighted_that_the_profound_sadness—the_weeping_of_self-recognition—is_not_a_chance_event,_but_an_earned,_inevitable_catharsis_for_the_reader.txt",
+    "path": "src/data-layer/ingestion-buffer/gdrive_raw/8._0_This_is_the_final,_most_crucial_step:_ensuring_the_narrative's_structure_is_so_perfectly_weighted_that_the_profound_sadness—the_weeping_of_self-recognition—is_not_a_chance_event,_but_an_earned,_inevitable_catharsis_for_the_reader.txt",
+    "norm": "8 0 this is the final, most crucial step ensuring the narrative s structure is so perfectly weighted that the profound sadness—the weeping of self recognition—is not a chance event, but an earned, inevitable catharsis for the reader"
+  },
+  {
+    "basename": "9.0_Aesthetic.txt",
+    "path": "src/data-layer/ingestion-buffer/gdrive_raw/9.0_Aesthetic.txt",
+    "norm": "9 0 aesthetic"
+  },
+  {
+    "basename": "9.0_Stones.txt",
+    "path": "src/data-layer/ingestion-buffer/gdrive_raw/9.0_Stones.txt",
+    "norm": "9 0 stones"
+  },
+  {
+    "basename": "The_-Version_X-_Meta-Prompt.txt",
+    "path": "src/data-layer/ingestion-buffer/gdrive_raw/The_-Version_X-_Meta-Prompt.txt",
+    "norm": "the version x meta prompt"
+  },
+  {
+    "basename": "The_scrape.txt",
+    "path": "src/data-layer/ingestion-buffer/gdrive_raw/The_scrape.txt",
+    "norm": "the scrape"
+  },
+  {
+    "basename": "Whole_Book.txt",
+    "path": "src/data-layer/ingestion-buffer/gdrive_raw/Whole_Book.txt",
+    "norm": "whole book"
+  }
+]

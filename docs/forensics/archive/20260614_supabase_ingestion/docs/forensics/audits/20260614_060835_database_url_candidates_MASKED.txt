@@ -1,0 +1,47 @@
+DATABASE URL CANDIDATES — MASKED
+candidate_store=/data/data/com.termux/files/home/.nos_private/20260614_060835_database_url_candidates.tsv
+
+[1] source=ENV:DATABASE_URL:0
+    url_hash=1c7aea210431
+    project_ref=yegricugzqbmoziycfnt
+    user=postgres.yeg...
+    password_present=YES
+    password_length=13
+    password_sha256_prefix=d77f1a12292c
+    host=aws-1-us-east-2.pooler.supabase.com
+    port=6543
+    db=postgres
+
+[2] source=/data/data/com.termux/files/home/Workspaces/Hybrid/writing-agent-interface/data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_2_large_universal/134_nos_integration_blueprint.txt:1348
+    url_hash=defa4128e14e
+    project_ref=NOT_FOUND
+    user=
+    password_present=NO
+    password_length=0
+    password_sha256_prefix=NONE
+    host=...
+    port=
+    db=
+
+[3] source=/data/data/com.termux/files/home/storage/shared/Download/.env.example:2
+    url_hash=e417673b5372
+    project_ref=NOT_FOUND
+    user=
+    password_present=NO
+    password_length=0
+    password_sha256_prefix=NONE
+    host=...
+    port=
+    db=
+
+[4] source=/data/data/com.termux/files/home/storage/shared/Download/writing-agent_export/env_dump.txt:4
+    url_hash=e755b50f4973
+    project_ref=yegricugzqbmoziycfnt
+    user=postgres
+    password_present=YES
+    password_length=13
+    password_sha256_prefix=d77f1a12292c
+    host=db.yegricugzqbmoziycfnt.supabase.co
+    port=5432
+    db=postgres
+

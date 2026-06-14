@@ -1,0 +1,52 @@
+candidate_cache_count=319
+
+TARGET 01: (SDP)_v2
+hits=1
+  name=4.0 SUBTLETY & DENSITY PROTOCOL (SDP) v2.0
+
+	id=1M4hBsT6gEhx6F5G41TTSzARrazGMayQT4SnnSz4x71o	mimeType=application/vnd.google-apps.document	modifiedTime=2025-11-04T19:00:01.646Z
+
+TARGET 02: 10.0_Blueprint_for_The_Ascent_of_Daniel:_The_Archetype_of_Sacrifice_(NYT_Bestseller_Focus)
+hits=0
+
+TARGET 03: 12.0_Perfection
+hits=0
+
+TARGET 04: 13.0_Claude
+hits=0
+
+TARGET 05: 2.0_This_is_the_critical_adjustment—the_final_layer_that_elevates_philosophical_storytelling_into_timeless,_devastating_human_tragedy
+hits=0
+
+TARGET 06: 3.0_Literary_&_Archetypal_Fusion_Rulebook_(The_Cat_God_&_The_Primal_Self)
+hits=0
+
+TARGET 07: 4.0_Emotional_&_Archetypal_Editing_Rulebook_(Visceral_Empathy_Focus)
+hits=0
+
+TARGET 08: 4.0_Psychology_Guide
+hits=0
+
+TARGET 09: 4.0_REVISED
+hits=0
+
+TARGET 10: 6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking
+hits=0
+
+TARGET 11: 8._0_This_is_the_final,_most_crucial_step:_ensuring_the_narrative's_structure_is_so_perfectly_weighted_that_the_profound_sadness—the_weeping_of_self-recognition—is_not_a_chance_event,_but_an_earned,_inevitable_catharsis_for_the_reader
+hits=0
+
+TARGET 12: 9.0_Aesthetic
+hits=0
+
+TARGET 13: 9.0_Stones
+hits=0
+
+TARGET 14: The_-Version_X-_Meta-Prompt
+hits=0
+
+TARGET 15: The_scrape
+hits=0
+
+TARGET 16: Whole_Book
+hits=0

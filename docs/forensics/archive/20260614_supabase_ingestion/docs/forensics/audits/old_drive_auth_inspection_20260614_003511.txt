@@ -1,0 +1,155 @@
+file=scripts/archive-google-docs-by-local-names.mjs
+
+===== TOP 70 LINES =====
+import fs from "fs";
+import path from "path";
+import crypto from "crypto";
+import { google } from "googleapis";
+import JSZip from "jszip";
+
+
+const DRIVE_DOC_CANDIDATE_Q = "trashed = false and (mimeType = 'application/vnd.google-apps.document' or mimeType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' or mimeType = 'application/msword')";
+
+const TARGET_DIRS = process.argv.slice(2);
+if (TARGET_DIRS.length === 0) {
+  TARGET_DIRS.push("src/data-layer/ingestion-buffer/gdrive_raw");
+  TARGET_DIRS.push("/sdcard/Download");
+}
+
+const STAMP = new Date().toISOString().replace(/[:.]/g, "-");
+const ARCHIVE_ROOT = `data/source_archive/name_matched_google_docs/${STAMP}`;
+
+function mkdirp(p) {
+  fs.mkdirSync(p, { recursive: true });
+}
+
+function sha256(buf) {
+  return crypto.createHash("sha256").update(buf).digest("hex");
+}
+
+function writeJson(file, data) {
+  mkdirp(path.dirname(file));
+  fs.writeFileSync(file, JSON.stringify(data, null, 2));
+}
+
+function safeName(s) {
+  return String(s || "untitled")
+    .normalize("NFKD")
+    .replace(/[^\w.\-]+/g, "_")
+    .replace(/^_+|_+$/g, "")
+    .slice(0, 140) || "untitled";
+}
+
+function stripExt(name) {
+  return String(name)
+    .replace(/\.docx\.txt$/i, "")
+    .replace(/\.(txt|md|json|docx|doc|gdoc|rtf|pdf|zip)$/i, "");
+}
+
+function normalizeName(name) {
+  return stripExt(name)
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/^\uFEFF/, "")
+    .replace(/^[•*\-\s]+/g, "")
+    .replace(/^\([a-z0-9]+\)[_\s-]*/i, "")
+    .replace(/^\((final|notes|revisions|revision prompt|prompt guide)\)[_\s-]*/i, "")
+    .replace(/^(final|notes|revisions|revision prompt|prompt guide)[_\s-]+/i, "")
+    .replace(/[_\-:／/]+/g, " ")
+    .replace(/[^\w\s]/g, "")
+    .replace(/\b(copy|final|draft|edited|revision|revisions|prompt|guide|notes|version|v\d+|definitive)\b/g, "")
+    .replace(/\bchapter\s*0*(\d+)\b/g, "chapter $1")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function tokens(s) {
+  return new Set(normalizeName(s).split(/\s+/).filter(t => t.length >= 2));
+}
+
+function scoreName(localName, driveName) {
+  const a = normalizeName(localName);
+  const b = normalizeName(driveName);
+
+===== AUTH / MAIN LINES =====
+4:import { google } from "googleapis";
+8:const DRIVE_DOC_CANDIDATE_Q = "trashed = false and (mimeType = 'application/vnd.google-apps.document' or mimeType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' or mimeType = 'application/msword')";
+12:  TARGET_DIRS.push("src/data-layer/ingestion-buffer/gdrive_raw");
+17:const ARCHIVE_ROOT = `data/source_archive/name_matched_google_docs/${STAMP}`;
+64:function tokens(s) {
+68:function scoreName(localName, driveName) {
+70:  const b = normalizeName(driveName);
+75:  const ta = tokens(a);
+76:  const tb = tokens(b);
+162:async function listDriveDocuments(drive) {
+164:  let pageToken;
+169:    "mimeType='application/vnd.google-apps.document'",
+176:    const res = await drive.files.list({
+177:      q: DRIVE_DOC_CANDIDATE_Q,
+179:      pageToken,
+180:      corpora: "allDrives",
+181:      includeItemsFromAllDrives: true,
+182:      supportsAllDrives: true,
+184:        "nextPageToken,files(id,name,mimeType,size,createdTime,modifiedTime,version,md5Checksum,sha1Checksum,sha256Checksum,webViewLink,parents,owners(displayName,emailAddress),lastModifyingUser(displayName,emailAddress))",
+188:    pageToken = res.data.nextPageToken;
+189:  } while (pageToken);
+194:function matchTargets(targets, driveDocs) {
+196:    const candidates = driveDocs
+213:async function exportGoogleDocx(drive, fileId) {
+214:  const res = await drive.files.export(
+224:async function downloadBinary(drive, fileId) {
+225:  const res = await drive.files.get(
+226:    { fileId, alt: "media", supportsAllDrives: true },
+285:async function saveComments(drive, fileId, outDir) {
+288:  let pageToken;
+292:      const res = await drive.comments.list({
+295:        pageToken,
+298:          "nextPageToken,comments(id,content,quotedFileContent,anchor,author(displayName,emailAddress),createdTime,modifiedTime,deleted,resolved,replies(id,content,author(displayName,emailAddress),createdTime,modifiedTime,deleted,action))",
+302:      pageToken = res.data.nextPageToken;
+307:  } while (pageToken);
+313:async function saveRevisions(drive, fileId, outDir) {
+316:  let pageToken;
+320:      const res = await drive.revisions.list({
+323:        pageToken,
+325:          "nextPageToken,revisions(id,mimeType,modifiedTime,keepForever,published,lastModifyingUser(displayName,emailAddress),originalFilename,md5Checksum,size)",
+329:      pageToken = res.data.nextPageToken;
+334:  } while (pageToken);
+344:      const meta = await drive.revisions.get({
+356:      const media = await drive.revisions.get(
+404:async function archiveOne({ drive, docs, doc, matchedTargets, index }) {
+415:    drive_file: doc,
+427:  writeJson(path.join(docDir, "drive-file-metadata.json"), doc);
+432:    if (doc.mimeType === "application/vnd.google-apps.document") {
+433:      buf = await exportGoogleDocx(drive, doc.id);
+435:      buf = await downloadBinary(drive, doc.id);
+453:  if (doc.mimeType === "application/vnd.google-apps.document") {
+462:    record.comments = await saveComments(drive, doc.id, path.join(docDir, "comments"));
+468:    record.revisions = await saveRevisions(drive, doc.id, path.join(docDir, "revisions"));
+484:console.log("Listing visible Google Docs/DOCX/DOC files...");
+486:const GOOGLE_APPLICATION_CREDENTIALS =
+487:  process.env.GOOGLE_APPLICATION_CREDENTIALS ||
+488:  "secrets/wos-drive-docs-reader.json";
+490:let auth;
+491:if (process.env.GOOGLE_OAUTH_ACCESS_TOKEN) {
+492:  auth = new google.auth.OAuth2();
+493:  auth.setCredentials({ access_token: process.env.GOOGLE_OAUTH_ACCESS_TOKEN });
+494:} else if (fs.existsSync(GOOGLE_APPLICATION_CREDENTIALS)) {
+495:  auth = new google.auth.GoogleAuth({
+496:    keyFile: GOOGLE_APPLICATION_CREDENTIALS,
+497:    scopes: [
+498:      "https://www.googleapis.com/auth/drive.readonly",
+499:      "https://www.googleapis.com/auth/documents.readonly",
+503:  auth = await google.auth.getClient({
+504:    scopes: [
+505:      "https://www.googleapis.com/auth/drive.readonly",
+506:      "https://www.googleapis.com/auth/documents.readonly",
+511:const drive = google.drive({ version: "v3", auth });
+512:const docs = google.docs({ version: "v1", auth });
+514:const driveDocs = await listDriveDocuments(drive);
+515:writeJson(path.join(ARCHIVE_ROOT, "all-drive-doc-candidates.json"), driveDocs);
+517:console.log(`Drive document candidates: ${driveDocs.length}`);
+519:const matches = matchTargets(localTargets, driveDocs);
+544:  const rec = await archiveOne({ drive, docs, doc: item.doc, matchedTargets: item.matchedTargets, index });
+554:  drive_doc_candidates: driveDocs.length,
+558:  unique_drive_docs_archived: archiveRecords.length,

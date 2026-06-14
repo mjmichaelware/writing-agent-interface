@@ -1,0 +1,111 @@
+[
+  {
+    "folder": "0014__Writing_Agent_App._Source_Doc._10_NEUTRON__1E3K37kPN06Ldo2JUMpfuvUXFWqS1FzEPjVRm81AR3GM",
+    "driveName": "Writing Agent App. Source Doc. (10) [NEUTRON]",
+    "driveNorm": "writing agent app source doc 10 neutron",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 149,
+    "raw_target_hits_from_leaf_strings": 1,
+    "raw_target_hits": [
+      {
+        "norm": "1 0 revision",
+        "basenames": [
+          "1.0_Revision.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": false
+  },
+  {
+    "folder": "0035__Chapter1_Q_Final__1AVkfasTxEDmov92ZfAJO2oMrfjvbR81iiupgRitAuvk",
+    "driveName": "Chapter1_Q_Final",
+    "driveNorm": "chapter1 q final",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 149,
+    "raw_target_hits_from_leaf_strings": 4,
+    "raw_target_hits": [
+      {
+        "norm": "chapter 1 version o",
+        "basenames": [
+          "Chapter_1_Version_O.txt"
+        ]
+      },
+      {
+        "norm": "chapter 8 final",
+        "basenames": [
+          "Chapter:_8_(Final).txt"
+        ]
+      },
+      {
+        "norm": "final chapter 1 revision prompt",
+        "basenames": [
+          "-Final_Chapter_1_Revision_Prompt-.txt"
+        ]
+      },
+      {
+        "norm": "d chapter 7 the pit",
+        "basenames": [
+          "(D)_Chapter:_7_-_The_Pit.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": false
+  },
+  {
+    "folder": "0051__Final_Master_Singularity_Compendium_The_Weight_of_the_Sky__1DDzzszQ8wGUYyL1ijSd3WB1wXTHdOHzqKPX5dM2iAhI",
+    "driveName": "Final Master Singularity Compendium: The Weight of the Sky",
+    "driveNorm": "final master singularity compendium the weight of the sky",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 140,
+    "raw_target_hits_from_leaf_strings": 2,
+    "raw_target_hits": [
+      {
+        "norm": "the weight of the sky master compendium singularity v",
+        "basenames": [
+          "THE_WEIGHT_OF_THE_SKY-_MASTER_COMPENDIUM_(SINGULARITY_v.txt"
+        ]
+      },
+      {
+        "norm": "chapter2 weight of the sky",
+        "basenames": [
+          "Chapter2_Weight_of_the_Sky.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": false
+  },
+  {
+    "folder": "0055__MASTER_INDIVIDUALIZED_PLAN_FOR_EMPLOYMENT_IPE_ACADEMIC_ROADMAP__1SJQb5blbY2QTxCiLfz2ji8nbElihx1d2EgeTVp4DnjM",
+    "driveName": "🎓 MASTER INDIVIDUALIZED PLAN FOR EMPLOYMENT (IPE) & ACADEMIC ROADMAP",
+    "driveNorm": "🎓 master individualized plan for employment ipe & academic roadmap",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 149,
+    "raw_target_hits_from_leaf_strings": 1,
+    "raw_target_hits": [
+      {
+        "norm": "version a",
+        "basenames": [
+          "Version_A.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": false
+  },
+  {
+    "folder": "0056__AI_JOB_AGENT_6__11DN2bJYNHPCDCvH6AoWi9JKTzcZeVwPBdcXUIeWP2eU",
+    "driveName": "AI JOB AGENT (6)",
+    "driveNorm": "ai job agent 6",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 149,
+    "raw_target_hits_from_leaf_strings": 1,
+    "raw_target_hits": [
+      {
+        "norm": "version b",
+        "basenames": [
+          "Version_B.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": false
+  }
+]

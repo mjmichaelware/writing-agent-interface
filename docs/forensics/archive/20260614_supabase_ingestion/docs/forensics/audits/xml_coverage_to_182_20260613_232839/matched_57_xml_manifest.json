@@ -1,0 +1,515 @@
+[
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0001__-Final_Chapter_1_Revision_Prompt-__1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0001__-Final_Chapter_1_Revision_Prompt-__1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0/ooxml_current/word/document.xml",
+    "document_xml_sha256": "7d47f296e57e31b2b1dfc8975eaea4f3280bba5b11f24db9206b3c04889ffd90",
+    "document_xml_bytes": 151301,
+    "matched_target_string_count": 1291,
+    "normalized_candidate_count": 203
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ/ooxml_current/word/document.xml",
+    "document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+    "document_xml_bytes": 207874,
+    "matched_target_string_count": 6320,
+    "normalized_candidate_count": 137
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0003__G_Chapter_2-_Living_Sacrifice__1lIqobbwQqWNyBdBuqqoXp9HDT2ddOQ8nxzWIyCWas0s",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0003__G_Chapter_2-_Living_Sacrifice__1lIqobbwQqWNyBdBuqqoXp9HDT2ddOQ8nxzWIyCWas0s/ooxml_current/word/document.xml",
+    "document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+    "document_xml_bytes": 205150,
+    "matched_target_string_count": 2533,
+    "normalized_candidate_count": 84
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0004__G_Chapter_3-_Lift_Up__1XobNLLJg3YY72D9i_360V-UtttUbr_5mhgN1YdMsrTk",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0004__G_Chapter_3-_Lift_Up__1XobNLLJg3YY72D9i_360V-UtttUbr_5mhgN1YdMsrTk/ooxml_current/word/document.xml",
+    "document_xml_sha256": "4c43f128801df7d839bd5fda91fc148c0068a06a98530bf1c45d5fd004db3bcf",
+    "document_xml_bytes": 36958,
+    "matched_target_string_count": 1937,
+    "normalized_candidate_count": 82
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0005__Final_Chapter_5_-_The_Snare__1lMmVYvwHmYuExByWEwlh-rGpUbirDPG7uPeR4gFh37g",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0005__Final_Chapter_5_-_The_Snare__1lMmVYvwHmYuExByWEwlh-rGpUbirDPG7uPeR4gFh37g/ooxml_current/word/document.xml",
+    "document_xml_sha256": "05cffb295e9a217dc9e9eaf4101bddeceac6bf2dee41b9fbf5b7db13c47c9746",
+    "document_xml_bytes": 59378,
+    "matched_target_string_count": 596,
+    "normalized_candidate_count": 71
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0006__Final_Chapter_6-_Beelzebub_Beelzebub__126VrnrFCOCIzrxXqDi8yHHjQYM0ODDGk772YKlL5eQg",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0006__Final_Chapter_6-_Beelzebub_Beelzebub__126VrnrFCOCIzrxXqDi8yHHjQYM0ODDGk772YKlL5eQg/ooxml_current/word/document.xml",
+    "document_xml_sha256": "75678cddb9b409ece00c0e876788ca6d2c7052ada6225e671ac5766569f6b651",
+    "document_xml_bytes": 56417,
+    "matched_target_string_count": 492,
+    "normalized_candidate_count": 63
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0007__Chapter_8_Final__1Oc5a8Cwy91Hg-xdfROvUtr8OjDCGRlw7lz7CBC_l5kI",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0007__Chapter_8_Final__1Oc5a8Cwy91Hg-xdfROvUtr8OjDCGRlw7lz7CBC_l5kI/ooxml_current/word/document.xml",
+    "document_xml_sha256": "8365bf4698d612ac840030130abdb7ab2493e765d8762540331f603dac94c1c2",
+    "document_xml_bytes": 49710,
+    "matched_target_string_count": 582,
+    "normalized_candidate_count": 56
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0008__D__Chapter__7_-_The_Pit__1N_kgc1nQhcDdho0MgY1Niam7DVBsou3PgH8d4Vcct34",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0008__D__Chapter__7_-_The_Pit__1N_kgc1nQhcDdho0MgY1Niam7DVBsou3PgH8d4Vcct34/ooxml_current/word/document.xml",
+    "document_xml_sha256": "820882dd747911211e140fd9ffd3a1a8a879f65acbdebf692e087077f4a3bf98",
+    "document_xml_bytes": 92608,
+    "matched_target_string_count": 745,
+    "normalized_candidate_count": 73
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0009__Final_Chapter_9_The_Ascent__1PIhcIFWBNQSVqjbZsCu08jpdQZy-YMBJyOmtCV_23u0",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0009__Final_Chapter_9_The_Ascent__1PIhcIFWBNQSVqjbZsCu08jpdQZy-YMBJyOmtCV_23u0/ooxml_current/word/document.xml",
+    "document_xml_sha256": "a1236450ce551d5fbe60d290403b39514678445071ef3208d0f4c0731c3000de",
+    "document_xml_bytes": 36137,
+    "matched_target_string_count": 447,
+    "normalized_candidate_count": 70
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0010__Final_Chapter_4_-_Pilgrimage__1opvdSohMWiVq6FgqotsGpFfKsjCDaI2KqTOHsQkwwDU",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0010__Final_Chapter_4_-_Pilgrimage__1opvdSohMWiVq6FgqotsGpFfKsjCDaI2KqTOHsQkwwDU/ooxml_current/word/document.xml",
+    "document_xml_sha256": "e96a02e5791d93a22b796aa6cff56d2ca96d7eae0869a73baa98b249528e7f04",
+    "document_xml_bytes": 46774,
+    "matched_target_string_count": 492,
+    "normalized_candidate_count": 61
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0011__B_Chapter_10_-_Forsaken__1dAVOiCaa3g6lx3r7lLQZ6sxqVOYV5ZsgnfMpxgNJuyk",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0011__B_Chapter_10_-_Forsaken__1dAVOiCaa3g6lx3r7lLQZ6sxqVOYV5ZsgnfMpxgNJuyk/ooxml_current/word/document.xml",
+    "document_xml_sha256": "82c61cde588d5f5e468ca41f66ae07cb88924a7a469f3f041da781d69d6546da",
+    "document_xml_bytes": 190898,
+    "matched_target_string_count": 447,
+    "normalized_candidate_count": 69
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs/ooxml_current/word/document.xml",
+    "document_xml_sha256": "db3da00bd1d210011a312c87dcdde1206cd31d68ce0d91b500ec2689cce5e73c",
+    "document_xml_bytes": 89308,
+    "matched_target_string_count": 632,
+    "normalized_candidate_count": 76
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0013__Prompt_Guide_E_Chapter_10_Forsaken__1HgITZ_aQyru0299o0N46Bd_y_Mrj7p33mnT_hxuBBTo",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0013__Prompt_Guide_E_Chapter_10_Forsaken__1HgITZ_aQyru0299o0N46Bd_y_Mrj7p33mnT_hxuBBTo/ooxml_current/word/document.xml",
+    "document_xml_sha256": "fc0dd98de656c1d6463b59089ddd83f18544e78e1c4a5d1f9dc714bd26ce7fa8",
+    "document_xml_bytes": 49155,
+    "matched_target_string_count": 298,
+    "normalized_candidate_count": 71
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0014__Writing_Agent_App._Source_Doc._10_NEUTRON__1E3K37kPN06Ldo2JUMpfuvUXFWqS1FzEPjVRm81AR3GM",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0014__Writing_Agent_App._Source_Doc._10_NEUTRON__1E3K37kPN06Ldo2JUMpfuvUXFWqS1FzEPjVRm81AR3GM/ooxml_current/word/document.xml",
+    "document_xml_sha256": "2c9b861f837abfe50702d4ba869ee6fa58e0405d1a9dd0f26081459e09e4620b",
+    "document_xml_bytes": 450812,
+    "matched_target_string_count": 149,
+    "normalized_candidate_count": 68
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0015__Old_10.0_Mass_Market__1R-3ttk7q-CXeGPofkbQ-PJ92z4lx0JkEPYDwT_iA2UQ",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0015__Old_10.0_Mass_Market__1R-3ttk7q-CXeGPofkbQ-PJ92z4lx0JkEPYDwT_iA2UQ/ooxml_current/word/document.xml",
+    "document_xml_sha256": "e687ab05bfb48a5e7e93bfd466ee659ebad0b86e74aeb632eadff9b1de5c9d60",
+    "document_xml_bytes": 51502,
+    "matched_target_string_count": 32,
+    "normalized_candidate_count": 16
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0016__10.0_MASTER_SYSTEM_FOR_CHAPTER_REVISION__1INT40kAV4aMrHxVqnOBWY5gMCo8_b19mCOs5B9pkkQA",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0016__10.0_MASTER_SYSTEM_FOR_CHAPTER_REVISION__1INT40kAV4aMrHxVqnOBWY5gMCo8_b19mCOs5B9pkkQA/ooxml_current/word/document.xml",
+    "document_xml_sha256": "33e0e61977b7cd1c0902906f874ea5dde11499406ed88975191f3dd31c3b6d3c",
+    "document_xml_bytes": 121272,
+    "matched_target_string_count": 149,
+    "normalized_candidate_count": 69
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0017__11.0_Error_Catalog__1zZY-E354TAZRM_Zzv9pfSmkvJtSHDJFpaP-uWne5Sac",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0017__11.0_Error_Catalog__1zZY-E354TAZRM_Zzv9pfSmkvJtSHDJFpaP-uWne5Sac/ooxml_current/word/document.xml",
+    "document_xml_sha256": "b5037bee848b4c0e45139f76189c6795ea311c83092ddcdf02de49f19a4beecf",
+    "document_xml_bytes": 52554,
+    "matched_target_string_count": 58,
+    "normalized_candidate_count": 27
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0018__Old_11.0_Final_Revision__1ASj5oM5yY1Ewa7IEk3aSACnn6_9PyH5zmr_3HTlLdXk",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0018__Old_11.0_Final_Revision__1ASj5oM5yY1Ewa7IEk3aSACnn6_9PyH5zmr_3HTlLdXk/ooxml_current/word/document.xml",
+    "document_xml_sha256": "569f69d60a15b48d8e12a9cc6a302d33eb42f5dc9ce391471e1301711553ffdf",
+    "document_xml_bytes": 19160,
+    "matched_target_string_count": 58,
+    "normalized_candidate_count": 28
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0019__11.0_Marketability__17LbSa_mXn1AqggY06lcrn7fIpIWkMisMZYIoNHofxs4",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0019__11.0_Marketability__17LbSa_mXn1AqggY06lcrn7fIpIWkMisMZYIoNHofxs4/ooxml_current/word/document.xml",
+    "document_xml_sha256": "529d457ac5dfd35086f780f2c601b927afdd5050ddaa1ebdf47cb6dffdd9b569",
+    "document_xml_bytes": 17329,
+    "matched_target_string_count": 45,
+    "normalized_candidate_count": 21
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0020__13.0_GENERAL_PRINCIPLES__1PuQA-EZ6b3jclY7Kg_D6GaOrhuJ0Ni4K5SeCbgokRUM",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0020__13.0_GENERAL_PRINCIPLES__1PuQA-EZ6b3jclY7Kg_D6GaOrhuJ0Ni4K5SeCbgokRUM/ooxml_current/word/document.xml",
+    "document_xml_sha256": "4e9e078ded68828b51f3d21efb8c2128cfc6accc39f00a4e50154724310de798",
+    "document_xml_bytes": 806654,
+    "matched_target_string_count": 116,
+    "normalized_candidate_count": 42
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0021__2.0_Critique_Analysis_Guide__1-wIzrxfB8JuYdgegmFrYlL2xm0a00pyDgqP9sv584vc",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0021__2.0_Critique_Analysis_Guide__1-wIzrxfB8JuYdgegmFrYlL2xm0a00pyDgqP9sv584vc/ooxml_current/word/document.xml",
+    "document_xml_sha256": "8d077a3bb24a9a297355d01c3b331c887d41a6589eae13543f1d33d90b599a0c",
+    "document_xml_bytes": 89100,
+    "matched_target_string_count": 58,
+    "normalized_candidate_count": 28
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0022__3.0_Scientific_Guide__1AZfDiQMeHUvEpAUsBAIWVnSEoy7bG7ELWUKdhvrUaRw",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0022__3.0_Scientific_Guide__1AZfDiQMeHUvEpAUsBAIWVnSEoy7bG7ELWUKdhvrUaRw/ooxml_current/word/document.xml",
+    "document_xml_sha256": "20c150503d31f6ac59655ae4f8ba8cb6ecfeccf663176ee5e53da7007cc24657",
+    "document_xml_bytes": 39053,
+    "matched_target_string_count": 32,
+    "normalized_candidate_count": 15
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0023__Old_4.0_12_Rules_For_Life__1phu5CFlnw6v32tGEvQff6d0Z0ZkVHofX2z8UE_6CQi8",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0023__Old_4.0_12_Rules_For_Life__1phu5CFlnw6v32tGEvQff6d0Z0ZkVHofX2z8UE_6CQi8/ooxml_current/word/document.xml",
+    "document_xml_sha256": "9229fb7a2ce744c3ff0e4db6829459f3711a8b1278accb5122c4532027c3a5dc",
+    "document_xml_bytes": 26040,
+    "matched_target_string_count": 32,
+    "normalized_candidate_count": 16
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0024__Old_5.0_Final_Guide__1akR0oxKRMW0X0jItZ4y04smJRdWUw-fackyDVoKZ2qs",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0024__Old_5.0_Final_Guide__1akR0oxKRMW0X0jItZ4y04smJRdWUw-fackyDVoKZ2qs/ooxml_current/word/document.xml",
+    "document_xml_sha256": "95c474b54d3f1574283ee5e0c70d9802930168e86d53950798f00a3e9f6cbe33",
+    "document_xml_bytes": 39577,
+    "matched_target_string_count": 213,
+    "normalized_candidate_count": 85
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0025__5.0_Psychology_Guide__1jtZWe7oV8kkRHeRpSfgGQXASkhpZLPlOrIdID314mP4",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0025__5.0_Psychology_Guide__1jtZWe7oV8kkRHeRpSfgGQXASkhpZLPlOrIdID314mP4/ooxml_current/word/document.xml",
+    "document_xml_sha256": "323b3d68b8a1800c667542bc3992103d068a0c5a954454f7627b357cc42c3ffe",
+    "document_xml_bytes": 51962,
+    "matched_target_string_count": 45,
+    "normalized_candidate_count": 21
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0026__Old_6.0_HIGHEST_PRIORITY_Read_this_first_and_then_again_last__1txdk_mVw0b0kGs2fKsP6VFMjluUnp3EBa5P71E-ldjA",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0026__Old_6.0_HIGHEST_PRIORITY_Read_this_first_and_then_again_last__1txdk_mVw0b0kGs2fKsP6VFMjluUnp3EBa5P71E-ldjA/ooxml_current/word/document.xml",
+    "document_xml_sha256": "b33544764fd27670823de7ab3e59b11f770b6eaba646bfb24d1e7cdbd866bbbe",
+    "document_xml_bytes": 173610,
+    "matched_target_string_count": 32,
+    "normalized_candidate_count": 16
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0027__6.0_Supreme_Generative_Constraint__1BJe5JIvHzhwmC2hSPgEgaSBhyKaLnOZsnaf3V5RiDDU",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0027__6.0_Supreme_Generative_Constraint__1BJe5JIvHzhwmC2hSPgEgaSBhyKaLnOZsnaf3V5RiDDU/ooxml_current/word/document.xml",
+    "document_xml_sha256": "f2caaadcf571ffc5dd134f14d6b3bf6390febf0d973dafe90dbb1d9a5bf00daa",
+    "document_xml_bytes": 63882,
+    "matched_target_string_count": 32,
+    "normalized_candidate_count": 15
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0028__6.0_SYNTHESIS_MANDATE__1DHekOzSR9Xn2QKY21-E0mc2GtnSlWQQX7oayHlF4Yys",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0028__6.0_SYNTHESIS_MANDATE__1DHekOzSR9Xn2QKY21-E0mc2GtnSlWQQX7oayHlF4Yys/ooxml_current/word/document.xml",
+    "document_xml_sha256": "28a80693234a6c45a9c883866cfca2fab285d32b93f910670cf85e7100586f1a",
+    "document_xml_bytes": 171202,
+    "matched_target_string_count": 45,
+    "normalized_candidate_count": 20
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0029__Old_7.0_Nuclear_Edit_CRITICAL_DIRE_EMERGENCY__1s03hIKm0gYjPfC7c7rRBSq53JUB5WS74ER48Wyunmvo",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0029__Old_7.0_Nuclear_Edit_CRITICAL_DIRE_EMERGENCY__1s03hIKm0gYjPfC7c7rRBSq53JUB5WS74ER48Wyunmvo/ooxml_current/word/document.xml",
+    "document_xml_sha256": "1dd55661ce7d291d52e5ce9501373961857b0b15cab9c717d03561a0d1d468ef",
+    "document_xml_bytes": 55994,
+    "matched_target_string_count": 32,
+    "normalized_candidate_count": 16
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0030__8.0_Pacing_Redundancy__1GSaV1KrrQvbPTYtjbTw7OvP6gbyti2-mx5hRhYnkuFM",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0030__8.0_Pacing_Redundancy__1GSaV1KrrQvbPTYtjbTw7OvP6gbyti2-mx5hRhYnkuFM/ooxml_current/word/document.xml",
+    "document_xml_sha256": "4f68507ec6bf8ca4c353368d7172df662ac6cdc2a0f2b78ccd4fa3e5004830c8",
+    "document_xml_bytes": 73207,
+    "matched_target_string_count": 32,
+    "normalized_candidate_count": 16
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0031__ALITTERAS_SYSTEM_BLUEPRINT_v1__1g9I7QCgp6ZIulH3HOsPFrr6rkqmTSzGNXZx48D51OJU",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0031__ALITTERAS_SYSTEM_BLUEPRINT_v1__1g9I7QCgp6ZIulH3HOsPFrr6rkqmTSzGNXZx48D51OJU/ooxml_current/word/document.xml",
+    "document_xml_sha256": "6b01d625303e68975670b3f9d6d623d77ff4e838a626db8b67e5511749fd261f",
+    "document_xml_bytes": 17003,
+    "matched_target_string_count": 45,
+    "normalized_candidate_count": 20
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0032__Chapter_3_-_Commerciality_and_Marketing_3.0__1Tt4fIHXbKaE5yolknIN_uELwk9jXztqh8YMhLqjmtno",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0032__Chapter_3_-_Commerciality_and_Marketing_3.0__1Tt4fIHXbKaE5yolknIN_uELwk9jXztqh8YMhLqjmtno/ooxml_current/word/document.xml",
+    "document_xml_sha256": "f35aed73498d9abad41f1fd19564b64ce024f639764d47cbccf0136e01fabf60",
+    "document_xml_bytes": 20486,
+    "matched_target_string_count": 246,
+    "normalized_candidate_count": 61
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0033__Chapter_3_Integration_Prompt__1HbyI6yEHBBS0Z8IgDF2awqoEoFCs89eG5_DevG3_IRI",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0033__Chapter_3_Integration_Prompt__1HbyI6yEHBBS0Z8IgDF2awqoEoFCs89eG5_DevG3_IRI/ooxml_current/word/document.xml",
+    "document_xml_sha256": "413d643e9e6e88442eabf1ad163b8ef57f967ea459e97843f7ce87b9f4e19606",
+    "document_xml_bytes": 55600,
+    "matched_target_string_count": 369,
+    "normalized_candidate_count": 61
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0034__Chapter_1_Merge_Prompt__18HWPiYaqH72RmXRxnaxF-FaELJke-Fm3t3RH-NRvWN0",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0034__Chapter_1_Merge_Prompt__18HWPiYaqH72RmXRxnaxF-FaELJke-Fm3t3RH-NRvWN0/ooxml_current/word/document.xml",
+    "document_xml_sha256": "3bac9ef330507b7527a245d2e76fdae494800e2d2e9bc0cb4d769a0820fbe61b",
+    "document_xml_bytes": 82897,
+    "matched_target_string_count": 123,
+    "normalized_candidate_count": 57
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0035__Chapter1_Q_Final__1AVkfasTxEDmov92ZfAJO2oMrfjvbR81iiupgRitAuvk",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0035__Chapter1_Q_Final__1AVkfasTxEDmov92ZfAJO2oMrfjvbR81iiupgRitAuvk/ooxml_current/word/document.xml",
+    "document_xml_sha256": "47c9c8c0b00a8eea2cfbd536415e09b3f173cf9f0ff2a2b8a6a3693b4b9d7e20",
+    "document_xml_bytes": 192742,
+    "matched_target_string_count": 149,
+    "normalized_candidate_count": 65
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk/ooxml_current/word/document.xml",
+    "document_xml_sha256": "63d53636998c33c161d9b4eafc74c6a88730b3ece53c3aad51ead15b6dd5c261",
+    "document_xml_bytes": 89180,
+    "matched_target_string_count": 110,
+    "normalized_candidate_count": 52
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0037__Chapter_13_Exodus__1EZfWlpCim0uysWjZ9QjGaCB7BQQUqyJQcSPRbj0GpI4",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0037__Chapter_13_Exodus__1EZfWlpCim0uysWjZ9QjGaCB7BQQUqyJQcSPRbj0GpI4/ooxml_current/word/document.xml",
+    "document_xml_sha256": "ffb3ec91e309c7a0d6b3146e31d6a523628abd67769d6e18b7c3ef8fc8f0f9b7",
+    "document_xml_bytes": 28215,
+    "matched_target_string_count": 110,
+    "normalized_candidate_count": 50
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0038__Chapter_2_-_Analysis_Guides_1.0__1DtI8s5iosC54Zm0W44KcEa5-jdZ7HNAxSYah4J0uFIs",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0038__Chapter_2_-_Analysis_Guides_1.0__1DtI8s5iosC54Zm0W44KcEa5-jdZ7HNAxSYah4J0uFIs/ooxml_current/word/document.xml",
+    "document_xml_sha256": "2367975215577102e2f8ba202957a6ab7b4a479b3647c44ef45b8fc616899b8a",
+    "document_xml_bytes": 68711,
+    "matched_target_string_count": 149,
+    "normalized_candidate_count": 69
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0039__Chapter_3_-_Master_Revision_Prompt_2.0__1mqT9TetHd_8Wja4TkABZhnS1FQpSDAHSvvTnKod1Bbk",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0039__Chapter_3_-_Master_Revision_Prompt_2.0__1mqT9TetHd_8Wja4TkABZhnS1FQpSDAHSvvTnKod1Bbk/ooxml_current/word/document.xml",
+    "document_xml_sha256": "343b1c7c751d41efdd5ca42bfc5114024abf1f828667f3fb14510db1f5b8e308",
+    "document_xml_bytes": 33690,
+    "matched_target_string_count": 298,
+    "normalized_candidate_count": 71
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0040__Chapter_2nd_to_last__145L-3aHQH6XNn-lWhzeIBM46Do2DCuo_5lBckU_Y6k4",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0040__Chapter_2nd_to_last__145L-3aHQH6XNn-lWhzeIBM46Do2DCuo_5lBckU_Y6k4/ooxml_current/word/document.xml",
+    "document_xml_sha256": "f06a2b2bbb8a18be6418f403a93a9541f9be3b345642c12b4c9ed6f116205781",
+    "document_xml_bytes": 43395,
+    "matched_target_string_count": 155,
+    "normalized_candidate_count": 69
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0041__Chapter_3_Analysis_Guides__1FVADnhWwf5nMiHoSjDb0p4Rj81pDRz08E4KhDFZUB2s",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0041__Chapter_3_Analysis_Guides__1FVADnhWwf5nMiHoSjDb0p4Rj81pDRz08E4KhDFZUB2s/ooxml_current/word/document.xml",
+    "document_xml_sha256": "f691c72fd4cbeb8dde6a791a1e0fa3054217eb4e43ffa09d83a431d718ea0b23",
+    "document_xml_bytes": 78941,
+    "matched_target_string_count": 136,
+    "normalized_candidate_count": 63
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0042__Chapter_1_Proof_of_Authorship_1.0__1UJQ79YUROKhtLY73bppM6XQiXZLtkCnA6Qbn7HisMzk",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0042__Chapter_1_Proof_of_Authorship_1.0__1UJQ79YUROKhtLY73bppM6XQiXZLtkCnA6Qbn7HisMzk/ooxml_current/word/document.xml",
+    "document_xml_sha256": "c63ef0afc4d6e6b5ff2083d11f1c6e5d550cd193fe98ca045915356092995b7e",
+    "document_xml_bytes": 59261,
+    "matched_target_string_count": 149,
+    "normalized_candidate_count": 67
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0043__Chapter_1_Proof_of_Authorship_1.1__1Q3f6XFlTodANFVbNr2ebSM5Mx4UnPWdre7NCwhopKgE",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0043__Chapter_1_Proof_of_Authorship_1.1__1Q3f6XFlTodANFVbNr2ebSM5Mx4UnPWdre7NCwhopKgE/ooxml_current/word/document.xml",
+    "document_xml_sha256": "9580419307a5befff57983151cc7285ca03405939c400337532ed155214c22d4",
+    "document_xml_bytes": 86709,
+    "matched_target_string_count": 123,
+    "normalized_candidate_count": 56
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0044__Chapter_10_-_MASTER_BRIEFING__1eEillHIiOZLGJ4vj0Bm_9zjn3KjvxSHb291Rn7qsT9o",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0044__Chapter_10_-_MASTER_BRIEFING__1eEillHIiOZLGJ4vj0Bm_9zjn3KjvxSHb291Rn7qsT9o/ooxml_current/word/document.xml",
+    "document_xml_sha256": "fc625bb7aaeb02b01d708b380591dd6c5a9229e5dd8a40134a5311aedfc792eb",
+    "document_xml_bytes": 474989,
+    "matched_target_string_count": 149,
+    "normalized_candidate_count": 67
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0045__Chapter2_Weight_of_the_Sky__1dBjRsoqexbBVZUYJTbZlybhH8cMGE1twD9kDtXh1kX8",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0045__Chapter2_Weight_of_the_Sky__1dBjRsoqexbBVZUYJTbZlybhH8cMGE1twD9kDtXh1kX8/ooxml_current/word/document.xml",
+    "document_xml_sha256": "02bcd94e041ea45fa6c9919fd744783357937ca87b6f0f49eda052994ba45a3a",
+    "document_xml_bytes": 490197,
+    "matched_target_string_count": 152,
+    "normalized_candidate_count": 71
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0046__Critique_2.2__1ezVF2n-KfiIMcW_TGPLa0F9PYeFvu8hkbQiJ960TCog",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0046__Critique_2.2__1ezVF2n-KfiIMcW_TGPLa0F9PYeFvu8hkbQiJ960TCog/ooxml_current/word/document.xml",
+    "document_xml_sha256": "7f5f5993992f6c7df4f1d42ea369e77ab7e92b29005a5e1bafd07df630df6947",
+    "document_xml_bytes": 45208,
+    "matched_target_string_count": 32,
+    "normalized_candidate_count": 16
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0047__Final_Revision_Generalized_For_All_Chapters__1E7XbIvODIR4MJFE1xEgvrztllRlZl1qgEgtmMHnpa90",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0047__Final_Revision_Generalized_For_All_Chapters__1E7XbIvODIR4MJFE1xEgvrztllRlZl1qgEgtmMHnpa90/ooxml_current/word/document.xml",
+    "document_xml_sha256": "d09b291798f2475c00e4905b932671251dba0e12d941be4853cd6822f43c0579",
+    "document_xml_bytes": 97072,
+    "matched_target_string_count": 45,
+    "normalized_candidate_count": 21
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0048__MANUSCRIPT_AUTOPSY__16WAz5M7Vgdb7fDukQbPUBRvip4Co4784WpldwFfON40",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0048__MANUSCRIPT_AUTOPSY__16WAz5M7Vgdb7fDukQbPUBRvip4Co4784WpldwFfON40/ooxml_current/word/document.xml",
+    "document_xml_sha256": "d15afcfe6dca67ce4d90449915bd0acf67bc114a3eb447b90992886282ada6b7",
+    "document_xml_bytes": 23423,
+    "matched_target_string_count": 32,
+    "normalized_candidate_count": 14
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0049__Narnia__1KDPy4WOiZz35EmUTJFGdEXJjoDdD4QD2vUKLnwoic_M",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0049__Narnia__1KDPy4WOiZz35EmUTJFGdEXJjoDdD4QD2vUKLnwoic_M/ooxml_current/word/document.xml",
+    "document_xml_sha256": "d17e0c90f05303a59eee40aaf1860027a79e67bdef571a39e2aa3a1b177c677c",
+    "document_xml_bytes": 288725,
+    "matched_target_string_count": 32,
+    "normalized_candidate_count": 14
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0050__21.0_Purple_Prose_Prompt_Protocol__18ij8f9pABf8aF9UkeLAgWhHovpEBjywHqeTq5Z2CGqw",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0050__21.0_Purple_Prose_Prompt_Protocol__18ij8f9pABf8aF9UkeLAgWhHovpEBjywHqeTq5Z2CGqw/ooxml_current/word/document.xml",
+    "document_xml_sha256": "d7b9e8b38889a8b33f3de222d2b1acc65f4689f37f76456078a49090438e2b67",
+    "document_xml_bytes": 12397,
+    "matched_target_string_count": 32,
+    "normalized_candidate_count": 16
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0051__Final_Master_Singularity_Compendium_The_Weight_of_the_Sky__1DDzzszQ8wGUYyL1ijSd3WB1wXTHdOHzqKPX5dM2iAhI",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0051__Final_Master_Singularity_Compendium_The_Weight_of_the_Sky__1DDzzszQ8wGUYyL1ijSd3WB1wXTHdOHzqKPX5dM2iAhI/ooxml_current/word/document.xml",
+    "document_xml_sha256": "fca03ab3082da66586eed959b42407326e3f2ccbb08451acee4bb7e412782dee",
+    "document_xml_bytes": 55922,
+    "matched_target_string_count": 140,
+    "normalized_candidate_count": 68
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0052__The_Weight_of_the_Sky_The_Fall_into_Megiddo__1m3WUXh2oiJ7Jb4RJYbHjsQNfQxH0sDnV5BAbAbJlzf0",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0052__The_Weight_of_the_Sky_The_Fall_into_Megiddo__1m3WUXh2oiJ7Jb4RJYbHjsQNfQxH0sDnV5BAbAbJlzf0/ooxml_current/word/document.xml",
+    "document_xml_sha256": "836d48bf999db10ea7b36056c14274087c4433009e211731e037b0ba7c5e5a29",
+    "document_xml_bytes": 50925,
+    "matched_target_string_count": 127,
+    "normalized_candidate_count": 61
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0053__ToALITTERAS_ECOSYSTEM_v2__1E_8U7x7RbqS_HJi3gOwOqAsHXEABBPUT4gIQ3Dqa8kM",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0053__ToALITTERAS_ECOSYSTEM_v2__1E_8U7x7RbqS_HJi3gOwOqAsHXEABBPUT4gIQ3Dqa8kM/ooxml_current/word/document.xml",
+    "document_xml_sha256": "9914c43d702861293aa278fe51b455ac3fd6de78e7aa7f19cd2df50d0f170006",
+    "document_xml_bytes": 16516,
+    "matched_target_string_count": 32,
+    "normalized_candidate_count": 15
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0054__Untitled_document__1ltQkkFoUx_aa4yItr8RG-5mDB3AwaK4e5tKbnBQmS60",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0054__Untitled_document__1ltQkkFoUx_aa4yItr8RG-5mDB3AwaK4e5tKbnBQmS60/ooxml_current/word/document.xml",
+    "document_xml_sha256": "23e367947fb3763dbbe8f9e05f821c343e932b3443035dcbca88bfa35fd36bb3",
+    "document_xml_bytes": 2183,
+    "matched_target_string_count": 136,
+    "normalized_candidate_count": 52
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0055__MASTER_INDIVIDUALIZED_PLAN_FOR_EMPLOYMENT_IPE_ACADEMIC_ROADMAP__1SJQb5blbY2QTxCiLfz2ji8nbElihx1d2EgeTVp4DnjM",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0055__MASTER_INDIVIDUALIZED_PLAN_FOR_EMPLOYMENT_IPE_ACADEMIC_ROADMAP__1SJQb5blbY2QTxCiLfz2ji8nbElihx1d2EgeTVp4DnjM/ooxml_current/word/document.xml",
+    "document_xml_sha256": "280ced17c3504828bd251da49b7ceba5652a80c675c940b0d7d134d5b242431c",
+    "document_xml_bytes": 30354,
+    "matched_target_string_count": 149,
+    "normalized_candidate_count": 69
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0056__AI_JOB_AGENT_6__11DN2bJYNHPCDCvH6AoWi9JKTzcZeVwPBdcXUIeWP2eU",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0056__AI_JOB_AGENT_6__11DN2bJYNHPCDCvH6AoWi9JKTzcZeVwPBdcXUIeWP2eU/ooxml_current/word/document.xml",
+    "document_xml_sha256": "a686c3bbdf31b2a026bd081919a2ce0c1f999eb2eea6c584504c4d4f73b6434f",
+    "document_xml_bytes": 621795,
+    "matched_target_string_count": 149,
+    "normalized_candidate_count": 68
+  },
+  {
+    "doc_folder": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0057__WOS_Ch7_The_Pit__1ZmaR8NIPqxMhsyICXsv3gesiDd4pgmQtOFeEWe0VwWI",
+    "has_document_xml": true,
+    "document_xml_path": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0057__WOS_Ch7_The_Pit__1ZmaR8NIPqxMhsyICXsv3gesiDd4pgmQtOFeEWe0VwWI/ooxml_current/word/document.xml",
+    "document_xml_sha256": "2aacc14aac8f0b4dd4f9ada5a9157f999c77694360aedef65c6931af035e0a09",
+    "document_xml_bytes": 51604,
+    "matched_target_string_count": 58,
+    "normalized_candidate_count": 26
+  }
+]

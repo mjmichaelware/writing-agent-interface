@@ -1,0 +1,703 @@
+[
+  {
+    "norm": "final chapter 1 revision prompt",
+    "basenames": [
+      "-Final_Chapter_1_Revision_Prompt-.txt"
+    ],
+    "docs": [
+      {
+        "folder": "0001__-Final_Chapter_1_Revision_Prompt-__1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0",
+        "driveName": "-Final Chapter 1 Revision Prompt-"
+      },
+      {
+        "folder": "0004__G_Chapter_3-_Lift_Up__1XobNLLJg3YY72D9i_360V-UtttUbr_5mhgN1YdMsrTk",
+        "driveName": "(G) Chapter 3- Lift Up"
+      },
+      {
+        "folder": "0005__Final_Chapter_5_-_The_Snare__1lMmVYvwHmYuExByWEwlh-rGpUbirDPG7uPeR4gFh37g",
+        "driveName": "(Final) Chapter 5 - The Snare"
+      },
+      {
+        "folder": "0006__Final_Chapter_6-_Beelzebub_Beelzebub__126VrnrFCOCIzrxXqDi8yHHjQYM0ODDGk772YKlL5eQg",
+        "driveName": "(Final) Chapter 6- Beelzebub, Beelzebub"
+      },
+      {
+        "folder": "0007__Chapter_8_Final__1Oc5a8Cwy91Hg-xdfROvUtr8OjDCGRlw7lz7CBC_l5kI",
+        "driveName": "Chapter: 8 (Final)"
+      },
+      {
+        "folder": "0008__D__Chapter__7_-_The_Pit__1N_kgc1nQhcDdho0MgY1Niam7DVBsou3PgH8d4Vcct34",
+        "driveName": "(D)_Chapter__7_-_The_Pit"
+      },
+      {
+        "folder": "0009__Final_Chapter_9_The_Ascent__1PIhcIFWBNQSVqjbZsCu08jpdQZy-YMBJyOmtCV_23u0",
+        "driveName": "(Final) Chapter 9: The Ascent"
+      },
+      {
+        "folder": "0010__Final_Chapter_4_-_Pilgrimage__1opvdSohMWiVq6FgqotsGpFfKsjCDaI2KqTOHsQkwwDU",
+        "driveName": "(Final) Chapter 4 - Pilgrimage"
+      },
+      {
+        "folder": "0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+        "driveName": "(Notes) (P) Chapter: 1 - Stardust to Stardust"
+      },
+      {
+        "folder": "0013__Prompt_Guide_E_Chapter_10_Forsaken__1HgITZ_aQyru0299o0N46Bd_y_Mrj7p33mnT_hxuBBTo",
+        "driveName": "(Prompt Guide (E)) Chapter 10: Forsaken"
+      },
+      {
+        "folder": "0016__10.0_MASTER_SYSTEM_FOR_CHAPTER_REVISION__1INT40kAV4aMrHxVqnOBWY5gMCo8_b19mCOs5B9pkkQA",
+        "driveName": "10.0 MASTER SYSTEM FOR CHAPTER REVISION"
+      },
+      {
+        "folder": "0024__Old_5.0_Final_Guide__1akR0oxKRMW0X0jItZ4y04smJRdWUw-fackyDVoKZ2qs",
+        "driveName": "(Old) 5.0 Final Guide"
+      },
+      {
+        "folder": "0032__Chapter_3_-_Commerciality_and_Marketing_3.0__1Tt4fIHXbKaE5yolknIN_uELwk9jXztqh8YMhLqjmtno",
+        "driveName": "Chapter 3 - Commerciality and Marketing 3.0"
+      },
+      {
+        "folder": "0033__Chapter_3_Integration_Prompt__1HbyI6yEHBBS0Z8IgDF2awqoEoFCs89eG5_DevG3_IRI",
+        "driveName": "Chapter 3 Integration Prompt"
+      },
+      {
+        "folder": "0034__Chapter_1_Merge_Prompt__18HWPiYaqH72RmXRxnaxF-FaELJke-Fm3t3RH-NRvWN0",
+        "driveName": "Chapter 1 Merge Prompt"
+      },
+      {
+        "folder": "0035__Chapter1_Q_Final__1AVkfasTxEDmov92ZfAJO2oMrfjvbR81iiupgRitAuvk",
+        "driveName": "Chapter1_Q_Final"
+      },
+      {
+        "folder": "0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "driveName": "Chapter 10.5"
+      },
+      {
+        "folder": "0037__Chapter_13_Exodus__1EZfWlpCim0uysWjZ9QjGaCB7BQQUqyJQcSPRbj0GpI4",
+        "driveName": "Chapter 13: Exodus"
+      },
+      {
+        "folder": "0038__Chapter_2_-_Analysis_Guides_1.0__1DtI8s5iosC54Zm0W44KcEa5-jdZ7HNAxSYah4J0uFIs",
+        "driveName": "Chapter 2 - Analysis & Guides 1.0"
+      },
+      {
+        "folder": "0039__Chapter_3_-_Master_Revision_Prompt_2.0__1mqT9TetHd_8Wja4TkABZhnS1FQpSDAHSvvTnKod1Bbk",
+        "driveName": "Chapter 3 - Master Revision Prompt 2.0"
+      },
+      {
+        "folder": "0040__Chapter_2nd_to_last__145L-3aHQH6XNn-lWhzeIBM46Do2DCuo_5lBckU_Y6k4",
+        "driveName": "Chapter 2nd to last"
+      },
+      {
+        "folder": "0041__Chapter_3_Analysis_Guides__1FVADnhWwf5nMiHoSjDb0p4Rj81pDRz08E4KhDFZUB2s",
+        "driveName": "Chapter 3 Analysis & Guides"
+      },
+      {
+        "folder": "0042__Chapter_1_Proof_of_Authorship_1.0__1UJQ79YUROKhtLY73bppM6XQiXZLtkCnA6Qbn7HisMzk",
+        "driveName": "Chapter: 1 Proof of Authorship 1.0"
+      },
+      {
+        "folder": "0043__Chapter_1_Proof_of_Authorship_1.1__1Q3f6XFlTodANFVbNr2ebSM5Mx4UnPWdre7NCwhopKgE",
+        "driveName": "Chapter: 1 Proof of Authorship 1.1"
+      },
+      {
+        "folder": "0044__Chapter_10_-_MASTER_BRIEFING__1eEillHIiOZLGJ4vj0Bm_9zjn3KjvxSHb291Rn7qsT9o",
+        "driveName": "Chapter: 10 - MASTER BRIEFING"
+      },
+      {
+        "folder": "0045__Chapter2_Weight_of_the_Sky__1dBjRsoqexbBVZUYJTbZlybhH8cMGE1twD9kDtXh1kX8",
+        "driveName": "Chapter2_Weight_of_the_Sky"
+      }
+    ]
+  },
+  {
+    "norm": "chapter 8 final",
+    "basenames": [
+      "Chapter:_8_(Final).txt"
+    ],
+    "docs": [
+      {
+        "folder": "0001__-Final_Chapter_1_Revision_Prompt-__1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0",
+        "driveName": "-Final Chapter 1 Revision Prompt-"
+      },
+      {
+        "folder": "0005__Final_Chapter_5_-_The_Snare__1lMmVYvwHmYuExByWEwlh-rGpUbirDPG7uPeR4gFh37g",
+        "driveName": "(Final) Chapter 5 - The Snare"
+      },
+      {
+        "folder": "0006__Final_Chapter_6-_Beelzebub_Beelzebub__126VrnrFCOCIzrxXqDi8yHHjQYM0ODDGk772YKlL5eQg",
+        "driveName": "(Final) Chapter 6- Beelzebub, Beelzebub"
+      },
+      {
+        "folder": "0007__Chapter_8_Final__1Oc5a8Cwy91Hg-xdfROvUtr8OjDCGRlw7lz7CBC_l5kI",
+        "driveName": "Chapter: 8 (Final)"
+      },
+      {
+        "folder": "0008__D__Chapter__7_-_The_Pit__1N_kgc1nQhcDdho0MgY1Niam7DVBsou3PgH8d4Vcct34",
+        "driveName": "(D)_Chapter__7_-_The_Pit"
+      },
+      {
+        "folder": "0009__Final_Chapter_9_The_Ascent__1PIhcIFWBNQSVqjbZsCu08jpdQZy-YMBJyOmtCV_23u0",
+        "driveName": "(Final) Chapter 9: The Ascent"
+      },
+      {
+        "folder": "0010__Final_Chapter_4_-_Pilgrimage__1opvdSohMWiVq6FgqotsGpFfKsjCDaI2KqTOHsQkwwDU",
+        "driveName": "(Final) Chapter 4 - Pilgrimage"
+      },
+      {
+        "folder": "0016__10.0_MASTER_SYSTEM_FOR_CHAPTER_REVISION__1INT40kAV4aMrHxVqnOBWY5gMCo8_b19mCOs5B9pkkQA",
+        "driveName": "10.0 MASTER SYSTEM FOR CHAPTER REVISION"
+      },
+      {
+        "folder": "0024__Old_5.0_Final_Guide__1akR0oxKRMW0X0jItZ4y04smJRdWUw-fackyDVoKZ2qs",
+        "driveName": "(Old) 5.0 Final Guide"
+      },
+      {
+        "folder": "0032__Chapter_3_-_Commerciality_and_Marketing_3.0__1Tt4fIHXbKaE5yolknIN_uELwk9jXztqh8YMhLqjmtno",
+        "driveName": "Chapter 3 - Commerciality and Marketing 3.0"
+      },
+      {
+        "folder": "0033__Chapter_3_Integration_Prompt__1HbyI6yEHBBS0Z8IgDF2awqoEoFCs89eG5_DevG3_IRI",
+        "driveName": "Chapter 3 Integration Prompt"
+      },
+      {
+        "folder": "0034__Chapter_1_Merge_Prompt__18HWPiYaqH72RmXRxnaxF-FaELJke-Fm3t3RH-NRvWN0",
+        "driveName": "Chapter 1 Merge Prompt"
+      },
+      {
+        "folder": "0035__Chapter1_Q_Final__1AVkfasTxEDmov92ZfAJO2oMrfjvbR81iiupgRitAuvk",
+        "driveName": "Chapter1_Q_Final"
+      },
+      {
+        "folder": "0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "driveName": "Chapter 10.5"
+      },
+      {
+        "folder": "0037__Chapter_13_Exodus__1EZfWlpCim0uysWjZ9QjGaCB7BQQUqyJQcSPRbj0GpI4",
+        "driveName": "Chapter 13: Exodus"
+      },
+      {
+        "folder": "0038__Chapter_2_-_Analysis_Guides_1.0__1DtI8s5iosC54Zm0W44KcEa5-jdZ7HNAxSYah4J0uFIs",
+        "driveName": "Chapter 2 - Analysis & Guides 1.0"
+      },
+      {
+        "folder": "0039__Chapter_3_-_Master_Revision_Prompt_2.0__1mqT9TetHd_8Wja4TkABZhnS1FQpSDAHSvvTnKod1Bbk",
+        "driveName": "Chapter 3 - Master Revision Prompt 2.0"
+      },
+      {
+        "folder": "0040__Chapter_2nd_to_last__145L-3aHQH6XNn-lWhzeIBM46Do2DCuo_5lBckU_Y6k4",
+        "driveName": "Chapter 2nd to last"
+      },
+      {
+        "folder": "0041__Chapter_3_Analysis_Guides__1FVADnhWwf5nMiHoSjDb0p4Rj81pDRz08E4KhDFZUB2s",
+        "driveName": "Chapter 3 Analysis & Guides"
+      },
+      {
+        "folder": "0042__Chapter_1_Proof_of_Authorship_1.0__1UJQ79YUROKhtLY73bppM6XQiXZLtkCnA6Qbn7HisMzk",
+        "driveName": "Chapter: 1 Proof of Authorship 1.0"
+      },
+      {
+        "folder": "0043__Chapter_1_Proof_of_Authorship_1.1__1Q3f6XFlTodANFVbNr2ebSM5Mx4UnPWdre7NCwhopKgE",
+        "driveName": "Chapter: 1 Proof of Authorship 1.1"
+      },
+      {
+        "folder": "0044__Chapter_10_-_MASTER_BRIEFING__1eEillHIiOZLGJ4vj0Bm_9zjn3KjvxSHb291Rn7qsT9o",
+        "driveName": "Chapter: 10 - MASTER BRIEFING"
+      },
+      {
+        "folder": "0045__Chapter2_Weight_of_the_Sky__1dBjRsoqexbBVZUYJTbZlybhH8cMGE1twD9kDtXh1kX8",
+        "driveName": "Chapter2_Weight_of_the_Sky"
+      }
+    ]
+  },
+  {
+    "norm": "r chapter 1 stardust to stardust",
+    "basenames": [
+      "(R) Chapter: 1 - Stardust to Stardust .txt",
+      "(R)_Chapter:_1_-_Stardust_to_Stardust_.txt"
+    ],
+    "docs": [
+      {
+        "folder": "0001__-Final_Chapter_1_Revision_Prompt-__1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0",
+        "driveName": "-Final Chapter 1 Revision Prompt-"
+      },
+      {
+        "folder": "0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+        "driveName": "(R) Chapter: 1 - Stardust to Stardust "
+      },
+      {
+        "folder": "0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+        "driveName": "(Notes) (P) Chapter: 1 - Stardust to Stardust"
+      },
+      {
+        "folder": "0024__Old_5.0_Final_Guide__1akR0oxKRMW0X0jItZ4y04smJRdWUw-fackyDVoKZ2qs",
+        "driveName": "(Old) 5.0 Final Guide"
+      },
+      {
+        "folder": "0040__Chapter_2nd_to_last__145L-3aHQH6XNn-lWhzeIBM46Do2DCuo_5lBckU_Y6k4",
+        "driveName": "Chapter 2nd to last"
+      }
+    ]
+  },
+  {
+    "norm": "chapter 1 stardust to stardust",
+    "basenames": [
+      "Chapter:_1_-_Stardust_to_Stardust.txt",
+      "Chapter_1:_Stardust_to_Stardust.txt",
+      "Chapter_1_-_Stardust_to_Stardust.txt",
+      "﻿Chapter_1-_Stardust_to_Stardust.txt"
+    ],
+    "docs": [
+      {
+        "folder": "0001__-Final_Chapter_1_Revision_Prompt-__1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0",
+        "driveName": "-Final Chapter 1 Revision Prompt-"
+      },
+      {
+        "folder": "0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+        "driveName": "(R) Chapter: 1 - Stardust to Stardust "
+      },
+      {
+        "folder": "0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+        "driveName": "(Notes) (P) Chapter: 1 - Stardust to Stardust"
+      },
+      {
+        "folder": "0024__Old_5.0_Final_Guide__1akR0oxKRMW0X0jItZ4y04smJRdWUw-fackyDVoKZ2qs",
+        "driveName": "(Old) 5.0 Final Guide"
+      },
+      {
+        "folder": "0040__Chapter_2nd_to_last__145L-3aHQH6XNn-lWhzeIBM46Do2DCuo_5lBckU_Y6k4",
+        "driveName": "Chapter 2nd to last"
+      }
+    ]
+  },
+  {
+    "norm": "chapter 1 version o",
+    "basenames": [
+      "Chapter_1_Version_O.txt"
+    ],
+    "docs": [
+      {
+        "folder": "0001__-Final_Chapter_1_Revision_Prompt-__1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0",
+        "driveName": "-Final Chapter 1 Revision Prompt-"
+      },
+      {
+        "folder": "0005__Final_Chapter_5_-_The_Snare__1lMmVYvwHmYuExByWEwlh-rGpUbirDPG7uPeR4gFh37g",
+        "driveName": "(Final) Chapter 5 - The Snare"
+      },
+      {
+        "folder": "0006__Final_Chapter_6-_Beelzebub_Beelzebub__126VrnrFCOCIzrxXqDi8yHHjQYM0ODDGk772YKlL5eQg",
+        "driveName": "(Final) Chapter 6- Beelzebub, Beelzebub"
+      },
+      {
+        "folder": "0007__Chapter_8_Final__1Oc5a8Cwy91Hg-xdfROvUtr8OjDCGRlw7lz7CBC_l5kI",
+        "driveName": "Chapter: 8 (Final)"
+      },
+      {
+        "folder": "0008__D__Chapter__7_-_The_Pit__1N_kgc1nQhcDdho0MgY1Niam7DVBsou3PgH8d4Vcct34",
+        "driveName": "(D)_Chapter__7_-_The_Pit"
+      },
+      {
+        "folder": "0009__Final_Chapter_9_The_Ascent__1PIhcIFWBNQSVqjbZsCu08jpdQZy-YMBJyOmtCV_23u0",
+        "driveName": "(Final) Chapter 9: The Ascent"
+      },
+      {
+        "folder": "0010__Final_Chapter_4_-_Pilgrimage__1opvdSohMWiVq6FgqotsGpFfKsjCDaI2KqTOHsQkwwDU",
+        "driveName": "(Final) Chapter 4 - Pilgrimage"
+      },
+      {
+        "folder": "0016__10.0_MASTER_SYSTEM_FOR_CHAPTER_REVISION__1INT40kAV4aMrHxVqnOBWY5gMCo8_b19mCOs5B9pkkQA",
+        "driveName": "10.0 MASTER SYSTEM FOR CHAPTER REVISION"
+      },
+      {
+        "folder": "0024__Old_5.0_Final_Guide__1akR0oxKRMW0X0jItZ4y04smJRdWUw-fackyDVoKZ2qs",
+        "driveName": "(Old) 5.0 Final Guide"
+      },
+      {
+        "folder": "0032__Chapter_3_-_Commerciality_and_Marketing_3.0__1Tt4fIHXbKaE5yolknIN_uELwk9jXztqh8YMhLqjmtno",
+        "driveName": "Chapter 3 - Commerciality and Marketing 3.0"
+      },
+      {
+        "folder": "0033__Chapter_3_Integration_Prompt__1HbyI6yEHBBS0Z8IgDF2awqoEoFCs89eG5_DevG3_IRI",
+        "driveName": "Chapter 3 Integration Prompt"
+      },
+      {
+        "folder": "0034__Chapter_1_Merge_Prompt__18HWPiYaqH72RmXRxnaxF-FaELJke-Fm3t3RH-NRvWN0",
+        "driveName": "Chapter 1 Merge Prompt"
+      },
+      {
+        "folder": "0035__Chapter1_Q_Final__1AVkfasTxEDmov92ZfAJO2oMrfjvbR81iiupgRitAuvk",
+        "driveName": "Chapter1_Q_Final"
+      },
+      {
+        "folder": "0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+        "driveName": "Chapter 10.5"
+      },
+      {
+        "folder": "0037__Chapter_13_Exodus__1EZfWlpCim0uysWjZ9QjGaCB7BQQUqyJQcSPRbj0GpI4",
+        "driveName": "Chapter 13: Exodus"
+      },
+      {
+        "folder": "0038__Chapter_2_-_Analysis_Guides_1.0__1DtI8s5iosC54Zm0W44KcEa5-jdZ7HNAxSYah4J0uFIs",
+        "driveName": "Chapter 2 - Analysis & Guides 1.0"
+      },
+      {
+        "folder": "0039__Chapter_3_-_Master_Revision_Prompt_2.0__1mqT9TetHd_8Wja4TkABZhnS1FQpSDAHSvvTnKod1Bbk",
+        "driveName": "Chapter 3 - Master Revision Prompt 2.0"
+      },
+      {
+        "folder": "0040__Chapter_2nd_to_last__145L-3aHQH6XNn-lWhzeIBM46Do2DCuo_5lBckU_Y6k4",
+        "driveName": "Chapter 2nd to last"
+      },
+      {
+        "folder": "0041__Chapter_3_Analysis_Guides__1FVADnhWwf5nMiHoSjDb0p4Rj81pDRz08E4KhDFZUB2s",
+        "driveName": "Chapter 3 Analysis & Guides"
+      },
+      {
+        "folder": "0042__Chapter_1_Proof_of_Authorship_1.0__1UJQ79YUROKhtLY73bppM6XQiXZLtkCnA6Qbn7HisMzk",
+        "driveName": "Chapter: 1 Proof of Authorship 1.0"
+      },
+      {
+        "folder": "0043__Chapter_1_Proof_of_Authorship_1.1__1Q3f6XFlTodANFVbNr2ebSM5Mx4UnPWdre7NCwhopKgE",
+        "driveName": "Chapter: 1 Proof of Authorship 1.1"
+      },
+      {
+        "folder": "0044__Chapter_10_-_MASTER_BRIEFING__1eEillHIiOZLGJ4vj0Bm_9zjn3KjvxSHb291Rn7qsT9o",
+        "driveName": "Chapter: 10 - MASTER BRIEFING"
+      },
+      {
+        "folder": "0045__Chapter2_Weight_of_the_Sky__1dBjRsoqexbBVZUYJTbZlybhH8cMGE1twD9kDtXh1kX8",
+        "driveName": "Chapter2_Weight_of_the_Sky"
+      }
+    ]
+  },
+  {
+    "norm": "chapter 3 integration prompt",
+    "basenames": [
+      "Chapter_3_Integration_Prompt.txt"
+    ],
+    "docs": [
+      {
+        "folder": "0001__-Final_Chapter_1_Revision_Prompt-__1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0",
+        "driveName": "-Final Chapter 1 Revision Prompt-"
+      },
+      {
+        "folder": "0033__Chapter_3_Integration_Prompt__1HbyI6yEHBBS0Z8IgDF2awqoEoFCs89eG5_DevG3_IRI",
+        "driveName": "Chapter 3 Integration Prompt"
+      }
+    ]
+  },
+  {
+    "norm": "chapter 10 forsaken final definitive",
+    "basenames": [
+      "Chapter_10_Forsaken_FINAL_DEFINITIVE.txt"
+    ],
+    "docs": [
+      {
+        "folder": "0001__-Final_Chapter_1_Revision_Prompt-__1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0",
+        "driveName": "-Final Chapter 1 Revision Prompt-"
+      },
+      {
+        "folder": "0011__B_Chapter_10_-_Forsaken__1dAVOiCaa3g6lx3r7lLQZ6sxqVOYV5ZsgnfMpxgNJuyk",
+        "driveName": "(B) Chapter: 10 - Forsaken"
+      },
+      {
+        "folder": "0013__Prompt_Guide_E_Chapter_10_Forsaken__1HgITZ_aQyru0299o0N46Bd_y_Mrj7p33mnT_hxuBBTo",
+        "driveName": "(Prompt Guide (E)) Chapter 10: Forsaken"
+      }
+    ]
+  },
+  {
+    "norm": "prompt guide e chapter 10 forsaken",
+    "basenames": [
+      "(Prompt_Guide_(E))_Chapter_10:_Forsaken.txt"
+    ],
+    "docs": [
+      {
+        "folder": "0001__-Final_Chapter_1_Revision_Prompt-__1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0",
+        "driveName": "-Final Chapter 1 Revision Prompt-"
+      },
+      {
+        "folder": "0013__Prompt_Guide_E_Chapter_10_Forsaken__1HgITZ_aQyru0299o0N46Bd_y_Mrj7p33mnT_hxuBBTo",
+        "driveName": "(Prompt Guide (E)) Chapter 10: Forsaken"
+      }
+    ]
+  },
+  {
+    "norm": "d chapter 7 the pit",
+    "basenames": [
+      "(D)_Chapter:_7_-_The_Pit.txt"
+    ],
+    "docs": [
+      {
+        "folder": "0001__-Final_Chapter_1_Revision_Prompt-__1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0",
+        "driveName": "-Final Chapter 1 Revision Prompt-"
+      },
+      {
+        "folder": "0005__Final_Chapter_5_-_The_Snare__1lMmVYvwHmYuExByWEwlh-rGpUbirDPG7uPeR4gFh37g",
+        "driveName": "(Final) Chapter 5 - The Snare"
+      },
+      {
+        "folder": "0008__D__Chapter__7_-_The_Pit__1N_kgc1nQhcDdho0MgY1Niam7DVBsou3PgH8d4Vcct34",
+        "driveName": "(D)_Chapter__7_-_The_Pit"
+      },
+      {
+        "folder": "0009__Final_Chapter_9_The_Ascent__1PIhcIFWBNQSVqjbZsCu08jpdQZy-YMBJyOmtCV_23u0",
+        "driveName": "(Final) Chapter 9: The Ascent"
+      },
+      {
+        "folder": "0035__Chapter1_Q_Final__1AVkfasTxEDmov92ZfAJO2oMrfjvbR81iiupgRitAuvk",
+        "driveName": "Chapter1_Q_Final"
+      },
+      {
+        "folder": "0057__WOS_Ch7_The_Pit__1ZmaR8NIPqxMhsyICXsv3gesiDd4pgmQtOFeEWe0VwWI",
+        "driveName": "WOS_Ch7_The_Pit"
+      }
+    ]
+  },
+  {
+    "norm": "final chapter 7 the pit",
+    "basenames": [
+      "(Final) Chapter: 7 - The Pit.txt"
+    ],
+    "docs": [
+      {
+        "folder": "0001__-Final_Chapter_1_Revision_Prompt-__1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0",
+        "driveName": "-Final Chapter 1 Revision Prompt-"
+      },
+      {
+        "folder": "0008__D__Chapter__7_-_The_Pit__1N_kgc1nQhcDdho0MgY1Niam7DVBsou3PgH8d4Vcct34",
+        "driveName": "(D)_Chapter__7_-_The_Pit"
+      },
+      {
+        "folder": "0057__WOS_Ch7_The_Pit__1ZmaR8NIPqxMhsyICXsv3gesiDd4pgmQtOFeEWe0VwWI",
+        "driveName": "WOS_Ch7_The_Pit"
+      }
+    ]
+  },
+  {
+    "norm": "final chapter 5 the snare",
+    "basenames": [
+      "(Final)_Chapter_5_-_The_Snare.txt"
+    ],
+    "docs": [
+      {
+        "folder": "0001__-Final_Chapter_1_Revision_Prompt-__1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0",
+        "driveName": "-Final Chapter 1 Revision Prompt-"
+      },
+      {
+        "folder": "0005__Final_Chapter_5_-_The_Snare__1lMmVYvwHmYuExByWEwlh-rGpUbirDPG7uPeR4gFh37g",
+        "driveName": "(Final) Chapter 5 - The Snare"
+      }
+    ]
+  },
+  {
+    "norm": "n chapter 1 stardust to stardust",
+    "basenames": [
+      "(N)_CHAPTER_1-_STARDUST_TO_STARDUST.txt",
+      "(N)_Chapter_1_-_Stardust_to_Stardust.txt"
+    ],
+    "docs": [
+      {
+        "folder": "0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+        "driveName": "(R) Chapter: 1 - Stardust to Stardust "
+      },
+      {
+        "folder": "0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+        "driveName": "(Notes) (P) Chapter: 1 - Stardust to Stardust"
+      }
+    ]
+  },
+  {
+    "norm": "notes p chapter 1 stardust to stardust",
+    "basenames": [
+      "(Notes)_(P)_Chapter:_1_-_Stardust_to_Stardust.txt"
+    ],
+    "docs": [
+      {
+        "folder": "0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+        "driveName": "(R) Chapter: 1 - Stardust to Stardust "
+      },
+      {
+        "folder": "0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+        "driveName": "(Notes) (P) Chapter: 1 - Stardust to Stardust"
+      }
+    ]
+  },
+  {
+    "norm": "revision prompt n chapter 1 stardust to stardust",
+    "basenames": [
+      "(Revision_Prompt_(N)__Chapter_1_-_Stardust_to_Stardust.txt"
+    ],
+    "docs": [
+      {
+        "folder": "0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+        "driveName": "(R) Chapter: 1 - Stardust to Stardust "
+      },
+      {
+        "folder": "0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+        "driveName": "(Notes) (P) Chapter: 1 - Stardust to Stardust"
+      }
+    ]
+  },
+  {
+    "norm": "p chapter 1 stardust to stardust",
+    "basenames": [
+      "(P)_Chapter:_1_-_Stardust_to_Stardust.txt"
+    ],
+    "docs": [
+      {
+        "folder": "0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+        "driveName": "(R) Chapter: 1 - Stardust to Stardust "
+      },
+      {
+        "folder": "0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+        "driveName": "(Notes) (P) Chapter: 1 - Stardust to Stardust"
+      }
+    ]
+  },
+  {
+    "norm": "chapter2 weight of the sky",
+    "basenames": [
+      "Chapter2_Weight_of_the_Sky.txt"
+    ],
+    "docs": [
+      {
+        "folder": "0005__Final_Chapter_5_-_The_Snare__1lMmVYvwHmYuExByWEwlh-rGpUbirDPG7uPeR4gFh37g",
+        "driveName": "(Final) Chapter 5 - The Snare"
+      },
+      {
+        "folder": "0008__D__Chapter__7_-_The_Pit__1N_kgc1nQhcDdho0MgY1Niam7DVBsou3PgH8d4Vcct34",
+        "driveName": "(D)_Chapter__7_-_The_Pit"
+      },
+      {
+        "folder": "0009__Final_Chapter_9_The_Ascent__1PIhcIFWBNQSVqjbZsCu08jpdQZy-YMBJyOmtCV_23u0",
+        "driveName": "(Final) Chapter 9: The Ascent"
+      },
+      {
+        "folder": "0045__Chapter2_Weight_of_the_Sky__1dBjRsoqexbBVZUYJTbZlybhH8cMGE1twD9kDtXh1kX8",
+        "driveName": "Chapter2_Weight_of_the_Sky"
+      },
+      {
+        "folder": "0051__Final_Master_Singularity_Compendium_The_Weight_of_the_Sky__1DDzzszQ8wGUYyL1ijSd3WB1wXTHdOHzqKPX5dM2iAhI",
+        "driveName": "Final Master Singularity Compendium: The Weight of the Sky"
+      },
+      {
+        "folder": "0052__The_Weight_of_the_Sky_The_Fall_into_Megiddo__1m3WUXh2oiJ7Jb4RJYbHjsQNfQxH0sDnV5BAbAbJlzf0",
+        "driveName": "The Weight of the Sky: The Fall into Megiddo"
+      }
+    ]
+  },
+  {
+    "norm": "wos ch7 the pit",
+    "basenames": [
+      "WOS_Ch7_The_Pit.txt"
+    ],
+    "docs": [
+      {
+        "folder": "0008__D__Chapter__7_-_The_Pit__1N_kgc1nQhcDdho0MgY1Niam7DVBsou3PgH8d4Vcct34",
+        "driveName": "(D)_Chapter__7_-_The_Pit"
+      },
+      {
+        "folder": "0057__WOS_Ch7_The_Pit__1ZmaR8NIPqxMhsyICXsv3gesiDd4pgmQtOFeEWe0VwWI",
+        "driveName": "WOS_Ch7_The_Pit"
+      }
+    ]
+  },
+  {
+    "norm": "11 0 error catalog",
+    "basenames": [
+      "11.0_Error_Catalog.txt"
+    ],
+    "docs": [
+      {
+        "folder": "0017__11.0_Error_Catalog__1zZY-E354TAZRM_Zzv9pfSmkvJtSHDJFpaP-uWne5Sac",
+        "driveName": "11.0 Error Catalog"
+      },
+      {
+        "folder": "0018__Old_11.0_Final_Revision__1ASj5oM5yY1Ewa7IEk3aSACnn6_9PyH5zmr_3HTlLdXk",
+        "driveName": "(Old) 11.0 Final Revision"
+      }
+    ]
+  },
+  {
+    "norm": "11 0 marketability",
+    "basenames": [
+      "11.0_Marketability_.txt"
+    ],
+    "docs": [
+      {
+        "folder": "0018__Old_11.0_Final_Revision__1ASj5oM5yY1Ewa7IEk3aSACnn6_9PyH5zmr_3HTlLdXk",
+        "driveName": "(Old) 11.0 Final Revision"
+      },
+      {
+        "folder": "0019__11.0_Marketability__17LbSa_mXn1AqggY06lcrn7fIpIWkMisMZYIoNHofxs4",
+        "driveName": "11.0 Marketability "
+      }
+    ]
+  },
+  {
+    "norm": "3 0 scientific guide",
+    "basenames": [
+      "3.0_Scientific_Guide.txt"
+    ],
+    "docs": [
+      {
+        "folder": "0020__13.0_GENERAL_PRINCIPLES__1PuQA-EZ6b3jclY7Kg_D6GaOrhuJ0Ni4K5SeCbgokRUM",
+        "driveName": "13.0 GENERAL PRINCIPLES"
+      },
+      {
+        "folder": "0022__3.0_Scientific_Guide__1AZfDiQMeHUvEpAUsBAIWVnSEoy7bG7ELWUKdhvrUaRw",
+        "driveName": "3.0 Scientific Guide"
+      }
+    ]
+  },
+  {
+    "norm": "5 0 psychology guide",
+    "basenames": [
+      "5.0_Psychology_Guide.txt"
+    ],
+    "docs": [
+      {
+        "folder": "0024__Old_5.0_Final_Guide__1akR0oxKRMW0X0jItZ4y04smJRdWUw-fackyDVoKZ2qs",
+        "driveName": "(Old) 5.0 Final Guide"
+      },
+      {
+        "folder": "0025__5.0_Psychology_Guide__1jtZWe7oV8kkRHeRpSfgGQXASkhpZLPlOrIdID314mP4",
+        "driveName": "5.0 Psychology Guide"
+      }
+    ]
+  },
+  {
+    "norm": "chapter 3 analysis & guides",
+    "basenames": [
+      "Chapter_3_Analysis_&_Guides.txt"
+    ],
+    "docs": [
+      {
+        "folder": "0038__Chapter_2_-_Analysis_Guides_1.0__1DtI8s5iosC54Zm0W44KcEa5-jdZ7HNAxSYah4J0uFIs",
+        "driveName": "Chapter 2 - Analysis & Guides 1.0"
+      },
+      {
+        "folder": "0041__Chapter_3_Analysis_Guides__1FVADnhWwf5nMiHoSjDb0p4Rj81pDRz08E4KhDFZUB2s",
+        "driveName": "Chapter 3 Analysis & Guides"
+      }
+    ]
+  },
+  {
+    "norm": "the weight of the sky the fall into megiddo",
+    "basenames": [
+      "The_Weight_of_the_Sky:_The_Fall_into_Megiddo.txt"
+    ],
+    "docs": [
+      {
+        "folder": "0045__Chapter2_Weight_of_the_Sky__1dBjRsoqexbBVZUYJTbZlybhH8cMGE1twD9kDtXh1kX8",
+        "driveName": "Chapter2_Weight_of_the_Sky"
+      },
+      {
+        "folder": "0052__The_Weight_of_the_Sky_The_Fall_into_Megiddo__1m3WUXh2oiJ7Jb4RJYbHjsQNfQxH0sDnV5BAbAbJlzf0",
+        "driveName": "The Weight of the Sky: The Fall into Megiddo"
+      }
+    ]
+  }
+]

@@ -1,0 +1,17 @@
+diff --git a/docs/agent_context/indexes/AGENT_CONTEXT_CANONICAL_INDEX.md b/docs/agent_context/indexes/AGENT_CONTEXT_CANONICAL_INDEX.md
+index d102385..baf790d 100644
+--- a/docs/agent_context/indexes/AGENT_CONTEXT_CANONICAL_INDEX.md
++++ b/docs/agent_context/indexes/AGENT_CONTEXT_CANONICAL_INDEX.md
+@@ -17,3 +17,12 @@ Rules:
+ - project context belongs under `docs/agent_context/`
+ - do not treat historical dumps as automatic truth
+ - use only the minimum relevant context needed for the task
++
++## Writing Agent Interface — IDA Handoff
++Canonical handoff:
++`docs/agent_context/canonical/WAI_IDA_HANDOFF.md`
++
++Read after:
++1. ~/AGENTS.md
++2. project AGENTS.md
++3. this index

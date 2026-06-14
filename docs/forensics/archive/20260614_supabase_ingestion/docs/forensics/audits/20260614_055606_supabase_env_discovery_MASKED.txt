@@ -1,0 +1,43 @@
+SUPABASE ENV DISCOVERY REPORT — MASKED
+root= /data/data/com.termux/files/home/Workspaces/Hybrid/writing-agent-interface
+
+1. Current shell environment:
+ENV DATABASE_URL=[MASKED len=106 prefix=postgr suffix=gres]
+ENV SUPABASE_DB_URL=postgresql://postgres.YOUR_PROJECT_REF:YOUR_DB_PASSWORD@aws-0-us-west-1.pooler.supabase.com:6543/postgres?sslmode=require
+ENV SUPABASE_PROJECT_REF=YOUR_PROJECT_REF
+ENV SUPABASE_SERVICE_ROLE_KEY=[MASKED len=21 prefix=YOUR_S suffix=_KEY]
+ENV SUPABASE_URL=https://YOUR_PROJECT_REF.supabase.co
+
+2. File scan hits:
+
+FILE .agent-context/tier2-large/06_NOS_INTEGRATION_BLUEPRINT.txt
+  L1348: DATABASE_URL=[MASKED len=16 prefix=postgr suffix=/...]
+
+FILE data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_2_large_universal/134_nos_integration_blueprint.txt
+  L1348: DATABASE_URL=[MASKED len=16 prefix=postgr suffix=/...]
+
+FILE data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_2_large_universal/134_nos_integration_blueprint.txt
+  L1348: DATABASE_URL=[MASKED len=16 prefix=postgr suffix=/...]
+
+FILE docs/agent_context/canonical/134_NOS_INTEGRATION_BLUEPRINT.txt
+  L1348: DATABASE_URL=[MASKED len=16 prefix=postgr suffix=/...]
+
+FILE docs/forensics/audits/supabase_cloud_ingestion_deploy_20260614_053756.txt
+  L20: SUPABASE_URL=https://YOUR_PROJECT_REF.supabase.co
+  L21: SUPABASE_SERVICE_ROLE_KEY=[MASKED len=21 prefix=YOUR_S suffix=_KEY]
+
+FILE run_nos_diagnostics.sh
+  L40: supabase_url=https://api.supabase.co
+
+FILE src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/134__NOS_INTEGRATION_BLUEPRINT.txt
+  L1348: DATABASE_URL=[MASKED len=16 prefix=postgr suffix=/...]
+
+3. Derived candidates:
+project_refs= ['YOUR_PROJECT_REF', 'api']
+supabase_urls= ['https://YOUR_PROJECT_REF.supabase.co', 'https://api.supabase.co']
+
+4. Suggested non-secret exports:
+export SUPABASE_PROJECT_REF="YOUR_PROJECT_REF"
+export SUPABASE_URL="https://YOUR_PROJECT_REF.supabase.co"
+export SUPABASE_SERVICE_ROLE_KEY="[SET_LOCALLY_FROM_DASHBOARD_OR_SECRET_STORE]"
+export SUPABASE_DB_URL="[SET_LOCALLY_FROM_DASHBOARD_CONNECT_STRING]"

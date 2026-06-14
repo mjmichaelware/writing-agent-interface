@@ -1,0 +1,24 @@
+R  docs/forensics/logs/nos/20260614_supabase_edge_deploy_checkpoint.md -> docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/logs/nos/20260614_supabase_edge_deploy_checkpoint.md
+R  scripts/upload-supabase-shards-storage-only-safe.py -> docs/forensics/archive/20260614_supabase_ingestion/scripts/upload-supabase-shards-storage-only-safe.py
+?? docs/forensics/archive/20260614_supabase_ingestion/.github/
+?? docs/forensics/archive/20260614_supabase_ingestion/ARCHIVE_MANIFEST.tsv
+?? docs/forensics/archive/20260614_supabase_ingestion/README.md
+?? docs/forensics/archive/20260614_supabase_ingestion/docs/agent_context/
+?? docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/
+?? docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/logs/nos/20260614_supabase_ingestion_checkpoint.md
+?? docs/forensics/archive/20260614_supabase_ingestion/post_cleanup_git_status.txt
+?? docs/forensics/archive/20260614_supabase_ingestion/pre_cleanup_context.tsv
+?? docs/forensics/archive/20260614_supabase_ingestion/pre_cleanup_git_status.txt
+?? docs/forensics/archive/20260614_supabase_ingestion/scripts/apply-supabase-sql-via-psql.sh
+?? docs/forensics/archive/20260614_supabase_ingestion/scripts/build-supabase-archive-manifest-stream.mjs
+?? docs/forensics/archive/20260614_supabase_ingestion/scripts/build-supabase-archive-manifest.mjs
+?? docs/forensics/archive/20260614_supabase_ingestion/scripts/drive-temporal-xml-reextract.mjs
+?? docs/forensics/archive/20260614_supabase_ingestion/scripts/paired-drive-xml-reextract.mjs
+?? docs/forensics/archive/20260614_supabase_ingestion/scripts/register-shards-via-psql.sh
+?? docs/forensics/archive/20260614_supabase_ingestion/scripts/shard-supabase-manifests.sh
+?? docs/forensics/archive/20260614_supabase_ingestion/scripts/supabase-cloud-verify.sh
+?? docs/forensics/archive/20260614_supabase_ingestion/scripts/upload-supabase-shards-storage-only.sh
+?? docs/forensics/archive/20260614_supabase_ingestion/scripts/upload-supabase-shards.sh
+?? docs/forensics/archive/20260614_supabase_ingestion/supabase/
+?? docs/forensics/archive/20260614_supabase_ingestion/tracked_modification_patches/
+?? docs/forensics/archive/20260614_supabase_ingestion/tracked_patch_actions.tsv

@@ -1,0 +1,124 @@
+file=scripts/archive-google-docs-by-local-names.mjs
+line_count=572
+
+===== KEY LINES =====
+8:const DRIVE_DOC_CANDIDATE_Q = "trashed = false and (mimeType = 'application/vnd.google-apps.document' or mimeType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' or mimeType = 'application/msword')";
+10:const TARGET_DIRS = process.argv.slice(2);
+11:if (TARGET_DIRS.length === 0) {
+12:  TARGET_DIRS.push("src/data-layer/ingestion-buffer/gdrive_raw");
+13:  TARGET_DIRS.push("/sdcard/Download");
+16:const STAMP = new Date().toISOString().replace(/[:.]/g, "-");
+17:const ARCHIVE_ROOT = `data/source_archive/name_matched_google_docs/${STAMP}`;
+19:function mkdirp(p) {
+20:  fs.mkdirSync(p, { recursive: true });
+28:  mkdirp(path.dirname(file));
+29:  fs.writeFileSync(file, JSON.stringify(data, null, 2));
+68:function scoreName(localName, driveName) {
+69:  const a = normalizeName(localName);
+70:  const b = normalizeName(driveName);
+75:  const ta = tokens(a);
+76:  const tb = tokens(b);
+79:  let overlap = 0;
+80:  for (const t of ta) if (tb.has(t)) overlap++;
+82:  const union = new Set([...ta, ...tb]).size;
+83:  const jaccard = overlap / union;
+84:  const containment = overlap / Math.min(ta.size, tb.size);
+89:function shouldIncludeLocalFile(file) {
+90:  const base = path.basename(file);
+95:function collectLocalTargets() {
+96:  const targets = [];
+98:  for (const dir of TARGET_DIRS) {
+100:      console.error(`Skipping missing target dir: ${dir}`);
+104:    const stat = fs.statSync(dir);
+107:      if (shouldIncludeLocalFile(dir)) {
+108:        const buf = fs.readFileSync(dir);
+109:        targets.push({
+111:          local_path: dir,
+112:          local_name: path.basename(dir),
+115:          local_sha256: sha256(buf),
+121:    const recursive = !dir.includes("/sdcard/Download");
+124:      for (const item of fs.readdirSync(d)) {
+125:        const full = path.join(d, item);
+126:        let st;
+134:        if (!shouldIncludeLocalFile(full)) continue;
+136:        let buf;
+139:        targets.push({
+141:          local_path: full,
+142:          local_name: path.basename(full),
+145:          local_sha256: sha256(buf),
+153:  const seen = new Set();
+154:  return targets.filter(t => {
+155:    const key = `${t.normalized_name}|${t.bytes}|${t.local_sha256}`;
+159:  }).sort((a, b) => a.local_name.localeCompare(b.local_name));
+163:  const all = [];
+164:  let pageToken;
+166:  const q = [
+176:    const res = await drive.files.list({
+194:function matchTargets(targets, driveDocs) {
+195:  return targets.map(target => {
+196:    const candidates = driveDocs
+197:      .map(doc => ({ ...doc, score: scoreName(target.local_name, doc.name) }))
+199:      .sort((a, b) => b.score - a.score || String(b.modifiedTime).localeCompare(String(a.modifiedTime)))
+202:    const best = candidates[0] || null;
+205:      ...target,
+214:  const res = await drive.files.export(
+225:  const res = await drive.files.get(
+232:async function extractDocxZip(buf, outDir) {
+233:  mkdirp(outDir);
+234:  const zip = await JSZip.loadAsync(buf);
+235:  const entries = [];
+237:  for (const [name, entry] of Object.entries(zip.files)) {
+240:    const data = await entry.async("nodebuffer");
+241:    const out = path.join(outDir, name);
+242:    mkdirp(path.dirname(out));
+243:    fs.writeFileSync(out, data);
+253:  return entries.sort((a, b) => a.path.localeCompare(b.path));
+256:async function saveDocsApi(docs, fileId, outDir) {
+257:  mkdirp(outDir);
+258:  const modes = [
+261:    "PREVIEW_WITHOUT_SUGGESTIONS",
+264:  const results = [];
+266:  for (const mode of modes) {
+268:      const res = await docs.documents.get({
+274:      const file = path.join(outDir, `docs-api-${mode}.json`);
+285:async function saveComments(drive, fileId, outDir) {
+286:  mkdirp(outDir);
+287:  const comments = [];
+288:  let pageToken;
+292:      const res = await drive.comments.list({
+304:      writeJson(path.join(outDir, "comments.error.json"), { error: e.message, comments });
+309:  writeJson(path.join(outDir, "comments.list.json"), comments);
+313:async function saveRevisions(drive, fileId, outDir) {
+314:  mkdirp(outDir);
+315:  const revisions = [];
+316:  let pageToken;
+320:      const res = await drive.revisions.list({
+331:      writeJson(path.join(outDir, "revisions.error.json"), { error: e.message, revisions });
+336:  writeJson(path.join(outDir, "revisions.list.json"), revisions);
+338:  const revisionResults = [];
+340:  for (const rev of revisions) {
+341:    const r = { revisionId: rev.id, metadata_ok: false, media_ok: false };
+344:      const meta = await drive.revisions.get({
+349:      writeJson(path.join(outDir, `${rev.id}.metadata.json`), meta.data);
+356:      const media = await drive.revisions.get(
+361:      const buf = Buffer.from(media.data);
+362:      const ctype = media.headers?.["content-type"] || "";
+363:      const ext =
+369:      const mediaPath = path.join(outDir, `${rev.id}.media.${ext}`);
+370:      fs.writeFileSync(mediaPath, buf);
+379:        const extractDir = path.join(outDir, `${rev.id}.media_extracted`);
+381:          const entries = await extractDocxZip(buf, extractDir);
+383:          writeJson(path.join(outDir, `${rev.id}.media_zip_manifest.json`), entries);
+395:  writeJson(path.join(outDir, "revision-download-results.json"), revisionResults);
+404:async function archiveOne({ drive, docs, doc, matchedTargets, index }) {
+405:  const docDir = path.join(
+406:    ARCHIVE_ROOT,
+411:  mkdirp(docDir);
+413:  const record = {
+416:    matched_targets: matchedTargets,
+420:    ooxml_entries_count: 0,
+421:    docs_api: [],
+428:  writeJson(path.join(docDir, "matched-local-targets.json"), matchedTargets);
+431:    let buf;
+438:    const currentPath = path.join(docDir, "current", "current.docx");
+439:    mkdirp(path.dirname(currentPath));

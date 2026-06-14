@@ -1,0 +1,2132 @@
+[
+  {
+    "folder": "0001__-Final_Chapter_1_Revision_Prompt-__1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0",
+    "driveName": "-Final Chapter 1 Revision Prompt-",
+    "driveNorm": "final chapter 1 revision prompt",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 1291,
+    "raw_target_hits_from_leaf_strings": 19,
+    "raw_target_hits": [
+      {
+        "norm": "final chapter 1 revision prompt",
+        "basenames": [
+          "-Final_Chapter_1_Revision_Prompt-.txt"
+        ]
+      },
+      {
+        "norm": "chapter 8 final",
+        "basenames": [
+          "Chapter:_8_(Final).txt"
+        ]
+      },
+      {
+        "norm": "r chapter 1 stardust to stardust",
+        "basenames": [
+          "(R) Chapter: 1 - Stardust to Stardust .txt",
+          "(R)_Chapter:_1_-_Stardust_to_Stardust_.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 stardust to stardust",
+        "basenames": [
+          "Chapter:_1_-_Stardust_to_Stardust.txt",
+          "Chapter_1:_Stardust_to_Stardust.txt",
+          "Chapter_1_-_Stardust_to_Stardust.txt",
+          "﻿Chapter_1-_Stardust_to_Stardust.txt"
+        ]
+      },
+      {
+        "norm": "7 0 chapter refinery",
+        "basenames": [
+          "7.0_Chapter_Refinery.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 version o",
+        "basenames": [
+          "Chapter_1_Version_O.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 integration 2 0",
+        "basenames": [
+          "Chapter_1_Integration_2.0.txt"
+        ]
+      },
+      {
+        "norm": "chapter 3 integration prompt",
+        "basenames": [
+          "Chapter_3_Integration_Prompt.txt"
+        ]
+      },
+      {
+        "norm": "chapter 10 version f",
+        "basenames": [
+          "Chapter_10_Version_F.txt"
+        ]
+      },
+      {
+        "norm": "chapter 10 forsaken final definitive",
+        "basenames": [
+          "Chapter_10_Forsaken_FINAL_DEFINITIVE.txt"
+        ]
+      },
+      {
+        "norm": "prompt guide e chapter 10 forsaken",
+        "basenames": [
+          "(Prompt_Guide_(E))_Chapter_10:_Forsaken.txt"
+        ]
+      },
+      {
+        "norm": "chapter 10 1",
+        "basenames": [
+          "Chapter_10.1.txt"
+        ]
+      },
+      {
+        "norm": "chapter 11 forsaken",
+        "basenames": [
+          "Chapter_11._Forsaken.txt"
+        ]
+      },
+      {
+        "norm": "chapter 11 2",
+        "basenames": [
+          "chapter_11.2.txt"
+        ]
+      },
+      {
+        "norm": "chapter 11 8",
+        "basenames": [
+          "Chapter_11.8.txt"
+        ]
+      },
+      {
+        "norm": "d chapter 7 the pit",
+        "basenames": [
+          "(D)_Chapter:_7_-_The_Pit.txt"
+        ]
+      },
+      {
+        "norm": "go ahead and write out the chapter keep in mind t",
+        "basenames": [
+          "Go_ahead_and_write_out_the_chapter_keep_in_mind_t....txt"
+        ]
+      },
+      {
+        "norm": "final chapter 7 the pit",
+        "basenames": [
+          "(Final) Chapter: 7 - The Pit.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 5 the snare",
+        "basenames": [
+          "(Final)_Chapter_5_-_The_Snare.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ",
+    "driveName": "(R) Chapter: 1 - Stardust to Stardust ",
+    "driveNorm": "r chapter 1 stardust to stardust",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 6320,
+    "raw_target_hits_from_leaf_strings": 25,
+    "raw_target_hits": [
+      {
+        "norm": "a chapter 1 stardust to stardust",
+        "basenames": [
+          "(A)_Chapter:_1_Stardust_to_Stardust.txt",
+          "(A)_Chapter_1-_Stardust_to_Stardust.txt",
+          "(A)_Chapter_1:_Stardust_to_Stardust.txt",
+          "(A)_Chapter_1_-_Stardust_to_Stardust.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 stardust to stardust",
+        "basenames": [
+          "Chapter:_1_-_Stardust_to_Stardust.txt",
+          "Chapter_1:_Stardust_to_Stardust.txt",
+          "Chapter_1_-_Stardust_to_Stardust.txt",
+          "﻿Chapter_1-_Stardust_to_Stardust.txt"
+        ]
+      },
+      {
+        "norm": "r chapter 1 stardust to stardust",
+        "basenames": [
+          "(R) Chapter: 1 - Stardust to Stardust .txt",
+          "(R)_Chapter:_1_-_Stardust_to_Stardust_.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 1 stardust to stardust",
+        "basenames": [
+          "(Final)_Chapter_1:_Stardust_to_Stardust.txt",
+          "(Final)_Chapter_1_-_Stardust_to_Stardust.txt"
+        ]
+      },
+      {
+        "norm": "n chapter 1 stardust to stardust",
+        "basenames": [
+          "(N)_CHAPTER_1-_STARDUST_TO_STARDUST.txt",
+          "(N)_Chapter_1_-_Stardust_to_Stardust.txt"
+        ]
+      },
+      {
+        "norm": "b chapter 1 stardust to stardust",
+        "basenames": [
+          "(B)_Chapter:_1_Stardust_to_Stardust.txt",
+          "(B)_Chapter_1-_Stardust_to_Stardust.txt",
+          "(B)_Chapter_1:_Stardust_to_Stardust.txt",
+          "(B)_Chapter_1_-_Stardust_to_Stardust.txt"
+        ]
+      },
+      {
+        "norm": "b stardust to stardust",
+        "basenames": [
+          "(B)_Stardust_to_Stardust.txt"
+        ]
+      },
+      {
+        "norm": "notes p chapter 1 stardust to stardust",
+        "basenames": [
+          "(Notes)_(P)_Chapter:_1_-_Stardust_to_Stardust.txt"
+        ]
+      },
+      {
+        "norm": "revision prompt n chapter 1 stardust to stardust",
+        "basenames": [
+          "(Revision_Prompt_(N)__Chapter_1_-_Stardust_to_Stardust.txt"
+        ]
+      },
+      {
+        "norm": "c chapter 1 stardust to stardust",
+        "basenames": [
+          "(C)_Chapter:_1_-_Stardust_to_Stardust_.txt",
+          "(C)_Chapter_1-_Stardust_to_Stardust.txt",
+          "(C)_Chapter_1_-_Stardust_to_Stardust.txt"
+        ]
+      },
+      {
+        "norm": "c chapter stardust to stardust",
+        "basenames": [
+          "(C)_Chapter:_Stardust_to_Stardust.txt"
+        ]
+      },
+      {
+        "norm": "d chapter 1 stardust to stardust",
+        "basenames": [
+          "(D)_Chapter_1_-_Stardust_to_Stardust.txt"
+        ]
+      },
+      {
+        "norm": "e chapter 1 stardust to stardust",
+        "basenames": [
+          "(E)_Chapter_1-_Stardust_to_Stardust.txt",
+          "(E)_Chapter_1_-_Stardust_to_Stardust.txt"
+        ]
+      },
+      {
+        "norm": "f chapter 1 stardust to stardust",
+        "basenames": [
+          "(F)_Chapter:_1_Stardust_to_Stardust_.txt",
+          "(F)_Chapter_1:_Stardust_to_Stardust_.txt",
+          "(F)_Chapter_1_-_Stardust_to_Stardust.txt"
+        ]
+      },
+      {
+        "norm": "g chapter 1 stardust to stardust",
+        "basenames": [
+          "(G)_Chapter_1:_Stardust_to_Stardust.txt"
+        ]
+      },
+      {
+        "norm": "i notes chapter 1 stardust to stardust",
+        "basenames": [
+          "(I)_(Notes)_Chapter:_1_Stardust_to_Stardust_.txt"
+        ]
+      },
+      {
+        "norm": "i chapter 1 stardust to stardust",
+        "basenames": [
+          "(I)_Chapter:_1_Stardust_to_Stardust_.txt"
+        ]
+      },
+      {
+        "norm": "o chapter 1 stardust to stardust",
+        "basenames": [
+          "(O)_Chapter_1-_Stardust_to_Stardust.txt"
+        ]
+      },
+      {
+        "norm": "p chapter 1 stardust to stardust",
+        "basenames": [
+          "(P)_Chapter:_1_-_Stardust_to_Stardust.txt"
+        ]
+      },
+      {
+        "norm": "revisions chapter 1 stardust to stardust",
+        "basenames": [
+          "(Revisions)_Chapter_1:_Stardust_to_Stardust.txt"
+        ]
+      },
+      {
+        "norm": "x chapter 1 stardust to stardust docx",
+        "basenames": [
+          "(X)_Chapter_1_-_Stardust_to_Stardust.docx.txt"
+        ]
+      },
+      {
+        "norm": "x chapter 1 stardust to stardust",
+        "basenames": [
+          "(X)_Chapter_1:_Stardust_to_Stardust.txt",
+          "(X)_Chapter_1_-_Stardust_to_Stardust.txt"
+        ]
+      },
+      {
+        "norm": "z chapter 1 stardust to stardust",
+        "basenames": [
+          "(Z)_Chapter_1:_Stardust_to_Stardust.txt"
+        ]
+      },
+      {
+        "norm": "*chapter 1 stardust to stardust",
+        "basenames": [
+          "*Chapter_1:_Stardust_to_Stardust.txt"
+        ]
+      },
+      {
+        "norm": "• g chapter 1 stardust to stardust",
+        "basenames": [
+          "•(G)_Chapter:_1_Stardust_to_Stardust_.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0003__G_Chapter_2-_Living_Sacrifice__1lIqobbwQqWNyBdBuqqoXp9HDT2ddOQ8nxzWIyCWas0s",
+    "driveName": "•(G) Chapter 2- Living Sacrifice",
+    "driveNorm": "• g chapter 2 living sacrifice",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 2533,
+    "raw_target_hits_from_leaf_strings": 12,
+    "raw_target_hits": [
+      {
+        "norm": "a chapter 2 living sacrifice",
+        "basenames": [
+          "(A)_Chapter_2-_Living_Sacrifice.txt",
+          "(A)_Chapter_2:_Living_Sacrifice.txt"
+        ]
+      },
+      {
+        "norm": "chapter 2 living sacrifice",
+        "basenames": [
+          "Chapter_2:_Living_Sacrifice.txt"
+        ]
+      },
+      {
+        "norm": "• g chapter 2 living sacrifice",
+        "basenames": [
+          "•(G)_Chapter_2-_Living_Sacrifice.txt"
+        ]
+      },
+      {
+        "norm": "g chapter 2 living sacrifice",
+        "basenames": [
+          "(G)_Chapter_2-_Living_Sacrifice.txt"
+        ]
+      },
+      {
+        "norm": "f chapter 2 living sacrifice",
+        "basenames": [
+          "(F)_Chapter_2-_Living_Sacrifice.txt"
+        ]
+      },
+      {
+        "norm": "d chapter 2 living sacrifice",
+        "basenames": [
+          "(D)_Chapter_2-_Living_Sacrifice.txt",
+          "(D)_Chapter_2_-_Living_Sacrifice.txt"
+        ]
+      },
+      {
+        "norm": "e chapter 2 living sacrifice",
+        "basenames": [
+          "(E)_Chapter_2-_Living_Sacrifice.txt",
+          "(E)_Chapter_2_-_Living_Sacrifice.txt"
+        ]
+      },
+      {
+        "norm": "notes chapter 2 living sacrifice",
+        "basenames": [
+          "(Notes)_Chapter_2-_Living_Sacrifice.txt",
+          "(Notes)_Chapter_2:_Living_Sacrifice.txt"
+        ]
+      },
+      {
+        "norm": "c chapter 2 living sacrifice",
+        "basenames": [
+          "(C)_Chapter_2-_Living_Sacrifice.txt"
+        ]
+      },
+      {
+        "norm": "b chapter 2 living sacrifice",
+        "basenames": [
+          "(B)_Chapter_2-_Living_Sacrifice.txt",
+          "(B)_Chapter_2:_Living_Sacrifice.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 2 living sacrifice",
+        "basenames": [
+          "(Final)_Chapter_2-_Living_Sacrifice.txt"
+        ]
+      },
+      {
+        "norm": "*chapter 2 living sacrifice",
+        "basenames": [
+          "*Chapter_2-_Living_Sacrifice.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0004__G_Chapter_3-_Lift_Up__1XobNLLJg3YY72D9i_360V-UtttUbr_5mhgN1YdMsrTk",
+    "driveName": "(G) Chapter 3- Lift Up",
+    "driveNorm": "g chapter 3 lift up",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 1937,
+    "raw_target_hits_from_leaf_strings": 10,
+    "raw_target_hits": [
+      {
+        "norm": "a chapter 3 lift up",
+        "basenames": [
+          "(A)_Chapter_3-_Lift_Up.txt",
+          "(A)_Chapter_3_-_Lift_Up.txt"
+        ]
+      },
+      {
+        "norm": "chapter 3 lift up",
+        "basenames": [
+          "Chapter_3:_Lift_Up.txt"
+        ]
+      },
+      {
+        "norm": "g chapter 3 lift up",
+        "basenames": [
+          "(G)_Chapter_3-_Lift_Up.txt"
+        ]
+      },
+      {
+        "norm": "f chapter 3 lift up",
+        "basenames": [
+          "(F)_Chapter_3-_Lift_Up.txt"
+        ]
+      },
+      {
+        "norm": "e chapter 3 lift up",
+        "basenames": [
+          "(E)_Chapter_3-_Lift_Up.txt"
+        ]
+      },
+      {
+        "norm": "c chapter 3 lift up",
+        "basenames": [
+          "(C)_Chapter_3-_Lift_Up.txt",
+          "(C)_Chapter_3_-_Lift_Up.txt"
+        ]
+      },
+      {
+        "norm": "b chapter 3 lift up",
+        "basenames": [
+          "(B)_Chapter_3-_Lift_Up.txt",
+          "(B)_Chapter_3:_Lift_Up.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 1 revision prompt",
+        "basenames": [
+          "-Final_Chapter_1_Revision_Prompt-.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 3 lift up",
+        "basenames": [
+          "(Final)_Chapter_3-_Lift_Up.txt",
+          "(Final)_Chapter_3:_Lift_Up.txt"
+        ]
+      },
+      {
+        "norm": "*chapter 3 lift up",
+        "basenames": [
+          "*Chapter_3:_Lift_Up.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0005__Final_Chapter_5_-_The_Snare__1lMmVYvwHmYuExByWEwlh-rGpUbirDPG7uPeR4gFh37g",
+    "driveName": "(Final) Chapter 5 - The Snare",
+    "driveNorm": "final chapter 5 the snare",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 596,
+    "raw_target_hits_from_leaf_strings": 9,
+    "raw_target_hits": [
+      {
+        "norm": "a chapter 5 the snare",
+        "basenames": [
+          "(A)_Chapter_5_-_The_Snare.txt"
+        ]
+      },
+      {
+        "norm": "chapter 5 the snare",
+        "basenames": [
+          "Chapter_5:_The_Snare.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 5 the snare",
+        "basenames": [
+          "(Final)_Chapter_5_-_The_Snare.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 1 revision prompt",
+        "basenames": [
+          "-Final_Chapter_1_Revision_Prompt-.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 version o",
+        "basenames": [
+          "Chapter_1_Version_O.txt"
+        ]
+      },
+      {
+        "norm": "chapter 8 final",
+        "basenames": [
+          "Chapter:_8_(Final).txt"
+        ]
+      },
+      {
+        "norm": "d chapter 7 the pit",
+        "basenames": [
+          "(D)_Chapter:_7_-_The_Pit.txt"
+        ]
+      },
+      {
+        "norm": "chapter2 weight of the sky",
+        "basenames": [
+          "Chapter2_Weight_of_the_Sky.txt"
+        ]
+      },
+      {
+        "norm": "b chapter 5 the snare",
+        "basenames": [
+          "(B)_Chapter_5-_The_Snare.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0006__Final_Chapter_6-_Beelzebub_Beelzebub__126VrnrFCOCIzrxXqDi8yHHjQYM0ODDGk772YKlL5eQg",
+    "driveName": "(Final) Chapter 6- Beelzebub, Beelzebub",
+    "driveNorm": "final chapter 6 beelzebub, beelzebub",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 492,
+    "raw_target_hits_from_leaf_strings": 7,
+    "raw_target_hits": [
+      {
+        "norm": "a chapter 6 beelzebub, beelzebub",
+        "basenames": [
+          "(A)_Chapter_6:_Beelzebub,_Beelzebub.txt"
+        ]
+      },
+      {
+        "norm": "chapter 6 beelzebub, beelzebub",
+        "basenames": [
+          "Chapter_6:_Beelzebub,_Beelzebub.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 1 revision prompt",
+        "basenames": [
+          "-Final_Chapter_1_Revision_Prompt-.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 version o",
+        "basenames": [
+          "Chapter_1_Version_O.txt"
+        ]
+      },
+      {
+        "norm": "chapter 8 final",
+        "basenames": [
+          "Chapter:_8_(Final).txt"
+        ]
+      },
+      {
+        "norm": "b chapter 6 beelzebub, beelzebub",
+        "basenames": [
+          "(B)_Chapter_6_-_Beelzebub,_Beelzebub.txt"
+        ]
+      },
+      {
+        "norm": "c chapter 6 beelzebub, beelzebub",
+        "basenames": [
+          "(C)_Chapter_6-_Beelzebub,_Beelzebub.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0007__Chapter_8_Final__1Oc5a8Cwy91Hg-xdfROvUtr8OjDCGRlw7lz7CBC_l5kI",
+    "driveName": "Chapter: 8 (Final)",
+    "driveNorm": "chapter 8 final",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 582,
+    "raw_target_hits_from_leaf_strings": 9,
+    "raw_target_hits": [
+      {
+        "norm": "a chapter 8 sea people",
+        "basenames": [
+          "(A)Chapter_8:_Sea_People.txt"
+        ]
+      },
+      {
+        "norm": "chapter 8 sea people",
+        "basenames": [
+          "Chapter_8:_Sea_People.txt"
+        ]
+      },
+      {
+        "norm": "chapter 8 final",
+        "basenames": [
+          "Chapter:_8_(Final).txt"
+        ]
+      },
+      {
+        "norm": "final chapter 1 revision prompt",
+        "basenames": [
+          "-Final_Chapter_1_Revision_Prompt-.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 version o",
+        "basenames": [
+          "Chapter_1_Version_O.txt"
+        ]
+      },
+      {
+        "norm": "b chapter 8 sea people",
+        "basenames": [
+          "(B)Chapter_8:_Sea_People.txt"
+        ]
+      },
+      {
+        "norm": "c chapter 8 sea people",
+        "basenames": [
+          "(C)Chapter_8:_Sea_People.txt"
+        ]
+      },
+      {
+        "norm": "*chapter 8 sea people",
+        "basenames": [
+          "*Chapter_8:_Sea_People.txt"
+        ]
+      },
+      {
+        "norm": "chapter 8 1",
+        "basenames": [
+          "Chapter_8.1.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0008__D__Chapter__7_-_The_Pit__1N_kgc1nQhcDdho0MgY1Niam7DVBsou3PgH8d4Vcct34",
+    "driveName": "(D)_Chapter__7_-_The_Pit",
+    "driveNorm": "d chapter 7 the pit",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 745,
+    "raw_target_hits_from_leaf_strings": 10,
+    "raw_target_hits": [
+      {
+        "norm": "b chapter 7 the pit",
+        "basenames": [
+          "(B)_Chapter_7:_The_Pit.txt"
+        ]
+      },
+      {
+        "norm": "d chapter 7 the pit",
+        "basenames": [
+          "(D)_Chapter:_7_-_The_Pit.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 7 the pit",
+        "basenames": [
+          "(Final) Chapter: 7 - The Pit.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 1 revision prompt",
+        "basenames": [
+          "-Final_Chapter_1_Revision_Prompt-.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 version o",
+        "basenames": [
+          "Chapter_1_Version_O.txt"
+        ]
+      },
+      {
+        "norm": "chapter 8 final",
+        "basenames": [
+          "Chapter:_8_(Final).txt"
+        ]
+      },
+      {
+        "norm": "chapter2 weight of the sky",
+        "basenames": [
+          "Chapter2_Weight_of_the_Sky.txt"
+        ]
+      },
+      {
+        "norm": "wos ch7 the pit",
+        "basenames": [
+          "WOS_Ch7_The_Pit.txt"
+        ]
+      },
+      {
+        "norm": "c chapter 7 the pit",
+        "basenames": [
+          "(C)_Chapter:_7_-_The_Pit.txt"
+        ]
+      },
+      {
+        "norm": "*chapter 7 the pit",
+        "basenames": [
+          "*Chapter_7:_The_Pit.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0009__Final_Chapter_9_The_Ascent__1PIhcIFWBNQSVqjbZsCu08jpdQZy-YMBJyOmtCV_23u0",
+    "driveName": "(Final) Chapter 9: The Ascent",
+    "driveNorm": "final chapter 9 the ascent",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 447,
+    "raw_target_hits_from_leaf_strings": 8,
+    "raw_target_hits": [
+      {
+        "norm": "b chapter 9 the ascent",
+        "basenames": [
+          "(B)_Chapter_9:_The_Ascent.txt"
+        ]
+      },
+      {
+        "norm": "chapter 9 the ascent",
+        "basenames": [
+          "Chapter_9:_The_Ascent.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 1 revision prompt",
+        "basenames": [
+          "-Final_Chapter_1_Revision_Prompt-.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 version o",
+        "basenames": [
+          "Chapter_1_Version_O.txt"
+        ]
+      },
+      {
+        "norm": "chapter 8 final",
+        "basenames": [
+          "Chapter:_8_(Final).txt"
+        ]
+      },
+      {
+        "norm": "d chapter 7 the pit",
+        "basenames": [
+          "(D)_Chapter:_7_-_The_Pit.txt"
+        ]
+      },
+      {
+        "norm": "chapter2 weight of the sky",
+        "basenames": [
+          "Chapter2_Weight_of_the_Sky.txt"
+        ]
+      },
+      {
+        "norm": "*chapter 9 the ascent",
+        "basenames": [
+          "*Chapter_9:_The_Ascent.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0010__Final_Chapter_4_-_Pilgrimage__1opvdSohMWiVq6FgqotsGpFfKsjCDaI2KqTOHsQkwwDU",
+    "driveName": "(Final) Chapter 4 - Pilgrimage",
+    "driveNorm": "final chapter 4 pilgrimage",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 492,
+    "raw_target_hits_from_leaf_strings": 6,
+    "raw_target_hits": [
+      {
+        "norm": "c chapter 4 pilgrimage",
+        "basenames": [
+          "(C)_Chapter_4-_Pilgrimage.txt",
+          "(C)_Chapter_4_-_Pilgrimage.txt"
+        ]
+      },
+      {
+        "norm": "chapter 4 pilgrimage",
+        "basenames": [
+          "Chapter_4:_Pilgrimage.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 1 revision prompt",
+        "basenames": [
+          "-Final_Chapter_1_Revision_Prompt-.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 version o",
+        "basenames": [
+          "Chapter_1_Version_O.txt"
+        ]
+      },
+      {
+        "norm": "chapter 8 final",
+        "basenames": [
+          "Chapter:_8_(Final).txt"
+        ]
+      },
+      {
+        "norm": "*chapter 4 pilgrimage",
+        "basenames": [
+          "*Chapter_4:_Pilgrimage.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0011__B_Chapter_10_-_Forsaken__1dAVOiCaa3g6lx3r7lLQZ6sxqVOYV5ZsgnfMpxgNJuyk",
+    "driveName": "(B) Chapter: 10 - Forsaken",
+    "driveNorm": "b chapter 10 forsaken",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 447,
+    "raw_target_hits_from_leaf_strings": 3,
+    "raw_target_hits": [
+      {
+        "norm": "g final chapter 10 forsaken",
+        "basenames": [
+          "(G)_Final_)_Chapter:_10_-_Forsaken.txt"
+        ]
+      },
+      {
+        "norm": "chapter 10 forsaken",
+        "basenames": [
+          "Chapter_10:_Forsaken.txt"
+        ]
+      },
+      {
+        "norm": "chapter 10 forsaken final definitive",
+        "basenames": [
+          "Chapter_10_Forsaken_FINAL_DEFINITIVE.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0012__Notes_P_Chapter_1_-_Stardust_to_Stardust__1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs",
+    "driveName": "(Notes) (P) Chapter: 1 - Stardust to Stardust",
+    "driveNorm": "notes p chapter 1 stardust to stardust",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 632,
+    "raw_target_hits_from_leaf_strings": 9,
+    "raw_target_hits": [
+      {
+        "norm": "notes p chapter 1 stardust to stardust",
+        "basenames": [
+          "(Notes)_(P)_Chapter:_1_-_Stardust_to_Stardust.txt"
+        ]
+      },
+      {
+        "norm": "p chapter 1 stardust to stardust",
+        "basenames": [
+          "(P)_Chapter:_1_-_Stardust_to_Stardust.txt"
+        ]
+      },
+      {
+        "norm": "revision prompt n chapter 1 stardust to stardust",
+        "basenames": [
+          "(Revision_Prompt_(N)__Chapter_1_-_Stardust_to_Stardust.txt"
+        ]
+      },
+      {
+        "norm": "r chapter 1 stardust to stardust",
+        "basenames": [
+          "(R) Chapter: 1 - Stardust to Stardust .txt",
+          "(R)_Chapter:_1_-_Stardust_to_Stardust_.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 1 revision prompt",
+        "basenames": [
+          "-Final_Chapter_1_Revision_Prompt-.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 stardust to stardust",
+        "basenames": [
+          "Chapter:_1_-_Stardust_to_Stardust.txt",
+          "Chapter_1:_Stardust_to_Stardust.txt",
+          "Chapter_1_-_Stardust_to_Stardust.txt",
+          "﻿Chapter_1-_Stardust_to_Stardust.txt"
+        ]
+      },
+      {
+        "norm": "n chapter 1 stardust to stardust",
+        "basenames": [
+          "(N)_CHAPTER_1-_STARDUST_TO_STARDUST.txt",
+          "(N)_Chapter_1_-_Stardust_to_Stardust.txt"
+        ]
+      },
+      {
+        "norm": "x chapter 1 stardust to stardust 1",
+        "basenames": [
+          "(X)_Chapter_1__Stardust_to_Stardust_(1).txt"
+        ]
+      },
+      {
+        "norm": "x chapter 1 stardust to stardust 2",
+        "basenames": [
+          "(X)_Chapter_1__Stardust_to_Stardust_(2).txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0013__Prompt_Guide_E_Chapter_10_Forsaken__1HgITZ_aQyru0299o0N46Bd_y_Mrj7p33mnT_hxuBBTo",
+    "driveName": "(Prompt Guide (E)) Chapter 10: Forsaken",
+    "driveNorm": "prompt guide e chapter 10 forsaken",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 298,
+    "raw_target_hits_from_leaf_strings": 4,
+    "raw_target_hits": [
+      {
+        "norm": "prompt guide e chapter 10 forsaken",
+        "basenames": [
+          "(Prompt_Guide_(E))_Chapter_10:_Forsaken.txt"
+        ]
+      },
+      {
+        "norm": "revision prompt d chapter 10 forsaken",
+        "basenames": [
+          "(Revision_Prompt_(D))_Chapter_10:_Forsaken.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 1 revision prompt",
+        "basenames": [
+          "-Final_Chapter_1_Revision_Prompt-.txt"
+        ]
+      },
+      {
+        "norm": "chapter 10 forsaken final definitive",
+        "basenames": [
+          "Chapter_10_Forsaken_FINAL_DEFINITIVE.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0014__Writing_Agent_App._Source_Doc._10_NEUTRON__1E3K37kPN06Ldo2JUMpfuvUXFWqS1FzEPjVRm81AR3GM",
+    "driveName": "Writing Agent App. Source Doc. (10) [NEUTRON]",
+    "driveNorm": "writing agent app source doc 10 neutron",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 149,
+    "raw_target_hits_from_leaf_strings": 1,
+    "raw_target_hits": [
+      {
+        "norm": "1 0 revision",
+        "basenames": [
+          "1.0_Revision.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": false
+  },
+  {
+    "folder": "0015__Old_10.0_Mass_Market__1R-3ttk7q-CXeGPofkbQ-PJ92z4lx0JkEPYDwT_iA2UQ",
+    "driveName": "(Old) 10.0 Mass Market",
+    "driveNorm": "old 10 0 mass market",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 32,
+    "raw_target_hits_from_leaf_strings": 1,
+    "raw_target_hits": [
+      {
+        "norm": "10 0 mass market",
+        "basenames": [
+          "10.0_Mass_Market.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0016__10.0_MASTER_SYSTEM_FOR_CHAPTER_REVISION__1INT40kAV4aMrHxVqnOBWY5gMCo8_b19mCOs5B9pkkQA",
+    "driveName": "10.0 MASTER SYSTEM FOR CHAPTER REVISION",
+    "driveNorm": "10 0 master system for chapter revision",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 149,
+    "raw_target_hits_from_leaf_strings": 4,
+    "raw_target_hits": [
+      {
+        "norm": "10 0 master system for chapter revision",
+        "basenames": [
+          "10.0_MASTER_SYSTEM_FOR_CHAPTER_REVISION.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 1 revision prompt",
+        "basenames": [
+          "-Final_Chapter_1_Revision_Prompt-.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 version o",
+        "basenames": [
+          "Chapter_1_Version_O.txt"
+        ]
+      },
+      {
+        "norm": "chapter 8 final",
+        "basenames": [
+          "Chapter:_8_(Final).txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0017__11.0_Error_Catalog__1zZY-E354TAZRM_Zzv9pfSmkvJtSHDJFpaP-uWne5Sac",
+    "driveName": "11.0 Error Catalog",
+    "driveNorm": "11 0 error catalog",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 58,
+    "raw_target_hits_from_leaf_strings": 1,
+    "raw_target_hits": [
+      {
+        "norm": "11 0 error catalog",
+        "basenames": [
+          "11.0_Error_Catalog.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0018__Old_11.0_Final_Revision__1ASj5oM5yY1Ewa7IEk3aSACnn6_9PyH5zmr_3HTlLdXk",
+    "driveName": "(Old) 11.0 Final Revision",
+    "driveNorm": "old 11 0 final revision",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 58,
+    "raw_target_hits_from_leaf_strings": 3,
+    "raw_target_hits": [
+      {
+        "norm": "11 0 final revision",
+        "basenames": [
+          "11.0_Final_Revision.txt"
+        ]
+      },
+      {
+        "norm": "11 0 error catalog",
+        "basenames": [
+          "11.0_Error_Catalog.txt"
+        ]
+      },
+      {
+        "norm": "11 0 marketability",
+        "basenames": [
+          "11.0_Marketability_.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0019__11.0_Marketability__17LbSa_mXn1AqggY06lcrn7fIpIWkMisMZYIoNHofxs4",
+    "driveName": "11.0 Marketability ",
+    "driveNorm": "11 0 marketability",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 45,
+    "raw_target_hits_from_leaf_strings": 1,
+    "raw_target_hits": [
+      {
+        "norm": "11 0 marketability",
+        "basenames": [
+          "11.0_Marketability_.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0020__13.0_GENERAL_PRINCIPLES__1PuQA-EZ6b3jclY7Kg_D6GaOrhuJ0Ni4K5SeCbgokRUM",
+    "driveName": "13.0 GENERAL PRINCIPLES",
+    "driveNorm": "13 0 general principles",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 116,
+    "raw_target_hits_from_leaf_strings": 3,
+    "raw_target_hits": [
+      {
+        "norm": "13 0 general principles",
+        "basenames": [
+          "13.0_GENERAL_PRINCIPLES.txt"
+        ]
+      },
+      {
+        "norm": "3 0 final",
+        "basenames": [
+          "3.0_Final_.txt"
+        ]
+      },
+      {
+        "norm": "3 0 scientific guide",
+        "basenames": [
+          "3.0_Scientific_Guide.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0021__2.0_Critique_Analysis_Guide__1-wIzrxfB8JuYdgegmFrYlL2xm0a00pyDgqP9sv584vc",
+    "driveName": "2.0 Critique / Analysis Guide",
+    "driveNorm": "2 0 critique analysis guide",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 58,
+    "raw_target_hits_from_leaf_strings": 1,
+    "raw_target_hits": [
+      {
+        "norm": "2 0 critique analysis guide",
+        "basenames": [
+          "2.0_Critique_／_Analysis_Guide.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0022__3.0_Scientific_Guide__1AZfDiQMeHUvEpAUsBAIWVnSEoy7bG7ELWUKdhvrUaRw",
+    "driveName": "3.0 Scientific Guide",
+    "driveNorm": "3 0 scientific guide",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 32,
+    "raw_target_hits_from_leaf_strings": 1,
+    "raw_target_hits": [
+      {
+        "norm": "3 0 scientific guide",
+        "basenames": [
+          "3.0_Scientific_Guide.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0023__Old_4.0_12_Rules_For_Life__1phu5CFlnw6v32tGEvQff6d0Z0ZkVHofX2z8UE_6CQi8",
+    "driveName": "(Old) 4.0 (12 Rules For Life)",
+    "driveNorm": "old 4 0 12 rules for life",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 32,
+    "raw_target_hits_from_leaf_strings": 1,
+    "raw_target_hits": [
+      {
+        "norm": "4 0 12 rules for life",
+        "basenames": [
+          "4.0_(12_Rules_For_Life).txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0024__Old_5.0_Final_Guide__1akR0oxKRMW0X0jItZ4y04smJRdWUw-fackyDVoKZ2qs",
+    "driveName": "(Old) 5.0 Final Guide",
+    "driveNorm": "old 5 0 final guide",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 213,
+    "raw_target_hits_from_leaf_strings": 8,
+    "raw_target_hits": [
+      {
+        "norm": "5 0 final guide",
+        "basenames": [
+          "5.0_Final_Guide.txt"
+        ]
+      },
+      {
+        "norm": "5 0 psychology guide",
+        "basenames": [
+          "5.0_Psychology_Guide.txt"
+        ]
+      },
+      {
+        "norm": "could you condense that chapter by 500 to 1,000 w",
+        "basenames": [
+          "Could_you_condense_that_chapter_by_500_to_1,000_w....txt"
+        ]
+      },
+      {
+        "norm": "final chapter 1 revision prompt",
+        "basenames": [
+          "-Final_Chapter_1_Revision_Prompt-.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 version o",
+        "basenames": [
+          "Chapter_1_Version_O.txt"
+        ]
+      },
+      {
+        "norm": "chapter 8 final",
+        "basenames": [
+          "Chapter:_8_(Final).txt"
+        ]
+      },
+      {
+        "norm": "r chapter 1 stardust to stardust",
+        "basenames": [
+          "(R) Chapter: 1 - Stardust to Stardust .txt",
+          "(R)_Chapter:_1_-_Stardust_to_Stardust_.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 stardust to stardust",
+        "basenames": [
+          "Chapter:_1_-_Stardust_to_Stardust.txt",
+          "Chapter_1:_Stardust_to_Stardust.txt",
+          "Chapter_1_-_Stardust_to_Stardust.txt",
+          "﻿Chapter_1-_Stardust_to_Stardust.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0025__5.0_Psychology_Guide__1jtZWe7oV8kkRHeRpSfgGQXASkhpZLPlOrIdID314mP4",
+    "driveName": "5.0 Psychology Guide",
+    "driveNorm": "5 0 psychology guide",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 45,
+    "raw_target_hits_from_leaf_strings": 1,
+    "raw_target_hits": [
+      {
+        "norm": "5 0 psychology guide",
+        "basenames": [
+          "5.0_Psychology_Guide.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0026__Old_6.0_HIGHEST_PRIORITY_Read_this_first_and_then_again_last__1txdk_mVw0b0kGs2fKsP6VFMjluUnp3EBa5P71E-ldjA",
+    "driveName": "(Old) 6.0 HIGHEST PRIORITY (Read this first and then again last) ",
+    "driveNorm": "old 6 0 highest priority read this first and then again last",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 32,
+    "raw_target_hits_from_leaf_strings": 1,
+    "raw_target_hits": [
+      {
+        "norm": "6 0 highest priority read this first and then again last",
+        "basenames": [
+          "6.0_HIGHEST_PRIORITY_(Read_this_first_and_then_again_last)_.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0027__6.0_Supreme_Generative_Constraint__1BJe5JIvHzhwmC2hSPgEgaSBhyKaLnOZsnaf3V5RiDDU",
+    "driveName": "6.0 Supreme Generative Constraint",
+    "driveNorm": "6 0 supreme generative constraint",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 32,
+    "raw_target_hits_from_leaf_strings": 1,
+    "raw_target_hits": [
+      {
+        "norm": "6 0 supreme generative constraint",
+        "basenames": [
+          "6.0_Supreme_Generative_Constraint.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0028__6.0_SYNTHESIS_MANDATE__1DHekOzSR9Xn2QKY21-E0mc2GtnSlWQQX7oayHlF4Yys",
+    "driveName": "6.0 SYNTHESIS MANDATE",
+    "driveNorm": "6 0 synthesis mandate",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 45,
+    "raw_target_hits_from_leaf_strings": 1,
+    "raw_target_hits": [
+      {
+        "norm": "6 0 synthesis mandate",
+        "basenames": [
+          "6.0_SYNTHESIS_MANDATE.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0029__Old_7.0_Nuclear_Edit_CRITICAL_DIRE_EMERGENCY__1s03hIKm0gYjPfC7c7rRBSq53JUB5WS74ER48Wyunmvo",
+    "driveName": "(Old) 7.0 Nuclear Edit!!!! (CRITICAL! DIRE! EMERGENCY!!!)",
+    "driveNorm": "old 7 0 nuclear edit critical dire emergency",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 32,
+    "raw_target_hits_from_leaf_strings": 1,
+    "raw_target_hits": [
+      {
+        "norm": "7 0 nuclear edit critical dire emergency",
+        "basenames": [
+          "7.0_Nuclear_Edit!!!!_(CRITICAL!_DIRE!_EMERGENCY!!!).txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0030__8.0_Pacing_Redundancy__1GSaV1KrrQvbPTYtjbTw7OvP6gbyti2-mx5hRhYnkuFM",
+    "driveName": "8.0 Pacing/Redundancy",
+    "driveNorm": "8 0 pacing redundancy",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 32,
+    "raw_target_hits_from_leaf_strings": 1,
+    "raw_target_hits": [
+      {
+        "norm": "8 0 pacing redundancy",
+        "basenames": [
+          "8.0_Pacing／Redundancy.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0031__ALITTERAS_SYSTEM_BLUEPRINT_v1__1g9I7QCgp6ZIulH3HOsPFrr6rkqmTSzGNXZx48D51OJU",
+    "driveName": "ALITTERAS SYSTEM BLUEPRINT v1",
+    "driveNorm": "alitteras system blueprint v1",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 45,
+    "raw_target_hits_from_leaf_strings": 1,
+    "raw_target_hits": [
+      {
+        "norm": "alitteras system blueprint v1",
+        "basenames": [
+          "ALITTERAS_SYSTEM_BLUEPRINT_v1.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0032__Chapter_3_-_Commerciality_and_Marketing_3.0__1Tt4fIHXbKaE5yolknIN_uELwk9jXztqh8YMhLqjmtno",
+    "driveName": "Chapter 3 - Commerciality and Marketing 3.0",
+    "driveNorm": "chapter 3 commerciality and marketing 3",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 246,
+    "raw_target_hits_from_leaf_strings": 5,
+    "raw_target_hits": [
+      {
+        "norm": "chapter 3 commerciality and marketing 3 0",
+        "basenames": [
+          "Chapter 3 - Commerciality and Marketing 3.0.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 1 revision prompt",
+        "basenames": [
+          "-Final_Chapter_1_Revision_Prompt-.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 version o",
+        "basenames": [
+          "Chapter_1_Version_O.txt"
+        ]
+      },
+      {
+        "norm": "chapter 8 final",
+        "basenames": [
+          "Chapter:_8_(Final).txt"
+        ]
+      },
+      {
+        "norm": "chapter 2 commerciality and marketing 3 0",
+        "basenames": [
+          "Chapter_2_-_Commerciality_and_Marketing_3.0.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0033__Chapter_3_Integration_Prompt__1HbyI6yEHBBS0Z8IgDF2awqoEoFCs89eG5_DevG3_IRI",
+    "driveName": "Chapter 3 Integration Prompt",
+    "driveNorm": "chapter 3 integration prompt",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 369,
+    "raw_target_hits_from_leaf_strings": 6,
+    "raw_target_hits": [
+      {
+        "norm": "chapter 1 integration prompt",
+        "basenames": [
+          "Chapter_1_Integration_Prompt.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 integration",
+        "basenames": [
+          "Chapter_1_Integration.txt"
+        ]
+      },
+      {
+        "norm": "chapter 3 integration prompt",
+        "basenames": [
+          "Chapter_3_Integration_Prompt.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 1 revision prompt",
+        "basenames": [
+          "-Final_Chapter_1_Revision_Prompt-.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 version o",
+        "basenames": [
+          "Chapter_1_Version_O.txt"
+        ]
+      },
+      {
+        "norm": "chapter 8 final",
+        "basenames": [
+          "Chapter:_8_(Final).txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0034__Chapter_1_Merge_Prompt__18HWPiYaqH72RmXRxnaxF-FaELJke-Fm3t3RH-NRvWN0",
+    "driveName": "Chapter 1 Merge Prompt",
+    "driveNorm": "chapter 1 merge prompt",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 123,
+    "raw_target_hits_from_leaf_strings": 4,
+    "raw_target_hits": [
+      {
+        "norm": "chapter 1 merge prompt",
+        "basenames": [
+          "Chapter_1_Merge_Prompt.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 1 revision prompt",
+        "basenames": [
+          "-Final_Chapter_1_Revision_Prompt-.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 version o",
+        "basenames": [
+          "Chapter_1_Version_O.txt"
+        ]
+      },
+      {
+        "norm": "chapter 8 final",
+        "basenames": [
+          "Chapter:_8_(Final).txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0035__Chapter1_Q_Final__1AVkfasTxEDmov92ZfAJO2oMrfjvbR81iiupgRitAuvk",
+    "driveName": "Chapter1_Q_Final",
+    "driveNorm": "chapter1 q final",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 149,
+    "raw_target_hits_from_leaf_strings": 4,
+    "raw_target_hits": [
+      {
+        "norm": "chapter 1 version o",
+        "basenames": [
+          "Chapter_1_Version_O.txt"
+        ]
+      },
+      {
+        "norm": "chapter 8 final",
+        "basenames": [
+          "Chapter:_8_(Final).txt"
+        ]
+      },
+      {
+        "norm": "final chapter 1 revision prompt",
+        "basenames": [
+          "-Final_Chapter_1_Revision_Prompt-.txt"
+        ]
+      },
+      {
+        "norm": "d chapter 7 the pit",
+        "basenames": [
+          "(D)_Chapter:_7_-_The_Pit.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": false
+  },
+  {
+    "folder": "0036__Chapter_10.5__1j7Uyiu5S0N_viG0-4dyEEMsjjGdcqawbnExK9zUs7pk",
+    "driveName": "Chapter 10.5",
+    "driveNorm": "chapter 10",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 110,
+    "raw_target_hits_from_leaf_strings": 4,
+    "raw_target_hits": [
+      {
+        "norm": "chapter 10 5",
+        "basenames": [
+          "Chapter_10.5.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 1 revision prompt",
+        "basenames": [
+          "-Final_Chapter_1_Revision_Prompt-.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 version o",
+        "basenames": [
+          "Chapter_1_Version_O.txt"
+        ]
+      },
+      {
+        "norm": "chapter 8 final",
+        "basenames": [
+          "Chapter:_8_(Final).txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0037__Chapter_13_Exodus__1EZfWlpCim0uysWjZ9QjGaCB7BQQUqyJQcSPRbj0GpI4",
+    "driveName": "Chapter 13: Exodus",
+    "driveNorm": "chapter 13 exodus",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 110,
+    "raw_target_hits_from_leaf_strings": 4,
+    "raw_target_hits": [
+      {
+        "norm": "chapter 13 exodus",
+        "basenames": [
+          "Chapter_13:_Exodus.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 1 revision prompt",
+        "basenames": [
+          "-Final_Chapter_1_Revision_Prompt-.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 version o",
+        "basenames": [
+          "Chapter_1_Version_O.txt"
+        ]
+      },
+      {
+        "norm": "chapter 8 final",
+        "basenames": [
+          "Chapter:_8_(Final).txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0038__Chapter_2_-_Analysis_Guides_1.0__1DtI8s5iosC54Zm0W44KcEa5-jdZ7HNAxSYah4J0uFIs",
+    "driveName": "Chapter 2 - Analysis & Guides 1.0",
+    "driveNorm": "chapter 2 analysis & guides 1",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 149,
+    "raw_target_hits_from_leaf_strings": 5,
+    "raw_target_hits": [
+      {
+        "norm": "chapter 2 analysis & guides 1 0",
+        "basenames": [
+          "Chapter_2_-_Analysis_&_Guides_1.0.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 1 revision prompt",
+        "basenames": [
+          "-Final_Chapter_1_Revision_Prompt-.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 version o",
+        "basenames": [
+          "Chapter_1_Version_O.txt"
+        ]
+      },
+      {
+        "norm": "chapter 8 final",
+        "basenames": [
+          "Chapter:_8_(Final).txt"
+        ]
+      },
+      {
+        "norm": "chapter 3 analysis & guides",
+        "basenames": [
+          "Chapter_3_Analysis_&_Guides.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0039__Chapter_3_-_Master_Revision_Prompt_2.0__1mqT9TetHd_8Wja4TkABZhnS1FQpSDAHSvvTnKod1Bbk",
+    "driveName": "Chapter 3 - Master Revision Prompt 2.0",
+    "driveNorm": "chapter 3 master revision prompt 2",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 298,
+    "raw_target_hits_from_leaf_strings": 5,
+    "raw_target_hits": [
+      {
+        "norm": "chapter 2 master revision prompt 2 0",
+        "basenames": [
+          "Chapter_2_-_Master_Revision_Prompt_2.0.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 1 revision prompt",
+        "basenames": [
+          "-Final_Chapter_1_Revision_Prompt-.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 version o",
+        "basenames": [
+          "Chapter_1_Version_O.txt"
+        ]
+      },
+      {
+        "norm": "chapter 8 final",
+        "basenames": [
+          "Chapter:_8_(Final).txt"
+        ]
+      },
+      {
+        "norm": "chapter 3 master revision prompt 2 0",
+        "basenames": [
+          "Chapter_3_-_Master_Revision_Prompt_2.0.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0040__Chapter_2nd_to_last__145L-3aHQH6XNn-lWhzeIBM46Do2DCuo_5lBckU_Y6k4",
+    "driveName": "Chapter 2nd to last",
+    "driveNorm": "chapter 2nd to last",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 155,
+    "raw_target_hits_from_leaf_strings": 6,
+    "raw_target_hits": [
+      {
+        "norm": "chapter 2nd to last",
+        "basenames": [
+          "Chapter_2nd_to_last.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 1 revision prompt",
+        "basenames": [
+          "-Final_Chapter_1_Revision_Prompt-.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 version o",
+        "basenames": [
+          "Chapter_1_Version_O.txt"
+        ]
+      },
+      {
+        "norm": "chapter 8 final",
+        "basenames": [
+          "Chapter:_8_(Final).txt"
+        ]
+      },
+      {
+        "norm": "r chapter 1 stardust to stardust",
+        "basenames": [
+          "(R) Chapter: 1 - Stardust to Stardust .txt",
+          "(R)_Chapter:_1_-_Stardust_to_Stardust_.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 stardust to stardust",
+        "basenames": [
+          "Chapter:_1_-_Stardust_to_Stardust.txt",
+          "Chapter_1:_Stardust_to_Stardust.txt",
+          "Chapter_1_-_Stardust_to_Stardust.txt",
+          "﻿Chapter_1-_Stardust_to_Stardust.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0041__Chapter_3_Analysis_Guides__1FVADnhWwf5nMiHoSjDb0p4Rj81pDRz08E4KhDFZUB2s",
+    "driveName": "Chapter 3 Analysis & Guides",
+    "driveNorm": "chapter 3 analysis & guides",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 136,
+    "raw_target_hits_from_leaf_strings": 4,
+    "raw_target_hits": [
+      {
+        "norm": "chapter 3 analysis & guides",
+        "basenames": [
+          "Chapter_3_Analysis_&_Guides.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 1 revision prompt",
+        "basenames": [
+          "-Final_Chapter_1_Revision_Prompt-.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 version o",
+        "basenames": [
+          "Chapter_1_Version_O.txt"
+        ]
+      },
+      {
+        "norm": "chapter 8 final",
+        "basenames": [
+          "Chapter:_8_(Final).txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0042__Chapter_1_Proof_of_Authorship_1.0__1UJQ79YUROKhtLY73bppM6XQiXZLtkCnA6Qbn7HisMzk",
+    "driveName": "Chapter: 1 Proof of Authorship 1.0",
+    "driveNorm": "chapter 1 proof of authorship 1",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 149,
+    "raw_target_hits_from_leaf_strings": 4,
+    "raw_target_hits": [
+      {
+        "norm": "chapter 1 proof of authorship 1 0",
+        "basenames": [
+          "Chapter:_1_Proof_of_Authorship_1.0.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 1 revision prompt",
+        "basenames": [
+          "-Final_Chapter_1_Revision_Prompt-.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 version o",
+        "basenames": [
+          "Chapter_1_Version_O.txt"
+        ]
+      },
+      {
+        "norm": "chapter 8 final",
+        "basenames": [
+          "Chapter:_8_(Final).txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0043__Chapter_1_Proof_of_Authorship_1.1__1Q3f6XFlTodANFVbNr2ebSM5Mx4UnPWdre7NCwhopKgE",
+    "driveName": "Chapter: 1 Proof of Authorship 1.1",
+    "driveNorm": "chapter 1 proof of authorship 1",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 123,
+    "raw_target_hits_from_leaf_strings": 4,
+    "raw_target_hits": [
+      {
+        "norm": "chapter 1 proof of authorship 1 1",
+        "basenames": [
+          "Chapter:_1_Proof_of_Authorship_1.1.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 1 revision prompt",
+        "basenames": [
+          "-Final_Chapter_1_Revision_Prompt-.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 version o",
+        "basenames": [
+          "Chapter_1_Version_O.txt"
+        ]
+      },
+      {
+        "norm": "chapter 8 final",
+        "basenames": [
+          "Chapter:_8_(Final).txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0044__Chapter_10_-_MASTER_BRIEFING__1eEillHIiOZLGJ4vj0Bm_9zjn3KjvxSHb291Rn7qsT9o",
+    "driveName": "Chapter: 10 - MASTER BRIEFING",
+    "driveNorm": "chapter 10 master briefing",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 149,
+    "raw_target_hits_from_leaf_strings": 4,
+    "raw_target_hits": [
+      {
+        "norm": "chapter 10 master briefing",
+        "basenames": [
+          "Chapter:_10_-_MASTER_BRIEFING.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 1 revision prompt",
+        "basenames": [
+          "-Final_Chapter_1_Revision_Prompt-.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 version o",
+        "basenames": [
+          "Chapter_1_Version_O.txt"
+        ]
+      },
+      {
+        "norm": "chapter 8 final",
+        "basenames": [
+          "Chapter:_8_(Final).txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0045__Chapter2_Weight_of_the_Sky__1dBjRsoqexbBVZUYJTbZlybhH8cMGE1twD9kDtXh1kX8",
+    "driveName": "Chapter2_Weight_of_the_Sky",
+    "driveNorm": "chapter2 weight of the sky",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 152,
+    "raw_target_hits_from_leaf_strings": 5,
+    "raw_target_hits": [
+      {
+        "norm": "chapter2 weight of the sky",
+        "basenames": [
+          "Chapter2_Weight_of_the_Sky.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 1 revision prompt",
+        "basenames": [
+          "-Final_Chapter_1_Revision_Prompt-.txt"
+        ]
+      },
+      {
+        "norm": "chapter 1 version o",
+        "basenames": [
+          "Chapter_1_Version_O.txt"
+        ]
+      },
+      {
+        "norm": "chapter 8 final",
+        "basenames": [
+          "Chapter:_8_(Final).txt"
+        ]
+      },
+      {
+        "norm": "the weight of the sky the fall into megiddo",
+        "basenames": [
+          "The_Weight_of_the_Sky:_The_Fall_into_Megiddo.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0046__Critique_2.2__1ezVF2n-KfiIMcW_TGPLa0F9PYeFvu8hkbQiJ960TCog",
+    "driveName": "Critique 2.2",
+    "driveNorm": "critique 2",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 32,
+    "raw_target_hits_from_leaf_strings": 1,
+    "raw_target_hits": [
+      {
+        "norm": "critique 2 2",
+        "basenames": [
+          "Critique_2.2.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0047__Final_Revision_Generalized_For_All_Chapters__1E7XbIvODIR4MJFE1xEgvrztllRlZl1qgEgtmMHnpa90",
+    "driveName": "Final Revision (Generalized For All Chapters)",
+    "driveNorm": "final revision generalized for all chapters",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 45,
+    "raw_target_hits_from_leaf_strings": 1,
+    "raw_target_hits": [
+      {
+        "norm": "final revision generalized for all chapters",
+        "basenames": [
+          "Final Revision (Generalized For All Chapters).txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0048__MANUSCRIPT_AUTOPSY__16WAz5M7Vgdb7fDukQbPUBRvip4Co4784WpldwFfON40",
+    "driveName": "MANUSCRIPT AUTOPSY",
+    "driveNorm": "manuscript autopsy",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 32,
+    "raw_target_hits_from_leaf_strings": 1,
+    "raw_target_hits": [
+      {
+        "norm": "manuscript autopsy",
+        "basenames": [
+          "MANUSCRIPT_AUTOPSY.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0049__Narnia__1KDPy4WOiZz35EmUTJFGdEXJjoDdD4QD2vUKLnwoic_M",
+    "driveName": "Narnia_",
+    "driveNorm": "narnia",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 32,
+    "raw_target_hits_from_leaf_strings": 1,
+    "raw_target_hits": [
+      {
+        "norm": "narnia",
+        "basenames": [
+          "Narnia_.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0050__21.0_Purple_Prose_Prompt_Protocol__18ij8f9pABf8aF9UkeLAgWhHovpEBjywHqeTq5Z2CGqw",
+    "driveName": "21.0 Purple Prose Prompt Protocol",
+    "driveNorm": "21 0 purple prose prompt protocol",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 32,
+    "raw_target_hits_from_leaf_strings": 1,
+    "raw_target_hits": [
+      {
+        "norm": "purple prose prompt",
+        "basenames": [
+          "Purple_Prose_Prompt.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0051__Final_Master_Singularity_Compendium_The_Weight_of_the_Sky__1DDzzszQ8wGUYyL1ijSd3WB1wXTHdOHzqKPX5dM2iAhI",
+    "driveName": "Final Master Singularity Compendium: The Weight of the Sky",
+    "driveNorm": "final master singularity compendium the weight of the sky",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 140,
+    "raw_target_hits_from_leaf_strings": 2,
+    "raw_target_hits": [
+      {
+        "norm": "the weight of the sky master compendium singularity v",
+        "basenames": [
+          "THE_WEIGHT_OF_THE_SKY-_MASTER_COMPENDIUM_(SINGULARITY_v.txt"
+        ]
+      },
+      {
+        "norm": "chapter2 weight of the sky",
+        "basenames": [
+          "Chapter2_Weight_of_the_Sky.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": false
+  },
+  {
+    "folder": "0052__The_Weight_of_the_Sky_The_Fall_into_Megiddo__1m3WUXh2oiJ7Jb4RJYbHjsQNfQxH0sDnV5BAbAbJlzf0",
+    "driveName": "The Weight of the Sky: The Fall into Megiddo",
+    "driveNorm": "the weight of the sky the fall into megiddo",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 127,
+    "raw_target_hits_from_leaf_strings": 2,
+    "raw_target_hits": [
+      {
+        "norm": "the weight of the sky the fall into megiddo",
+        "basenames": [
+          "The_Weight_of_the_Sky:_The_Fall_into_Megiddo.txt"
+        ]
+      },
+      {
+        "norm": "chapter2 weight of the sky",
+        "basenames": [
+          "Chapter2_Weight_of_the_Sky.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0053__ToALITTERAS_ECOSYSTEM_v2__1E_8U7x7RbqS_HJi3gOwOqAsHXEABBPUT4gIQ3Dqa8kM",
+    "driveName": "ToALITTERAS ECOSYSTEM v2",
+    "driveNorm": "toalitteras ecosystem v2",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 32,
+    "raw_target_hits_from_leaf_strings": 1,
+    "raw_target_hits": [
+      {
+        "norm": "toalitteras ecosystem v2",
+        "basenames": [
+          "ToALITTERAS_ECOSYSTEM_v2.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0054__Untitled_document__1ltQkkFoUx_aa4yItr8RG-5mDB3AwaK4e5tKbnBQmS60",
+    "driveName": "Untitled document",
+    "driveNorm": "untitled document",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 136,
+    "raw_target_hits_from_leaf_strings": 1,
+    "raw_target_hits": [
+      {
+        "norm": "untitled document",
+        "basenames": [
+          "Untitled_document.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  },
+  {
+    "folder": "0055__MASTER_INDIVIDUALIZED_PLAN_FOR_EMPLOYMENT_IPE_ACADEMIC_ROADMAP__1SJQb5blbY2QTxCiLfz2ji8nbElihx1d2EgeTVp4DnjM",
+    "driveName": "🎓 MASTER INDIVIDUALIZED PLAN FOR EMPLOYMENT (IPE) & ACADEMIC ROADMAP",
+    "driveNorm": "🎓 master individualized plan for employment ipe & academic roadmap",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 149,
+    "raw_target_hits_from_leaf_strings": 1,
+    "raw_target_hits": [
+      {
+        "norm": "version a",
+        "basenames": [
+          "Version_A.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": false
+  },
+  {
+    "folder": "0056__AI_JOB_AGENT_6__11DN2bJYNHPCDCvH6AoWi9JKTzcZeVwPBdcXUIeWP2eU",
+    "driveName": "AI JOB AGENT (6)",
+    "driveNorm": "ai job agent 6",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 149,
+    "raw_target_hits_from_leaf_strings": 1,
+    "raw_target_hits": [
+      {
+        "norm": "version b",
+        "basenames": [
+          "Version_B.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": false
+  },
+  {
+    "folder": "0057__WOS_Ch7_The_Pit__1ZmaR8NIPqxMhsyICXsv3gesiDd4pgmQtOFeEWe0VwWI",
+    "driveName": "WOS_Ch7_The_Pit",
+    "driveNorm": "wos ch7 the pit",
+    "matched_json_exists": true,
+    "total_leaf_strings_in_matched_json": 58,
+    "raw_target_hits_from_leaf_strings": 3,
+    "raw_target_hits": [
+      {
+        "norm": "wos ch7 the pit",
+        "basenames": [
+          "WOS_Ch7_The_Pit.txt"
+        ]
+      },
+      {
+        "norm": "d chapter 7 the pit",
+        "basenames": [
+          "(D)_Chapter:_7_-_The_Pit.txt"
+        ]
+      },
+      {
+        "norm": "final chapter 7 the pit",
+        "basenames": [
+          "(Final) Chapter: 7 - The Pit.txt"
+        ]
+      }
+    ],
+    "drive_name_contains_any_raw_target_or_reverse": true
+  }
+]

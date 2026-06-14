@@ -1,0 +1,34 @@
+{
+  "local_name_targets_exists": true,
+  "local_name_targets_top_type": "array",
+  "local_name_targets_key_signatures": [
+    [
+      "bytes, local_name, local_path, local_sha256, normalized_name, source_root",
+      181
+    ]
+  ],
+  "all_drive_doc_candidates_exists": true,
+  "all_drive_doc_candidates_top_type": "array",
+  "matched_local_targets_key_signatures": [
+    [
+      "displayName, emailAddress",
+      3074
+    ],
+    [
+      "createdTime, id, lastModifyingUser, mimeType, modifiedTime, name, owners, parents, score, size, version, webViewLink",
+      1393
+    ],
+    [
+      "best, bytes, candidates, local_name, local_path, local_sha256, normalized_name, source_root, status",
+      165
+    ],
+    [
+      "createdTime, id, lastModifyingUser, md5Checksum, mimeType, modifiedTime, name, owners, parents, score, sha1Checksum, sha256Checksum, size, version, webViewLink",
+      142
+    ],
+    [
+      "createdTime, id, lastModifyingUser, md5Checksum, mimeType, modifiedTime, name, owners, parents, score, size, version, webViewLink",
+      2
+    ]
+  ]
+}

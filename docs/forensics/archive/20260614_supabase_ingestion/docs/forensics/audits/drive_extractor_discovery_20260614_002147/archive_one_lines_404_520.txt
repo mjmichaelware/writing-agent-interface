@@ -1,0 +1,117 @@
+async function archiveOne({ drive, docs, doc, matchedTargets, index }) {
+  const docDir = path.join(
+    ARCHIVE_ROOT,
+    "documents",
+    `${String(index).padStart(4, "0")}__${safeName(doc.name)}__${doc.id}`
+  );
+
+  mkdirp(docDir);
+
+  const record = {
+    index,
+    drive_file: doc,
+    matched_targets: matchedTargets,
+    docDir,
+    current_docx: null,
+    current_docx_sha256: null,
+    ooxml_entries_count: 0,
+    docs_api: [],
+    comments: null,
+    revisions: null,
+    errors: [],
+  };
+
+  writeJson(path.join(docDir, "drive-file-metadata.json"), doc);
+  writeJson(path.join(docDir, "matched-local-targets.json"), matchedTargets);
+
+  try {
+    let buf;
+    if (doc.mimeType === "application/vnd.google-apps.document") {
+      buf = await exportGoogleDocx(drive, doc.id);
+    } else {
+      buf = await downloadBinary(drive, doc.id);
+    }
+
+    const currentPath = path.join(docDir, "current", "current.docx");
+    mkdirp(path.dirname(currentPath));
+    fs.writeFileSync(currentPath, buf);
+    fs.writeFileSync(`${currentPath}.sha256`, sha256(buf) + "\n");
+
+    record.current_docx = currentPath;
+    record.current_docx_sha256 = sha256(buf);
+
+    const entries = await extractDocxZip(buf, path.join(docDir, "ooxml_current"));
+    writeJson(path.join(docDir, "current_docx_zip_manifest.json"), entries);
+    record.ooxml_entries_count = entries.length;
+  } catch (e) {
+    record.errors.push({ stage: "current_docx_export_or_extract", error: e.message });
+  }
+
+  if (doc.mimeType === "application/vnd.google-apps.document") {
+    try {
+      record.docs_api = await saveDocsApi(docs, doc.id, path.join(docDir, "docs_api"));
+    } catch (e) {
+      record.errors.push({ stage: "docs_api", error: e.message });
+    }
+  }
+
+  try {
+    record.comments = await saveComments(drive, doc.id, path.join(docDir, "comments"));
+  } catch (e) {
+    record.errors.push({ stage: "comments", error: e.message });
+  }
+
+  try {
+    record.revisions = await saveRevisions(drive, doc.id, path.join(docDir, "revisions"));
+  } catch (e) {
+    record.errors.push({ stage: "revisions", error: e.message });
+  }
+
+  writeJson(path.join(docDir, "archive-record.json"), record);
+  return record;
+}
+
+mkdirp(ARCHIVE_ROOT);
+mkdirp("reports");
+
+const localTargets = collectLocalTargets();
+writeJson(path.join(ARCHIVE_ROOT, "local-name-targets.json"), localTargets);
+
+console.log(`Local name targets: ${localTargets.length}`);
+console.log("Listing visible Google Docs/DOCX/DOC files...");
+
+const GOOGLE_APPLICATION_CREDENTIALS =
+  process.env.GOOGLE_APPLICATION_CREDENTIALS ||
+  "secrets/wos-drive-docs-reader.json";
+
+let auth;
+if (process.env.GOOGLE_OAUTH_ACCESS_TOKEN) {
+  auth = new google.auth.OAuth2();
+  auth.setCredentials({ access_token: process.env.GOOGLE_OAUTH_ACCESS_TOKEN });
+} else if (fs.existsSync(GOOGLE_APPLICATION_CREDENTIALS)) {
+  auth = new google.auth.GoogleAuth({
+    keyFile: GOOGLE_APPLICATION_CREDENTIALS,
+    scopes: [
+      "https://www.googleapis.com/auth/drive.readonly",
+      "https://www.googleapis.com/auth/documents.readonly",
+    ],
+  });
+} else {
+  auth = await google.auth.getClient({
+    scopes: [
+      "https://www.googleapis.com/auth/drive.readonly",
+      "https://www.googleapis.com/auth/documents.readonly",
+    ],
+  });
+}
+
+const drive = google.drive({ version: "v3", auth });
+const docs = google.docs({ version: "v1", auth });
+
+const driveDocs = await listDriveDocuments(drive);
+writeJson(path.join(ARCHIVE_ROOT, "all-drive-doc-candidates.json"), driveDocs);
+
+console.log(`Drive document candidates: ${driveDocs.length}`);
+
+const matches = matchTargets(localTargets, driveDocs);
+writeJson(path.join(ARCHIVE_ROOT, "name-match-report.json"), matches);

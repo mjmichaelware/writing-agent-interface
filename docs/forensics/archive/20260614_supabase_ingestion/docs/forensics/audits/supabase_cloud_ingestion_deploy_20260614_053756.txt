@@ -1,0 +1,22 @@
+Deployment notes:
+1. Never commit SUPABASE_SERVICE_ROLE_KEY.
+2. Link project:
+   npx supabase login
+   npx supabase link --project-ref YOUR_PROJECT_REF
+3. Push migrations:
+   npx supabase db push
+4. Set secrets:
+   npx supabase secrets set SUPABASE_URL="https://YOUR_PROJECT_REF.supabase.co"
+   npx supabase secrets set SUPABASE_SERVICE_ROLE_KEY="YOUR_SERVICE_ROLE_KEY"
+5. Deploy functions:
+   npx supabase functions deploy create-upload-url
+   npx supabase functions deploy register-uploaded-artifact
+   npx supabase functions deploy verify-artifact-hash
+   npx supabase functions deploy enqueue-enrichment
+   npx supabase functions deploy process-enrichment-batch
+6. Local shard:
+   ./scripts/shard-supabase-manifests.sh
+7. Upload shards:
+   export SUPABASE_URL="https://YOUR_PROJECT_REF.supabase.co"
+   export SUPABASE_SERVICE_ROLE_KEY="YOUR_SERVICE_ROLE_KEY"
+   ./scripts/upload-supabase-shards.sh

@@ -1,0 +1,125 @@
+status	best_score	local_basename	best_drive_name	best_has_document_xml	local_path
+unmatched	0	(A)_Chapter_1_-_Stardust_to_Stardust.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1_-_Stardust_to_Stardust.txt
+unmatched	0	(A)_Chapter_1-_Stardust_to_Stardust.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1-_Stardust_to_Stardust.txt
+unmatched	0	(A)_Chapter_1:_Stardust_to_Stardust.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1:_Stardust_to_Stardust.txt
+unmatched	0	(A)_Chapter_2-_Living_Sacrifice.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_2-_Living_Sacrifice.txt
+unmatched	0	(A)_Chapter_2:_Living_Sacrifice.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_2:_Living_Sacrifice.txt
+unmatched	0	(A)_Chapter_3_-_Lift_Up.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_3_-_Lift_Up.txt
+unmatched	0	(A)_Chapter_3-_Lift_Up.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_3-_Lift_Up.txt
+unmatched	0	(A)_Chapter_5_-_The_Snare.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_5_-_The_Snare.txt
+unmatched	0	(A)_Chapter_6:_Beelzebub,_Beelzebub.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_6:_Beelzebub,_Beelzebub.txt
+unmatched	0	(A)_Chapter:_1_Stardust_to_Stardust.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter:_1_Stardust_to_Stardust.txt
+unmatched	0	(A)Chapter_8:_Sea_People.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(A)Chapter_8:_Sea_People.txt
+unmatched	0	(B)_Chapter_1_-_Stardust_to_Stardust.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1_-_Stardust_to_Stardust.txt
+unmatched	0	(B)_Chapter_1-_Stardust_to_Stardust.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1-_Stardust_to_Stardust.txt
+unmatched	0	(B)_Chapter_1:_Stardust_to_Stardust.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1:_Stardust_to_Stardust.txt
+unmatched	0	(B)_Chapter_2-_Living_Sacrifice.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_2-_Living_Sacrifice.txt
+unmatched	0	(B)_Chapter_2:_Living_Sacrifice.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_2:_Living_Sacrifice.txt
+unmatched	0	(B)_Chapter_3-_Lift_Up.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_3-_Lift_Up.txt
+unmatched	0	(B)_Chapter_3:_Lift_Up.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_3:_Lift_Up.txt
+unmatched	0	(B)_Chapter_5-_The_Snare.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_5-_The_Snare.txt
+unmatched	0	(B)_Chapter_6_-_Beelzebub,_Beelzebub.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_6_-_Beelzebub,_Beelzebub.txt
+unmatched	0	(B)_Chapter_7:_The_Pit.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_7:_The_Pit.txt
+unmatched	0	(B)_Chapter_9:_The_Ascent.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_9:_The_Ascent.txt
+unmatched	0	(B)_Chapter:_1_Stardust_to_Stardust.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter:_1_Stardust_to_Stardust.txt
+unmatched	0	(B)_Stardust_to_Stardust.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(B)_Stardust_to_Stardust.txt
+unmatched	0	(B)Chapter_8:_Sea_People.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(B)Chapter_8:_Sea_People.txt
+unmatched	0	(C)_Chapter_1_-_Stardust_to_Stardust.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_1_-_Stardust_to_Stardust.txt
+unmatched	0	(C)_Chapter_1-_Stardust_to_Stardust.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_1-_Stardust_to_Stardust.txt
+unmatched	0	(C)_Chapter_2-_Living_Sacrifice.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_2-_Living_Sacrifice.txt
+unmatched	0	(C)_Chapter_3_-_Lift_Up.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_3_-_Lift_Up.txt
+unmatched	0	(C)_Chapter_3-_Lift_Up.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_3-_Lift_Up.txt
+unmatched	0	(C)_Chapter_4_-_Pilgrimage.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_4_-_Pilgrimage.txt
+unmatched	0	(C)_Chapter_4-_Pilgrimage.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_4-_Pilgrimage.txt
+unmatched	0	(C)_Chapter_6-_Beelzebub,_Beelzebub.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_6-_Beelzebub,_Beelzebub.txt
+unmatched	0	(C)_Chapter:_1_-_Stardust_to_Stardust_.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_1_-_Stardust_to_Stardust_.txt
+unmatched	0	(C)_Chapter:_7_-_The_Pit.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_7_-_The_Pit.txt
+unmatched	0	(C)_Chapter:_Stardust_to_Stardust.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_Stardust_to_Stardust.txt
+unmatched	0	(C)Chapter_8:_Sea_People.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(C)Chapter_8:_Sea_People.txt
+unmatched	0	(D)_Chapter_1_-_Stardust_to_Stardust.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter_1_-_Stardust_to_Stardust.txt
+unmatched	0	(D)_Chapter_2_-_Living_Sacrifice.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter_2_-_Living_Sacrifice.txt
+unmatched	0	(D)_Chapter_2-_Living_Sacrifice.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter_2-_Living_Sacrifice.txt
+unmatched	0	(E)_Chapter_1_-_Stardust_to_Stardust.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_1_-_Stardust_to_Stardust.txt
+unmatched	0	(E)_Chapter_1-_Stardust_to_Stardust.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_1-_Stardust_to_Stardust.txt
+unmatched	0	(E)_Chapter_2_-_Living_Sacrifice.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_2_-_Living_Sacrifice.txt
+unmatched	0	(E)_Chapter_2-_Living_Sacrifice.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_2-_Living_Sacrifice.txt
+unmatched	0	(E)_Chapter_3-_Lift_Up.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_3-_Lift_Up.txt
+unmatched	0	(F)_Chapter_1_-_Stardust_to_Stardust.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_1_-_Stardust_to_Stardust.txt
+unmatched	0	(F)_Chapter_1:_Stardust_to_Stardust_.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_1:_Stardust_to_Stardust_.txt
+unmatched	0	(F)_Chapter_2-_Living_Sacrifice.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_2-_Living_Sacrifice.txt
+unmatched	0	(F)_Chapter_3-_Lift_Up.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_3-_Lift_Up.txt
+unmatched	0	(F)_Chapter:_1_Stardust_to_Stardust_.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter:_1_Stardust_to_Stardust_.txt
+unmatched	0	(Final) Chapter: 7 - The Pit.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(Final) Chapter: 7 - The Pit.txt
+unmatched	0	(Final)_Chapter_1_-_Stardust_to_Stardust.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_1_-_Stardust_to_Stardust.txt
+unmatched	0	(Final)_Chapter_1:_Stardust_to_Stardust.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_1:_Stardust_to_Stardust.txt
+unmatched	0	(Final)_Chapter_2-_Living_Sacrifice.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_2-_Living_Sacrifice.txt
+unmatched	0	(Final)_Chapter_3-_Lift_Up.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_3-_Lift_Up.txt
+unmatched	0	(Final)_Chapter_3:_Lift_Up.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_3:_Lift_Up.txt
+unmatched	0	(G)_Chapter_1:_Stardust_to_Stardust.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(G)_Chapter_1:_Stardust_to_Stardust.txt
+weak_review	67	(G)_Final_)_Chapter:_10_-_Forsaken.txt	Chapter 10.5	true	src/data-layer/ingestion-buffer/gdrive_raw/(G)_Final_)_Chapter:_10_-_Forsaken.txt
+unmatched	0	(I)_(Notes)_Chapter:_1_Stardust_to_Stardust_.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(I)_(Notes)_Chapter:_1_Stardust_to_Stardust_.txt
+unmatched	0	(I)_Chapter:_1_Stardust_to_Stardust_.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(I)_Chapter:_1_Stardust_to_Stardust_.txt
+unmatched	0	(N)_Chapter_1_-_Stardust_to_Stardust.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(N)_Chapter_1_-_Stardust_to_Stardust.txt
+unmatched	0	(N)_CHAPTER_1-_STARDUST_TO_STARDUST.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(N)_CHAPTER_1-_STARDUST_TO_STARDUST.txt
+unmatched	0	(Notes)_Chapter_2-_Living_Sacrifice.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_Chapter_2-_Living_Sacrifice.txt
+unmatched	0	(Notes)_Chapter_2:_Living_Sacrifice.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_Chapter_2:_Living_Sacrifice.txt
+unmatched	0	(O)_Chapter_1-_Stardust_to_Stardust.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(O)_Chapter_1-_Stardust_to_Stardust.txt
+weak_review	67	(Revision_Prompt_(D))_Chapter_10:_Forsaken.txt	Chapter 10.5	true	src/data-layer/ingestion-buffer/gdrive_raw/(Revision_Prompt_(D))_Chapter_10:_Forsaken.txt
+unmatched	0	(Revision_Prompt_(N)__Chapter_1_-_Stardust_to_Stardust.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(Revision_Prompt_(N)__Chapter_1_-_Stardust_to_Stardust.txt
+unmatched	0	(Revisions)_Chapter_1:_Stardust_to_Stardust.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(Revisions)_Chapter_1:_Stardust_to_Stardust.txt
+unmatched	0	(SDP)_v2.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(SDP)_v2.txt
+unmatched	0	(X)_Chapter_1__Stardust_to_Stardust_(1).txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1__Stardust_to_Stardust_(1).txt
+unmatched	0	(X)_Chapter_1__Stardust_to_Stardust_(2).txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1__Stardust_to_Stardust_(2).txt
+unmatched	0	(X)_Chapter_1_-_Stardust_to_Stardust.docx.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1_-_Stardust_to_Stardust.docx.txt
+unmatched	0	(X)_Chapter_1_-_Stardust_to_Stardust.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1_-_Stardust_to_Stardust.txt
+unmatched	0	(X)_Chapter_1:_Stardust_to_Stardust.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1:_Stardust_to_Stardust.txt
+unmatched	0	(Z)_Chapter_1:_Stardust_to_Stardust.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/(Z)_Chapter_1:_Stardust_to_Stardust.txt
+unmatched	0	*Chapter_1:_Stardust_to_Stardust.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_1:_Stardust_to_Stardust.txt
+unmatched	0	*Chapter_2-_Living_Sacrifice.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_2-_Living_Sacrifice.txt
+unmatched	0	*Chapter_3:_Lift_Up.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_3:_Lift_Up.txt
+unmatched	0	*Chapter_4:_Pilgrimage.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_4:_Pilgrimage.txt
+unmatched	0	*Chapter_7:_The_Pit.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_7:_The_Pit.txt
+unmatched	0	*Chapter_8:_Sea_People.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_8:_Sea_People.txt
+unmatched	0	*Chapter_9:_The_Ascent.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_9:_The_Ascent.txt
+unmatched	0	•(G)_Chapter:_1_Stardust_to_Stardust_.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/•(G)_Chapter:_1_Stardust_to_Stardust_.txt
+unmatched	0	1.0_Revision.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/1.0_Revision.txt
+unmatched	0	10.0_Blueprint_for_The_Ascent_of_Daniel:_The_Archetype_of_Sacrifice_(NYT_Bestseller_Focus).txt		false	src/data-layer/ingestion-buffer/gdrive_raw/10.0_Blueprint_for_The_Ascent_of_Daniel:_The_Archetype_of_Sacrifice_(NYT_Bestseller_Focus).txt
+unmatched	0	12.0_Perfection.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/12.0_Perfection.txt
+unmatched	0	13.0_Claude.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/13.0_Claude.txt
+weak_review	68	2.0_Critique_／_Analysis_Guide.txt	2.0 Critique / Analysis Guide	true	src/data-layer/ingestion-buffer/gdrive_raw/2.0_Critique_／_Analysis_Guide.txt
+unmatched	0	2.0_This_is_the_critical_adjustment—the_final_layer_that_elevates_philosophical_storytelling_into_timeless,_devastating_human_tragedy.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/2.0_This_is_the_critical_adjustment—the_final_layer_that_elevates_philosophical_storytelling_into_timeless,_devastating_human_tragedy.txt
+unmatched	0	3.0_Final_.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/3.0_Final_.txt
+unmatched	0	3.0_Literary_&_Archetypal_Fusion_Rulebook_(The_Cat_God_&_The_Primal_Self).txt		false	src/data-layer/ingestion-buffer/gdrive_raw/3.0_Literary_&_Archetypal_Fusion_Rulebook_(The_Cat_God_&_The_Primal_Self).txt
+unmatched	0	4.0_Emotional_&_Archetypal_Editing_Rulebook_(Visceral_Empathy_Focus).txt		false	src/data-layer/ingestion-buffer/gdrive_raw/4.0_Emotional_&_Archetypal_Editing_Rulebook_(Visceral_Empathy_Focus).txt
+unmatched	0	4.0_Psychology_Guide.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/4.0_Psychology_Guide.txt
+unmatched	0	4.0_REVISED.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/4.0_REVISED.txt
+unmatched	0	6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt
+unmatched	0	7.0_Chapter_Refinery.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/7.0_Chapter_Refinery.txt
+unmatched	0	8._0_This_is_the_final,_most_crucial_step:_ensuring_the_narrative's_structure_is_so_perfectly_weighted_that_the_profound_sadness—the_weeping_of_self-recognition—is_not_a_chance_event,_but_an_earned,_inevitable_catharsis_for_the_reader.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/8._0_This_is_the_final,_most_crucial_step:_ensuring_the_narrative's_structure_is_so_perfectly_weighted_that_the_profound_sadness—the_weeping_of_self-recognition—is_not_a_chance_event,_but_an_earned,_inevitable_catharsis_for_the_reader.txt
+weak_review	67	8.0_Pacing／Redundancy.txt	8.0 Pacing/Redundancy	true	src/data-layer/ingestion-buffer/gdrive_raw/8.0_Pacing／Redundancy.txt
+unmatched	0	9.0_Aesthetic.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/9.0_Aesthetic.txt
+unmatched	0	9.0_Stones.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/9.0_Stones.txt
+unmatched	0	Chapter_1_Integration_2.0.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Integration_2.0.txt
+unmatched	0	Chapter_1_Integration_Prompt.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Integration_Prompt.txt
+unmatched	0	Chapter_1_Integration.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Integration.txt
+unmatched	0	Chapter_1_Version_O.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Version_O.txt
+weak_review	67	Chapter_10_Forsaken_FINAL_DEFINITIVE.txt	Chapter 10.5	true	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10_Forsaken_FINAL_DEFINITIVE.txt
+weak_review	67	Chapter_10_Version_F.txt	Chapter 10.5	true	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10_Version_F.txt
+weak_review	67	Chapter_10.1.txt	Chapter 10.5	true	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10.1.txt
+weak_review	67	Chapter_10.5.txt	Chapter 10.5	true	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10.5.txt
+unmatched	0	Chapter_11._Forsaken.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_11._Forsaken.txt
+unmatched	0	chapter_11.2.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/chapter_11.2.txt
+unmatched	0	Chapter_11.8.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_11.8.txt
+unmatched	0	Chapter_2_-_Commerciality_and_Marketing_3.0.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2_-_Commerciality_and_Marketing_3.0.txt
+unmatched	0	Chapter_2_-_Master_Revision_Prompt_2.0.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2_-_Master_Revision_Prompt_2.0.txt
+unmatched	0	Chapter_8:_Sea_People.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_8:_Sea_People.txt
+unmatched	0	Chapter_8.1.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_8.1.txt
+unmatched	0	Could_you_condense_that_chapter_by_500_to_1,000_w....txt		false	src/data-layer/ingestion-buffer/gdrive_raw/Could_you_condense_that_chapter_by_500_to_1,000_w....txt
+weak_review	67	Critique_2.2.txt	Critique 2.2	true	src/data-layer/ingestion-buffer/gdrive_raw/Critique_2.2.txt
+unmatched	0	Go_ahead_and_write_out_the_chapter_keep_in_mind_t....txt		false	src/data-layer/ingestion-buffer/gdrive_raw/Go_ahead_and_write_out_the_chapter_keep_in_mind_t....txt
+unmatched	0	The_-Version_X-_Meta-Prompt.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/The_-Version_X-_Meta-Prompt.txt
+unmatched	0	The_scrape.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/The_scrape.txt
+weak_review	47	THE_WEIGHT_OF_THE_SKY-_MASTER_COMPENDIUM_(SINGULARITY_v.txt	Final Master Singularity Compendium: The Weight of the Sky	true	src/data-layer/ingestion-buffer/gdrive_raw/THE_WEIGHT_OF_THE_SKY-_MASTER_COMPENDIUM_(SINGULARITY_v.txt
+unmatched	0	Version_A.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/Version_A.txt
+unmatched	0	Version_B.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/Version_B.txt
+unmatched	0	Whole_Book.txt		false	src/data-layer/ingestion-buffer/gdrive_raw/Whole_Book.txt

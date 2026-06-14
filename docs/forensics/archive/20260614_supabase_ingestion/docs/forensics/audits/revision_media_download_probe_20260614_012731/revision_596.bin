@@ -1,0 +1,15 @@
+{
+  "error": {
+    "code": 404,
+    "message": "Revision not found: 596.",
+    "errors": [
+      {
+        "message": "Revision not found: 596.",
+        "domain": "global",
+        "reason": "notFound",
+        "location": "revisionId",
+        "locationType": "parameter"
+      }
+    ]
+  }
+}

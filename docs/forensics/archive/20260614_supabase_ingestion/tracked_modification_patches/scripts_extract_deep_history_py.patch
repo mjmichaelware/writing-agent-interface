@@ -1,0 +1,13 @@
+diff --git a/scripts/extract_deep_history.py b/scripts/extract_deep_history.py
+index 3a54022..bf8e2a4 100644
+--- a/scripts/extract_deep_history.py
++++ b/scripts/extract_deep_history.py
+@@ -6,7 +6,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
+ from google.auth.transport.requests import Request
+ from googleapiclient.discovery import build
+ 
+-SCOPES = ['https://www.googleapis.com/auth/drive.readonly']
++SCOPES = ['https://www.googleapis.com/auth/drive.readonly', 'https://www.googleapis.com/auth/documents.readonly']
+ 
+ # Paths - Secrets stay OUTSIDE the app
+ SECRETS_DIR = os.path.expanduser('~/.gdrive_secrets')

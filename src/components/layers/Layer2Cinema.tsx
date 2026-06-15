@@ -3,7 +3,8 @@
 import React, { useEffect, useState } from "react";
 import { bus } from "@/core/runtimeEngine";
 import AssetProjector from "@/components/layers/cinema/AssetProjector";
-import { resolveAssetByMeaning, resolveAssetByKeyword } from "@/data/cinema";
+import { getImagePrompt } from "@/services/image-engine/prompter";
+import { resolveImageAsset } from "@/services/image-engine/executor";
 
 export default function Layer2Cinema({ chapterSlug = "0" }: { chapterSlug?: string }) {
   const [intensity, setIntensity] = useState(0.5);
@@ -32,17 +33,9 @@ export default function Layer2Cinema({ chapterSlug = "0" }: { chapterSlug?: stri
         // Default intensity for prose
         setIntensity(0.4);
 
-        if (hasWeights) {
-            asset = resolveAssetByMeaning(
-                data.weights,
-                data.dualisms || {},
-                data.partNumber || "I",
-                content
-            );
-        } else {
-            // Fallback to a generic background image if no semantic weights
-            asset = "/assets/bg.png";
-        }
+        // Utilize the new image engine service for asset resolution
+        const imagePrompt = getImagePrompt(data.weights, data.dualisms, content);
+        asset = resolveImageAsset(imagePrompt);
 
         // Feature 3.6: Generative Cinema Fallback
         if (asset === "/assets/bg.png" && content.length > 200 && !overlayAsset) {

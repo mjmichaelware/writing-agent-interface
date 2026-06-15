@@ -7,14 +7,14 @@ const KEY = "nos-reader-physics-v1";
 
 function apply(s: S) {
   const r = document.documentElement.style;
-  r.setProperty("--reader-font-scale", String(s.typeSize));
-  r.setProperty("--reader-line-height", String(s.lineHeight));
-  r.setProperty("--reader-sensitivity", String(s.sensitivity));
-  r.setProperty("--reader-color-shift", String(s.color));
-  r.setProperty("--reader-distortion", String(s.distortion));
-  r.setProperty("--reader-blur", String(s.blur));
-  r.setProperty("--reader-contrast", String(s.contrast));
-  r.setProperty("--reader-warmth", String(s.warmth));
+  r.setProperty("--user-font-scale", String(s.typeSize));
+  r.setProperty("--user-line-height", String(s.lineHeight));
+  r.setProperty("--user-sensitivity", String(s.sensitivity));
+  r.setProperty("--user-color-shift", String(s.color));
+  r.setProperty("--user-distortion", String(s.distortion));
+  r.setProperty("--user-blur", String(s.blur));
+  r.setProperty("--user-contrast", String(s.contrast));
+  r.setProperty("--user-warmth", String(s.warmth));
 }
 
 const muted = "#8a857c";

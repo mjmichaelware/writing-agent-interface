@@ -39,6 +39,16 @@
   --arc-tension: 0.5;
   --arc-blur: 0px;
   --arc-drift: 0px;
+
+  /* User-controlled typography modulators from ChapterSettings */
+  --user-font-scale: 1;
+  --user-line-height: 1.7;
+  --user-sensitivity: 0.5;
+  --user-color-shift: 0.25;
+  --user-distortion: 0.15;
+  --user-blur: 0.15;
+  --user-contrast: 1;
+  --user-warmth: 0.25;
 }
 
 /* Phase 2: Title Page Components */

@@ -68,17 +68,35 @@ export default function ManuscriptCore({
 
     const runKinematics = () => {
       const centerY = window.innerHeight / 2;
+      const rootStyle = document.documentElement.style;
+
+      // Read user-defined modulator variables
+      const userFontScale = parseFloat(rootStyle.getPropertyValue('--user-font-scale')) || 1;
+      const userLineHeight = parseFloat(rootStyle.getPropertyValue('--user-line-height')) || 1.7;
+      const userSensitivity = parseFloat(rootStyle.getPropertyValue('--user-sensitivity')) || 0.5;
+      const userColorShift = parseFloat(rootStyle.getPropertyValue('--user-color-shift')) || 0.25; // Not directly used in current kinematic, but available
+      const userDistortion = parseFloat(rootStyle.getPropertyValue('--user-distortion')) || 0.15;
+      const userBlur = parseFloat(rootStyle.getPropertyValue('--user-blur')) || 0.15;
+      const userContrast = parseFloat(rootStyle.getPropertyValue('--user-contrast')) || 1; // Not directly used in current kinematic, but available
+      const userWarmth = parseFloat(rootStyle.getPropertyValue('--user-warmth')) || 0.25; // Not directly used in current kinematic, but available
 
       paras.forEach((p) => {
         const rect = p.getBoundingClientRect();
         const pCenter = rect.top + rect.height / 2;
         const dist = Math.abs(centerY - pCenter);
-        const maxDist = window.innerHeight * 0.6;
+        // User sensitivity can adjust maxDist, making focus area larger/smaller
+        const maxDist = window.innerHeight * 0.6 * (1 + (1 - userSensitivity));
         
         const normDist = Math.min(1, dist / maxDist);
-        const blurValue = normDist * 2.5; 
-        const opacityValue = 1 - (normDist * 0.6);
         
+        // Apply user modulators to blur and opacity
+        const blurValue = normDist * 2.5 * userBlur; 
+        const opacityValue = 1 - (normDist * 0.6 * (1 - userSensitivity)); // Sensitivity affects how much opacity changes
+
+        // Set line-height and font-size directly on paragraph, modulated by user settings
+        p.style.setProperty("font-size", `calc(var(--font-size-prose) * ${userFontScale})`);
+        p.style.setProperty("line-height", `calc(var(--leading-prose) * ${userLineHeight})`);
+
         // Feature 11-14: Kinetic Distortions driven by weights
         const index = parseInt(p.dataset.index || "0");
         const block = blocks[index];
@@ -86,9 +104,10 @@ export default function ManuscriptCore({
           const weights = block?.archetypal_weights || {};
           const dualisms = block?.dualism_map || {};
           
-          const mass = (weights.shadow || 0) * 1.5 + (dualisms.descent || 0) * 2;
-          const tension = (weights.persona || 0) * 1.2;
-          const drift = (weights.anima || 0) * 3;
+          // Apply user modulators to semantic mass, tension, drift
+          const mass = ((weights.shadow || 0) * 1.5 + (dualisms.descent || 0) * 2) * (1 + userDistortion);
+          const tension = ((weights.persona || 0) * 1.2) * (1 + userSensitivity);
+          const drift = ((weights.anima || 0) * 3) * (1 + userDistortion);
           
           p.style.setProperty("--arc-mass", (mass * normDist).toString());
           p.style.setProperty("--arc-tension", (tension * normDist).toString());
@@ -101,7 +120,8 @@ export default function ManuscriptCore({
         // Only apply heavy filters when inactive to save performance
         if (p.dataset.state === "inactive") {
             p.style.filter = `blur(${blurValue}px)`;
-            p.style.transform = `translateY(${normDist * 10}px)`;
+            // Apply user distortion to transform
+            p.style.transform = `translateY(${normDist * 10 * userDistortion}px)`;
         } else {
             p.style.filter = "none";
             p.style.transform = "none";

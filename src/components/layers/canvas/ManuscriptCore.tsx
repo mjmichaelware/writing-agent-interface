@@ -85,13 +85,13 @@ export default function ManuscriptCore({
         const pCenter = rect.top + rect.height / 2;
         const dist = Math.abs(centerY - pCenter);
         // User sensitivity can adjust maxDist, making focus area larger/smaller
-        const maxDist = window.innerHeight * 0.6 * (1 + (1 - userSensitivity));
+        const maxDist = window.innerHeight * 0.5 * (1 + (1 - userSensitivity * 0.5)); // Slightly smaller maxDist, less sensitivity impact
         
         const normDist = Math.min(1, dist / maxDist);
         
         // Apply user modulators to blur and opacity
-        const blurValue = normDist * 2.5 * userBlur; 
-        const opacityValue = 1 - (normDist * 0.6 * (1 - userSensitivity)); // Sensitivity affects how much opacity changes
+        const blurValue = normDist * 5 * userBlur; // Increased blur multiplier
+        const opacityValue = 1 - (normDist * 1.0 * (1 - userSensitivity)); // Increased opacity change multiplier
 
         // Set line-height and font-size directly on paragraph, modulated by user settings
         p.style.setProperty("font-size", `calc(var(--font-size-prose) * ${userFontScale})`);
@@ -105,9 +105,9 @@ export default function ManuscriptCore({
           const dualisms = block?.dualism_map || {};
           
           // Apply user modulators to semantic mass, tension, drift
-          const mass = ((weights.shadow || 0) * 1.5 + (dualisms.descent || 0) * 2) * (1 + userDistortion);
-          const tension = ((weights.persona || 0) * 1.2) * (1 + userSensitivity);
-          const drift = ((weights.anima || 0) * 3) * (1 + userDistortion);
+          const mass = ((weights.shadow || 0) * 2.5 + (dualisms.descent || 0) * 3) * (1 + userDistortion * 1.5); // Increased multipliers
+          const tension = ((weights.persona || 0) * 2.0) * (1 + userSensitivity * 1.5); // Increased multipliers
+          const drift = ((weights.anima || 0) * 5) * (1 + userDistortion * 1.5); // Increased multipliers
           
           p.style.setProperty("--arc-mass", (mass * normDist).toString());
           p.style.setProperty("--arc-tension", (tension * normDist).toString());
@@ -121,7 +121,7 @@ export default function ManuscriptCore({
         if (p.dataset.state === "inactive") {
             p.style.filter = `blur(${blurValue}px)`;
             // Apply user distortion to transform
-            p.style.transform = `translateY(${normDist * 10 * userDistortion}px)`;
+            p.style.transform = `translateY(${normDist * 20 * userDistortion}px)`; // Increased translateY
         } else {
             p.style.filter = "none";
             p.style.transform = "none";

@@ -4,8 +4,10 @@ import { bus } from "@/core/runtimeEngine";
 
 type P = { id: string; content: string; chapter_number?: number; archetypal_weights?: any };
 
-const COLORS: Record<string, string> = {
-  self: "#c9a96e", anima: "#e8d4a0", shadow: "#2a2a2a", persona: "#8a857c", hero: "#d4a574",
+const getColorForArchetype = (archetype: string) => {
+  const hash = archetype.split('').reduce((acc, char) => char.charCodeAt(0) + ((acc << 5) - acc), 0);
+  const color = `hsl(${hash % 360}, 50%, 70%)`;
+  return color;
 };
 
 export default function ArchetypesDirectory() {
@@ -50,13 +52,16 @@ export default function ArchetypesDirectory() {
   for (const p of ps) { const ch = p.chapter_number ?? 0; (by[ch] = by[ch] || []).push(p); }
   const chapters = Object.keys(by).sort((a, b) => +a - +b);
 
+  const uniqueArchetypes = Array.from(new Set(ps?.flatMap(p => Object.keys(p.archetypal_weights || {})) || []));
+  const sortedUniqueArchetypes = uniqueArchetypes.sort(); // Sort for consistent display
+
   return (
     <div className="animate-fade-in">
       <h2 className="panel-h2">Archetypes</h2>
       {active && (
         <div className="archetype-live">
           <span className="opacity-50">Active paragraph:</span>{" "}
-          <strong style={{ color: COLORS[active.dom] || "#c9a96e", textTransform: "capitalize" }}>{active.dom}</strong>
+          <strong style={{ color: active.dom === "sacred" ? "#e8d4a0" : active.dom === "descent" ? "#6b2c2c" : active.dom === "shadow" ? "#2a2a2a" : getColorForArchetype(active.dom), textTransform: "capitalize" }}>{active.dom}</strong>
         </div>
       )}
       
@@ -73,7 +78,7 @@ export default function ArchetypesDirectory() {
                   <button key={p.id} title={d}
                     onClick={() => { bus.emit("navigate:paragraph", { id: p.id }); bus.emit("panel:close"); }}
                     className="archetype-dot"
-                    style={{ left: `${(i / Math.max(1, by[+ch].length - 1)) * 100}%`, background: COLORS[d] || "#c9a96e", border: d === "shadow" ? "1px solid #8a857c" : "none" }} />
+                    style={{ left: `${(i / Math.max(1, by[+ch].length - 1)) * 100}%`, background: d === "sacred" ? "#e8d4a0" : d === "descent" ? "#6b2c2c" : d === "shadow" ? "#2a2a2a" : getColorForArchetype(d), border: d === "shadow" ? "1px solid #8a857c" : "none" }} />
                 );
               })}
             </div>
@@ -82,12 +87,15 @@ export default function ArchetypesDirectory() {
       </div>
 
       <div className="legend">
-        {Object.entries(COLORS).map(([n, c]) => (
-          <div key={n} className="legend-item">
-            <span className="legend-dot" style={{ background: c, border: n === "shadow" ? "1px solid #8a857c" : "none" }} />
-            <span className="capitalize">{n}</span>
-          </div>
-        ))}
+        {sortedUniqueArchetypes.map(n => {
+          const c = n === "sacred" ? "#e8d4a0" : n === "descent" ? "#6b2c2c" : n === "shadow" ? "#2a2a2a" : getColorForArchetype(n);
+          return (
+            <div key={n} className="legend-item">
+              <span className="legend-dot" style={{ background: c, border: n === "shadow" ? "1px solid #8a857c" : "none" }} />
+              <span className="capitalize">{n}</span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

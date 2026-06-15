@@ -38,32 +38,7 @@ export default function BiblicalReferencesDirectory() {
   }
   const books = Object.keys(grouped).sort();
 
-  // Helper to wrap Hebrew terms
-  const renderText = (text: string) => {
-    const hebrewTerms = ['Hebron', 'Hermon', 'Mamre', 'Beelzebub', 'Megiddo', 'Sak', 'Rafa'];
-    let result: React.ReactNode[] = [text];
-    
-    hebrewTerms.forEach(term => {
-      const newResult: React.ReactNode[] = [];
-      result.forEach(node => {
-        if (typeof node === 'string') {
-          const parts = node.split(new RegExp(`(${term})`, 'g'));
-          parts.forEach((part, i) => {
-            if (part === term) {
-              newResult.push(<span key={`${term}-${i}`} className="font-hebrew">{part}</span>);
-            } else if (part) {
-              newResult.push(part);
-            }
-          });
-        } else {
-          newResult.push(node);
-        }
-      });
-      result = newResult;
-    });
-    
-    return result;
-  };
+
 
   return (
     <div className="animate-fade-in">
@@ -84,7 +59,7 @@ export default function BiblicalReferencesDirectory() {
             <div key={r.id} className="panel-row">
               <div className="panel-row-content">
                 <span className="panel-row-meta">{r.chapter}:{r.verse}</span>
-                <span className="italic">{renderText(r.reference_text)}</span>
+                <span className="italic">{r.reference_text}</span>
               </div>
               <button 
                 onClick={() => {

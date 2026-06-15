@@ -36,11 +36,19 @@ export default function HyperlinksGraph() {
 
         // Add implicit links based on shared archetypes if few explicit links exist
         if (links.length < 5) {
-          const keys = ["sacred","descent","shadow","persona","anima"];
+          // Dynamically derive archetypes from existing node data
+          const allArchetypeKeys = new Set<string>();
+          nodes.forEach(node => {
+            if (node.dualism_map) {
+              Object.keys(node.dualism_map).forEach(key => allArchetypeKeys.add(key));
+            }
+          });
+          const dynamicKeys = Array.from(allArchetypeKeys);
+
           for (let i = 0; i < nodes.length; i++) {
             for (let j = i + 1; j < nodes.length; j++) {
-              if (keys.some(k => (nodes[i].dualism_map?.[k] || 0) > 0.4 &&
-                                 (nodes[j].dualism_map?.[k] || 0) > 0.4)) {
+              if (dynamicKeys.some(k => (nodes[i].dualism_map?.[k] || 0) > 0.4 &&
+                                         (nodes[j].dualism_map?.[k] || 0) > 0.4)) {
                 links.push({ source: nodes[i].id, target: nodes[j].id, type: 'implicit' });
               }
             }

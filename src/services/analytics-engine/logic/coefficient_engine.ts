@@ -1,18 +1,28 @@
 // Placeholder for Coefficient Engine service
 import { ArchetypalWeights, DualismMap } from "@/core/narrative-types";
+import { analyzeDualism, DualismAnalysis } from "@/services/analytics-engine/mapping/dualism_logic"; // Import the structured analysis
+
+export interface NarrativeCoefficients {
+  kineticIntensity: number;
+  emotionalResonance: number;
+  narrativeTension: number;
+  // Add more coefficients as needed
+}
 
 export function calculateCoefficients(
   weights: ArchetypalWeights,
   dualisms: DualismMap
-): { kineticCoefficient: number; emotionalCoefficient: number } {
+): NarrativeCoefficients {
   // In a real implementation, this would combine archetypal weights and dualisms
   // to calculate various coefficients for kinetic effects, emotional resonance, etc.
 
-  const totalWeight = Object.values(weights).reduce((sum, val) => sum + val, 0);
-  const totalDualism = Object.values(dualisms).reduce((sum, val) => sum + val, 0);
+  const dualismAnalysis: DualismAnalysis = analyzeDualism(dualisms);
 
-  const kineticCoefficient = (totalWeight * 0.7 + totalDualism * 0.3) / 10; // Example calculation
-  const emotionalCoefficient = (totalDualism * 0.8 + totalWeight * 0.2) / 10; // Example calculation
+  // Example calculations (these would be refined with actual algorithms)
+  const totalWeightValue = Object.values(weights).reduce((sum, val) => sum + val, 0);
+  const kineticIntensity = (totalWeightValue * 0.6 + dualismAnalysis.intensity * 0.4) / 5;
+  const emotionalResonance = (dualismAnalysis.intensity * 0.7 + totalWeightValue * 0.3) / 5;
+  const narrativeTension = (dualismAnalysis.intensity + totalWeightValue) / 10;
 
-  return { kineticCoefficient, emotionalCoefficient };
+  return { kineticIntensity, emotionalResonance, narrativeTension };
 }

@@ -1,14 +1,37 @@
 // Placeholder for Dualism Logic service
 import { DualismMap } from "@/core/narrative-types";
 
-export function analyzeDualism(dualismMap: DualismMap): string {
-  // In a real implementation, this would analyze the dualism map
-  // and provide insights or derived properties.
-  if (dualismMap && Object.keys(dualismMap).length > 0) {
-    const strongestDualism = Object.keys(dualismMap).reduce((a, b) =>
-      dualismMap[a] > dualismMap[b] ? a : b
-    );
-    return `Strongest dualism: ${strongestDualism}`;
+export interface DualismAnalysis {
+  strongestDualism: string | null;
+  intensity: number;
+  allDualisms: Array<{ name: string; value: number }>;
+}
+
+export function analyzeDualism(dualismMap: DualismMap): DualismAnalysis {
+  const allDualisms: Array<{ name: string; value: number }> = [];
+  let strongestDualism: string | null = null;
+  let maxIntensity = 0;
+
+  if (dualismMap) {
+    for (const dualismName in dualismMap) {
+      if (dualismMap.hasOwnProperty(dualismName)) {
+        const value = dualismMap[dualismName];
+        allDualisms.push({ name: dualismName, value });
+
+        if (value > maxIntensity) {
+          maxIntensity = value;
+          strongestDualism = dualismName;
+        }
+      }
+    }
   }
-  return "No prominent dualism found.";
+
+  // Sort by value descending
+  allDualisms.sort((a, b) => b.value - a.value);
+
+  return {
+    strongestDualism,
+    intensity: maxIntensity,
+    allDualisms,
+  };
 }

@@ -1,0 +1,84 @@
+name: Apply Supabase Migration via Management API
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: "Type APPLY to apply the XML-grounded semantic schema migration"
+        required: true
+
+jobs:
+  apply-migration:
+    if: github.event.inputs.confirm == 'APPLY'
+    runs-on: ubuntu-latest
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF || vars.SUPABASE_PROJECT_REF }}
+      MIGRATION_FILE: supabase/migrations/20260617000100_xml_grounded_semantic_rehash.sql
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate inputs
+        run: |
+          test -n "$SUPABASE_ACCESS_TOKEN"
+          test -n "$SUPABASE_PROJECT_REF"
+          test -f "$MIGRATION_FILE"
+          echo "project_ref=$SUPABASE_PROJECT_REF"
+          echo "migration_file=$MIGRATION_FILE"
+          wc -c "$MIGRATION_FILE"
+
+      - name: Apply migration through Supabase Management API database/query
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          sql = Path("supabase/migrations/20260617000100_xml_grounded_semantic_rehash.sql").read_text(encoding="utf-8")
+          Path("migration-body.json").write_text(
+              json.dumps({"query": sql, "read_only": False}, ensure_ascii=False),
+              encoding="utf-8"
+          )
+          PY
+
+          curl --fail-with-body --show-error --silent \
+            --request POST \
+            "https://api.supabase.com/v1/projects/${SUPABASE_PROJECT_REF}/database/query" \
+            --header "Authorization: Bearer ${SUPABASE_ACCESS_TOKEN}" \
+            --header "Content-Type: application/json" \
+            --data @migration-body.json
+
+      - name: Verify new semantic tables exist
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          query = """
+          select table_name
+          from information_schema.tables
+          where table_schema = 'public'
+            and table_name in (
+              'source_documents',
+              'source_document_parts',
+              'source_document_revisions',
+              'semantic_runs',
+              'semantic_batches',
+              'archetype_observations',
+              'archetype_movements',
+              'dualism_relations',
+              'dualism_relation_evidence'
+            )
+          order by table_name;
+          """
+          Path("verify-body.json").write_text(
+              json.dumps({"query": query, "read_only": True}, ensure_ascii=False),
+              encoding="utf-8"
+          )
+          PY
+
+          curl --fail-with-body --show-error --silent \
+            --request POST \
+            "https://api.supabase.com/v1/projects/${SUPABASE_PROJECT_REF}/database/query" \
+            --header "Authorization: Bearer ${SUPABASE_ACCESS_TOKEN}" \
+            --header "Content-Type: application/json" \
+            --data @verify-body.json

@@ -1,63 +1,73 @@
-import { handleOptions, jsonResponse } from "../_shared/cors.ts";
-import { adminClient } from "../_shared/supabase.ts";
-
-const allowedKinds = new Set([
-  "ingest_manifest_tsv",
-  "parse_xml_payload",
-  "embed_paragraph",
-  "detect_biblical_references",
-  "score_archetypes",
-  "map_dualisms",
-  "vectorize_typography",
-  "plan_visual_asset",
-  "refresh_reader_search",
-  "drift_audit",
-]);
-
-const queueForKind: Record<string, string> = {
-  ingest_manifest_tsv: "nos_manifest_ingest",
-  parse_xml_payload: "nos_xml_parse",
-  embed_paragraph: "nos_paragraph_embed",
-  detect_biblical_references: "nos_biblical_detect",
-  score_archetypes: "nos_archetype_score",
-  map_dualisms: "nos_dualism_map",
-  vectorize_typography: "nos_typography_vectorize",
-  plan_visual_asset: "nos_visual_asset_plan",
-  refresh_reader_search: "nos_reader_index_refresh",
-  drift_audit: "nos_drift_audit",
-};
+import { corsHeaders, EXPECTED_CONTEXT_SHA, EXPECTED_XML_MANIFEST_COUNT, EXPECTED_XML_MANIFEST_SHA, json, PROMPT_VERSION, serviceClient } from "../_shared/semantic.ts";
 
 Deno.serve(async (req) => {
-  const opt = handleOptions(req);
-  if (opt) return opt;
+  if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
+  if (req.method !== "POST") return json({ error: "POST required" }, 405);
 
-  try {
-    if (req.method !== "POST") return jsonResponse({ error: "POST only" }, 405);
+  const body = await req.json().catch(() => ({}));
+  const supabase = serviceClient();
 
-    const body = await req.json();
-    const job_kind = body.job_kind;
+  const provider = body.provider ?? "vertex";
+  const model = body.model ?? "gemini-2.0-flash-001";
+  const batchSize = Number(body.batch_size ?? 8);
+  const maxParagraphs = body.max_paragraphs ? Number(body.max_paragraphs) : null;
 
-    if (!allowedKinds.has(job_kind)) {
-      return jsonResponse({ ok: false, error: `Unsupported job_kind: ${job_kind}` }, 400);
-    }
+  const { data: run, error: runError } = await supabase
+    .from("semantic_runs")
+    .insert({
+      status: "queued",
+      provider,
+      model,
+      prompt_version: PROMPT_VERSION,
+      narrative_context_sha256: EXPECTED_CONTEXT_SHA,
+      xml_manifest_sha256: EXPECTED_XML_MANIFEST_SHA,
+      xml_manifest_count: EXPECTED_XML_MANIFEST_COUNT,
+      source_summary: body.source_summary ?? {},
+      metadata: {
+        origin: "enqueue-enrichment-edge-function",
+        reset_policy: "supersede_by_semantic_run_id",
+      },
+    })
+    .select("*")
+    .single();
 
-    const supabase = adminClient();
+  if (runError) return json({ error: runError.message }, 500);
 
-    const { data: jobId, error } = await supabase.schema("nos").rpc("enqueue_job", {
-      p_queue_name: body.queue_name ?? queueForKind[job_kind],
-      p_job_kind: job_kind,
-      p_payload: body.payload ?? {},
-      p_upload_batch_id: body.upload_batch_id ?? null,
-      p_archive_batch_id: body.archive_batch_id ?? null,
-      p_storage_object_id: body.storage_object_id ?? null,
-      p_paragraph_id: body.paragraph_id ?? null,
-      p_token_id: body.token_id ?? null,
+  let query = supabase
+    .from("paragraphs")
+    .select("id, chapter_id, chunk_index")
+    .order("chapter_id", { ascending: true })
+    .order("chunk_index", { ascending: true });
+
+  if (maxParagraphs) query = query.limit(maxParagraphs);
+
+  const { data: paragraphs, error: paragraphError } = await query;
+  if (paragraphError) return json({ error: paragraphError.message }, 500);
+
+  const batches = [];
+  for (let i = 0; i < (paragraphs ?? []).length; i += batchSize) {
+    const slice = (paragraphs ?? []).slice(i, i + batchSize);
+    batches.push({
+      semantic_run_id: run.id,
+      batch_index: batches.length,
+      status: "queued",
+      paragraph_ids: slice.map((p) => p.id),
+      payload: {
+        chapter_ids: [...new Set(slice.map((p) => p.chapter_id))],
+        note: "Processing requires XML/context payload from GitHub/local processor or process-enrichment-batch payload.",
+      },
     });
-
-    if (error) throw error;
-
-    return jsonResponse({ ok: true, job_id: jobId, job_kind });
-  } catch (err) {
-    return jsonResponse({ ok: false, error: String(err?.message ?? err) }, 400);
   }
+
+  if (batches.length) {
+    const { error: batchError } = await supabase.from("semantic_batches").insert(batches);
+    if (batchError) return json({ error: batchError.message }, 500);
+  }
+
+  return json({
+    ok: true,
+    semantic_run_id: run.id,
+    batches: batches.length,
+    paragraphs: paragraphs?.length ?? 0,
+  });
 });

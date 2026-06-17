@@ -1,0 +1,47 @@
+name: Semantic Rehash Dry Run
+
+on:
+  workflow_dispatch:
+    inputs:
+      chapter:
+        description: "Optional chapter number"
+        required: false
+      limit:
+        description: "Paragraph limit"
+        required: false
+        default: "12"
+
+jobs:
+  dry-run:
+    runs-on: ubuntu-latest
+    env:
+      SUPABASE_URL: ${{ vars.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      VERTEX_PROJECT_ID: ${{ vars.VERTEX_PROJECT_ID || 'ai-job-agent-498702' }}
+      VERTEX_LOCATION: ${{ vars.VERTEX_LOCATION || 'us-central1' }}
+      VERTEX_MODEL: ${{ vars.VERTEX_MODEL || 'gemini-2.0-flash-001' }}
+      GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+      GCLOUD_ACCESS_TOKEN: ${{ secrets.GCLOUD_ACCESS_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Verify fixed source hashes
+        run: node scripts/semantic/verify-context-and-xml-hashes.mjs
+
+      - name: Dry-run XML-grounded semantic rehash
+        run: |
+          ARGS="--limit=${{ github.event.inputs.limit }}"
+          if [ -n "${{ github.event.inputs.chapter }}" ]; then
+            ARGS="$ARGS --chapter=${{ github.event.inputs.chapter }}"
+          fi
+          node scripts/semantic/xml-grounded-vertex-rehash.mjs $ARGS
+
+      - name: Upload dry-run forensic output
+        uses: actions/upload-artifact@v4
+        with:
+          name: semantic-rehash-dry-run
+          path: docs/forensics/audits/xml-grounded-vertex-rehash-runs/

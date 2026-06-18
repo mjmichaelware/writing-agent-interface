@@ -15,8 +15,8 @@ jobs:
   dry-run:
     runs-on: ubuntu-latest
     env:
-      SUPABASE_URL: ${{ vars.SUPABASE_URL }}
-      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF || vars.SUPABASE_PROJECT_REF }}
       VERTEX_PROJECT_ID: ${{ vars.VERTEX_PROJECT_ID || 'ai-job-agent-498702' }}
       VERTEX_LOCATION: ${{ vars.VERTEX_LOCATION || 'us-central1' }}
       VERTEX_MODEL: ${{ vars.VERTEX_MODEL || 'gemini-2.0-flash-001' }}

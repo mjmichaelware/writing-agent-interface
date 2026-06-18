@@ -87,8 +87,8 @@ function env(name, fallback = "") {
   return process.env[name] || fallback;
 }
 
-const SUPABASE_URL = env("SUPABASE_URL");
-const SUPABASE_SERVICE_ROLE_KEY = env("SUPABASE_SERVICE_ROLE_KEY");
+const SUPABASE_ACCESS_TOKEN = env("SUPABASE_ACCESS_TOKEN", env("SUPABASE_MANAGEMENT_TOKEN", ""));
+const SUPABASE_PROJECT_REF = env("SUPABASE_PROJECT_REF", "yegricugzqbmoziycfnt");
 const VERTEX_PROJECT_ID = env("VERTEX_PROJECT_ID", env("GCP_PROJECT_ID", "ai-job-agent-498702"));
 const VERTEX_LOCATION = env("VERTEX_LOCATION", "us-central1");
 const VERTEX_MODEL = env("VERTEX_MODEL", "gemini-2.0-flash-001");
@@ -110,65 +110,330 @@ function validateSources() {
   return manifest;
 }
 
-async function sb(path, options = {}) {
-  must(SUPABASE_URL, "Missing SUPABASE_URL");
-  must(SUPABASE_SERVICE_ROLE_KEY, "Missing SUPABASE_SERVICE_ROLE_KEY");
+function sqlText(value) {
+  if (value === null || value === undefined) return "NULL";
+  const s = String(value);
+  const tag = `$txt_${sha256Text(s).slice(0, 16)}$`;
+  return `${tag}${s}${tag}`;
+}
 
-  const url = `${SUPABASE_URL.replace(/\/$/, "")}/rest/v1/${path}`;
-  const headers = {
-    apikey: SUPABASE_SERVICE_ROLE_KEY,
-    Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
-    "Content-Type": "application/json",
-    Prefer: options.prefer || "return=representation",
-    ...(options.headers || {}),
-  };
+function sqlUuid(value) {
+  if (!value) return "NULL";
+  return `${sqlText(value)}::uuid`;
+}
 
-  const res = await fetch(url, { ...options, headers });
-  const text = await res.text();
-  if (!res.ok) {
-    throw new Error(`Supabase ${res.status} ${path}: ${text.slice(0, 800)}`);
+function sqlJson(value) {
+  const s = JSON.stringify(value ?? null);
+  const tag = `$json_${sha256Text(s).slice(0, 16)}$`;
+  return `${tag}${s}${tag}::jsonb`;
+}
+
+function sqlArrayUuid(values) {
+  const safe = Array.isArray(values) ? values.filter(Boolean) : [];
+  if (!safe.length) return "ARRAY[]::uuid[]";
+  return `ARRAY[${safe.map(sqlUuid).join(", ")}]::uuid[]`;
+}
+
+function quoteIdent(name) {
+  if (!/^[a-zA-Z_][a-zA-Z0-9_]*$/.test(name)) {
+    throw new Error(`Unsafe SQL identifier: ${name}`);
   }
-  if (!text) return null;
-  return JSON.parse(text);
+  return `"${name}"`;
+}
+
+function normalizeManagementRows(json) {
+  if (Array.isArray(json)) return json;
+  if (Array.isArray(json?.result)) return json.result;
+  if (Array.isArray(json?.data)) return json.data;
+  if (Array.isArray(json?.rows)) return json.rows;
+  if (json && typeof json === "object") return [json];
+  return [];
+}
+
+async function managementQuery(sql) {
+  must(SUPABASE_ACCESS_TOKEN, "Missing SUPABASE_ACCESS_TOKEN. Use a Supabase Management PAT/access token.");
+  must(SUPABASE_PROJECT_REF, "Missing SUPABASE_PROJECT_REF.");
+
+  const endpoint = `https://api.supabase.com/v1/projects/${SUPABASE_PROJECT_REF}/database/query`;
+
+  const res = await fetch(endpoint, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${SUPABASE_ACCESS_TOKEN}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ query: sql }),
+  });
+
+  const text = await res.text();
+  let json = null;
+  try {
+    json = text ? JSON.parse(text) : null;
+  } catch {
+    json = { raw: text };
+  }
+
+  if (!res.ok) {
+    throw new Error(`Supabase Management API ${res.status}: ${text.slice(0, 1200)}`);
+  }
+
+  return normalizeManagementRows(json);
+}
+
+const TABLE_SCHEMAS = {
+  source_documents: {
+    source_kind: "text",
+    source_path: "text",
+    source_sha256: "text",
+    title: "text",
+    byte_count: "bigint",
+    metadata: "jsonb",
+  },
+  semantic_runs: {
+    status: "text",
+    provider: "text",
+    model: "text",
+    prompt_version: "text",
+    narrative_context_sha256: "text",
+    xml_manifest_sha256: "text",
+    xml_manifest_count: "int",
+    source_summary: "jsonb",
+    reset_policy: "text",
+    completed_at: "timestamptz",
+    error: "text",
+    metadata: "jsonb",
+  },
+  archetype_observations: {
+    paragraph_id: "uuid",
+    semantic_run_id: "uuid",
+    archetype: "text",
+    subject_name: "text",
+    movement_stage: "text",
+    evidence_text: "text",
+    interpretation: "text",
+    confidence: "numeric",
+    semantic_hash: "text",
+    active: "boolean",
+    metadata: "jsonb",
+  },
+  archetype_movements: {
+    semantic_run_id: "uuid",
+    subject_name: "text",
+    arc_label: "text",
+    from_state: "text",
+    to_state: "text",
+    start_paragraph_id: "uuid",
+    end_paragraph_id: "uuid",
+    evidence_summary: "text",
+    interpretation: "text",
+    confidence: "numeric",
+    semantic_hash: "text",
+    active: "boolean",
+    metadata: "jsonb",
+  },
+  biblical_references: {
+    paragraph_id: "uuid",
+    semantic_run_id: "uuid",
+    reference_text: "text",
+    book: "text",
+    chapter: "int",
+    verse: "int",
+    allusion_type: "text",
+    evidence_text: "text",
+    interpretation: "text",
+    confidence: "numeric",
+    source_label: "text",
+    source_span: "jsonb",
+    semantic_hash: "text",
+    active: "boolean",
+    metadata: "jsonb",
+  },
+  dualism_relations: {
+    semantic_run_id: "uuid",
+    relation_type: "text",
+    shared_substrate: "text",
+    pole_a: "jsonb",
+    pole_b: "jsonb",
+    interpretation: "text",
+    confidence: "numeric",
+    semantic_relation_sha256: "text",
+    active: "boolean",
+    metadata: "jsonb",
+  },
+  dualism_relation_evidence: {
+    dualism_relation_id: "uuid",
+    paragraph_id: "uuid",
+    evidence_role: "text",
+    evidence_text: "text",
+    source_span: "jsonb",
+    metadata: "jsonb",
+  },
+  hyperlinks: {
+    paragraph_id: "uuid",
+    semantic_run_id: "uuid",
+    theme_node_a: "text",
+    theme_node_b: "text",
+    connection_type: "text",
+    chapter_reference: "text",
+    strength: "numeric",
+    source_table: "text",
+    source_id: "uuid",
+    edge_type: "text",
+    confidence: "numeric",
+    semantic_hash: "text",
+    active: "boolean",
+    metadata: "jsonb",
+  },
+};
+
+const PATCH_SCHEMAS = {
+  paragraphs: {
+    content_sha256: "text",
+    source_document_part_id: "uuid",
+    active_semantic_run_id: "uuid",
+    archetypal_weights: "jsonb",
+    dualism_map: "jsonb",
+    metadata: "jsonb",
+  },
+  semantic_runs: TABLE_SCHEMAS.semantic_runs,
+};
+
+function parseTableArg(tableArg) {
+  const [tableName, query = ""] = String(tableArg).split("?");
+  if (!/^[a-zA-Z_][a-zA-Z0-9_]*$/.test(tableName)) {
+    throw new Error(`Unsafe table name: ${tableArg}`);
+  }
+  const params = new URLSearchParams(query);
+  return {
+    tableName,
+    onConflict: params.get("on_conflict"),
+  };
+}
+
+function coerceForSql(value, type) {
+  if (value === undefined) return null;
+  if (type === "jsonb") return value ?? {};
+  if (type === "boolean") return Boolean(value);
+  if (type === "numeric") return value === null || value === undefined || Number.isNaN(Number(value)) ? null : Number(value);
+  if (type === "int" || type === "bigint") return value === null || value === undefined || Number.isNaN(Number(value)) ? null : Number(value);
+  return value ?? null;
+}
+
+function jsonRecordsetType(cols, schema) {
+  return cols.map((col) => `${quoteIdent(col)} ${schema[col]}`).join(", ");
 }
 
 async function fetchAll(table, select, order = "id.asc") {
-  const rows = [];
   const pageSize = 1000;
-  for (let from = 0; ; from += pageSize) {
-    const to = from + pageSize - 1;
-    const path = `${table}?select=${encodeURIComponent(select)}&order=${encodeURIComponent(order)}`;
-    const chunk = await sb(path, {
-      method: "GET",
-      headers: { Range: `${from}-${to}`, Prefer: "count=exact" },
-    });
+  const rows = [];
+
+  let baseSql = "";
+  if (table === "chapters") {
+    baseSql = `
+      select id, manifest_id, chapter_number, part_number, status
+      from public.chapters
+      order by chapter_number asc nulls last, id asc
+    `;
+  } else if (table === "paragraphs") {
+    baseSql = `
+      select id, chapter_id, chunk_index, content, metadata
+      from public.paragraphs
+      order by chapter_id asc, chunk_index asc, id asc
+    `;
+  } else {
+    throw new Error(`fetchAll does not allow table: ${table}`);
+  }
+
+  for (let offset = 0; ; offset += pageSize) {
+    const sql = `${baseSql} limit ${pageSize} offset ${offset}`;
+    const chunk = await managementQuery(sql);
     rows.push(...chunk);
     if (chunk.length < pageSize) break;
   }
+
   return rows;
 }
 
-async function insertRows(table, rows, chunkSize = 100) {
+async function insertRows(tableArg, rows, chunkSize = 100) {
   if (!rows.length) return [];
+
+  const { tableName, onConflict } = parseTableArg(tableArg);
+  const schema = TABLE_SCHEMAS[tableName];
+  if (!schema) throw new Error(`insertRows table not allowed: ${tableName}`);
+
   const out = [];
+  const allCols = Object.keys(schema);
+
   for (let i = 0; i < rows.length; i += chunkSize) {
-    const chunk = rows.slice(i, i + chunkSize);
-    const inserted = await sb(table, {
-      method: "POST",
-      body: JSON.stringify(chunk),
-      prefer: "return=representation",
+    const rawChunk = rows.slice(i, i + chunkSize);
+    const chunk = rawChunk.map((row) => {
+      const clean = {};
+      for (const col of allCols) clean[col] = coerceForSql(row[col], schema[col]);
+      return clean;
     });
-    if (Array.isArray(inserted)) out.push(...inserted);
+
+    const json = sqlJson(chunk);
+    const colList = allCols.map(quoteIdent).join(", ");
+    const selectList = allCols.map(quoteIdent).join(", ");
+    const recordsetType = jsonRecordsetType(allCols, schema);
+
+    let conflictSql = "";
+    if (onConflict) {
+      if (!schema[onConflict]) throw new Error(`Invalid on_conflict column for ${tableName}: ${onConflict}`);
+      const updateCols = allCols.filter((col) => col !== onConflict);
+      conflictSql = `
+        on conflict (${quoteIdent(onConflict)}) do update set
+        ${updateCols.map((col) => `${quoteIdent(col)} = excluded.${quoteIdent(col)}`).join(",\n        ")}
+      `;
+    }
+
+    const sql = `
+      with input as (
+        select *
+        from jsonb_to_recordset(${json}) as x(${recordsetType})
+      )
+      insert into public.${quoteIdent(tableName)} (${colList})
+      select ${selectList}
+      from input
+      ${conflictSql}
+      returning *;
+    `;
+
+    const inserted = await managementQuery(sql);
+    out.push(...inserted);
   }
+
   return out;
 }
 
-async function patchRow(table, id, body) {
-  return sb(`${table}?id=eq.${id}`, {
-    method: "PATCH",
-    body: JSON.stringify(body),
-    prefer: "return=minimal",
-  });
+async function patchRow(tableName, id, body) {
+  if (!/^[a-zA-Z_][a-zA-Z0-9_]*$/.test(tableName)) throw new Error(`Unsafe table name: ${tableName}`);
+  const schema = PATCH_SCHEMAS[tableName];
+  if (!schema) throw new Error(`patchRow table not allowed: ${tableName}`);
+  if (!id) throw new Error(`patchRow missing id for ${tableName}`);
+
+  const cols = Object.keys(body).filter((col) => schema[col]);
+  if (!cols.length) return [];
+
+  const clean = {};
+  for (const col of cols) clean[col] = coerceForSql(body[col], schema[col]);
+
+  const recordType = cols.map((col) => `${quoteIdent(col)} ${schema[col]}`).join(", ");
+  const assignments = cols.map((col) => `${quoteIdent(col)} = input.${quoteIdent(col)}`).join(",\n        ");
+
+  const sql = `
+    with input as (
+      select *
+      from jsonb_to_record(${sqlJson(clean)}) as x(${recordType})
+    )
+    update public.${quoteIdent(tableName)} as target
+    set ${assignments}
+    from input
+    where target.id = ${sqlUuid(id)}
+    returning target.*;
+  `;
+
+  return managementQuery(sql);
 }
 
 async function createSemanticRun(sourceSummary) {
@@ -194,7 +459,8 @@ async function createSemanticRun(sourceSummary) {
     xml_manifest_sha256: XML_MANIFEST_SHA256,
     xml_manifest_count: XML_MANIFEST_COUNT,
     source_summary: sourceSummary,
-    metadata: { run_id: RUN_ID, script: "scripts/semantic/xml-grounded-vertex-rehash.mjs" },
+    reset_policy: "supersede_by_semantic_run_id",
+    metadata: { run_id: RUN_ID, script: "scripts/semantic/xml-grounded-vertex-rehash.mjs", db_write_mode: "supabase_management_api" },
   }]);
   return rows[0];
 }

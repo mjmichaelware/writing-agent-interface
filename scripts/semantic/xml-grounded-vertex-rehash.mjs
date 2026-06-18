@@ -89,7 +89,7 @@ function env(name, fallback = "") {
 
 const SUPABASE_ACCESS_TOKEN = env("SUPABASE_ACCESS_TOKEN", env("SUPABASE_MANAGEMENT_TOKEN", ""));
 const SUPABASE_PROJECT_REF = env("SUPABASE_PROJECT_REF", "yegricugzqbmoziycfnt");
-const VERTEX_PROJECT_ID = env("VERTEX_PROJECT_ID", env("GCP_PROJECT_ID", "ai-job-agent-498702"));
+const VERTEX_PROJECT_ID = env("VERTEX_PROJECT_ID", env("GCP_PROJECT_ID", ""));
 const VERTEX_LOCATION = env("VERTEX_LOCATION", "us-central1");
 const VERTEX_MODEL = env("VERTEX_MODEL", "gemini-2.5-pro");
 

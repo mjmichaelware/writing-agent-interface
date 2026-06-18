@@ -689,7 +689,75 @@ function getGcloudAccessToken() {
   }
 }
 
-async function callVertex(prompt) {
+
+class VertexJsonRepairError extends Error {
+  constructor(message, details = {}) {
+    super(message);
+    this.name = "VertexJsonRepairError";
+    this.details = details;
+  }
+}
+
+function extractVertexText(json) {
+  return json?.candidates?.[0]?.content?.parts?.map((p) => p.text || "").join("") || "";
+}
+
+function cleanJsonText(raw) {
+  let t = String(raw || "").trim();
+  t = t.replace(/^\s*```(?:json)?\s*/i, "").replace(/\s*```\s*$/i, "").trim();
+  const firstObj = t.indexOf("{");
+  const firstArr = t.indexOf("[");
+  const starts = [firstObj, firstArr].filter((x) => x >= 0);
+  if (starts.length) t = t.slice(Math.min(...starts));
+  t = t.replace(/,\s*([}\]])/g, "$1");
+  return t;
+}
+
+async function saveBadVertexJson(raw, meta = {}) {
+  const fs = await import("node:fs/promises");
+  const path = await import("node:path");
+  const crypto = await import("node:crypto");
+
+  const root = path.join("docs", "forensics", "audits", "vertex-bad-json");
+  await fs.mkdir(root, { recursive: true });
+
+  const hash = crypto.createHash("sha256").update(String(raw || "")).digest("hex").slice(0, 16);
+  const file = path.join(root, `${new Date().toISOString().replace(/[:.]/g, "-")}-${hash}.json`);
+
+  await fs.writeFile(file, JSON.stringify({ meta, raw }, null, 2), "utf-8");
+  return file;
+}
+
+function parseJsonOrNull(raw) {
+  try { return JSON.parse(raw); } catch {}
+  try { return JSON.parse(cleanJsonText(raw)); } catch {}
+  return null;
+}
+
+async function repairJsonWithVertex(raw, originalPrompt) {
+  const repairPrompt = `
+Return ONLY valid JSON. Repair this malformed JSON output. Do not add commentary. Do not invent missing evidence. If a field is truncated, omit that item.
+
+Malformed JSON:
+${String(raw || "").slice(0, 24000)}
+`;
+
+  const repaired = await callVertexRaw(repairPrompt, { maxOutputTokens: 8192, temperature: 0 });
+  const parsed = parseJsonOrNull(repaired.text);
+
+  if (!parsed) {
+    const badPath = await saveBadVertexJson(repaired.text, {
+      phase: "repair_failed",
+      model: VERTEX_MODEL,
+      original_prompt_sha256: sha256Text(originalPrompt || ""),
+    });
+    throw new VertexJsonRepairError(`Vertex JSON repair failed. Raw repair output saved: ${badPath}`, { badPath });
+  }
+
+  return parsed;
+}
+
+async function callVertexRaw(prompt, overrideGenerationConfig = {}) {
   if (noAi) {
     return {
       paragraphs: [],

@@ -673,7 +673,44 @@ function paragraphBatches(paragraphs) {
   return batches;
 }
 
-function buildPrompt({ contextPack, chapter, xmlEvidence, paragraphs }) {
+function normalizeContextSnippet(text) {
+  return String(text || "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function buildAvailableNarrativeContextMap(chapters) {
+  const mapLines = [];
+
+  for (const chapter of chapters) {
+    let raw = "";
+    try {
+      raw = readText(chapter.path);
+    } catch {
+      raw = "";
+    }
+
+    const clean = normalizeContextSnippet(raw);
+    const words = clean ? clean.split(/\s+/).filter(Boolean).length : 0;
+    const opening = clean.slice(0, 900);
+    const midpointStart = Math.max(0, Math.floor(clean.length / 2) - 450);
+    const middle = clean.slice(midpointStart, midpointStart + 900);
+    const ending = clean.slice(Math.max(0, clean.length - 900));
+
+    mapLines.push([
+      `CHAPTER ${chapter.chapter_number}`,
+      `path=${chapter.path}`,
+      `sha256=${chapter.sha256}`,
+      `word_count=${words}`,
+      `opening=${opening}`,
+      `middle=${middle}`,
+      `ending=${ending}`,
+    ].join("\n"));
+  }
+
+  return mapLines.join("\n\n---\n\n");
+}
+function buildPrompt({ contextPack, availableNarrativeContextMap = "", chapter, xmlEvidence, paragraphs }) {
   return `
 You are the XML-grounded semantic hasher for Michael Alonza P. Ware's "The Weight of the Sky".
 
@@ -780,13 +817,37 @@ Rules:
 - Prefer fewer high-confidence records over many weak records.
 - Hyperlinks are derived; do not treat them as source truth.
 - Dualisms can cross paragraphs and can use conceptual evidence, not exact repeated words.
-- Biblical references can be non-verbatim, but must explain why the allusion is valid.
+- Biblical references can be non-verbatim, symbolic, typological, inverted, ironic, or paraphrased, but must explain why the allusion is valid.
+- Actively detect implicit biblical allusions even when no book/chapter/verse is named.
+- Creation-language rule: if prose describes primordial void, formlessness, darkness, deep water, potential before creation, speech creating reality, the first word, the Word, Truth spoken into being, light emerging, naming, breath, dust, or creation by divine utterance, consider Genesis 1:1-3, Genesis 1:2, John 1:1-5, Psalm 33:6, and related creation motifs where justified by evidence.
+- Garden/serpent/fall rule: if prose describes serpents, patient serpents, a garden, temptation, knowledge, innocence, shame, nakedness, exile, forbidden desire, fruit, crawling things, or a fall from innocence, consider Genesis 2-3 where justified by evidence.
+- Sacrifice rule: if prose describes offering, blood, altar, lamb, scapegoat, binding, substitution, atonement, burning, surrender, or living sacrifice, consider Genesis 22, Leviticus sacrificial patterns, Isaiah 53, Romans 12:1, and cruciform typology where justified by evidence.
+- Exodus/wilderness rule: if prose describes desert wandering, thirst, bitter water, manna-like provision, testing, plague, bondage, liberation, pillar/fire/cloud, or crossing, consider Exodus/Numbers motifs where justified by evidence.
+- Prophetic/apocalyptic rule: if prose describes beasts, pits, abyss, locusts/flies, seals, trumpets, judgment, cosmic signs, Megiddo, Babylon, new name, white stone, or final ascent/descent, consider Daniel, Revelation, Isaiah, Ezekiel, Zechariah, and apocalyptic typology where justified by evidence.
+- Wisdom/Job rule: if prose describes suffering without explanation, accusation, dust, silence, cosmic courtroom, leviathan/behemoth, friends who fail, or the crushing weight of creation, consider Job/Ecclesiastes/Psalms wisdom motifs where justified by evidence.
+- Gospel/Pauline rule: if prose describes flesh versus spirit, old self/new self, death-to-self, rebirth, baptismal descent/ascent, thorn, weakness/power, grace, law, bondage, or inner war, consider Romans, Galatians, Corinthians, Ephesians, John 3, and Pauline anthropology where justified by evidence.
+- Name/word/truth rule: if prose emphasizes naming, renaming, hidden names, the New Name, the Word, Truth, Logos, voice, speech, silence, tongues, or language breaking, consider John 1, Genesis 11, Revelation 2:17, and biblical naming motifs where justified by evidence.
+- Do not force a biblical reference. If the allusion is suggestive, include it with lower confidence and explain uncertainty.
+- Every biblical reference must include direct evidence_text from the prose/XML/context that caused the inference.
+- Archetype movement must track direction, not just label: descent, ascent, inversion, confrontation, sacrifice, purification, fragmentation, integration, death, rebirth, exile, return, judgment, revelation.
+- Dualism extraction must look for active tensions: flesh/spirit, ascent/descent, truth/illusion, love/curiosity, speech/silence, void/creation, body/soul, judgment/mercy, knowledge/ignorance, bondage/liberation, self/shadow, garden/pit, innocence/corruption, hunger/sacrifice.
+- Derived hyperlinks must connect recurring motifs, not only explicit links. Prefer named motifs from the context pack when evidence supports them: The Unmanifest, The Snare, Living Sacrifice, The Chaos, Aviel's Rot, The Pit, The Lord of the Flies, The Two Hundred Holes, The New Name, Internal War/Flesh and Spirit, Shekels/Gerah, Curiosity, Truth, Love.
+- When cross-chapter continuity is inferred from the Available Narrative Context Map or the compendium/synopsis, state that it is contextual support; when evidence comes from the live paragraph, quote the paragraph evidence directly.
 
 NARRATIVE CONTEXT PACK SHA256:
 ${NARRATIVE_CONTEXT_SHA256}
 
 NARRATIVE CONTEXT PACK:
 ${clip(contextPack, 30000)}
+
+AVAILABLE NARRATIVE CONTEXT MAP:
+This is not the full manuscript text. It contains the available public chapter corpus:
+chapters 1-11, chapter 13, and chapter 24/second-to-last.
+Use this map together with the Master Compendium and New Synopsis in the narrative context pack
+to infer cross-chapter continuity, archetype movement, dualisms, biblical allusions,
+and thematic hyperlinks. Do not assume unavailable chapters are present verbatim.
+
+${clip(availableNarrativeContextMap, 22000)}
 
 CHAPTER:
 ${JSON.stringify({ chapter_number: chapter.chapter_number, path: chapter.path, sha256: chapter.sha256 })}
@@ -1227,12 +1288,15 @@ async function main() {
   const manifest = validateSources();
   const contextPack = readText(paths.contextPack);
   const chapters = loadPublicChapters().filter((c) => !CHAPTER_FILTER || c.chapter_number === CHAPTER_FILTER);
+  const availableNarrativeContextMap = buildAvailableNarrativeContextMap(chapters);
 
   const sourceSummary = {
     context_pack_sha256: NARRATIVE_CONTEXT_SHA256,
     xml_manifest_sha256: XML_MANIFEST_SHA256,
     xml_manifest_count: XML_MANIFEST_COUNT,
     public_chapter_count: chapters.length,
+    available_narrative_context_map: true,
+    available_narrative_context_map_sha256: sha256Text(availableNarrativeContextMap),
     write_mode: writeMode,
   };
 
@@ -1269,7 +1333,7 @@ async function main() {
     for (const batch of paragraphBatches(chapterParagraphs)) {
       if (LIMIT && totalProcessed >= LIMIT) break;
 
-      const prompt = buildPrompt({ contextPack, chapter, xmlEvidence, paragraphs: batch });
+      const prompt = buildPrompt({ contextPack, availableNarrativeContextMap, chapter, xmlEvidence, paragraphs: batch });
       const promptHash = sha256Text(prompt);
       writeFileSync(join(paths.outDir, `prompt-${chapter.chapter_number}-${totalProcessed}.sha256`), `${promptHash}\n`);
 

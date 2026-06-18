@@ -19,25 +19,18 @@ jobs:
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
       SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF || vars.SUPABASE_PROJECT_REF }}
       VERTEX_LOCATION: ${{ vars.VERTEX_LOCATION || 'us-central1' }}
-      VERTEX_MODEL: ${{ vars.VERTEX_MODEL || 'gemini-2.5-pro' }}
+      VERTEX_MODEL: ${{ vars.VERTEX_MODEL || 'gemini-2.5-flash-lite' }}
       GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
       GEMINI_MAX_RETRIES: 12
       GEMINI_RETRY_BASE_MS: 15000
       GEMINI_RETRY_MAX_MS: 180000
+
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "22"      - name: Authenticate Google Cloud for Vertex
-        uses: google-github-actions/auth@v2
-        with:
-          credentials_json: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
-
-      - name: Set up gcloud
-        uses: google-github-actions/setup-gcloud@v2
-
-
+          node-version: "22"
 
       - name: Verify fixed source hashes
         run: node scripts/semantic/verify-context-and-xml-hashes.mjs
@@ -56,4 +49,3 @@ jobs:
         with:
           name: semantic-rehash-full
           path: docs/forensics/audits/xml-grounded-vertex-rehash-runs/
-

@@ -235,3 +235,9 @@ BEGIN
     CREATE POLICY "Allow service role semantic batches" ON semantic_batches FOR ALL USING (auth.role() = 'service_role') WITH CHECK (auth.role() = 'service_role');
   END IF;
 END $$;
+
+
+-- Ensure Vertex semantic archetype observations default to active rows.
+alter table if exists public.archetype_observations
+  alter column active set default true;
+

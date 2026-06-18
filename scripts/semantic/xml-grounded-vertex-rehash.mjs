@@ -689,149 +689,205 @@ function getGcloudAccessToken() {
   }
 }
 
-
-class VertexJsonRepairError extends Error {
-  constructor(message, details = {}) {
-    super(message);
-    this.name = "VertexJsonRepairError";
-    this.details = details;
-  }
-}
-
-function extractVertexText(json) {
-  return json?.candidates?.[0]?.content?.parts?.map((p) => p.text || "").join("") || "";
-}
-
-function cleanJsonText(raw) {
-  let t = String(raw || "").trim();
-  t = t.replace(/^\s*```(?:json)?\s*/i, "").replace(/\s*```\s*$/i, "").trim();
-  const firstObj = t.indexOf("{");
-  const firstArr = t.indexOf("[");
-  const starts = [firstObj, firstArr].filter((x) => x >= 0);
-  if (starts.length) t = t.slice(Math.min(...starts));
-  t = t.replace(/,\s*([}\]])/g, "$1");
-  return t;
-}
-
-async function saveBadVertexJson(raw, meta = {}) {
-  const fs = await import("node:fs/promises");
-  const path = await import("node:path");
-  const crypto = await import("node:crypto");
-
-  const root = path.join("docs", "forensics", "audits", "vertex-bad-json");
-  await fs.mkdir(root, { recursive: true });
-
-  const hash = crypto.createHash("sha256").update(String(raw || "")).digest("hex").slice(0, 16);
-  const file = path.join(root, `${new Date().toISOString().replace(/[:.]/g, "-")}-${hash}.json`);
-
-  await fs.writeFile(file, JSON.stringify({ meta, raw }, null, 2), "utf-8");
-  return file;
-}
-
-function parseJsonOrNull(raw) {
-  try { return JSON.parse(raw); } catch {}
-  try { return JSON.parse(cleanJsonText(raw)); } catch {}
-  return null;
-}
-
-async function repairJsonWithVertex(raw, originalPrompt) {
-  const repairPrompt = `
-Return ONLY valid JSON. Repair this malformed JSON output. Do not add commentary. Do not invent missing evidence. If a field is truncated, omit that item.
-
-Malformed JSON:
-${String(raw || "").slice(0, 24000)}
-`;
-
-  const repaired = await callVertexRaw(repairPrompt, { maxOutputTokens: 8192, temperature: 0 });
-  const parsed = parseJsonOrNull(repaired.text);
-
-  if (!parsed) {
-    const badPath = await saveBadVertexJson(repaired.text, {
-      phase: "repair_failed",
-      model: VERTEX_MODEL,
-      original_prompt_sha256: sha256Text(originalPrompt || ""),
-    });
-    throw new VertexJsonRepairError(`Vertex JSON repair failed. Raw repair output saved: ${badPath}`, { badPath });
-  }
-
-  return parsed;
-}
-
-async function callVertexRaw(prompt, overrideGenerationConfig = {}
-
 async function callVertex(prompt) {
-  const raw = await callVertexRaw(prompt);
+  const stripFence = (raw) => String(raw || "")
+    .trim()
+    .replace(/^\s*```(?:json)?\s*/i, "")
+    .replace(/\s*```\s*$/i, "")
+    .trim();
 
-  if (raw && typeof raw === "object" && !Object.prototype.hasOwnProperty.call(raw, "text")) {
-    return raw;
-  }
+  const balancedSlice = (raw) => {
+    const text = stripFence(raw);
+    const obj = text.indexOf("{");
+    const arr = text.indexOf("[");
+    const starts = [obj, arr].filter((x) => x >= 0);
+    if (!starts.length) return text;
 
-  const text = typeof raw === "string" ? raw : (raw?.text || "");
-  const parsed = parseJsonOrNull(text);
-  if (parsed) return parsed;
+    const start = Math.min(...starts);
+    const open = text[start];
+    const close = open === "{" ? "}" : "]";
+    let depth = 0;
+    let inString = false;
+    let escaped = false;
 
-  const badPath = await saveBadVertexJson(text, {
-    phase: "initial_parse_failed",
-    model: VERTEX_MODEL,
-    prompt_sha256: sha256Text(prompt),
-  });
+    for (let i = start; i < text.length; i++) {
+      const ch = text[i];
 
-  console.error(`Vertex returned malformed JSON. Raw output saved: ${badPath}`);
-  console.error("Retrying with JSON repair prompt...");
-  return repairJsonWithVertex(text, prompt);
-}
-) {
-  if (noAi) {
-    return {
-      paragraphs: [],
-      dualism_relations: [],
-      archetype_movements: [],
-    };
-  }
+      if (escaped) {
+        escaped = false;
+        continue;
+      }
 
-  const payload = {
-    contents: [{ role: "user", parts: [{ text: prompt }] }],
-    generationConfig: {
-      temperature: 0.15,
-      topP: 0.9,
-      maxOutputTokens: 8192,
-      responseMimeType: "application/json",
-    },
+      if (ch === "\\") {
+        escaped = true;
+        continue;
+      }
+
+      if (ch === '"') {
+        inString = !inString;
+        continue;
+      }
+
+      if (inString) continue;
+
+      if (ch === open) depth++;
+      if (ch === close) depth--;
+
+      if (depth === 0) return text.slice(start, i + 1);
+    }
+
+    return text.slice(start);
   };
 
-  const token = getGcloudAccessToken();
+  const cleanJson = (raw) => balancedSlice(raw)
+    .replace(/,\s*([}\]])/g, "$1")
+    .replace(/([{,]\s*)([A-Za-z_][A-Za-z0-9_]*)(\s*:)/g, '$1"$2"$3');
 
-  if (token) {
-    const endpoint =
-      `https://${VERTEX_LOCATION}-aiplatform.googleapis.com/v1/projects/${VERTEX_PROJECT_ID}` +
-      `/locations/${VERTEX_LOCATION}/publishers/google/models/${VERTEX_MODEL}:generateContent`;
+  const parseModelJson = (raw) => {
+    const attempts = [
+      String(raw || ""),
+      stripFence(raw),
+      balancedSlice(raw),
+      cleanJson(raw),
+    ];
 
-    const res = await fetch(endpoint, {
+    for (const attempt of attempts) {
+      try {
+        return JSON.parse(attempt);
+      } catch {}
+    }
+
+    return null;
+  };
+
+  const saveBadJson = async (raw, phase) => {
+    const fs = await import("node:fs/promises");
+    const path = await import("node:path");
+    const crypto = await import("node:crypto");
+
+    const dir = path.join("docs", "forensics", "audits", "vertex-bad-json");
+    await fs.mkdir(dir, { recursive: true });
+
+    const hash = crypto.createHash("sha256").update(String(raw || "")).digest("hex").slice(0, 16);
+    const file = path.join(dir, `${new Date().toISOString().replace(/[:.]/g, "-")}-${phase}-${hash}.json`);
+
+    await fs.writeFile(file, JSON.stringify({
+      phase,
+      model: VERTEX_MODEL,
+      raw,
+    }, null, 2), "utf-8");
+
+    return file;
+  };
+
+  const extractCandidateText = (json) =>
+    json?.candidates?.[0]?.content?.parts?.map((part) => part.text || "").join("") || "";
+
+  const repairWithVertex = async (raw) => {
+    const repairPrompt = [
+      "Return ONLY valid JSON.",
+      "Repair this malformed JSON output.",
+      "Do not add commentary.",
+      "Do not invent missing evidence.",
+      "If an item is truncated, omit that item.",
+      "",
+      "Malformed JSON:",
+      String(raw || "").slice(0, 24000),
+    ].join("\n");
+
+    const body = {
+      contents: [{ role: "user", parts: [{ text: repairPrompt }] }],
+      generationConfig: {
+        temperature: 0,
+        maxOutputTokens: 8192,
+        responseMimeType: "application/json",
+      },
+    };
+
+    const token = await getGcloudAccessToken();
+    const url = `https://${VERTEX_LOCATION}-aiplatform.googleapis.com/v1/projects/${VERTEX_PROJECT_ID}/locations/${VERTEX_LOCATION}/publishers/google/models/${VERTEX_MODEL}:generateContent`;
+
+    const res = await fetch(url, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(body),
     });
-    const json = await res.json();
-    if (!res.ok) throw new Error(`Vertex error: ${JSON.stringify(json).slice(0, 1200)}`);
-    const text = json?.candidates?.[0]?.content?.parts?.map((p) => p.text || "").join("") || "{}";
-    return JSON.parse(text);
+
+    const text = await res.text();
+    if (!res.ok) throw new Error(`Vertex repair error: ${text}`);
+
+    const outer = JSON.parse(text);
+    const repairedText = extractCandidateText(outer);
+    const repaired = parseModelJson(repairedText);
+
+    if (!repaired) {
+      const badPath = await saveBadJson(repairedText, "repair-failed");
+      throw new Error(`Vertex JSON repair failed. Saved raw repair output: ${badPath}`);
+    }
+
+    return repaired;
+  };
+
+  const body = {
+    contents: [{ role: "user", parts: [{ text: prompt }] }],
+    generationConfig: {
+      temperature: 0.1,
+      maxOutputTokens: 8192,
+      responseMimeType: "application/json",
+    },
+  };
+
+  if (VERTEX_PROJECT_ID) {
+    const token = await getGcloudAccessToken();
+    const url = `https://${VERTEX_LOCATION}-aiplatform.googleapis.com/v1/projects/${VERTEX_PROJECT_ID}/locations/${VERTEX_LOCATION}/publishers/google/models/${VERTEX_MODEL}:generateContent`;
+
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+
+    const text = await res.text();
+    if (!res.ok) throw new Error(`Vertex error: ${text}`);
+
+    const json = JSON.parse(text);
+    const candidateText = extractCandidateText(json);
+    const parsed = parseModelJson(candidateText);
+
+    if (parsed) return parsed;
+
+    const badPath = await saveBadJson(candidateText, "initial-parse-failed");
+    console.error(`Vertex returned malformed JSON. Saved raw output: ${badPath}`);
+    console.error("Retrying once with Vertex JSON repair.");
+    return repairWithVertex(candidateText);
   }
 
-  const key = process.env.GOOGLE_API_KEY;
-  if (!key) throw new Error("No Vertex ADC token and no GOOGLE_API_KEY fallback.");
+  const key = env("GOOGLE_API_KEY", "");
+  must(key, "Missing GOOGLE_API_KEY or Vertex configuration.");
 
   const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${VERTEX_MODEL}:generateContent?key=${key}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
+    body: JSON.stringify(body),
   });
-  const json = await res.json();
-  if (!res.ok) throw new Error(`Gemini API fallback error: ${JSON.stringify(json).slice(0, 1200)}`);
-  const text = json?.candidates?.[0]?.content?.parts?.map((p) => p.text || "").join("") || "{}";
-  return JSON.parse(text);
+
+  const text = await res.text();
+  if (!res.ok) throw new Error(`Gemini API error: ${text}`);
+
+  const json = JSON.parse(text);
+  const candidateText = extractCandidateText(json);
+  const parsed = parseModelJson(candidateText);
+
+  if (parsed) return parsed;
+
+  const badPath = await saveBadJson(candidateText, "initial-parse-failed");
+  throw new Error(`Gemini returned malformed JSON. Saved raw output: ${badPath}`);
 }
 
 async function registerXmlSources(manifest) {

@@ -4,46 +4,97 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
       - cleanup/standard-app-tree
     paths:
+      - "supabase/migrations/**"
       - "supabase/functions/**"
       - ".github/workflows/deploy-supabase-functions-only.yml"
 
 jobs:
-  deploy-functions:
+  deploy-functions-and-apply-semantic-schema:
     runs-on: ubuntu-latest
-
     env:
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
-      SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF }}
+      SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF || vars.SUPABASE_PROJECT_REF }}
+      MIGRATION_FILE: supabase/migrations/20260617000100_xml_grounded_semantic_rehash.sql
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Supabase CLI
-        uses: supabase/setup-cli@v1
+      - uses: supabase/setup-cli@v1
         with:
           version: latest
 
-      - name: Verify Supabase inputs
+      - name: Validate deploy environment
         run: |
           test -n "$SUPABASE_ACCESS_TOKEN"
           test -n "$SUPABASE_PROJECT_REF"
+          test -f "$MIGRATION_FILE"
           supabase --version
+          echo "project_ref=$SUPABASE_PROJECT_REF"
+          echo "migration_file=$MIGRATION_FILE"
+          wc -c "$MIGRATION_FILE"
 
-      - name: Deploy create-upload-url
-        run: supabase functions deploy create-upload-url --project-ref "$SUPABASE_PROJECT_REF"
+      - name: Apply XML-grounded semantic schema through Supabase Management API
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
 
-      - name: Deploy register-uploaded-artifact
-        run: supabase functions deploy register-uploaded-artifact --project-ref "$SUPABASE_PROJECT_REF"
+          sql = Path("supabase/migrations/20260617000100_xml_grounded_semantic_rehash.sql").read_text(encoding="utf-8")
+          Path("migration-body.json").write_text(
+              json.dumps({"query": sql}, ensure_ascii=False),
+              encoding="utf-8"
+          )
+          PY
 
-      - name: Deploy verify-artifact-hash
-        run: supabase functions deploy verify-artifact-hash --project-ref "$SUPABASE_PROJECT_REF"
+          curl --fail-with-body --show-error --silent \
+            --request POST \
+            "https://api.supabase.com/v1/projects/${SUPABASE_PROJECT_REF}/database/query" \
+            --header "Authorization: Bearer ${SUPABASE_ACCESS_TOKEN}" \
+            --header "Content-Type: application/json" \
+            --data @migration-body.json
 
-      - name: Deploy enqueue-enrichment
-        run: supabase functions deploy enqueue-enrichment --project-ref "$SUPABASE_PROJECT_REF"
+      - name: Verify semantic schema through Supabase Management API
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
 
-      - name: Deploy process-enrichment-batch
-        run: supabase functions deploy process-enrichment-batch --project-ref "$SUPABASE_PROJECT_REF"
+          query = """
+          select table_name
+          from information_schema.tables
+          where table_schema = 'public'
+            and table_name in (
+              'source_documents',
+              'source_document_parts',
+              'source_document_revisions',
+              'semantic_runs',
+              'semantic_batches',
+              'archetype_observations',
+              'archetype_movements',
+              'dualism_relations',
+              'dualism_relation_evidence'
+            )
+          order by table_name;
+          """
+          Path("verify-body.json").write_text(
+              json.dumps({"query": query}, ensure_ascii=False),
+              encoding="utf-8"
+          )
+          PY
+
+          curl --fail-with-body --show-error --silent \
+            --request POST \
+            "https://api.supabase.com/v1/projects/${SUPABASE_PROJECT_REF}/database/query" \
+            --header "Authorization: Bearer ${SUPABASE_ACCESS_TOKEN}" \
+            --header "Content-Type: application/json" \
+            --data @verify-body.json
+
+      - name: Deploy Supabase Edge Functions
+        run: |
+          supabase functions deploy create-upload-url --project-ref "$SUPABASE_PROJECT_REF"
+          supabase functions deploy register-uploaded-artifact --project-ref "$SUPABASE_PROJECT_REF"
+          supabase functions deploy verify-artifact-hash --project-ref "$SUPABASE_PROJECT_REF"
+          supabase functions deploy enqueue-enrichment --project-ref "$SUPABASE_PROJECT_REF"
+          supabase functions deploy process-enrichment-batch --project-ref "$SUPABASE_PROJECT_REF"

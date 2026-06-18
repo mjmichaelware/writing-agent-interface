@@ -8,8 +8,8 @@ const ROOT = process.cwd();
 const expectedContextSha =
   "6e7e306c32940db56e82f1aff23942e6f3d62d7483db8e5735bb2ef2ef75eb8c";
 const expectedXmlManifestSha =
-  "bca8eeacca6a9dd260d50a14a8b2dce9f2f2e759dd16a5cc3ef2ee06d0a1b970";
-const expectedXmlManifestCount = 579;
+  "6e74a501762c3368a6b3fd421c59d13e0c5da26b5b3e56b8729e0bf29163daf7";
+const expectedXmlManifestCount = 195;
 
 const paths = {
   contextPack: join(ROOT, "docs/agent_context/source_drop/hasher_context_v1/narrative_context_pack_v1.txt"),

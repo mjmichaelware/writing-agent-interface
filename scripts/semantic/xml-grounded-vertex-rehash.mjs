@@ -8,8 +8,8 @@ const ROOT = process.cwd();
 const RUN_ID = new Date().toISOString().replace(/[-:.TZ]/g, "").slice(0, 14);
 const PROMPT_VERSION = "xml-grounded-semantic-v1";
 const NARRATIVE_CONTEXT_SHA256 = "6e7e306c32940db56e82f1aff23942e6f3d62d7483db8e5735bb2ef2ef75eb8c";
-const XML_MANIFEST_SHA256 = "bca8eeacca6a9dd260d50a14a8b2dce9f2f2e759dd16a5cc3ef2ee06d0a1b970";
-const XML_MANIFEST_COUNT = 579;
+const XML_MANIFEST_SHA256 = "6e74a501762c3368a6b3fd421c59d13e0c5da26b5b3e56b8729e0bf29163daf7";
+const XML_MANIFEST_COUNT = 195;
 
 const args = new Set(process.argv.slice(2));
 const writeMode = args.has("--write");

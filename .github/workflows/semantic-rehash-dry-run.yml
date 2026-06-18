@@ -27,7 +27,15 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "22"
+          node-version: "22"      - name: Authenticate Google Cloud for Vertex
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+
+      - name: Set up gcloud
+        uses: google-github-actions/setup-gcloud@v2
+
+
 
       - name: Verify fixed source hashes
         run: node scripts/semantic/verify-context-and-xml-hashes.mjs

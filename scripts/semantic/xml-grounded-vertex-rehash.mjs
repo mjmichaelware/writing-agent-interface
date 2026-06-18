@@ -757,7 +757,30 @@ ${String(raw || "").slice(0, 24000)}
   return parsed;
 }
 
-async function callVertexRaw(prompt, overrideGenerationConfig = {}) {
+async function callVertexRaw(prompt, overrideGenerationConfig = {}
+
+async function callVertex(prompt) {
+  const raw = await callVertexRaw(prompt);
+
+  if (raw && typeof raw === "object" && !Object.prototype.hasOwnProperty.call(raw, "text")) {
+    return raw;
+  }
+
+  const text = typeof raw === "string" ? raw : (raw?.text || "");
+  const parsed = parseJsonOrNull(text);
+  if (parsed) return parsed;
+
+  const badPath = await saveBadVertexJson(text, {
+    phase: "initial_parse_failed",
+    model: VERTEX_MODEL,
+    prompt_sha256: sha256Text(prompt),
+  });
+
+  console.error(`Vertex returned malformed JSON. Raw output saved: ${badPath}`);
+  console.error("Retrying with JSON repair prompt...");
+  return repairJsonWithVertex(text, prompt);
+}
+) {
   if (noAi) {
     return {
       paragraphs: [],

@@ -33,7 +33,7 @@ jobs:
 
       - name: Full XML-grounded semantic rehash
         run: |
-          ARGS="--write --register-sources"
+          ARGS="--write --register-sources --batch-size=1"
           if [ -n "${{ github.event.inputs.limit }}" ]; then
             ARGS="$ARGS --limit=${{ github.event.inputs.limit }}"
           fi

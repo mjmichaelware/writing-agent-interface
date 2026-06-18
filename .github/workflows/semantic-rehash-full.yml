@@ -21,6 +21,9 @@ jobs:
       VERTEX_LOCATION: ${{ vars.VERTEX_LOCATION || 'us-central1' }}
       VERTEX_MODEL: ${{ vars.VERTEX_MODEL || 'gemini-2.5-pro' }}
       GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+      GEMINI_MAX_RETRIES: 12
+      GEMINI_RETRY_BASE_MS: 15000
+      GEMINI_RETRY_MAX_MS: 180000
     steps:
       - uses: actions/checkout@v4
 

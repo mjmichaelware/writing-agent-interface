@@ -354,7 +354,123 @@ async function fetchAll(table, select, order = "id.asc") {
   return rows;
 }
 
+
+const LIVE_TABLE_COLUMN_CACHE = new Map();
+
+function schemaSqlLiteral(value) {
+  return `'${String(value).replaceAll("'", "''")}'`;
+}
+
+async function getLiveTableColumnsForInsert(tableName) {
+  if (LIVE_TABLE_COLUMN_CACHE.has(tableName)) return LIVE_TABLE_COLUMN_CACHE.get(tableName);
+
+  const rows = await managementQuery(`
+    select column_name
+    from information_schema.columns
+    where table_schema = 'public'
+      and table_name = ${schemaSqlLiteral(tableName)}
+  `);
+
+  const cols = new Set((Array.isArray(rows) ? rows : []).map((row) => row.column_name).filter(Boolean));
+  LIVE_TABLE_COLUMN_CACHE.set(tableName, cols);
+  return cols;
+}
+
+async function normalizeRowsForLiveSchema(tableName, rows) {
+  if (!rows?.length) return rows;
+
+  const liveColumns = await getLiveTableColumnsForInsert(tableName);
+  if (!liveColumns.size) return rows;
+
+  const dropped = new Set();
+
+  const normalized = rows.map((row) => {
+    const next = {};
+    const metadata = {
+      ...(row.metadata && typeof row.metadata === "object" && !Array.isArray(row.metadata) ? row.metadata : {}),
+    };
+
+    if (tableName === "dualism_relations") {
+      row = {
+        ...row,
+        relation_type: row.relation_type ?? row.axis ?? row.edge_type ?? "semantic_dualism",
+        semantic_relation_sha256: row.semantic_relation_sha256 ?? row.semantic_hash,
+        shared_substrate: row.shared_substrate ?? row.axis ?? null,
+        interpretation: row.interpretation ?? row.analysis ?? null,
+        pole_a: row.pole_a ?? { label: row.node_a ?? row.theme_node_a ?? null },
+        pole_b: row.pole_b ?? { label: row.node_b ?? row.theme_node_b ?? null },
+      };
+    }
+
+    if (tableName === "archetype_observations") {
+      row = {
+        ...row,
+        subject_name: row.subject_name ?? row.character_name ?? row.character ?? null,
+        movement_stage: row.movement_stage ?? row.phase ?? null,
+        interpretation: row.interpretation ?? row.analysis ?? null,
+      };
+    }
+
+    if (tableName === "archetype_movements") {
+      row = {
+        ...row,
+        subject_name: row.subject_name ?? row.character_name ?? row.character ?? null,
+        arc_label: row.arc_label ?? row.archetype ?? null,
+        from_state: row.from_state ?? row.from_phase ?? null,
+        to_state: row.to_state ?? row.to_phase ?? null,
+        evidence_summary: row.evidence_summary ?? row.evidence_text ?? row.evidence ?? null,
+        interpretation: row.interpretation ?? row.analysis ?? null,
+      };
+    }
+
+    if (tableName === "biblical_references") {
+      row = {
+        ...row,
+        reference_text: row.reference_text ?? row.reference ?? null,
+        interpretation: row.interpretation ?? row.analysis ?? null,
+      };
+    }
+
+    if (tableName === "hyperlinks") {
+      row = {
+        ...row,
+        link_type: row.link_type ?? row.connection_type ?? row.edge_type ?? null,
+      };
+    }
+
+    for (const [key, value] of Object.entries(row)) {
+      if (liveColumns.has(key)) {
+        next[key] = value;
+      } else {
+        dropped.add(key);
+        metadata[`dropped_${key}`] = value;
+      }
+    }
+
+    if (liveColumns.has("active") && (next.active === undefined || next.active === null)) {
+      next.active = true;
+    }
+
+    if (liveColumns.has("metadata")) {
+      next.metadata = {
+        ...metadata,
+        ...(next.metadata && typeof next.metadata === "object" && !Array.isArray(next.metadata) ? next.metadata : {}),
+      };
+    }
+
+    return next;
+  });
+
+  if (dropped.size) {
+    console.error(`schema-align: ${tableName} preserved unsupported insert keys in metadata: ${Array.from(dropped).sort().join(", ")}`);
+  }
+
+  return normalized;
+}
+
 async function insertRows(tableArg, rows, chunkSize = 100) {
+  rows = await normalizeRowsForLiveSchema(tableArg, rows);
+
 
   if (tableArg === "archetype_observations") {
     rows = rows.map((row) => ({

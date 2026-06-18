@@ -150,6 +150,54 @@ function normalizeManagementRows(json) {
   return [];
 }
 
+
+function isRetryableGeminiError(error) {
+  const text = String(error?.message || error || "");
+  return /(?:\b429\b|\b500\b|\b502\b|\b503\b|\b504\b|RESOURCE_EXHAUSTED|UNAVAILABLE|high demand|try again later|temporar|malformed JSON|initial-parse-failed|fetch failed|network|timeout|ECONNRESET|ETIMEDOUT)/i.test(text);
+}
+
+function geminiRetryDelayMs(attempt) {
+  const base = Number(process.env.GEMINI_RETRY_BASE_MS || 15000);
+  const max = Number(process.env.GEMINI_RETRY_MAX_MS || 180000);
+  const jitter = Math.floor(Math.random() * 3000);
+  return Math.min(max, base * Math.pow(2, Math.max(0, attempt - 1)) + jitter);
+}
+
+async function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function callVertex(prompt) {
+  const maxRetries = Number(process.env.GEMINI_MAX_RETRIES || 12);
+  let lastError = null;
+
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    try {
+      return await callVertexOnce(prompt);
+    } catch (error) {
+      lastError = error;
+
+      if (!isRetryableGeminiError(error) || attempt >= maxRetries) {
+        throw error;
+      }
+
+      const delay = geminiRetryDelayMs(attempt + 1);
+      console.warn(JSON.stringify({
+        event: "gemini_retry",
+        attempt: attempt + 1,
+        max_retries: maxRetries,
+        delay_ms: delay,
+        error: String(error?.message || error).slice(0, 1200),
+      }));
+
+      await sleep(delay);
+    }
+  }
+
+  throw lastError || new Error("Gemini retry loop failed without captured error");
+}
+
+
 async function managementQuery(sql) {
   must(SUPABASE_ACCESS_TOKEN, "Missing SUPABASE_ACCESS_TOKEN. Use a Supabase Management PAT/access token.");
   must(SUPABASE_PROJECT_REF, "Missing SUPABASE_PROJECT_REF.");
@@ -875,7 +923,7 @@ function getGcloudAccessToken() {
   }
 }
 
-async function callVertex(prompt) {
+async function callVertexOnce(prompt) {
   const stripFence = (raw) => String(raw || "")
     .trim()
     .replace(/^\s*```(?:json)?\s*/i, "")

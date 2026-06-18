@@ -356,7 +356,7 @@ async function fetchAll(table, select, order = "id.asc") {
 
 async function insertRows(tableArg, rows, chunkSize = 100) {
 
-  if (table === "archetype_observations") {
+  if (tableArg === "archetype_observations") {
     rows = rows.map((row) => ({
       ...row,
       active: row.active ?? true,

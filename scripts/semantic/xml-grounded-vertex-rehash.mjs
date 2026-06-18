@@ -91,7 +91,7 @@ const SUPABASE_ACCESS_TOKEN = env("SUPABASE_ACCESS_TOKEN", env("SUPABASE_MANAGEM
 const SUPABASE_PROJECT_REF = env("SUPABASE_PROJECT_REF", "yegricugzqbmoziycfnt");
 const VERTEX_PROJECT_ID = env("VERTEX_PROJECT_ID", env("GCP_PROJECT_ID", "ai-job-agent-498702"));
 const VERTEX_LOCATION = env("VERTEX_LOCATION", "us-central1");
-const VERTEX_MODEL = env("VERTEX_MODEL", "gemini-2.0-flash-001");
+const VERTEX_MODEL = env("VERTEX_MODEL", "gemini-2.5-pro");
 
 function validateSources() {
   must(existsSync(paths.contextPack), `Missing context pack: ${paths.contextPack}`);

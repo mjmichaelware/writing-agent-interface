@@ -20,7 +20,7 @@ jobs:
       SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF || vars.SUPABASE_PROJECT_REF }}
       VERTEX_PROJECT_ID: ${{ vars.VERTEX_PROJECT_ID || 'ai-job-agent-498702' }}
       VERTEX_LOCATION: ${{ vars.VERTEX_LOCATION || 'us-central1' }}
-      VERTEX_MODEL: ${{ vars.VERTEX_MODEL || 'gemini-2.0-flash-001' }}
+      VERTEX_MODEL: ${{ vars.VERTEX_MODEL || 'gemini-2.5-pro' }}
       GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
       GCLOUD_ACCESS_TOKEN: ${{ secrets.GCLOUD_ACCESS_TOKEN }}
     steps:

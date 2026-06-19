@@ -989,6 +989,15 @@ const TASK_ORDER = [
   "hyperlinks_parallelisms",
 ];
 
+const ALLOW_FAILURE_CONTINUE = args.has("--allow-failure-continue");
+const MIN_SEMANTIC_WINDOW_WORDS = Number(process.env.MIN_SEMANTIC_WINDOW_WORDS || 8);
+const MIN_SEMANTIC_WINDOW_CHARS = Number(process.env.MIN_SEMANTIC_WINDOW_CHARS || 60);
+const FAIL_FAST_INITIAL_SEMANTIC_WINDOWS = 10;
+const FAIL_FAST_INITIAL_FAILED_TASKS = 20;
+const FAIL_FAST_CONSECUTIVE_FAILED_WINDOWS = 5;
+const FAIL_FAST_TASK_SAMPLE = 20;
+const FAIL_FAST_TASK_FAILURE_RATE = 0.5;
+
 const CONTEXT_STOPWORDS = new Set([
   "about", "after", "again", "against", "almost", "along", "also", "among", "another", "because",
   "before", "being", "between", "could", "every", "first", "from", "great", "their", "there",
@@ -1048,6 +1057,115 @@ function uniqueBy(items, keyFn) {
     out.push(item);
   }
   return out;
+}
+
+function normalizeSmartPunctuationChar(ch) {
+  return ({
+    "\u2018": "'",
+    "\u2019": "'",
+    "\u201c": '"',
+    "\u201d": '"',
+    "\u2013": "-",
+    "\u2014": "-",
+    "\u00a0": " ",
+  })[ch] || ch;
+}
+
+function normalizeEdgePunctuation(text) {
+  return String(text || "")
+    .replace(/^[\s"'“”‘’.,;:!?()[\]{}-]+/g, "")
+    .replace(/[\s"'“”‘’.,;:!?()[\]{}-]+$/g, "")
+    .trim();
+}
+
+function buildSearchableText(text, { lowercase = false } = {}) {
+  let out = "";
+  const map = [];
+  let pendingSpace = false;
+
+  for (let i = 0; i < String(text || "").length; i++) {
+    let ch = normalizeSmartPunctuationChar(String(text || "")[i]);
+    if (/\s/.test(ch)) {
+      pendingSpace = out.length > 0;
+      continue;
+    }
+    if (pendingSpace) {
+      out += " ";
+      map.push(i);
+      pendingSpace = false;
+    }
+    if (lowercase) ch = ch.toLowerCase();
+    out += ch;
+    map.push(i);
+  }
+
+  return { text: out.trimEnd(), map };
+}
+
+function resolveNormalizedQuoteMatch(hay, quote) {
+  const variants = uniqueBy([
+    String(quote || ""),
+    normalizeEdgePunctuation(quote),
+  ].filter(Boolean), (value) => value);
+
+  for (const variant of variants) {
+    const exact = hay.indexOf(variant);
+    if (exact >= 0) {
+      return { start: exact, end: exact + variant.length, exactQuote: hay.slice(exact, exact + variant.length) };
+    }
+
+    const exactLower = hay.toLowerCase().indexOf(variant.toLowerCase());
+    if (exactLower >= 0) {
+      return {
+        start: exactLower,
+        end: exactLower + variant.length,
+        exactQuote: hay.slice(exactLower, exactLower + variant.length),
+      };
+    }
+
+    for (const lowercase of [false, true]) {
+      const haySearch = buildSearchableText(hay, { lowercase });
+      const quoteSearch = buildSearchableText(variant, { lowercase });
+      const idx = haySearch.text.indexOf(quoteSearch.text);
+      if (idx < 0) continue;
+
+      const start = haySearch.map[idx];
+      const endMapIndex = idx + quoteSearch.text.length - 1;
+      const end = haySearch.map[endMapIndex] + 1;
+      return { start, end, exactQuote: hay.slice(start, end) };
+    }
+  }
+
+  return null;
+}
+
+function semanticWordCount(text) {
+  return String(text || "")
+    .split(/\s+/)
+    .map((word) => word.replace(/[^A-Za-z0-9']/g, ""))
+    .filter((word) => word.length > 0)
+    .length;
+}
+
+function classifySemanticWindow(window) {
+  const text = String(window?.text || "").trim();
+  const compact = text.replace(/\s+/g, " ").trim();
+  const charCount = compact.length;
+  const wordCount = semanticWordCount(compact);
+  const alphaChars = (compact.match(/[A-Za-z]/g) || []).length;
+  const alphaRatio = charCount ? alphaChars / charCount : 0;
+  const sentenceLike = /[A-Za-z][^.!?]*[.!?]/.test(compact) || /[A-Za-z]{3,}\s+[A-Za-z]{3,}/.test(compact);
+  const headingLike = /^(chapter|part|prologue|epilogue)\b/i.test(compact) && wordCount <= 10;
+  const punctHeavy = charCount > 0 && (compact.match(/[A-Za-z0-9]/g) || []).length / charCount < 0.45;
+
+  if (!compact) return { status: "skipped", reason: "empty_window", wordCount, charCount };
+  if (headingLike) return { status: "skipped", reason: "heading_window", wordCount, charCount };
+  if (charCount < MIN_SEMANTIC_WINDOW_CHARS) return { status: "skipped", reason: "below_min_chars", wordCount, charCount };
+  if (wordCount < MIN_SEMANTIC_WINDOW_WORDS) return { status: "skipped", reason: "below_min_words", wordCount, charCount };
+  if (alphaRatio < 0.5 || punctHeavy) return { status: "skipped", reason: "low_prose_density", wordCount, charCount };
+  if (!sentenceLike) return { status: "skipped", reason: "not_sentence_like", wordCount, charCount };
+
+  return { status: "semantic", reason: "semantic_window", wordCount, charCount };
 }
 
 function compareEvidenceRefs(a, b) {
@@ -1291,6 +1409,8 @@ function buildSemanticTaskPrompt({ task, window, contextCapsule }) {
     "- Every observation must cite source evidence using render_para_key plus an exact quote.",
     "- Omit low-confidence claims instead of padding output.",
     "- Empty observations are valid.",
+    '- Valid empty response is: {"observations":[]}',
+    "- Do not force a claim.",
     "",
     "SOURCE PACKET:",
     JSON.stringify(buildSourcePacket(window), null, 2),
@@ -1406,7 +1526,7 @@ function buildGenerateContentBody({ prompt, schema, maxOutputTokens = 2048 }) {
   };
 }
 
-async function postGenerateContent(body) {
+async function postGenerateContentOnce(body) {
   if (VERTEX_PROJECT_ID) {
     const token = getGcloudAccessToken();
     must(token, "Missing Vertex access token.");
@@ -1437,6 +1557,32 @@ async function postGenerateContent(body) {
   return text;
 }
 
+async function postGenerateContent(body) {
+  const maxRetries = Number(process.env.GEMINI_MAX_RETRIES || 5);
+  let lastError = null;
+
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    try {
+      return await postGenerateContentOnce(body);
+    } catch (error) {
+      lastError = error;
+      if (!isRetryableGeminiError(error) || attempt >= maxRetries) throw error;
+
+      const delay = geminiRetryDelayMs(attempt + 1);
+      console.warn(JSON.stringify({
+        event: "gemini_retry",
+        attempt: attempt + 1,
+        max_retries: maxRetries,
+        delay_ms: delay,
+        error: String(error?.message || error).slice(0, 1200),
+      }));
+      await sleep(delay);
+    }
+  }
+
+  throw lastError || new Error("Gemini retry loop failed without captured error");
+}
+
 function safeArray(value) {
   return Array.isArray(value) ? value : [];
 }
@@ -1448,22 +1594,21 @@ function resolveEvidenceRef(ref, window, roleHint = null) {
   if (!paragraph) throw new Error(`Unknown render_para_key: ${renderParaKey}`);
 
   const hay = paragraph.text;
-  let idx = hay.indexOf(quote);
-  if (idx < 0) idx = hay.toLowerCase().indexOf(quote.toLowerCase());
-  if (idx < 0) throw new Error(`Quote not found in render paragraph ${renderParaKey}`);
+  const match = resolveNormalizedQuoteMatch(hay, quote);
+  if (!match) throw new Error(`Quote not found in render paragraph ${renderParaKey}`);
 
   const resolved = {
     render_para_key: paragraph.render_para_key,
     render_index: paragraph.render_index,
-    quote,
+    quote: match.exactQuote,
     role: maybeText(ref?.role || roleHint, 80),
-    start_char: paragraph.start_char + idx,
-    end_char: paragraph.start_char + idx + quote.length,
+    start_char: paragraph.start_char + match.start,
+    end_char: paragraph.start_char + match.end,
     source_doc_id: window.source_doc_id,
     scene_window_id: window.scene_window_id,
     source_document_xml_sha256: window.document_xml_sha256,
     source_xml_paragraph_indexes: paragraph.source_xml_paragraph_indexes,
-    evidence_sha256: sha256Text(quote),
+    evidence_sha256: sha256Text(match.exactQuote),
   };
 
   return resolved;
@@ -1560,8 +1705,10 @@ function normalizeTaskPayload(task, payload, window) {
     return { ok: false, errors: ["Top-level payload must contain an observations array."] };
   }
 
-  const out = [];
-  const errors = [];
+  const acceptedObservations = [];
+  const rejectedObservations = [];
+  const validationErrors = [];
+  const evidenceErrors = [];
 
   for (let i = 0; i < payload.observations.length; i++) {
     const raw = payload.observations[i];
@@ -1586,15 +1733,26 @@ function normalizeTaskPayload(task, payload, window) {
         default:
           throw new Error(`Unknown task: ${task}`);
       }
-      out.push(normalized);
+      acceptedObservations.push(normalized);
     } catch (error) {
-      errors.push(`observation[${i}]: ${String(error?.message || error)}`);
+      const message = `observation[${i}]: ${String(error?.message || error)}`;
+      rejectedObservations.push({ index: i, raw, error: message });
+      validationErrors.push(message);
+      if (/render_para_key|Quote not found|Missing evidence anchors/i.test(message)) {
+        evidenceErrors.push(message);
+      }
     }
   }
 
-  if (errors.length) return { ok: false, errors };
-  out.sort(compareObservations);
-  return { ok: true, observations: out };
+  acceptedObservations.sort(compareObservations);
+  return {
+    ok: true,
+    observations: payload.observations,
+    acceptedObservations,
+    rejectedObservations,
+    validationErrors,
+    evidenceErrors,
+  };
 }
 
 async function repairStructuredTaskOutput({ task, rawText, schema, validationErrors }) {
@@ -1604,6 +1762,7 @@ async function repairStructuredTaskOutput({ task, rawText, schema, validationErr
     "Do not add commentary.",
     "Do not invent evidence.",
     "If an observation cannot be repaired to schema, omit it.",
+    'A valid empty response is {"observations":[]}.',
     "",
     "SCHEMA:",
     JSON.stringify(schema, null, 2),
@@ -1632,6 +1791,71 @@ function makeWindowFragment(window, paragraph) {
   };
 }
 
+function normalizeTaskPacketHashable(packet) {
+  return {
+    status: packet.status,
+    task_type: packet.task_type,
+    window_id: packet.window_id,
+    accepted_observations: packet.accepted_observations,
+    rejected_observations: packet.rejected_observations,
+    validation_errors: packet.validation_errors,
+    evidence_errors: packet.evidence_errors,
+  };
+}
+
+function buildTaskPacket({
+  task,
+  window,
+  contextCapsule,
+  prompt,
+  promptHash,
+  outputText,
+  observations = [],
+  acceptedObservations = [],
+  rejectedObservations = [],
+  validationErrors = [],
+  evidenceErrors = [],
+  status,
+  failureReason = null,
+}) {
+  const rawOutputHash = sha256Text(String(outputText || ""));
+  const normalizedOutputHash = sha256Text(canonicalJson({
+    accepted_observations: acceptedObservations,
+    rejected_observations: rejectedObservations,
+    status,
+    task_type: task,
+    validation_errors: validationErrors,
+    evidence_errors: evidenceErrors,
+  }));
+
+  return {
+    task,
+    status,
+    task_type: task,
+    window_id: window.scene_window_id,
+    observations,
+    accepted_observations: acceptedObservations,
+    rejected_observations: rejectedObservations,
+    failure_reason: failureReason,
+    validation_errors: validationErrors,
+    evidence_errors: evidenceErrors,
+    raw_output_hash: rawOutputHash,
+    normalized_output_hash: normalizedOutputHash,
+    prompt,
+    promptHash,
+    outputText,
+    outputHash: rawOutputHash,
+    contextCapsuleHash: contextCapsule.context_capsule_sha256,
+  };
+}
+
+function classifyTaskPacketStatus(normalized) {
+  if (normalized.acceptedObservations.length > 0) return "ok";
+  if (normalized.observations.length === 0 && normalized.rejectedObservations.length === 0) return "empty";
+  if (normalized.rejectedObservations.length > 0) return "failed";
+  return "empty";
+}
+
 async function runSemanticTaskPacket({ task, window, contextCapsule, noAi, allowDecompose = true }) {
   const schema = taskResponseSchema(task);
   const prompt = buildSemanticTaskPrompt({ task, window, contextCapsule });
@@ -1639,16 +1863,20 @@ async function runSemanticTaskPacket({ task, window, contextCapsule, noAi, allow
 
   if (noAi) {
     const rawText = JSON.stringify({ observations: [] }, null, 2);
-    return {
+    return buildTaskPacket({
       task,
+      window,
+      contextCapsule,
       prompt,
       promptHash,
       outputText: rawText,
-      outputHash: sha256Text(rawText),
-      normalizedObservations: [],
-      failures: [],
-      contextCapsuleHash: contextCapsule.context_capsule_sha256,
-    };
+      observations: [],
+      acceptedObservations: [],
+      rejectedObservations: [],
+      validationErrors: [],
+      evidenceErrors: [],
+      status: "empty",
+    });
   }
 
   try {
@@ -1663,46 +1891,93 @@ async function runSemanticTaskPacket({ task, window, contextCapsule, noAi, allow
     } else {
       const validated = normalizeTaskPayload(task, parsed.value, window);
       if (validated.ok) {
-        return {
-          task,
-          prompt,
-          promptHash,
-          outputText: rawText,
-          outputHash: sha256Text(rawText),
-          normalizedObservations: validated.observations,
-          failures: [],
-          contextCapsuleHash: contextCapsule.context_capsule_sha256,
-        };
+        const status = classifyTaskPacketStatus(validated);
+        if (status !== "failed") {
+          return buildTaskPacket({
+            task,
+            window,
+            contextCapsule,
+            prompt,
+            promptHash,
+            outputText: rawText,
+            observations: validated.observations,
+            acceptedObservations: validated.acceptedObservations,
+            rejectedObservations: validated.rejectedObservations,
+            validationErrors: validated.validationErrors,
+            evidenceErrors: validated.evidenceErrors,
+            status,
+          });
+        }
       }
 
-      rawText = await repairStructuredTaskOutput({ task, rawText, schema, validationErrors: validated.errors });
+      rawText = await repairStructuredTaskOutput({
+        task,
+        rawText,
+        schema,
+        validationErrors: validated.ok ? validated.validationErrors : validated.errors,
+      });
     }
 
     const repairedParsed = parseJsonish(rawText);
-    if (!repairedParsed.ok) throw new Error(repairedParsed.error);
+    if (!repairedParsed.ok) {
+      return buildTaskPacket({
+        task,
+        window,
+        contextCapsule,
+        prompt,
+        promptHash,
+        outputText: rawText,
+        observations: [],
+        acceptedObservations: [],
+        rejectedObservations: [],
+        validationErrors: [repairedParsed.error],
+        evidenceErrors: [],
+        status: "failed",
+        failureReason: "parse_failed_after_repair",
+      });
+    }
     const repairedValidated = normalizeTaskPayload(task, repairedParsed.value, window);
-    if (!repairedValidated.ok) throw new Error(repairedValidated.errors.join("; "));
+    if (!repairedValidated.ok) {
+      return buildTaskPacket({
+        task,
+        window,
+        contextCapsule,
+        prompt,
+        promptHash,
+        outputText: rawText,
+        observations: [],
+        acceptedObservations: [],
+        rejectedObservations: [],
+        validationErrors: repairedValidated.errors,
+        evidenceErrors: [],
+        status: "failed",
+        failureReason: "schema_invalid_after_repair",
+      });
+    }
 
-    return {
+    return buildTaskPacket({
       task,
+      window,
+      contextCapsule,
       prompt,
       promptHash,
       outputText: rawText,
-      outputHash: sha256Text(rawText),
-      normalizedObservations: repairedValidated.observations,
-      failures: [],
-      contextCapsuleHash: contextCapsule.context_capsule_sha256,
-    };
+      observations: repairedValidated.observations,
+      acceptedObservations: repairedValidated.acceptedObservations,
+      rejectedObservations: repairedValidated.rejectedObservations,
+      validationErrors: repairedValidated.validationErrors,
+      evidenceErrors: repairedValidated.evidenceErrors,
+      status: classifyTaskPacketStatus(repairedValidated),
+      failureReason: classifyTaskPacketStatus(repairedValidated) === "failed" ? "all_observations_rejected_after_repair" : null,
+    });
   } catch (error) {
-    const failure = {
-      task,
-      scene_window_id: window.scene_window_id,
-      error: String(error?.message || error),
-    };
+    const failureReason = String(error?.message || error);
 
     if (allowDecompose && window.render_paragraphs.length > 1) {
-      const fragments = [];
-      const failures = [];
+      const accepted = [];
+      const rejected = [];
+      const validationErrors = [];
+      const evidenceErrors = [];
       for (const paragraph of window.render_paragraphs) {
         const fragment = await runSemanticTaskPacket({
           task,
@@ -1711,32 +1986,45 @@ async function runSemanticTaskPacket({ task, window, contextCapsule, noAi, allow
           noAi,
           allowDecompose: false,
         });
-        fragments.push(...fragment.normalizedObservations);
-        failures.push(...fragment.failures);
+        accepted.push(...fragment.accepted_observations);
+        rejected.push(...fragment.rejected_observations);
+        validationErrors.push(...fragment.validation_errors);
+        evidenceErrors.push(...fragment.evidence_errors);
       }
-      return {
+      accepted.sort(compareObservations);
+      return buildTaskPacket({
         task,
+        window,
+        contextCapsule,
         prompt,
         promptHash,
         outputText: JSON.stringify({ observations: [] }),
-        outputHash: sha256Text(JSON.stringify({ observations: [] })),
-        normalizedObservations: fragments.sort(compareObservations),
-        failures: failures.length ? failures : [failure],
-        contextCapsuleHash: contextCapsule.context_capsule_sha256,
-      };
+        observations: [],
+        acceptedObservations: accepted,
+        rejectedObservations: rejected,
+        validationErrors,
+        evidenceErrors,
+        status: accepted.length > 0 ? "ok" : "failed",
+        failureReason: accepted.length > 0 ? "decomposed_after_packet_failure" : failureReason,
+      });
     }
 
-    await saveVertexBadJson("", "task-failed", failure);
-    return {
+    await saveVertexBadJson("", "task-failed", { task, scene_window_id: window.scene_window_id, error: failureReason });
+    return buildTaskPacket({
       task,
+      window,
+      contextCapsule,
       prompt,
       promptHash,
       outputText: JSON.stringify({ observations: [] }),
-      outputHash: sha256Text(JSON.stringify({ observations: [] })),
-      normalizedObservations: [],
-      failures: [failure],
-      contextCapsuleHash: contextCapsule.context_capsule_sha256,
-    };
+      observations: [],
+      acceptedObservations: [],
+      rejectedObservations: [],
+      validationErrors: [failureReason],
+      evidenceErrors: /render_para_key|Quote not found|Missing evidence anchors/i.test(failureReason) ? [failureReason] : [],
+      status: "failed",
+      failureReason,
+    });
   }
 }
 
@@ -1847,8 +2135,70 @@ function makeObservationSpanRow({ semanticRun, window, observation, taskPacket, 
 
 function buildMeaningSpanRowsFromTaskPackets({ semanticRun, window, taskPackets, runHash }) {
   return taskPackets.flatMap((packet) =>
-    packet.normalizedObservations.map((observation) => makeObservationSpanRow({ semanticRun, window, observation, taskPacket: packet, runHash }))
+    packet.accepted_observations.map((observation) => makeObservationSpanRow({ semanticRun, window, observation, taskPacket: packet, runHash }))
   );
+}
+
+function createSkippedTaskPacket({ task, window, contextCapsule, reason }) {
+  const prompt = "";
+  const promptHash = sha256Text(prompt);
+  const outputText = JSON.stringify({ observations: [] });
+  return buildTaskPacket({
+    task,
+    window,
+    contextCapsule,
+    prompt,
+    promptHash,
+    outputText,
+    observations: [],
+    acceptedObservations: [],
+    rejectedObservations: [],
+    validationErrors: [],
+    evidenceErrors: [],
+    status: "skipped",
+    failureReason: reason,
+  });
+}
+
+function taskPacketSummary(taskPackets) {
+  return Object.fromEntries(TASK_ORDER.map((task) => {
+    const packet = taskPackets.find((item) => item.task === task);
+    return [task, packet ? packet.accepted_observations.length : 0];
+  }));
+}
+
+function taskFailureDetails(taskPackets) {
+  return taskPackets
+    .filter((packet) => packet.status === "failed")
+    .map((packet) => ({
+      task_type: packet.task_type,
+      window_id: packet.window_id,
+      failure_reason: packet.failure_reason,
+      validation_errors: packet.validation_errors,
+      evidence_errors: packet.evidence_errors,
+    }));
+}
+
+async function failFastRun({ semanticRun, pathsOutDir, summary }) {
+  writeFileSync(join(pathsOutDir, "fail-fast-summary.json"), JSON.stringify(summary, null, 2));
+
+  if (writeMode) {
+    await patchRow("semantic_runs", semanticRun.id, {
+      status: "failed",
+      completed_at: new Date().toISOString(),
+      metadata: {
+        ...(semanticRun.metadata || {}),
+        fail_fast: true,
+        fail_fast_summary: summary,
+        selected_xml_driver: true,
+        primary_hash_lane: "semantic_meaning_spans",
+        old_semantic_table_writes: "blocked_on_first_run",
+      },
+    }).catch(() => []);
+  }
+
+  console.error(JSON.stringify({ event: "fail_fast", ...summary }));
+  throw new Error(`Fail-fast: ${summary.reason}`);
 }
 
 async function callVertexOnce(prompt) {
@@ -2755,8 +3105,8 @@ async function writeSelectedSemanticRows({ semanticRun, window, spanRows, taskPa
       render_para_keys: window.render_paragraphs.map((p) => p.render_para_key),
       old_semantic_table_writes: "blocked",
       primary_lane: "semantic_meaning_spans",
-      task_counts: Object.fromEntries(taskPackets.map((packet) => [packet.task, packet.normalizedObservations.length])),
-      task_failures: taskPackets.flatMap((packet) => packet.failures).length,
+      task_counts: taskPacketSummary(taskPackets),
+      task_failures: taskPackets.filter((packet) => packet.status === "failed").length,
       semantic_meaning_spans: spanRows.length,
     }, null, 2));
     return;
@@ -2772,6 +3122,9 @@ async function main() {
   const availableNarrativeContextMap = buildAvailableNarrativeContextMap(chapters);
   const { selected, docs } = loadSelectedXmlDocuments();
   const windows = selectedXmlWindows(docs);
+  const windowPlans = windows.map((window) => ({ window, semanticPlan: classifySemanticWindow(window) }));
+  const plannedSemanticWindows = windowPlans.filter((entry) => entry.semanticPlan.status === "semantic").length;
+  const plannedSkippedWindows = windowPlans.length - plannedSemanticWindows;
 
   const sourceSummary = {
     context_pack_sha256: NARRATIVE_CONTEXT_SHA256,
@@ -2784,6 +3137,8 @@ async function main() {
     xml_paragraph_count: docs.reduce((sum, doc) => sum + doc.xml_paragraphs.length, 0),
     render_paragraph_count: docs.reduce((sum, doc) => sum + doc.render_paragraphs.length, 0),
     scene_window_count: windows.length,
+    planned_semantic_window_count: plannedSemanticWindows,
+    planned_skipped_window_count: plannedSkippedWindows,
     public_chapter_context_count: chapters.length,
     available_narrative_context_map: true,
     available_narrative_context_map_sha256: sha256Text(availableNarrativeContextMap),
@@ -2796,6 +3151,24 @@ async function main() {
     write_mode: writeMode,
     no_ai: noAi,
   };
+
+  console.log(JSON.stringify({
+    event: "startup_config",
+    selected_xml_driver: true,
+    effective_limit_docs: LIMIT_DOCS,
+    effective_limit: LIMIT,
+    effective_batch_size: BATCH_SIZE,
+    selected_docs_count: docs.length,
+    total_windows: windows.length,
+    semantic_windows_planned: plannedSemanticWindows,
+    skipped_windows_planned: plannedSkippedWindows,
+    min_semantic_window_words: MIN_SEMANTIC_WINDOW_WORDS,
+    min_semantic_window_chars: MIN_SEMANTIC_WINDOW_CHARS,
+    allow_failure_continue: ALLOW_FAILURE_CONTINUE,
+    no_ai: noAi,
+    write_mode: writeMode,
+    model: noAi ? "no-ai" : VERTEX_MODEL,
+  }));
 
   writeFileSync(join(paths.outDir, "source-summary.json"), JSON.stringify(sourceSummary, null, 2));
   writeFileSync(join(paths.outDir, "selected-truth.json"), JSON.stringify(selected, null, 2));
@@ -2840,9 +3213,20 @@ async function main() {
   let totalProcessed = 0;
   let totalMeaningSpans = 0;
   let totalTaskFailures = 0;
+  let skippedWindows = 0;
+  let semanticWindows = 0;
+  let taskOk = 0;
+  let taskEmpty = 0;
+  let taskSkipped = 0;
+  let taskFailed = 0;
+  let observationsAccepted = 0;
+  let observationsRejected = 0;
+  let consecutiveFailedWindows = 0;
   const skippedPackets = [];
+  const perTaskFailures = Object.fromEntries(TASK_ORDER.map((task) => [task, 0]));
 
-  for (const [windowIndex, window] of windows.entries()) {
+  for (const [windowIndex, windowPlan] of windowPlans.entries()) {
+    const { window, semanticPlan } = windowPlan;
     const contextCapsule = buildNarrativeContextCapsule({ contextPack, chapters, availableNarrativeContextMap, window });
     writeFileSync(
       join(paths.outDir, `context-capsule-selected-${String(windowIndex).padStart(5, "0")}.json`),
@@ -2850,11 +3234,31 @@ async function main() {
     );
 
     const taskPackets = [];
-    for (const task of TASK_ORDER) {
-      const packet = await runSemanticTaskPacket({ task, window, contextCapsule, noAi });
-      taskPackets.push(packet);
+    if (semanticPlan.status === "skipped") {
+      skippedWindows += 1;
+      for (const task of TASK_ORDER) {
+        taskPackets.push(createSkippedTaskPacket({ task, window, contextCapsule, reason: semanticPlan.reason }));
+      }
+    } else {
+      semanticWindows += 1;
+      for (const task of TASK_ORDER) {
+        taskPackets.push(await runSemanticTaskPacket({ task, window, contextCapsule, noAi }));
+      }
+    }
 
-      const stem = `${String(windowIndex).padStart(5, "0")}-${task}`;
+    for (const packet of taskPackets) {
+      if (packet.status === "ok") taskOk += 1;
+      if (packet.status === "empty") taskEmpty += 1;
+      if (packet.status === "skipped") taskSkipped += 1;
+      if (packet.status === "failed") {
+        taskFailed += 1;
+        totalTaskFailures += 1;
+        perTaskFailures[packet.task] += 1;
+      }
+      observationsAccepted += packet.accepted_observations.length;
+      observationsRejected += packet.rejected_observations.length;
+
+      const stem = `${String(windowIndex).padStart(5, "0")}-${packet.task}`;
       writeFileSync(join(paths.outDir, `prompt-selected-${stem}.txt`), packet.prompt);
       writeFileSync(join(paths.outDir, `prompt-selected-${stem}.sha256`), `${packet.promptHash}\n`);
       writeFileSync(join(paths.outDir, `result-selected-${stem}.json`), packet.outputText);
@@ -2862,18 +3266,29 @@ async function main() {
       writeFileSync(
         join(paths.outDir, `normalized-selected-${stem}.json`),
         JSON.stringify({
-          task: packet.task,
+          status: packet.status,
+          task_type: packet.task_type,
           scene_window_id: window.scene_window_id,
           source_doc_id: window.source_doc_id,
           context_capsule_sha256: packet.contextCapsuleHash,
-          observations: packet.normalizedObservations,
-          failures: packet.failures,
+          observations: packet.observations,
+          accepted_observations: packet.accepted_observations,
+          rejected_observations: packet.rejected_observations,
+          failure_reason: packet.failure_reason,
+          validation_errors: packet.validation_errors,
+          evidence_errors: packet.evidence_errors,
+          raw_output_hash: packet.raw_output_hash,
+          normalized_output_hash: packet.normalized_output_hash,
         }, null, 2)
       );
 
-      for (const failure of packet.failures) {
+      if (packet.status === "failed" || packet.status === "skipped") {
         skippedPackets.push({
-          ...failure,
+          task_type: packet.task_type,
+          status: packet.status,
+          failure_reason: packet.failure_reason,
+          validation_errors: packet.validation_errors,
+          evidence_errors: packet.evidence_errors,
           window_index: windowIndex,
           folder: window.folder,
           source_doc_id: window.source_doc_id,
@@ -2891,7 +3306,11 @@ async function main() {
     );
 
     totalProcessed += 1;
-    totalTaskFailures += taskPackets.reduce((sum, packet) => sum + packet.failures.length, 0);
+    const windowAccepted = taskPackets.reduce((sum, packet) => sum + packet.accepted_observations.length, 0);
+    const windowFailedTasks = taskPackets.filter((packet) => packet.status === "failed").length;
+    consecutiveFailedWindows = semanticPlan.status === "skipped"
+      ? 0
+      : (windowAccepted === 0 && windowFailedTasks > 0 ? consecutiveFailedWindows + 1 : 0);
 
     console.log(JSON.stringify({
       run_id: semanticRun.id,
@@ -2902,13 +3321,61 @@ async function main() {
       folder: window.folder,
       processed_windows: totalProcessed,
       total_windows: windows.length,
+      skipped_windows: skippedWindows,
+      semantic_windows: semanticWindows,
       meaning_spans: totalMeaningSpans,
       task_failures: totalTaskFailures,
-      task_counts: Object.fromEntries(taskPackets.map((packet) => [packet.task, packet.normalizedObservations.length])),
+      task_ok: taskOk,
+      task_empty: taskEmpty,
+      task_skipped: taskSkipped,
+      task_failed: taskFailed,
+      observations_accepted: observationsAccepted,
+      observations_rejected: observationsRejected,
+      consecutive_failed_windows: consecutiveFailedWindows,
+      task_counts: taskPacketSummary(taskPackets),
+      per_task_failures: perTaskFailures,
       no_ai: noAi,
       write_mode: writeMode,
       run_hash: runHash,
     }));
+
+    if (!ALLOW_FAILURE_CONTINUE) {
+      const semanticTaskSample = taskOk + taskEmpty + taskFailed;
+      const initialNoSignal = semanticWindows >= FAIL_FAST_INITIAL_SEMANTIC_WINDOWS &&
+        observationsAccepted === 0 &&
+        taskFailed > FAIL_FAST_INITIAL_FAILED_TASKS;
+      const consecutiveWindowFailure = consecutiveFailedWindows >= FAIL_FAST_CONSECUTIVE_FAILED_WINDOWS;
+      const highFailureRate = semanticTaskSample >= FAIL_FAST_TASK_SAMPLE &&
+        (taskFailed / semanticTaskSample) > FAIL_FAST_TASK_FAILURE_RATE;
+
+      if (initialNoSignal || consecutiveWindowFailure || highFailureRate) {
+        await failFastRun({
+          semanticRun,
+          pathsOutDir: paths.outDir,
+          summary: {
+            reason: initialNoSignal
+              ? "no_accepted_observations_in_first_semantic_windows"
+              : consecutiveWindowFailure
+                ? "consecutive_failed_windows_threshold"
+                : "task_failure_rate_threshold",
+            processed_windows: totalProcessed,
+            total_windows: windows.length,
+            skipped_windows: skippedWindows,
+            semantic_windows: semanticWindows,
+            task_ok: taskOk,
+            task_empty: taskEmpty,
+            task_skipped: taskSkipped,
+            task_failed: taskFailed,
+            observations_accepted: observationsAccepted,
+            observations_rejected: observationsRejected,
+            consecutive_failed_windows: consecutiveFailedWindows,
+            per_task_failures: perTaskFailures,
+            latest_window: window.scene_window_id,
+            latest_window_failure_details: taskFailureDetails(taskPackets),
+          },
+        });
+      }
+    }
   }
 
   writeFileSync(
@@ -2925,6 +3392,15 @@ async function main() {
         total_processed_windows: totalProcessed,
         total_meaning_spans: totalMeaningSpans,
         total_task_failures: totalTaskFailures,
+        skipped_windows: skippedWindows,
+        semantic_windows: semanticWindows,
+        task_ok: taskOk,
+        task_empty: taskEmpty,
+        task_skipped: taskSkipped,
+        task_failed: taskFailed,
+        observations_accepted: observationsAccepted,
+        observations_rejected: observationsRejected,
+        per_task_failures: perTaskFailures,
         run_hash: runHash,
         ai_task_order: TASK_ORDER,
         selected_xml_driver: true,
@@ -2944,6 +3420,15 @@ async function main() {
     total_processed_windows: totalProcessed,
     total_meaning_spans: totalMeaningSpans,
     total_task_failures: totalTaskFailures,
+    skipped_windows: skippedWindows,
+    semantic_windows: semanticWindows,
+    task_ok: taskOk,
+    task_empty: taskEmpty,
+    task_skipped: taskSkipped,
+    task_failed: taskFailed,
+    observations_accepted: observationsAccepted,
+    observations_rejected: observationsRejected,
+    per_task_failures: perTaskFailures,
     run_hash: runHash,
     narrative_context_sha256: NARRATIVE_CONTEXT_SHA256,
     xml_manifest_sha256: XML_MANIFEST_SHA256,

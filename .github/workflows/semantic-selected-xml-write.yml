@@ -150,6 +150,11 @@ jobs:
         run: |
           set -euo pipefail
 
+          echo "limit_docs=${{ inputs.limit_docs }}"
+          echo "limit=${{ inputs.limit }}"
+          echo "batch_size=${{ inputs.batch_size }}"
+          echo "model=${{ inputs.model }}"
+
           ARGS=(--write "--batch-size=${{ inputs.batch_size }}")
 
           if [ -n "${{ inputs.limit_docs }}" ]; then
@@ -160,6 +165,7 @@ jobs:
             ARGS+=("--limit=${{ inputs.limit }}")
           fi
 
+          printf 'args=%s\n' "${ARGS[*]}"
           echo "node $SELECTED_XML_SCRIPT ${ARGS[*]}"
           node "$SELECTED_XML_SCRIPT" "${ARGS[@]}"
 

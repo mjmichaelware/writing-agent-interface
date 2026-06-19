@@ -12,9 +12,9 @@ on:
         required: false
         default: ""
       batch_size:
-        description: "Script batch size."
+        description: "Selected XML render paragraphs per semantic packet."
         required: false
-        default: "8"
+        default: "1"
       model:
         description: "Gemini model. Use Flash unless quota/billing supports Pro."
         required: false
@@ -143,7 +143,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          node "$SELECTED_XML_SCRIPT" --no-ai --limit-docs=1 --limit=1 --batch-size=2
+          node "$SELECTED_XML_SCRIPT" --no-ai --limit-docs=1 --limit=1 --batch-size=1
 
       - name: Run selected XML semantic write
         shell: bash

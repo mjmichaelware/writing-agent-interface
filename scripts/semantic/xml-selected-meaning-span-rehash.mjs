@@ -159,7 +159,7 @@ function normalizeManagementRows(json) {
 
 function isRetryableGeminiError(error) {
   const text = String(error?.message || error || "");
-  return /(?:\b429\b|\b500\b|\b502\b|\b503\b|\b504\b|RESOURCE_EXHAUSTED|UNAVAILABLE|high demand|try again later|temporar|malformed JSON|initial-parse-failed|fetch failed|network|timeout|ECONNRESET|ETIMEDOUT)/i.test(text);
+  return /(?:\b429\b|\b500\b|\b502\b|\b503\b|\b504\b|RESOURCE_EXHAUSTED|UNAVAILABLE|high demand|try again later|temporar|fetch failed|network|timeout|ECONNRESET|ETIMEDOUT)/i.test(text);
 }
 
 function geminiRetryDelayMs(attempt) {
@@ -981,6 +981,876 @@ function getGcloudAccessToken() {
   }
 }
 
+const TASK_ORDER = [
+  "meaning_spans",
+  "dualisms",
+  "archetypes",
+  "biblical_references",
+  "hyperlinks_parallelisms",
+];
+
+const CONTEXT_STOPWORDS = new Set([
+  "about", "after", "again", "against", "almost", "along", "also", "among", "another", "because",
+  "before", "being", "between", "could", "every", "first", "from", "great", "their", "there",
+  "these", "those", "through", "under", "until", "where", "which", "while", "would", "shall",
+  "should", "might", "still", "into", "over", "with", "that", "this", "have", "were", "them",
+  "they", "then", "than", "only", "when", "what", "your", "ours", "ourselves", "himself",
+  "herself", "because", "whose", "been", "being", "some", "more", "most", "much", "many",
+  "each", "such", "very", "here", "upon", "into", "said", "says", "dont", "does", "did",
+]);
+
+function compactWhitespace(value, max = 400) {
+  const text = String(value || "").replace(/\s+/g, " ").trim();
+  return text.length > max ? text.slice(0, max).trim() : text;
+}
+
+function clamp01(value, fallback = 0.5) {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return fallback;
+  if (n < 0) return 0;
+  if (n > 1) return 1;
+  return n;
+}
+
+function maybeText(value, max = 240) {
+  const text = compactWhitespace(value, max);
+  return text || null;
+}
+
+function requiredText(value, label, max = 240) {
+  const text = compactWhitespace(value, max);
+  if (!text) throw new Error(`Missing ${label}`);
+  return text;
+}
+
+function slugifyToken(value, fallback = "unspecified") {
+  const slug = String(value || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "");
+  return slug || fallback;
+}
+
+function normalizeEnum(value, allowed, fallback, aliases = {}) {
+  const key = slugifyToken(value, "");
+  const mapped = aliases[key] || key;
+  if (mapped && allowed.includes(mapped)) return mapped;
+  return fallback;
+}
+
+function uniqueBy(items, keyFn) {
+  const seen = new Set();
+  const out = [];
+  for (const item of items) {
+    const key = keyFn(item);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(item);
+  }
+  return out;
+}
+
+function compareEvidenceRefs(a, b) {
+  return (
+    String(a.render_para_key || "").localeCompare(String(b.render_para_key || "")) ||
+    Number(a.start_char || 0) - Number(b.start_char || 0) ||
+    Number(a.end_char || 0) - Number(b.end_char || 0) ||
+    String(a.quote || "").localeCompare(String(b.quote || ""))
+  );
+}
+
+function compareObservations(a, b) {
+  return (
+    String(a.summary || a.label || "").localeCompare(String(b.summary || b.label || "")) ||
+    String(a.kind || a.axis || a.archetype || a.reference || a.relationship_type || "").localeCompare(
+      String(b.kind || b.axis || b.archetype || b.reference || b.relationship_type || "")
+    ) ||
+    String(a.character || "").localeCompare(String(b.character || "")) ||
+    Number(b.confidence || 0) - Number(a.confidence || 0)
+  );
+}
+
+function evidenceRefResponseSchema() {
+  return {
+    type: "OBJECT",
+    properties: {
+      render_para_key: { type: "STRING" },
+      quote: { type: "STRING" },
+      role: { type: "STRING" },
+    },
+    required: ["render_para_key", "quote"],
+  };
+}
+
+function taskResponseSchema(task) {
+  const evidence = evidenceRefResponseSchema();
+  const packet = (properties, required) => ({
+    type: "OBJECT",
+    properties: {
+      observations: {
+        type: "ARRAY",
+        items: {
+          type: "OBJECT",
+          properties,
+          required,
+        },
+      },
+    },
+    required: ["observations"],
+  });
+
+  switch (task) {
+    case "meaning_spans":
+      return packet({
+        kind: { type: "STRING" },
+        summary: { type: "STRING" },
+        evidence: { type: "ARRAY", items: evidence },
+        thematic_weight: { type: "NUMBER" },
+        gravity: { type: "NUMBER" },
+        tension: { type: "NUMBER" },
+        confidence: { type: "NUMBER" },
+        notes: { type: "STRING" },
+      }, ["kind", "summary", "evidence", "confidence"]);
+    case "dualisms":
+      return packet({
+        axis: { type: "STRING" },
+        polarity: { type: "STRING" },
+        summary: { type: "STRING" },
+        left_evidence: { type: "ARRAY", items: evidence },
+        right_evidence: { type: "ARRAY", items: evidence },
+        bridge_evidence: { type: "ARRAY", items: evidence },
+        confidence: { type: "NUMBER" },
+      }, ["axis", "polarity", "summary", "left_evidence", "right_evidence", "confidence"]);
+    case "archetypes":
+      return packet({
+        character: { type: "STRING" },
+        archetype: { type: "STRING" },
+        movement: { type: "STRING" },
+        summary: { type: "STRING" },
+        evidence: { type: "ARRAY", items: evidence },
+        confidence: { type: "NUMBER" },
+      }, ["character", "archetype", "movement", "summary", "evidence", "confidence"]);
+    case "biblical_references":
+      return packet({
+        reference: { type: "STRING" },
+        motif: { type: "STRING" },
+        relationship_type: { type: "STRING" },
+        summary: { type: "STRING" },
+        evidence: { type: "ARRAY", items: evidence },
+        confidence: { type: "NUMBER" },
+      }, ["reference", "motif", "relationship_type", "summary", "evidence", "confidence"]);
+    case "hyperlinks_parallelisms":
+      return packet({
+        relationship_type: { type: "STRING" },
+        summary: { type: "STRING" },
+        source_evidence: { type: "ARRAY", items: evidence },
+        target_hint: { type: "STRING" },
+        target_evidence: { type: "ARRAY", items: evidence },
+        confidence: { type: "NUMBER" },
+      }, ["relationship_type", "summary", "source_evidence", "confidence"]);
+    default:
+      throw new Error(`Unknown task schema: ${task}`);
+  }
+}
+
+function taskRubric(task) {
+  switch (task) {
+    case "meaning_spans":
+      return [
+        "Identify the smallest strong semantic claims or motif-bearing spans in the source packet.",
+        "A meaning span is not a database row. It is a grounded observation tied to source evidence.",
+        "Use empty observations when evidence is weak.",
+      ].join("\n");
+    case "dualisms":
+      return [
+        "Extract active conceptual tensions, mirrors, inversions, or oppositions.",
+        "Each dualism must include left and right evidence anchors from the source packet.",
+        "Do not emit a dualism if the pairing is only keyword-level and not narratively active.",
+      ].join("\n");
+    case "archetypes":
+      return [
+        "Extract character-role or mythic-role observations grounded in the source packet.",
+        "Movement should describe direction such as descent, ascent, confrontation, sacrifice, fragmentation, or integration.",
+        "Do not emit static labels without evidence.",
+      ].join("\n");
+    case "biblical_references":
+      return [
+        "Extract direct, typological, symbolic, structural, or non-verbatim biblical allusions only when grounded in source evidence.",
+        "Prefer omission over weak allusion.",
+        "Relationship type should describe how the source packet relates to the biblical motif.",
+      ].join("\n");
+    case "hyperlinks_parallelisms":
+      return [
+        "Extract derived motif echoes, callbacks, mirrors, parallelisms, and foreshadowing signals.",
+        "At least the source side must be anchored in the source packet.",
+        "Use target_hint when the other side is inferred from narrative context rather than directly quoted here.",
+      ].join("\n");
+    default:
+      return "";
+  }
+}
+
+function excerptAroundMatch(text, needle, radius = 600) {
+  const source = String(text || "");
+  const target = String(needle || "").toLowerCase();
+  if (!target) return compactWhitespace(source.slice(0, radius * 2), radius * 2);
+  const idx = source.toLowerCase().indexOf(target);
+  if (idx < 0) return compactWhitespace(source.slice(0, radius * 2), radius * 2);
+  const start = Math.max(0, idx - radius);
+  const end = Math.min(source.length, idx + target.length + radius);
+  return compactWhitespace(source.slice(start, end), radius * 2);
+}
+
+function inferChapterHintsFromFolder(folder) {
+  const matches = [...String(folder || "").matchAll(/chapter[_\s-]?(\d+(?:\.\d+)?)/gi)];
+  return uniqueBy(matches.map((m) => Number.parseInt(m[1], 10)).filter(Number.isFinite), (n) => String(n));
+}
+
+function windowKeywords(window) {
+  const words = String(window?.text || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, " ")
+    .split(/\s+/)
+    .filter((word) => word.length >= 5 && !CONTEXT_STOPWORDS.has(word));
+
+  const counts = new Map();
+  for (const word of words) counts.set(word, (counts.get(word) || 0) + 1);
+  return [...counts.entries()]
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .slice(0, 12)
+    .map(([word]) => word);
+}
+
+function buildNarrativeContextCapsule({ contextPack, chapters, availableNarrativeContextMap, window }) {
+  const chapterHints = inferChapterHintsFromFolder(window.folder);
+  const keywords = windowKeywords(window);
+  const scored = chapters.map((chapter) => {
+    const hay = chapter.content.toLowerCase();
+    const keywordHits = keywords.reduce((sum, keyword) => sum + (hay.includes(keyword) ? 1 : 0), 0);
+    const chapterBoost = chapterHints.includes(chapter.chapter_number) ? 3 : 0;
+    return { chapter, score: chapterBoost + keywordHits };
+  }).filter((entry) => entry.score > 0);
+
+  const selectedChapters = scored
+    .sort((a, b) => b.score - a.score || a.chapter.chapter_number - b.chapter.chapter_number)
+    .slice(0, 2)
+    .map(({ chapter }) => ({
+      chapter_number: chapter.chapter_number,
+      sha256: chapter.sha256,
+      excerpt: excerptAroundMatch(chapter.content, keywords[0] || "", 700),
+    }));
+
+  const contextNeedle = keywords[0] || chapterHints[0] || "";
+  const capsule = {
+    mode: "narrative_context_only",
+    chapter_hints: chapterHints,
+    keywords,
+    selected_public_chapters: selectedChapters,
+    available_narrative_context_map_excerpt: excerptAroundMatch(availableNarrativeContextMap, String(contextNeedle), 900),
+    context_pack_excerpt: excerptAroundMatch(contextPack, String(contextNeedle), 1400),
+  };
+
+  return {
+    ...capsule,
+    context_capsule_sha256: sha256Text(canonicalJson(capsule)),
+  };
+}
+
+function buildSourcePacket(window) {
+  return {
+    source_doc_id: window.source_doc_id,
+    scene_window_id: window.scene_window_id,
+    source_document_xml_sha256: window.document_xml_sha256,
+    folder: window.folder,
+    render_paragraphs: window.render_paragraphs.map((paragraph) => ({
+      render_para_key: paragraph.render_para_key,
+      render_index: paragraph.render_index,
+      start_char: paragraph.start_char,
+      end_char: paragraph.end_char,
+      source_xml_paragraph_indexes: paragraph.source_xml_paragraph_indexes,
+      text_sha256: paragraph.text_sha256,
+      text: paragraph.text,
+    })),
+  };
+}
+
+function buildSemanticTaskPrompt({ task, window, contextCapsule }) {
+  return [
+    "You are a semantic analyst, not a JSON/DB row generator.",
+    "Return only valid JSON matching the requested schema.",
+    "No markdown. No explanation. No extra keys.",
+    "Selected XML render paragraphs are source truth.",
+    "Narrative context capsule is interpretive context only, never source truth.",
+    "",
+    `TASK: ${task}`,
+    "",
+    "TASK RUBRIC:",
+    taskRubric(task),
+    "",
+    "EVIDENCE REQUIREMENTS:",
+    "- Every observation must cite source evidence using render_para_key plus an exact quote.",
+    "- Omit low-confidence claims instead of padding output.",
+    "- Empty observations are valid.",
+    "",
+    "SOURCE PACKET:",
+    JSON.stringify(buildSourcePacket(window), null, 2),
+    "",
+    "NARRATIVE CONTEXT CAPSULE:",
+    JSON.stringify(contextCapsule, null, 2),
+    "",
+    "OUTPUT CONTRACT:",
+    JSON.stringify(taskResponseSchema(task), null, 2),
+  ].join("\n");
+}
+
+function stripFence(raw) {
+  return String(raw || "")
+    .trim()
+    .replace(/^\s*```(?:json)?\s*/i, "")
+    .replace(/\s*```\s*$/i, "")
+    .trim();
+}
+
+function balancedSlice(raw) {
+  const text = stripFence(raw);
+  const obj = text.indexOf("{");
+  const arr = text.indexOf("[");
+  const starts = [obj, arr].filter((x) => x >= 0);
+  if (!starts.length) return text;
+
+  const start = Math.min(...starts);
+  const open = text[start];
+  const close = open === "{" ? "}" : "]";
+  let depth = 0;
+  let inString = false;
+  let escaped = false;
+
+  for (let i = start; i < text.length; i++) {
+    const ch = text[i];
+    if (escaped) {
+      escaped = false;
+      continue;
+    }
+    if (ch === "\\") {
+      escaped = true;
+      continue;
+    }
+    if (ch === '"') {
+      inString = !inString;
+      continue;
+    }
+    if (inString) continue;
+    if (ch === open) depth++;
+    if (ch === close) depth--;
+    if (depth === 0) return text.slice(start, i + 1);
+  }
+
+  return text.slice(start);
+}
+
+function cleanJson(raw) {
+  return balancedSlice(raw)
+    .replace(/,\s*([}\]])/g, "$1")
+    .replace(/([{,]\s*)([A-Za-z_][A-Za-z0-9_]*)(\s*:)/g, '$1"$2"$3');
+}
+
+function parseJsonish(raw) {
+  const attempts = [
+    String(raw || ""),
+    stripFence(raw),
+    balancedSlice(raw),
+    cleanJson(raw),
+  ];
+
+  for (const attempt of attempts) {
+    try {
+      return { ok: true, value: JSON.parse(attempt), parser: attempt === attempts[0] ? "direct" : "recovered" };
+    } catch {}
+  }
+
+  return { ok: false, error: "Unable to parse JSON payload." };
+}
+
+async function saveVertexBadJson(raw, phase, extra = {}) {
+  const fs = await import("node:fs/promises");
+  const path = await import("node:path");
+  const dir = path.join("docs", "forensics", "audits", "vertex-bad-json");
+  await fs.mkdir(dir, { recursive: true });
+
+  const hash = sha256Text(String(raw || "")).slice(0, 16);
+  const file = path.join(dir, `${new Date().toISOString().replace(/[:.]/g, "-")}-${phase}-${hash}.json`);
+
+  await fs.writeFile(file, JSON.stringify({
+    phase,
+    model: VERTEX_MODEL,
+    raw,
+    ...extra,
+  }, null, 2), "utf-8");
+
+  return file;
+}
+
+function extractCandidateText(json) {
+  return json?.candidates?.[0]?.content?.parts?.map((part) => part.text || "").join("") || "";
+}
+
+function buildGenerateContentBody({ prompt, schema, maxOutputTokens = 2048 }) {
+  return {
+    contents: [{ role: "user", parts: [{ text: prompt }] }],
+    generationConfig: {
+      temperature: 0,
+      maxOutputTokens,
+      responseMimeType: "application/json",
+      responseSchema: schema,
+    },
+  };
+}
+
+async function postGenerateContent(body) {
+  if (VERTEX_PROJECT_ID) {
+    const token = getGcloudAccessToken();
+    must(token, "Missing Vertex access token.");
+    const url = `https://${VERTEX_LOCATION}-aiplatform.googleapis.com/v1/projects/${VERTEX_PROJECT_ID}/locations/${VERTEX_LOCATION}/publishers/google/models/${VERTEX_MODEL}:generateContent`;
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+    const text = await res.text();
+    if (!res.ok) throw new Error(`Vertex error: ${text}`);
+    return text;
+  }
+
+  const key = env("GOOGLE_API_KEY", env("GEMINI_API_KEY", ""));
+  must(key, "Missing GOOGLE_API_KEY or Vertex configuration.");
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${VERTEX_MODEL}:generateContent?key=${key}`;
+  const res = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  const text = await res.text();
+  if (!res.ok) throw new Error(`Gemini API error: ${text}`);
+  return text;
+}
+
+function safeArray(value) {
+  return Array.isArray(value) ? value : [];
+}
+
+function resolveEvidenceRef(ref, window, roleHint = null) {
+  const renderParaKey = requiredText(ref?.render_para_key, "render_para_key");
+  const quote = requiredText(ref?.quote, "quote", 500);
+  const paragraph = window.render_paragraphs.find((item) => item.render_para_key === renderParaKey || item.id === renderParaKey);
+  if (!paragraph) throw new Error(`Unknown render_para_key: ${renderParaKey}`);
+
+  const hay = paragraph.text;
+  let idx = hay.indexOf(quote);
+  if (idx < 0) idx = hay.toLowerCase().indexOf(quote.toLowerCase());
+  if (idx < 0) throw new Error(`Quote not found in render paragraph ${renderParaKey}`);
+
+  const resolved = {
+    render_para_key: paragraph.render_para_key,
+    render_index: paragraph.render_index,
+    quote,
+    role: maybeText(ref?.role || roleHint, 80),
+    start_char: paragraph.start_char + idx,
+    end_char: paragraph.start_char + idx + quote.length,
+    source_doc_id: window.source_doc_id,
+    scene_window_id: window.scene_window_id,
+    source_document_xml_sha256: window.document_xml_sha256,
+    source_xml_paragraph_indexes: paragraph.source_xml_paragraph_indexes,
+    evidence_sha256: sha256Text(quote),
+  };
+
+  return resolved;
+}
+
+function resolveEvidenceArray(items, window, roleHint = null) {
+  const resolved = safeArray(items).map((item) => resolveEvidenceRef(item, window, roleHint));
+  const deduped = uniqueBy(resolved, (item) => `${item.render_para_key}:${item.start_char}:${item.end_char}:${item.quote}`);
+  deduped.sort(compareEvidenceRefs);
+  if (!deduped.length) throw new Error("Missing evidence anchors");
+  return deduped;
+}
+
+function normalizeMeaningSpanObservation(raw, window) {
+  return {
+    task: "meaning_spans",
+    kind: normalizeEnum(raw?.kind, ["claim", "motif", "image", "identity", "tension", "transition"], "claim", { theme: "motif" }),
+    summary: requiredText(raw?.summary, "summary", 240),
+    evidence: resolveEvidenceArray(raw?.evidence, window),
+    thematic_weight: clamp01(raw?.thematic_weight, 0.5),
+    gravity: clamp01(raw?.gravity, 0.5),
+    tension: clamp01(raw?.tension, 0.5),
+    confidence: clamp01(raw?.confidence, 0.5),
+    notes: maybeText(raw?.notes, 240),
+  };
+}
+
+function normalizeDualismObservation(raw, window) {
+  return {
+    task: "dualisms",
+    axis: slugifyToken(requiredText(raw?.axis, "axis", 120)),
+    polarity: normalizeEnum(raw?.polarity, ["mirror", "opposition", "inversion", "tension", "fusion"], "tension"),
+    summary: requiredText(raw?.summary, "summary", 240),
+    left_evidence: resolveEvidenceArray(raw?.left_evidence, window, "left"),
+    right_evidence: resolveEvidenceArray(raw?.right_evidence, window, "right"),
+    bridge_evidence: uniqueBy(safeArray(raw?.bridge_evidence).flatMap((item) => {
+      try {
+        return [resolveEvidenceRef(item, window, "bridge")];
+      } catch {
+        return [];
+      }
+    }), (item) => `${item.render_para_key}:${item.start_char}:${item.end_char}:${item.quote}`),
+    confidence: clamp01(raw?.confidence, 0.5),
+  };
+}
+
+function normalizeArchetypeObservation(raw, window) {
+  return {
+    task: "archetypes",
+    character: requiredText(raw?.character, "character", 120),
+    archetype: requiredText(raw?.archetype, "archetype", 120),
+    movement: normalizeEnum(raw?.movement, ["descent", "ascent", "confrontation", "sacrifice", "fragmentation", "integration", "rebirth", "revelation", "judgment", "return"], "revelation"),
+    summary: requiredText(raw?.summary, "summary", 240),
+    evidence: resolveEvidenceArray(raw?.evidence, window),
+    confidence: clamp01(raw?.confidence, 0.5),
+  };
+}
+
+function normalizeBiblicalObservation(raw, window) {
+  return {
+    task: "biblical_references",
+    reference: requiredText(raw?.reference, "reference", 160),
+    motif: requiredText(raw?.motif, "motif", 160),
+    relationship_type: normalizeEnum(raw?.relationship_type, ["direct", "typological", "symbolic", "structural", "non_verbatim", "image_based", "numerological"], "symbolic"),
+    summary: requiredText(raw?.summary, "summary", 240),
+    evidence: resolveEvidenceArray(raw?.evidence, window),
+    confidence: clamp01(raw?.confidence, 0.5),
+  };
+}
+
+function normalizeHyperlinkObservation(raw, window) {
+  return {
+    task: "hyperlinks_parallelisms",
+    relationship_type: normalizeEnum(raw?.relationship_type, ["parallelism", "mirror", "foreshadow", "motif_echo", "character_echo", "scene_callback"], "parallelism"),
+    summary: requiredText(raw?.summary, "summary", 240),
+    source_evidence: resolveEvidenceArray(raw?.source_evidence, window, "source"),
+    target_hint: maybeText(raw?.target_hint, 200),
+    target_evidence: uniqueBy(safeArray(raw?.target_evidence).flatMap((item) => {
+      try {
+        return [resolveEvidenceRef(item, window, "target")];
+      } catch {
+        return [];
+      }
+    }), (item) => `${item.render_para_key}:${item.start_char}:${item.end_char}:${item.quote}`),
+    confidence: clamp01(raw?.confidence, 0.5),
+  };
+}
+
+function normalizeTaskPayload(task, payload, window) {
+  if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
+    return { ok: false, errors: ["Top-level payload must be an object."] };
+  }
+  if (!Array.isArray(payload.observations)) {
+    return { ok: false, errors: ["Top-level payload must contain an observations array."] };
+  }
+
+  const out = [];
+  const errors = [];
+
+  for (let i = 0; i < payload.observations.length; i++) {
+    const raw = payload.observations[i];
+    try {
+      let normalized;
+      switch (task) {
+        case "meaning_spans":
+          normalized = normalizeMeaningSpanObservation(raw, window);
+          break;
+        case "dualisms":
+          normalized = normalizeDualismObservation(raw, window);
+          break;
+        case "archetypes":
+          normalized = normalizeArchetypeObservation(raw, window);
+          break;
+        case "biblical_references":
+          normalized = normalizeBiblicalObservation(raw, window);
+          break;
+        case "hyperlinks_parallelisms":
+          normalized = normalizeHyperlinkObservation(raw, window);
+          break;
+        default:
+          throw new Error(`Unknown task: ${task}`);
+      }
+      out.push(normalized);
+    } catch (error) {
+      errors.push(`observation[${i}]: ${String(error?.message || error)}`);
+    }
+  }
+
+  if (errors.length) return { ok: false, errors };
+  out.sort(compareObservations);
+  return { ok: true, observations: out };
+}
+
+async function repairStructuredTaskOutput({ task, rawText, schema, validationErrors }) {
+  const prompt = [
+    "Return ONLY valid JSON.",
+    `Repair this ${task} JSON payload.`,
+    "Do not add commentary.",
+    "Do not invent evidence.",
+    "If an observation cannot be repaired to schema, omit it.",
+    "",
+    "SCHEMA:",
+    JSON.stringify(schema, null, 2),
+    "",
+    "VALIDATION ERRORS:",
+    JSON.stringify(validationErrors, null, 2),
+    "",
+    "INVALID OUTPUT:",
+    String(rawText || "").slice(0, 24000),
+  ].join("\n");
+
+  const text = await postGenerateContent(buildGenerateContentBody({ prompt, schema, maxOutputTokens: 2048 }));
+  const outer = JSON.parse(text);
+  return extractCandidateText(outer);
+}
+
+function makeWindowFragment(window, paragraph) {
+  const text = paragraph.text;
+  return {
+    ...window,
+    scene_window_id: "scene_" + sha256Text(`${window.scene_window_id}\t${paragraph.render_para_key}`).slice(0, 32),
+    scene_window_key: "scene_" + sha256Text(`${window.scene_window_key}\t${paragraph.render_para_key}`).slice(0, 32),
+    render_paragraphs: [paragraph],
+    text,
+    text_sha256: sha256Text(text),
+  };
+}
+
+async function runSemanticTaskPacket({ task, window, contextCapsule, noAi, allowDecompose = true }) {
+  const schema = taskResponseSchema(task);
+  const prompt = buildSemanticTaskPrompt({ task, window, contextCapsule });
+  const promptHash = sha256Text(prompt);
+
+  if (noAi) {
+    const rawText = JSON.stringify({ observations: [] }, null, 2);
+    return {
+      task,
+      prompt,
+      promptHash,
+      outputText: rawText,
+      outputHash: sha256Text(rawText),
+      normalizedObservations: [],
+      failures: [],
+      contextCapsuleHash: contextCapsule.context_capsule_sha256,
+    };
+  }
+
+  try {
+    const outerText = await postGenerateContent(buildGenerateContentBody({ prompt, schema, maxOutputTokens: 2048 }));
+    const outer = JSON.parse(outerText);
+    let rawText = extractCandidateText(outer);
+    const parsed = parseJsonish(rawText);
+
+    if (!parsed.ok) {
+      const badPath = await saveVertexBadJson(rawText, "initial-parse-failed", { task, scene_window_id: window.scene_window_id });
+      rawText = await repairStructuredTaskOutput({ task, rawText, schema, validationErrors: [parsed.error, `bad_json_path=${badPath}`] });
+    } else {
+      const validated = normalizeTaskPayload(task, parsed.value, window);
+      if (validated.ok) {
+        return {
+          task,
+          prompt,
+          promptHash,
+          outputText: rawText,
+          outputHash: sha256Text(rawText),
+          normalizedObservations: validated.observations,
+          failures: [],
+          contextCapsuleHash: contextCapsule.context_capsule_sha256,
+        };
+      }
+
+      rawText = await repairStructuredTaskOutput({ task, rawText, schema, validationErrors: validated.errors });
+    }
+
+    const repairedParsed = parseJsonish(rawText);
+    if (!repairedParsed.ok) throw new Error(repairedParsed.error);
+    const repairedValidated = normalizeTaskPayload(task, repairedParsed.value, window);
+    if (!repairedValidated.ok) throw new Error(repairedValidated.errors.join("; "));
+
+    return {
+      task,
+      prompt,
+      promptHash,
+      outputText: rawText,
+      outputHash: sha256Text(rawText),
+      normalizedObservations: repairedValidated.observations,
+      failures: [],
+      contextCapsuleHash: contextCapsule.context_capsule_sha256,
+    };
+  } catch (error) {
+    const failure = {
+      task,
+      scene_window_id: window.scene_window_id,
+      error: String(error?.message || error),
+    };
+
+    if (allowDecompose && window.render_paragraphs.length > 1) {
+      const fragments = [];
+      const failures = [];
+      for (const paragraph of window.render_paragraphs) {
+        const fragment = await runSemanticTaskPacket({
+          task,
+          window: makeWindowFragment(window, paragraph),
+          contextCapsule,
+          noAi,
+          allowDecompose: false,
+        });
+        fragments.push(...fragment.normalizedObservations);
+        failures.push(...fragment.failures);
+      }
+      return {
+        task,
+        prompt,
+        promptHash,
+        outputText: JSON.stringify({ observations: [] }),
+        outputHash: sha256Text(JSON.stringify({ observations: [] })),
+        normalizedObservations: fragments.sort(compareObservations),
+        failures: failures.length ? failures : [failure],
+        contextCapsuleHash: contextCapsule.context_capsule_sha256,
+      };
+    }
+
+    await saveVertexBadJson("", "task-failed", failure);
+    return {
+      task,
+      prompt,
+      promptHash,
+      outputText: JSON.stringify({ observations: [] }),
+      outputHash: sha256Text(JSON.stringify({ observations: [] })),
+      normalizedObservations: [],
+      failures: [failure],
+      contextCapsuleHash: contextCapsule.context_capsule_sha256,
+    };
+  }
+}
+
+function makeObservationSpanRow({ semanticRun, window, observation, taskPacket, runHash }) {
+  let family = "meaning";
+  let spanType = "meaning_span";
+  let label = observation.summary || null;
+  let subjectName = null;
+  let evidence = [];
+  let interpretation = observation.notes || observation.summary || null;
+
+  switch (taskPacket.task) {
+    case "meaning_spans":
+      family = "meaning";
+      spanType = observation.kind;
+      label = observation.summary;
+      evidence = observation.evidence;
+      interpretation = observation.notes || observation.summary;
+      break;
+    case "dualisms":
+      family = "dualism";
+      spanType = "dualism_relation";
+      label = observation.axis;
+      subjectName = observation.polarity;
+      evidence = [...observation.left_evidence, ...observation.right_evidence, ...observation.bridge_evidence];
+      interpretation = observation.summary;
+      break;
+    case "archetypes":
+      family = "archetype";
+      spanType = "archetype_observation";
+      label = observation.archetype;
+      subjectName = observation.character;
+      evidence = observation.evidence;
+      interpretation = `${observation.movement}: ${observation.summary}`;
+      break;
+    case "biblical_references":
+      family = "biblical";
+      spanType = "biblical_reference";
+      label = observation.reference;
+      subjectName = observation.motif;
+      evidence = observation.evidence;
+      interpretation = `${observation.relationship_type}: ${observation.summary}`;
+      break;
+    case "hyperlinks_parallelisms":
+      family = "hyperlink";
+      spanType = observation.relationship_type;
+      label = observation.summary;
+      subjectName = observation.target_hint || null;
+      evidence = [...observation.source_evidence, ...observation.target_evidence];
+      interpretation = observation.summary;
+      break;
+  }
+
+  evidence.sort(compareEvidenceRefs);
+  const evidenceText = evidence.map((item) => item.quote).join("\n---\n");
+  const evidenceHash = sha256Text(canonicalJson(evidence));
+  const normalizedObservationHash = sha256Text(canonicalJson(observation));
+  const semanticHash = sha256Text(canonicalJson({
+    selected_xml_driver: true,
+    semantic_run_id: semanticRun.id,
+    scene_window_id: window.scene_window_id,
+    source_doc_id: window.source_doc_id,
+    task: taskPacket.task,
+    context_capsule_sha256: taskPacket.contextCapsuleHash,
+    prompt_sha256: taskPacket.promptHash,
+    model_output_sha256: taskPacket.outputHash,
+    evidence_hash: evidenceHash,
+    normalized_observation_hash: normalizedObservationHash,
+    model: VERTEX_MODEL,
+  }));
+
+  return {
+    semantic_run_id: semanticRun.id,
+    span_key: "mspan_" + semanticHash.slice(0, 32),
+    span_type: spanType,
+    claim_family: family,
+    label: label || null,
+    subject_name: subjectName || null,
+    evidence_text: evidenceText || null,
+    evidence_sha256: evidenceText ? sha256Text(evidenceText) : null,
+    source_span: {
+      source_doc_id: window.source_doc_id,
+      scene_window_id: window.scene_window_id,
+      source_document_xml_sha256: window.document_xml_sha256,
+      evidence,
+    },
+    interpretation: interpretation || null,
+    confidence: clamp01(observation.confidence, 0.5),
+    prompt_sha256: taskPacket.promptHash,
+    model_output_sha256: taskPacket.outputHash,
+    semantic_hash: semanticHash,
+    metadata: {
+      selected_xml_driver: true,
+      primary_lane: "semantic_meaning_spans",
+      old_table_mirror_blocked_on_first_run: true,
+      prompt_version: PROMPT_VERSION,
+      model: VERTEX_MODEL,
+      task: taskPacket.task,
+      run_hash: runHash,
+      evidence_hash: evidenceHash,
+      context_capsule_sha256: taskPacket.contextCapsuleHash,
+      normalized_observation_hash: normalizedObservationHash,
+      observation,
+    },
+    active: true,
+  };
+}
+
+function buildMeaningSpanRowsFromTaskPackets({ semanticRun, window, taskPackets, runHash }) {
+  return taskPackets.flatMap((packet) =>
+    packet.normalizedObservations.map((observation) => makeObservationSpanRow({ semanticRun, window, observation, taskPacket: packet, runHash }))
+  );
+}
+
 async function callVertexOnce(prompt) {
   const stripFence = (raw) => String(raw || "")
     .trim()
@@ -1590,8 +2460,10 @@ function buildSceneWindows(renderParagraphs, size = Math.max(1, BATCH_SIZE)) {
   for (let i = 0; i < renderParagraphs.length; i += size) {
     const chunk = renderParagraphs.slice(i, i + size);
     const text = chunk.map((p) => p.text).join("\n\n");
+    const sceneWindowId = "scene_" + sha256Text([chunk[0]?.folder || "", i, text].join("\t")).slice(0, 32);
     out.push({
-      scene_window_key: "scene_" + sha256Text([chunk[0]?.folder || "", i, text].join("\t")).slice(0, 32),
+      scene_window_id: sceneWindowId,
+      scene_window_key: sceneWindowId,
       folder: chunk[0]?.folder || "",
       document_xml_sha256: chunk[0]?.document_xml_sha256 || "",
       render_paragraphs: chunk,
@@ -1621,13 +2493,17 @@ function loadSelectedXmlDocuments() {
   for (const folder of folders) {
     const documentPath = resolveSelectedDocumentPath(folder);
     const docSha = sha256File(documentPath);
+    const sourceDocId = "srcdoc_" + sha256Text(`${folder}\t${docSha}`).slice(0, 32);
     const xmlParagraphs = extractOoxmlParagraphs(readText(documentPath), folder, docSha);
     const renderParagraphs = buildRenderParagraphs(xmlParagraphs, folder, docSha);
+    for (const paragraph of renderParagraphs) paragraph.source_doc_id = sourceDocId;
     const sceneWindows = buildSceneWindows(renderParagraphs);
+    for (const window of sceneWindows) window.source_doc_id = sourceDocId;
     const fullText = renderParagraphs.map((p) => p.text).join("\n\n");
 
     docs.push({
       folder,
+      source_doc_id: sourceDocId,
       document_path: documentPath,
       document_xml_sha256: docSha,
       xml_paragraphs: xmlParagraphs.filter((p) => !p.empty),
@@ -1872,29 +2748,21 @@ function meaningSpanRowsFromResult({ semanticRun, window, result, promptHash, ou
   return rows;
 }
 
-function emptySemanticResult() {
-  return { paragraphs: [], dualism_relations: [], archetype_movements: [] };
-}
-
-async function writeSelectedSemanticResult({ semanticRun, window, result, promptHash, outputHash }) {
-  const spanRows = meaningSpanRowsFromResult({ semanticRun, window, result, promptHash, outputHash });
-
+async function writeSelectedSemanticRows({ semanticRun, window, spanRows, taskPackets }) {
   if (!writeMode) {
     console.log(JSON.stringify({
-      dry_run_selected_window: window.scene_window_key,
+      dry_run_selected_window: window.scene_window_id,
       render_para_keys: window.render_paragraphs.map((p) => p.render_para_key),
       old_semantic_table_writes: "blocked",
       primary_lane: "semantic_meaning_spans",
-      paragraph_results: Array.isArray(result.paragraphs) ? result.paragraphs.length : 0,
-      dualism_relations: Array.isArray(result.dualism_relations) ? result.dualism_relations.length : 0,
-      archetype_movements: Array.isArray(result.archetype_movements) ? result.archetype_movements.length : 0,
+      task_counts: Object.fromEntries(taskPackets.map((packet) => [packet.task, packet.normalizedObservations.length])),
+      task_failures: taskPackets.flatMap((packet) => packet.failures).length,
       semantic_meaning_spans: spanRows.length,
     }, null, 2));
-    return spanRows;
+    return;
   }
 
   if (spanRows.length) await insertRows("semantic_meaning_spans?on_conflict=semantic_hash", spanRows);
-  return spanRows;
 }
 
 async function main() {
@@ -1921,6 +2789,8 @@ async function main() {
     available_narrative_context_map_sha256: sha256Text(availableNarrativeContextMap),
     selected_xml_driver: true,
     render_segmentation: "xml_plus_novel_grammar_v4",
+    scene_window_packet_size: BATCH_SIZE,
+    ai_task_order: TASK_ORDER,
     primary_hash_lane: "semantic_meaning_spans",
     old_semantic_table_writes: "blocked_on_first_run",
     write_mode: writeMode,
@@ -1930,6 +2800,7 @@ async function main() {
   writeFileSync(join(paths.outDir, "source-summary.json"), JSON.stringify(sourceSummary, null, 2));
   writeFileSync(join(paths.outDir, "selected-truth.json"), JSON.stringify(selected, null, 2));
   writeFileSync(join(paths.outDir, "selected-documents.jsonl"), docs.map((doc) => JSON.stringify({
+    source_doc_id: doc.source_doc_id,
     folder: doc.folder,
     document_path: doc.document_path,
     document_xml_sha256: doc.document_xml_sha256,
@@ -1940,7 +2811,9 @@ async function main() {
   })).join("\n") + "\n");
   writeFileSync(join(paths.outDir, "render-paragraphs.jsonl"), docs.flatMap((doc) => doc.render_paragraphs).map((p) => JSON.stringify(p)).join("\n") + "\n");
   writeFileSync(join(paths.outDir, "scene-windows.jsonl"), windows.map((w) => JSON.stringify({
+    scene_window_id: w.scene_window_id,
     scene_window_key: w.scene_window_key,
+    source_doc_id: w.source_doc_id,
     folder: w.folder,
     document_xml_sha256: w.document_xml_sha256,
     render_para_keys: w.render_paragraphs.map((p) => p.render_para_key),
@@ -1953,49 +2826,95 @@ async function main() {
     await insertRows("render_paragraphs?on_conflict=render_para_key", renderParagraphRowsForDb(semanticRun, docs));
   }
 
+  const runHash = sha256Text(canonicalJson({
+    semantic_run_id: semanticRun.id,
+    prompt_version: PROMPT_VERSION,
+    model: VERTEX_MODEL,
+    selected_truth_sha256: selected.sha256,
+    narrative_context_sha256: NARRATIVE_CONTEXT_SHA256,
+    xml_manifest_sha256: XML_MANIFEST_SHA256,
+    scene_window_packet_size: BATCH_SIZE,
+    ai_task_order: TASK_ORDER,
+  }));
+
   let totalProcessed = 0;
   let totalMeaningSpans = 0;
+  let totalTaskFailures = 0;
+  const skippedPackets = [];
 
-  for (const window of windows) {
-    const prompt = buildSelectedXmlPrompt({ contextPack, availableNarrativeContextMap, window });
-    const promptHash = sha256Text(prompt);
+  for (const [windowIndex, window] of windows.entries()) {
+    const contextCapsule = buildNarrativeContextCapsule({ contextPack, chapters, availableNarrativeContextMap, window });
+    writeFileSync(
+      join(paths.outDir, `context-capsule-selected-${String(windowIndex).padStart(5, "0")}.json`),
+      JSON.stringify(contextCapsule, null, 2)
+    );
 
-    writeFileSync(join(paths.outDir, `prompt-selected-${String(totalProcessed).padStart(5, "0")}.txt`), prompt);
-    writeFileSync(join(paths.outDir, `prompt-selected-${String(totalProcessed).padStart(5, "0")}.sha256`), `${promptHash}\n`);
+    const taskPackets = [];
+    for (const task of TASK_ORDER) {
+      const packet = await runSemanticTaskPacket({ task, window, contextCapsule, noAi });
+      taskPackets.push(packet);
 
-    const result = noAi ? emptySemanticResult() : await callVertex(prompt);
-    const outputText = JSON.stringify(result, null, 2);
-    const outputHash = sha256Text(outputText);
+      const stem = `${String(windowIndex).padStart(5, "0")}-${task}`;
+      writeFileSync(join(paths.outDir, `prompt-selected-${stem}.txt`), packet.prompt);
+      writeFileSync(join(paths.outDir, `prompt-selected-${stem}.sha256`), `${packet.promptHash}\n`);
+      writeFileSync(join(paths.outDir, `result-selected-${stem}.json`), packet.outputText);
+      writeFileSync(join(paths.outDir, `result-selected-${stem}.sha256`), `${packet.outputHash}\n`);
+      writeFileSync(
+        join(paths.outDir, `normalized-selected-${stem}.json`),
+        JSON.stringify({
+          task: packet.task,
+          scene_window_id: window.scene_window_id,
+          source_doc_id: window.source_doc_id,
+          context_capsule_sha256: packet.contextCapsuleHash,
+          observations: packet.normalizedObservations,
+          failures: packet.failures,
+        }, null, 2)
+      );
 
-    writeFileSync(join(paths.outDir, `result-selected-${String(totalProcessed).padStart(5, "0")}.json`), outputText);
-    writeFileSync(join(paths.outDir, `result-selected-${String(totalProcessed).padStart(5, "0")}.sha256`), `${outputHash}\n`);
+      for (const failure of packet.failures) {
+        skippedPackets.push({
+          ...failure,
+          window_index: windowIndex,
+          folder: window.folder,
+          source_doc_id: window.source_doc_id,
+        });
+      }
+    }
 
-    const spanRows = await writeSelectedSemanticResult({ semanticRun, window, result, promptHash, outputHash });
+    const spanRows = buildMeaningSpanRowsFromTaskPackets({ semanticRun, window, taskPackets, runHash });
+    await writeSelectedSemanticRows({ semanticRun, window, spanRows, taskPackets });
     totalMeaningSpans += spanRows.length;
 
     writeFileSync(
-      join(paths.outDir, `meaning-spans-selected-${String(totalProcessed).padStart(5, "0")}.jsonl`),
+      join(paths.outDir, `meaning-spans-selected-${String(windowIndex).padStart(5, "0")}.jsonl`),
       spanRows.map((r) => JSON.stringify(r)).join("\n") + (spanRows.length ? "\n" : "")
     );
 
     totalProcessed += 1;
+    totalTaskFailures += taskPackets.reduce((sum, packet) => sum + packet.failures.length, 0);
 
     console.log(JSON.stringify({
       run_id: semanticRun.id,
       selected_xml_driver: true,
       old_semantic_table_writes: "blocked",
       primary_lane: "semantic_meaning_spans",
-      window: window.scene_window_key,
+      window: window.scene_window_id,
       folder: window.folder,
       processed_windows: totalProcessed,
       total_windows: windows.length,
       meaning_spans: totalMeaningSpans,
+      task_failures: totalTaskFailures,
+      task_counts: Object.fromEntries(taskPackets.map((packet) => [packet.task, packet.normalizedObservations.length])),
       no_ai: noAi,
       write_mode: writeMode,
-      prompt_hash: promptHash,
-      output_hash: outputHash,
+      run_hash: runHash,
     }));
   }
+
+  writeFileSync(
+    join(paths.outDir, "skipped-packets.jsonl"),
+    skippedPackets.map((record) => JSON.stringify(record)).join("\n") + (skippedPackets.length ? "\n" : "")
+  );
 
   if (writeMode) {
     await patchRow("semantic_runs", semanticRun.id, {
@@ -2005,6 +2924,9 @@ async function main() {
         ...(semanticRun.metadata || {}),
         total_processed_windows: totalProcessed,
         total_meaning_spans: totalMeaningSpans,
+        total_task_failures: totalTaskFailures,
+        run_hash: runHash,
+        ai_task_order: TASK_ORDER,
         selected_xml_driver: true,
         primary_hash_lane: "semantic_meaning_spans",
         old_semantic_table_writes: "blocked_on_first_run",
@@ -2021,9 +2943,11 @@ async function main() {
     old_semantic_table_writes: "blocked_on_first_run",
     total_processed_windows: totalProcessed,
     total_meaning_spans: totalMeaningSpans,
+    total_task_failures: totalTaskFailures,
+    run_hash: runHash,
     narrative_context_sha256: NARRATIVE_CONTEXT_SHA256,
     xml_manifest_sha256: XML_MANIFEST_SHA256,
-    provider: noAi ? "none" : "vertex",
+    provider: noAi ? "none" : VERTEX_PROJECT_ID ? "vertex" : "gemini_rest",
     model: noAi ? "no-ai" : VERTEX_MODEL,
     sourceSummary,
   }, null, 2));

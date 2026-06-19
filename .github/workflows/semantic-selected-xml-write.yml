@@ -1,0 +1,174 @@
+name: Selected XML semantic write
+
+on:
+  workflow_dispatch:
+    inputs:
+      limit_docs:
+        description: "Optional selected XML document limit. Leave blank for all selected docs."
+        required: false
+        default: ""
+      limit:
+        description: "Optional scene/window limit. Leave blank for all windows."
+        required: false
+        default: ""
+      batch_size:
+        description: "Script batch size."
+        required: false
+        default: "8"
+      model:
+        description: "Gemini model. Use Flash unless quota/billing supports Pro."
+        required: false
+        default: "gemini-2.5-flash"
+      apply_migration_first:
+        description: "Apply selected XML meaning-span migration before running."
+        required: false
+        default: "true"
+        type: choice
+        options:
+          - "true"
+          - "false"
+
+permissions:
+  contents: read
+
+jobs:
+  selected-xml-semantic-write:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF || vars.SUPABASE_PROJECT_REF }}
+      GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+      VERTEX_MODEL: ${{ inputs.model }}
+      SELECTED_XML_MIGRATION_FILE: supabase/migrations/20260619004000_selected_xml_primary_meaning_span_ledger.sql
+      SELECTED_XML_SCRIPT: scripts/semantic/xml-selected-meaning-span-rehash.mjs
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies when needed
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ -f package-lock.json ]; then
+            npm ci
+          elif [ -f pnpm-lock.yaml ]; then
+            corepack enable
+            pnpm install --frozen-lockfile
+          elif [ -f yarn.lock ]; then
+            corepack enable
+            yarn install --frozen-lockfile
+          else
+            npm install
+          fi
+
+      - name: Verify workflow env and selected XML script
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          test -n "$SUPABASE_ACCESS_TOKEN"
+          test -n "$SUPABASE_PROJECT_REF"
+          test -n "$GOOGLE_API_KEY"
+          test -n "$VERTEX_MODEL"
+
+          test -f "$SELECTED_XML_SCRIPT"
+          test -f "$SELECTED_XML_MIGRATION_FILE"
+
+          node --check "$SELECTED_XML_SCRIPT"
+
+          echo "project_ref=$SUPABASE_PROJECT_REF"
+          echo "model=$VERTEX_MODEL"
+          echo "script=$SELECTED_XML_SCRIPT"
+          echo "migration=$SELECTED_XML_MIGRATION_FILE"
+
+      - name: Verify selected XML source files are present in repository checkout
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          echo "===== selected XML source discovery ====="
+          find reports docs public scripts supabase -maxdepth 6 \
+            \( -name 'xml_starred_hash_truth.txt' -o -name 'materialized_ooxml_manifest.json' -o -name 'document.xml' \) \
+            -print 2>/dev/null | sort | sed -n '1,200p'
+
+          echo
+          echo "===== script selected source references ====="
+          grep -n "xml_starred_hash_truth\|materialized_ooxml\|selected_xml\|document.xml" "$SELECTED_XML_SCRIPT" | sed -n '1,160p'
+
+      - name: Apply selected XML meaning-span migration
+        if: ${{ inputs.apply_migration_first == 'true' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python - <<'PY' > /tmp/selected_xml_meaning_span_migration.json
+          import json
+          from pathlib import Path
+
+          sql = Path("supabase/migrations/20260619004000_selected_xml_primary_meaning_span_ledger.sql").read_text(encoding="utf-8")
+          print(json.dumps({"query": sql}))
+          PY
+
+          http_code="$(
+            curl -sS \
+              -o /tmp/selected_xml_meaning_span_migration_response.json \
+              -w "%{http_code}" \
+              -X POST \
+              "https://api.supabase.com/v1/projects/${SUPABASE_PROJECT_REF}/database/query" \
+              --header "Authorization: Bearer ${SUPABASE_ACCESS_TOKEN}" \
+              --header "Content-Type: application/json" \
+              --data-binary @/tmp/selected_xml_meaning_span_migration.json
+          )"
+
+          cat /tmp/selected_xml_meaning_span_migration_response.json
+          echo
+          echo "http_code=$http_code"
+
+          case "$http_code" in
+            200|201|202) ;;
+            *) exit 1 ;;
+          esac
+
+      - name: No-AI canary for selected XML source driver
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          node "$SELECTED_XML_SCRIPT" --no-ai --limit-docs=1 --limit=1 --batch-size=2
+
+      - name: Run selected XML semantic write
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          ARGS=(--write "--batch-size=${{ inputs.batch_size }}")
+
+          if [ -n "${{ inputs.limit_docs }}" ]; then
+            ARGS+=("--limit-docs=${{ inputs.limit_docs }}")
+          fi
+
+          if [ -n "${{ inputs.limit }}" ]; then
+            ARGS+=("--limit=${{ inputs.limit }}")
+          fi
+
+          echo "node $SELECTED_XML_SCRIPT ${ARGS[*]}"
+          node "$SELECTED_XML_SCRIPT" "${ARGS[@]}"
+
+      - name: Upload selected XML semantic run artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: selected-xml-semantic-write-artifacts
+          path: |
+            docs/forensics/audits/xml-selected-meaning-span-rehash-runs/**
+            docs/forensics/audits/semantic-selected-xml-*.log
+          if-no-files-found: warn

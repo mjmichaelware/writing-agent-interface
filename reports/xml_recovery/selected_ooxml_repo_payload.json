@@ -1,0 +1,105 @@
+{
+  "payload": "selected_xml_document_xml_only",
+  "count": 16,
+  "destination_root": "reports/xml_recovery/materialized_ooxml",
+  "copied": [
+    {
+      "folder": "0002_r_chapter_1_-_stardust_to_stardust_1tbodxyu5ezufogmr46f64o9u8fisifvmiaxn6qz_siq",
+      "source_path": "/data/data/com.termux/files/home/Workspaces/Hybrid/superior-semantic-prompt-context-20260618-092928/src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0002_r_chapter_1_-_stardust_to_stardust_1tbodxyu5ezufogmr46f64o9u8fisifvmiaxn6qz_siq/word/document.xml",
+      "repo_path": "reports/xml_recovery/materialized_ooxml/0002_r_chapter_1_-_stardust_to_stardust_1tbodxyu5ezufogmr46f64o9u8fisifvmiaxn6qz_siq/word/document.xml",
+      "document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd"
+    },
+    {
+      "folder": "0003_g_chapter_2-_living_sacrifice_1liqobbwqqwnybdbuqqoxp9hdt2ddoq8nxzwiycwas0s",
+      "source_path": "/data/data/com.termux/files/home/Workspaces/Hybrid/superior-semantic-prompt-context-20260618-092928/src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0003_g_chapter_2-_living_sacrifice_1liqobbwqqwnybdbuqqoxp9hdt2ddoq8nxzwiycwas0s/word/document.xml",
+      "repo_path": "reports/xml_recovery/materialized_ooxml/0003_g_chapter_2-_living_sacrifice_1liqobbwqqwnybdbuqqoxp9hdt2ddoq8nxzwiycwas0s/word/document.xml",
+      "document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0"
+    },
+    {
+      "folder": "0004_g_chapter_3-_lift_up_1xobnlljg3yy72d9i_360v-utttubr_5mhgn1ydmsrtk",
+      "source_path": "/data/data/com.termux/files/home/Workspaces/Hybrid/superior-semantic-prompt-context-20260618-092928/src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0004_g_chapter_3-_lift_up_1xobnlljg3yy72d9i_360v-utttubr_5mhgn1ydmsrtk/word/document.xml",
+      "repo_path": "reports/xml_recovery/materialized_ooxml/0004_g_chapter_3-_lift_up_1xobnlljg3yy72d9i_360v-utttubr_5mhgn1ydmsrtk/word/document.xml",
+      "document_xml_sha256": "4c43f128801df7d839bd5fda91fc148c0068a06a98530bf1c45d5fd004db3bcf"
+    },
+    {
+      "folder": "0005_final_chapter_5_-_the_snare_1lmmvyvwhmyuexbywewlh-rgpubirdpg7uper4gfh37g",
+      "source_path": "/data/data/com.termux/files/home/Workspaces/Hybrid/superior-semantic-prompt-context-20260618-092928/src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0005_final_chapter_5_-_the_snare_1lmmvyvwhmyuexbywewlh-rgpubirdpg7uper4gfh37g/word/document.xml",
+      "repo_path": "reports/xml_recovery/materialized_ooxml/0005_final_chapter_5_-_the_snare_1lmmvyvwhmyuexbywewlh-rgpubirdpg7uper4gfh37g/word/document.xml",
+      "document_xml_sha256": "05cffb295e9a217dc9e9eaf4101bddeceac6bf2dee41b9fbf5b7db13c47c9746"
+    },
+    {
+      "folder": "0006_final_chapter_6-_beelzebub_beelzebub_126vrnrfcocizrxxqdi8yhhjqym0oddgk772ykll5eqg",
+      "source_path": "/data/data/com.termux/files/home/Workspaces/Hybrid/superior-semantic-prompt-context-20260618-092928/src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0006_final_chapter_6-_beelzebub_beelzebub_126vrnrfcocizrxxqdi8yhhjqym0oddgk772ykll5eqg/word/document.xml",
+      "repo_path": "reports/xml_recovery/materialized_ooxml/0006_final_chapter_6-_beelzebub_beelzebub_126vrnrfcocizrxxqdi8yhhjqym0oddgk772ykll5eqg/word/document.xml",
+      "document_xml_sha256": "75678cddb9b409ece00c0e876788ca6d2c7052ada6225e671ac5766569f6b651"
+    },
+    {
+      "folder": "0007_chapter_8_final_1oc5a8cwy91hg-xdfrovutr8ojdcgrlw7lz7cbc_l5ki",
+      "source_path": "/data/data/com.termux/files/home/Workspaces/Hybrid/superior-semantic-prompt-context-20260618-092928/src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0007_chapter_8_final_1oc5a8cwy91hg-xdfrovutr8ojdcgrlw7lz7cbc_l5ki/word/document.xml",
+      "repo_path": "reports/xml_recovery/materialized_ooxml/0007_chapter_8_final_1oc5a8cwy91hg-xdfrovutr8ojdcgrlw7lz7cbc_l5ki/word/document.xml",
+      "document_xml_sha256": "8365bf4698d612ac840030130abdb7ab2493e765d8762540331f603dac94c1c2"
+    },
+    {
+      "folder": "0008_d_chapter_7_-_the_pit_1n_kgc1nqhcddho0mgy1niam7dvbsou3pgh8d4vcct34",
+      "source_path": "/data/data/com.termux/files/home/Workspaces/Hybrid/superior-semantic-prompt-context-20260618-092928/src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0008_d_chapter_7_-_the_pit_1n_kgc1nqhcddho0mgy1niam7dvbsou3pgh8d4vcct34/word/document.xml",
+      "repo_path": "reports/xml_recovery/materialized_ooxml/0008_d_chapter_7_-_the_pit_1n_kgc1nqhcddho0mgy1niam7dvbsou3pgh8d4vcct34/word/document.xml",
+      "document_xml_sha256": "820882dd747911211e140fd9ffd3a1a8a879f65acbdebf692e087077f4a3bf98"
+    },
+    {
+      "folder": "0009_final_chapter_9_the_ascent_1pihcifwbnqsvqjbzscu08jpdqzy-ymbjyomtcv_23u0",
+      "source_path": "/data/data/com.termux/files/home/Workspaces/Hybrid/superior-semantic-prompt-context-20260618-092928/src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0009_final_chapter_9_the_ascent_1pihcifwbnqsvqjbzscu08jpdqzy-ymbjyomtcv_23u0/word/document.xml",
+      "repo_path": "reports/xml_recovery/materialized_ooxml/0009_final_chapter_9_the_ascent_1pihcifwbnqsvqjbzscu08jpdqzy-ymbjyomtcv_23u0/word/document.xml",
+      "document_xml_sha256": "a1236450ce551d5fbe60d290403b39514678445071ef3208d0f4c0731c3000de"
+    },
+    {
+      "folder": "0010_final_chapter_4_-_pilgrimage_1opvdsohmwivq6fgqotsgpffksjcdai2kqtohsqkwwdu",
+      "source_path": "/data/data/com.termux/files/home/Workspaces/Hybrid/superior-semantic-prompt-context-20260618-092928/src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0010_final_chapter_4_-_pilgrimage_1opvdsohmwivq6fgqotsgpffksjcdai2kqtohsqkwwdu/word/document.xml",
+      "repo_path": "reports/xml_recovery/materialized_ooxml/0010_final_chapter_4_-_pilgrimage_1opvdsohmwivq6fgqotsgpffksjcdai2kqtohsqkwwdu/word/document.xml",
+      "document_xml_sha256": "e96a02e5791d93a22b796aa6cff56d2ca96d7eae0869a73baa98b249528e7f04"
+    },
+    {
+      "folder": "0012_notes_p_chapter_1_-_stardust_to_stardust_1a7wqhttdqn9rxbcmsg2zja-cpkqyu4rqdw2awfjthjs",
+      "source_path": "/data/data/com.termux/files/home/Workspaces/Hybrid/superior-semantic-prompt-context-20260618-092928/src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0012_notes_p_chapter_1_-_stardust_to_stardust_1a7wqhttdqn9rxbcmsg2zja-cpkqyu4rqdw2awfjthjs/word/document.xml",
+      "repo_path": "reports/xml_recovery/materialized_ooxml/0012_notes_p_chapter_1_-_stardust_to_stardust_1a7wqhttdqn9rxbcmsg2zja-cpkqyu4rqdw2awfjthjs/word/document.xml",
+      "document_xml_sha256": "db3da00bd1d210011a312c87dcdde1206cd31d68ce0d91b500ec2689cce5e73c"
+    },
+    {
+      "folder": "0013_prompt_guide_e_chapter_10_forsaken_1hgitz_aqyru0299o0n46bd_y_mrj7p33mnt_hxubbto",
+      "source_path": "/data/data/com.termux/files/home/Workspaces/Hybrid/superior-semantic-prompt-context-20260618-092928/src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0013_prompt_guide_e_chapter_10_forsaken_1hgitz_aqyru0299o0n46bd_y_mrj7p33mnt_hxubbto/word/document.xml",
+      "repo_path": "reports/xml_recovery/materialized_ooxml/0013_prompt_guide_e_chapter_10_forsaken_1hgitz_aqyru0299o0n46bd_y_mrj7p33mnt_hxubbto/word/document.xml",
+      "document_xml_sha256": "fc0dd98de656c1d6463b59089ddd83f18544e78e1c4a5d1f9dc714bd26ce7fa8"
+    },
+    {
+      "folder": "0035_chapter1_q_final_1avkfastxedmov92zfajo2omrfjvbr81iiupgritauvk",
+      "source_path": "/data/data/com.termux/files/home/Workspaces/Hybrid/superior-semantic-prompt-context-20260618-092928/src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0035_chapter1_q_final_1avkfastxedmov92zfajo2omrfjvbr81iiupgritauvk/word/document.xml",
+      "repo_path": "reports/xml_recovery/materialized_ooxml/0035_chapter1_q_final_1avkfastxedmov92zfajo2omrfjvbr81iiupgritauvk/word/document.xml",
+      "document_xml_sha256": "47c9c8c0b00a8eea2cfbd536415e09b3f173cf9f0ff2a2b8a6a3693b4b9d7e20"
+    },
+    {
+      "folder": "0036_chapter_10.5_1j7uyiu5s0n_vig0-4dyeemsjjgdcqawbnexk9zus7pk",
+      "source_path": "/data/data/com.termux/files/home/Workspaces/Hybrid/superior-semantic-prompt-context-20260618-092928/src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0036_chapter_10.5_1j7uyiu5s0n_vig0-4dyeemsjjgdcqawbnexk9zus7pk/word/document.xml",
+      "repo_path": "reports/xml_recovery/materialized_ooxml/0036_chapter_10.5_1j7uyiu5s0n_vig0-4dyeemsjjgdcqawbnexk9zus7pk/word/document.xml",
+      "document_xml_sha256": "63d53636998c33c161d9b4eafc74c6a88730b3ece53c3aad51ead15b6dd5c261"
+    },
+    {
+      "folder": "0040_chapter_2nd_to_last_145l-3ahqh6xnn-lwhzeibm46do2dcuo_5lbcku_y6k4",
+      "source_path": "/data/data/com.termux/files/home/Workspaces/Hybrid/superior-semantic-prompt-context-20260618-092928/src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0040_chapter_2nd_to_last_145l-3ahqh6xnn-lwhzeibm46do2dcuo_5lbcku_y6k4/word/document.xml",
+      "repo_path": "reports/xml_recovery/materialized_ooxml/0040_chapter_2nd_to_last_145l-3ahqh6xnn-lwhzeibm46do2dcuo_5lbcku_y6k4/word/document.xml",
+      "document_xml_sha256": "f06a2b2bbb8a18be6418f403a93a9541f9be3b345642c12b4c9ed6f116205781"
+    },
+    {
+      "folder": "0052_the_weight_of_the_sky_the_fall_into_megiddo_1m3wuxh2oij7jb4rjybhjsqnfqxh0sdnv5bababjlzf0",
+      "source_path": "/data/data/com.termux/files/home/Workspaces/Hybrid/superior-semantic-prompt-context-20260618-092928/src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0052_the_weight_of_the_sky_the_fall_into_megiddo_1m3wuxh2oij7jb4rjybhjsqnfqxh0sdnv5bababjlzf0/word/document.xml",
+      "repo_path": "reports/xml_recovery/materialized_ooxml/0052_the_weight_of_the_sky_the_fall_into_megiddo_1m3wuxh2oij7jb4rjybhjsqnfqxh0sdnv5bababjlzf0/word/document.xml",
+      "document_xml_sha256": "836d48bf999db10ea7b36056c14274087c4433009e211731e037b0ba7c5e5a29"
+    },
+    {
+      "folder": "0057_wos_ch7_the_pit_1zmar8nipqxmhsyicxsv3gesidd4pgmqtofeewe0vwwi",
+      "source_path": "/data/data/com.termux/files/home/Workspaces/Hybrid/superior-semantic-prompt-context-20260618-092928/src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0057_wos_ch7_the_pit_1zmar8nipqxmhsyicxsv3gesidd4pgmqtofeewe0vwwi/word/document.xml",
+      "repo_path": "reports/xml_recovery/materialized_ooxml/0057_wos_ch7_the_pit_1zmar8nipqxmhsyicxsv3gesidd4pgmqtofeewe0vwwi/word/document.xml",
+      "document_xml_sha256": "2aacc14aac8f0b4dd4f9ada5a9157f999c77694360aedef65c6931af035e0a09"
+    }
+  ],
+  "missing": [],
+  "bad_hash": []
+}

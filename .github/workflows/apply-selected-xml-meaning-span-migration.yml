@@ -1,0 +1,105 @@
+name: Apply selected XML meaning-span migration
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  apply-selected-xml-meaning-span-migration:
+    runs-on: ubuntu-latest
+
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF || vars.SUPABASE_PROJECT_REF }}
+      MIGRATION_FILE: supabase/migrations/20260619004000_selected_xml_primary_meaning_span_ledger.sql
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify required inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$SUPABASE_ACCESS_TOKEN"
+          test -n "$SUPABASE_PROJECT_REF"
+          test -f "$MIGRATION_FILE"
+          echo "project_ref=$SUPABASE_PROJECT_REF"
+          echo "migration_file=$MIGRATION_FILE"
+
+      - name: Apply selected XML meaning-span SQL through Supabase Management API
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python - <<'PY' > /tmp/selected_xml_meaning_span_migration.json
+          import json
+          from pathlib import Path
+
+          sql = Path("supabase/migrations/20260619004000_selected_xml_primary_meaning_span_ledger.sql").read_text(encoding="utf-8")
+          print(json.dumps({"query": sql}))
+          PY
+
+          http_code="$(
+            curl -sS \
+              -o /tmp/selected_xml_meaning_span_migration_response.json \
+              -w "%{http_code}" \
+              -X POST \
+              "https://api.supabase.com/v1/projects/${SUPABASE_PROJECT_REF}/database/query" \
+              --header "Authorization: Bearer ${SUPABASE_ACCESS_TOKEN}" \
+              --header "Content-Type: application/json" \
+              --data-binary @/tmp/selected_xml_meaning_span_migration.json
+          )"
+
+          cat /tmp/selected_xml_meaning_span_migration_response.json
+          echo
+          echo "http_code=$http_code"
+
+          case "$http_code" in
+            200|201|202) ;;
+            *) exit 1 ;;
+          esac
+
+      - name: Verify selected XML meaning-span tables
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python - <<'PY' > /tmp/selected_xml_meaning_span_verify.json
+          import json
+
+          sql = """
+          select table_name
+          from information_schema.tables
+          where table_schema = 'public'
+            and table_name in (
+              'render_paragraphs',
+              'semantic_meaning_spans',
+              'semantic_meaning_span_edges'
+            )
+          order by table_name;
+          """
+          print(json.dumps({"query": sql}))
+          PY
+
+          http_code="$(
+            curl -sS \
+              -o /tmp/selected_xml_meaning_span_verify_response.json \
+              -w "%{http_code}" \
+              -X POST \
+              "https://api.supabase.com/v1/projects/${SUPABASE_PROJECT_REF}/database/query" \
+              --header "Authorization: Bearer ${SUPABASE_ACCESS_TOKEN}" \
+              --header "Content-Type: application/json" \
+              --data-binary @/tmp/selected_xml_meaning_span_verify.json
+          )"
+
+          cat /tmp/selected_xml_meaning_span_verify_response.json
+          echo
+          echo "http_code=$http_code"
+
+          case "$http_code" in
+            200|201|202) ;;
+            *) exit 1 ;;
+          esac

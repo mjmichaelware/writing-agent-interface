@@ -1179,12 +1179,6 @@ function maybeInteger(value) {
   return Number.isFinite(n) ? n : null;
 }
 
-function requiredInteger(value, label) {
-  const n = maybeInteger(value);
-  if (!Number.isFinite(n)) throw new Error(`Missing ${label}`);
-  return n;
-}
-
 function uniqueBy(items, keyFn) {
   const seen = new Set();
   const out = [];
@@ -1440,71 +1434,143 @@ const BIBLICAL_RELATIONSHIP_ALIASES = {
 
 const BIBLICAL_BOOK_ALIASES = {
   genesis: "Genesis",
+  gen: "Genesis",
+  ge: "Genesis",
   exodus: "Exodus",
+  exod: "Exodus",
+  ex: "Exodus",
   leviticus: "Leviticus",
+  lev: "Leviticus",
   numbers: "Numbers",
+  num: "Numbers",
+  nums: "Numbers",
   deuteronomy: "Deuteronomy",
+  deut: "Deuteronomy",
+  deutero: "Deuteronomy",
   joshua: "Joshua",
+  josh: "Joshua",
   judges: "Judges",
+  judg: "Judges",
+  jdg: "Judges",
   ruth: "Ruth",
+  ru: "Ruth",
   "1_samuel": "1 Samuel",
+  "1_sam": "1 Samuel",
+  "1sa": "1 Samuel",
   "2_samuel": "2 Samuel",
+  "2_sam": "2 Samuel",
+  "2sa": "2 Samuel",
   "1_kings": "1 Kings",
+  "1_kgs": "1 Kings",
+  "1_ki": "1 Kings",
   "2_kings": "2 Kings",
+  "2_kgs": "2 Kings",
+  "2_ki": "2 Kings",
   "1_chronicles": "1 Chronicles",
+  "1_chr": "1 Chronicles",
   "2_chronicles": "2 Chronicles",
+  "2_chr": "2 Chronicles",
   psalm: "Psalm",
   psalms: "Psalm",
+  psa: "Psalm",
+  ps: "Psalm",
   proverbs: "Proverbs",
+  prov: "Proverbs",
   ecclesiastes: "Ecclesiastes",
+  eccl: "Ecclesiastes",
+  ecc: "Ecclesiastes",
   isaiah: "Isaiah",
+  isa: "Isaiah",
   jeremiah: "Jeremiah",
+  jer: "Jeremiah",
+  ezek: "Ezekiel",
   ezekiel: "Ezekiel",
   daniel: "Daniel",
+  dan: "Daniel",
   hosea: "Hosea",
+  hos: "Hosea",
   joel: "Joel",
   amos: "Amos",
   obadiah: "Obadiah",
+  obad: "Obadiah",
   jonah: "Jonah",
+  jon: "Jonah",
   micah: "Micah",
+  mic: "Micah",
   nahum: "Nahum",
+  nah: "Nahum",
   habakkuk: "Habakkuk",
+  hab: "Habakkuk",
   zephaniah: "Zephaniah",
+  zeph: "Zephaniah",
   haggai: "Haggai",
+  hag: "Haggai",
   zechariah: "Zechariah",
+  zech: "Zechariah",
   malachi: "Malachi",
+  mal: "Malachi",
   matthew: "Matthew",
+  matt: "Matthew",
+  mt: "Matthew",
   mark: "Mark",
+  mk: "Mark",
   luke: "Luke",
+  lk: "Luke",
   john: "John",
+  jn: "John",
   acts: "Acts",
+  act: "Acts",
   romans: "Romans",
+  rom: "Romans",
   "1_corinthians": "1 Corinthians",
+  "1_cor": "1 Corinthians",
   "2_corinthians": "2 Corinthians",
+  "2_cor": "2 Corinthians",
   corinthians: "Corinthians",
   galatians: "Galatians",
+  gal: "Galatians",
   ephesians: "Ephesians",
+  eph: "Ephesians",
   philippians: "Philippians",
+  phil: "Philippians",
   colossians: "Colossians",
+  col: "Colossians",
   "1_thessalonians": "1 Thessalonians",
+  "1_thess": "1 Thessalonians",
   "2_thessalonians": "2 Thessalonians",
+  "2_thess": "2 Thessalonians",
   thessalonians: "Thessalonians",
   "1_timothy": "1 Timothy",
+  "1_tim": "1 Timothy",
   "2_timothy": "2 Timothy",
+  "2_tim": "2 Timothy",
   timothy: "Timothy",
   titus: "Titus",
+  tit: "Titus",
   philemon: "Philemon",
+  phlm: "Philemon",
+  phm: "Philemon",
   hebrews: "Hebrews",
+  heb: "Hebrews",
   james: "James",
+  jas: "James",
   "1_peter": "1 Peter",
+  "1_pet": "1 Peter",
   "2_peter": "2 Peter",
+  "2_pet": "2 Peter",
   peter: "Peter",
   "1_john": "1 John",
+  "1_jn": "1 John",
   "2_john": "2 John",
+  "2_jn": "2 John",
   "3_john": "3 John",
+  "3_jn": "3 John",
   jude: "Jude",
   revelation: "Revelation",
+  rev: "Revelation",
 };
+
+let cachedStaticSubjectResolutionCounts = null;
 
 function extractNamedEntities(text) {
   return uniqueBy((String(text || "").match(/\b[A-Z][a-z]{2,}(?:'[A-Za-z]+)?\b/g) || [])
@@ -1512,18 +1578,37 @@ function extractNamedEntities(text) {
     .filter((token) => !SUBJECT_STOPWORDS.has(token)), (token) => token);
 }
 
-function buildSubjectResolutionCandidates({ window, chapters, narrativeSources, contextPack }) {
+function countNamedEntities(text) {
+  const counts = new Map();
+  for (const token of extractNamedEntities(text)) {
+    counts.set(token, (counts.get(token) || 0) + 1);
+  }
+  return counts;
+}
+
+function getStaticSubjectResolutionCounts({ chapters, narrativeSources, contextPack }) {
+  if (cachedStaticSubjectResolutionCounts) return cachedStaticSubjectResolutionCounts;
+  const counts = new Map();
   const texts = [
-    String(window?.text || ""),
     ...chapters.map((chapter) => chapter.content),
     ...narrativeSources.map((source) => source.content),
     contextPack,
   ];
-  const counts = new Map();
   for (const text of texts) {
-    for (const token of extractNamedEntities(text)) {
-      counts.set(token, (counts.get(token) || 0) + 1);
+    const localCounts = countNamedEntities(text);
+    for (const [token, tokenCount] of localCounts.entries()) {
+      counts.set(token, (counts.get(token) || 0) + tokenCount);
     }
+  }
+  cachedStaticSubjectResolutionCounts = counts;
+  return cachedStaticSubjectResolutionCounts;
+}
+
+function buildSubjectResolutionCandidates({ window, chapters, narrativeSources, contextPack }) {
+  const counts = new Map(getStaticSubjectResolutionCounts({ chapters, narrativeSources, contextPack }));
+  const windowCounts = countNamedEntities(String(window?.text || ""));
+  for (const [token, tokenCount] of windowCounts.entries()) {
+    counts.set(token, (counts.get(token) || 0) + tokenCount);
   }
   return [...counts.entries()]
     .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
@@ -1547,10 +1632,7 @@ function normalizeResolvedSubject(raw, contextCapsule) {
   const value = requiredText(raw, "character", 120);
   if (CONTROLLED_SUBJECT_PLACEHOLDERS.includes(value)) return { subject: value, unresolved: true };
   const directNames = extractNamedEntities(value);
-  if (directNames.length === 1 && !GENERIC_SUBJECT_SLUGS.has(slugifyToken(value)) && !isRelationalSubjectDescriptor(value)) {
-    return { subject: directNames[0], unresolved: false };
-  }
-  if (directNames.length > 1 && !GENERIC_SUBJECT_SLUGS.has(slugifyToken(value)) && !isRelationalSubjectDescriptor(value)) {
+  if (directNames.length >= 1 && !GENERIC_SUBJECT_SLUGS.has(slugifyToken(value)) && !isRelationalSubjectDescriptor(value)) {
     return { subject: directNames[0], unresolved: false };
   }
   const candidates = safeArray(contextCapsule?.subject_resolution_candidates);
@@ -1569,12 +1651,16 @@ function normalizeJungianArchetype(rawArchetype, summary = "") {
   return { archetype: mapped, archetype_gloss: gloss };
 }
 
+function normalizeBiblicalBookKey(value) {
+  return slugifyToken(String(value || "").replace(/\./g, "").trim(), "");
+}
+
 function parseBiblicalAddress(value) {
   const text = compactWhitespace(value, 160);
   if (!text) return null;
-  const match = text.match(/^((?:[1-3]\s*)?[A-Za-z]+(?:\s+[A-Za-z]+)*)\s+(\d+):(\d+)(?:-(\d+))?$/);
+  const match = text.match(/^((?:[1-3]\s*)?[A-Za-z][A-Za-z.]*(?:\s+[A-Za-z][A-Za-z.]*)*)\s+(\d+):(\d+)(?:-(\d+))?$/);
   if (!match) return null;
-  const book = BIBLICAL_BOOK_ALIASES[slugifyToken(match[1], "")];
+  const book = BIBLICAL_BOOK_ALIASES[normalizeBiblicalBookKey(match[1])];
   if (!book) return null;
   return {
     biblical_anchor_label: `${book} ${match[2]}:${match[3]}${match[4] ? `-${match[4]}` : ""}`,
@@ -1586,7 +1672,7 @@ function parseBiblicalAddress(value) {
 }
 
 function normalizeBiblicalBook(value) {
-  const key = slugifyToken(value, "");
+  const key = normalizeBiblicalBookKey(value);
   return BIBLICAL_BOOK_ALIASES[key] || null;
 }
 
@@ -1596,7 +1682,7 @@ function normalizeMotifFamily(value) {
 
 function hasTypologicalRationale(text) {
   const rationale = String(text || "").toLowerCase();
-  return /\b(type|antitype|pattern|correspond|fulfill|fulfillment|prefigure|recapitulat|as\s+.+\s+so)\b/.test(rationale);
+  return /\b(type|antitype|pattern(?:s)?|correspond(?:s|ed|ence|ing)?|fulfill(?:s|ed|ment)?|prefigure(?:s|d|ment)?|recapitulat(?:e|es|ed|ing|ion)?|as\s+.+?\s+so)\b/.test(rationale);
 }
 
 function tightenConfidence(confidence, { unresolvedSubject = false, symbolicResonance = false, targetHintOnly = false } = {}) {

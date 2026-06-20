@@ -85,6 +85,8 @@ const paths = {
   archetypeProtocolVisceral: join(ROOT, "docs/agent_context/source_drop/hasher_context_v1/02_archetype_protocol_visceral_empathy.txt"),
   compendium: join(ROOT, "docs/agent_context/source_drop/hasher_context_v1/03_master_compendium_singularity.txt"),
   synopsis: join(ROOT, "docs/agent_context/source_drop/hasher_context_v1/04_new_synopsis_the_weight_of_the_sky.txt"),
+  referenceBibleDir: join(ROOT, "docs/agent_context/canonical/reference_corpora/bible"),
+  referenceJungDir: join(ROOT, "docs/agent_context/canonical/reference_corpora/jung"),
   xmlManifest: join(ROOT, "reports/xml_recovery/materialized_ooxml_manifest.json"),
   selectedTruth: join(ROOT, "reports/xml_recovery/xml_starred_hash_truth.txt"),
   materializedOoxml: join(ROOT, "reports/xml_recovery/materialized_ooxml"),
@@ -384,6 +386,59 @@ const TABLE_SCHEMAS = {
     prompt_sha256: "text",
     model_output_sha256: "text",
     semantic_hash: "text",
+    metadata: "jsonb",
+    active: "boolean",
+  },
+  semantic_archetype_anchors: {
+    anchor_key: "text",
+    canonical_label: "text",
+    ontology_family: "text",
+    ontology_version: "text",
+    metadata: "jsonb",
+    active: "boolean",
+  },
+  semantic_biblical_anchors: {
+    semantic_run_id: "uuid",
+    anchor_key: "text",
+    biblical_anchor_label: "text",
+    book: "text",
+    chapter: "integer",
+    verse_start: "integer",
+    verse_end: "integer",
+    motif_family: "text",
+    metadata: "jsonb",
+    active: "boolean",
+  },
+  semantic_crosslinks: {
+    semantic_run_id: "uuid",
+    crosslink_key: "text",
+    scene_window_id: "text",
+    source_doc_id: "text",
+    relation_family: "text",
+    relation_type: "text",
+    left_family: "text",
+    left_span_key: "text",
+    left_anchor_key: "text",
+    right_family: "text",
+    right_span_key: "text",
+    right_anchor_key: "text",
+    evidence_text: "text",
+    evidence_sha256: "text",
+    source_span: "jsonb",
+    rationale: "text",
+    confidence: "numeric",
+    prompt_sha256: "text",
+    model_output_sha256: "text",
+    semantic_hash: "text",
+    metadata: "jsonb",
+    active: "boolean",
+  },
+  semantic_run_artifacts: {
+    semantic_run_id: "uuid",
+    artifact_key: "text",
+    artifact_type: "text",
+    artifact_path: "text",
+    artifact_sha256: "text",
     metadata: "jsonb",
     active: "boolean",
   },
@@ -825,6 +880,29 @@ function loadNarrativeContextSources() {
     ...entry,
     sha256: sha256File(entry.path),
     content: readText(entry.path),
+  }));
+}
+
+function optionalReferenceCorpusStatus() {
+  const manifests = [
+    {
+      corpus: "bible",
+      expected_dir: paths.referenceBibleDir,
+      expected_manifest: join(paths.referenceBibleDir, "manifest.json"),
+    },
+    {
+      corpus: "jung",
+      expected_dir: paths.referenceJungDir,
+      expected_manifest: join(paths.referenceJungDir, "manifest.json"),
+    },
+  ];
+
+  return manifests.map((entry) => ({
+    corpus: entry.corpus,
+    expected_dir: entry.expected_dir,
+    expected_manifest: entry.expected_manifest,
+    manifest_present: existsSync(entry.expected_manifest),
+    dir_present: existsSync(entry.expected_dir),
   }));
 }
 
@@ -1685,6 +1763,20 @@ function hasTypologicalRationale(text) {
   return /\b(type|antitype|pattern(?:s)?|correspond(?:s|ed|ence|ing)?|fulfill(?:s|ed|ment)?|prefigure(?:s|d|ment)?|recapitulat(?:e|es|ed|ing|ion)?|as\s+.+?\s+so)\b/.test(rationale);
 }
 
+function archetypeAnchorKey(label) {
+  return `jungian_${slugifyToken(label, "unknown")}`;
+}
+
+function biblicalAnchorKey({ book, chapter, verse_start, verse_end, motif_family }) {
+  return `bibanchor_${sha256Text(canonicalJson({
+    book,
+    chapter,
+    verse_start,
+    verse_end: verse_end ?? null,
+    motif_family,
+  })).slice(0, 32)}`;
+}
+
 function tightenConfidence(confidence, { unresolvedSubject = false, symbolicResonance = false, targetHintOnly = false } = {}) {
   let value = clamp01(confidence, 0.5);
   if (unresolvedSubject) value = Math.min(value, 0.55);
@@ -1696,6 +1788,42 @@ function tightenConfidence(confidence, { unresolvedSubject = false, symbolicReso
 function isVagueTargetHint(value) {
   const text = slugifyToken(value, "");
   return !text || /^(healing|redemption|grief|loss|shadow|light|love|truth|spirit|psyche|soul|mystery)$/.test(text);
+}
+
+function observationEvidenceRefs(task, observation) {
+  switch (task) {
+    case "meaning_spans":
+    case "archetypes":
+    case "biblical_references":
+      return safeArray(observation.evidence);
+    case "dualisms":
+      return [
+        ...safeArray(observation.left_evidence),
+        ...safeArray(observation.right_evidence),
+        ...safeArray(observation.bridge_evidence),
+      ];
+    case "hyperlinks_parallelisms":
+      return [
+        ...safeArray(observation.source_evidence),
+        ...safeArray(observation.target_evidence),
+      ];
+    default:
+      return [];
+  }
+}
+
+function evidenceOverlap(leftRefs, rightRefs) {
+  const rightMap = new Map(rightRefs.map((ref) => [`${ref.render_para_key}:${ref.start_char}:${ref.end_char}:${ref.quote}`, ref]));
+  const overlap = [];
+  for (const ref of leftRefs) {
+    const key = `${ref.render_para_key}:${ref.start_char}:${ref.end_char}:${ref.quote}`;
+    if (rightMap.has(key)) overlap.push(ref);
+  }
+  return overlap.sort(compareEvidenceRefs);
+}
+
+function observationIdentityHash(observation) {
+  return sha256Text(canonicalJson(observation));
 }
 
 function classifySemanticWindow(window) {
@@ -2435,9 +2563,18 @@ async function pollProviderBatch(batchId) {
       });
       const outputText = await fileRes.text();
       if (fileRes.ok) {
-        const outputPath = join(paths.outDir, "batch", `batch-output-${batchId}.jsonl`);
-        mkdirSync(join(paths.outDir, "batch"), { recursive: true });
+        const batchDir = join(paths.outDir, "batch");
+        const outputPath = join(batchDir, `batch-output-${batchId}.jsonl`);
+        mkdirSync(batchDir, { recursive: true });
         writeFileSync(outputPath, outputText);
+        writeFileSync(join(batchDir, `batch-manifest-${batchProviderOutputPrefix()}.json`), JSON.stringify({
+          provider: PROVIDER,
+          model: PROVIDER_MODEL,
+          batch_id: batchId,
+          output_file_id: batch.output_file_id,
+          inferred_from_poll: true,
+          entries: [],
+        }, null, 2));
         batch.output_path = outputPath;
       }
     }
@@ -2463,9 +2600,17 @@ async function pollProviderBatch(batchId) {
       });
       const resultText = await resultRes.text();
       if (resultRes.ok && resultText.trim()) {
-        const outputPath = join(paths.outDir, "batch", `batch-output-${batchId}.jsonl`);
-        mkdirSync(join(paths.outDir, "batch"), { recursive: true });
+        const batchDir = join(paths.outDir, "batch");
+        const outputPath = join(batchDir, `batch-output-${batchId}.jsonl`);
+        mkdirSync(batchDir, { recursive: true });
         writeFileSync(outputPath, resultText);
+        writeFileSync(join(batchDir, `batch-manifest-${batchProviderOutputPrefix()}.json`), JSON.stringify({
+          provider: PROVIDER,
+          model: PROVIDER_MODEL,
+          batch_id: batchId,
+          inferred_from_poll: true,
+          entries: [],
+        }, null, 2));
         batch.output_path = outputPath;
       }
     } catch {}
@@ -2478,16 +2623,22 @@ async function pollProviderBatch(batchId) {
 function loadBatchManifestFromResultsPath(resultsPath) {
   const resultFile = resultsPath.startsWith("/") ? resultsPath : join(ROOT, resultsPath);
   const manifestPath = join(dirname(resultFile), `batch-manifest-${batchProviderOutputPrefix()}.json`);
-  must(existsSync(manifestPath), `Missing batch manifest next to results file: ${manifestPath}`);
   return {
     resultFile,
     manifestPath,
-    manifest: JSON.parse(readText(manifestPath)),
+    manifest: existsSync(manifestPath)
+      ? JSON.parse(readText(manifestPath))
+      : {
+          provider: PROVIDER,
+          model: PROVIDER_MODEL,
+          entries: [],
+          inferred_from_results_path: true,
+        },
   };
 }
 
 function parseImportedBatchResults(resultsPath) {
-  const { resultFile, manifest } = loadBatchManifestFromResultsPath(resultsPath);
+  const { resultFile, manifestPath, manifest } = loadBatchManifestFromResultsPath(resultsPath);
   const lines = readText(resultFile).split(/\n+/).filter(Boolean);
   const outputs = new Map();
 
@@ -2507,7 +2658,7 @@ function parseImportedBatchResults(resultsPath) {
     outputs.set(customId, { ok: Boolean(rawText), rawText, error: result.error || record.error || null });
   }
 
-  return { manifest, outputs };
+  return { manifest, manifestPath, resultFile, outputs };
 }
 
 
@@ -2590,6 +2741,7 @@ function normalizeArchetypeObservation(raw, window, contextCapsule) {
     task: "archetypes",
     character: subject.subject,
     archetype: archetype.archetype,
+    archetype_anchor_key: archetypeAnchorKey(archetype.archetype),
     archetype_gloss: archetype.archetype_gloss,
     movement: normalizeEnum(raw?.movement, JUNGIAN_MOVEMENTS, "fragmentation", JUNGIAN_MOVEMENT_ALIASES),
     summary: requiredText(raw?.summary, "summary", 240),
@@ -2613,6 +2765,7 @@ function normalizeBiblicalObservation(raw, window) {
   if (relationshipType === "typological_correspondence" && !hasTypologicalRationale(rationale)) {
     throw new Error(`Typological correspondence requires explicit rationale: ${anchor}`);
   }
+  const motifFamily = normalizeMotifFamily(raw?.motif_family || raw?.motif);
   return {
     task: "biblical_references",
     biblical_anchor_label: parsedAnchor?.biblical_anchor_label || `${book} ${chapter}:${verseStart}${verseEnd ? `-${verseEnd}` : ""}`,
@@ -2620,14 +2773,21 @@ function normalizeBiblicalObservation(raw, window) {
     chapter,
     verse_start: verseStart,
     verse_end: verseEnd,
-    motif_family: normalizeMotifFamily(raw?.motif_family || raw?.motif),
+    motif_family: motifFamily,
+    biblical_anchor_key: biblicalAnchorKey({
+      book,
+      chapter,
+      verse_start: verseStart,
+      verse_end: verseEnd,
+      motif_family: motifFamily,
+    }),
     relationship_type: relationshipType,
     correspondence_rationale: rationale,
     summary: requiredText(raw?.summary, "summary", 240),
     evidence: resolveEvidenceArray(raw?.evidence, window),
     confidence: tightenConfidence(raw?.confidence, { symbolicResonance: relationshipType === "symbolic_resonance" }),
     reference: parsedAnchor?.biblical_anchor_label || `${book} ${chapter}:${verseStart}${verseEnd ? `-${verseEnd}` : ""}`,
-    motif: normalizeMotifFamily(raw?.motif_family || raw?.motif),
+    motif: motifFamily,
   };
 }
 
@@ -3116,7 +3276,7 @@ function makeObservationSpanRow({ semanticRun, window, observation, taskPacket, 
   evidence.sort(compareEvidenceRefs);
   const evidenceText = evidence.map((item) => item.quote).join("\n---\n");
   const evidenceHash = sha256Text(canonicalJson(evidence));
-  const normalizedObservationHash = sha256Text(canonicalJson(observation));
+  const normalizedObservationHash = observationIdentityHash(observation);
   const semanticHash = sha256Text(canonicalJson({
     selected_xml_driver: true,
     semantic_run_id: semanticRun.id,
@@ -3162,6 +3322,7 @@ function makeObservationSpanRow({ semanticRun, window, observation, taskPacket, 
       evidence_hash: evidenceHash,
       context_capsule_sha256: taskPacket.contextCapsuleHash,
       normalized_observation_hash: normalizedObservationHash,
+      canonical_anchor_key: observation.archetype_anchor_key || observation.biblical_anchor_key || null,
       observation,
     },
     active: true,
@@ -3172,6 +3333,202 @@ function buildMeaningSpanRowsFromTaskPackets({ semanticRun, window, taskPackets,
   return taskPackets.flatMap((packet) =>
     packet.accepted_observations.map((observation) => makeObservationSpanRow({ semanticRun, window, observation, taskPacket: packet, runHash }))
   );
+}
+
+function buildArchetypeAnchorRowsFromTaskPackets(taskPackets) {
+  const rows = [];
+  for (const packet of taskPackets) {
+    if (packet.task !== "archetypes") continue;
+    for (const observation of packet.accepted_observations) {
+      rows.push({
+        anchor_key: observation.archetype_anchor_key,
+        canonical_label: observation.archetype,
+        ontology_family: "jungian",
+        ontology_version: "jungian_closed_v1",
+        metadata: {
+          selected_xml_driver: true,
+          prompt_version: PROMPT_VERSION,
+        },
+        active: true,
+      });
+    }
+  }
+  return uniqueBy(rows, (row) => row.anchor_key).sort((a, b) => a.anchor_key.localeCompare(b.anchor_key));
+}
+
+function buildBiblicalAnchorRowsFromTaskPackets({ semanticRun, taskPackets }) {
+  const rows = [];
+  for (const packet of taskPackets) {
+    if (packet.task !== "biblical_references") continue;
+    for (const observation of packet.accepted_observations) {
+      rows.push({
+        semantic_run_id: semanticRun.id,
+        anchor_key: observation.biblical_anchor_key,
+        biblical_anchor_label: observation.biblical_anchor_label,
+        book: observation.book,
+        chapter: observation.chapter,
+        verse_start: observation.verse_start,
+        verse_end: observation.verse_end,
+        motif_family: observation.motif_family,
+        metadata: {
+          selected_xml_driver: true,
+          relationship_type: observation.relationship_type,
+          prompt_version: PROMPT_VERSION,
+        },
+        active: true,
+      });
+    }
+  }
+  return uniqueBy(rows, (row) => row.anchor_key).sort((a, b) => a.anchor_key.localeCompare(b.anchor_key));
+}
+
+function crosslinkRelationType(leftTask, rightTask) {
+  const pair = [leftTask, rightTask].sort().join("|");
+  switch (pair) {
+    case "archetypes|biblical_references":
+      return "archetype_biblical_alignment";
+    case "archetypes|dualisms":
+      return "dualism_archetype_alignment";
+    case "archetypes|hyperlinks_parallelisms":
+      return "hyperlink_archetype_alignment";
+    case "biblical_references|dualisms":
+      return "dualism_biblical_alignment";
+    case "biblical_references|hyperlinks_parallelisms":
+      return "hyperlink_biblical_alignment";
+    default:
+      return null;
+  }
+}
+
+function crosslinkNodesFromTaskPackets(taskPackets, spanRows) {
+  const spanMap = new Map(spanRows.map((row) => [
+    `${row.metadata?.task || ""}|${row.metadata?.normalized_observation_hash || ""}`,
+    row,
+  ]));
+
+  const nodes = [];
+  for (const packet of taskPackets) {
+    for (const observation of packet.accepted_observations) {
+      const spanRow = spanMap.get(`${packet.task}|${observationIdentityHash(observation)}`);
+      if (!spanRow) continue;
+      nodes.push({
+        task: packet.task,
+        family: spanRow.claim_family,
+        observation,
+        spanRow,
+        evidence: observationEvidenceRefs(packet.task, observation),
+        anchor_key: observation.archetype_anchor_key || observation.biblical_anchor_key || null,
+      });
+    }
+  }
+  return nodes;
+}
+
+function buildSemanticCrosslinkRowsFromTaskPackets({ semanticRun, window, taskPackets, spanRows }) {
+  const nodes = crosslinkNodesFromTaskPackets(taskPackets, spanRows);
+  const rows = [];
+
+  for (let i = 0; i < nodes.length; i++) {
+    for (let j = i + 1; j < nodes.length; j++) {
+      const left = nodes[i];
+      const right = nodes[j];
+      const relationType = crosslinkRelationType(left.task, right.task);
+      if (!relationType) continue;
+
+      const overlap = evidenceOverlap(left.evidence, right.evidence);
+      if (!overlap.length) continue;
+
+      const evidenceText = overlap.map((ref) => ref.quote).join("\n---\n");
+      const evidenceHash = sha256Text(canonicalJson(overlap));
+      const rationale = [
+        `Deterministic crosslink from shared selected XML evidence within scene_window_id=${window.scene_window_id}.`,
+        `left=${left.task}:${left.spanRow.span_key}`,
+        `right=${right.task}:${right.spanRow.span_key}`,
+        `shared_render_para_keys=${uniqueBy(overlap.map((ref) => ref.render_para_key), (value) => value).join(",")}`,
+      ].join(" ");
+      const semanticHash = sha256Text(canonicalJson({
+        selected_xml_driver: true,
+        semantic_run_id: semanticRun.id,
+        scene_window_id: window.scene_window_id,
+        left_span_key: left.spanRow.span_key,
+        right_span_key: right.spanRow.span_key,
+        left_anchor_key: left.anchor_key,
+        right_anchor_key: right.anchor_key,
+        relation_type: relationType,
+        overlap,
+      }));
+
+      rows.push({
+        semantic_run_id: semanticRun.id,
+        crosslink_key: `sx_${semanticHash.slice(0, 32)}`,
+        scene_window_id: window.scene_window_id,
+        source_doc_id: window.source_doc_id,
+        relation_family: "shared_source_evidence",
+        relation_type: relationType,
+        left_family: left.family,
+        left_span_key: left.spanRow.span_key,
+        left_anchor_key: left.anchor_key,
+        right_family: right.family,
+        right_span_key: right.spanRow.span_key,
+        right_anchor_key: right.anchor_key,
+        evidence_text: evidenceText,
+        evidence_sha256: evidenceHash,
+        source_span: {
+          source_doc_id: window.source_doc_id,
+          scene_window_id: window.scene_window_id,
+          source_document_xml_sha256: window.document_xml_sha256,
+          evidence: overlap,
+        },
+        rationale,
+        confidence: clamp01(Math.min(left.observation.confidence || 0, right.observation.confidence || 0), 0.5),
+        prompt_sha256: left.spanRow.prompt_sha256,
+        model_output_sha256: left.spanRow.model_output_sha256,
+        semantic_hash: semanticHash,
+        metadata: {
+          selected_xml_driver: true,
+          primary_lane: "semantic_meaning_spans",
+          old_table_mirror_blocked_on_first_run: true,
+          prompt_version: PROMPT_VERSION,
+          left_task: left.task,
+          right_task: right.task,
+        },
+        active: true,
+      });
+    }
+  }
+
+  return uniqueBy(rows, (row) => row.semantic_hash).sort((a, b) => a.crosslink_key.localeCompare(b.crosslink_key));
+}
+
+function buildSemanticRunArtifactRows({ semanticRun, pathsOutDir, importedBatch = null }) {
+  const candidates = [
+    { type: "source_summary", path: join(pathsOutDir, "source-summary.json") },
+    { type: "selected_truth", path: join(pathsOutDir, "selected-truth.json") },
+    { type: "selected_documents", path: join(pathsOutDir, "selected-documents.jsonl") },
+    { type: "render_paragraphs", path: join(pathsOutDir, "render-paragraphs.jsonl") },
+    { type: "scene_windows", path: join(pathsOutDir, "scene-windows.jsonl") },
+    { type: "skipped_packets", path: join(pathsOutDir, "skipped-packets.jsonl") },
+    { type: "fail_fast_summary", path: join(pathsOutDir, "fail-fast-summary.json") },
+    { type: "run_summary", path: join(pathsOutDir, "run-summary.json") },
+  ];
+
+  if (importedBatch?.resultFile) candidates.push({ type: "batch_output_import", path: importedBatch.resultFile });
+  if (importedBatch?.manifestPath) candidates.push({ type: "batch_manifest_import", path: importedBatch.manifestPath });
+
+  return candidates
+    .filter((entry) => existsSync(entry.path))
+    .map((entry) => ({
+      semantic_run_id: semanticRun.id,
+      artifact_key: `artifact_${sha256Text(`${semanticRun.id}\t${entry.type}\t${entry.path}`).slice(0, 32)}`,
+      artifact_type: entry.type,
+      artifact_path: entry.path,
+      artifact_sha256: sha256File(entry.path),
+      metadata: {
+        selected_xml_driver: true,
+        prompt_version: PROMPT_VERSION,
+      },
+      active: true,
+    }));
 }
 
 function createSkippedTaskPacket({ task, window, contextCapsule, reason }) {
@@ -3253,6 +3610,11 @@ async function failFastRun({ semanticRun, pathsOutDir, summary }) {
         old_semantic_table_writes: "blocked_on_first_run",
       },
     }).catch(() => []);
+
+    const artifactRows = buildSemanticRunArtifactRows({ semanticRun, pathsOutDir });
+    if (artifactRows.length) {
+      await insertRows("semantic_run_artifacts?on_conflict=artifact_key", artifactRows).catch(() => []);
+    }
   }
 
   console.error(JSON.stringify({ event: "fail_fast", ...summary }));
@@ -4157,6 +4519,10 @@ function meaningSpanRowsFromResult({ semanticRun, window, result, promptHash, ou
 }
 
 async function writeSelectedSemanticRows({ semanticRun, window, spanRows, taskPackets }) {
+  const archetypeAnchorRows = buildArchetypeAnchorRowsFromTaskPackets(taskPackets);
+  const biblicalAnchorRows = buildBiblicalAnchorRowsFromTaskPackets({ semanticRun, taskPackets });
+  const crosslinkRows = buildSemanticCrosslinkRowsFromTaskPackets({ semanticRun, window, taskPackets, spanRows });
+
   if (!writeMode) {
     console.log(JSON.stringify({
       dry_run_selected_window: window.scene_window_id,
@@ -4166,11 +4532,17 @@ async function writeSelectedSemanticRows({ semanticRun, window, spanRows, taskPa
       task_counts: taskPacketSummary(taskPackets),
       task_failures: taskPackets.filter((packet) => packet.status === "failed").length,
       semantic_meaning_spans: spanRows.length,
+      semantic_archetype_anchors: archetypeAnchorRows.length,
+      semantic_biblical_anchors: biblicalAnchorRows.length,
+      semantic_crosslinks: crosslinkRows.length,
     }, null, 2));
     return;
   }
 
   if (spanRows.length) await insertRows("semantic_meaning_spans?on_conflict=semantic_hash", spanRows);
+  if (archetypeAnchorRows.length) await insertRows("semantic_archetype_anchors?on_conflict=anchor_key", archetypeAnchorRows);
+  if (biblicalAnchorRows.length) await insertRows("semantic_biblical_anchors?on_conflict=anchor_key", biblicalAnchorRows);
+  if (crosslinkRows.length) await insertRows("semantic_crosslinks?on_conflict=semantic_hash", crosslinkRows);
 }
 
 async function main() {
@@ -4206,8 +4578,14 @@ async function main() {
     expected_public_chapter_context_count: EXPECTED_PUBLIC_CHAPTER_COUNT,
     public_chapter_context_count: chapters.length,
     narrative_protocol_source_count: narrativeSources.length,
+    narrative_protocol_sources: narrativeSources.map((source) => ({
+      role: source.role,
+      key: source.key,
+      sha256: source.sha256,
+    })),
     available_narrative_context_map: true,
     available_narrative_context_map_sha256: sha256Text(availableNarrativeContextMap),
+    optional_reference_corpus_status: optionalReferenceCorpusStatus(),
     selected_xml_driver: true,
     render_segmentation: "xml_plus_novel_grammar_v4",
     scene_window_packet_size: BATCH_SIZE,
@@ -4238,6 +4616,7 @@ async function main() {
     expected_public_chapter_count: EXPECTED_PUBLIC_CHAPTER_COUNT,
     public_chapter_context_count: chapters.length,
     narrative_protocol_source_count: narrativeSources.length,
+    optional_reference_corpus_status: optionalReferenceCorpusStatus(),
     total_windows: windows.length,
     semantic_windows_planned: plannedSemanticWindows,
     skipped_windows_planned: plannedSkippedWindows,
@@ -4592,6 +4971,13 @@ async function main() {
     batch_mode: batchMode,
     sourceSummary,
   }, null, 2));
+
+  if (writeMode) {
+    const runArtifactRows = buildSemanticRunArtifactRows({ semanticRun, pathsOutDir: paths.outDir, importedBatch });
+    if (runArtifactRows.length) {
+      await insertRows("semantic_run_artifacts?on_conflict=artifact_key", runArtifactRows);
+    }
+  }
 }
 
 main().catch((error) => {

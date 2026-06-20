@@ -1258,33 +1258,40 @@ function compareObservations(a, b) {
   );
 }
 
-function evidenceRefResponseSchema() {
+function strictObjectSchema(properties) {
   return {
     type: "OBJECT",
-    properties: {
-      render_para_key: { type: "STRING" },
-      quote: { type: "STRING" },
-      role: { type: "STRING" },
-    },
-    required: ["render_para_key", "quote"],
+    properties,
+    required: Object.keys(properties),
+    additionalProperties: false,
   };
+}
+
+function strictArraySchema(items) {
+  return {
+    type: "ARRAY",
+    items,
+  };
+}
+
+function nullableSchema(schema) {
+  return {
+    ...schema,
+    nullable: true,
+  };
+}
+
+function evidenceRefResponseSchema() {
+  return strictObjectSchema({
+    render_para_key: { type: "STRING" },
+    quote: { type: "STRING" },
+  });
 }
 
 function taskResponseSchema(task) {
   const evidence = evidenceRefResponseSchema();
-  const packet = (properties, required) => ({
-    type: "OBJECT",
-    properties: {
-      observations: {
-        type: "ARRAY",
-        items: {
-          type: "OBJECT",
-          properties,
-          required,
-        },
-      },
-    },
-    required: ["observations"],
+  const packet = (properties) => strictObjectSchema({
+    observations: strictArraySchema(strictObjectSchema(properties)),
   });
 
   switch (task) {
@@ -1292,50 +1299,50 @@ function taskResponseSchema(task) {
       return packet({
         kind: { type: "STRING" },
         summary: { type: "STRING" },
-        evidence: { type: "ARRAY", items: evidence },
+        evidence: strictArraySchema(evidence),
         thematic_weight: { type: "NUMBER" },
         gravity: { type: "NUMBER" },
         tension: { type: "NUMBER" },
         confidence: { type: "NUMBER" },
-        notes: { type: "STRING" },
-      }, ["kind", "summary", "evidence", "confidence"]);
+        notes: nullableSchema({ type: "STRING" }),
+      });
     case "dualisms":
       return packet({
         axis: { type: "STRING" },
         polarity: { type: "STRING" },
         summary: { type: "STRING" },
-        left_evidence: { type: "ARRAY", items: evidence },
-        right_evidence: { type: "ARRAY", items: evidence },
-        bridge_evidence: { type: "ARRAY", items: evidence },
+        left_evidence: strictArraySchema(evidence),
+        right_evidence: strictArraySchema(evidence),
+        bridge_evidence: strictArraySchema(evidence),
         confidence: { type: "NUMBER" },
-      }, ["axis", "polarity", "summary", "left_evidence", "right_evidence", "confidence"]);
+      });
     case "archetypes":
       return packet({
         character: { type: "STRING" },
         archetype: { type: "STRING" },
         movement: { type: "STRING" },
         summary: { type: "STRING" },
-        evidence: { type: "ARRAY", items: evidence },
+        evidence: strictArraySchema(evidence),
         confidence: { type: "NUMBER" },
-      }, ["character", "archetype", "movement", "summary", "evidence", "confidence"]);
+      });
     case "biblical_references":
       return packet({
         reference: { type: "STRING" },
         motif: { type: "STRING" },
         relationship_type: { type: "STRING" },
         summary: { type: "STRING" },
-        evidence: { type: "ARRAY", items: evidence },
+        evidence: strictArraySchema(evidence),
         confidence: { type: "NUMBER" },
-      }, ["reference", "motif", "relationship_type", "summary", "evidence", "confidence"]);
+      });
     case "hyperlinks_parallelisms":
       return packet({
         relationship_type: { type: "STRING" },
         summary: { type: "STRING" },
-        source_evidence: { type: "ARRAY", items: evidence },
-        target_hint: { type: "STRING" },
-        target_evidence: { type: "ARRAY", items: evidence },
+        source_evidence: strictArraySchema(evidence),
+        target_hint: nullableSchema({ type: "STRING" }),
+        target_evidence: strictArraySchema(evidence),
         confidence: { type: "NUMBER" },
-      }, ["relationship_type", "summary", "source_evidence", "confidence"]);
+      });
     default:
       throw new Error(`Unknown task schema: ${task}`);
   }
@@ -1598,24 +1605,25 @@ function buildGenerateContentBody({ prompt, schema, maxOutputTokens = 2048 }) {
 
 function vertexSchemaToJsonSchema(schema) {
   if (!schema || typeof schema !== "object") return {};
+  const wrapNullable = (value) => schema.nullable ? { anyOf: [value, { type: "null" }] } : value;
   if (schema.type === "OBJECT") {
-    return {
+    return wrapNullable({
       type: "object",
       properties: Object.fromEntries(Object.entries(schema.properties || {}).map(([key, value]) => [key, vertexSchemaToJsonSchema(value)])),
       required: schema.required || [],
       additionalProperties: false,
-    };
+    });
   }
   if (schema.type === "ARRAY") {
-    return {
+    return wrapNullable({
       type: "array",
       items: vertexSchemaToJsonSchema(schema.items || {}),
-    };
+    });
   }
-  if (schema.type === "NUMBER") return { type: "number" };
-  if (schema.type === "INTEGER") return { type: "integer" };
-  if (schema.type === "BOOLEAN") return { type: "boolean" };
-  return { type: "string" };
+  if (schema.type === "NUMBER") return wrapNullable({ type: "number" });
+  if (schema.type === "INTEGER") return wrapNullable({ type: "integer" });
+  if (schema.type === "BOOLEAN") return wrapNullable({ type: "boolean" });
+  return wrapNullable({ type: "string" });
 }
 
 function extractOpenAiMessageText(json) {

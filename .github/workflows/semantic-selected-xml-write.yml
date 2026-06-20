@@ -15,6 +15,26 @@ on:
         description: "Selected XML render paragraphs per semantic packet."
         required: false
         default: "1"
+      batch_action:
+        description: "How to run the selected XML semantic pipeline."
+        required: false
+        default: "prepare_batch"
+        type: choice
+        options:
+          - "prepare_batch"
+          - "submit_batch"
+          - "sync_write"
+          - "poll_batch"
+          - "poll_import"
+          - "import_results"
+      batch_id:
+        description: "Batch id for poll_batch or poll_import."
+        required: false
+        default: ""
+      import_batch_results_path:
+        description: "Existing batch results path for import_results."
+        required: false
+        default: ""
       provider:
         description: "Semantic provider adapter."
         required: false
@@ -64,7 +84,7 @@ jobs:
       SEMANTIC_PROVIDER: ${{ inputs.provider }}
       SEMANTIC_MODEL: ${{ inputs.model }}
       VERTEX_MODEL: ${{ inputs.model }}
-      SELECTED_XML_MIGRATION_FILE: supabase/migrations/20260619004000_selected_xml_primary_meaning_span_ledger.sql
+      SELECTED_XML_MIGRATION_FILE: supabase/migrations/20260620010000_expand_selected_xml_semantic_runtime.sql
       SELECTED_XML_SCRIPT: scripts/semantic/xml-selected-meaning-span-rehash.mjs
 
     steps:
@@ -98,17 +118,62 @@ jobs:
         run: |
           set -euo pipefail
 
-          test -n "$SUPABASE_ACCESS_TOKEN"
-          test -n "$SUPABASE_PROJECT_REF"
           test -n "$SEMANTIC_PROVIDER"
           test -n "$SEMANTIC_MODEL"
+          test -n "${{ inputs.batch_action }}"
 
-          case "$SEMANTIC_PROVIDER" in
-            openai_*) test -n "$OPENAI_API_KEY" ;;
-            anthropic_*) test -n "$ANTHROPIC_API_KEY" ;;
-            gemini_*) test -n "$GOOGLE_API_KEY"; test -n "$VERTEX_MODEL" ;;
-            *) echo "Unsupported provider: $SEMANTIC_PROVIDER"; exit 1 ;;
+          case "${{ inputs.batch_action }}" in
+            sync_write)
+              case "$SEMANTIC_PROVIDER" in
+                *_sync) ;;
+                *) echo "sync_write requires a *_sync provider"; exit 1 ;;
+              esac
+              test -n "$SUPABASE_ACCESS_TOKEN"
+              test -n "$SUPABASE_PROJECT_REF"
+              ;;
+            prepare_batch)
+              case "$SEMANTIC_PROVIDER" in
+                *_batch) ;;
+                *) echo "prepare_batch requires a *_batch provider"; exit 1 ;;
+              esac
+              ;;
+            submit_batch|poll_batch|poll_import|import_results)
+              case "$SEMANTIC_PROVIDER" in
+                *_batch) ;;
+                *) echo "${{ inputs.batch_action }} requires a *_batch provider"; exit 1 ;;
+              esac
+              ;;
+            *)
+              echo "Unsupported batch_action: ${{ inputs.batch_action }}"
+              exit 1
+              ;;
           esac
+
+          case "${{ inputs.batch_action }}" in
+            sync_write|poll_import|import_results)
+              test -n "$SUPABASE_ACCESS_TOKEN"
+              test -n "$SUPABASE_PROJECT_REF"
+              ;;
+          esac
+
+          case "${{ inputs.batch_action }}" in
+            submit_batch|poll_batch|poll_import|sync_write)
+              case "$SEMANTIC_PROVIDER" in
+                openai_*) test -n "$OPENAI_API_KEY" ;;
+                anthropic_*) test -n "$ANTHROPIC_API_KEY" ;;
+                gemini_*) test -n "$GOOGLE_API_KEY"; test -n "$VERTEX_MODEL" ;;
+                *) echo "Unsupported provider: $SEMANTIC_PROVIDER"; exit 1 ;;
+              esac
+              ;;
+          esac
+
+          if [ "${{ inputs.batch_action }}" = "poll_batch" ] || [ "${{ inputs.batch_action }}" = "poll_import" ]; then
+            test -n "${{ inputs.batch_id }}"
+          fi
+
+          if [ "${{ inputs.batch_action }}" = "import_results" ]; then
+            test -n "${{ inputs.import_batch_results_path }}"
+          fi
 
           test -f "$SELECTED_XML_SCRIPT"
           test -f "$SELECTED_XML_MIGRATION_FILE"
@@ -136,7 +201,7 @@ jobs:
           grep -n "xml_starred_hash_truth\|materialized_ooxml\|selected_xml\|document.xml" "$SELECTED_XML_SCRIPT" | sed -n '1,160p'
 
       - name: Apply selected XML meaning-span migration
-        if: ${{ inputs.apply_migration_first == 'true' }}
+        if: ${{ inputs.apply_migration_first == 'true' && (inputs.batch_action == 'sync_write' || inputs.batch_action == 'poll_import' || inputs.batch_action == 'import_results') }}
         shell: bash
         run: |
           set -euo pipefail
@@ -145,7 +210,7 @@ jobs:
           import json
           from pathlib import Path
 
-          sql = Path("supabase/migrations/20260619004000_selected_xml_primary_meaning_span_ledger.sql").read_text(encoding="utf-8")
+          sql = Path("supabase/migrations/20260620010000_expand_selected_xml_semantic_runtime.sql").read_text(encoding="utf-8")
           print(json.dumps({"query": sql}))
           PY
 
@@ -170,17 +235,23 @@ jobs:
           esac
 
       - name: No-AI canary for selected XML source driver
+        if: ${{ inputs.batch_action == 'sync_write' || inputs.batch_action == 'prepare_batch' || inputs.batch_action == 'submit_batch' }}
         shell: bash
         run: |
           set -euo pipefail
 
-          node "$SELECTED_XML_SCRIPT" --no-ai --limit-docs=1 --limit=1 --batch-size=1
+          CANARY_PROVIDER="${{ inputs.provider }}"
+          CANARY_PROVIDER="${CANARY_PROVIDER/%_batch/_sync}"
+          node "$SELECTED_XML_SCRIPT" --no-ai --limit-docs=1 --limit=1 --batch-size=1 "--provider=$CANARY_PROVIDER"
 
       - name: Run selected XML semantic write
         shell: bash
         run: |
           set -euo pipefail
 
+          echo "batch_action=${{ inputs.batch_action }}"
+          echo "batch_id=${{ inputs.batch_id }}"
+          echo "import_batch_results_path=${{ inputs.import_batch_results_path }}"
           echo "provider=${{ inputs.provider }}"
           echo "limit_docs=${{ inputs.limit_docs }}"
           echo "limit=${{ inputs.limit }}"
@@ -188,34 +259,82 @@ jobs:
           echo "model=${{ inputs.model }}"
           echo "full_run_confirm=${{ inputs.full_run_confirm }}"
 
-          if [ -z "${{ inputs.limit_docs }}" ] && [ -z "${{ inputs.limit }}" ] && [ "${{ inputs.full_run_confirm }}" != "true" ]; then
+          REQUIRES_CONFIRM=false
+          case "${{ inputs.batch_action }}" in
+            sync_write|submit_batch|poll_import|import_results) REQUIRES_CONFIRM=true ;;
+          esac
+
+          if [ "$REQUIRES_CONFIRM" = true ] && [ -z "${{ inputs.limit_docs }}" ] && [ -z "${{ inputs.limit }}" ] && [ "${{ inputs.full_run_confirm }}" != "true" ]; then
             echo "Refusing full run without full_run_confirm=true"
             exit 1
           fi
 
-          ARGS=(--write "--batch-size=${{ inputs.batch_size }}" "--provider=${{ inputs.provider }}")
+          BASE_ARGS=("--batch-size=${{ inputs.batch_size }}" "--provider=${{ inputs.provider }}")
 
           if [ -n "${{ inputs.limit_docs }}" ]; then
-            ARGS+=("--limit-docs=${{ inputs.limit_docs }}")
+            BASE_ARGS+=("--limit-docs=${{ inputs.limit_docs }}")
           fi
 
           if [ -n "${{ inputs.limit }}" ]; then
-            ARGS+=("--limit=${{ inputs.limit }}")
+            BASE_ARGS+=("--limit=${{ inputs.limit }}")
           fi
 
           if [ "${{ inputs.full_run_confirm }}" = "true" ]; then
-            ARGS+=("--full-run-confirm")
+            BASE_ARGS+=("--full-run-confirm")
           fi
 
-          case "${{ inputs.provider }}" in
-            openai_batch|anthropic_batch)
-              ARGS+=("--submit-batch")
+          case "${{ inputs.batch_action }}" in
+            sync_write)
+              ARGS=(--write "${BASE_ARGS[@]}")
+              printf 'args=%s\n' "${ARGS[*]}"
+              echo "node $SELECTED_XML_SCRIPT ${ARGS[*]}"
+              node "$SELECTED_XML_SCRIPT" "${ARGS[@]}"
+              ;;
+            prepare_batch)
+              ARGS=("${BASE_ARGS[@]}")
+              printf 'args=%s\n' "${ARGS[*]}"
+              echo "node $SELECTED_XML_SCRIPT ${ARGS[*]}"
+              node "$SELECTED_XML_SCRIPT" "${ARGS[@]}"
+              ;;
+            submit_batch)
+              ARGS=("${BASE_ARGS[@]}" --submit-batch)
+              printf 'args=%s\n' "${ARGS[*]}"
+              echo "node $SELECTED_XML_SCRIPT ${ARGS[*]}"
+              node "$SELECTED_XML_SCRIPT" "${ARGS[@]}"
+              ;;
+            poll_batch)
+              ARGS=("${BASE_ARGS[@]}" "--poll-batch=${{ inputs.batch_id }}")
+              printf 'args=%s\n' "${ARGS[*]}"
+              echo "node $SELECTED_XML_SCRIPT ${ARGS[*]}"
+              node "$SELECTED_XML_SCRIPT" "${ARGS[@]}"
+              ;;
+            poll_import)
+              POLL_ARGS=("${BASE_ARGS[@]}" "--poll-batch=${{ inputs.batch_id }}")
+              printf 'poll_args=%s\n' "${POLL_ARGS[*]}"
+              echo "node $SELECTED_XML_SCRIPT ${POLL_ARGS[*]}"
+              node "$SELECTED_XML_SCRIPT" "${POLL_ARGS[@]}"
+
+              OUTPUT_PATH="$(find docs/forensics/audits/xml-selected-meaning-span-rehash-runs -path "*batch-output-${{ inputs.batch_id }}.jsonl" | sort | tail -n 1)"
+              test -n "$OUTPUT_PATH"
+              test -f "$OUTPUT_PATH"
+              echo "resolved_import_output=$OUTPUT_PATH"
+
+              IMPORT_ARGS=(--write "${BASE_ARGS[@]}" "--import-batch-results=$OUTPUT_PATH")
+              printf 'import_args=%s\n' "${IMPORT_ARGS[*]}"
+              echo "node $SELECTED_XML_SCRIPT ${IMPORT_ARGS[*]}"
+              node "$SELECTED_XML_SCRIPT" "${IMPORT_ARGS[@]}"
+              ;;
+            import_results)
+              ARGS=(--write "${BASE_ARGS[@]}" "--import-batch-results=${{ inputs.import_batch_results_path }}")
+              printf 'args=%s\n' "${ARGS[*]}"
+              echo "node $SELECTED_XML_SCRIPT ${ARGS[*]}"
+              node "$SELECTED_XML_SCRIPT" "${ARGS[@]}"
+              ;;
+            *)
+              echo "Unsupported batch_action: ${{ inputs.batch_action }}"
+              exit 1
               ;;
           esac
-
-          printf 'args=%s\n' "${ARGS[*]}"
-          echo "node $SELECTED_XML_SCRIPT ${ARGS[*]}"
-          node "$SELECTED_XML_SCRIPT" "${ARGS[@]}"
 
       - name: Upload selected XML semantic run artifacts
         if: always()

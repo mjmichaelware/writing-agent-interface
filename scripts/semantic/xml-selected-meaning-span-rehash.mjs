@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { createHash } from "node:crypto";
 import { readFileSync, existsSync, readdirSync, statSync, mkdirSync, writeFileSync } from "node:fs";
-import { join, basename } from "node:path";
+import { join, basename, dirname } from "node:path";
 import { execFileSync } from "node:child_process";
 
 const ROOT = process.cwd();
@@ -11,22 +11,31 @@ const NARRATIVE_CONTEXT_SHA256 = "6e7e306c32940db56e82f1aff23942e6f3d62d7483db8e
 const XML_MANIFEST_SHA256 = "6e74a501762c3368a6b3fd421c59d13e0c5da26b5b3e56b8729e0bf29163daf7";
 const XML_MANIFEST_COUNT = 195;
 
-const args = new Set(process.argv.slice(2));
+const argv = process.argv.slice(2);
+const args = new Set(argv);
 const writeMode = args.has("--write");
 const registerSources = args.has("--register-sources");
 const noAi = args.has("--no-ai");
+const submitBatch = args.has("--submit-batch");
+const fullRunConfirm = args.has("--full-run-confirm");
 
-const limitArg = process.argv.find((x) => x.startsWith("--limit="));
-const chapterArg = process.argv.find((x) => x.startsWith("--chapter="));
-const batchArg = process.argv.find((x) => x.startsWith("--batch-size="));
-const limitDocsArg = process.argv.find((x) => x.startsWith("--limit-docs="));
-const selectedTruthArg = process.argv.find((x) => x.startsWith("--selected-truth="));
+const limitArg = argv.find((x) => x.startsWith("--limit="));
+const chapterArg = argv.find((x) => x.startsWith("--chapter="));
+const batchArg = argv.find((x) => x.startsWith("--batch-size="));
+const limitDocsArg = argv.find((x) => x.startsWith("--limit-docs="));
+const selectedTruthArg = argv.find((x) => x.startsWith("--selected-truth="));
+const providerArg = argv.find((x) => x.startsWith("--provider="));
+const pollBatchArg = argv.find((x) => x.startsWith("--poll-batch="));
+const importBatchResultsArg = argv.find((x) => x.startsWith("--import-batch-results="));
 
 const LIMIT = limitArg ? Number(limitArg.split("=")[1]) : null;
 const CHAPTER_FILTER = chapterArg ? Number(chapterArg.split("=")[1]) : null;
 const BATCH_SIZE = batchArg ? Number(batchArg.split("=")[1]) : 8;
 const LIMIT_DOCS = limitDocsArg ? Number(limitDocsArg.split("=")[1]) : null;
 const SELECTED_TRUTH_OVERRIDE = selectedTruthArg ? selectedTruthArg.split("=").slice(1).join("=") : "";
+const PROVIDER = providerArg ? providerArg.split("=").slice(1).join("=") : (process.env.SEMANTIC_PROVIDER || "gemini_sync");
+const POLL_BATCH_ID = pollBatchArg ? pollBatchArg.split("=").slice(1).join("=") : "";
+const IMPORT_BATCH_RESULTS_PATH = importBatchResultsArg ? importBatchResultsArg.split("=").slice(1).join("=") : "";
 
 const paths = {
   contextPack: join(ROOT, "docs/agent_context/source_drop/hasher_context_v1/narrative_context_pack_v1.txt"),
@@ -98,6 +107,11 @@ const SUPABASE_PROJECT_REF = env("SUPABASE_PROJECT_REF", "yegricugzqbmoziycfnt")
 const VERTEX_PROJECT_ID = env("VERTEX_PROJECT_ID", env("GCP_PROJECT_ID", ""));
 const VERTEX_LOCATION = env("VERTEX_LOCATION", "us-central1");
 const VERTEX_MODEL = env("VERTEX_MODEL", "gemini-2.5-flash");
+const OPENAI_API_KEY = env("OPENAI_API_KEY", "");
+const ANTHROPIC_API_KEY = env("ANTHROPIC_API_KEY", "");
+const OPENAI_MODEL = env("OPENAI_MODEL", env("SEMANTIC_MODEL", "gpt-4.1-mini"));
+const ANTHROPIC_MODEL = env("ANTHROPIC_MODEL", env("SEMANTIC_MODEL", "claude-3-5-sonnet-20241022"));
+const PROVIDER_MODEL = PROVIDER.startsWith("openai") ? OPENAI_MODEL : PROVIDER.startsWith("anthropic") ? ANTHROPIC_MODEL : VERTEX_MODEL;
 
 function validateSources() {
   must(existsSync(paths.contextPack), `Missing context pack: ${paths.contextPack}`);
@@ -157,9 +171,45 @@ function normalizeManagementRows(json) {
 }
 
 
+function isGeminiQuotaError(error) {
+  const text = String(error?.message || error || "");
+  return /RESOURCE_EXHAUSTED|generate_content_free_tier_requests|quota exceeded|please retry in/i.test(text);
+}
+
 function isRetryableGeminiError(error) {
   const text = String(error?.message || error || "");
-  return /(?:\b429\b|\b500\b|\b502\b|\b503\b|\b504\b|RESOURCE_EXHAUSTED|UNAVAILABLE|high demand|try again later|temporar|fetch failed|network|timeout|ECONNRESET|ETIMEDOUT)/i.test(text);
+  if (isGeminiQuotaError(text)) return false;
+  return /(?:\b500\b|\b502\b|\b503\b|\b504\b|UNAVAILABLE|high demand|try again later|temporar|fetch failed|network|timeout|ECONNRESET|ETIMEDOUT)/i.test(text);
+}
+
+function isRetryableProviderError(error) {
+  if (PROVIDER === "gemini_sync") return isRetryableGeminiError(error);
+  const text = String(error?.message || error || "");
+  return /(?:\b408\b|\b409\b|\b429\b|\b500\b|\b502\b|\b503\b|\b504\b|rate limit|overloaded|temporar|timeout|ECONNRESET|ETIMEDOUT|fetch failed|network)/i.test(text);
+}
+
+function providerRetryDelayMs(attempt) {
+  if (PROVIDER === "gemini_sync") return geminiRetryDelayMs(attempt);
+  const base = Number(process.env.PROVIDER_RETRY_BASE_MS || 5000);
+  const max = Number(process.env.PROVIDER_RETRY_MAX_MS || 60000);
+  const jitter = Math.floor(Math.random() * 1500);
+  return Math.min(max, base * Math.pow(2, Math.max(0, attempt - 1)) + jitter);
+}
+
+async function jsonFetch(url, { method = "POST", headers = {}, body = null } = {}) {
+  const res = await fetch(url, {
+    method,
+    headers,
+    body,
+  });
+  const rawText = await res.text();
+  let json = null;
+  try {
+    json = rawText ? JSON.parse(rawText) : null;
+  } catch {
+    json = null;
+  }
+  return { res, rawText, json };
 }
 
 function geminiRetryDelayMs(attempt) {
@@ -672,8 +722,8 @@ async function createSemanticRun(sourceSummary) {
     return {
       id: `dry-run-${RUN_ID}`,
       status: "dry_run",
-      provider: "vertex",
-      model: VERTEX_MODEL,
+      provider: PROVIDER,
+      model: PROVIDER_MODEL,
       prompt_version: PROMPT_VERSION,
       narrative_context_sha256: NARRATIVE_CONTEXT_SHA256,
       xml_manifest_sha256: XML_MANIFEST_SHA256,
@@ -683,15 +733,15 @@ async function createSemanticRun(sourceSummary) {
 
   const rows = await insertRows("semantic_runs", [{
     status: "running",
-    provider: "vertex",
-    model: VERTEX_MODEL,
+    provider: PROVIDER,
+    model: PROVIDER_MODEL,
     prompt_version: PROMPT_VERSION,
     narrative_context_sha256: NARRATIVE_CONTEXT_SHA256,
     xml_manifest_sha256: XML_MANIFEST_SHA256,
     xml_manifest_count: XML_MANIFEST_COUNT,
     source_summary: sourceSummary,
     reset_policy: "supersede_by_semantic_run_id",
-    metadata: { run_id: RUN_ID, script: "scripts/semantic/xml-selected-meaning-span-rehash.mjs", derived_from: "xml-grounded-vertex-rehash.mjs", db_write_mode: "supabase_management_api", selected_xml_driver: true, primary_hash_lane: "semantic_meaning_spans", old_semantic_table_writes: "blocked_on_first_run" },
+    metadata: { run_id: RUN_ID, script: "scripts/semantic/xml-selected-meaning-span-rehash.mjs", derived_from: "xml-grounded-vertex-rehash.mjs", db_write_mode: "supabase_management_api", selected_xml_driver: true, primary_hash_lane: "semantic_meaning_spans", old_semantic_table_writes: "blocked_on_first_run", semantic_provider: PROVIDER },
   }]);
   return rows[0];
 }
@@ -997,6 +1047,26 @@ const FAIL_FAST_INITIAL_FAILED_TASKS = 20;
 const FAIL_FAST_CONSECUTIVE_FAILED_WINDOWS = 5;
 const FAIL_FAST_TASK_SAMPLE = 20;
 const FAIL_FAST_TASK_FAILURE_RATE = 0.5;
+const PROVIDER_CHOICES = new Set(["openai_batch", "openai_sync", "anthropic_batch", "anthropic_sync", "gemini_sync"]);
+const BATCH_COMPLETION_WINDOW = env("SEMANTIC_BATCH_COMPLETION_WINDOW", "24h");
+
+must(PROVIDER_CHOICES.has(PROVIDER), `Unsupported provider: ${PROVIDER}`);
+
+function isBatchProvider(provider = PROVIDER) {
+  return provider.endsWith("_batch");
+}
+
+function isSyncProvider(provider = PROVIDER) {
+  return provider.endsWith("_sync");
+}
+
+function batchOperationMode() {
+  if (POLL_BATCH_ID) return "poll";
+  if (IMPORT_BATCH_RESULTS_PATH) return "import";
+  if (submitBatch) return "submit";
+  if (isBatchProvider()) return "prepare";
+  return "sync";
+}
 
 const CONTEXT_STOPWORDS = new Set([
   "about", "after", "again", "against", "almost", "along", "also", "among", "another", "because",
@@ -1502,7 +1572,7 @@ async function saveVertexBadJson(raw, phase, extra = {}) {
 
   await fs.writeFile(file, JSON.stringify({
     phase,
-    model: VERTEX_MODEL,
+    model: PROVIDER_MODEL,
     raw,
     ...extra,
   }, null, 2), "utf-8");
@@ -1526,12 +1596,53 @@ function buildGenerateContentBody({ prompt, schema, maxOutputTokens = 2048 }) {
   };
 }
 
-async function postGenerateContentOnce(body) {
+function vertexSchemaToJsonSchema(schema) {
+  if (!schema || typeof schema !== "object") return {};
+  if (schema.type === "OBJECT") {
+    return {
+      type: "object",
+      properties: Object.fromEntries(Object.entries(schema.properties || {}).map(([key, value]) => [key, vertexSchemaToJsonSchema(value)])),
+      required: schema.required || [],
+      additionalProperties: false,
+    };
+  }
+  if (schema.type === "ARRAY") {
+    return {
+      type: "array",
+      items: vertexSchemaToJsonSchema(schema.items || {}),
+    };
+  }
+  if (schema.type === "NUMBER") return { type: "number" };
+  if (schema.type === "INTEGER") return { type: "integer" };
+  if (schema.type === "BOOLEAN") return { type: "boolean" };
+  return { type: "string" };
+}
+
+function extractOpenAiMessageText(json) {
+  const content = json?.choices?.[0]?.message?.content;
+  if (typeof content === "string") return content;
+  if (Array.isArray(content)) {
+    return content.map((item) => item?.text || item?.value || "").join("");
+  }
+  return "";
+}
+
+function extractAnthropicToolInput(json) {
+  const content = Array.isArray(json?.content) ? json.content : [];
+  const toolUse = content.find((item) => item?.type === "tool_use");
+  if (toolUse?.input && typeof toolUse.input === "object") return JSON.stringify(toolUse.input);
+  const textParts = content.filter((item) => item?.type === "text").map((item) => item.text || "");
+  return textParts.join("");
+}
+
+async function callGeminiSync(prompt, schema) {
+  const body = buildGenerateContentBody({ prompt, schema, maxOutputTokens: 2048 });
+
   if (VERTEX_PROJECT_ID) {
     const token = getGcloudAccessToken();
     must(token, "Missing Vertex access token.");
     const url = `https://${VERTEX_LOCATION}-aiplatform.googleapis.com/v1/projects/${VERTEX_PROJECT_ID}/locations/${VERTEX_LOCATION}/publishers/google/models/${VERTEX_MODEL}:generateContent`;
-    const res = await fetch(url, {
+    const { res, rawText } = await jsonFetch(url, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -1539,38 +1650,103 @@ async function postGenerateContentOnce(body) {
       },
       body: JSON.stringify(body),
     });
-    const text = await res.text();
-    if (!res.ok) throw new Error(`Vertex error: ${text}`);
-    return text;
+    if (!res.ok) throw new Error(`Vertex error: ${rawText}`);
+    const outer = JSON.parse(rawText);
+    return extractCandidateText(outer);
   }
 
   const key = env("GOOGLE_API_KEY", env("GEMINI_API_KEY", ""));
   must(key, "Missing GOOGLE_API_KEY or Vertex configuration.");
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${VERTEX_MODEL}:generateContent?key=${key}`;
-  const res = await fetch(url, {
+  const { res, rawText } = await jsonFetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
-  const text = await res.text();
-  if (!res.ok) throw new Error(`Gemini API error: ${text}`);
-  return text;
+  if (!res.ok) throw new Error(`Gemini API error: ${rawText}`);
+  const outer = JSON.parse(rawText);
+  return extractCandidateText(outer);
 }
 
-async function postGenerateContent(body) {
+async function callOpenAiSync(prompt, schema) {
+  must(OPENAI_API_KEY, "Missing OPENAI_API_KEY.");
+  const body = {
+    model: PROVIDER_MODEL,
+    temperature: 0,
+    messages: [
+      { role: "user", content: prompt },
+    ],
+    response_format: {
+      type: "json_schema",
+      json_schema: {
+        name: "semantic_observations",
+        strict: true,
+        schema: vertexSchemaToJsonSchema(schema),
+      },
+    },
+  };
+  const { res, rawText, json } = await jsonFetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${OPENAI_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) throw new Error(`OpenAI API error: ${rawText}`);
+  return extractOpenAiMessageText(json || {});
+}
+
+async function callAnthropicSync(prompt, schema) {
+  must(ANTHROPIC_API_KEY, "Missing ANTHROPIC_API_KEY.");
+  const body = {
+    model: PROVIDER_MODEL,
+    max_tokens: 2048,
+    temperature: 0,
+    messages: [
+      { role: "user", content: prompt },
+    ],
+    tools: [{
+      name: "semantic_observations",
+      description: "Return bounded semantic observations as strict JSON.",
+      input_schema: vertexSchemaToJsonSchema(schema),
+    }],
+    tool_choice: {
+      type: "tool",
+      name: "semantic_observations",
+    },
+  };
+  const { res, rawText, json } = await jsonFetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: {
+      "x-api-key": ANTHROPIC_API_KEY,
+      "anthropic-version": "2023-06-01",
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) throw new Error(`Anthropic API error: ${rawText}`);
+  return extractAnthropicToolInput(json || {});
+}
+
+async function callSemanticProviderSync({ task, prompt, schema }) {
   const maxRetries = Number(process.env.GEMINI_MAX_RETRIES || 5);
   let lastError = null;
 
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
     try {
-      return await postGenerateContentOnce(body);
+      if (PROVIDER === "gemini_sync") return await callGeminiSync(prompt, schema);
+      if (PROVIDER === "openai_sync") return await callOpenAiSync(prompt, schema);
+      if (PROVIDER === "anthropic_sync") return await callAnthropicSync(prompt, schema);
+      throw new Error(`Provider ${PROVIDER} does not support synchronous semantic calls.`);
     } catch (error) {
       lastError = error;
-      if (!isRetryableGeminiError(error) || attempt >= maxRetries) throw error;
-
-      const delay = geminiRetryDelayMs(attempt + 1);
+      if (!isRetryableProviderError(error) || attempt >= maxRetries) throw error;
+      const delay = providerRetryDelayMs(attempt + 1);
       console.warn(JSON.stringify({
-        event: "gemini_retry",
+        event: PROVIDER === "gemini_sync" ? "gemini_retry" : "provider_retry",
+        provider: PROVIDER,
+        task,
         attempt: attempt + 1,
         max_retries: maxRetries,
         delay_ms: delay,
@@ -1580,8 +1756,245 @@ async function postGenerateContent(body) {
     }
   }
 
-  throw lastError || new Error("Gemini retry loop failed without captured error");
+  throw lastError || new Error("Provider retry loop failed without captured error");
 }
+
+function batchRequestsFileExtension(provider = PROVIDER) {
+  return provider === "anthropic_batch" ? "json" : "jsonl";
+}
+
+function batchProviderOutputPrefix(provider = PROVIDER) {
+  return provider.replace(/[^a-z0-9]+/gi, "-");
+}
+
+function buildBatchCustomId({ window, task, promptHash, contextHash }) {
+  return [window.source_doc_id, window.scene_window_id, task, promptHash, contextHash].join("__");
+}
+
+function buildBatchManifestEntry({ customId, task, window, contextCapsule, prompt, promptHash, schema }) {
+  return {
+    custom_id: customId,
+    provider: PROVIDER,
+    model: PROVIDER_MODEL,
+    source_doc_id: window.source_doc_id,
+    scene_window_id: window.scene_window_id,
+    task_type: task,
+    prompt_hash: promptHash,
+    context_hash: contextCapsule.context_capsule_sha256,
+    schema,
+    prompt,
+  };
+}
+
+function buildOpenAiBatchRequest(entry) {
+  return {
+    custom_id: entry.custom_id,
+    method: "POST",
+    url: "/v1/chat/completions",
+    body: {
+      model: PROVIDER_MODEL,
+      temperature: 0,
+      messages: [
+        { role: "user", content: entry.prompt },
+      ],
+      response_format: {
+        type: "json_schema",
+        json_schema: {
+          name: "semantic_observations",
+          strict: true,
+          schema: vertexSchemaToJsonSchema(entry.schema),
+        },
+      },
+    },
+  };
+}
+
+function buildAnthropicBatchRequest(entry) {
+  return {
+    custom_id: entry.custom_id,
+    params: {
+      model: PROVIDER_MODEL,
+      max_tokens: 2048,
+      temperature: 0,
+      messages: [
+        { role: "user", content: entry.prompt },
+      ],
+      tools: [{
+        name: "semantic_observations",
+        description: "Return bounded semantic observations as strict JSON.",
+        input_schema: vertexSchemaToJsonSchema(entry.schema),
+      }],
+      tool_choice: {
+        type: "tool",
+        name: "semantic_observations",
+      },
+    },
+  };
+}
+
+function writeBatchArtifacts(entries) {
+  const batchDir = join(paths.outDir, "batch");
+  mkdirSync(batchDir, { recursive: true });
+  const manifestPath = join(batchDir, `batch-manifest-${batchProviderOutputPrefix()}.json`);
+  const requestsPath = join(batchDir, `batch-requests-${batchProviderOutputPrefix()}.${batchRequestsFileExtension()}`);
+  const requestPayloads = PROVIDER === "anthropic_batch"
+    ? { requests: entries.map(buildAnthropicBatchRequest) }
+    : entries.map(buildOpenAiBatchRequest);
+
+  writeFileSync(manifestPath, JSON.stringify({
+    provider: PROVIDER,
+    model: PROVIDER_MODEL,
+    entries,
+  }, null, 2));
+
+  if (PROVIDER === "anthropic_batch") {
+    writeFileSync(requestsPath, JSON.stringify(requestPayloads, null, 2));
+  } else {
+    writeFileSync(requestsPath, requestPayloads.map((line) => JSON.stringify(line)).join("\n") + (requestPayloads.length ? "\n" : ""));
+  }
+
+  return { batchDir, manifestPath, requestsPath, requestPayloads };
+}
+
+async function submitPreparedBatch(artifacts) {
+  if (PROVIDER === "openai_batch") {
+    must(OPENAI_API_KEY, "Missing OPENAI_API_KEY.");
+    const form = new FormData();
+    form.append("purpose", "batch");
+    form.append("file", new Blob([readText(artifacts.requestsPath)], { type: "application/jsonl" }), basename(artifacts.requestsPath));
+    const uploaded = await fetch("https://api.openai.com/v1/files", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${OPENAI_API_KEY}` },
+      body: form,
+    });
+    const uploadText = await uploaded.text();
+    if (!uploaded.ok) throw new Error(`OpenAI batch file upload failed: ${uploadText}`);
+    const uploadJson = JSON.parse(uploadText);
+    const { rawText } = await jsonFetch("https://api.openai.com/v1/batches", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${OPENAI_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        input_file_id: uploadJson.id,
+        endpoint: "/v1/chat/completions",
+        completion_window: BATCH_COMPLETION_WINDOW,
+      }),
+    });
+    const batchJson = JSON.parse(rawText);
+    writeFileSync(join(artifacts.batchDir, `batch-submit-${batchJson.id}.json`), JSON.stringify(batchJson, null, 2));
+    return batchJson;
+  }
+
+  if (PROVIDER === "anthropic_batch") {
+    must(ANTHROPIC_API_KEY, "Missing ANTHROPIC_API_KEY.");
+    const { rawText } = await jsonFetch("https://api.anthropic.com/v1/messages/batches", {
+      method: "POST",
+      headers: {
+        "x-api-key": ANTHROPIC_API_KEY,
+        "anthropic-version": "2023-06-01",
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(artifacts.requestPayloads),
+    });
+    const batchJson = JSON.parse(rawText);
+    writeFileSync(join(artifacts.batchDir, `batch-submit-${batchJson.id}.json`), JSON.stringify(batchJson, null, 2));
+    return batchJson;
+  }
+
+  throw new Error(`Provider ${PROVIDER} does not support batch submission.`);
+}
+
+async function pollProviderBatch(batchId) {
+  if (PROVIDER === "openai_batch") {
+    must(OPENAI_API_KEY, "Missing OPENAI_API_KEY.");
+    const { rawText, json } = await jsonFetch(`https://api.openai.com/v1/batches/${batchId}`, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${OPENAI_API_KEY}` },
+    });
+    const batch = json || JSON.parse(rawText);
+    if (batch.output_file_id) {
+      const fileRes = await fetch(`https://api.openai.com/v1/files/${batch.output_file_id}/content`, {
+        headers: { Authorization: `Bearer ${OPENAI_API_KEY}` },
+      });
+      const outputText = await fileRes.text();
+      if (fileRes.ok) {
+        const outputPath = join(paths.outDir, "batch", `batch-output-${batchId}.jsonl`);
+        mkdirSync(join(paths.outDir, "batch"), { recursive: true });
+        writeFileSync(outputPath, outputText);
+        batch.output_path = outputPath;
+      }
+    }
+    return batch;
+  }
+
+  if (PROVIDER === "anthropic_batch") {
+    must(ANTHROPIC_API_KEY, "Missing ANTHROPIC_API_KEY.");
+    const { rawText, json } = await jsonFetch(`https://api.anthropic.com/v1/messages/batches/${batchId}`, {
+      method: "GET",
+      headers: {
+        "x-api-key": ANTHROPIC_API_KEY,
+        "anthropic-version": "2023-06-01",
+      },
+    });
+    const batch = json || JSON.parse(rawText);
+    try {
+      const resultRes = await fetch(`https://api.anthropic.com/v1/messages/batches/${batchId}/results`, {
+        headers: {
+          "x-api-key": ANTHROPIC_API_KEY,
+          "anthropic-version": "2023-06-01",
+        },
+      });
+      const resultText = await resultRes.text();
+      if (resultRes.ok && resultText.trim()) {
+        const outputPath = join(paths.outDir, "batch", `batch-output-${batchId}.jsonl`);
+        mkdirSync(join(paths.outDir, "batch"), { recursive: true });
+        writeFileSync(outputPath, resultText);
+        batch.output_path = outputPath;
+      }
+    } catch {}
+    return batch;
+  }
+
+  throw new Error(`Provider ${PROVIDER} does not support batch polling.`);
+}
+
+function loadBatchManifestFromResultsPath(resultsPath) {
+  const resultFile = resultsPath.startsWith("/") ? resultsPath : join(ROOT, resultsPath);
+  const manifestPath = join(dirname(resultFile), `batch-manifest-${batchProviderOutputPrefix()}.json`);
+  must(existsSync(manifestPath), `Missing batch manifest next to results file: ${manifestPath}`);
+  return {
+    resultFile,
+    manifestPath,
+    manifest: JSON.parse(readText(manifestPath)),
+  };
+}
+
+function parseImportedBatchResults(resultsPath) {
+  const { resultFile, manifest } = loadBatchManifestFromResultsPath(resultsPath);
+  const lines = readText(resultFile).split(/\n+/).filter(Boolean);
+  const outputs = new Map();
+
+  for (const line of lines) {
+    const record = JSON.parse(line);
+    if (PROVIDER === "openai_batch") {
+      const customId = record.custom_id;
+      const body = record.response?.body || {};
+      const rawText = extractOpenAiMessageText(body);
+      outputs.set(customId, { ok: Boolean(rawText), rawText, error: record.error || null });
+      continue;
+    }
+
+    const customId = record.custom_id || record.request?.custom_id;
+    const result = record.result || {};
+    const rawText = result.type === "succeeded" ? extractAnthropicToolInput(result.message || {}) : "";
+    outputs.set(customId, { ok: Boolean(rawText), rawText, error: result.error || record.error || null });
+  }
+
+  return { manifest, outputs };
+}
+
 
 function safeArray(value) {
   return Array.isArray(value) ? value : [];
@@ -1774,9 +2187,9 @@ async function repairStructuredTaskOutput({ task, rawText, schema, validationErr
     String(rawText || "").slice(0, 24000),
   ].join("\n");
 
-  const text = await postGenerateContent(buildGenerateContentBody({ prompt, schema, maxOutputTokens: 2048 }));
-  const outer = JSON.parse(text);
-  return extractCandidateText(outer);
+  if (!isSyncProvider(PROVIDER)) return JSON.stringify({ observations: [] });
+  const text = await callSemanticProviderSync({ task, prompt, schema });
+  return text;
 }
 
 function makeWindowFragment(window, paragraph) {
@@ -1856,7 +2269,162 @@ function classifyTaskPacketStatus(normalized) {
   return "empty";
 }
 
-async function runSemanticTaskPacket({ task, window, contextCapsule, noAi, allowDecompose = true }) {
+async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt, promptHash, rawText, allowRepair = true }) {
+  const schema = taskResponseSchema(task);
+  const parsed = parseJsonish(rawText);
+
+  if (!parsed.ok) {
+    if (!allowRepair || !isSyncProvider(PROVIDER)) {
+      const badPath = await saveVertexBadJson(rawText, "initial-parse-failed", { task, scene_window_id: window.scene_window_id, provider: PROVIDER });
+      return buildTaskPacket({
+        task,
+        window,
+        contextCapsule,
+        prompt,
+        promptHash,
+        outputText: rawText,
+        observations: [],
+        acceptedObservations: [],
+        rejectedObservations: [],
+        validationErrors: [parsed.error, `bad_json_path=${badPath}`],
+        evidenceErrors: [],
+        status: "failed",
+        failureReason: "parse_failed",
+      });
+    }
+
+    const badPath = await saveVertexBadJson(rawText, "initial-parse-failed", { task, scene_window_id: window.scene_window_id, provider: PROVIDER });
+    rawText = await repairStructuredTaskOutput({ task, rawText, schema, validationErrors: [parsed.error, `bad_json_path=${badPath}`] });
+  } else {
+    const validated = normalizeTaskPayload(task, parsed.value, window);
+    if (validated.ok) {
+      const status = classifyTaskPacketStatus(validated);
+      if (status !== "failed") {
+        return buildTaskPacket({
+          task,
+          window,
+          contextCapsule,
+          prompt,
+          promptHash,
+          outputText: rawText,
+          observations: validated.observations,
+          acceptedObservations: validated.acceptedObservations,
+          rejectedObservations: validated.rejectedObservations,
+          validationErrors: validated.validationErrors,
+          evidenceErrors: validated.evidenceErrors,
+          status,
+        });
+      }
+
+      if (!allowRepair || !isSyncProvider(PROVIDER)) {
+        return buildTaskPacket({
+          task,
+          window,
+          contextCapsule,
+          prompt,
+          promptHash,
+          outputText: rawText,
+          observations: validated.observations,
+          acceptedObservations: validated.acceptedObservations,
+          rejectedObservations: validated.rejectedObservations,
+          validationErrors: validated.validationErrors,
+          evidenceErrors: validated.evidenceErrors,
+          status: "failed",
+          failureReason: "all_observations_rejected",
+        });
+      }
+
+      rawText = await repairStructuredTaskOutput({
+        task,
+        rawText,
+        schema,
+        validationErrors: validated.validationErrors,
+      });
+    } else {
+      if (!allowRepair || !isSyncProvider(PROVIDER)) {
+        return buildTaskPacket({
+          task,
+          window,
+          contextCapsule,
+          prompt,
+          promptHash,
+          outputText: rawText,
+          observations: [],
+          acceptedObservations: [],
+          rejectedObservations: [],
+          validationErrors: validated.errors,
+          evidenceErrors: [],
+          status: "failed",
+          failureReason: "schema_invalid",
+        });
+      }
+
+      rawText = await repairStructuredTaskOutput({
+        task,
+        rawText,
+        schema,
+        validationErrors: validated.errors,
+      });
+    }
+  }
+
+  const repairedParsed = parseJsonish(rawText);
+  if (!repairedParsed.ok) {
+    return buildTaskPacket({
+      task,
+      window,
+      contextCapsule,
+      prompt,
+      promptHash,
+      outputText: rawText,
+      observations: [],
+      acceptedObservations: [],
+      rejectedObservations: [],
+      validationErrors: [repairedParsed.error],
+      evidenceErrors: [],
+      status: "failed",
+      failureReason: "parse_failed_after_repair",
+    });
+  }
+
+  const repairedValidated = normalizeTaskPayload(task, repairedParsed.value, window);
+  if (!repairedValidated.ok) {
+    return buildTaskPacket({
+      task,
+      window,
+      contextCapsule,
+      prompt,
+      promptHash,
+      outputText: rawText,
+      observations: [],
+      acceptedObservations: [],
+      rejectedObservations: [],
+      validationErrors: repairedValidated.errors,
+      evidenceErrors: [],
+      status: "failed",
+      failureReason: "schema_invalid_after_repair",
+    });
+  }
+
+  const status = classifyTaskPacketStatus(repairedValidated);
+  return buildTaskPacket({
+    task,
+    window,
+    contextCapsule,
+    prompt,
+    promptHash,
+    outputText: rawText,
+    observations: repairedValidated.observations,
+    acceptedObservations: repairedValidated.acceptedObservations,
+    rejectedObservations: repairedValidated.rejectedObservations,
+    validationErrors: repairedValidated.validationErrors,
+    evidenceErrors: repairedValidated.evidenceErrors,
+    status,
+    failureReason: status === "failed" ? "all_observations_rejected_after_repair" : null,
+  });
+}
+
+async function runSemanticTaskPacket({ task, window, contextCapsule, noAi, allowDecompose = true, importedRawText = null, allowRepair = true }) {
   const schema = taskResponseSchema(task);
   const prompt = buildSemanticTaskPrompt({ task, window, contextCapsule });
   const promptHash = sha256Text(prompt);
@@ -1880,95 +2448,18 @@ async function runSemanticTaskPacket({ task, window, contextCapsule, noAi, allow
   }
 
   try {
-    const outerText = await postGenerateContent(buildGenerateContentBody({ prompt, schema, maxOutputTokens: 2048 }));
-    const outer = JSON.parse(outerText);
-    let rawText = extractCandidateText(outer);
-    const parsed = parseJsonish(rawText);
+    const rawText = importedRawText !== null
+      ? importedRawText
+      : await callSemanticProviderSync({ task, prompt, schema });
 
-    if (!parsed.ok) {
-      const badPath = await saveVertexBadJson(rawText, "initial-parse-failed", { task, scene_window_id: window.scene_window_id });
-      rawText = await repairStructuredTaskOutput({ task, rawText, schema, validationErrors: [parsed.error, `bad_json_path=${badPath}`] });
-    } else {
-      const validated = normalizeTaskPayload(task, parsed.value, window);
-      if (validated.ok) {
-        const status = classifyTaskPacketStatus(validated);
-        if (status !== "failed") {
-          return buildTaskPacket({
-            task,
-            window,
-            contextCapsule,
-            prompt,
-            promptHash,
-            outputText: rawText,
-            observations: validated.observations,
-            acceptedObservations: validated.acceptedObservations,
-            rejectedObservations: validated.rejectedObservations,
-            validationErrors: validated.validationErrors,
-            evidenceErrors: validated.evidenceErrors,
-            status,
-          });
-        }
-      }
-
-      rawText = await repairStructuredTaskOutput({
-        task,
-        rawText,
-        schema,
-        validationErrors: validated.ok ? validated.validationErrors : validated.errors,
-      });
-    }
-
-    const repairedParsed = parseJsonish(rawText);
-    if (!repairedParsed.ok) {
-      return buildTaskPacket({
-        task,
-        window,
-        contextCapsule,
-        prompt,
-        promptHash,
-        outputText: rawText,
-        observations: [],
-        acceptedObservations: [],
-        rejectedObservations: [],
-        validationErrors: [repairedParsed.error],
-        evidenceErrors: [],
-        status: "failed",
-        failureReason: "parse_failed_after_repair",
-      });
-    }
-    const repairedValidated = normalizeTaskPayload(task, repairedParsed.value, window);
-    if (!repairedValidated.ok) {
-      return buildTaskPacket({
-        task,
-        window,
-        contextCapsule,
-        prompt,
-        promptHash,
-        outputText: rawText,
-        observations: [],
-        acceptedObservations: [],
-        rejectedObservations: [],
-        validationErrors: repairedValidated.errors,
-        evidenceErrors: [],
-        status: "failed",
-        failureReason: "schema_invalid_after_repair",
-      });
-    }
-
-    return buildTaskPacket({
+    return await finalizeTaskPacketFromRaw({
       task,
       window,
       contextCapsule,
       prompt,
       promptHash,
-      outputText: rawText,
-      observations: repairedValidated.observations,
-      acceptedObservations: repairedValidated.acceptedObservations,
-      rejectedObservations: repairedValidated.rejectedObservations,
-      validationErrors: repairedValidated.validationErrors,
-      evidenceErrors: repairedValidated.evidenceErrors,
-      status: classifyTaskPacketStatus(repairedValidated),
-      failureReason: classifyTaskPacketStatus(repairedValidated) === "failed" ? "all_observations_rejected_after_repair" : null,
+      rawText,
+      allowRepair,
     });
   } catch (error) {
     const failureReason = String(error?.message || error);
@@ -1985,6 +2476,8 @@ async function runSemanticTaskPacket({ task, window, contextCapsule, noAi, allow
           contextCapsule,
           noAi,
           allowDecompose: false,
+          importedRawText: null,
+          allowRepair,
         });
         accepted.push(...fragment.accepted_observations);
         rejected.push(...fragment.rejected_observations);
@@ -2009,7 +2502,7 @@ async function runSemanticTaskPacket({ task, window, contextCapsule, noAi, allow
       });
     }
 
-    await saveVertexBadJson("", "task-failed", { task, scene_window_id: window.scene_window_id, error: failureReason });
+    await saveVertexBadJson("", "task-failed", { task, scene_window_id: window.scene_window_id, error: failureReason, provider: PROVIDER });
     return buildTaskPacket({
       task,
       window,
@@ -2093,7 +2586,7 @@ function makeObservationSpanRow({ semanticRun, window, observation, taskPacket, 
     model_output_sha256: taskPacket.outputHash,
     evidence_hash: evidenceHash,
     normalized_observation_hash: normalizedObservationHash,
-    model: VERTEX_MODEL,
+    model: PROVIDER_MODEL,
   }));
 
   return {
@@ -2121,7 +2614,7 @@ function makeObservationSpanRow({ semanticRun, window, observation, taskPacket, 
       primary_lane: "semantic_meaning_spans",
       old_table_mirror_blocked_on_first_run: true,
       prompt_version: PROMPT_VERSION,
-      model: VERTEX_MODEL,
+      model: PROVIDER_MODEL,
       task: taskPacket.task,
       run_hash: runHash,
       evidence_hash: evidenceHash,
@@ -2177,6 +2670,29 @@ function taskFailureDetails(taskPackets) {
       validation_errors: packet.validation_errors,
       evidence_errors: packet.evidence_errors,
     }));
+}
+
+function isFullSelectedRun() {
+  return !LIMIT_DOCS && !LIMIT;
+}
+
+function buildSemanticBatchEntries({ windowPlans, contextPack, chapters, availableNarrativeContextMap }) {
+  const entries = [];
+
+  for (const windowPlan of windowPlans) {
+    const { window, semanticPlan } = windowPlan;
+    if (semanticPlan.status !== "semantic") continue;
+    const contextCapsule = buildNarrativeContextCapsule({ contextPack, chapters, availableNarrativeContextMap, window });
+    for (const task of TASK_ORDER) {
+      const prompt = buildSemanticTaskPrompt({ task, window, contextCapsule });
+      const promptHash = sha256Text(prompt);
+      const schema = taskResponseSchema(task);
+      const customId = buildBatchCustomId({ window, task, promptHash, contextHash: contextCapsule.context_capsule_sha256 });
+      entries.push(buildBatchManifestEntry({ customId, task, window, contextCapsule, prompt, promptHash, schema }));
+    }
+  }
+
+  return entries;
 }
 
 async function failFastRun({ semanticRun, pathsOutDir, summary }) {
@@ -2285,7 +2801,7 @@ async function callVertexOnce(prompt) {
 
     await fs.writeFile(file, JSON.stringify({
       phase,
-      model: VERTEX_MODEL,
+      model: PROVIDER_MODEL,
       raw,
     }, null, 2), "utf-8");
 
@@ -2451,7 +2967,7 @@ async function writeSemanticResult({ semanticRun, batch, result }) {
       narrative_context_sha256: NARRATIVE_CONTEXT_SHA256,
       paragraph_id: paragraph.id,
       content_sha256: contentSha,
-      model: VERTEX_MODEL,
+      model: PROVIDER_MODEL,
       prompt_version: PROMPT_VERSION,
       archetypes: pr.archetype_observations || [],
       biblical_references: pr.biblical_references || [],
@@ -2472,7 +2988,7 @@ async function writeSemanticResult({ semanticRun, batch, result }) {
           narrative_context_sha256: NARRATIVE_CONTEXT_SHA256,
           xml_manifest_sha256: XML_MANIFEST_SHA256,
           prompt_version: PROMPT_VERSION,
-          model: VERTEX_MODEL,
+          model: PROVIDER_MODEL,
           summary: pr.metadata?.summary || "",
           notes: pr.metadata?.semantic_notes || [],
         },
@@ -2984,7 +3500,7 @@ function meaningSpanRow({ semanticRun, family, spanType, label, subjectName, evi
       primary_lane: "semantic_meaning_spans",
       old_table_mirror_blocked_on_first_run: true,
       prompt_version: PROMPT_VERSION,
-      model: VERTEX_MODEL,
+      model: PROVIDER_MODEL,
       raw,
     },
     active: true,
@@ -3125,6 +3641,11 @@ async function main() {
   const windowPlans = windows.map((window) => ({ window, semanticPlan: classifySemanticWindow(window) }));
   const plannedSemanticWindows = windowPlans.filter((entry) => entry.semanticPlan.status === "semantic").length;
   const plannedSkippedWindows = windowPlans.length - plannedSemanticWindows;
+  const batchMode = batchOperationMode();
+
+  if (isFullSelectedRun() && (writeMode || submitBatch) && !fullRunConfirm && !noAi && batchMode !== "poll") {
+    throw new Error("Full selected XML semantic runs require --full-run-confirm.");
+  }
 
   const sourceSummary = {
     context_pack_sha256: NARRATIVE_CONTEXT_SHA256,
@@ -3148,6 +3669,9 @@ async function main() {
     ai_task_order: TASK_ORDER,
     primary_hash_lane: "semantic_meaning_spans",
     old_semantic_table_writes: "blocked_on_first_run",
+    semantic_provider: PROVIDER,
+    semantic_model: PROVIDER_MODEL,
+    batch_mode: batchMode,
     write_mode: writeMode,
     no_ai: noAi,
   };
@@ -3155,6 +3679,13 @@ async function main() {
   console.log(JSON.stringify({
     event: "startup_config",
     selected_xml_driver: true,
+    provider: PROVIDER,
+    provider_model: noAi ? "no-ai" : PROVIDER_MODEL,
+    batch_mode: batchMode,
+    submit_batch: submitBatch,
+    poll_batch_id: POLL_BATCH_ID || null,
+    import_batch_results_path: IMPORT_BATCH_RESULTS_PATH || null,
+    full_run_confirm: fullRunConfirm,
     effective_limit_docs: LIMIT_DOCS,
     effective_limit: LIMIT,
     effective_batch_size: BATCH_SIZE,
@@ -3167,7 +3698,6 @@ async function main() {
     allow_failure_continue: ALLOW_FAILURE_CONTINUE,
     no_ai: noAi,
     write_mode: writeMode,
-    model: noAi ? "no-ai" : VERTEX_MODEL,
   }));
 
   writeFileSync(join(paths.outDir, "source-summary.json"), JSON.stringify(sourceSummary, null, 2));
@@ -3193,6 +3723,42 @@ async function main() {
     text_sha256: w.text_sha256,
   })).join("\n") + "\n");
 
+  if (batchMode === "poll") {
+    const batch = await pollProviderBatch(POLL_BATCH_ID);
+    writeFileSync(join(paths.outDir, `batch-poll-${POLL_BATCH_ID}.json`), JSON.stringify(batch, null, 2));
+    console.log(JSON.stringify({ event: "batch_poll", provider: PROVIDER, batch_id: POLL_BATCH_ID, output_path: batch.output_path || null, status: batch.processing_status || batch.status || null }));
+    return;
+  }
+
+  const batchEntries = isBatchProvider(PROVIDER) ? buildSemanticBatchEntries({ windowPlans, contextPack, chapters, availableNarrativeContextMap }) : [];
+  if (isBatchProvider(PROVIDER) && batchMode !== "import") {
+    const artifacts = writeBatchArtifacts(batchEntries);
+    const summary = {
+      event: "batch_prepared",
+      provider: PROVIDER,
+      model: PROVIDER_MODEL,
+      entry_count: batchEntries.length,
+      manifest_path: artifacts.manifestPath,
+      requests_path: artifacts.requestsPath,
+      submit_batch: submitBatch,
+    };
+    if (submitBatch) {
+      const batch = await submitPreparedBatch(artifacts);
+      summary.batch_id = batch.id;
+      summary.batch_status = batch.processing_status || batch.status || null;
+      summary.output_file_id = batch.output_file_id || null;
+    }
+    console.log(JSON.stringify(summary));
+    return;
+  }
+
+  const importedBatch = isBatchProvider(PROVIDER) && batchMode === "import"
+    ? parseImportedBatchResults(IMPORT_BATCH_RESULTS_PATH)
+    : null;
+  if (importedBatch?.manifest?.provider && importedBatch.manifest.provider !== PROVIDER) {
+    throw new Error(`Imported batch manifest provider mismatch: expected ${PROVIDER}, got ${importedBatch.manifest.provider}`);
+  }
+
   const semanticRun = await createSemanticRun(sourceSummary);
 
   if (writeMode) {
@@ -3202,7 +3768,8 @@ async function main() {
   const runHash = sha256Text(canonicalJson({
     semantic_run_id: semanticRun.id,
     prompt_version: PROMPT_VERSION,
-    model: VERTEX_MODEL,
+    provider: PROVIDER,
+    model: PROVIDER_MODEL,
     selected_truth_sha256: selected.sha256,
     narrative_context_sha256: NARRATIVE_CONTEXT_SHA256,
     xml_manifest_sha256: XML_MANIFEST_SHA256,
@@ -3242,7 +3809,40 @@ async function main() {
     } else {
       semanticWindows += 1;
       for (const task of TASK_ORDER) {
-        taskPackets.push(await runSemanticTaskPacket({ task, window, contextCapsule, noAi }));
+        if (importedBatch) {
+          const prompt = buildSemanticTaskPrompt({ task, window, contextCapsule });
+          const promptHash = sha256Text(prompt);
+          const customId = buildBatchCustomId({ window, task, promptHash, contextHash: contextCapsule.context_capsule_sha256 });
+          const imported = importedBatch.outputs.get(customId);
+          if (!imported?.ok || !imported.rawText) {
+            taskPackets.push(buildTaskPacket({
+              task,
+              window,
+              contextCapsule,
+              prompt,
+              promptHash,
+              outputText: JSON.stringify({ observations: [] }),
+              observations: [],
+              acceptedObservations: [],
+              rejectedObservations: [],
+              validationErrors: [imported?.error ? String(imported.error) : `Missing imported batch result for ${customId}`],
+              evidenceErrors: [],
+              status: "failed",
+              failureReason: imported?.error ? "batch_result_error" : "missing_batch_result",
+            }));
+          } else {
+            taskPackets.push(await runSemanticTaskPacket({
+              task,
+              window,
+              contextCapsule,
+              noAi,
+              importedRawText: imported.rawText,
+              allowRepair: false,
+            }));
+          }
+        } else {
+          taskPackets.push(await runSemanticTaskPacket({ task, window, contextCapsule, noAi }));
+        }
       }
     }
 
@@ -3260,9 +3860,11 @@ async function main() {
 
       const stem = `${String(windowIndex).padStart(5, "0")}-${packet.task}`;
       writeFileSync(join(paths.outDir, `prompt-selected-${stem}.txt`), packet.prompt);
-      writeFileSync(join(paths.outDir, `prompt-selected-${stem}.sha256`), `${packet.promptHash}\n`);
+      writeFileSync(join(paths.outDir, `prompt-selected-${stem}.sha256`), `${packet.promptHash}
+`);
       writeFileSync(join(paths.outDir, `result-selected-${stem}.json`), packet.outputText);
-      writeFileSync(join(paths.outDir, `result-selected-${stem}.sha256`), `${packet.outputHash}\n`);
+      writeFileSync(join(paths.outDir, `result-selected-${stem}.sha256`), `${packet.outputHash}
+`);
       writeFileSync(
         join(paths.outDir, `normalized-selected-${stem}.json`),
         JSON.stringify({
@@ -3317,6 +3919,8 @@ async function main() {
       selected_xml_driver: true,
       old_semantic_table_writes: "blocked",
       primary_lane: "semantic_meaning_spans",
+      provider: PROVIDER,
+      provider_model: noAi ? "no-ai" : PROVIDER_MODEL,
       window: window.scene_window_id,
       folder: window.folder,
       processed_windows: totalProcessed,
@@ -3358,6 +3962,7 @@ async function main() {
               : consecutiveWindowFailure
                 ? "consecutive_failed_windows_threshold"
                 : "task_failure_rate_threshold",
+            provider: PROVIDER,
             processed_windows: totalProcessed,
             total_windows: windows.length,
             skipped_windows: skippedWindows,
@@ -3406,6 +4011,8 @@ async function main() {
         selected_xml_driver: true,
         primary_hash_lane: "semantic_meaning_spans",
         old_semantic_table_writes: "blocked_on_first_run",
+        semantic_provider: PROVIDER,
+        semantic_model: PROVIDER_MODEL,
       },
     });
   }
@@ -3432,8 +4039,9 @@ async function main() {
     run_hash: runHash,
     narrative_context_sha256: NARRATIVE_CONTEXT_SHA256,
     xml_manifest_sha256: XML_MANIFEST_SHA256,
-    provider: noAi ? "none" : VERTEX_PROJECT_ID ? "vertex" : "gemini_rest",
-    model: noAi ? "no-ai" : VERTEX_MODEL,
+    provider: noAi ? "none" : PROVIDER,
+    model: noAi ? "no-ai" : PROVIDER_MODEL,
+    batch_mode: batchMode,
     sourceSummary,
   }, null, 2));
 }

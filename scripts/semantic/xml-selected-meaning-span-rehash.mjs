@@ -6,10 +6,52 @@ import { execFileSync } from "node:child_process";
 
 const ROOT = process.cwd();
 const RUN_ID = new Date().toISOString().replace(/[-:.TZ]/g, "").slice(0, 14);
-const PROMPT_VERSION = "xml-selected-meaning-span-v4";
+const PROMPT_VERSION = "xml-selected-meaning-span-v5";
 const NARRATIVE_CONTEXT_SHA256 = "6e7e306c32940db56e82f1aff23942e6f3d62d7483db8e5735bb2ef2ef75eb8c";
 const XML_MANIFEST_SHA256 = "6e74a501762c3368a6b3fd421c59d13e0c5da26b5b3e56b8729e0bf29163daf7";
 const XML_MANIFEST_COUNT = 195;
+const EXPECTED_PUBLIC_CHAPTER_COUNT = 13;
+const JUNGIAN_ARCHETYPE_LABELS = [
+  "Self",
+  "Ego",
+  "Shadow",
+  "Persona",
+  "Anima",
+  "Animus",
+  "Great Mother",
+  "Wise Guide",
+  "Trickster",
+  "Child",
+  "Hero",
+  "OrphanExile",
+];
+const JUNGIAN_MOVEMENTS = [
+  "fragmentation",
+  "inflation",
+  "descent",
+  "ordeal",
+  "projection",
+  "persona_fracture",
+  "shadow_confrontation",
+  "anima_animus_encounter",
+  "integration",
+  "emergence_of_self",
+];
+const BIBLICAL_RELATIONSHIP_TYPES = [
+  "direct_citation",
+  "explicit_allusion",
+  "verbal_echo",
+  "narrative_parallel",
+  "typological_correspondence",
+  "inversion",
+  "symbolic_resonance",
+];
+const CONTROLLED_SUBJECT_PLACEHOLDERS = [
+  "unresolved_male_figure",
+  "unresolved_female_figure",
+  "narrator",
+  "collective",
+];
 
 const argv = process.argv.slice(2);
 const args = new Set(argv);
@@ -39,6 +81,10 @@ const IMPORT_BATCH_RESULTS_PATH = importBatchResultsArg ? importBatchResultsArg.
 
 const paths = {
   contextPack: join(ROOT, "docs/agent_context/source_drop/hasher_context_v1/narrative_context_pack_v1.txt"),
+  archetypeProtocolCatGod: join(ROOT, "docs/agent_context/source_drop/hasher_context_v1/01_archetype_protocol_cat_god_primal_self.txt"),
+  archetypeProtocolVisceral: join(ROOT, "docs/agent_context/source_drop/hasher_context_v1/02_archetype_protocol_visceral_empathy.txt"),
+  compendium: join(ROOT, "docs/agent_context/source_drop/hasher_context_v1/03_master_compendium_singularity.txt"),
+  synopsis: join(ROOT, "docs/agent_context/source_drop/hasher_context_v1/04_new_synopsis_the_weight_of_the_sky.txt"),
   xmlManifest: join(ROOT, "reports/xml_recovery/materialized_ooxml_manifest.json"),
   selectedTruth: join(ROOT, "reports/xml_recovery/xml_starred_hash_truth.txt"),
   materializedOoxml: join(ROOT, "reports/xml_recovery/materialized_ooxml"),
@@ -115,6 +161,10 @@ const PROVIDER_MODEL = PROVIDER.startsWith("openai") ? OPENAI_MODEL : PROVIDER.s
 
 function validateSources() {
   must(existsSync(paths.contextPack), `Missing context pack: ${paths.contextPack}`);
+  must(existsSync(paths.archetypeProtocolCatGod), `Missing archetype protocol: ${paths.archetypeProtocolCatGod}`);
+  must(existsSync(paths.archetypeProtocolVisceral), `Missing archetype protocol: ${paths.archetypeProtocolVisceral}`);
+  must(existsSync(paths.compendium), `Missing compendium: ${paths.compendium}`);
+  must(existsSync(paths.synopsis), `Missing synopsis: ${paths.synopsis}`);
   must(existsSync(paths.xmlManifest), `Missing XML manifest: ${paths.xmlManifest}`);
   must(existsSync(paths.materializedOoxml), `Missing materialized OOXML root: ${paths.materializedOoxml}`);
   must(existsSync(paths.publicChapters), `Missing public chapter corpus: ${paths.publicChapters}`);
@@ -765,6 +815,19 @@ function loadPublicChapters() {
   });
 }
 
+function loadNarrativeContextSources() {
+  return [
+    { role: "archetype_protocol", key: "cat_god_primal_self", path: paths.archetypeProtocolCatGod },
+    { role: "archetype_protocol", key: "visceral_empathy", path: paths.archetypeProtocolVisceral },
+    { role: "story_compendium", key: "master_compendium", path: paths.compendium },
+    { role: "new_synopsis", key: "new_synopsis", path: paths.synopsis },
+  ].map((entry) => ({
+    ...entry,
+    sha256: sha256File(entry.path),
+    content: readText(entry.path),
+  }));
+}
+
 function relevantXmlEntriesForChapter(manifest, chapterNumber) {
   const n = String(chapterNumber);
   const needles = [
@@ -839,14 +902,7 @@ function buildAvailableNarrativeContextMap(chapters) {
   const mapLines = [];
 
   for (const chapter of chapters) {
-    let raw = "";
-    try {
-      raw = readText(chapter.path);
-    } catch {
-      raw = "";
-    }
-
-    const clean = normalizeContextSnippet(raw);
+    const clean = normalizeContextSnippet(chapter.content);
     const words = clean ? clean.split(/\s+/).filter(Boolean).length : 0;
     const opening = clean.slice(0, 900);
     const midpointStart = Math.max(0, Math.floor(clean.length / 2) - 450);
@@ -997,8 +1053,8 @@ NARRATIVE CONTEXT PACK:
 ${clip(contextPack, 30000)}
 
 AVAILABLE NARRATIVE CONTEXT MAP:
-This is not the full manuscript text. It contains the available public chapter corpus:
-chapters 1-11, chapter 13, and chapter 24/second-to-last.
+This is not the full manuscript text. It contains the available public chapter corpus
+loaded from public/data/chapters at runtime.
 Use this map together with the Master Compendium and New Synopsis in the narrative context pack
 to infer cross-chapter continuity, archetype movement, dualisms, biblical allusions,
 and thematic hyperlinks. Do not assume unavailable chapters are present verbatim.
@@ -1117,6 +1173,18 @@ function normalizeEnum(value, allowed, fallback, aliases = {}) {
   return fallback;
 }
 
+function maybeInteger(value) {
+  if (value === null || value === undefined || value === "") return null;
+  const n = Number.parseInt(String(value), 10);
+  return Number.isFinite(n) ? n : null;
+}
+
+function requiredInteger(value, label) {
+  const n = maybeInteger(value);
+  if (!Number.isFinite(n)) throw new Error(`Missing ${label}`);
+  return n;
+}
+
 function uniqueBy(items, keyFn) {
   const seen = new Set();
   const out = [];
@@ -1217,6 +1285,333 @@ function semanticWordCount(text) {
     .length;
 }
 
+const GENERIC_SUBJECT_SLUGS = new Set([
+  "the_man",
+  "the_woman",
+  "the_boy",
+  "the_girl",
+  "the_child",
+  "the_father",
+  "the_mother",
+  "the_son",
+  "the_daughter",
+  "the_traveler",
+  "the_vendor",
+  "the_narrator",
+  "a_man",
+  "a_woman",
+  "a_boy",
+  "a_girl",
+  "a_child",
+  "man",
+  "woman",
+  "boy",
+  "girl",
+  "child",
+  "traveler",
+  "vendor",
+  "father",
+  "mother",
+  "son",
+  "daughter",
+]);
+
+const SUBJECT_STOPWORDS = new Set([
+  "Chapter",
+  "The",
+  "This",
+  "That",
+  "These",
+  "Those",
+  "And",
+  "But",
+  "For",
+  "With",
+  "From",
+  "Into",
+  "Upon",
+  "When",
+  "Where",
+  "While",
+  "After",
+  "Before",
+  "Narrative",
+  "Context",
+  "Source",
+  "Packet",
+  "He",
+  "His",
+  "Her",
+  "Him",
+  "She",
+  "They",
+  "Them",
+  "Their",
+  "All",
+  "Every",
+  "Here",
+  "Not",
+  "Internal",
+  "Father",
+  "Mother",
+  "Lord",
+  "Lords",
+  "God",
+  "Goddess",
+  "King",
+  "Queen",
+  "Dreamscape",
+  "Earth",
+  "Pit",
+  "Flies",
+  "Sacrifice",
+  "Pride",
+]);
+
+const JUNGIAN_ARCHETYPE_ALIASES = {
+  self: "Self",
+  true_self: "Self",
+  integrated_self: "Self",
+  ego: "Ego",
+  selfhood: "Self",
+  shadow: "Shadow",
+  dark_shadow: "Shadow",
+  consuming_shadow: "Shadow",
+  persona: "Persona",
+  mask: "Persona",
+  anima: "Anima",
+  animus: "Animus",
+  great_mother: "Great Mother",
+  mother: "Great Mother",
+  wise_guide: "Wise Guide",
+  guide: "Wise Guide",
+  mentor: "Wise Guide",
+  witness_guide: "Wise Guide",
+  trickster: "Trickster",
+  child: "Child",
+  shadow_child: "Child",
+  hero: "Hero",
+  redeemer: "Hero",
+  healer: "Hero",
+  orphan: "OrphanExile",
+  exile: "OrphanExile",
+  orphan_exile: "OrphanExile",
+};
+
+const JUNGIAN_MOVEMENT_ALIASES = {
+  confrontation: "shadow_confrontation",
+  ascent: "emergence_of_self",
+  sacrifice: "ordeal",
+  rebirth: "emergence_of_self",
+  revelation: "emergence_of_self",
+  judgment: "ordeal",
+  return: "integration",
+  fragmentation: "fragmentation",
+  integration: "integration",
+  descent: "descent",
+  inflation: "inflation",
+  projection: "projection",
+  persona_fracture: "persona_fracture",
+  shadow_confrontation: "shadow_confrontation",
+  anima_animus_encounter: "anima_animus_encounter",
+  emergence_of_self: "emergence_of_self",
+};
+
+const BIBLICAL_RELATIONSHIP_ALIASES = {
+  direct: "direct_citation",
+  direct_citation: "direct_citation",
+  citation: "direct_citation",
+  explicit: "explicit_allusion",
+  explicit_allusion: "explicit_allusion",
+  allusion: "explicit_allusion",
+  verbal_echo: "verbal_echo",
+  echo: "verbal_echo",
+  narrative_parallel: "narrative_parallel",
+  parallel: "narrative_parallel",
+  typological: "typological_correspondence",
+  typological_allusion: "typological_correspondence",
+  typological_correspondence: "typological_correspondence",
+  type_antitype: "typological_correspondence",
+  inversion: "inversion",
+  symbolic: "symbolic_resonance",
+  symbolic_allusion: "symbolic_resonance",
+  symbolic_resonance: "symbolic_resonance",
+};
+
+const BIBLICAL_BOOK_ALIASES = {
+  genesis: "Genesis",
+  exodus: "Exodus",
+  leviticus: "Leviticus",
+  numbers: "Numbers",
+  deuteronomy: "Deuteronomy",
+  joshua: "Joshua",
+  judges: "Judges",
+  ruth: "Ruth",
+  "1_samuel": "1 Samuel",
+  "2_samuel": "2 Samuel",
+  "1_kings": "1 Kings",
+  "2_kings": "2 Kings",
+  "1_chronicles": "1 Chronicles",
+  "2_chronicles": "2 Chronicles",
+  psalm: "Psalm",
+  psalms: "Psalm",
+  proverbs: "Proverbs",
+  ecclesiastes: "Ecclesiastes",
+  isaiah: "Isaiah",
+  jeremiah: "Jeremiah",
+  ezekiel: "Ezekiel",
+  daniel: "Daniel",
+  hosea: "Hosea",
+  joel: "Joel",
+  amos: "Amos",
+  obadiah: "Obadiah",
+  jonah: "Jonah",
+  micah: "Micah",
+  nahum: "Nahum",
+  habakkuk: "Habakkuk",
+  zephaniah: "Zephaniah",
+  haggai: "Haggai",
+  zechariah: "Zechariah",
+  malachi: "Malachi",
+  matthew: "Matthew",
+  mark: "Mark",
+  luke: "Luke",
+  john: "John",
+  acts: "Acts",
+  romans: "Romans",
+  "1_corinthians": "1 Corinthians",
+  "2_corinthians": "2 Corinthians",
+  corinthians: "Corinthians",
+  galatians: "Galatians",
+  ephesians: "Ephesians",
+  philippians: "Philippians",
+  colossians: "Colossians",
+  "1_thessalonians": "1 Thessalonians",
+  "2_thessalonians": "2 Thessalonians",
+  thessalonians: "Thessalonians",
+  "1_timothy": "1 Timothy",
+  "2_timothy": "2 Timothy",
+  timothy: "Timothy",
+  titus: "Titus",
+  philemon: "Philemon",
+  hebrews: "Hebrews",
+  james: "James",
+  "1_peter": "1 Peter",
+  "2_peter": "2 Peter",
+  peter: "Peter",
+  "1_john": "1 John",
+  "2_john": "2 John",
+  "3_john": "3 John",
+  jude: "Jude",
+  revelation: "Revelation",
+};
+
+function extractNamedEntities(text) {
+  return uniqueBy((String(text || "").match(/\b[A-Z][a-z]{2,}(?:'[A-Za-z]+)?\b/g) || [])
+    .map((token) => token.replace(/'s$/i, ""))
+    .filter((token) => !SUBJECT_STOPWORDS.has(token)), (token) => token);
+}
+
+function buildSubjectResolutionCandidates({ window, chapters, narrativeSources, contextPack }) {
+  const texts = [
+    String(window?.text || ""),
+    ...chapters.map((chapter) => chapter.content),
+    ...narrativeSources.map((source) => source.content),
+    contextPack,
+  ];
+  const counts = new Map();
+  for (const text of texts) {
+    for (const token of extractNamedEntities(text)) {
+      counts.set(token, (counts.get(token) || 0) + 1);
+    }
+  }
+  return [...counts.entries()]
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .slice(0, 24)
+    .map(([name, mentions]) => ({ name, mentions }));
+}
+
+function normalizeSubjectPlaceholder(raw) {
+  const text = String(raw || "").toLowerCase();
+  if (/\b(narrator|voice)\b/.test(text)) return "narrator";
+  if (/\b(people|crowd|children|villagers|they|we|them|collective)\b/.test(text)) return "collective";
+  if (/\b(woman|mother|daughter|girl|bride|wife|queen)\b/.test(text)) return "unresolved_female_figure";
+  return "unresolved_male_figure";
+}
+
+function isRelationalSubjectDescriptor(value) {
+  return /\b(son|daughter|child|wife|husband|mother|father|bride|widow|brother|sister)\b/i.test(String(value || ""));
+}
+
+function normalizeResolvedSubject(raw, contextCapsule) {
+  const value = requiredText(raw, "character", 120);
+  if (CONTROLLED_SUBJECT_PLACEHOLDERS.includes(value)) return { subject: value, unresolved: true };
+  const directNames = extractNamedEntities(value);
+  if (directNames.length === 1 && !GENERIC_SUBJECT_SLUGS.has(slugifyToken(value)) && !isRelationalSubjectDescriptor(value)) {
+    return { subject: directNames[0], unresolved: false };
+  }
+  if (directNames.length > 1 && !GENERIC_SUBJECT_SLUGS.has(slugifyToken(value)) && !isRelationalSubjectDescriptor(value)) {
+    return { subject: directNames[0], unresolved: false };
+  }
+  const candidates = safeArray(contextCapsule?.subject_resolution_candidates);
+  if (GENERIC_SUBJECT_SLUGS.has(slugifyToken(value)) && candidates.length === 1) {
+    return { subject: candidates[0].name, unresolved: false };
+  }
+  return { subject: normalizeSubjectPlaceholder(value), unresolved: true };
+}
+
+function normalizeJungianArchetype(rawArchetype, summary = "") {
+  const value = requiredText(rawArchetype, "archetype", 120);
+  const slug = slugifyToken(value, "");
+  const mapped = JUNGIAN_ARCHETYPE_ALIASES[slug];
+  if (!mapped) throw new Error(`Descriptive archetype has no Jungian mapping: ${value}`);
+  const gloss = value === mapped ? null : maybeText(`${value}${summary ? ` | ${summary}` : ""}`, 240);
+  return { archetype: mapped, archetype_gloss: gloss };
+}
+
+function parseBiblicalAddress(value) {
+  const text = compactWhitespace(value, 160);
+  if (!text) return null;
+  const match = text.match(/^((?:[1-3]\s*)?[A-Za-z]+(?:\s+[A-Za-z]+)*)\s+(\d+):(\d+)(?:-(\d+))?$/);
+  if (!match) return null;
+  const book = BIBLICAL_BOOK_ALIASES[slugifyToken(match[1], "")];
+  if (!book) return null;
+  return {
+    biblical_anchor_label: `${book} ${match[2]}:${match[3]}${match[4] ? `-${match[4]}` : ""}`,
+    book,
+    chapter: Number.parseInt(match[2], 10),
+    verse_start: Number.parseInt(match[3], 10),
+    verse_end: match[4] ? Number.parseInt(match[4], 10) : null,
+  };
+}
+
+function normalizeBiblicalBook(value) {
+  const key = slugifyToken(value, "");
+  return BIBLICAL_BOOK_ALIASES[key] || null;
+}
+
+function normalizeMotifFamily(value) {
+  return slugifyToken(requiredText(value, "motif_family", 120), "motif");
+}
+
+function hasTypologicalRationale(text) {
+  const rationale = String(text || "").toLowerCase();
+  return /\b(type|antitype|pattern|correspond|fulfill|fulfillment|prefigure|recapitulat|as\s+.+\s+so)\b/.test(rationale);
+}
+
+function tightenConfidence(confidence, { unresolvedSubject = false, symbolicResonance = false, targetHintOnly = false } = {}) {
+  let value = clamp01(confidence, 0.5);
+  if (unresolvedSubject) value = Math.min(value, 0.55);
+  if (symbolicResonance) value = Math.min(value, 0.6);
+  if (targetHintOnly) value = Math.min(value, 0.55);
+  return value;
+}
+
+function isVagueTargetHint(value) {
+  const text = slugifyToken(value, "");
+  return !text || /^(healing|redemption|grief|loss|shadow|light|love|truth|spirit|psyche|soul|mystery)$/.test(text);
+}
+
 function classifySemanticWindow(window) {
   const text = String(window?.text || "").trim();
   const compact = text.replace(/\s+/g, " ").trim();
@@ -1250,8 +1645,8 @@ function compareEvidenceRefs(a, b) {
 function compareObservations(a, b) {
   return (
     String(a.summary || a.label || "").localeCompare(String(b.summary || b.label || "")) ||
-    String(a.kind || a.axis || a.archetype || a.reference || a.relationship_type || "").localeCompare(
-      String(b.kind || b.axis || b.archetype || b.reference || b.relationship_type || "")
+    String(a.kind || a.axis || a.archetype || a.biblical_anchor_label || a.reference || a.relationship_type || "").localeCompare(
+      String(b.kind || b.axis || b.archetype || b.biblical_anchor_label || b.reference || b.relationship_type || "")
     ) ||
     String(a.character || "").localeCompare(String(b.character || "")) ||
     Number(b.confidence || 0) - Number(a.confidence || 0)
@@ -1320,6 +1715,7 @@ function taskResponseSchema(task) {
       return packet({
         character: { type: "STRING" },
         archetype: { type: "STRING" },
+        archetype_gloss: nullableSchema({ type: "STRING" }),
         movement: { type: "STRING" },
         summary: { type: "STRING" },
         evidence: strictArraySchema(evidence),
@@ -1327,9 +1723,14 @@ function taskResponseSchema(task) {
       });
     case "biblical_references":
       return packet({
-        reference: { type: "STRING" },
-        motif: { type: "STRING" },
+        biblical_anchor_label: { type: "STRING" },
+        book: { type: "STRING" },
+        chapter: { type: "INTEGER" },
+        verse_start: { type: "INTEGER" },
+        verse_end: nullableSchema({ type: "INTEGER" }),
+        motif_family: { type: "STRING" },
         relationship_type: { type: "STRING" },
+        correspondence_rationale: { type: "STRING" },
         summary: { type: "STRING" },
         evidence: strictArraySchema(evidence),
         confidence: { type: "NUMBER" },
@@ -1364,21 +1765,26 @@ function taskRubric(task) {
       ].join("\n");
     case "archetypes":
       return [
-        "Extract character-role or mythic-role observations grounded in the source packet.",
-        "Movement should describe direction such as descent, ascent, confrontation, sacrifice, fragmentation, or integration.",
-        "Do not emit static labels without evidence.",
+        `Use Jungian ontology first. Accepted archetype labels must be one of: ${JUNGIAN_ARCHETYPE_LABELS.join(", ")}.`,
+        "Descriptive labels may appear only as archetype_gloss and must not replace the canonical Jungian archetype field.",
+        `Movement must be one of: ${JUNGIAN_MOVEMENTS.join(", ")}.`,
+        "Resolve subject identity using the wider narrative corpus when possible. Do not leave generic labels like 'the man' as accepted subjects.",
+        "If the subject remains unresolved after context resolution, use only controlled placeholders.",
       ].join("\n");
     case "biblical_references":
       return [
-        "Extract direct, typological, symbolic, structural, or non-verbatim biblical allusions only when grounded in source evidence.",
-        "Prefer omission over weak allusion.",
-        "Relationship type should describe how the source packet relates to the biblical motif.",
+        `Accepted relationship_type must be one of: ${BIBLICAL_RELATIONSHIP_TYPES.join(", ")}.`,
+        "Do not call something typological unless the correspondence structure is explicit and defensible.",
+        "Every accepted biblical packet must include biblical_anchor_label, book, chapter, verse_start, verse_end when needed, motif_family, relationship_type, correspondence_rationale, evidence, and confidence.",
+        "If evidence is only atmospheric or symbolic, use symbolic_resonance only when a real biblical anchor is still identifiable; otherwise return empty observations.",
+        "Do not output broad biblical vibes, broad grief motifs, or generic symbolism without a canonical anchor and verse-level address.",
       ].join("\n");
     case "hyperlinks_parallelisms":
       return [
         "Extract derived motif echoes, callbacks, mirrors, parallelisms, and foreshadowing signals.",
         "At least the source side must be anchored in the source packet.",
-        "Use target_hint when the other side is inferred from narrative context rather than directly quoted here.",
+        "Use target_hint only when target evidence is absent but cross-context consistency is still strong and specific.",
+        "Do not emit vague psycho-spiritual target_hint labels without strong cross-context support.",
       ].join("\n");
     default:
       return "";
@@ -1416,31 +1822,45 @@ function windowKeywords(window) {
     .map(([word]) => word);
 }
 
-function buildNarrativeContextCapsule({ contextPack, chapters, availableNarrativeContextMap, window }) {
+function buildNarrativeContextCapsule({ contextPack, chapters, narrativeSources, availableNarrativeContextMap, window }) {
   const chapterHints = inferChapterHintsFromFolder(window.folder);
   const keywords = windowKeywords(window);
+  const contextNeedle = keywords[0] || chapterHints[0] || "";
   const scored = chapters.map((chapter) => {
     const hay = chapter.content.toLowerCase();
     const keywordHits = keywords.reduce((sum, keyword) => sum + (hay.includes(keyword) ? 1 : 0), 0);
     const chapterBoost = chapterHints.includes(chapter.chapter_number) ? 3 : 0;
-    return { chapter, score: chapterBoost + keywordHits };
-  }).filter((entry) => entry.score > 0);
+    return { chapter, score: chapterBoost + keywordHits, keywordHits, chapterBoost };
+  });
 
   const selectedChapters = scored
     .sort((a, b) => b.score - a.score || a.chapter.chapter_number - b.chapter.chapter_number)
-    .slice(0, 2)
-    .map(({ chapter }) => ({
+    .map(({ chapter, score, keywordHits, chapterBoost }) => ({
       chapter_number: chapter.chapter_number,
       sha256: chapter.sha256,
-      excerpt: excerptAroundMatch(chapter.content, keywords[0] || "", 700),
+      score,
+      keyword_hits: keywordHits,
+      chapter_hint_boost: chapterBoost,
+      excerpt: excerptAroundMatch(chapter.content, contextNeedle, 320),
     }));
 
-  const contextNeedle = keywords[0] || chapterHints[0] || "";
+  const sourceContexts = narrativeSources.map((source) => ({
+    role: source.role,
+    key: source.key,
+    sha256: source.sha256,
+    excerpt: excerptAroundMatch(source.content, contextNeedle, 520),
+  }));
+  const subjectResolutionCandidates = buildSubjectResolutionCandidates({ window, chapters, narrativeSources, contextPack });
   const capsule = {
     mode: "narrative_context_only",
+    expected_public_chapter_count: EXPECTED_PUBLIC_CHAPTER_COUNT,
+    loaded_public_chapter_count: chapters.length,
     chapter_hints: chapterHints,
     keywords,
-    selected_public_chapters: selectedChapters,
+    full_public_chapter_corpus_loaded: chapters.length >= EXPECTED_PUBLIC_CHAPTER_COUNT,
+    public_chapter_corpus: selectedChapters,
+    narrative_protocol_sources: sourceContexts,
+    subject_resolution_candidates: subjectResolutionCandidates,
     available_narrative_context_map_excerpt: excerptAroundMatch(availableNarrativeContextMap, String(contextNeedle), 900),
     context_pack_excerpt: excerptAroundMatch(contextPack, String(contextNeedle), 1400),
   };
@@ -1475,7 +1895,7 @@ function buildSemanticTaskPrompt({ task, window, contextCapsule }) {
     "Return only valid JSON matching the requested schema.",
     "No markdown. No explanation. No extra keys.",
     "Selected XML render paragraphs are source truth.",
-    "Narrative context capsule is interpretive context only, never source truth.",
+    "Narrative context capsule is interpretive context only, never source truth, but must be used for narrative consistency and subject resolution.",
     "",
     `TASK: ${task}`,
     "",
@@ -1488,6 +1908,7 @@ function buildSemanticTaskPrompt({ task, window, contextCapsule }) {
     "- Empty observations are valid.",
     '- Valid empty response is: {"observations":[]}',
     "- Do not force a claim.",
+    "- Use the full narrative cognition capsule for consistency across the local corpus, but never treat context as source evidence.",
     "",
     "SOURCE PACKET:",
     JSON.stringify(buildSourcePacket(window), null, 2),
@@ -2076,49 +2497,76 @@ function normalizeDualismObservation(raw, window) {
   };
 }
 
-function normalizeArchetypeObservation(raw, window) {
+function normalizeArchetypeObservation(raw, window, contextCapsule) {
+  const subject = normalizeResolvedSubject(raw?.character, contextCapsule);
+  const archetype = normalizeJungianArchetype(raw?.archetype, raw?.summary);
   return {
     task: "archetypes",
-    character: requiredText(raw?.character, "character", 120),
-    archetype: requiredText(raw?.archetype, "archetype", 120),
-    movement: normalizeEnum(raw?.movement, ["descent", "ascent", "confrontation", "sacrifice", "fragmentation", "integration", "rebirth", "revelation", "judgment", "return"], "revelation"),
+    character: subject.subject,
+    archetype: archetype.archetype,
+    archetype_gloss: archetype.archetype_gloss,
+    movement: normalizeEnum(raw?.movement, JUNGIAN_MOVEMENTS, "fragmentation", JUNGIAN_MOVEMENT_ALIASES),
     summary: requiredText(raw?.summary, "summary", 240),
     evidence: resolveEvidenceArray(raw?.evidence, window),
-    confidence: clamp01(raw?.confidence, 0.5),
+    confidence: tightenConfidence(raw?.confidence, { unresolvedSubject: subject.unresolved }),
+    unresolved_subject: subject.unresolved,
   };
 }
 
 function normalizeBiblicalObservation(raw, window) {
+  const anchor = requiredText(raw?.biblical_anchor_label || raw?.reference, "biblical_anchor_label", 160);
+  const parsedAnchor = parseBiblicalAddress(anchor);
+  const relationshipType = normalizeEnum(raw?.relationship_type, BIBLICAL_RELATIONSHIP_TYPES, "", BIBLICAL_RELATIONSHIP_ALIASES);
+  if (!relationshipType) throw new Error(`Unsupported biblical relationship_type: ${String(raw?.relationship_type || "")}`);
+  const book = normalizeBiblicalBook(raw?.book) || parsedAnchor?.book;
+  const chapter = maybeInteger(raw?.chapter) ?? parsedAnchor?.chapter ?? null;
+  const verseStart = maybeInteger(raw?.verse_start) ?? parsedAnchor?.verse_start ?? null;
+  const verseEnd = maybeInteger(raw?.verse_end) ?? parsedAnchor?.verse_end ?? null;
+  const rationale = requiredText(raw?.correspondence_rationale || raw?.summary, "correspondence_rationale", 320);
+  if (!book || !chapter || !verseStart) throw new Error(`Biblical anchor must be verse-addressable: ${anchor}`);
+  if (relationshipType === "typological_correspondence" && !hasTypologicalRationale(rationale)) {
+    throw new Error(`Typological correspondence requires explicit rationale: ${anchor}`);
+  }
   return {
     task: "biblical_references",
-    reference: requiredText(raw?.reference, "reference", 160),
-    motif: requiredText(raw?.motif, "motif", 160),
-    relationship_type: normalizeEnum(raw?.relationship_type, ["direct", "typological", "symbolic", "structural", "non_verbatim", "image_based", "numerological"], "symbolic"),
+    biblical_anchor_label: parsedAnchor?.biblical_anchor_label || `${book} ${chapter}:${verseStart}${verseEnd ? `-${verseEnd}` : ""}`,
+    book,
+    chapter,
+    verse_start: verseStart,
+    verse_end: verseEnd,
+    motif_family: normalizeMotifFamily(raw?.motif_family || raw?.motif),
+    relationship_type: relationshipType,
+    correspondence_rationale: rationale,
     summary: requiredText(raw?.summary, "summary", 240),
     evidence: resolveEvidenceArray(raw?.evidence, window),
-    confidence: clamp01(raw?.confidence, 0.5),
+    confidence: tightenConfidence(raw?.confidence, { symbolicResonance: relationshipType === "symbolic_resonance" }),
+    reference: parsedAnchor?.biblical_anchor_label || `${book} ${chapter}:${verseStart}${verseEnd ? `-${verseEnd}` : ""}`,
+    motif: normalizeMotifFamily(raw?.motif_family || raw?.motif),
   };
 }
 
 function normalizeHyperlinkObservation(raw, window) {
+  const targetEvidence = uniqueBy(safeArray(raw?.target_evidence).flatMap((item) => {
+    try {
+      return [resolveEvidenceRef(item, window, "target")];
+    } catch {
+      return [];
+    }
+  }), (item) => `${item.render_para_key}:${item.start_char}:${item.end_char}:${item.quote}`);
+  let targetHint = maybeText(raw?.target_hint, 200);
+  if (!targetEvidence.length && isVagueTargetHint(targetHint)) targetHint = null;
   return {
     task: "hyperlinks_parallelisms",
     relationship_type: normalizeEnum(raw?.relationship_type, ["parallelism", "mirror", "foreshadow", "motif_echo", "character_echo", "scene_callback"], "parallelism"),
     summary: requiredText(raw?.summary, "summary", 240),
     source_evidence: resolveEvidenceArray(raw?.source_evidence, window, "source"),
-    target_hint: maybeText(raw?.target_hint, 200),
-    target_evidence: uniqueBy(safeArray(raw?.target_evidence).flatMap((item) => {
-      try {
-        return [resolveEvidenceRef(item, window, "target")];
-      } catch {
-        return [];
-      }
-    }), (item) => `${item.render_para_key}:${item.start_char}:${item.end_char}:${item.quote}`),
-    confidence: clamp01(raw?.confidence, 0.5),
+    target_hint: targetHint,
+    target_evidence: targetEvidence,
+    confidence: tightenConfidence(raw?.confidence, { targetHintOnly: Boolean(targetHint) && !targetEvidence.length }),
   };
 }
 
-function normalizeTaskPayload(task, payload, window) {
+function normalizeTaskPayload(task, payload, window, contextCapsule) {
   if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
     return { ok: false, errors: ["Top-level payload must be an object."] };
   }
@@ -2143,7 +2591,7 @@ function normalizeTaskPayload(task, payload, window) {
           normalized = normalizeDualismObservation(raw, window);
           break;
         case "archetypes":
-          normalized = normalizeArchetypeObservation(raw, window);
+          normalized = normalizeArchetypeObservation(raw, window, contextCapsule);
           break;
         case "biblical_references":
           normalized = normalizeBiblicalObservation(raw, window);
@@ -2304,7 +2752,7 @@ async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt,
     const badPath = await saveVertexBadJson(rawText, "initial-parse-failed", { task, scene_window_id: window.scene_window_id, provider: PROVIDER });
     rawText = await repairStructuredTaskOutput({ task, rawText, schema, validationErrors: [parsed.error, `bad_json_path=${badPath}`] });
   } else {
-    const validated = normalizeTaskPayload(task, parsed.value, window);
+    const validated = normalizeTaskPayload(task, parsed.value, window, contextCapsule);
     if (validated.ok) {
       const status = classifyTaskPacketStatus(validated);
       if (status !== "failed") {
@@ -2395,7 +2843,7 @@ async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt,
     });
   }
 
-  const repairedValidated = normalizeTaskPayload(task, repairedParsed.value, window);
+  const repairedValidated = normalizeTaskPayload(task, repairedParsed.value, window, contextCapsule);
   if (!repairedValidated.ok) {
     return buildTaskPacket({
       task,
@@ -2559,15 +3007,15 @@ function makeObservationSpanRow({ semanticRun, window, observation, taskPacket, 
       label = observation.archetype;
       subjectName = observation.character;
       evidence = observation.evidence;
-      interpretation = `${observation.movement}: ${observation.summary}`;
+      interpretation = `${observation.movement}: ${observation.summary}${observation.archetype_gloss ? ` | gloss=${observation.archetype_gloss}` : ""}`;
       break;
     case "biblical_references":
       family = "biblical";
       spanType = "biblical_reference";
-      label = observation.reference;
-      subjectName = observation.motif;
+      label = observation.biblical_anchor_label;
+      subjectName = observation.motif_family;
       evidence = observation.evidence;
-      interpretation = `${observation.relationship_type}: ${observation.summary}`;
+      interpretation = `${observation.relationship_type}: ${observation.correspondence_rationale}`;
       break;
     case "hyperlinks_parallelisms":
       family = "hyperlink";
@@ -2684,13 +3132,13 @@ function isFullSelectedRun() {
   return !LIMIT_DOCS && !LIMIT;
 }
 
-function buildSemanticBatchEntries({ windowPlans, contextPack, chapters, availableNarrativeContextMap }) {
+function buildSemanticBatchEntries({ windowPlans, contextPack, chapters, narrativeSources, availableNarrativeContextMap }) {
   const entries = [];
 
   for (const windowPlan of windowPlans) {
     const { window, semanticPlan } = windowPlan;
     if (semanticPlan.status !== "semantic") continue;
-    const contextCapsule = buildNarrativeContextCapsule({ contextPack, chapters, availableNarrativeContextMap, window });
+    const contextCapsule = buildNarrativeContextCapsule({ contextPack, chapters, narrativeSources, availableNarrativeContextMap, window });
     for (const task of TASK_ORDER) {
       const prompt = buildSemanticTaskPrompt({ task, window, contextCapsule });
       const promptHash = sha256Text(prompt);
@@ -3643,6 +4091,7 @@ async function main() {
   validateSources();
   const contextPack = readText(paths.contextPack);
   const chapters = loadPublicChapters();
+  const narrativeSources = loadNarrativeContextSources();
   const availableNarrativeContextMap = buildAvailableNarrativeContextMap(chapters);
   const { selected, docs } = loadSelectedXmlDocuments();
   const windows = selectedXmlWindows(docs);
@@ -3668,7 +4117,9 @@ async function main() {
     scene_window_count: windows.length,
     planned_semantic_window_count: plannedSemanticWindows,
     planned_skipped_window_count: plannedSkippedWindows,
+    expected_public_chapter_context_count: EXPECTED_PUBLIC_CHAPTER_COUNT,
     public_chapter_context_count: chapters.length,
+    narrative_protocol_source_count: narrativeSources.length,
     available_narrative_context_map: true,
     available_narrative_context_map_sha256: sha256Text(availableNarrativeContextMap),
     selected_xml_driver: true,
@@ -3698,6 +4149,9 @@ async function main() {
     effective_limit: LIMIT,
     effective_batch_size: BATCH_SIZE,
     selected_docs_count: docs.length,
+    expected_public_chapter_count: EXPECTED_PUBLIC_CHAPTER_COUNT,
+    public_chapter_context_count: chapters.length,
+    narrative_protocol_source_count: narrativeSources.length,
     total_windows: windows.length,
     semantic_windows_planned: plannedSemanticWindows,
     skipped_windows_planned: plannedSkippedWindows,
@@ -3738,7 +4192,7 @@ async function main() {
     return;
   }
 
-  const batchEntries = isBatchProvider(PROVIDER) ? buildSemanticBatchEntries({ windowPlans, contextPack, chapters, availableNarrativeContextMap }) : [];
+  const batchEntries = isBatchProvider(PROVIDER) ? buildSemanticBatchEntries({ windowPlans, contextPack, chapters, narrativeSources, availableNarrativeContextMap }) : [];
   if (isBatchProvider(PROVIDER) && batchMode !== "import") {
     const artifacts = writeBatchArtifacts(batchEntries);
     const summary = {
@@ -3802,7 +4256,7 @@ async function main() {
 
   for (const [windowIndex, windowPlan] of windowPlans.entries()) {
     const { window, semanticPlan } = windowPlan;
-    const contextCapsule = buildNarrativeContextCapsule({ contextPack, chapters, availableNarrativeContextMap, window });
+    const contextCapsule = buildNarrativeContextCapsule({ contextPack, chapters, narrativeSources, availableNarrativeContextMap, window });
     writeFileSync(
       join(paths.outDir, `context-capsule-selected-${String(windowIndex).padStart(5, "0")}.json`),
       JSON.stringify(contextCapsule, null, 2)

@@ -15,10 +15,29 @@ on:
         description: "Selected XML render paragraphs per semantic packet."
         required: false
         default: "1"
-      model:
-        description: "Gemini model. Use Flash unless quota/billing supports Pro."
+      provider:
+        description: "Semantic provider adapter."
         required: false
-        default: "gemini-2.5-flash"
+        default: "openai_batch"
+        type: choice
+        options:
+          - "openai_batch"
+          - "openai_sync"
+          - "anthropic_batch"
+          - "anthropic_sync"
+          - "gemini_sync"
+      model:
+        description: "Provider model name."
+        required: false
+        default: "gpt-4.1-mini"
+      full_run_confirm:
+        description: "Required true for full selected XML runs with no limits."
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
       apply_migration_first:
         description: "Apply selected XML meaning-span migration before running."
         required: false
@@ -40,6 +59,10 @@ jobs:
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
       SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF || vars.SUPABASE_PROJECT_REF }}
       GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      SEMANTIC_PROVIDER: ${{ inputs.provider }}
+      SEMANTIC_MODEL: ${{ inputs.model }}
       VERTEX_MODEL: ${{ inputs.model }}
       SELECTED_XML_MIGRATION_FILE: supabase/migrations/20260619004000_selected_xml_primary_meaning_span_ledger.sql
       SELECTED_XML_SCRIPT: scripts/semantic/xml-selected-meaning-span-rehash.mjs
@@ -77,8 +100,15 @@ jobs:
 
           test -n "$SUPABASE_ACCESS_TOKEN"
           test -n "$SUPABASE_PROJECT_REF"
-          test -n "$GOOGLE_API_KEY"
-          test -n "$VERTEX_MODEL"
+          test -n "$SEMANTIC_PROVIDER"
+          test -n "$SEMANTIC_MODEL"
+
+          case "$SEMANTIC_PROVIDER" in
+            openai_*) test -n "$OPENAI_API_KEY" ;;
+            anthropic_*) test -n "$ANTHROPIC_API_KEY" ;;
+            gemini_*) test -n "$GOOGLE_API_KEY"; test -n "$VERTEX_MODEL" ;;
+            *) echo "Unsupported provider: $SEMANTIC_PROVIDER"; exit 1 ;;
+          esac
 
           test -f "$SELECTED_XML_SCRIPT"
           test -f "$SELECTED_XML_MIGRATION_FILE"
@@ -86,7 +116,8 @@ jobs:
           node --check "$SELECTED_XML_SCRIPT"
 
           echo "project_ref=$SUPABASE_PROJECT_REF"
-          echo "model=$VERTEX_MODEL"
+          echo "provider=$SEMANTIC_PROVIDER"
+          echo "model=$SEMANTIC_MODEL"
           echo "script=$SELECTED_XML_SCRIPT"
           echo "migration=$SELECTED_XML_MIGRATION_FILE"
 
@@ -150,12 +181,19 @@ jobs:
         run: |
           set -euo pipefail
 
+          echo "provider=${{ inputs.provider }}"
           echo "limit_docs=${{ inputs.limit_docs }}"
           echo "limit=${{ inputs.limit }}"
           echo "batch_size=${{ inputs.batch_size }}"
           echo "model=${{ inputs.model }}"
+          echo "full_run_confirm=${{ inputs.full_run_confirm }}"
 
-          ARGS=(--write "--batch-size=${{ inputs.batch_size }}")
+          if [ -z "${{ inputs.limit_docs }}" ] && [ -z "${{ inputs.limit }}" ] && [ "${{ inputs.full_run_confirm }}" != "true" ]; then
+            echo "Refusing full run without full_run_confirm=true"
+            exit 1
+          fi
+
+          ARGS=(--write "--batch-size=${{ inputs.batch_size }}" "--provider=${{ inputs.provider }}")
 
           if [ -n "${{ inputs.limit_docs }}" ]; then
             ARGS+=("--limit-docs=${{ inputs.limit_docs }}")
@@ -164,6 +202,16 @@ jobs:
           if [ -n "${{ inputs.limit }}" ]; then
             ARGS+=("--limit=${{ inputs.limit }}")
           fi
+
+          if [ "${{ inputs.full_run_confirm }}" = "true" ]; then
+            ARGS+=("--full-run-confirm")
+          fi
+
+          case "${{ inputs.provider }}" in
+            openai_batch|anthropic_batch)
+              ARGS+=("--submit-batch")
+              ;;
+          esac
 
           printf 'args=%s\n' "${ARGS[*]}"
           echo "node $SELECTED_XML_SCRIPT ${ARGS[*]}"

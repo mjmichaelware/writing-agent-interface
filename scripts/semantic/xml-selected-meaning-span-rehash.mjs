@@ -2,7 +2,6 @@
 import { createHash } from "node:crypto";
 import { readFileSync, existsSync, readdirSync, statSync, mkdirSync, writeFileSync } from "node:fs";
 import { join, basename, dirname } from "node:path";
-import { execFileSync } from "node:child_process";
 
 const ROOT = process.cwd();
 const RUN_ID = new Date().toISOString().replace(/[-:.TZ]/g, "").slice(0, 14);
@@ -75,7 +74,7 @@ const CHAPTER_FILTER = chapterArg ? Number(chapterArg.split("=")[1]) : null;
 const BATCH_SIZE = batchArg ? Number(batchArg.split("=")[1]) : 8;
 const LIMIT_DOCS = limitDocsArg ? Number(limitDocsArg.split("=")[1]) : null;
 const SELECTED_TRUTH_OVERRIDE = selectedTruthArg ? selectedTruthArg.split("=").slice(1).join("=") : "";
-const PROVIDER = providerArg ? providerArg.split("=").slice(1).join("=") : (process.env.SEMANTIC_PROVIDER || "gemini_sync");
+const PROVIDER = providerArg ? providerArg.split("=").slice(1).join("=") : (process.env.SEMANTIC_PROVIDER || "ollama");
 const POLL_BATCH_ID = pollBatchArg ? pollBatchArg.split("=").slice(1).join("=") : "";
 const IMPORT_BATCH_RESULTS_PATH = importBatchResultsArg ? importBatchResultsArg.split("=").slice(1).join("=") : "";
 
@@ -152,14 +151,11 @@ function env(name, fallback = "") {
 
 const SUPABASE_ACCESS_TOKEN = env("SUPABASE_ACCESS_TOKEN", env("SUPABASE_MANAGEMENT_TOKEN", ""));
 const SUPABASE_PROJECT_REF = env("SUPABASE_PROJECT_REF", "yegricugzqbmoziycfnt");
-const VERTEX_PROJECT_ID = env("VERTEX_PROJECT_ID", env("GCP_PROJECT_ID", ""));
-const VERTEX_LOCATION = env("VERTEX_LOCATION", "us-central1");
-const VERTEX_MODEL = env("VERTEX_MODEL", "gemini-2.5-flash");
-const OPENAI_API_KEY = env("OPENAI_API_KEY", "");
-const ANTHROPIC_API_KEY = env("ANTHROPIC_API_KEY", "");
-const OPENAI_MODEL = env("OPENAI_MODEL", env("SEMANTIC_MODEL", "gpt-4.1-mini"));
-const ANTHROPIC_MODEL = env("ANTHROPIC_MODEL", env("SEMANTIC_MODEL", "claude-3-5-sonnet-20241022"));
-const PROVIDER_MODEL = PROVIDER.startsWith("openai") ? OPENAI_MODEL : PROVIDER.startsWith("anthropic") ? ANTHROPIC_MODEL : VERTEX_MODEL;
+const OLLAMA_BASE_URL = env("OLLAMA_BASE_URL", "http://localhost:11434");
+const OLLAMA_MODEL = env("OLLAMA_MODEL", env("SEMANTIC_MODEL", "llama3.2:1b"));
+const OLLAMA_CACHE_PATH = env("OLLAMA_CACHE_PATH", join(ROOT, "docs/forensics/audits/ollama-result-cache.json"));
+const OLLAMA_CONTEXT_CHARS = Number(process.env.OLLAMA_CONTEXT_CHARS || 2400);
+const PROVIDER_MODEL = OLLAMA_MODEL;
 
 function validateSources() {
   must(existsSync(paths.contextPack), `Missing context pack: ${paths.contextPack}`);
@@ -223,25 +219,12 @@ function normalizeManagementRows(json) {
 }
 
 
-function isGeminiQuotaError(error) {
-  const text = String(error?.message || error || "");
-  return /RESOURCE_EXHAUSTED|generate_content_free_tier_requests|quota exceeded|please retry in/i.test(text);
-}
-
-function isRetryableGeminiError(error) {
-  const text = String(error?.message || error || "");
-  if (isGeminiQuotaError(text)) return false;
-  return /(?:\b500\b|\b502\b|\b503\b|\b504\b|UNAVAILABLE|high demand|try again later|temporar|fetch failed|network|timeout|ECONNRESET|ETIMEDOUT)/i.test(text);
-}
-
 function isRetryableProviderError(error) {
-  if (PROVIDER === "gemini_sync") return isRetryableGeminiError(error);
   const text = String(error?.message || error || "");
-  return /(?:\b408\b|\b409\b|\b429\b|\b500\b|\b502\b|\b503\b|\b504\b|rate limit|overloaded|temporar|timeout|ECONNRESET|ETIMEDOUT|fetch failed|network)/i.test(text);
+  return /(?:\b408\b|\b409\b|\b429\b|\b500\b|\b502\b|\b503\b|\b504\b|rate limit|overloaded|temporar|timeout|ECONNRESET|ETIMEDOUT|fetch failed|network|ollama not running)/i.test(text);
 }
 
 function providerRetryDelayMs(attempt) {
-  if (PROVIDER === "gemini_sync") return geminiRetryDelayMs(attempt);
   const base = Number(process.env.PROVIDER_RETRY_BASE_MS || 5000);
   const max = Number(process.env.PROVIDER_RETRY_MAX_MS || 60000);
   const jitter = Math.floor(Math.random() * 1500);
@@ -264,45 +247,9 @@ async function jsonFetch(url, { method = "POST", headers = {}, body = null } = {
   return { res, rawText, json };
 }
 
-function geminiRetryDelayMs(attempt) {
-  const base = Number(process.env.GEMINI_RETRY_BASE_MS || 15000);
-  const max = Number(process.env.GEMINI_RETRY_MAX_MS || 180000);
-  const jitter = Math.floor(Math.random() * 3000);
-  return Math.min(max, base * Math.pow(2, Math.max(0, attempt - 1)) + jitter);
-}
 
 async function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-async function callVertex(prompt) {
-  const maxRetries = Number(process.env.GEMINI_MAX_RETRIES || 12);
-  let lastError = null;
-
-  for (let attempt = 0; attempt <= maxRetries; attempt++) {
-    try {
-      return await callVertexOnce(prompt);
-    } catch (error) {
-      lastError = error;
-
-      if (!isRetryableGeminiError(error) || attempt >= maxRetries) {
-        throw error;
-      }
-
-      const delay = geminiRetryDelayMs(attempt + 1);
-      console.warn(JSON.stringify({
-        event: "gemini_retry",
-        attempt: attempt + 1,
-        max_retries: maxRetries,
-        delay_ms: delay,
-        error: String(error?.message || error).slice(0, 1200),
-      }));
-
-      await sleep(delay);
-    }
-  }
-
-  throw lastError || new Error("Gemini retry loop failed without captured error");
 }
 
 
@@ -1156,14 +1103,6 @@ ${JSON.stringify(paragraphs.map((p) => ({
 `;
 }
 
-function getGcloudAccessToken() {
-  if (process.env.GCLOUD_ACCESS_TOKEN) return process.env.GCLOUD_ACCESS_TOKEN;
-  try {
-    return execFileSync("gcloud", ["auth", "application-default", "print-access-token"], { encoding: "utf8" }).trim();
-  } catch {
-    return "";
-  }
-}
 
 const TASK_ORDER = [
   "meaning_spans",
@@ -1181,7 +1120,7 @@ const FAIL_FAST_INITIAL_FAILED_TASKS = 20;
 const FAIL_FAST_CONSECUTIVE_FAILED_WINDOWS = 5;
 const FAIL_FAST_TASK_SAMPLE = 20;
 const FAIL_FAST_TASK_FAILURE_RATE = 0.5;
-const PROVIDER_CHOICES = new Set(["openai_batch", "openai_sync", "anthropic_batch", "anthropic_sync", "gemini_sync"]);
+const PROVIDER_CHOICES = new Set(["ollama"]);
 const BATCH_COMPLETION_WINDOW = env("SEMANTIC_BATCH_COMPLETION_WINDOW", "24h");
 
 must(PROVIDER_CHOICES.has(PROVIDER), `Unsupported provider: ${PROVIDER}`);
@@ -1191,7 +1130,7 @@ function isBatchProvider(provider = PROVIDER) {
 }
 
 function isSyncProvider(provider = PROVIDER) {
-  return provider.endsWith("_sync");
+  return provider === "ollama" || provider.endsWith("_sync");
 }
 
 function batchOperationMode() {
@@ -2103,13 +2042,46 @@ function buildSourcePacket(window) {
   };
 }
 
+function buildCompactNarrativeContext(contextCapsule) {
+  const parts = [];
+
+  if (contextCapsule.context_pack_excerpt) {
+    parts.push("NARRATIVE OVERVIEW:\n" + clip(contextCapsule.context_pack_excerpt, 500));
+  }
+
+  const topChapters = (contextCapsule.public_chapter_corpus || []).slice(0, 2);
+  if (topChapters.length) {
+    parts.push("RELEVANT CHAPTERS:\n" + topChapters
+      .map((ch) => `Ch.${ch.chapter_number}: ${clip(ch.excerpt, 220)}`)
+      .join("\n"));
+  }
+
+  const sources = (contextCapsule.narrative_protocol_sources || []).slice(0, 2);
+  if (sources.length) {
+    parts.push("NARRATIVE PROTOCOLS:\n" + sources
+      .map((s) => `[${s.role}]: ${clip(s.excerpt, 220)}`)
+      .join("\n"));
+  }
+
+  const subjects = (contextCapsule.subject_resolution_candidates || []).slice(0, 12);
+  if (subjects.length) {
+    parts.push("KNOWN SUBJECTS: " + subjects.map((s) => s.name).join(", "));
+  }
+
+  return clip(parts.join("\n\n"), OLLAMA_CONTEXT_CHARS);
+}
+
 function buildSemanticTaskPrompt({ task, window, contextCapsule }) {
+  const narrativeContext = PROVIDER === "ollama"
+    ? buildCompactNarrativeContext(contextCapsule)
+    : JSON.stringify(contextCapsule, null, 2);
+
   return [
     "You are a semantic analyst, not a JSON/DB row generator.",
     "Return only valid JSON matching the requested schema.",
     "No markdown. No explanation. No extra keys.",
     "Selected XML render paragraphs are source truth.",
-    "Narrative context capsule is interpretive context only, never source truth, but must be used for narrative consistency and subject resolution.",
+    "Narrative context is interpretive context only, never source truth.",
     "",
     `TASK: ${task}`,
     "",
@@ -2122,13 +2094,12 @@ function buildSemanticTaskPrompt({ task, window, contextCapsule }) {
     "- Empty observations are valid.",
     '- Valid empty response is: {"observations":[]}',
     "- Do not force a claim.",
-    "- Use the full narrative cognition capsule for consistency across the local corpus, but never treat context as source evidence.",
     "",
     "SOURCE PACKET:",
     JSON.stringify(buildSourcePacket(window), null, 2),
     "",
-    "NARRATIVE CONTEXT CAPSULE:",
-    JSON.stringify(contextCapsule, null, 2),
+    "NARRATIVE CONTEXT:",
+    narrativeContext,
     "",
     "OUTPUT CONTRACT:",
     JSON.stringify(taskResponseSchema(task), null, 2),
@@ -2203,10 +2174,10 @@ function parseJsonish(raw) {
   return { ok: false, error: "Unable to parse JSON payload." };
 }
 
-async function saveVertexBadJson(raw, phase, extra = {}) {
+async function saveBadAiJson(raw, phase, extra = {}) {
   const fs = await import("node:fs/promises");
   const path = await import("node:path");
-  const dir = path.join("docs", "forensics", "audits", "vertex-bad-json");
+  const dir = path.join("docs", "forensics", "audits", "ai-bad-json");
   await fs.mkdir(dir, { recursive: true });
 
   const hash = sha256Text(String(raw || "")).slice(0, 16);
@@ -2214,6 +2185,7 @@ async function saveVertexBadJson(raw, phase, extra = {}) {
 
   await fs.writeFile(file, JSON.stringify({
     phase,
+    provider: PROVIDER,
     model: PROVIDER_MODEL,
     raw,
     ...extra,
@@ -2222,172 +2194,91 @@ async function saveVertexBadJson(raw, phase, extra = {}) {
   return file;
 }
 
-function extractCandidateText(json) {
-  return json?.candidates?.[0]?.content?.parts?.map((part) => part.text || "").join("") || "";
+const ollamaResultCache = new Map();
+
+function loadOllamaResultCache() {
+  if (!existsSync(OLLAMA_CACHE_PATH)) return;
+  try {
+    const data = JSON.parse(readFileSync(OLLAMA_CACHE_PATH, "utf8"));
+    for (const [key, val] of Object.entries(data || {})) ollamaResultCache.set(key, val);
+    console.warn(JSON.stringify({ event: "ollama_cache_loaded", entries: ollamaResultCache.size, path: OLLAMA_CACHE_PATH }));
+  } catch {}
 }
 
-function buildGenerateContentBody({ prompt, schema, maxOutputTokens = 2048 }) {
-  return {
-    contents: [{ role: "user", parts: [{ text: prompt }] }],
-    generationConfig: {
-      temperature: 0,
-      maxOutputTokens,
-      responseMimeType: "application/json",
-      responseSchema: schema,
-    },
-  };
+function checkOllamaCache(key) {
+  return ollamaResultCache.get(key) ?? null;
 }
 
-function vertexSchemaToJsonSchema(schema) {
-  if (!schema || typeof schema !== "object") return {};
-  const wrapNullable = (value) => schema.nullable ? { anyOf: [value, { type: "null" }] } : value;
-  if (schema.type === "OBJECT") {
-    return wrapNullable({
-      type: "object",
-      properties: Object.fromEntries(Object.entries(schema.properties || {}).map(([key, value]) => [key, vertexSchemaToJsonSchema(value)])),
-      required: schema.required || [],
-      additionalProperties: false,
-    });
-  }
-  if (schema.type === "ARRAY") {
-    return wrapNullable({
-      type: "array",
-      items: vertexSchemaToJsonSchema(schema.items || {}),
-    });
-  }
-  if (schema.type === "NUMBER") return wrapNullable({ type: "number" });
-  if (schema.type === "INTEGER") return wrapNullable({ type: "integer" });
-  if (schema.type === "BOOLEAN") return wrapNullable({ type: "boolean" });
-  return wrapNullable({ type: "string" });
+function setOllamaCache(key, rawText) {
+  ollamaResultCache.set(key, rawText);
+  try {
+    mkdirSync(join(ROOT, "docs/forensics/audits"), { recursive: true });
+    writeFileSync(OLLAMA_CACHE_PATH, JSON.stringify(Object.fromEntries(ollamaResultCache), null, 2));
+  } catch {}
 }
 
-function extractOpenAiMessageText(json) {
-  const content = json?.choices?.[0]?.message?.content;
-  if (typeof content === "string") return content;
-  if (Array.isArray(content)) {
-    return content.map((item) => item?.text || item?.value || "").join("");
-  }
-  return "";
-}
-
-function extractAnthropicToolInput(json) {
-  const content = Array.isArray(json?.content) ? json.content : [];
-  const toolUse = content.find((item) => item?.type === "tool_use");
-  if (toolUse?.input && typeof toolUse.input === "object") return JSON.stringify(toolUse.input);
-  const textParts = content.filter((item) => item?.type === "text").map((item) => item.text || "");
-  return textParts.join("");
-}
-
-async function callGeminiSync(prompt, schema) {
-  const body = buildGenerateContentBody({ prompt, schema, maxOutputTokens: 2048 });
-
-  if (VERTEX_PROJECT_ID) {
-    const token = getGcloudAccessToken();
-    must(token, "Missing Vertex access token.");
-    const url = `https://${VERTEX_LOCATION}-aiplatform.googleapis.com/v1/projects/${VERTEX_PROJECT_ID}/locations/${VERTEX_LOCATION}/publishers/google/models/${VERTEX_MODEL}:generateContent`;
-    const { res, rawText } = await jsonFetch(url, {
+async function callOllamaSync(prompt) {
+  const url = `${OLLAMA_BASE_URL}/api/generate`;
+  const timeoutMs = Number(process.env.OLLAMA_TIMEOUT_MS || 600000);
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+  let res;
+  try {
+    res = await fetch(url, {
       method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: OLLAMA_MODEL,
+        prompt,
+        format: "json",
+        stream: false,
+        options: { temperature: 0 },
+      }),
+      signal: controller.signal,
     });
-    if (!res.ok) throw new Error(`Vertex error: ${rawText}`);
-    const outer = JSON.parse(rawText);
-    return extractCandidateText(outer);
+  } catch (err) {
+    const isTimeout = err.name === "AbortError";
+    throw new Error(
+      isTimeout
+        ? `ollama not running at ${OLLAMA_BASE_URL}: request timed out after ${timeoutMs}ms`
+        : `ollama not running at ${OLLAMA_BASE_URL}: ${err.message}`
+    );
+  } finally {
+    clearTimeout(timeoutId);
   }
-
-  const key = env("GOOGLE_API_KEY", env("GEMINI_API_KEY", ""));
-  must(key, "Missing GOOGLE_API_KEY or Vertex configuration.");
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${VERTEX_MODEL}:generateContent?key=${key}`;
-  const { res, rawText } = await jsonFetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  });
-  if (!res.ok) throw new Error(`Gemini API error: ${rawText}`);
-  const outer = JSON.parse(rawText);
-  return extractCandidateText(outer);
-}
-
-async function callOpenAiSync(prompt, schema) {
-  must(OPENAI_API_KEY, "Missing OPENAI_API_KEY.");
-  const body = {
-    model: PROVIDER_MODEL,
-    temperature: 0,
-    messages: [
-      { role: "user", content: prompt },
-    ],
-    response_format: {
-      type: "json_schema",
-      json_schema: {
-        name: "semantic_observations",
-        strict: true,
-        schema: vertexSchemaToJsonSchema(schema),
-      },
-    },
-  };
-  const { res, rawText, json } = await jsonFetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${OPENAI_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
-  if (!res.ok) throw new Error(`OpenAI API error: ${rawText}`);
-  return extractOpenAiMessageText(json || {});
-}
-
-async function callAnthropicSync(prompt, schema) {
-  must(ANTHROPIC_API_KEY, "Missing ANTHROPIC_API_KEY.");
-  const body = {
-    model: PROVIDER_MODEL,
-    max_tokens: 2048,
-    temperature: 0,
-    messages: [
-      { role: "user", content: prompt },
-    ],
-    tools: [{
-      name: "semantic_observations",
-      description: "Return bounded semantic observations as strict JSON.",
-      input_schema: vertexSchemaToJsonSchema(schema),
-    }],
-    tool_choice: {
-      type: "tool",
-      name: "semantic_observations",
-    },
-  };
-  const { res, rawText, json } = await jsonFetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: {
-      "x-api-key": ANTHROPIC_API_KEY,
-      "anthropic-version": "2023-06-01",
-      "content-type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
-  if (!res.ok) throw new Error(`Anthropic API error: ${rawText}`);
-  return extractAnthropicToolInput(json || {});
+  const rawText = await res.text();
+  if (!res.ok) throw new Error(`ollama error (${res.status}): ${rawText.slice(0, 800)}`);
+  let json;
+  try {
+    json = JSON.parse(rawText);
+  } catch {
+    throw new Error(`ollama returned non-JSON response: ${rawText.slice(0, 400)}`);
+  }
+  return json.response || "";
 }
 
 async function callSemanticProviderSync({ task, prompt, schema }) {
-  const maxRetries = Number(process.env.GEMINI_MAX_RETRIES || 5);
+  const cacheKey = sha256Text(`ollama:${OLLAMA_MODEL}:${prompt}`);
+  const cached = checkOllamaCache(cacheKey);
+  if (cached !== null) {
+    console.warn(JSON.stringify({ event: "ollama_cache_hit", task, key: cacheKey.slice(0, 16) }));
+    return cached;
+  }
+
+  const maxRetries = Number(process.env.PROVIDER_RETRY_MAX || 5);
   let lastError = null;
 
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
     try {
-      if (PROVIDER === "gemini_sync") return await callGeminiSync(prompt, schema);
-      if (PROVIDER === "openai_sync") return await callOpenAiSync(prompt, schema);
-      if (PROVIDER === "anthropic_sync") return await callAnthropicSync(prompt, schema);
-      throw new Error(`Provider ${PROVIDER} does not support synchronous semantic calls.`);
+      const result = await callOllamaSync(prompt);
+      setOllamaCache(cacheKey, result);
+      return result;
     } catch (error) {
       lastError = error;
       if (!isRetryableProviderError(error) || attempt >= maxRetries) throw error;
       const delay = providerRetryDelayMs(attempt + 1);
       console.warn(JSON.stringify({
-        event: PROVIDER === "gemini_sync" ? "gemini_retry" : "provider_retry",
+        event: "provider_retry",
         provider: PROVIDER,
         task,
         attempt: attempt + 1,
@@ -2399,7 +2290,7 @@ async function callSemanticProviderSync({ task, prompt, schema }) {
     }
   }
 
-  throw lastError || new Error("Provider retry loop failed without captured error");
+  throw lastError || new Error("ollama retry loop failed without captured error");
 }
 
 function batchRequestsFileExtension(provider = PROVIDER) {
@@ -2429,236 +2320,20 @@ function buildBatchManifestEntry({ customId, task, window, contextCapsule, promp
   };
 }
 
-function buildOpenAiBatchRequest(entry) {
-  return {
-    custom_id: entry.custom_id,
-    method: "POST",
-    url: "/v1/chat/completions",
-    body: {
-      model: PROVIDER_MODEL,
-      temperature: 0,
-      messages: [
-        { role: "user", content: entry.prompt },
-      ],
-      response_format: {
-        type: "json_schema",
-        json_schema: {
-          name: "semantic_observations",
-          strict: true,
-          schema: vertexSchemaToJsonSchema(entry.schema),
-        },
-      },
-    },
-  };
+function writeBatchArtifacts(_entries) {
+  throw new Error("Batch mode is not supported. Use the ollama provider for synchronous processing.");
 }
 
-function buildAnthropicBatchRequest(entry) {
-  return {
-    custom_id: entry.custom_id,
-    params: {
-      model: PROVIDER_MODEL,
-      max_tokens: 2048,
-      temperature: 0,
-      messages: [
-        { role: "user", content: entry.prompt },
-      ],
-      tools: [{
-        name: "semantic_observations",
-        description: "Return bounded semantic observations as strict JSON.",
-        input_schema: vertexSchemaToJsonSchema(entry.schema),
-      }],
-      tool_choice: {
-        type: "tool",
-        name: "semantic_observations",
-      },
-    },
-  };
+async function submitPreparedBatch(_artifacts) {
+  throw new Error("Batch mode is not supported. Use the ollama provider for synchronous processing.");
 }
 
-function writeBatchArtifacts(entries) {
-  const batchDir = join(paths.outDir, "batch");
-  mkdirSync(batchDir, { recursive: true });
-  const manifestPath = join(batchDir, `batch-manifest-${batchProviderOutputPrefix()}.json`);
-  const requestsPath = join(batchDir, `batch-requests-${batchProviderOutputPrefix()}.${batchRequestsFileExtension()}`);
-  const requestPayloads = PROVIDER === "anthropic_batch"
-    ? { requests: entries.map(buildAnthropicBatchRequest) }
-    : entries.map(buildOpenAiBatchRequest);
-
-  writeFileSync(manifestPath, JSON.stringify({
-    provider: PROVIDER,
-    model: PROVIDER_MODEL,
-    entries,
-  }, null, 2));
-
-  if (PROVIDER === "anthropic_batch") {
-    writeFileSync(requestsPath, JSON.stringify(requestPayloads, null, 2));
-  } else {
-    writeFileSync(requestsPath, requestPayloads.map((line) => JSON.stringify(line)).join("\n") + (requestPayloads.length ? "\n" : ""));
-  }
-
-  return { batchDir, manifestPath, requestsPath, requestPayloads };
+async function pollProviderBatch(_batchId) {
+  throw new Error("Batch polling is not supported. Use the ollama provider for synchronous processing.");
 }
 
-async function submitPreparedBatch(artifacts) {
-  if (PROVIDER === "openai_batch") {
-    must(OPENAI_API_KEY, "Missing OPENAI_API_KEY.");
-    const form = new FormData();
-    form.append("purpose", "batch");
-    form.append("file", new Blob([readText(artifacts.requestsPath)], { type: "application/jsonl" }), basename(artifacts.requestsPath));
-    const uploaded = await fetch("https://api.openai.com/v1/files", {
-      method: "POST",
-      headers: { Authorization: `Bearer ${OPENAI_API_KEY}` },
-      body: form,
-    });
-    const uploadText = await uploaded.text();
-    if (!uploaded.ok) throw new Error(`OpenAI batch file upload failed: ${uploadText}`);
-    const uploadJson = JSON.parse(uploadText);
-    const { rawText } = await jsonFetch("https://api.openai.com/v1/batches", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${OPENAI_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        input_file_id: uploadJson.id,
-        endpoint: "/v1/chat/completions",
-        completion_window: BATCH_COMPLETION_WINDOW,
-      }),
-    });
-    const batchJson = JSON.parse(rawText);
-    writeFileSync(join(artifacts.batchDir, `batch-submit-${batchJson.id}.json`), JSON.stringify(batchJson, null, 2));
-    return batchJson;
-  }
-
-  if (PROVIDER === "anthropic_batch") {
-    must(ANTHROPIC_API_KEY, "Missing ANTHROPIC_API_KEY.");
-    const { rawText } = await jsonFetch("https://api.anthropic.com/v1/messages/batches", {
-      method: "POST",
-      headers: {
-        "x-api-key": ANTHROPIC_API_KEY,
-        "anthropic-version": "2023-06-01",
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(artifacts.requestPayloads),
-    });
-    const batchJson = JSON.parse(rawText);
-    writeFileSync(join(artifacts.batchDir, `batch-submit-${batchJson.id}.json`), JSON.stringify(batchJson, null, 2));
-    return batchJson;
-  }
-
-  throw new Error(`Provider ${PROVIDER} does not support batch submission.`);
-}
-
-async function pollProviderBatch(batchId) {
-  if (PROVIDER === "openai_batch") {
-    must(OPENAI_API_KEY, "Missing OPENAI_API_KEY.");
-    const { rawText, json } = await jsonFetch(`https://api.openai.com/v1/batches/${batchId}`, {
-      method: "GET",
-      headers: { Authorization: `Bearer ${OPENAI_API_KEY}` },
-    });
-    const batch = json || JSON.parse(rawText);
-    if (batch.output_file_id) {
-      const fileRes = await fetch(`https://api.openai.com/v1/files/${batch.output_file_id}/content`, {
-        headers: { Authorization: `Bearer ${OPENAI_API_KEY}` },
-      });
-      const outputText = await fileRes.text();
-      if (fileRes.ok) {
-        const batchDir = join(paths.outDir, "batch");
-        const outputPath = join(batchDir, `batch-output-${batchId}.jsonl`);
-        mkdirSync(batchDir, { recursive: true });
-        writeFileSync(outputPath, outputText);
-        writeFileSync(join(batchDir, `batch-manifest-${batchProviderOutputPrefix()}.json`), JSON.stringify({
-          provider: PROVIDER,
-          model: PROVIDER_MODEL,
-          batch_id: batchId,
-          output_file_id: batch.output_file_id,
-          inferred_from_poll: true,
-          entries: [],
-        }, null, 2));
-        batch.output_path = outputPath;
-      }
-    }
-    return batch;
-  }
-
-  if (PROVIDER === "anthropic_batch") {
-    must(ANTHROPIC_API_KEY, "Missing ANTHROPIC_API_KEY.");
-    const { rawText, json } = await jsonFetch(`https://api.anthropic.com/v1/messages/batches/${batchId}`, {
-      method: "GET",
-      headers: {
-        "x-api-key": ANTHROPIC_API_KEY,
-        "anthropic-version": "2023-06-01",
-      },
-    });
-    const batch = json || JSON.parse(rawText);
-    try {
-      const resultRes = await fetch(`https://api.anthropic.com/v1/messages/batches/${batchId}/results`, {
-        headers: {
-          "x-api-key": ANTHROPIC_API_KEY,
-          "anthropic-version": "2023-06-01",
-        },
-      });
-      const resultText = await resultRes.text();
-      if (resultRes.ok && resultText.trim()) {
-        const batchDir = join(paths.outDir, "batch");
-        const outputPath = join(batchDir, `batch-output-${batchId}.jsonl`);
-        mkdirSync(batchDir, { recursive: true });
-        writeFileSync(outputPath, resultText);
-        writeFileSync(join(batchDir, `batch-manifest-${batchProviderOutputPrefix()}.json`), JSON.stringify({
-          provider: PROVIDER,
-          model: PROVIDER_MODEL,
-          batch_id: batchId,
-          inferred_from_poll: true,
-          entries: [],
-        }, null, 2));
-        batch.output_path = outputPath;
-      }
-    } catch {}
-    return batch;
-  }
-
-  throw new Error(`Provider ${PROVIDER} does not support batch polling.`);
-}
-
-function loadBatchManifestFromResultsPath(resultsPath) {
-  const resultFile = resultsPath.startsWith("/") ? resultsPath : join(ROOT, resultsPath);
-  const manifestPath = join(dirname(resultFile), `batch-manifest-${batchProviderOutputPrefix()}.json`);
-  return {
-    resultFile,
-    manifestPath,
-    manifest: existsSync(manifestPath)
-      ? JSON.parse(readText(manifestPath))
-      : {
-          provider: PROVIDER,
-          model: PROVIDER_MODEL,
-          entries: [],
-          inferred_from_results_path: true,
-        },
-  };
-}
-
-function parseImportedBatchResults(resultsPath) {
-  const { resultFile, manifestPath, manifest } = loadBatchManifestFromResultsPath(resultsPath);
-  const lines = readText(resultFile).split(/\n+/).filter(Boolean);
-  const outputs = new Map();
-
-  for (const line of lines) {
-    const record = JSON.parse(line);
-    if (PROVIDER === "openai_batch") {
-      const customId = record.custom_id;
-      const body = record.response?.body || {};
-      const rawText = extractOpenAiMessageText(body);
-      outputs.set(customId, { ok: Boolean(rawText), rawText, error: record.error || null });
-      continue;
-    }
-
-    const customId = record.custom_id || record.request?.custom_id;
-    const result = record.result || {};
-    const rawText = result.type === "succeeded" ? extractAnthropicToolInput(result.message || {}) : "";
-    outputs.set(customId, { ok: Boolean(rawText), rawText, error: result.error || record.error || null });
-  }
-
-  return { manifest, manifestPath, resultFile, outputs };
+function parseImportedBatchResults(_resultsPath) {
+  throw new Error("Batch import is not supported. Use the ollama provider for synchronous processing.");
 }
 
 
@@ -2977,7 +2652,7 @@ async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt,
 
   if (!parsed.ok) {
     if (!allowRepair || !isSyncProvider(PROVIDER)) {
-      const badPath = await saveVertexBadJson(rawText, "initial-parse-failed", { task, scene_window_id: window.scene_window_id, provider: PROVIDER });
+      const badPath = await saveBadAiJson(rawText, "initial-parse-failed", { task, scene_window_id: window.scene_window_id, provider: PROVIDER });
       return buildTaskPacket({
         task,
         window,
@@ -2995,7 +2670,7 @@ async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt,
       });
     }
 
-    const badPath = await saveVertexBadJson(rawText, "initial-parse-failed", { task, scene_window_id: window.scene_window_id, provider: PROVIDER });
+    const badPath = await saveBadAiJson(rawText, "initial-parse-failed", { task, scene_window_id: window.scene_window_id, provider: PROVIDER });
     rawText = await repairStructuredTaskOutput({ task, rawText, schema, validationErrors: [parsed.error, `bad_json_path=${badPath}`] });
   } else {
     const validated = normalizeTaskPayload(task, parsed.value, window, contextCapsule);
@@ -3204,7 +2879,7 @@ async function runSemanticTaskPacket({ task, window, contextCapsule, noAi, allow
       });
     }
 
-    await saveVertexBadJson("", "task-failed", { task, scene_window_id: window.scene_window_id, error: failureReason, provider: PROVIDER });
+    await saveBadAiJson("", "task-failed", { task, scene_window_id: window.scene_window_id, error: failureReason, provider: PROVIDER });
     return buildTaskPacket({
       task,
       window,
@@ -3621,206 +3296,6 @@ async function failFastRun({ semanticRun, pathsOutDir, summary }) {
   throw new Error(`Fail-fast: ${summary.reason}`);
 }
 
-async function callVertexOnce(prompt) {
-  const stripFence = (raw) => String(raw || "")
-    .trim()
-    .replace(/^\s*```(?:json)?\s*/i, "")
-    .replace(/\s*```\s*$/i, "")
-    .trim();
-
-  const balancedSlice = (raw) => {
-    const text = stripFence(raw);
-    const obj = text.indexOf("{");
-    const arr = text.indexOf("[");
-    const starts = [obj, arr].filter((x) => x >= 0);
-    if (!starts.length) return text;
-
-    const start = Math.min(...starts);
-    const open = text[start];
-    const close = open === "{" ? "}" : "]";
-    let depth = 0;
-    let inString = false;
-    let escaped = false;
-
-    for (let i = start; i < text.length; i++) {
-      const ch = text[i];
-
-      if (escaped) {
-        escaped = false;
-        continue;
-      }
-
-      if (ch === "\\") {
-        escaped = true;
-        continue;
-      }
-
-      if (ch === '"') {
-        inString = !inString;
-        continue;
-      }
-
-      if (inString) continue;
-
-      if (ch === open) depth++;
-      if (ch === close) depth--;
-
-      if (depth === 0) return text.slice(start, i + 1);
-    }
-
-    return text.slice(start);
-  };
-
-  const cleanJson = (raw) => balancedSlice(raw)
-    .replace(/,\s*([}\]])/g, "$1")
-    .replace(/([{,]\s*)([A-Za-z_][A-Za-z0-9_]*)(\s*:)/g, '$1"$2"$3');
-
-  const parseModelJson = (raw) => {
-    const attempts = [
-      String(raw || ""),
-      stripFence(raw),
-      balancedSlice(raw),
-      cleanJson(raw),
-    ];
-
-    for (const attempt of attempts) {
-      try {
-        return JSON.parse(attempt);
-      } catch {}
-    }
-
-    return null;
-  };
-
-  const saveBadJson = async (raw, phase) => {
-    const fs = await import("node:fs/promises");
-    const path = await import("node:path");
-    const crypto = await import("node:crypto");
-
-    const dir = path.join("docs", "forensics", "audits", "vertex-bad-json");
-    await fs.mkdir(dir, { recursive: true });
-
-    const hash = crypto.createHash("sha256").update(String(raw || "")).digest("hex").slice(0, 16);
-    const file = path.join(dir, `${new Date().toISOString().replace(/[:.]/g, "-")}-${phase}-${hash}.json`);
-
-    await fs.writeFile(file, JSON.stringify({
-      phase,
-      model: PROVIDER_MODEL,
-      raw,
-    }, null, 2), "utf-8");
-
-    return file;
-  };
-
-  const extractCandidateText = (json) =>
-    json?.candidates?.[0]?.content?.parts?.map((part) => part.text || "").join("") || "";
-
-  const repairWithVertex = async (raw) => {
-    const repairPrompt = [
-      "Return ONLY valid JSON.",
-      "Repair this malformed JSON output.",
-      "Do not add commentary.",
-      "Do not invent missing evidence.",
-      "If an item is truncated, omit that item.",
-      "",
-      "Malformed JSON:",
-      String(raw || "").slice(0, 24000),
-    ].join("\n");
-
-    const body = {
-      contents: [{ role: "user", parts: [{ text: repairPrompt }] }],
-      generationConfig: {
-        temperature: 0,
-        maxOutputTokens: 8192,
-        responseMimeType: "application/json",
-      },
-    };
-
-    const token = await getGcloudAccessToken();
-    const url = `https://${VERTEX_LOCATION}-aiplatform.googleapis.com/v1/projects/${VERTEX_PROJECT_ID}/locations/${VERTEX_LOCATION}/publishers/google/models/${VERTEX_MODEL}:generateContent`;
-
-    const res = await fetch(url, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
-
-    const text = await res.text();
-    if (!res.ok) throw new Error(`Vertex repair error: ${text}`);
-
-    const outer = JSON.parse(text);
-    const repairedText = extractCandidateText(outer);
-    const repaired = parseModelJson(repairedText);
-
-    if (!repaired) {
-      const badPath = await saveBadJson(repairedText, "repair-failed");
-      throw new Error(`Vertex JSON repair failed. Saved raw repair output: ${badPath}`);
-    }
-
-    return repaired;
-  };
-
-  const body = {
-    contents: [{ role: "user", parts: [{ text: prompt }] }],
-    generationConfig: {
-      temperature: 0.1,
-      maxOutputTokens: 8192,
-      responseMimeType: "application/json",
-    },
-  };
-
-  if (VERTEX_PROJECT_ID) {
-    const token = await getGcloudAccessToken();
-    const url = `https://${VERTEX_LOCATION}-aiplatform.googleapis.com/v1/projects/${VERTEX_PROJECT_ID}/locations/${VERTEX_LOCATION}/publishers/google/models/${VERTEX_MODEL}:generateContent`;
-
-    const res = await fetch(url, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
-
-    const text = await res.text();
-    if (!res.ok) throw new Error(`Vertex error: ${text}`);
-
-    const json = JSON.parse(text);
-    const candidateText = extractCandidateText(json);
-    const parsed = parseModelJson(candidateText);
-
-    if (parsed) return parsed;
-
-    const badPath = await saveBadJson(candidateText, "initial-parse-failed");
-    console.error(`Vertex returned malformed JSON. Saved raw output: ${badPath}`);
-    console.error("Retrying once with Vertex JSON repair.");
-    return repairWithVertex(candidateText);
-  }
-
-  const key = env("GOOGLE_API_KEY", env("GEMINI_API_KEY", ""));
-  must(key, "Missing GOOGLE_API_KEY or Vertex configuration.");
-
-  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${VERTEX_MODEL}:generateContent?key=${key}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  });
-
-  const text = await res.text();
-  if (!res.ok) throw new Error(`Gemini API error: ${text}`);
-
-  const json = JSON.parse(text);
-  const candidateText = extractCandidateText(json);
-  const parsed = parseModelJson(candidateText);
-
-  if (parsed) return parsed;
-
-  const badPath = await saveBadJson(candidateText, "initial-parse-failed");
-  throw new Error(`Gemini returned malformed JSON. Saved raw output: ${badPath}`);
-}
 
 async function registerXmlSources(manifest) {
   const docs = new Map();
@@ -4685,6 +4160,8 @@ async function main() {
   if (importedBatch?.manifest?.provider && importedBatch.manifest.provider !== PROVIDER) {
     throw new Error(`Imported batch manifest provider mismatch: expected ${PROVIDER}, got ${importedBatch.manifest.provider}`);
   }
+
+  loadOllamaResultCache();
 
   const semanticRun = await createSemanticRun(sourceSummary);
 

@@ -95,3 +95,9 @@ secrets/
 data/source_archive/
 
 .termux-fix-tmp/
+
+# Local audit/runtime scratch artifacts; never commit
+.audit_tmp/
+
+# Local Codex worktrees; never commit nested worktree contents
+.codex/worktrees/

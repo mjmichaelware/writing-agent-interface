@@ -1,0 +1,64 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_50f43a4f49283b5ac754a537b50fd8c0",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "5b3c19b4588b2838c3b0b2430e8ae0c903b48265fa8a205034165c22bf70557e",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The ragged, rough, and uneven sound of a man trying to outrun his own breath in sleep parallels the recurring motif of breath as a symbol of life, struggle, and internal conflict throughout the narrative.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_70866e2cf2a744adf51c4da79971ff91",
+          "quote": "From within: the low, ragged sound of a man trying to outrun his own breath in sleep. Rough and uneven. Unconscious of itself."
+        }
+      ],
+      "target_hint": "The motif of breath as a symbol of life and struggle appears repeatedly in the narrative, such as Dan struggling to pay gravity's toll with every breath and the breath of God as a source of innate righteousness.",
+      "target_evidence": [
+        {
+          "render_para_key": "2f49c451b048e73249daec5c732eff040a81f7310b547eb6a36177a08723deda",
+          "quote": "The air clung to the boy; he was constantly struggling to pay the gravity's own toll with every breath."
+        },
+        {
+          "render_para_key": "new_synopsis",
+          "quote": "her innate righteousness, a part of her from the breath of God, cannot be consumed by it."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The ragged, rough, and uneven sound of a man trying to outrun his own breath in sleep parallels the recurring motif of breath as a symbol of life, struggle, and internal conflict throughout the narrative.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_70866e2cf2a744adf51c4da79971ff91",
+          "render_index": 15,
+          "quote": "From within: the low, ragged sound of a man trying to outrun his own breath in sleep. Rough and uneven. Unconscious of itself.",
+          "role": "source",
+          "start_char": 5004,
+          "end_char": 5130,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_50f43a4f49283b5ac754a537b50fd8c0",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            29
+          ],
+          "evidence_sha256": "192b790ed17a8664d25d281511e0866219e2b10820c234c6bb2eb43a45439952"
+        }
+      ],
+      "target_hint": "The motif of breath as a symbol of life and struggle appears repeatedly in the narrative, such as Dan struggling to pay gravity's toll with every breath and the breath of God as a source of innate rig",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "320853f2d6558be7caf6c4775bab4fcf4efc5376c2223e64ae0c5ec4eb8fc817",
+  "normalized_output_hash": "a717b3dc4c620eefec3136abb2b74b991111335a1a14b45e94134092d9518fa9"
+}

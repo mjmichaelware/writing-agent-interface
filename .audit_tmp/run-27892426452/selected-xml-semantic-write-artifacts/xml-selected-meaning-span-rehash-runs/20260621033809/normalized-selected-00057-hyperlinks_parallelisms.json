@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_34a9af2e92b83a200362ab196c0ecde0",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "19fc8294d99704eeb6db2b50414502ec066770dd9a9cb18d72a0c40af2465461",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The voice emanating from within Dan's own skull parallels the motif of internal struggle and the merging of self and external forces, reflecting the theme of internal war and the fragmenting of identity.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_68dc4b047e66214a3525a7af78864726",
+          "quote": "The voice did not come from the mouth. It came from the depths of Dan's own skull—a resonant hum that shook his teeth and set the floor of his mind ringing."
+        }
+      ],
+      "target_hint": "This internal voice echoes the broader narrative motif of Dan's internal war between flesh and spirit, as well as the archetypal conflict between his fragmented self and the divine source.",
+      "target_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The voice emanating from within Dan's own skull parallels the motif of internal struggle and the merging of self and external forces, reflecting the theme of internal war and the fragmenting of identity.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_68dc4b047e66214a3525a7af78864726",
+          "render_index": 58,
+          "quote": "The voice did not come from the mouth. It came from the depths of Dan's own skull—a resonant hum that shook his teeth and set the floor of his mind ringing.",
+          "role": "source",
+          "start_char": 14574,
+          "end_char": 14730,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_34a9af2e92b83a200362ab196c0ecde0",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            115
+          ],
+          "evidence_sha256": "1ec5799702a8547d13340dfe43130194ae814a9d298bf9eeb052a2e44ac140e9"
+        }
+      ],
+      "target_hint": "This internal voice echoes the broader narrative motif of Dan's internal war between flesh and spirit, as well as the archetypal conflict between his fragmented self and the divine source.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "dd1cb1a6ea866104318640f7d0f0d7c1a6fbc173b33c2f46b7574e363d651f10",
+  "normalized_output_hash": "4f7a9ecf0de92d2940a3ee91acc4f157635b3bf6ca807dfaa1e170bf41f4ba17"
+}

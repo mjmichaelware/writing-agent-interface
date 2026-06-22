@@ -1,0 +1,5 @@
+./docs/agent_context/source_drop/hasher_context_v1/04_new_synopsis_the_weight_of_the_sky.txt
+/sdcard/Documents/WeightOfTheSky_Project/00_LORE_VAULT/New_Synopsis-_The_Weight_of_the_Sky.txt
+/sdcard/Download/Weight_Singularity_Build (1)/WeightOfTheSky_Project/00_LORE_VAULT/New_Synopsis-_The_Weight_of_the_Sky.txt
+/storage/emulated/0/Documents/WeightOfTheSky_Project/00_LORE_VAULT/New_Synopsis-_The_Weight_of_the_Sky.txt
+/storage/emulated/0/Download/Weight_Singularity_Build (1)/WeightOfTheSky_Project/00_LORE_VAULT/New_Synopsis-_The_Weight_of_the_Sky.txt

@@ -1,0 +1,44 @@
+{
+  "paragraphs": [
+    {
+      "paragraph_id": "014e583c-68a1-417f-84f0-64f4fe268ebb",
+      "content_sha256": "ca3fe4dbb0aeaa637228d9b613fb9cb3b302a6a6b4e606ddf0178435f880ddea",
+      "archetypal_weights": {
+        "shadow": 0,
+        "self": 0.1
+      },
+      "dualism_map": {
+        "ascent_descent": 0
+      },
+      "metadata": {
+        "summary": "An unseen, feline presence is described at the threshold of Dan's room, characterized by a low, steady purr, foreshadowing the narrator's identity as the Cat God.",
+        "semantic_notes": [
+          "This paragraph uses sensory language ('shift in the air', 'vibrating hum', 'low, steady purr') to introduce the Cat Narrator, Sak, in his role as the 'Deity of Curiosity' and 'Silent Watcher' as defined in the narrative context pack."
+        ]
+      },
+      "archetype_observations": [
+        {
+          "archetype": "Observer/Witness",
+          "subject_name": "Sak (The Cat Narrator)",
+          "movement_stage": "Introduction/Foreshadowing",
+          "evidence_text": "a presence at the threshold of his small room, a soft, vibrating hum that was not quite a sound. It was a low, steady purr, waiting for the day to begin.",
+          "interpretation": "This paragraph introduces the narrator's presence in the scene, not as a character, but as an observing consciousness. The 'low, steady purr' is a direct reference to the 'feline observer' language mandated by the context pack (Source 106), identifying this presence as the Cat God/Deity of Curiosity, Sak. The act of 'waiting' establishes its role as a patient witness to the narrative's unfolding.",
+          "confidence": 0.95
+        }
+      ],
+      "biblical_references": [],
+      "derived_hyperlinks": [
+        {
+          "theme_node_a": "Sak (The Cat Narrator)",
+          "theme_node_b": "Curiosity",
+          "connection_type": "is an embodiment of",
+          "edge_type": "archetype",
+          "confidence": 0.9,
+          "evidence_text": "It was a low, steady purr, waiting for the day to begin."
+        }
+      ]
+    }
+  ],
+  "dualism_relations": [],
+  "archetype_movements": []
+}

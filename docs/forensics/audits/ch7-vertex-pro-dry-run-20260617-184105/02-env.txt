@@ -1,0 +1,6 @@
+SUPABASE_ACCESS_TOKEN=<set>
+SUPABASE_PROJECT_REF=yegricugzqbmoziycfnt
+VERTEX_PROJECT_ID=ai-job-agent-498702
+VERTEX_LOCATION=us-central1
+VERTEX_MODEL=gemini-2.5-pro
+ADC_OK

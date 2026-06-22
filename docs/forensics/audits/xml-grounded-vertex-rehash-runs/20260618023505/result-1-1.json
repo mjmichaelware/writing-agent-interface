@@ -1,0 +1,27 @@
+{
+  "paragraphs": [
+    {
+      "paragraph_id": "008611dd-bcc9-4abe-ae67-bef5c62e014b",
+      "content_sha256": "0a24fdbdbf3d9b9a0f65766b618abeada34ceffb3c7e887cfc1b9e7f4cc399cd",
+      "archetypal_weights": {
+        "shadow": 0,
+        "self": 0
+      },
+      "dualism_map": {
+        "ascent_descent": 0
+      },
+      "metadata": {
+        "summary": "A meta-text checklist of questions regarding the manuscript's marketability, including genre, audience, comparable titles, commercial appeal, and literary quality.",
+        "semantic_notes": [
+          "This paragraph is not part of the narrative prose. It is an editorial or authorial checklist related to publishing and market positioning.",
+          "The content aligns with themes found in the XML evidence, specifically the document detailing 'Publishing Industry Standards & Master AI Prompt' (Protocol 16.0), which covers topics like market positioning, comp titles, and genre."
+        ]
+      },
+      "archetype_observations": [],
+      "biblical_references": [],
+      "derived_hyperlinks": []
+    }
+  ],
+  "dualism_relations": [],
+  "archetype_movements": []
+}

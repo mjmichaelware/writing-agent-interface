@@ -1,0 +1,101 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_8121a9dd1e4b75dd40189f0c529d9200",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "5719d3870f63051eabf771c02945ae37fdcd63450f73c6d70d26a859f8827f4b",
+  "observations": [
+    {
+      "kind": "emotional_detail",
+      "summary": "The warmth of the coins from Dan's father's body heat is a small but significant sensory detail that nearly overwhelms Dan emotionally.",
+      "evidence": [
+        {
+          "render_para_key": "rp_4c926d7cbaa43448f094543103a7d547",
+          "quote": "They were warm from his father's body heat, and that small detail nearly undid him."
+        }
+      ],
+      "thematic_weight": 0.7,
+      "gravity": 0.6,
+      "tension": 0.8,
+      "confidence": 0.95,
+      "notes": "This detail emphasizes the lingering connection between Dan and his father despite their separation."
+    },
+    {
+      "kind": "internal_conflict",
+      "summary": "Dan experiences a strong desire to bridge the emotional gap with his father, seeking words to transform a bitter severing into a blessing.",
+      "evidence": [
+        {
+          "render_para_key": "rp_4c926d7cbaa43448f094543103a7d547",
+          "quote": "He wanted to say something—wanted to bridge the gap, to find words that would make this okay, that would turn this bitter severing into something that felt more like a blessing."
+        }
+      ],
+      "thematic_weight": 0.9,
+      "gravity": 0.85,
+      "tension": 0.9,
+      "confidence": 0.98,
+      "notes": "This reflects Dan's struggle to reconcile painful separation with hope for positive meaning."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "Dan experiences a strong desire to bridge the emotional gap with his father, seeking words to transform a bitter severing into a blessing.",
+      "evidence": [
+        {
+          "render_para_key": "rp_4c926d7cbaa43448f094543103a7d547",
+          "render_index": 82,
+          "quote": "He wanted to say something—wanted to bridge the gap, to find words that would make this okay, that would turn this bitter severing into something that felt more like a blessing.",
+          "role": null,
+          "start_char": 10638,
+          "end_char": 10815,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_8121a9dd1e4b75dd40189f0c529d9200",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            163
+          ],
+          "evidence_sha256": "6ebda9c59e6415d5593c2ffa0828b3e8fa7e1c3dd9b2460903379061c441affe"
+        }
+      ],
+      "thematic_weight": 0.9,
+      "gravity": 0.85,
+      "tension": 0.9,
+      "confidence": 0.98,
+      "notes": "This reflects Dan's struggle to reconcile painful separation with hope for positive meaning."
+    },
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "The warmth of the coins from Dan's father's body heat is a small but significant sensory detail that nearly overwhelms Dan emotionally.",
+      "evidence": [
+        {
+          "render_para_key": "rp_4c926d7cbaa43448f094543103a7d547",
+          "render_index": 82,
+          "quote": "They were warm from his father's body heat, and that small detail nearly undid him.",
+          "role": null,
+          "start_char": 10554,
+          "end_char": 10637,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_8121a9dd1e4b75dd40189f0c529d9200",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            163
+          ],
+          "evidence_sha256": "06d46ccc48c27c809d3efa580e87301d1fd05476f00e4246f5c9ebe66d2fc124"
+        }
+      ],
+      "thematic_weight": 0.7,
+      "gravity": 0.6,
+      "tension": 0.8,
+      "confidence": 0.95,
+      "notes": "This detail emphasizes the lingering connection between Dan and his father despite their separation."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "71f03451d65d31f793d7e1f102b4229262d5daff8fd8923cb8bbce162b831097",
+  "normalized_output_hash": "3ee244c69c7663ad8c109fdd58a0582c9ba1ceba51937e685b84fc73cb178d1b"
+}

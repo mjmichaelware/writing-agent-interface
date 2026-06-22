@@ -1,0 +1,99 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_9aeabc9371b4bae685c1f33d96d29f1c",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "b1089f2bcd951b39c1df1c26237c27db45314cb82e7dc7a64561e5983dcd6c07",
+  "observations": [
+    {
+      "axis": "Connection to the Past vs. Loss of the Past",
+      "polarity": "Connection to the past (left) vs. loss of the past (right)",
+      "summary": "The object in his hand symbolizes a tangible connection to his father as he was, contrasting with the reality that the father is now lost to him.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_712f5e89a2d3cfa2905a070285d5ea75",
+          "quote": "It felt right in his hand—solid, balanced, real. A connection to the man his father had been"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_712f5e89a2d3cfa2905a070285d5ea75",
+          "quote": "even if that man was lost now."
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_712f5e89a2d3cfa2905a070285d5ea75",
+          "quote": "It felt right in his hand—solid, balanced, real. A connection to the man his father had been, even if that man was lost now."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "connection_to_the_past_vs_loss_of_the_past",
+      "polarity": "tension",
+      "summary": "The object in his hand symbolizes a tangible connection to his father as he was, contrasting with the reality that the father is now lost to him.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_712f5e89a2d3cfa2905a070285d5ea75",
+          "render_index": 68,
+          "quote": "It felt right in his hand—solid, balanced, real. A connection to the man his father had been",
+          "role": "left",
+          "start_char": 8822,
+          "end_char": 8914,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_9aeabc9371b4bae685c1f33d96d29f1c",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            135
+          ],
+          "evidence_sha256": "5ba64d8163c1e21aea3ffa419b3d431b2b5f0c1421f2b578862ae2065d332e96"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_712f5e89a2d3cfa2905a070285d5ea75",
+          "render_index": 68,
+          "quote": "even if that man was lost now.",
+          "role": "right",
+          "start_char": 8916,
+          "end_char": 8946,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_9aeabc9371b4bae685c1f33d96d29f1c",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            135
+          ],
+          "evidence_sha256": "b028bd9b614e4e82476939dc19e56d1d37c16f0d032d08c12fa4f4141f86468c"
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_712f5e89a2d3cfa2905a070285d5ea75",
+          "render_index": 68,
+          "quote": "It felt right in his hand—solid, balanced, real. A connection to the man his father had been, even if that man was lost now.",
+          "role": "bridge",
+          "start_char": 8822,
+          "end_char": 8946,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_9aeabc9371b4bae685c1f33d96d29f1c",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            135
+          ],
+          "evidence_sha256": "07f441a6ac06ba60fb41d04758afeb27849f85cf743fa8e08fc73573a312a4af"
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "459bbca2a4f8de2e17774c30fe950c1d9813780f2fba6902200f368c2d3656bb",
+  "normalized_output_hash": "28aceda6935a8e93567c4c7588904f5d09be1fff9094be6977642b8a8ed1af50"
+}

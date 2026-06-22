@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_fbb554265457e959346bb932700c8f47",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "644e992d79018c58d0aa31375aaa4cfb440046dd065d080adc8017abbd4005ad",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "Aviel's facial expression flickering with surprise or recognition parallels earlier moments of emotional revelation and internal conflict in the narrative, suggesting a recurring motif of sudden awareness or realization.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_a5078fe6429f38dd955cc01f0439e993",
+          "quote": "Something flickered across Aviel's face—surprise, maybe. Or recognition."
+        }
+      ],
+      "target_hint": "This mirrors earlier narrative moments where characters experience sudden emotional or cognitive shifts, such as Dan's awakening to his own internal struggles or the collapse of a man's final lie.",
+      "target_evidence": [],
+      "confidence": 0.85
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "Aviel's facial expression flickering with surprise or recognition parallels earlier moments of emotional revelation and internal conflict in the narrative, suggesting a recurring motif of sudden awareness or realization.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_a5078fe6429f38dd955cc01f0439e993",
+          "render_index": 75,
+          "quote": "Something flickered across Aviel's face—surprise, maybe. Or recognition.",
+          "role": "source",
+          "start_char": 9524,
+          "end_char": 9596,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_fbb554265457e959346bb932700c8f47",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            149
+          ],
+          "evidence_sha256": "8b348e3c82cb1ba605f9287bdc5af93716ccaf22579d7982f7e4b399691baa5a"
+        }
+      ],
+      "target_hint": "This mirrors earlier narrative moments where characters experience sudden emotional or cognitive shifts, such as Dan's awakening to his own internal struggles or the collapse of a man's final lie.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "f2afcd1d0d34777ecca517873e1660df51a4f9eb95d7f97d317582475a56fe16",
+  "normalized_output_hash": "36a1bf913fc1b2b07bf7b0df78c3950947db9a32942e12a694bcf3c1daaa0660"
+}

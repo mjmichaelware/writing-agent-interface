@@ -1,0 +1,58 @@
+{
+  "status": "ok",
+  "task_type": "archetypes",
+  "scene_window_id": "scene_a3adaa6be6be83a7f0ff767d43b610ce",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "97e5eeaf2ea1ded7f2ed72c8d1b601b7d78cb106461e82881ed552af2f7fe0f5",
+  "observations": [
+    {
+      "character": "Aviel",
+      "archetype": "Shadow",
+      "archetype_gloss": "The grieving father embodying loss and stagnation",
+      "movement": "descent",
+      "summary": "Aviel represents the Shadow archetype as he is consumed by grief after the death of his wife, ceasing to function fully and withdrawing from life, symbolizing a descent into emotional and spiritual darkness.",
+      "evidence": [
+        {
+          "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+          "quote": "Father Aviel had been a scholar, sharp as fresh-knapped flint, sought and summoned by those with questions knotted beyond common counsel. But when Mother Zuna passed beyond recall—when they buried his bride beneath the earth—something stopped within him. Not died, which would have been cleaner and quicker, but simply ceased like a cart with a cruelly shattered axle."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "archetypes",
+      "character": "Aviel",
+      "archetype": "Shadow",
+      "archetype_gloss": null,
+      "movement": "descent",
+      "summary": "Aviel represents the Shadow archetype as he is consumed by grief after the death of his wife, ceasing to function fully and withdrawing from life, symbolizing a descent into emotional and spiritual darkness.",
+      "evidence": [
+        {
+          "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+          "render_index": 4,
+          "quote": "Father Aviel had been a scholar, sharp as fresh-knapped flint, sought and summoned by those with questions knotted beyond common counsel. But when Mother Zuna passed beyond recall—when they buried his bride beneath the earth—something stopped within him. Not died, which would have been cleaner and quicker, but simply ceased like a cart with a cruelly shattered axle.",
+          "role": null,
+          "start_char": 349,
+          "end_char": 717,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_a3adaa6be6be83a7f0ff767d43b610ce",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            7
+          ],
+          "evidence_sha256": "89be6f6fb0628a60be5f28cf74aa344ece505625a96650a54b849b47de0b28c6"
+        }
+      ],
+      "confidence": 0.95,
+      "unresolved_subject": false
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "091494f55a8e86bcb36eed1ffa3dec01770f4e3f37429963391fcf79ce0e81c8",
+  "normalized_output_hash": "61b556e0a0aa786bf5e15c080c770256b2bb0dc83b55b54d0646f479611115f5"
+}

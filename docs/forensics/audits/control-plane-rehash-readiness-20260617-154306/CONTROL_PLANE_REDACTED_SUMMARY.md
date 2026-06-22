@@ -1,0 +1,369 @@
+# Redacted control-plane summary — no XML bodies
+
+Audit dir: `docs/forensics/audits/control-plane-rehash-readiness-20260617-154306`
+
+## Files in audit packet
+
+- `CONTROL_PLANE_REDACTED_SUMMARY.md` bytes=0
+- `README.md` bytes=1392
+- `app-query-api-inventory.txt` bytes=2437499
+- `git-state.txt` bytes=1431
+- `github-actions-inventory.txt` bytes=5496
+- `live-db-compact-truth.txt` bytes=0
+- `query-surface-hits.raw.txt` bytes=2499584
+- `supabase-cli-remote-inventory.txt` bytes=284
+- `supabase-local-inventory.txt` bytes=6863
+- `xml-context-corpus-proof.txt` bytes=1978
+
+## XML/context/corpus proof
+
+- `## context pack`
+- `6e7e306c32940db56e82f1aff23942e6f3d62d7483db8e5735bb2ef2ef75eb8c  docs/agent_context/source_drop/hasher_context_v1/narrative_context_pack_v1.txt`
+- `30316 docs/agent_context/source_drop/hasher_context_v1/narrative_context_pack_v1.txt`
+- `8:ROLE: archetype_protocol`
+- `62:ROLE: archetype_protocol`
+- `103:ROLE: story_compendium`
+- `186:ROLE: new_synopsis`
+- `193:﻿The Weight of the Sky - Full Manuscript Synopsis`
+- `194:(New Synopsis)`
+- `## XML manifest`
+- `items 579`
+- `first_keys ['bytes', 'dest', 'doc_folder', 'part_path', 'sha256', 'source']`
+- `## OOXML raw counts`
+- `## public chapter txt counts`
+- `public/data/chapters/1.txt	21106	2f49c451b048e73249daec5c732eff040a81f7310b547eb6a36177a08723deda`
+- `public/data/chapters/2.txt	19743	f2a509eb8a6314cbdbc0dd9a3984fe09cb720101a4de0615dab3d6353db395d3`
+- `public/data/chapters/3.txt	20516	a3cba70f46c50af68ae2cdb748915e80578e1bcd905624a4b077fdc99ea693fd`
+- `public/data/chapters/4.txt	18833	63b181b1f87727ee5202fe1f59a797a227f379a2446db5edd1cb47d50215b8a7`
+- `public/data/chapters/5.txt	20558	3b0ede4310eca0fccf88e100972d161048f12333411bb4e14c4f6956eaacf039`
+- `public/data/chapters/6.txt	21547	5b7b91ab7dc53343297f6b32b4a59443e75b629c2f1484de0f093bc2ff802a37`
+- `public/data/chapters/7.txt	27420	fe21c269662112e63ae92118f80d1d68c5a94cb5fb3950a0d8cb1d0f3092b245`
+- `public/data/chapters/8.txt	17241	a02f56e5ac0abd966aef2541b27fa8e4f9c5d36a2f7287d2c7bf7b46c026c6c7`
+- `public/data/chapters/9.txt	27027	bb2740591c75d6dd0ee22abf60c25523302ff6758cfd3052f1b2c72e9ffe191b`
+- `public/data/chapters/10.txt	28345	3fa62b7d098773c1051829693664fd31f16b7ff29ef23e2c7215cc215295460d`
+- `public/data/chapters/11.txt	26263	8d3f998fafb7852f66f9a055c6233295c82b0fdbb2450663ec63c7e3961d23e1`
+- `public/data/chapters/13.txt	17060	960479e956f95dc5674a44b34a4c5bc562dced3d80c43f4622b3c4ad2acc50e9`
+- `public/data/chapters/24.txt	7543	3d4e278a0349a7f47569f4502b324bf0ffbf97adb96568920bef23a877dc0776`
+
+## Live DB verdict
+
+
+## GitHub Actions signals
+
+- `supabase`: 49
+- `functions`: 30
+- `deploy`: 52
+- `SUPABASE`: 49
+- `OPENAI`: 1
+- `chapters`: 1
+
+### GitHub file/path lines only
+
+- `.github/workflows/build-and-deploy.yml`
+- `.github/workflows/deploy-supabase-functions-only.yml`
+- `.github/workflows/build-and-deploy.yml:1:name: build-and-deploy`
+- `.github/workflows/deploy-supabase-functions-only.yml:10:      - "supabase/functions/**"`
+- `.github/workflows/deploy-supabase-functions-only.yml:11:      - ".github/workflows/deploy-supabase-functions-only.yml"`
+- `.github/workflows/deploy-supabase-functions-only.yml:14:  deploy-functions:`
+- `.github/workflows/deploy-supabase-functions-only.yml:17:    env:`
+- `.github/workflows/deploy-supabase-functions-only.yml:18:      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}`
+- `.github/workflows/deploy-supabase-functions-only.yml:19:      SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF }}`
+- `.github/workflows/deploy-supabase-functions-only.yml:26:        uses: supabase/setup-cli@v1`
+- `.github/workflows/deploy-supabase-functions-only.yml:32:          test -n "$SUPABASE_ACCESS_TOKEN"`
+- `.github/workflows/deploy-supabase-functions-only.yml:33:          test -n "$SUPABASE_PROJECT_REF"`
+- `.github/workflows/deploy-supabase-functions-only.yml:34:          supabase --version`
+- `.github/workflows/deploy-supabase-functions-only.yml:37:        run: supabase functions deploy create-upload-url --project-ref "$SUPABASE_PROJECT_REF"`
+- `.github/workflows/deploy-supabase-functions-only.yml:40:        run: supabase functions deploy register-uploaded-artifact --project-ref "$SUPABASE_PROJECT_REF"`
+- `.github/workflows/deploy-supabase-functions-only.yml:43:        run: supabase functions deploy verify-artifact-hash --project-ref "$SUPABASE_PROJECT_REF"`
+- `.github/workflows/deploy-supabase-functions-only.yml:46:        run: supabase functions deploy enqueue-enrichment --project-ref "$SUPABASE_PROJECT_REF"`
+- `.github/workflows/deploy-supabase-functions-only.yml:49:        run: supabase functions deploy process-enrichment-batch --project-ref "$SUPABASE_PROJECT_REF"`
+- `completed	failure	fix: remove --webpack from vercel.json and install missing gcloud/luc…	build-and-deploy	main	push	26724108902	50s	2026-05-31T20:50:09Z`
+
+## Supabase local signals
+
+- `supabase`: 69
+- `functions`: 15
+- `migration`: 51
+- `SUPABASE`: 69
+- `OPENAI`: 1
+- `VERTEX`: 1
+- `paragraphs`: 21
+- `chapters`: 14
+- `biblical_references`: 8
+- `hyperlinks`: 6
+- `archetypal_weights`: 3
+- `dualism_map`: 4
+
+### Supabase local file/path lines only
+
+- `supabase/functions/_shared/cors.ts`
+- `supabase/functions/_shared/hash.ts`
+- `supabase/functions/_shared/supabase.ts`
+- `supabase/functions/create-upload-url/index.ts`
+- `supabase/functions/enqueue-enrichment/index.ts`
+- `supabase/functions/process-enrichment-batch/index.ts`
+- `supabase/functions/register-uploaded-artifact/index.ts`
+- `supabase/functions/verify-artifact-hash/index.ts`
+- `supabase/migrations/20260521000000_initial_schema.sql`
+- `supabase/migrations/20260521000001_vector_search.sql`
+- `supabase/migrations/20260521000002_seed_chapters.sql`
+- `supabase/migrations/20260602000000_phase1_sync.sql`
+- `supabase/migrations/20260521000000_initial_schema.sql:3:-- Enable vector extension for embeddings`
+- `supabase/migrations/20260521000000_initial_schema.sql:7:CREATE TABLE chapters (`
+- `supabase/migrations/20260521000000_initial_schema.sql:18:CREATE TABLE paragraphs (`
+- `supabase/migrations/20260521000000_initial_schema.sql:20:    chapter_id UUID REFERENCES chapters(id) ON DELETE CASCADE,`
+- `supabase/migrations/20260521000000_initial_schema.sql:23:    embedding vector(1536), -- Supports Vertex AI or OpenAI embeddings`
+- `supabase/migrations/20260521000000_initial_schema.sql:24:    archetypal_weights JSONB DEFAULT '{}'::jsonb, -- shadow, persona, anima, self, hero`
+- `supabase/migrations/20260521000000_initial_schema.sql:25:    dualism_map JSONB DEFAULT '{}'::jsonb, -- sacred vs descent`
+- `supabase/migrations/20260521000000_initial_schema.sql:27:    metadata JSONB DEFAULT '{}'::jsonb, -- System 14: EMA XML metadata (scene_id, time_of_day, weather)`
+- `supabase/migrations/20260521000000_initial_schema.sql:32:CREATE TABLE biblical_references (`
+- `supabase/migrations/20260521000000_initial_schema.sql:34:    paragraph_id UUID REFERENCES paragraphs(id) ON DELETE CASCADE,`
+- `supabase/migrations/20260521000000_initial_schema.sql:43:ALTER TABLE chapters ENABLE ROW LEVEL SECURITY;`
+- `supabase/migrations/20260521000000_initial_schema.sql:44:ALTER TABLE paragraphs ENABLE ROW LEVEL SECURITY;`
+- `supabase/migrations/20260521000000_initial_schema.sql:45:ALTER TABLE biblical_references ENABLE ROW LEVEL SECURITY;`
+- `supabase/migrations/20260521000000_initial_schema.sql:48:CREATE POLICY "Allow public read-only access to chapters" ON chapters FOR SELECT USING (true);`
+- `supabase/migrations/20260521000000_initial_schema.sql:49:CREATE POLICY "Allow public read-only access to paragraphs" ON paragraphs FOR SELECT USING (true);`
+- `supabase/migrations/20260521000000_initial_schema.sql:50:CREATE POLICY "Allow public read-only access to biblical references" ON biblical_references FOR SELECT USING (true);`
+- `supabase/migrations/20260521000000_initial_schema.sql:54:CREATE POLICY "Allow public read-only access to chapters" ON chapters FOR SELECT USING (true);`
+- `supabase/migrations/20260521000000_initial_schema.sql:55:CREATE POLICY "Allow public read-only access to paragraphs" ON paragraphs FOR SELECT USING (true);`
+- `supabase/migrations/20260521000000_initial_schema.sql:56:CREATE POLICY "Allow public read-only access to biblical references" ON biblical_references FOR SELECT USING (true);`
+- `supabase/migrations/20260521000001_vector_search.sql:2:CREATE OR REPLACE FUNCTION match_paragraphs (`
+- `supabase/migrations/20260521000001_vector_search.sql:3:  query_embedding vector(1536),`
+- `supabase/migrations/20260521000001_vector_search.sql:11:  archetypal_weights jsonb,`
+- `supabase/migrations/20260521000001_vector_search.sql:12:  dualism_map jsonb,`
+- `supabase/migrations/20260521000001_vector_search.sql:20:    paragraphs.id,`
+- `supabase/migrations/20260521000001_vector_search.sql:21:    paragraphs.chapter_id,`
+- `supabase/migrations/20260521000001_vector_search.sql:22:    paragraphs.content,`
+- `supabase/migrations/20260521000001_vector_search.sql:23:    paragraphs.archetypal_weights,`
+- `supabase/migrations/20260521000001_vector_search.sql:24:    paragraphs.dualism_map,`
+- `supabase/migrations/20260521000001_vector_search.sql:25:    1 - (paragraphs.embedding <=> query_embedding) AS similarity`
+- `supabase/migrations/20260521000001_vector_search.sql:26:  FROM paragraphs`
+- `supabase/migrations/20260521000001_vector_search.sql:27:  WHERE 1 - (paragraphs.embedding <=> query_embedding) > match_threshold`
+- `supabase/migrations/20260521000002_seed_chapters.sql:2:INSERT INTO chapters (part_number, chapter_number, status, manifest_id) VALUES`
+- `supabase/migrations/20260602000000_phase1_sync.sql:2:-- Ensure hyperlinks table exists`
+- `supabase/migrations/20260602000000_phase1_sync.sql:3:CREATE TABLE IF NOT EXISTS hyperlinks (`
+- `supabase/migrations/20260602000000_phase1_sync.sql:5:    paragraph_id UUID REFERENCES paragraphs(id) ON DELETE CASCADE,`
+- `supabase/migrations/20260602000000_phase1_sync.sql:14:ALTER TABLE chapters ENABLE ROW LEVEL SECURITY;`
+- `supabase/migrations/20260602000000_phase1_sync.sql:15:ALTER TABLE paragraphs ENABLE ROW LEVEL SECURITY;`
+- `supabase/migrations/20260602000000_phase1_sync.sql:16:ALTER TABLE biblical_references ENABLE ROW LEVEL SECURITY;`
+- `supabase/migrations/20260602000000_phase1_sync.sql:17:ALTER TABLE hyperlinks ENABLE ROW LEVEL SECURITY;`
+- `supabase/migrations/20260602000000_phase1_sync.sql:22:    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Allow public read-only access to chapters') THEN`
+- `supabase/migrations/20260602000000_phase1_sync.sql:23:        CREATE POLICY "Allow public read-only access to chapters" ON chapters FOR SELECT USING (true);`
+- `supabase/migrations/20260602000000_phase1_sync.sql:25:    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Allow public read-only access to paragraphs') THEN`
+- `supabase/migrations/20260602000000_phase1_sync.sql:26:        CREATE POLICY "Allow public read-only access to paragraphs" ON paragraphs FOR SELECT USING (true);`
+- `supabase/migrations/20260602000000_phase1_sync.sql:29:        CREATE POLICY "Allow public read-only access to biblical references" ON biblical_references FOR SELECT USING (true);`
+- `supabase/migrations/20260602000000_phase1_sync.sql:31:    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Allow public read-only access to hyperlinks') THEN`
+- `supabase/migrations/20260602000000_phase1_sync.sql:32:        CREATE POLICY "Allow public read-only access to hyperlinks" ON hyperlinks FOR SELECT USING (true);`
+- `supabase/functions/create-upload-url/index.ts:66:        storage_metadata: {`
+- `supabase/functions/register-uploaded-artifact/index.ts:59:        storage_metadata: {`
+- `supabase/functions/verify-artifact-hash/index.ts:63:        storage_metadata: {`
+- `supabase/functions/verify-artifact-hash/index.ts:64:          ...(current.storage_metadata ?? {}),`
+- `supabase/functions/enqueue-enrichment/index.ts:8:  "detect_biblical_references",`
+- `supabase/functions/enqueue-enrichment/index.ts:21:  detect_biblical_references: "nos_biblical_detect",`
+- `supabase/functions/enqueue-enrichment/index.ts:23:  map_dualisms: "nos_dualism_map",`
+- `NO supabase/config.toml`
+
+## Supabase remote/CLI signals
+
+- `## supabase projects`
+- `supabase projects list unavailable`
+- `## linked project`
+- `supabase status unavailable`
+- `## deployed functions`
+- `supabase functions list unavailable`
+- `## migration status`
+- `supabase migration list unavailable`
+- `## function secret names only`
+- `supabase secrets list unavailable`
+
+## App/API/query table signals
+
+- `supabase`: 567
+- `functions`: 44
+- `migration`: 256
+- `SUPABASE`: 567
+- `OPENAI`: 37
+- `GOOGLE`: 53
+- `VERTEX`: 18
+- `GEMINI`: 79
+- `paragraphs`: 210
+- `chapters`: 377
+- `biblical_references`: 372
+- `hyperlinks`: 818
+- `source_documents`: 30
+- `runtime_sources`: 448
+- `archetypal_weights`: 504
+- `dualism_map`: 1122
+- `materialized_ooxml_manifest`: 138
+- `gdrive_ooxml_raw`: 400
+
+### App/API path lines only
+
+- `src/actions/ingest.action.ts`
+- `src/actions/retrieve.action.ts`
+- `src/actions/update-memory.action.ts`
+- `src/actions/write.action.ts`
+- `src/app/api/agent/route.ts`
+- `src/app/api/analyze-document/route.ts`
+- `src/app/api/auth-pin/route.ts`
+- `src/app/api/biblical-references/route.ts`
+- `src/app/api/chapters/route.ts`
+- `src/app/api/corpus/route.ts`
+- `src/app/api/execute/route.ts`
+- `src/app/api/graph/route.ts`
+- `src/app/api/health/route.ts`
+- `src/app/api/manuscript/route.ts`
+- `src/app/api/runtime-sources/route.ts`
+- `src/app/api/search/route.ts`
+- `src/app/api/tts/route.ts`
+- `src/app/api/visualize/route.ts`
+- `src/lib/db.ts`
+- `src/lib/narrative/fileService.ts`
+- `src/lib/narrative/indexStore.ts`
+- `src/lib/runtime-source-paths.ts`
+- `src/lib/runtime-source-reader.ts`
+- `src/services/analytics-engine/logic/coefficient_engine.ts`
+- `src/services/analytics-engine/mapping/dualism_logic.ts`
+- `src/services/bridge/agent.service.ts`
+- `src/services/document-analyzer/corpus-searcher.ts`
+- `src/services/document-analyzer/parser.ts`
+- `src/services/document-analyzer/synthesis-engine.ts`
+- `src/services/image-engine/executor.ts`
+- `src/services/image-engine/image-generator.ts`
+- `src/services/image-engine/prompter.ts`
+- `src/services/ingestion/pipeline.ts`
+- `src/services/memory-engine/corpus-loader.ts`
+- `src/services/memory-engine/document-store.ts`
+- `src/services/memory-engine/embedding-processor.ts`
+- `src/services/memory-engine/integrity-validator.ts`
+- `src/services/memory-engine/memory-engine.ts`
+- `src/services/memory-engine/memory-kernel.ts`
+- `src/services/memory-engine/text-processor.ts`
+- `src/services/memory-engine/vector-store.ts`
+- `src/services/narrative-graph-engine/connection-analyzer.ts`
+- `src/services/narrative-graph-engine/consistency-analyzer.ts`
+- `src/services/narrative-graph-engine/edge-builder.ts`
+- `src/services/narrative-graph-engine/graph-kernel.ts`
+- `src/services/narrative-graph-engine/graph-querier.ts`
+- `src/services/narrative-graph-engine/graph-serializer.ts`
+- `src/services/narrative-graph-engine/narrative-graph-engine.ts`
+- `src/services/narrative-graph-engine/node-builder.ts`
+- `src/services/narrative-graph-engine/path-finder.ts`
+- `src/services/orchestration-engine/context-builder.ts`
+- `src/services/orchestration-engine/google-swarm.ts`
+- `src/services/orchestration-engine/orchestration-engine.ts`
+- `src/services/orchestration-engine/pipeline.ts`
+- `src/services/orchestration-engine/prompt-assembler.ts`
+- `src/services/orchestration-engine/providers/anthropic.ts`
+- `src/services/orchestration-engine/providers/base.ts`
+- `src/services/orchestration-engine/providers/gemini.ts`
+- `src/services/orchestration-engine/providers/groq.ts`
+- `src/services/orchestration-engine/providers/openai.ts`
+- `src/services/orchestration-engine/router.ts`
+- `src/services/orchestration-engine/runtime-controller.ts`
+- `src/services/tokenize.ts`
+- `src/services/writing-agent/agent-kernel.ts`
+- `src/services/writing-agent/constraint-validator.ts`
+- `src/services/writing-agent/generation-executor.ts`
+- `src/services/writing-agent/memory-controller.ts`
+- `src/services/writing-agent/output-processor.ts`
+- `src/services/writing-agent/prompt-controller.ts`
+- `src/services/writing-agent/task-executor.ts`
+- `src/services/writing-agent/writing-agent.ts`
+- `supabase/functions/_shared/cors.ts`
+- `supabase/functions/_shared/hash.ts`
+- `supabase/functions/_shared/supabase.ts`
+- `supabase/functions/create-upload-url/index.ts`
+- `supabase/functions/enqueue-enrichment/index.ts`
+- `supabase/functions/process-enrichment-batch/index.ts`
+- `supabase/functions/register-uploaded-artifact/index.ts`
+- `supabase/functions/verify-artifact-hash/index.ts`
+- `src/app/api/execute/route.ts:31:      query: query || "SELECT part_number, count(*) as count FROM `the-weight-of-the-sky.narrative_os.paragraphs` GROUP BY part_number",`
+- `src/app/api/graph/route.ts:10:      `SELECT id, chapter_id, content, archetypal_weights, dualism_map`
+- `src/app/api/graph/route.ts:11:       FROM paragraphs`
+- `src/app/api/graph/route.ts:12:       WHERE (archetypal_weights IS NOT NULL AND archetypal_weights != '{}'::jsonb)`
+- `src/app/api/graph/route.ts:13:          OR (dualism_map IS NOT NULL AND dualism_map != '{}'::jsonb)``
+- `src/app/api/graph/route.ts:18:      `SELECT id, paragraph_id, reference_text, book, chapter, verse`
+- `src/app/api/graph/route.ts:19:       FROM biblical_references``
+- `src/app/api/graph/route.ts:22:    // 3. Fetch explicit hyperlinks`
+- `src/app/api/graph/route.ts:23:    const { rows: hyperlinks } = await query(`
+- `src/app/api/graph/route.ts:24:      `SELECT id, paragraph_id, theme_node_a, theme_node_b, link_type, weight`
+- `src/app/api/graph/route.ts:25:       FROM hyperlinks``
+- `src/app/api/graph/route.ts:51:      if (p.archetypal_weights && typeof p.archetypal_weights === 'object') {`
+- `src/app/api/graph/route.ts:52:        Object.entries(p.archetypal_weights).forEach(([arch, weight]) => {`
+- `src/app/api/graph/route.ts:60:      if (p.dualism_map && typeof p.dualism_map === 'object') {`
+- `src/app/api/graph/route.ts:61:        Object.entries(p.dualism_map).forEach(([dual, val]) => {`
+- `src/app/api/graph/route.ts:79:    for (const hl of hyperlinks) {`
+- `src/app/api/graph/route.ts:80:      const nodeA = `theme_${hl.theme_node_a}`;`
+- `src/app/api/graph/route.ts:81:      const nodeB = hl.theme_node_b ? `theme_${hl.theme_node_b}` : null;`
+- `src/app/api/graph/route.ts:83:      addNode(nodeA, 'theme', hl.theme_node_a, 2);`
+- `src/app/api/graph/route.ts:85:        addNode(nodeB, 'theme', hl.theme_node_b, 2);`
+- `src/app/api/manuscript/route.ts:26:    .select('*, biblical_references(*), chapters(part_number, chapter_number)')`
+- `src/app/api/search/route.ts:27:    const embedModel = vertexAI.preview.getGenerativeModel({ model: 'text-embedding-004' });`
+- `src/app/api/search/route.ts:29:    const embedding = embedResponse.embedding.values;`
+- `src/app/api/search/route.ts:33:      `SELECT`
+- `src/app/api/search/route.ts:37:        archetypal_weights,`
+- `src/app/api/search/route.ts:38:        dualism_map,`
+- `src/app/api/search/route.ts:39:        1 - (embedding <=> $1::vector) AS similarity`
+- `src/app/api/search/route.ts:40:      FROM paragraphs`
+- `src/app/api/search/route.ts:41:      WHERE 1 - (embedding <=> $1::vector) > 0.5`
+- `src/app/api/search/route.ts:44:      [JSON.stringify(embedding)]`
+- `src/app/api/chapters/route.ts:96:      .select('id, content, chunk_index, archetypal_weights, dualism_map, hebrew_spans, metadata')`
+- `src/app/api/chapters/route.ts:113:        archetypal_weights: p.archetypal_weights,`
+- `src/app/api/chapters/route.ts:114:        dualism_map: p.dualism_map,`
+- `src/app/api/chapters/route.ts:116:        metadata: p.metadata,`
+- `src/app/api/health/route.ts:64:        timestamp: entry.metadata.timestamp,`
+- `src/app/api/biblical-references/route.ts:7:      `SELECT * FROM biblical_references ORDER BY book ASC, chapter ASC, verse ASC``
+- `src/lib/runtime-source-paths.ts:7:// data/runtime_sources/weight_of_the_sky/ is runtime manuscript/source data.`
+- `src/lib/runtime-source-paths.ts:9:export const RUNTIME_SOURCE_ROOT = "data/runtime_sources/weight_of_the_sky";`
+- `src/lib/runtime-source-paths.ts:12:  protocols: "data/runtime_sources/weight_of_the_sky/00_protocols",`
+- `src/lib/runtime-source-paths.ts:13:  rendererActiveInputs: "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs",`
+- `src/lib/runtime-source-paths.ts:14:  typographySources: "data/runtime_sources/weight_of_the_sky/02_typography_sources",`
+- `src/lib/runtime-source-paths.ts:15:  layerToCinemaSources: "data/runtime_sources/weight_of_the_sky/03_layer_to_cinema_sources",`
+- `src/lib/runtime-source-paths.ts:16:  currentFinalDrafts: "data/runtime_sources/weight_of_the_sky/04_current_final_drafts",`
+- `src/lib/runtime-source-paths.ts:17:  revisionSnapshots: "data/runtime_sources/weight_of_the_sky/05_revision_snapshots",`
+- `src/lib/runtime-source-paths.ts:18:  currentOoxml: "data/runtime_sources/weight_of_the_sky/06_ooxml_current",`
+- `src/lib/runtime-source-paths.ts:19:  revisionOoxml: "data/runtime_sources/weight_of_the_sky/07_ooxml_revision_exports",`
+- `src/lib/runtime-source-paths.ts:20:  worldbuildingLore: "data/runtime_sources/weight_of_the_sky/08_worldbuilding_lore",`
+- `src/lib/runtime-source-paths.ts:21:  synopsisCompendiums: "data/runtime_sources/weight_of_the_sky/09_synopsis_compendiums",`
+- `src/lib/runtime-source-paths.ts:22:  ingestionBaselines: "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines",`
+- `src/lib/runtime-source-paths.ts:23:  agentContext: "data/runtime_sources/weight_of_the_sky/11_agent_context",`
+- `src/lib/runtime-source-paths.ts:24:  supabaseIndexes: "data/runtime_sources/weight_of_the_sky/12_supabase_indexes",`
+- `src/lib/runtime-source-paths.ts:25:  manualSortInbox: "data/runtime_sources/weight_of_the_sky/99_manual_sort_inbox",`
+- `src/lib/runtime-source-paths.ts:26:  quarantineDoNotIngest: "data/runtime_sources/weight_of_the_sky/99_quarantine_do_not_ingest",`
+- `src/lib/runtime-source-paths.ts:32:  gdriveOoxmlRaw: "src/data-layer/ingestion-buffer/gdrive_ooxml_raw",`
+- `src/lib/runtime-source-reader.ts:16:export const RUNTIME_SOURCE_ROOT = "data/runtime_sources/weight_of_the_sky";`
+- `src/lib/runtime-source-reader.ts:19:  protocols: "data/runtime_sources/weight_of_the_sky/00_protocols",`
+- `src/lib/runtime-source-reader.ts:20:  rendererActiveInputs: "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs",`
+- `src/lib/runtime-source-reader.ts:21:  typographySources: "data/runtime_sources/weight_of_the_sky/02_typography_sources",`
+- `src/lib/runtime-source-reader.ts:22:  layerToCinemaSources: "data/runtime_sources/weight_of_the_sky/03_layer_to_cinema_sources",`
+- `src/lib/runtime-source-reader.ts:23:  currentFinalDrafts: "data/runtime_sources/weight_of_the_sky/04_current_final_drafts",`
+- `src/lib/runtime-source-reader.ts:24:  revisionSnapshots: "data/runtime_sources/weight_of_the_sky/05_revision_snapshots",`
+- `src/lib/runtime-source-reader.ts:25:  currentOoxml: "data/runtime_sources/weight_of_the_sky/06_ooxml_current",`
+- `src/lib/runtime-source-reader.ts:26:  revisionOoxml: "data/runtime_sources/weight_of_the_sky/07_ooxml_revision_exports",`
+- `src/lib/runtime-source-reader.ts:27:  worldbuildingLore: "data/runtime_sources/weight_of_the_sky/08_worldbuilding_lore",`
+- `src/lib/runtime-source-reader.ts:28:  synopsisCompendiums: "data/runtime_sources/weight_of_the_sky/09_synopsis_compendiums",`
+- `src/lib/runtime-source-reader.ts:29:  ingestionBaselines: "data/runtime_sources/weight_of_the_sky/10_ingestion_baselines",`
+- `src/lib/runtime-source-reader.ts:30:  agentContext: "data/runtime_sources/weight_of_the_sky/11_agent_context",`
+- `src/lib/runtime-source-reader.ts:31:  supabaseIndexes: "data/runtime_sources/weight_of_the_sky/12_supabase_indexes",`
+- `src/lib/runtime-source-reader.ts:32:  manualSortInbox: "data/runtime_sources/weight_of_the_sky/99_manual_sort_inbox",`
+- `src/lib/runtime-source-reader.ts:33:  quarantineDoNotIngest: "data/runtime_sources/weight_of_the_sky/99_quarantine_do_not_ingest",`
+- `src/services/orchestration-engine/google-swarm.ts:76:  static async logIntegrity(event: string, metadata: any) {`
+- `src/services/orchestration-engine/google-swarm.ts:82:        metadata: JSON.stringify(metadata),`
+- `src/services/orchestration-engine/google-swarm.ts:118:        archetypal_weights: JSON.stringify(para.archetypal_weights),`
+- `src/services/orchestration-engine/google-swarm.ts:119:        dualism_map: JSON.stringify(para.dualism_map),`
+- `src/services/memory-engine/embedding-processor.ts:18:    const res = await this.client.embeddings.create({`
+- `src/services/memory-engine/embedding-processor.ts:19:      model: "text-embedding-3-small",`
+- `src/services/memory-engine/embedding-processor.ts:23:    return res.data[0].embedding;`
+- `src/services/memory-engine/vector-store.ts:37:        thematic_embedding vector(1536),`
+- `src/services/memory-engine/vector-store.ts:43:        chapter_id UUID REFERENCES chapters(id) ON DELETE CASCADE,`
+- `src/services/memory-engine/vector-store.ts:46:        embedding vector(1536),`
+- `src/services/memory-engine/vector-store.ts:47:        archetypal_weights JSONB DEFAULT '{}',`
+
+## Immediate verdict
+
+- `XML/OOXML exists locally: true`
+- `context pack exists and is valid: true`
+- `public chapter txt corpus exists: true`
+- `live DB direct audit failed because DATABASE_URL/auth is wrong in current shell`
+- `do not paste XML; use this redacted file for review`

@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_57de14c42dacc65f6e7fbcf0993de324",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "da5e9acf66a3d91d923705d7b0a467b27952175c3e7e0bfab928cc202fae21af",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "Aviel's gaze showing recognition mixed with accusation parallels the theme of internal conflict and judgment within the family dynamic, reflecting the broader motif of self-judgment and inherited burden.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_392fa7bf3f95ea73f763fd4a8a059099",
+          "quote": "Aviel's gaze snapped to him, and for a moment, Dan saw something flicker across his father's face. Recognition, yes. But also something else—something that looked disturbingly like accusation."
+        }
+      ],
+      "target_hint": "This echoes the recurring motif of internal psychological struggle and judgment within the family, especially between Dan and Aviel, as established in the narrative context and archetype protocols.",
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "Aviel's gaze showing recognition mixed with accusation parallels the theme of internal conflict and judgment within the family dynamic, reflecting the broader motif of self-judgment and inherited burden.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_392fa7bf3f95ea73f763fd4a8a059099",
+          "render_index": 16,
+          "quote": "Aviel's gaze snapped to him, and for a moment, Dan saw something flicker across his father's face. Recognition, yes. But also something else—something that looked disturbingly like accusation.",
+          "role": "source",
+          "start_char": 2117,
+          "end_char": 2309,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_57de14c42dacc65f6e7fbcf0993de324",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            31
+          ],
+          "evidence_sha256": "cb8ac74122399a8399ee71350853b7f6229a2a05918b47d643c609fa0d42dcf3"
+        }
+      ],
+      "target_hint": "This echoes the recurring motif of internal psychological struggle and judgment within the family, especially between Dan and Aviel, as established in the narrative context and archetype protocols.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "7f530b3219af1dd65ee6cc14be1af785ba0824ea355a09504fd8ecd46320ca70",
+  "normalized_output_hash": "4391b21bd1d8ebe680582b68c79109e6b0ad0349023f6e7439886aa139287897"
+}

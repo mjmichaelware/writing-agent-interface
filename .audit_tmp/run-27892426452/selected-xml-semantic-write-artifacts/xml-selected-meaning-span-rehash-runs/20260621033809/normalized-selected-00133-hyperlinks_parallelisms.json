@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_271bcced68de3fb8a908b7e113db6a66",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "cde9c3d5f7970084954f37f4c238e8f99384dd71b8a0662ead86aba215271c4d",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "Aviel's accusation that Dan is 'just like' his mother, who used to 'step into my dreams' and leave 'little messages' and 'riddles,' parallels the motif of dream communication and meddling across generations, highlighting a familial echo of intrusive spiritual interaction.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_ce581b349124cc4ca096ec2e64cdf8ea",
+          "quote": "\"Your mother used to do this,\" Aviel said, and his voice had gone flat, affectless. \"Step into my dreams. Leave her little messages. Her riddles.\" His hands, which had been reaching for the sack, slowly curled back into fists. \"You're just like her. Meddling. Interfering. Unable to leave well enough alone.\""
+        }
+      ],
+      "target_hint": null,
+      "target_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "Aviel's accusation that Dan is 'just like' his mother, who used to 'step into my dreams' and leave 'little messages' and 'riddles,' parallels the motif of dream communication and meddling across generations, highlighting a familial echo of",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_ce581b349124cc4ca096ec2e64cdf8ea",
+          "render_index": 40,
+          "quote": "\"Your mother used to do this,\" Aviel said, and his voice had gone flat, affectless. \"Step into my dreams. Leave her little messages. Her riddles.\" His hands, which had been reaching for the sack, slowly curled back into fists. \"You're just like her. Meddling. Interfering. Unable to leave well enough alone.\"",
+          "role": "source",
+          "start_char": 5144,
+          "end_char": 5452,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_271bcced68de3fb8a908b7e113db6a66",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            79
+          ],
+          "evidence_sha256": "e312d7bb6f14614c65fd672ebbe6e7695e2a2f08c578ed1a5bee7e747e084735"
+        }
+      ],
+      "target_hint": null,
+      "target_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "dc3fc5302f26daf419e084a2f5b369be8f3f0f58fe95fd66216512dda37e83ac",
+  "normalized_output_hash": "37b6bb902d5fdc8c0848b957d9cfcc0febe03a123f964e00e41fca4b112350d6"
+}

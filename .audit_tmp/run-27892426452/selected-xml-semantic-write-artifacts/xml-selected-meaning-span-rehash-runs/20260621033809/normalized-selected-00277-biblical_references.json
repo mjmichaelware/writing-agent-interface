@@ -1,0 +1,170 @@
+{
+  "status": "ok",
+  "task_type": "biblical_references",
+  "scene_window_id": "scene_024b578996c73ba69720e4e631a88ebd",
+  "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+  "context_capsule_sha256": "dc1d7ff0216242244adcd44d0e038aa7411807d3780720b22a2886f18e0be889",
+  "observations": [
+    {
+      "biblical_anchor_label": "John 4:7-15",
+      "book": "John",
+      "chapter": 4,
+      "verse_start": 7,
+      "verse_end": 15,
+      "motif_family": "Living Water",
+      "relationship_type": "explicit_allusion",
+      "correspondence_rationale": "The passage describes a well with swirling water and a reflection of Astarte, symbolizing a source of life and abundance, paralleling Jesus' conversation with the Samaritan woman at the well about living water that quenches spiritual thirst.",
+      "summary": "The well and the offer of boundless abundance by Astarte correspond to the biblical motif of living water offered at the well, symbolizing spiritual sustenance and life.",
+      "evidence": [
+        {
+          "render_para_key": "rp_c51edd6fed56aed320656d66b9ef4cfe",
+          "quote": "The well water swirled faster, the reflection of astarte growing clearer, almost agonizingly vivid, as if all the available light in the twilight sky was being sucked into her image. The thick, sweet scent of jasmine and rich terra, a dizzying perfume that promised oblivion and a fatness of existence, rose heavily from the well, mingling with the dry desert air."
+        }
+      ],
+      "confidence": 0.9
+    },
+    {
+      "biblical_anchor_label": "Matthew 4:1-11",
+      "book": "Matthew",
+      "chapter": 4,
+      "verse_start": 1,
+      "verse_end": 11,
+      "motif_family": "Temptation and Spiritual Testing",
+      "relationship_type": "narrative_parallel",
+      "correspondence_rationale": "Dan's internal struggle with the seductive offer of earthly delights and the temptation to abandon his spiritual ascent parallels Jesus' temptation in the wilderness, where he resists offers of power and comfort to remain faithful to his spiritual mission.",
+      "summary": "Dan's temptation by Astarte's offer of earthly abundance and rest parallels Jesus' temptation in the wilderness, highlighting the conflict between fleshly desires and spiritual commitment.",
+      "evidence": [
+        {
+          "render_para_key": "rp_c51edd6fed56aed320656d66b9ef4cfe",
+          "quote": "\"That one was a vessel of my power, a small taste of the boundless abundance I offer to all who kneel. And thou didst scorn the flesh, the very fount of life and joy, for the empty air of your ascent. Give over your burdensome gravity, and accept the absolute rest.”"
+        }
+      ],
+      "confidence": 0.85
+    },
+    {
+      "biblical_anchor_label": "Romans 7:14-25",
+      "book": "Romans",
+      "chapter": 7,
+      "verse_start": 14,
+      "verse_end": 25,
+      "motif_family": "Internal Conflict of Flesh and Spirit",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "Dan's physical weakness and mental exhaustion as he struggles against the allure of earthly rest symbolize the Pauline theme of the internal war between the flesh and the spirit, where the believer experiences conflict between spiritual aspirations and bodily desires.",
+      "summary": "Dan's bodily weakness and mental struggle reflect the biblical motif of the internal conflict between flesh and spirit as described by Paul in Romans.",
+      "evidence": [
+        {
+          "render_para_key": "rp_c51edd6fed56aed320656d66b9ef4cfe",
+          "quote": "Dan stumbled back, his hands scraping the rough, abrasive stone curb of the well. His mind reeled, a knot of confusion and exhaustion. His body, already broken by the long day’s march, felt an abrupt, profound, and debilitating weakness—a vulnerability that craved nothing more than relief that overrode all logic."
+        }
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Romans 7:14-25",
+      "book": "Romans",
+      "chapter": 7,
+      "verse_start": 14,
+      "verse_end": 25,
+      "motif_family": "internal_conflict_of_flesh_and_spirit",
+      "biblical_anchor_key": "bibanchor_9ac538858e96a91e52e2a987d2de79e7",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "Dan's physical weakness and mental exhaustion as he struggles against the allure of earthly rest symbolize the Pauline theme of the internal war between the flesh and the spirit, where the believer experiences conflict between spiritual aspirations and bodily desires.",
+      "summary": "Dan's bodily weakness and mental struggle reflect the biblical motif of the internal conflict between flesh and spirit as described by Paul in Romans.",
+      "evidence": [
+        {
+          "render_para_key": "rp_c51edd6fed56aed320656d66b9ef4cfe",
+          "render_index": 7,
+          "quote": "Dan stumbled back, his hands scraping the rough, abrasive stone curb of the well. His mind reeled, a knot of confusion and exhaustion. His body, already broken by the long day’s march, felt an abrupt, profound, and debilitating weakness—a vulnerability that craved nothing more than relief that overrode all logic.",
+          "role": null,
+          "start_char": 5017,
+          "end_char": 5331,
+          "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+          "scene_window_id": "scene_024b578996c73ba69720e4e631a88ebd",
+          "source_document_xml_sha256": "4c43f128801df7d839bd5fda91fc148c0068a06a98530bf1c45d5fd004db3bcf",
+          "source_xml_paragraph_indexes": [
+            9
+          ],
+          "evidence_sha256": "0a445f4e0d87d20d5e0afa23c5f5b5fb5d72cd557fb5f18a983c4bc67a8a2a60"
+        }
+      ],
+      "confidence": 0.6,
+      "reference": "Romans 7:14-25",
+      "motif": "internal_conflict_of_flesh_and_spirit"
+    },
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Matthew 4:1-11",
+      "book": "Matthew",
+      "chapter": 4,
+      "verse_start": 1,
+      "verse_end": 11,
+      "motif_family": "temptation_and_spiritual_testing",
+      "biblical_anchor_key": "bibanchor_529a6327db8098d3ddb209ed71a04ea1",
+      "relationship_type": "narrative_parallel",
+      "correspondence_rationale": "Dan's internal struggle with the seductive offer of earthly delights and the temptation to abandon his spiritual ascent parallels Jesus' temptation in the wilderness, where he resists offers of power and comfort to remain faithful to his spiritual mission.",
+      "summary": "Dan's temptation by Astarte's offer of earthly abundance and rest parallels Jesus' temptation in the wilderness, highlighting the conflict between fleshly desires and spiritual commitment.",
+      "evidence": [
+        {
+          "render_para_key": "rp_c51edd6fed56aed320656d66b9ef4cfe",
+          "render_index": 7,
+          "quote": "\"That one was a vessel of my power, a small taste of the boundless abundance I offer to all who kneel. And thou didst scorn the flesh, the very fount of life and joy, for the empty air of your ascent. Give over your burdensome gravity, and accept the absolute rest.”",
+          "role": null,
+          "start_char": 4385,
+          "end_char": 4651,
+          "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+          "scene_window_id": "scene_024b578996c73ba69720e4e631a88ebd",
+          "source_document_xml_sha256": "4c43f128801df7d839bd5fda91fc148c0068a06a98530bf1c45d5fd004db3bcf",
+          "source_xml_paragraph_indexes": [
+            9
+          ],
+          "evidence_sha256": "1d1596ef3798de5beef658cdf4991c1e28bb8b0e2525e7e2849010b614f24425"
+        }
+      ],
+      "confidence": 0.85,
+      "reference": "Matthew 4:1-11",
+      "motif": "temptation_and_spiritual_testing"
+    },
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "John 4:7-15",
+      "book": "John",
+      "chapter": 4,
+      "verse_start": 7,
+      "verse_end": 15,
+      "motif_family": "living_water",
+      "biblical_anchor_key": "bibanchor_2c750b29cb216807e40133946ad5b3fa",
+      "relationship_type": "explicit_allusion",
+      "correspondence_rationale": "The passage describes a well with swirling water and a reflection of Astarte, symbolizing a source of life and abundance, paralleling Jesus' conversation with the Samaritan woman at the well about living water that quenches spiritual thirst.",
+      "summary": "The well and the offer of boundless abundance by Astarte correspond to the biblical motif of living water offered at the well, symbolizing spiritual sustenance and life.",
+      "evidence": [
+        {
+          "render_para_key": "rp_c51edd6fed56aed320656d66b9ef4cfe",
+          "render_index": 7,
+          "quote": "The well water swirled faster, the reflection of astarte growing clearer, almost agonizingly vivid, as if all the available light in the twilight sky was being sucked into her image. The thick, sweet scent of jasmine and rich terra, a dizzying perfume that promised oblivion and a fatness of existence, rose heavily from the well, mingling with the dry desert air.",
+          "role": null,
+          "start_char": 4652,
+          "end_char": 5016,
+          "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+          "scene_window_id": "scene_024b578996c73ba69720e4e631a88ebd",
+          "source_document_xml_sha256": "4c43f128801df7d839bd5fda91fc148c0068a06a98530bf1c45d5fd004db3bcf",
+          "source_xml_paragraph_indexes": [
+            9
+          ],
+          "evidence_sha256": "fc25ec543986a18d4c56d4cc126360cf26cab2416bf034bfefe8e19e5146ca64"
+        }
+      ],
+      "confidence": 0.9,
+      "reference": "John 4:7-15",
+      "motif": "living_water"
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "6e6834cca3e7b55aecc3045e0310e590f7ebe2474ea9a5c051e384176c740ab0",
+  "normalized_output_hash": "688399f65f7dc40d6836fbeb28b26f402e36e673e842256c54dcf68581ac2bf7"
+}

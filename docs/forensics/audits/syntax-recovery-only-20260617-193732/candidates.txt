@@ -1,0 +1,3 @@
+docs/forensics/backups/vertex-json-repair-patch-20260617-192439/scripts/semantic/xml-grounded-vertex-rehash.mjs
+docs/forensics/backups/management-api-rehash-script-write-20260617-182033/scripts/semantic/xml-grounded-vertex-rehash.mjs
+docs/forensics/backups/fix-callvertex-wrapper-20260617-193156/scripts/semantic/xml-grounded-vertex-rehash.mjs

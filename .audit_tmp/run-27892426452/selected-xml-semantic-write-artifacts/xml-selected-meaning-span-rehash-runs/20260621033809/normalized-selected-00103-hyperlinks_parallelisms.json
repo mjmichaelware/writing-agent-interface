@@ -1,0 +1,60 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_2c0fa040a87cc26ae35178c8ccc5bf28",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "ab7763b3d19fb46b3e5c877c127069f8d946a891ee44e4eb9eeb757348da45d3",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The careful, precise movement through a hazardous environment in the hallway mirrors earlier descriptions of Dan's cautious steps in a dangerous, silent setting, emphasizing the theme of navigating perilous emotional and physical terrain.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_9b01502a1211b3b93e4b765eac9c4594",
+          "quote": "He moved through the hallway with the careful precision of a man walking through a minefield. Which, in a sense, he was. The debris of his father's collapse lay everywhere: pottery shards, rusted tools, scraps of fabric slowly turning to dust. One wrong step and something would clatter, would scrape, would announce his presence."
+        }
+      ],
+      "target_hint": "Earlier chapter describing Dan's calculated, barefoot steps on unforgiving limestone risking betrayal by any clatter or scrape.",
+      "target_evidence": [
+        {
+          "render_para_key": "rp_2f49c451b048e73249daec5c732eff040a81f7310b547eb6a36177a08723deda",
+          "quote": "Each calculated, barefoot step on the unforgiving limestone was a wager of his own mass against the increasing weight of the house. The slightest change in pressure risked a betrayal: a metallic sound, a dry scrape, or any clatter that might announce his forbidden errand."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The careful, precise movement through a hazardous environment in the hallway mirrors earlier descriptions of Dan's cautious steps in a dangerous, silent setting, emphasizing the theme of navigating perilous emotional and physical terrain.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_9b01502a1211b3b93e4b765eac9c4594",
+          "render_index": 10,
+          "quote": "He moved through the hallway with the careful precision of a man walking through a minefield. Which, in a sense, he was. The debris of his father's collapse lay everywhere: pottery shards, rusted tools, scraps of fabric slowly turning to dust. One wrong step and something would clatter, would scrape, would announce his presence.",
+          "role": "source",
+          "start_char": 1131,
+          "end_char": 1461,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_2c0fa040a87cc26ae35178c8ccc5bf28",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            19
+          ],
+          "evidence_sha256": "338eacd47059a96fd861442bb0b5fcc4e580e25ecff5951a3ca9aac57ced2340"
+        }
+      ],
+      "target_hint": "Earlier chapter describing Dan's calculated, barefoot steps on unforgiving limestone risking betrayal by any clatter or scrape.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "6ecd52b5a336285dd8413924c79e7dc4e32704980959fc310f23f1803e72124a",
+  "normalized_output_hash": "fa6f164a361b048c982b7ab488410211f7a0dad87fdb6159ae6bce6c29e0bf25"
+}

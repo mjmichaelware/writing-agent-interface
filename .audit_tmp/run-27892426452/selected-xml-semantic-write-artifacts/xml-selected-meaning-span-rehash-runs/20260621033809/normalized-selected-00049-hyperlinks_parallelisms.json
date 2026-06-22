@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_bbcd5857df4876fd565b0b9c7ddb18cc",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "978f6dd40bf0d08f654b9ebd6e977d00996a99457d4042d8ef95dc02da0be067",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The imagery of the torch guttering and the shadow looking like a man emptied out and not refilled parallels the motif of spiritual and physical depletion, reflecting Dan's internal conflict between flesh and spirit.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_5aa8d3a8ff247e8e0d28db082e2bc7e9",
+          "quote": "The torch guttered in its crack in the wall. His shadow, thrown large and hunched by the dying light, looked like a man who had been emptied out and not quite refilled."
+        }
+      ],
+      "target_hint": "This echoes the recurring theme of Dan's somatic cost and spiritual struggle described in the narrative context, especially the visceral empathy rulebook emphasizing the physical pain accompanying spiritual decisions.",
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The imagery of the torch guttering and the shadow looking like a man emptied out and not refilled parallels the motif of spiritual and physical depletion, reflecting Dan's internal conflict between flesh and spirit.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_5aa8d3a8ff247e8e0d28db082e2bc7e9",
+          "render_index": 50,
+          "quote": "The torch guttered in its crack in the wall. His shadow, thrown large and hunched by the dying light, looked like a man who had been emptied out and not quite refilled.",
+          "role": "source",
+          "start_char": 12532,
+          "end_char": 12700,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_bbcd5857df4876fd565b0b9c7ddb18cc",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            99
+          ],
+          "evidence_sha256": "421fd10d6d71fd0111a5d50ff85865cf0f12145c691ae2bdafa94189db435ebf"
+        }
+      ],
+      "target_hint": "This echoes the recurring theme of Dan's somatic cost and spiritual struggle described in the narrative context, especially the visceral empathy rulebook emphasizing the physical pain accompanying spi",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "adcfa7b783edb43c5a6cde7ca8ff7508ee91eecfe8a7e81e372b3640c0d38f57",
+  "normalized_output_hash": "64bd5c4b136f55485a45eeb485fa8989a30b0cd70fa95140e6bc488eb827e193"
+}

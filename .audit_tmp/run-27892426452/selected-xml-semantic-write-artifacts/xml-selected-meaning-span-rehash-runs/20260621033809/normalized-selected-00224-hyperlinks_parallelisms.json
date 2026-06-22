@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_f95e50c6f835f531aab8bb3d2fe7b5dc",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "d617a37d9f9dcb6a4ace512bfd71f9b3dc418c5db34b79d4600f5242ca7e8e07",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The motif of 'wrongness' is echoed in the description of the Dead Sea's abnormal state of absence and lifelessness, contrasting with the 'wrongness of accumulation' in the father's house, highlighting two distinct types of dysfunction or spiritual malaise.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_9c95496544c7686b3b450565aaa2cdb0",
+          "quote": "There was something wrong about the Dead Sea. Not wrong in the way his father's house was wrong—that was a wrongness of accumulation, of life refusing to move forward. This was different. This was the wrongness of absence. Of a place where the normal rules didn't apply, where even the water had given up on the idea of supporting life."
+        }
+      ],
+      "target_hint": "The motif of 'wrongness' as spiritual or existential dysfunction is a recurring theme in the narrative, reflecting internal and external conflicts experienced by Dan and other characters.",
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The motif of 'wrongness' is echoed in the description of the Dead Sea's abnormal state of absence and lifelessness, contrasting with the 'wrongness of accumulation' in the father's house, highlighting two distinct types of dysfunction or sp",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_9c95496544c7686b3b450565aaa2cdb0",
+          "render_index": 131,
+          "quote": "There was something wrong about the Dead Sea. Not wrong in the way his father's house was wrong—that was a wrongness of accumulation, of life refusing to move forward. This was different. This was the wrongness of absence. Of a place where the normal rules didn't apply, where even the water had given up on the idea of supporting life.",
+          "role": "source",
+          "start_char": 16484,
+          "end_char": 16820,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_f95e50c6f835f531aab8bb3d2fe7b5dc",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            261
+          ],
+          "evidence_sha256": "05cc98f3c35a64adea9039243b143c1ba4f3da1e02d05a8d9290703194f4ee8f"
+        }
+      ],
+      "target_hint": "The motif of 'wrongness' as spiritual or existential dysfunction is a recurring theme in the narrative, reflecting internal and external conflicts experienced by Dan and other characters.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "700d093b815c4e53bd5472bb90bfb49a9a667b8641aec897e7300c56ab0e406b",
+  "normalized_output_hash": "0ea7c962be6f8506767d51c09bb188fb5fd61884881d92fe890e0c0fae94b42a"
+}

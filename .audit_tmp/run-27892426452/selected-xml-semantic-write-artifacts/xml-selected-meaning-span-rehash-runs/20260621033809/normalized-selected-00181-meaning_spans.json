@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_118d56479b7a4f4f64c26e93dc2ea3e4",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "4873332e4676aaa1eaea60df202916773f29d7f4d10cc5948fd79f42f7ffc524",
+  "observations": [
+    {
+      "kind": "Setting Description",
+      "summary": "The city is depicted as just beginning to wake at dawn, with a rooster's call signaling morning and the air described as cool and sharp before sunrise.",
+      "evidence": [
+        {
+          "render_para_key": "rp_b5311bea5951fb3d6592f4e79939ae13",
+          "quote": "The city was just beginning to wake. Somewhere in the distance, a rooster screamed its morning challenge to the dark. The air was cool—that sharp, clean cold that comes just before sunrise, when the heat of the day hasn't yet begun to gather its strength."
+        }
+      ],
+      "thematic_weight": 0.3,
+      "gravity": 0.2,
+      "tension": 0.1,
+      "confidence": 1,
+      "notes": null
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "The city is depicted as just beginning to wake at dawn, with a rooster's call signaling morning and the air described as cool and sharp before sunrise.",
+      "evidence": [
+        {
+          "render_para_key": "rp_b5311bea5951fb3d6592f4e79939ae13",
+          "render_index": 88,
+          "quote": "The city was just beginning to wake. Somewhere in the distance, a rooster screamed its morning challenge to the dark. The air was cool—that sharp, clean cold that comes just before sunrise, when the heat of the day hasn't yet begun to gather its strength.",
+          "role": null,
+          "start_char": 10997,
+          "end_char": 11252,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_118d56479b7a4f4f64c26e93dc2ea3e4",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            175
+          ],
+          "evidence_sha256": "2f486d83228b5f13ed7e4206585ede94a6c6cd3d9d07d4a1b51217fbf1d2680a"
+        }
+      ],
+      "thematic_weight": 0.3,
+      "gravity": 0.2,
+      "tension": 0.1,
+      "confidence": 1,
+      "notes": null
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "ba032aeccfa9c4e5abc120d5999ffbf8333a9154d96e0e34faae6fea610b428d",
+  "normalized_output_hash": "421bb8c16f6a17d9b7b06a34bdbfb0cca7c002c2ae005862e78b4cc31c747147"
+}

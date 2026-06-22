@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_50f43a4f49283b5ac754a537b50fd8c0",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "5b3c19b4588b2838c3b0b2430e8ae0c903b48265fa8a205034165c22bf70557e",
+  "observations": [
+    {
+      "axis": "Consciousness vs. Unconsciousness",
+      "polarity": "Unconscious breath struggle vs. awareness",
+      "summary": "The man experiences a rough, ragged breathing sound in sleep, indicating an unconscious struggle with his own breath, contrasting with the potential for conscious control or awareness of breathing.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_70866e2cf2a744adf51c4da79971ff91",
+          "quote": "the low, ragged sound of a man trying to outrun his own breath in sleep"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_70866e2cf2a744adf51c4da79971ff91",
+          "quote": "Unconscious of itself"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "consciousness_vs_unconsciousness",
+      "polarity": "tension",
+      "summary": "The man experiences a rough, ragged breathing sound in sleep, indicating an unconscious struggle with his own breath, contrasting with the potential for conscious control or awareness of breathing.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_70866e2cf2a744adf51c4da79971ff91",
+          "render_index": 15,
+          "quote": "the low, ragged sound of a man trying to outrun his own breath in sleep",
+          "role": "left",
+          "start_char": 5017,
+          "end_char": 5088,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_50f43a4f49283b5ac754a537b50fd8c0",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            29
+          ],
+          "evidence_sha256": "f25eb8317783e470a6a9e10c522e2e58d905eb1eb9a9801dd855d72dd3b7598b"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_70866e2cf2a744adf51c4da79971ff91",
+          "render_index": 15,
+          "quote": "Unconscious of itself",
+          "role": "right",
+          "start_char": 5108,
+          "end_char": 5129,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_50f43a4f49283b5ac754a537b50fd8c0",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            29
+          ],
+          "evidence_sha256": "ba8fdb65bf1c9b29ecdf1d80721f7b33b4be62227d0840f6c3c18619b68576cf"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "065e3c517950a3525fdb73de1801da513fa92a550d3febfc39f7c493d1aa8f9c",
+  "normalized_output_hash": "2216aa649102159253ad2d6559874f9204cc27ace89960397e22bea26b901dec"
+}

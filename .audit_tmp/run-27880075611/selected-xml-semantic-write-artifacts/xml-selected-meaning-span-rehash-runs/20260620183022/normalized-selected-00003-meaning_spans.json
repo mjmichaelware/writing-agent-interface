@@ -1,0 +1,101 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_a3adaa6be6be83a7f0ff767d43b610ce",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "97e5eeaf2ea1ded7f2ed72c8d1b601b7d78cb106461e82881ed552af2f7fe0f5",
+  "observations": [
+    {
+      "kind": "Character Psychological State",
+      "summary": "Father Aviel was a sharp scholar but ceased functioning emotionally after the death of his wife, Mother Zuna, indicating profound grief and loss.",
+      "evidence": [
+        {
+          "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+          "quote": "Father Aviel had been a scholar, sharp as fresh-knapped flint, sought and summoned by those with questions knotted beyond common counsel. But when Mother Zuna passed beyond recall—when they buried his bride beneath the earth—something stopped within him. Not died, which would have been cleaner and quicker, but simply ceased like a cart with a cruelly shattered axle."
+        }
+      ],
+      "thematic_weight": 0.9,
+      "gravity": 0.8,
+      "tension": 0.7,
+      "confidence": 0.95,
+      "notes": "Strong evidence of emotional paralysis due to grief."
+    },
+    {
+      "kind": "Symbolic Motif",
+      "summary": "Aviel's gods from the Western plains, representing fortune, flame, and fertility, were discarded except for one god symbolizing limitless dust and earthly plenty, which whispered of defying time through hoarded treasures.",
+      "evidence": [
+        {
+          "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+          "quote": "The gathered gods he'd carried from the Western plains—bronze and brittle forms of fortune, flame, and fertility—could not fill the void. So he swept them away and kept only one: the lord of limitless dust and earthly plenty, who whispered in the watches and the waiting of the night that hoarded treasures might hold back time itself and defy the demands it made."
+        }
+      ],
+      "thematic_weight": 0.85,
+      "gravity": 0.75,
+      "tension": 0.6,
+      "confidence": 0.9,
+      "notes": "Indicates a shift in Aviel's spiritual focus and possible symbolic meaning of dust and earthly plenty."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "Aviel's gods from the Western plains, representing fortune, flame, and fertility, were discarded except for one god symbolizing limitless dust and earthly plenty, which whispered of defying time through hoarded treasures.",
+      "evidence": [
+        {
+          "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+          "render_index": 4,
+          "quote": "The gathered gods he'd carried from the Western plains—bronze and brittle forms of fortune, flame, and fertility—could not fill the void. So he swept them away and kept only one: the lord of limitless dust and earthly plenty, who whispered in the watches and the waiting of the night that hoarded treasures might hold back time itself and defy the demands it made.",
+          "role": null,
+          "start_char": 718,
+          "end_char": 1082,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_a3adaa6be6be83a7f0ff767d43b610ce",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            7
+          ],
+          "evidence_sha256": "22a5573db75d431bd01eb9f4e10b80e897dec808e69a1abd76476fa0339b9d1e"
+        }
+      ],
+      "thematic_weight": 0.85,
+      "gravity": 0.75,
+      "tension": 0.6,
+      "confidence": 0.9,
+      "notes": "Indicates a shift in Aviel's spiritual focus and possible symbolic meaning of dust and earthly plenty."
+    },
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "Father Aviel was a sharp scholar but ceased functioning emotionally after the death of his wife, Mother Zuna, indicating profound grief and loss.",
+      "evidence": [
+        {
+          "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+          "render_index": 4,
+          "quote": "Father Aviel had been a scholar, sharp as fresh-knapped flint, sought and summoned by those with questions knotted beyond common counsel. But when Mother Zuna passed beyond recall—when they buried his bride beneath the earth—something stopped within him. Not died, which would have been cleaner and quicker, but simply ceased like a cart with a cruelly shattered axle.",
+          "role": null,
+          "start_char": 349,
+          "end_char": 717,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_a3adaa6be6be83a7f0ff767d43b610ce",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            7
+          ],
+          "evidence_sha256": "89be6f6fb0628a60be5f28cf74aa344ece505625a96650a54b849b47de0b28c6"
+        }
+      ],
+      "thematic_weight": 0.9,
+      "gravity": 0.8,
+      "tension": 0.7,
+      "confidence": 0.95,
+      "notes": "Strong evidence of emotional paralysis due to grief."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "7b46174e4f513bed1f9fd462348cbd0e0fddb40741f051064f1820f2d9aac6cc",
+  "normalized_output_hash": "f39dbedaa09a3608d7873212680abc5cfde8610facbd56c7ebd23559ea47f876"
+}

@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_7790204ca0982d18f48ab1e615fa7d0f",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "6ea31d7cd582fa52e1a5183dc7b083c3f456c9af8ddd44e0d093679d9d4d3ad8",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The phrase 'brine burning his throat' in the source paragraph echoes the recurring motif of physical and emotional pain associated with Dan's internal struggles throughout the narrative, symbolizing the somatic cost of his spiritual and psychological conflicts.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_67cb3d5ab40b129551b5b0bf2cb262b5",
+          "quote": "\"I didn't call you,\" Dan choked out, brine burning his throat."
+        }
+      ],
+      "target_hint": "This motif parallels descriptions in the narrative context where Dan experiences physical pain and emotional cost during spiritual decisions, such as the 'cold, sharp ache settled in the marrow of his chest' and the visceral empathy rule emphasizing flesh vs. spirit conflict.",
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The phrase 'brine burning his throat' in the source paragraph echoes the recurring motif of physical and emotional pain associated with Dan's internal struggles throughout the narrative, symbolizing the somatic cost of his spiritual and psy",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_67cb3d5ab40b129551b5b0bf2cb262b5",
+          "render_index": 61,
+          "quote": "\"I didn't call you,\" Dan choked out, brine burning his throat.",
+          "role": "source",
+          "start_char": 14966,
+          "end_char": 15028,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_7790204ca0982d18f48ab1e615fa7d0f",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            121
+          ],
+          "evidence_sha256": "790067b3b5b2c2f533dc0867c328fb08d846ebb124062bb370d40ebe35686548"
+        }
+      ],
+      "target_hint": "This motif parallels descriptions in the narrative context where Dan experiences physical pain and emotional cost during spiritual decisions, such as the 'cold, sharp ache settled in the marrow of his",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "d4e4d19fd325082956cacd12007dbecf82b710efcd3ad6fd2ec008dcc7750cc9",
+  "normalized_output_hash": "d8731d2e1247ecefb57ba7d78f6ea5a693e15d6c49af038771ea5c185df73cb2"
+}

@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_2fa2959eb49fdf1d9acd57c4a4a3877f",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "9d92d6330e4882e14ac2bcf15c54ba66627047923a20cdae8d9a887598792902",
+  "observations": [
+    {
+      "axis": "Communication Impact",
+      "polarity": "Harshness vs. Freeze",
+      "summary": "Dan's words came out harsher than intended, causing Aviel to freeze, indicating a tension between intended communication and its emotional impact.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_b73b7144a28cbe5e6e3af7d70d40f8f8",
+          "quote": "The word came out harder than Dan intended"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_b73b7144a28cbe5e6e3af7d70d40f8f8",
+          "quote": "Aviel froze"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "communication_impact",
+      "polarity": "tension",
+      "summary": "Dan's words came out harsher than intended, causing Aviel to freeze, indicating a tension between intended communication and its emotional impact.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_b73b7144a28cbe5e6e3af7d70d40f8f8",
+          "render_index": 33,
+          "quote": "The word came out harder than Dan intended",
+          "role": "left",
+          "start_char": 4416,
+          "end_char": 4458,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_2fa2959eb49fdf1d9acd57c4a4a3877f",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            65
+          ],
+          "evidence_sha256": "10addcd6c2815670c9e4f91d1bbf2ba8cebf136b3a4f9584f825f6867519fcc4"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_b73b7144a28cbe5e6e3af7d70d40f8f8",
+          "render_index": 33,
+          "quote": "Aviel froze",
+          "role": "right",
+          "start_char": 4464,
+          "end_char": 4475,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_2fa2959eb49fdf1d9acd57c4a4a3877f",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            65
+          ],
+          "evidence_sha256": "434cc528feefc8a50759a9933db84cd3f76967e4e82d2d40e0ede63d6ff3f364"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "aa094df3ee6a4825a4334f08906b7eae816dddd2be54169187026b76f1f32fe1",
+  "normalized_output_hash": "3a36712cadf1aa036ca62b688bacbe9f0ea21ce431ca087e3aa80e6d2ac804b0"
+}

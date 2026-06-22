@@ -1,0 +1,126 @@
+{
+  "paragraphs": [
+    {
+      "paragraph_id": "0128966b-f18e-427b-9526-78426f5d5136",
+      "content_sha256": "22570f5779911768aea466070ecea4e5bac6253ba0893658a3efc129611e4683",
+      "archetypal_weights": {
+        "shadow": 0.1,
+        "self": 0.8
+      },
+      "dualism_map": {
+        "ascent_descent": 0.7
+      },
+      "metadata": {
+        "summary": "Within a dream, Dan impresses upon his father's mind the necessity of their separation. He uses the image of a star to symbolize his departure and his father's need for emotional and spiritual preparation.",
+        "semantic_notes": [
+          "This paragraph acts as the catalyst for the primary narrative action: Dan's departure from the stagnant home.",
+          "The use of 'potent intent' highlights Dan's role as 'Volition' in contrast to his father Aviel's 'Entropy' as defined in the context pack.",
+          "The 'star' is a key symbol, linking to Zuna's 'stardust' wisdom and foreshadowing Dan's eventual ascent and transformation."
+        ]
+      },
+      "archetype_observations": [
+        {
+          "archetype": "Son-Hero Initiation",
+          "subject_name": "Dan",
+          "movement_stage": "Catalyst for Departure",
+          "evidence_text": "The boy must depart from the father, and the father must prepare his heart.",
+          "interpretation": "Dan actively engineers the circumstances for his own 'Call to Adventure'. Instead of being a passive recipient, he uses his power as a dreamwalker to sever the connection to the stagnant, wounded father figure and initiate his journey of individuation and ascent.",
+          "confidence": 0.9
+        },
+        {
+          "archetype": "Wounded Father",
+          "subject_name": "Aviel",
+          "movement_stage": "Confronted by Son's Will",
+          "evidence_text": "...and the father must prepare his heart.",
+          "interpretation": "Aviel is portrayed as a passive figure whose heart is unprepared and closed off. The impetus for change comes not from within, but is imposed by his son's will, highlighting his archetypal role as a figure trapped in stasis and grief (entropy) who must be acted upon by an external force (volition).",
+          "confidence": 0.85
+        }
+      ],
+      "biblical_references": [
+        {
+          "reference_text": "Prodigal Son",
+          "book": "Luke",
+          "chapter": 15,
+          "verse": null,
+          "allusion_type": "typological",
+          "evidence_text": "The boy must depart from the father...",
+          "interpretation": "This is a deliberate inversion of the Prodigal Son parable. Here, the son possesses the spiritual wisdom and initiates the departure not as an act of rebellion, but as a necessary step for both his and his father's spiritual well-being. The son commands the father to prepare, reversing the traditional roles of authority.",
+          "confidence": 0.8
+        },
+        {
+          "reference_text": "Star as Divine Symbol",
+          "book": null,
+          "chapter": null,
+          "verse": null,
+          "allusion_type": "symbolic",
+          "evidence_text": "He held the image of the star, imprinting it upon his father's mind.",
+          "interpretation": "The star functions as a symbol of divine calling, guidance, and destiny, akin to the Star of Bethlehem or the stars in the Abrahamic covenant. Dan imprints this celestial, hopeful image onto his father's mind, creating a direct contrast with Aviel's earth-bound, dust-filled world of hoarding and decay associated with the 'low god' Dagon.",
+          "confidence": 0.9
+        }
+      ],
+      "derived_hyperlinks": [
+        {
+          "theme_node_a": "Dan's Departure",
+          "theme_node_b": "Ascent vs. Descent",
+          "connection_type": "Initiation of Ascent",
+          "edge_type": "dualism",
+          "confidence": 0.9,
+          "evidence_text": "The boy must depart from the father..."
+        },
+        {
+          "theme_node_a": "Dan",
+          "theme_node_b": "Son-Hero",
+          "connection_type": "Catalyzes Own Journey",
+          "edge_type": "archetype",
+          "confidence": 0.9,
+          "evidence_text": "Dan poured his final, potent intent into that fleeting vision: The boy must depart from the father..."
+        }
+      ]
+    }
+  ],
+  "dualism_relations": [
+    {
+      "relation_type": "Volition vs. Entropy",
+      "shared_substrate": "Response to Zuna's death",
+      "pole_a": {
+        "label": "Son's Active Departure",
+        "paragraph_id": "0128966b-f18e-427b-9526-78426f5d5136",
+        "description": "Dan, as Volition, uses his spiritual power to force a separation and begin a journey of ascent."
+      },
+      "pole_b": {
+        "label": "Father's Passive Hoarding",
+        "paragraph_id": "conceptual_ch1",
+        "description": "Aviel, as Entropy, collapses into stasis and hoarding, attempting to use material possessions to halt time and decay."
+      },
+      "interpretation": "This dualism represents the core psychic split in the Hebron house. In response to shared grief, the son's will pushes outward and upward toward the spiritual, while the father's decay pulls inward and downward toward the material. This paragraph marks the moment volition actively breaks from entropy.",
+      "confidence": 0.95,
+      "evidence": [
+        {
+          "paragraph_id": "0128966b-f18e-427b-9526-78426f5d5136",
+          "evidence_role": "pole_a",
+          "evidence_text": "Dan poured his final, potent intent into that fleeting vision: The boy must depart from the father..."
+        }
+      ],
+      "derived_hyperlink": {
+        "theme_node_a": "Dan's Volition",
+        "theme_node_b": "Aviel's Entropy",
+        "connection_type": "Opposition",
+        "edge_type": "dualism",
+        "confidence": 0.95
+      }
+    }
+  ],
+  "archetype_movements": [
+    {
+      "subject_name": "Dan",
+      "arc_label": "Individuation from Paternal Stasis",
+      "from_state": "Son contained within father's grief-world",
+      "to_state": "Initiated quester on path of ascent",
+      "start_paragraph_id": "0128966b-f18e-427b-9526-78426f5d5136",
+      "end_paragraph_id": null,
+      "evidence_summary": "Dan uses his dreamwalking ability to impose his will upon his father, declaring that their separation is necessary. This act of 'potent intent' serves as the self-generated catalyst for his entire physical and spiritual journey.",
+      "interpretation": "This marks the beginning of Dan's archetypal movement from a state of being defined by his father's house ('a divided heart') toward self-definition. By forcing the departure, he consciously chooses the path of ascent and begins the process of shedding the 'weight' of his inherited world, a crucial first step in his transformation from Dan (judge) to Daniel (judged by God).",
+      "confidence": 0.9
+    }
+  ]
+}

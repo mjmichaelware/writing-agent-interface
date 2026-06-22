@@ -1,0 +1,139 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_8e7b0deeed43a4dfaa458c9089513a55",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "93fe383ab50408fac4c758a721b2c6f208cc8cac8908ba2decc6ef1cc0a47fa1",
+  "observations": [
+    {
+      "axis": "Light versus Darkness",
+      "polarity": "Light fractures Darkness",
+      "summary": "The dreamscape is dominated by overwhelming darkness, but it is actively fractured by lines of blinding white-hot light, symbolizing a tension between oppressive nightmare and piercing illumination.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_19d5f7f56e4e159cb372e0281aad7fba",
+          "quote": "Dagon's form surged forward—a tidal wave of darkness. The dream began to fracture. Lines of blinding white-hot light cracked through the suffocating black"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_19d5f7f56e4e159cb372e0281aad7fba",
+          "quote": "Lines of blinding white-hot light cracked through the suffocating black, the nightmare diminuendoing toward its final unresolved seventh"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.95
+    },
+    {
+      "axis": "Order versus Chaos",
+      "polarity": "Fracturing nightmare versus unresolved chord",
+      "summary": "The nightmare is collapsing and fracturing, yet it moves toward a final unresolved chord, representing a tension between disintegration and an incomplete resolution.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_19d5f7f56e4e159cb372e0281aad7fba",
+          "quote": "The dream began to fracture. Lines of blinding white-hot light cracked through the suffocating black"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_19d5f7f56e4e159cb372e0281aad7fba",
+          "quote": "the nightmare diminuendoing toward its final unresolved seventh—the phantom opera of stone against stone in the deeps below the world, collapsing toward a chord that would never resolve"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "light_versus_darkness",
+      "polarity": "tension",
+      "summary": "The dreamscape is dominated by overwhelming darkness, but it is actively fractured by lines of blinding white-hot light, symbolizing a tension between oppressive nightmare and piercing illumination.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_19d5f7f56e4e159cb372e0281aad7fba",
+          "render_index": 78,
+          "quote": "Dagon's form surged forward—a tidal wave of darkness. The dream began to fracture. Lines of blinding white-hot light cracked through the suffocating black",
+          "role": "left",
+          "start_char": 18325,
+          "end_char": 18479,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_8e7b0deeed43a4dfaa458c9089513a55",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            155
+          ],
+          "evidence_sha256": "3967d0e1d2f4dc1ba93244e3818a04ce4ac2a404b1b1e66500a0f1a98a7ae2ca"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_19d5f7f56e4e159cb372e0281aad7fba",
+          "render_index": 78,
+          "quote": "Lines of blinding white-hot light cracked through the suffocating black, the nightmare diminuendoing toward its final unresolved seventh",
+          "role": "right",
+          "start_char": 18408,
+          "end_char": 18544,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_8e7b0deeed43a4dfaa458c9089513a55",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            155
+          ],
+          "evidence_sha256": "ddf1e077d210065f1bae8eb04f9896995dee6b788188542fd36c374cc0e8afa2"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.95
+    },
+    {
+      "task": "dualisms",
+      "axis": "order_versus_chaos",
+      "polarity": "tension",
+      "summary": "The nightmare is collapsing and fracturing, yet it moves toward a final unresolved chord, representing a tension between disintegration and an incomplete resolution.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_19d5f7f56e4e159cb372e0281aad7fba",
+          "render_index": 78,
+          "quote": "The dream began to fracture. Lines of blinding white-hot light cracked through the suffocating black",
+          "role": "left",
+          "start_char": 18379,
+          "end_char": 18479,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_8e7b0deeed43a4dfaa458c9089513a55",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            155
+          ],
+          "evidence_sha256": "5005ecfe473eb3d465718d8e8a103e39676346266d0c68b9bd484d8bcd2871b6"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_19d5f7f56e4e159cb372e0281aad7fba",
+          "render_index": 78,
+          "quote": "the nightmare diminuendoing toward its final unresolved seventh—the phantom opera of stone against stone in the deeps below the world, collapsing toward a chord that would never resolve",
+          "role": "right",
+          "start_char": 18481,
+          "end_char": 18666,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_8e7b0deeed43a4dfaa458c9089513a55",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            155
+          ],
+          "evidence_sha256": "c3c51f6b2c95cdd39fe6c2e9199ef49d29e0bc7a2008ce2d80f1116804832137"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "09c0254ed396a9f4571fcbeeae7d0248fde2c7567aac09b4a6c3a5472451a1d2",
+  "normalized_output_hash": "3aba08a7df4b3367c996c1447c37ac1c87279c68878ff389c566bbb55d6ccf71"
+}

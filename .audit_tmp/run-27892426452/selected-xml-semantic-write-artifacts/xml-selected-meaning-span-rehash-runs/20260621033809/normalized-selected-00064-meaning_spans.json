@@ -1,0 +1,143 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_fd51af9e61eaff1a5b19db0b663f1cbf",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "d8feaa25d8ca438ffe813d2e971c35401363d72e3658e294e8d33800b2d48f38",
+  "observations": [
+    {
+      "kind": "Offer of Salvation",
+      "summary": "A figure offers a raft as a metaphorical means to ease the pain of death and promises restoration of the mother's comforting voice in dreams.",
+      "evidence": [
+        {
+          "render_para_key": "rp_48805886f90e66b1ab6582bfbf55e1fe",
+          "quote": "\"I offer you a raft, so that the friction of death shall lose its sting. Follow me. I shall restore your mother's voice to you in the night—dreams in which she speaks comfort unceasing.\""
+        }
+      ],
+      "thematic_weight": 0.9,
+      "gravity": 0.8,
+      "tension": 0.7,
+      "confidence": 0.95,
+      "notes": "This claim is central to the passage's promise of comfort and guidance beyond death."
+    },
+    {
+      "kind": "Promise of a Better Life",
+      "summary": "The speaker promises a life free from past shame and cruelty, including a wife unburdened by harsh labor and sons untainted by ancestral disgrace.",
+      "evidence": [
+        {
+          "render_para_key": "rp_48805886f90e66b1ab6582bfbf55e1fe",
+          "quote": "\"I shall give you a wife whose hands need not be reddened by lye. Sons who will never know the stench of their grandfather's shame.\""
+        }
+      ],
+      "thematic_weight": 0.85,
+      "gravity": 0.75,
+      "tension": 0.6,
+      "confidence": 0.9,
+      "notes": "This reflects a motif of redemption and escape from inherited suffering."
+    },
+    {
+      "kind": "Desire for Peaceful Forgetting",
+      "summary": "The life offered is described as 'sluggish, sweet warmth' forgotten by the cruelties of the heights, embodying the mother's desire for peace and wholeness away from harsh demands.",
+      "evidence": [
+        {
+          "render_para_key": "rp_48805886f90e66b1ab6582bfbf55e1fe",
+          "quote": "\"The sluggish, sweet warmth of a life forgotten by the cruelties of the heights. The life your mother desired for you—peaceful, whole, and forgotten by the terrible heights that demand all.\""
+        }
+      ],
+      "thematic_weight": 0.9,
+      "gravity": 0.85,
+      "tension": 0.65,
+      "confidence": 0.95,
+      "notes": "This encapsulates the theme of escape from oppressive forces symbolized by 'the heights.'"
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "A figure offers a raft as a metaphorical means to ease the pain of death and promises restoration of the mother's comforting voice in dreams.",
+      "evidence": [
+        {
+          "render_para_key": "rp_48805886f90e66b1ab6582bfbf55e1fe",
+          "render_index": 65,
+          "quote": "I offer you a raft, so that the friction of death shall lose its sting. Follow me. I shall restore your mother's voice to you in the night—dreams in which she speaks comfort unceasing",
+          "role": null,
+          "start_char": 15553,
+          "end_char": 15736,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_fd51af9e61eaff1a5b19db0b663f1cbf",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            129
+          ],
+          "evidence_sha256": "ad1f987ffd2e9564e34aea59ee19e80a040dab7617766b6c494b162f21ea9a62"
+        }
+      ],
+      "thematic_weight": 0.9,
+      "gravity": 0.8,
+      "tension": 0.7,
+      "confidence": 0.95,
+      "notes": "This claim is central to the passage's promise of comfort and guidance beyond death."
+    },
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "The life offered is described as 'sluggish, sweet warmth' forgotten by the cruelties of the heights, embodying the mother's desire for peace and wholeness away from harsh demands.",
+      "evidence": [
+        {
+          "render_para_key": "rp_48805886f90e66b1ab6582bfbf55e1fe",
+          "render_index": 65,
+          "quote": "The sluggish, sweet warmth of a life forgotten by the cruelties of the heights. The life your mother desired for you—peaceful, whole, and forgotten by the terrible heights that demand all",
+          "role": null,
+          "start_char": 15869,
+          "end_char": 16056,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_fd51af9e61eaff1a5b19db0b663f1cbf",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            129
+          ],
+          "evidence_sha256": "96103c950800ccd57b8a3039c7de10c1e710917ec4d06ae2a61110b7a3c8a13b"
+        }
+      ],
+      "thematic_weight": 0.9,
+      "gravity": 0.85,
+      "tension": 0.65,
+      "confidence": 0.95,
+      "notes": "This encapsulates the theme of escape from oppressive forces symbolized by 'the heights.'"
+    },
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "The speaker promises a life free from past shame and cruelty, including a wife unburdened by harsh labor and sons untainted by ancestral disgrace.",
+      "evidence": [
+        {
+          "render_para_key": "rp_48805886f90e66b1ab6582bfbf55e1fe",
+          "render_index": 65,
+          "quote": "I shall give you a wife whose hands need not be reddened by lye. Sons who will never know the stench of their grandfather's shame",
+          "role": null,
+          "start_char": 15738,
+          "end_char": 15867,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_fd51af9e61eaff1a5b19db0b663f1cbf",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            129
+          ],
+          "evidence_sha256": "97df502e8dc815a29ae084a99a7b88a57335816b22de3c3337e81902945df0f9"
+        }
+      ],
+      "thematic_weight": 0.85,
+      "gravity": 0.75,
+      "tension": 0.6,
+      "confidence": 0.9,
+      "notes": "This reflects a motif of redemption and escape from inherited suffering."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "3833cb6d07785c61b1b1a1be564b770a47a800644566765e75ca497e09b9041a",
+  "normalized_output_hash": "4517e132e874fb2ae532fad1ac085e0fbfcd282a67173b79909f0274884df435"
+}

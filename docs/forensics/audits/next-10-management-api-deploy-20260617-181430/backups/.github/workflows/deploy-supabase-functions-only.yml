@@ -1,0 +1,49 @@
+name: Deploy Supabase Edge Functions Only
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - cleanup/standard-app-tree
+    paths:
+      - "supabase/functions/**"
+      - ".github/workflows/deploy-supabase-functions-only.yml"
+
+jobs:
+  deploy-functions:
+    runs-on: ubuntu-latest
+
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Verify Supabase inputs
+        run: |
+          test -n "$SUPABASE_ACCESS_TOKEN"
+          test -n "$SUPABASE_PROJECT_REF"
+          supabase --version
+
+      - name: Deploy create-upload-url
+        run: supabase functions deploy create-upload-url --project-ref "$SUPABASE_PROJECT_REF"
+
+      - name: Deploy register-uploaded-artifact
+        run: supabase functions deploy register-uploaded-artifact --project-ref "$SUPABASE_PROJECT_REF"
+
+      - name: Deploy verify-artifact-hash
+        run: supabase functions deploy verify-artifact-hash --project-ref "$SUPABASE_PROJECT_REF"
+
+      - name: Deploy enqueue-enrichment
+        run: supabase functions deploy enqueue-enrichment --project-ref "$SUPABASE_PROJECT_REF"
+
+      - name: Deploy process-enrichment-batch
+        run: supabase functions deploy process-enrichment-batch --project-ref "$SUPABASE_PROJECT_REF"

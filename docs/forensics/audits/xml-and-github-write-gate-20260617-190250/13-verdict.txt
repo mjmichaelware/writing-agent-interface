@@ -1,0 +1,9 @@
+NO HASHING STARTED.
+Audit folder: docs/forensics/audits/xml-and-github-write-gate-20260617-190250
+
+Pass conditions:
+- XML count should match the expected OOXML corpus count.
+- hasher grep should show gdrive_ooxml_raw and materialized_ooxml_manifest.
+- semantic-rehash-full.yml should show --write.
+- semantic-rehash-full.yml should show SUPABASE_ACCESS_TOKEN and SUPABASE_PROJECT_REF.
+- Supabase table proof should list 13 tables.

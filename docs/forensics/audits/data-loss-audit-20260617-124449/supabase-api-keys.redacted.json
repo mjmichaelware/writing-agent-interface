@@ -1,0 +1,46 @@
+[
+  {
+    "name": "anon",
+    "api_key": "[REDACTED]",
+    "id": "anon",
+    "type": "legacy",
+    "hash": "eh9wUuIlmGpE_UBeKWq1B9tkqIJyxL2zYmk4VUTpl4w",
+    "prefix": "84ZWL",
+    "description": "Legacy anon API key"
+  },
+  {
+    "name": "service_role",
+    "api_key": "[REDACTED]",
+    "id": "service_role",
+    "type": "legacy",
+    "hash": "oT86rDl2KifCF8DP8vmYiuX5W9auOfIfCaTZyBLQB30",
+    "prefix": "0qegN",
+    "description": "Legacy service_role API key"
+  },
+  {
+    "id": "dfd794f2-5b84-44de-8a0f-227044e82e2e",
+    "name": "default",
+    "type": "publishable",
+    "api_key": "[REDACTED]",
+    "description": null,
+    "secret_jwt_template": null,
+    "hash": "88hGP_7_Hv7yj1t_5GIYGWHgv-ROJJvTSZoRTj1jpis",
+    "prefix": "sb_publishable_xwlXQ",
+    "inserted_at": "2026-05-17T11:22:06.166875+00:00",
+    "updated_at": "2026-05-17T11:22:06.166875+00:00"
+  },
+  {
+    "id": "02e6c3b5-3d32-4096-9078-a07465f5e574",
+    "name": "default",
+    "type": "secret",
+    "api_key": "[REDACTED]",
+    "description": null,
+    "secret_jwt_template": {
+      "role": "service_role"
+    },
+    "hash": "-PKnmFcED3ghhQWUl_3swqi9v7SoSwmqsh_Ql7qMkoY",
+    "prefix": "sb_secret_Wa7ki",
+    "inserted_at": "2026-05-17T11:22:06.166875+00:00",
+    "updated_at": "2026-05-17T11:22:06.166875+00:00"
+  }
+]

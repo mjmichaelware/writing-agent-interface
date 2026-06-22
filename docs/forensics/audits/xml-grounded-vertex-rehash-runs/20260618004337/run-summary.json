@@ -1,0 +1,9 @@
+{
+  "run_id": "dry-run-20260618004337",
+  "write_mode": false,
+  "total_processed": 1,
+  "narrative_context_sha256": "6e7e306c32940db56e82f1aff23942e6f3d62d7483db8e5735bb2ef2ef75eb8c",
+  "xml_manifest_sha256": "bca8eeacca6a9dd260d50a14a8b2dce9f2f2e759dd16a5cc3ef2ee06d0a1b970",
+  "provider": "vertex",
+  "model": "gemini-2.5-pro"
+}

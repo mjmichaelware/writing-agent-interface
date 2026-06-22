@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_d94924957572763d9e6ca9111260ac31",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "904efef73172095d3685c4516b234b54c6803d2f656689bddf78d3924298a7ce",
+  "observations": [
+    {
+      "axis": "Movement and Impact",
+      "polarity": "Dagon's movement vs. the resulting wave",
+      "summary": "Dagon's act of leaning closer causes a significant physical disturbance, displacing mountains of water and generating a secondary wave that crashes over Dan, illustrating a tension between a subtle approach and a powerful, overwhelming effect.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_2fddd7a3ec6b78fb176b512049a0f00d",
+          "quote": "Dagon leaned closer."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_2fddd7a3ec6b78fb176b512049a0f00d",
+          "quote": "The movement displaced mountains of water, the secondary wave crashing over the plank and over Dan."
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "movement_and_impact",
+      "polarity": "tension",
+      "summary": "Dagon's act of leaning closer causes a significant physical disturbance, displacing mountains of water and generating a secondary wave that crashes over Dan, illustrating a tension between a subtle approach and a powerful, overwhelming effe",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_2fddd7a3ec6b78fb176b512049a0f00d",
+          "render_index": 64,
+          "quote": "Dagon leaned closer.",
+          "role": "left",
+          "start_char": 15428,
+          "end_char": 15448,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_d94924957572763d9e6ca9111260ac31",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            127
+          ],
+          "evidence_sha256": "e4b4c2da5af9a417d81fb578cb0e9eb1ef79254ed90c0a4e298b6b646c9291ef"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_2fddd7a3ec6b78fb176b512049a0f00d",
+          "render_index": 64,
+          "quote": "The movement displaced mountains of water, the secondary wave crashing over the plank and over Dan.",
+          "role": "right",
+          "start_char": 15449,
+          "end_char": 15548,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_d94924957572763d9e6ca9111260ac31",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            127
+          ],
+          "evidence_sha256": "78cf1435d395d0b10caedabf5117a9c4424de146162f72e2adb294b658af854f"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "be52aacfe181f97851874767bed9ce790eaded1db44ae254046dbfadb9621435",
+  "normalized_output_hash": "16dfdeb0d6a0de1e9f9d4574539a02da519664201026d563c8b71e094d250bb5"
+}

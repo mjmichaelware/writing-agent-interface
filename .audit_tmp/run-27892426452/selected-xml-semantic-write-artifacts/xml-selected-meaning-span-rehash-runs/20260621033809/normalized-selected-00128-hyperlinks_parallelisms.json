@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_41e6ec23f2584d6d3177ced5908d8403",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "23d7cc0e71bb427ade681bd5a2a4b04a6e059de1b5984befd739d3b5b24c15af",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "Aviel's expression shifting from confusion to something darker parallels the thematic motif of decay and internal collapse associated with Aviel's character throughout the narrative.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_e6027ef5b2c6bdb14410943bbfd99a64",
+          "quote": "Aviel's expression shifted—confusion giving way to something darker."
+        }
+      ],
+      "target_hint": "This mirrors the depiction of Aviel's decay and the catastrophic collapse of his final lie in Chapter 2, where his voice is described as a raw, guttural seam registering his internal collapse.",
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "Aviel's expression shifting from confusion to something darker parallels the thematic motif of decay and internal collapse associated with Aviel's character throughout the narrative.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_e6027ef5b2c6bdb14410943bbfd99a64",
+          "render_index": 35,
+          "quote": "Aviel's expression shifted—confusion giving way to something darker.",
+          "role": "source",
+          "start_char": 4639,
+          "end_char": 4707,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_41e6ec23f2584d6d3177ced5908d8403",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            69
+          ],
+          "evidence_sha256": "565fa5d80a089c72dd4892d751ca18412876b419da0ff419f1657a3a307eebe9"
+        }
+      ],
+      "target_hint": "This mirrors the depiction of Aviel's decay and the catastrophic collapse of his final lie in Chapter 2, where his voice is described as a raw, guttural seam registering his internal collapse.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "565e100f8ba8e548e7094504c9a148c7d988fc4836488ca50e4dccf0fa749d55",
+  "normalized_output_hash": "526d1475765029a36f7917e327f691acdc03fd704520ee8d1772eed1579ea384"
+}

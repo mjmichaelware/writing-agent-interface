@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_d6de7f0d4fe00fe4dd7da27081f11216",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "a738963747c8d8e4f9c1ea6245b4e96a30f7f177b33ca9b4c033456d87895c0a",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The phrase 'Formless void, darkness on the deep—as things must have been before Time' echoes the primordial state of chaos and darkness that is a recurring motif representing the origin of existence and the beginning of truth's emergence.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_79e3c6c195557aea54f2c81935ab73c4",
+          "quote": "Formless void, darkness on the deep—as things must have been before Time, when the first words of truth were spoken."
+        }
+      ],
+      "target_hint": "This motif parallels the narrative's frequent references to darkness as a primordial and metaphysical state preceding creation and enlightenment, as seen in multiple chapters describing darkness as both a literal and symbolic presence.",
+      "target_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The phrase 'Formless void, darkness on the deep—as things must have been before Time' echoes the primordial state of chaos and darkness that is a recurring motif representing the origin of existence and the beginning of truth's emergence.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_79e3c6c195557aea54f2c81935ab73c4",
+          "render_index": 36,
+          "quote": "Formless void, darkness on the deep—as things must have been before Time, when the first words of truth were spoken.",
+          "role": "source",
+          "start_char": 9111,
+          "end_char": 9227,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_d6de7f0d4fe00fe4dd7da27081f11216",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            71
+          ],
+          "evidence_sha256": "d9cd9dd9c75be2a7e8733ddaec1b474abac4fbd70f7c7ccb9ba2b2ca376c9342"
+        }
+      ],
+      "target_hint": "This motif parallels the narrative's frequent references to darkness as a primordial and metaphysical state preceding creation and enlightenment, as seen in multiple chapters describing darkness as bo",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "57c8175d02bd7e8cb1c19efbbd043bda08aa00a4fdd89eecb66232d9ba55b6f6",
+  "normalized_output_hash": "6e6ffbfd40e7693377ed6fb2c5c3fcf3791795e526159ac0befb30e9cafc90db"
+}

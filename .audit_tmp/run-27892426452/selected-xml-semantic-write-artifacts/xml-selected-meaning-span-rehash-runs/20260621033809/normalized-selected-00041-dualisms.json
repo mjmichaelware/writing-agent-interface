@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_49c52312863d08401d84074a9ed669e8",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "c6501aedeb0069fa1f3be18da2e37f14b2d304b3cb993589501cd84a1aadfc88",
+  "observations": [
+    {
+      "axis": "Accumulation vs. Suffocation",
+      "polarity": "Accumulation leads to suffocation",
+      "summary": "The act of gathering and hoarding leads to a physical and emotional crushing, symbolizing how accumulation can suffocate and silence.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_4b4a7083bf1972b2a031350fcd6904a2",
+          "quote": "He gathered until his form was distended and crushed—a silent column in a barren field, the accumulated density squeezing the breath from his lungs."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_4b4a7083bf1972b2a031350fcd6904a2",
+          "quote": "His hands locked in the posture of hoarding. The suffocating mass silenced him."
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "accumulation_vs_suffocation",
+      "polarity": "tension",
+      "summary": "The act of gathering and hoarding leads to a physical and emotional crushing, symbolizing how accumulation can suffocate and silence.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_4b4a7083bf1972b2a031350fcd6904a2",
+          "render_index": 42,
+          "quote": "He gathered until his form was distended and crushed—a silent column in a barren field, the accumulated density squeezing the breath from his lungs.",
+          "role": "left",
+          "start_char": 10594,
+          "end_char": 10742,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_49c52312863d08401d84074a9ed669e8",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            83
+          ],
+          "evidence_sha256": "a291712770e0d6eb2cf608f3518dc0396184ffda03c9671af18dd56c1aac645f"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_4b4a7083bf1972b2a031350fcd6904a2",
+          "render_index": 42,
+          "quote": "His hands locked in the posture of hoarding. The suffocating mass silenced him.",
+          "role": "right",
+          "start_char": 10743,
+          "end_char": 10822,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_49c52312863d08401d84074a9ed669e8",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            83
+          ],
+          "evidence_sha256": "6b834480df965926d17569527d2613d66497b67f7647a00f3e49b894000173a1"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "8df47213dbe80a27b6d7985f08e8dc747652c600d2d7e43c462a0683afc24dc0",
+  "normalized_output_hash": "6cea1eb84fc3d43c724f888b10d8b50ceda2064798b8fc607ad661d107ed787c"
+}

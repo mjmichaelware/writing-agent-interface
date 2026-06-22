@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_8121a9dd1e4b75dd40189f0c529d9200",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "5719d3870f63051eabf771c02945ae37fdcd63450f73c6d70d26a859f8827f4b",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The warmth of the coins from Dan's father's body heat parallels the emotional and physical connection between Dan and his father, highlighting the tension between severing and blessing in their relationship.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_4c926d7cbaa43448f094543103a7d547",
+          "quote": "Dan took the coins. They were warm from his father's body heat, and that small detail nearly undid him. He wanted to say something—wanted to bridge the gap, to find words that would make this okay, that would turn this bitter severing into something that felt more like a blessing."
+        }
+      ],
+      "target_hint": "This motif echoes the broader theme of Dan's internal struggle with his father's legacy and the emotional cost of separation, as explored in earlier chapters describing Aviel's decay and Dan's psychological conflict.",
+      "target_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The warmth of the coins from Dan's father's body heat parallels the emotional and physical connection between Dan and his father, highlighting the tension between severing and blessing in their relationship.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_4c926d7cbaa43448f094543103a7d547",
+          "render_index": 82,
+          "quote": "Dan took the coins. They were warm from his father's body heat, and that small detail nearly undid him. He wanted to say something—wanted to bridge the gap, to find words that would make this okay, that would turn this bitter severing into something that felt more like a blessing.",
+          "role": "source",
+          "start_char": 10534,
+          "end_char": 10815,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_8121a9dd1e4b75dd40189f0c529d9200",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            163
+          ],
+          "evidence_sha256": "39f1dff1b7dd6383282832b406c51eab08bc4ff35de729a27a28808b23657700"
+        }
+      ],
+      "target_hint": "This motif echoes the broader theme of Dan's internal struggle with his father's legacy and the emotional cost of separation, as explored in earlier chapters describing Aviel's decay and Dan's psychol",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "8eaf853ed5fd8c4af6ef1b2aafe22a07f6db3423d20f5f45fc4e8750ce3c01a5",
+  "normalized_output_hash": "144f865970835da8bbea613002aa88adb7c790b1ae08e257a5d788dc374cc023"
+}

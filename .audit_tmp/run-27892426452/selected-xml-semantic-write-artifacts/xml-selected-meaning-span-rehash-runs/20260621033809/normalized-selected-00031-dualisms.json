@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_fd8deaf479705483f6e6c9ce894a90d1",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "9d418842877bb02b2ef072c66fbf4db403d601bc098c88a704ffa810ded7869b",
+  "observations": [
+    {
+      "axis": "Journey Initiation",
+      "polarity": "Vertical Commitment vs. Horizontal Lift",
+      "summary": "The journey is framed as a vertical commitment rather than a simple lift, emphasizing a deliberate, upward, and possibly spiritual or existential movement rather than a mere physical ascent or elevation.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_5887adcdf89566e4263932d23746b9f2",
+          "quote": "The journey began not with a lift"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_5887adcdf89566e4263932d23746b9f2",
+          "quote": "but a vertical commitment."
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "journey_initiation",
+      "polarity": "tension",
+      "summary": "The journey is framed as a vertical commitment rather than a simple lift, emphasizing a deliberate, upward, and possibly spiritual or existential movement rather than a mere physical ascent or elevation.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_5887adcdf89566e4263932d23746b9f2",
+          "render_index": 32,
+          "quote": "The journey began not with a lift",
+          "role": "left",
+          "start_char": 8244,
+          "end_char": 8277,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_fd8deaf479705483f6e6c9ce894a90d1",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            63
+          ],
+          "evidence_sha256": "c9dcf39f44030e77935ea809d2438966c82107343f975a307949a7d07c6796f4"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_5887adcdf89566e4263932d23746b9f2",
+          "render_index": 32,
+          "quote": "but a vertical commitment.",
+          "role": "right",
+          "start_char": 8278,
+          "end_char": 8304,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_fd8deaf479705483f6e6c9ce894a90d1",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            63
+          ],
+          "evidence_sha256": "2439e7b981cd5cede7f54d9f90604a49e9c961c5485a33b4ac4ee1b45c973972"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "8ee746b3282ae97513b67c4d4314f45dc16c5aebf8867dd9d4cfd94eb6268c9f",
+  "normalized_output_hash": "e0adbeb3a6ba4e5c5595d74d0ed86edfa9ef4131951184806056ce8d93928b17"
+}

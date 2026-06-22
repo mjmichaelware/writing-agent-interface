@@ -1,0 +1,131 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_53d1fdf278bc0a7a66b8b3721780bf10",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "fbf9220c00d77dae347271aa98423ecd81b0a58f088736e0893f6fb0b26f49c8",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "Dan's physical exhaustion and heavy, leaden limbs mirror his father's spiritual and psychological decay, emphasizing their shared burden and the cost of their struggles.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_771f91d7056dbac706f993ec2da152cd",
+          "quote": "the cost of testing it was written in every tight muscle and leaden limb. Dan's sleep would bring him no more rest than his father's. They were sleeping the same sleep now."
+        }
+      ],
+      "target_hint": null,
+      "target_evidence": [],
+      "confidence": 0.95
+    },
+    {
+      "relationship_type": "motif_echo",
+      "summary": "The house being divided against itself reflects Dan's internal division and conflict, symbolizing the fractured relationship and opposing forces within both the physical and psychological realms.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_771f91d7056dbac706f993ec2da152cd",
+          "quote": "The house was divided against itself, and so was he."
+        }
+      ],
+      "target_hint": null,
+      "target_evidence": [],
+      "confidence": 0.9
+    },
+    {
+      "relationship_type": "foreshadowing",
+      "summary": "Dan choosing the cold fire of the star over the warm rot of the sea foreshadows his path of ascetic struggle and sacrifice, contrasting with decay and comfort, hinting at the spiritual journey ahead.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_771f91d7056dbac706f993ec2da152cd",
+          "quote": "He had chosen the cold fire of the star over the warm rot of the sea."
+        }
+      ],
+      "target_hint": null,
+      "target_evidence": [],
+      "confidence": 0.85
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "Dan choosing the cold fire of the star over the warm rot of the sea foreshadows his path of ascetic struggle and sacrifice, contrasting with decay and comfort, hinting at the spiritual journey ahead.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_771f91d7056dbac706f993ec2da152cd",
+          "render_index": 89,
+          "quote": "He had chosen the cold fire of the star over the warm rot of the sea.",
+          "role": "source",
+          "start_char": 20174,
+          "end_char": 20243,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_53d1fdf278bc0a7a66b8b3721780bf10",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            177
+          ],
+          "evidence_sha256": "4bdb358c67f5eaf804ee420fd1a201568ff3ad484919f153dd920b3c8c709052"
+        }
+      ],
+      "target_hint": null,
+      "target_evidence": [],
+      "confidence": 0.85
+    },
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "Dan's physical exhaustion and heavy, leaden limbs mirror his father's spiritual and psychological decay, emphasizing their shared burden and the cost of their struggles.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_771f91d7056dbac706f993ec2da152cd",
+          "render_index": 89,
+          "quote": "the cost of testing it was written in every tight muscle and leaden limb. Dan's sleep would bring him no more rest than his father's. They were sleeping the same sleep now.",
+          "role": "source",
+          "start_char": 20422,
+          "end_char": 20594,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_53d1fdf278bc0a7a66b8b3721780bf10",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            177
+          ],
+          "evidence_sha256": "1739df8e01228a2a4fe6156b2b9a63f8e548ad0a4039149fa1d1d0a976c19cd2"
+        }
+      ],
+      "target_hint": null,
+      "target_evidence": [],
+      "confidence": 0.95
+    },
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "motif_echo",
+      "summary": "The house being divided against itself reflects Dan's internal division and conflict, symbolizing the fractured relationship and opposing forces within both the physical and psychological realms.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_771f91d7056dbac706f993ec2da152cd",
+          "render_index": 89,
+          "quote": "The house was divided against itself, and so was he.",
+          "role": "source",
+          "start_char": 20244,
+          "end_char": 20296,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_53d1fdf278bc0a7a66b8b3721780bf10",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            177
+          ],
+          "evidence_sha256": "a33c16b5521a1260f7955ec7295f3468dd629b237321b53b8518633451807d6a"
+        }
+      ],
+      "target_hint": null,
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "2b690134f5dc03a5b22aec601e1cb8436e00dde81e2e39f6e4da22cc6882c21b",
+  "normalized_output_hash": "4c5e71567ef469ba4ed8f83f3ce6efcd1d2d3a6a61c514b2a6427dae3309d34c"
+}

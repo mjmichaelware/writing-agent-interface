@@ -1,0 +1,26 @@
+{
+  "paragraphs": [
+    {
+      "paragraph_id": "00abb116-bf9c-4a13-a68a-6be638b89957",
+      "content_sha256": "cdf38544596f8ed680f7421c000fe25256ed73c0d161dca8ebafb03847f95cf2",
+      "archetypal_weights": {
+        "shadow": 0,
+        "self": 0
+      },
+      "dualism_map": {
+        "ascent_descent": 0
+      },
+      "metadata": {
+        "summary": "A checklist of grammar and mechanics rules for editing.",
+        "semantic_notes": [
+          "This paragraph is not part of the narrative prose. It appears to be an editing instruction or a checklist, similar to the content found in the XML evidence files which detail the author's or editor's prompts for writing the manuscript. It has no narrative, archetypal, dualistic, or biblical significance."
+        ]
+      },
+      "archetype_observations": [],
+      "biblical_references": [],
+      "derived_hyperlinks": []
+    }
+  ],
+  "dualism_relations": [],
+  "archetype_movements": []
+}

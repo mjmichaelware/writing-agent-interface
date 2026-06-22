@@ -1,0 +1,240 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_c4ec62a7737c1be247faa12d63c8c772",
+  "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+  "context_capsule_sha256": "888ef19e9a9463b14b7628aa2e97c5075af7898fb87fae0c1c9525a6dca26aa2",
+  "observations": [
+    {
+      "axis": "Illusion vs. Reality",
+      "polarity": "Illusion is passive; Reality is active",
+      "summary": "The vision is contrasted as not being a mere illusion or passive reflection but an active, physical force with deliberate motion and hypnotic speed.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_c7c24d4665837a4dfe60dee195ad3bc1",
+          "quote": "This vision was not an illusion; it was a physical force."
+        },
+        {
+          "render_para_key": "rp_c7c24d4665837a4dfe60dee195ad3bc1",
+          "quote": "The image that had coalesced was not a mere, passive reflection"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_c7c24d4665837a4dfe60dee195ad3bc1",
+          "quote": "it was an active, shimmering, impossible entity, rising with deliberate, hypnotic speed from the gloom, motionless depths of the well."
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.95
+    },
+    {
+      "axis": "Fixed Form vs. Fluid Form",
+      "polarity": "Fixed form is static; Fluid form is dynamic and embodying longing",
+      "summary": "The emerging being is described as not fixed but dangerously fluid, perfectly embodying the innermost longing of the consciousness that perceives it.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_c7c24d4665837a4dfe60dee195ad3bc1",
+          "quote": "A being of impossible, almost agonizing beauty emerged, a form not fixed"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_c7c24d4665837a4dfe60dee195ad3bc1",
+          "quote": "but dangerously fluid, instantly and perfectly wrought to embody the utmost, innermost longing of the consciousness that beheld it."
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    },
+    {
+      "axis": "Burden vs. Release",
+      "polarity": "Burden is struggle; Release is longing for peace and surrender",
+      "summary": "There is a tension between carrying a burden and the profound emptiness that longs for the absolute end of struggle, a desire to lay down burdens and receive without sowing.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_c7c24d4665837a4dfe60dee195ad3bc1",
+          "quote": "A dizzying, profound emptiness, a hunger for the absolute end of all struggle and of the density that pulled inward toward peace, settled deep in the pit of his stomach."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_c7c24d4665837a4dfe60dee195ad3bc1",
+          "quote": "This was the longing to simply lay down his burden and reap what he had not sown"
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_c7c24d4665837a4dfe60dee195ad3bc1",
+          "quote": "the same fatal choice that had consumed his patriarch, forcing him into a spiritual zero-point."
+        }
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "fixed_form_vs_fluid_form",
+      "polarity": "tension",
+      "summary": "The emerging being is described as not fixed but dangerously fluid, perfectly embodying the innermost longing of the consciousness that perceives it.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_c7c24d4665837a4dfe60dee195ad3bc1",
+          "render_index": 4,
+          "quote": "A being of impossible, almost agonizing beauty emerged, a form not fixed",
+          "role": "left",
+          "start_char": 1260,
+          "end_char": 1332,
+          "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+          "scene_window_id": "scene_c4ec62a7737c1be247faa12d63c8c772",
+          "source_document_xml_sha256": "4c43f128801df7d839bd5fda91fc148c0068a06a98530bf1c45d5fd004db3bcf",
+          "source_xml_paragraph_indexes": [
+            6
+          ],
+          "evidence_sha256": "3c3298b0172da450950d35f64e26511bf16007c5b9b382b9604b1e349ec5ecdf"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_c7c24d4665837a4dfe60dee195ad3bc1",
+          "render_index": 4,
+          "quote": "but dangerously fluid, instantly and perfectly wrought to embody the utmost, innermost longing of the consciousness that beheld it.",
+          "role": "right",
+          "start_char": 1334,
+          "end_char": 1465,
+          "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+          "scene_window_id": "scene_c4ec62a7737c1be247faa12d63c8c772",
+          "source_document_xml_sha256": "4c43f128801df7d839bd5fda91fc148c0068a06a98530bf1c45d5fd004db3bcf",
+          "source_xml_paragraph_indexes": [
+            6
+          ],
+          "evidence_sha256": "ff8a2807adfb581f5b2e4a8033fa968649c6b963ec064c97af5b9cfb23977840"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    },
+    {
+      "task": "dualisms",
+      "axis": "illusion_vs_reality",
+      "polarity": "tension",
+      "summary": "The vision is contrasted as not being a mere illusion or passive reflection but an active, physical force with deliberate motion and hypnotic speed.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_c7c24d4665837a4dfe60dee195ad3bc1",
+          "render_index": 4,
+          "quote": "This vision was not an illusion; it was a physical force.",
+          "role": "left",
+          "start_char": 1002,
+          "end_char": 1059,
+          "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+          "scene_window_id": "scene_c4ec62a7737c1be247faa12d63c8c772",
+          "source_document_xml_sha256": "4c43f128801df7d839bd5fda91fc148c0068a06a98530bf1c45d5fd004db3bcf",
+          "source_xml_paragraph_indexes": [
+            6
+          ],
+          "evidence_sha256": "1be4c489346dbabd3252bffa38f01f9d8488ffbfead0fd135cd0a8be1b1f58c1"
+        },
+        {
+          "render_para_key": "rp_c7c24d4665837a4dfe60dee195ad3bc1",
+          "render_index": 4,
+          "quote": "The image that had coalesced was not a mere, passive reflection",
+          "role": "left",
+          "start_char": 1060,
+          "end_char": 1123,
+          "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+          "scene_window_id": "scene_c4ec62a7737c1be247faa12d63c8c772",
+          "source_document_xml_sha256": "4c43f128801df7d839bd5fda91fc148c0068a06a98530bf1c45d5fd004db3bcf",
+          "source_xml_paragraph_indexes": [
+            6
+          ],
+          "evidence_sha256": "bd8ce18f4c0472b78983db1449148e85f68836fb465a98e3d8326c38a9b39c79"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_c7c24d4665837a4dfe60dee195ad3bc1",
+          "render_index": 4,
+          "quote": "it was an active, shimmering, impossible entity, rising with deliberate, hypnotic speed from the gloom, motionless depths of the well.",
+          "role": "right",
+          "start_char": 1125,
+          "end_char": 1259,
+          "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+          "scene_window_id": "scene_c4ec62a7737c1be247faa12d63c8c772",
+          "source_document_xml_sha256": "4c43f128801df7d839bd5fda91fc148c0068a06a98530bf1c45d5fd004db3bcf",
+          "source_xml_paragraph_indexes": [
+            6
+          ],
+          "evidence_sha256": "0902a58a9afc7a3373fc77db0954c9fecbb697affcdeac2140be2858b7ea627c"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.95
+    },
+    {
+      "task": "dualisms",
+      "axis": "burden_vs_release",
+      "polarity": "tension",
+      "summary": "There is a tension between carrying a burden and the profound emptiness that longs for the absolute end of struggle, a desire to lay down burdens and receive without sowing.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_c7c24d4665837a4dfe60dee195ad3bc1",
+          "render_index": 4,
+          "quote": "A dizzying, profound emptiness, a hunger for the absolute end of all struggle and of the density that pulled inward toward peace, settled deep in the pit of his stomach.",
+          "role": "left",
+          "start_char": 1466,
+          "end_char": 1635,
+          "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+          "scene_window_id": "scene_c4ec62a7737c1be247faa12d63c8c772",
+          "source_document_xml_sha256": "4c43f128801df7d839bd5fda91fc148c0068a06a98530bf1c45d5fd004db3bcf",
+          "source_xml_paragraph_indexes": [
+            6
+          ],
+          "evidence_sha256": "09a3f9c2d92bd0a524e9e79041dde7630e2d5f93689ca7e2737ed3bf58c5a96d"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_c7c24d4665837a4dfe60dee195ad3bc1",
+          "render_index": 4,
+          "quote": "This was the longing to simply lay down his burden and reap what he had not sown",
+          "role": "right",
+          "start_char": 1636,
+          "end_char": 1716,
+          "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+          "scene_window_id": "scene_c4ec62a7737c1be247faa12d63c8c772",
+          "source_document_xml_sha256": "4c43f128801df7d839bd5fda91fc148c0068a06a98530bf1c45d5fd004db3bcf",
+          "source_xml_paragraph_indexes": [
+            6
+          ],
+          "evidence_sha256": "f4532b2ce69a5ecd18e8b9fdaeae100d175f1a92018a5e592939b6ae044f4b14"
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_c7c24d4665837a4dfe60dee195ad3bc1",
+          "render_index": 4,
+          "quote": "the same fatal choice that had consumed his patriarch, forcing him into a spiritual zero-point.",
+          "role": "bridge",
+          "start_char": 1718,
+          "end_char": 1813,
+          "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+          "scene_window_id": "scene_c4ec62a7737c1be247faa12d63c8c772",
+          "source_document_xml_sha256": "4c43f128801df7d839bd5fda91fc148c0068a06a98530bf1c45d5fd004db3bcf",
+          "source_xml_paragraph_indexes": [
+            6
+          ],
+          "evidence_sha256": "ce19a537a3fee79efbea03dd4dbc5749922018fa1feab0a09625590fbaf999a7"
+        }
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "966a9da2bfa2c83c13daa1f2e1de16335c4bdf071e0496e4edf94ee2633a502e",
+  "normalized_output_hash": "73a49c0b67a6e6def9497e5cce58fddc58f42b34a91884c50915e026c1498bce"
+}

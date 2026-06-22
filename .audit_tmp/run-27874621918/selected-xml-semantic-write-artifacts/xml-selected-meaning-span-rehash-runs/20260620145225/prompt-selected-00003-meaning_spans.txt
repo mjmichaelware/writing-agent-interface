@@ -1,0 +1,143 @@
+You are a semantic analyst, not a JSON/DB row generator.
+Return only valid JSON matching the requested schema.
+No markdown. No explanation. No extra keys.
+Selected XML render paragraphs are source truth.
+Narrative context capsule is interpretive context only, never source truth.
+
+TASK: meaning_spans
+
+TASK RUBRIC:
+Identify the smallest strong semantic claims or motif-bearing spans in the source packet.
+A meaning span is not a database row. It is a grounded observation tied to source evidence.
+Use empty observations when evidence is weak.
+
+EVIDENCE REQUIREMENTS:
+- Every observation must cite source evidence using render_para_key plus an exact quote.
+- Omit low-confidence claims instead of padding output.
+- Empty observations are valid.
+- Valid empty response is: {"observations":[]}
+- Do not force a claim.
+
+SOURCE PACKET:
+{
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "scene_window_id": "scene_a3adaa6be6be83a7f0ff767d43b610ce",
+  "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+  "folder": "0002_r_chapter_1_-_stardust_to_stardust_1tbodxyu5ezufogmr46f64o9u8fisifvmiaxn6qz_siq",
+  "render_paragraphs": [
+    {
+      "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+      "render_index": 4,
+      "start_char": 349,
+      "end_char": 1082,
+      "source_xml_paragraph_indexes": [
+        7
+      ],
+      "text_sha256": "509557acf7fd2c9bc0637e948086a4004d2702eaeec594191ab13be1dbf0e4c2",
+      "text": "Father Aviel had been a scholar, sharp as fresh-knapped flint, sought and summoned by those with questions knotted beyond common counsel. But when Mother Zuna passed beyond recall—when they buried his bride beneath the earth—something stopped within him. Not died, which would have been cleaner and quicker, but simply ceased like a cart with a cruelly shattered axle. The gathered gods he'd carried from the Western plains—bronze and brittle forms of fortune, flame, and fertility—could not fill the void. So he swept them away and kept only one: the lord of limitless dust and earthly plenty, who whispered in the watches and the waiting of the night that hoarded treasures might hold back time itself and defy the demands it made."
+    }
+  ]
+}
+
+NARRATIVE CONTEXT CAPSULE:
+{
+  "mode": "narrative_context_only",
+  "chapter_hints": [
+    1
+  ],
+  "keywords": [
+    "beyond",
+    "aviel",
+    "beneath",
+    "bride",
+    "brittle",
+    "bronze",
+    "buried",
+    "carried",
+    "ceased",
+    "cleaner",
+    "common",
+    "counsel"
+  ],
+  "selected_public_chapters": [
+    {
+      "chapter_number": 7,
+      "sha256": "fe21c269662112e63ae92118f80d1d68c5a94cb5fb3950a0d8cb1d0f3092b245",
+      "excerpt": "like far-off swarms, it got louder and louder, a huge, many-legged hum that filled his ears, his head, shaking in his very bones. The smell of decay got stronger, becoming too much, a thick, sickening smell of spoiled things, of rot given shape, of the most terrible, gross, awful, rotting, foul filth. It was the smell of the Pit's deep corruption, a stench of spiritual sickness. The buzzing was deafening now, a loud, smothering sound of swarms. The darkness was total except for faint, scattered sparkles of something dark and shiny below, like scattered jewels that had fallen into the awful slime. The air felt thick with tiny, fast movements, things brushing past him in the dark, wings beyond counting beating the air, a thick crowd of things. He got ready for hitting bottom, for the crashing end of the fall into the absolute lowest point, the soiled, physical hole. Then, with a sudden, shocking stop, the fall ended. One moment, he was plunging incredibly fast through the black, buzzing horror. The next, he was hanging there, perfectly still. The quiet after the loud, rushing fall was total, except for the constant, sickening buzzing all around him, a living sound of swarming, gross life, a vibrating presence. He was in a huge, dark space, the blackness so deep it felt like a heavy blanket. And beneath his bare feet, stretching out into the terrible gloom as far as"
+    }
+  ],
+  "available_narrative_context_map_excerpt": "CHAPTER 7 path=public/data/chapters/7.txt sha256=fe21c269662112e63ae92118f80d1d68c5a94cb5fb3950a0d8cb1d0f3092b245 word_count=4734 opening=Chapter 7: The Pit The last rays of the sun, the color of old blood and bruised fruit, were staining the sky behind him as Dan approached the gates of Megiddo. The city rose before him, not a gentle hill like Bethlehem or a proud peak like Jebus, but a tell – a layered mound of history, built upon layers of forgotten ages. A place where countless lives had been lived, and countless more had ended, their dust mingling in the very soil of the place. The encounter with the **woman seeking her Winged Lord**, had left a **chill** in the air that had nothing to do with the setting sun. Her frantic energy, her warped faith, had cast a long shadow that seemed to stretch and deepen as he neared the ancient stones of the city walls. He tightened his grip on the strap of his waterskin, stood up straight with his shoulders back, and walked towards the gate, the heavy leather feeling oddly cold again middle=ce, a physical payment for spiritual passage. The man's eyes widened slightly as he weighed the pieces in his hand, his thick fingers turning them over. A few Shekels was a significant sum, a payment well above the norm for a simple night's shelter. His expression softened marginally, the hardness easing into something like satisfied indifference, the look of someone who understood the true value of such a payment here. \"Aye,\" he grunted. \"That will suffice. Come in, traveler. Find a space by the hearth. The meal is finished, but the fire is warm, and no one here will bother you tonight. Your payment has been noted.\" Dan stepped inside the traveler's house, leaving the hostile streets of Megiddo behind. He felt the lingering pull of the earth,",
+  "context_pack_excerpt": "# Narrative Context Pack v1 # Purpose: context path for semantic hashing of archetypes, biblical allusions, conceptual dualisms, and cross-paragraph relations. # Created: 20260617-150000 # Includes: 106, 109, 169, real New Synopsis. ================================================================================ ROLE: archetype_protocol SOURCE_NUMBER: 106 SHA256: 089b3617b7dbc3b46ceb43a7053f55662dd11c5b931bc0b2453d8e66c5568a2d SOURCE_PATH: ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/3.0_Literary_&_Archetypal_Fusion_Rulebook_(The_Cat_God_&_The_Primal_Self).txt HASHER_PATH: docs/agent_context/source_drop/hasher_context_v1/01_archetype_protocol_cat_god_primal_self.txt ================================================================================ Literary & Archetypal Fusion Rulebook (The Cat God & The Primal Self) This rulebook dictates the final, deep-level edits required to create a \"New York Times Bestseller\" that operates as an existential mirror, compelling the reader to confront their own inner conflicts and unintegrated \"ego\" (the \"Dr. Jekyll/Mr. Hyde\" tension). I. The Narrator: Deity of Curiosity (The Cat God) The narrator's voice is the subtle, overarching thematic hyperlink for Truth and Love. The narrator is a deity of pure Curiosity in the Dreamscape, near The Source of All. * Voice Style: Highly observant, often focused on the unseen cost of knowledge or the unasked question. The tone must be ancient, knowing, yet slightly playful and precise. * Foreshadowing & Thematic Link: Introduce subtle, sensory language of a feline observer: * Emphasis on silent observation, stalking, low growls, the scent of fear/truth, and an unnerving lightness of foot. * Chapter 6 Anchor: The physical black kitten that joins Kasha MUST be present, serving as the physical avatar for the narrator's full reveal in Chapter 11. * Fourth Wall Breaks (CRITICAL): * Maximum: Twice per chapter. * Format: ALWAYS enclosed in parentheses ( ). * Function: The break must NEVER disrupt the plot momentum. It must instead heighten the thematic accusation by pointing to the reader’s shared human flaw (shame, unasked questions, the refusal to look in the mirror). * Example: (The cost of not asking is always the highest price paid, and most humans never realize they’ve already signed the scroll.) II. The Canaanite Pantheon as Dan's Psyche The interactions with the gods MUST be subtly reframed to represent Dan's internal battle for self-integration (Self vs. Shadow). This is the key to the psychological layering. Pantheon Figure Dan's Internal Conflict (Thematic Function) Narrative Expression (Show, Not Tell) Dagon (Ch. 1) The Shadow of Regression/Chaos. The pull back to the womb, the oceanic unthinking state, and the comfort of the uncons",
+  "context_capsule_sha256": "13dda454541bedcf5b036d2d30ad101ebd7bbf6a2ae1c007718cdcf881d1ba18"
+}
+
+OUTPUT CONTRACT:
+{
+  "type": "OBJECT",
+  "properties": {
+    "observations": {
+      "type": "ARRAY",
+      "items": {
+        "type": "OBJECT",
+        "properties": {
+          "kind": {
+            "type": "STRING"
+          },
+          "summary": {
+            "type": "STRING"
+          },
+          "evidence": {
+            "type": "ARRAY",
+            "items": {
+              "type": "OBJECT",
+              "properties": {
+                "render_para_key": {
+                  "type": "STRING"
+                },
+                "quote": {
+                  "type": "STRING"
+                }
+              },
+              "required": [
+                "render_para_key",
+                "quote"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "thematic_weight": {
+            "type": "NUMBER"
+          },
+          "gravity": {
+            "type": "NUMBER"
+          },
+          "tension": {
+            "type": "NUMBER"
+          },
+          "confidence": {
+            "type": "NUMBER"
+          },
+          "notes": {
+            "type": "STRING",
+            "nullable": true
+          }
+        },
+        "required": [
+          "kind",
+          "summary",
+          "evidence",
+          "thematic_weight",
+          "gravity",
+          "tension",
+          "confidence",
+          "notes"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "observations"
+  ],
+  "additionalProperties": false
+}

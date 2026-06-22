@@ -1,0 +1,61 @@
+{
+  "status": "ok",
+  "task_type": "archetypes",
+  "scene_window_id": "scene_c6b06a8b3ffce4acb374a654fb69e23b",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "fbe728f05fc72b2f51670286659efaafce423774cf2411befa1d65df51007748",
+  "observations": [
+    {
+      "character": "Dan",
+      "archetype": "Hero",
+      "archetype_gloss": "The protagonist struggling against internal and external obstacles toward a higher purpose",
+      "movement": "ordeal",
+      "summary": "Dan faces temptation to abandon his arduous spiritual ascent, reflecting an internal struggle against surrendering to forgetfulness and comfort, which would halt his progress toward an undefined higher goal.",
+      "evidence": [
+        {
+          "render_para_key": "rp_418ad1dbe5e39ae89751b4ae48ad110b",
+          "quote": "She was offering him forgetfulness. Comfort. A way to stop the endless, exhausting climb toward something he couldn't even name. And for just a moment, he was tempted. Then he thought of his father, buried in his hoard, confusing accumulation for meaning."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "archetypes",
+      "character": "Dan",
+      "archetype": "Hero",
+      "archetype_anchor_key": "jungian_hero",
+      "archetype_gloss": null,
+      "movement": "ordeal",
+      "summary": "Dan faces temptation to abandon his arduous spiritual ascent, reflecting an internal struggle against surrendering to forgetfulness and comfort, which would halt his progress toward an undefined higher goal.",
+      "evidence": [
+        {
+          "render_para_key": "rp_418ad1dbe5e39ae89751b4ae48ad110b",
+          "render_index": 156,
+          "quote": "She was offering him forgetfulness. Comfort. A way to stop the endless, exhausting climb toward something he couldn't even name. And for just a moment, he was tempted. Then he thought of his father, buried in his hoard, confusing accumulation for meaning.",
+          "role": null,
+          "start_char": 20254,
+          "end_char": 20509,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_c6b06a8b3ffce4acb374a654fb69e23b",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            311,
+            312,
+            313
+          ],
+          "evidence_sha256": "e7d08c0f25a0541521f241a0aa8b30a136d78b2ca39a4359286a7d4597cedc44"
+        }
+      ],
+      "confidence": 0.95,
+      "unresolved_subject": false
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "0dfa77fa18c48e2e4681b91fd1b9f58b528454478a24f7d0755b587e65146025",
+  "normalized_output_hash": "5f58ddcf523726fe9bd2abb6ddf1d593a92667eb6c84f599f6c8b328c3a16d06"
+}

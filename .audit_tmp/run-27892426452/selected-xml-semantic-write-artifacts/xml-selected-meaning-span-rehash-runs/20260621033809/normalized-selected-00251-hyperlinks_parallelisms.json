@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_87eecb00d7816d8b2f12e4c28b79a93d",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "2a6672e75a44880532e75f0c0f84a312106c8de7f4caab8617a7a07e9d6d261c",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The motif of a single point of light in darkness in the father's dream parallels Dan's recurring vision of stars as guiding lights in the cosmic dark, symbolizing hope and clarity amid despair.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_56e725b9e618a11e17d310d77ce2647a",
+          "quote": "He thought of the star he'd placed in his father's dream—that single point of light in the gray."
+        }
+      ],
+      "target_hint": "Dan's dreams and visions of stars as guiding lights in the cosmic dark, representing hope and clarity.",
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The motif of a single point of light in darkness in the father's dream parallels Dan's recurring vision of stars as guiding lights in the cosmic dark, symbolizing hope and clarity amid despair.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_56e725b9e618a11e17d310d77ce2647a",
+          "render_index": 158,
+          "quote": "He thought of the star he'd placed in his father's dream—that single point of light in the gray.",
+          "role": "source",
+          "start_char": 20598,
+          "end_char": 20694,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_87eecb00d7816d8b2f12e4c28b79a93d",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            315
+          ],
+          "evidence_sha256": "46ce9c2ceced3a8400544473325ac0a87811d8b5011e5dcf1148b4baddb2e3a5"
+        }
+      ],
+      "target_hint": "Dan's dreams and visions of stars as guiding lights in the cosmic dark, representing hope and clarity.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "b83da02e1c54e360461ce9d957950af6230fe400f44a1ea91f8130ff66ca0c1c",
+  "normalized_output_hash": "bc65c9ba4afd91d4f6a812b9baf34c3a08c0fae5e9b37213c0d871f6d90eb57f"
+}

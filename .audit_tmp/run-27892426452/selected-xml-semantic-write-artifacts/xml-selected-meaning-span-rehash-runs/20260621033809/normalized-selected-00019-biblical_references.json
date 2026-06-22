@@ -1,0 +1,119 @@
+{
+  "status": "ok",
+  "task_type": "biblical_references",
+  "scene_window_id": "scene_cfd65d7a128b3b390266f6d72ed36c00",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "2e46c4ae6b7c8748d843bd838db6740f7d29b5e51170c020d80fdb4759f1ba3f",
+  "observations": [
+    {
+      "biblical_anchor_label": "Genesis 28:12",
+      "book": "Genesis",
+      "chapter": 28,
+      "verse_start": 12,
+      "verse_end": 12,
+      "motif_family": "Divine Ascent and Vision",
+      "relationship_type": "narrative_parallel",
+      "correspondence_rationale": "The passage describes Dan dreaming of climbing endless stairs in the dark, ascending higher and higher, which parallels Jacob's dream of a ladder reaching to heaven with angels ascending and descending, symbolizing a connection between earth and the divine realm.",
+      "summary": "Dan's dream of climbing endless stairs and rising above the earth parallels Jacob's ladder dream, symbolizing spiritual ascent and connection to the divine.",
+      "evidence": [
+        {
+          "render_para_key": "rp_56322e0639841a6f01b53f9dd61b090e",
+          "quote": "He had dreamed of climbing endless stairs in the dark, his legs never tiring, the air growing thinner and cleaner with every step."
+        }
+      ],
+      "confidence": 0.9
+    },
+    {
+      "biblical_anchor_label": "Psalm 19:1",
+      "book": "Psalms",
+      "chapter": 19,
+      "verse_start": 1,
+      "verse_end": 1,
+      "motif_family": "Heavenly Witness and Divine Light",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The stars of Hebron burning in their old patterns above the hills and being taught as the closest thing to the unseen source reflect the biblical motif of the heavens declaring the glory of God, as in Psalm 19:1, where the heavens declare the work of God's hands.",
+      "summary": "The stars above Hebron symbolize the divine light and unseen source, resonating with the biblical theme of the heavens declaring God's glory.",
+      "evidence": [
+        {
+          "render_para_key": "rp_56322e0639841a6f01b53f9dd61b090e",
+          "quote": "Through the wall slit, the stars of Hebron burned in their old patterns above the hills. His mother had taught him they were the closest thing to the unseen source—that original light from which everything borrowed its brief existence and to which everything returned."
+        }
+      ],
+      "confidence": 0.85
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Genesis 28:12",
+      "book": "Genesis",
+      "chapter": 28,
+      "verse_start": 12,
+      "verse_end": 12,
+      "motif_family": "divine_ascent_and_vision",
+      "biblical_anchor_key": "bibanchor_61695dac9f4b6f05f9a57d8fbb9c1f8a",
+      "relationship_type": "narrative_parallel",
+      "correspondence_rationale": "The passage describes Dan dreaming of climbing endless stairs in the dark, ascending higher and higher, which parallels Jacob's dream of a ladder reaching to heaven with angels ascending and descending, symbolizing a connection between earth and the divine realm.",
+      "summary": "Dan's dream of climbing endless stairs and rising above the earth parallels Jacob's ladder dream, symbolizing spiritual ascent and connection to the divine.",
+      "evidence": [
+        {
+          "render_para_key": "rp_56322e0639841a6f01b53f9dd61b090e",
+          "render_index": 20,
+          "quote": "He had dreamed of climbing endless stairs in the dark, his legs never tiring, the air growing thinner and cleaner with every step.",
+          "role": null,
+          "start_char": 6073,
+          "end_char": 6203,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_cfd65d7a128b3b390266f6d72ed36c00",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            39
+          ],
+          "evidence_sha256": "569be18470b45ad7c8b6548e06194e4b4149e7ecc308484856f3336c20ff8034"
+        }
+      ],
+      "confidence": 0.9,
+      "reference": "Genesis 28:12",
+      "motif": "divine_ascent_and_vision"
+    },
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Psalm 19:1",
+      "book": "Psalm",
+      "chapter": 19,
+      "verse_start": 1,
+      "verse_end": 1,
+      "motif_family": "heavenly_witness_and_divine_light",
+      "biblical_anchor_key": "bibanchor_b7a069fdcc90df2200f19b42c62e16d1",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The stars of Hebron burning in their old patterns above the hills and being taught as the closest thing to the unseen source reflect the biblical motif of the heavens declaring the glory of God, as in Psalm 19:1, where the heavens declare the work of God's hands.",
+      "summary": "The stars above Hebron symbolize the divine light and unseen source, resonating with the biblical theme of the heavens declaring God's glory.",
+      "evidence": [
+        {
+          "render_para_key": "rp_56322e0639841a6f01b53f9dd61b090e",
+          "render_index": 20,
+          "quote": "Through the wall slit, the stars of Hebron burned in their old patterns above the hills. His mother had taught him they were the closest thing to the unseen source—that original light from which everything borrowed its brief existence and to which everything returned.",
+          "role": null,
+          "start_char": 5719,
+          "end_char": 5987,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_cfd65d7a128b3b390266f6d72ed36c00",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            39
+          ],
+          "evidence_sha256": "c052a9af715346798750ba0ee16f26e21d4a4de92d47f2d72fd0a66b5ce862b7"
+        }
+      ],
+      "confidence": 0.6,
+      "reference": "Psalm 19:1",
+      "motif": "heavenly_witness_and_divine_light"
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "fce4fe00dbe8ec117fc28f35e9b5a3ab32f3a98773147c42e6e6cc73cfc8a15d",
+  "normalized_output_hash": "abf15b1b41cd1f7c33bcb976f7f4b381c50f79c5b57aa07be2e1a11a287a2d73"
+}

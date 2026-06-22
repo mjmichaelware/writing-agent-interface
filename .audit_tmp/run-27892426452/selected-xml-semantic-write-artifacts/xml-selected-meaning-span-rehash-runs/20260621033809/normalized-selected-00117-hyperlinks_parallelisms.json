@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_dcae3d30839cfa1c82fca0cc192ea207",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "b9dd67075b8ea95fb811b6f48ce1f604c11ade9970590802b81d28fc441d04e9",
+  "observations": [
+    {
+      "relationship_type": "foreshadowing",
+      "summary": "Dan's statement 'Tell me,' though he already knew what was coming, foreshadows an impending revelation or confrontation that he anticipates but still seeks to engage with.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_229ca95d4a8fbfc52b7bc1c6d8c0eb9c",
+          "quote": "\"Tell me,\" Dan said, though he already knew what was coming."
+        }
+      ],
+      "target_hint": null,
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "Dan's statement 'Tell me,' though he already knew what was coming, foreshadows an impending revelation or confrontation that he anticipates but still seeks to engage with.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_229ca95d4a8fbfc52b7bc1c6d8c0eb9c",
+          "render_index": 24,
+          "quote": "\"Tell me,\" Dan said, though he already knew what was coming.",
+          "role": "source",
+          "start_char": 3305,
+          "end_char": 3365,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_dcae3d30839cfa1c82fca0cc192ea207",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            47
+          ],
+          "evidence_sha256": "9c143641ed35c900232d8d62babfd1e3b2eb6c71abbee6913068b55fb4a7abd3"
+        }
+      ],
+      "target_hint": null,
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "70db1c2175d426a802792399c0a802302d2259703c8d75725d745e831d334749",
+  "normalized_output_hash": "b1df7e74feca7db67d9ea207fa7f0e23895c3057709ec9bd11612f4fb6d4fc00"
+}

@@ -1,0 +1,83 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_7c8da06fe939e5c8b01954c807e0b262",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "572e925ce7357cd45d7577c3d985a9885ac883afd5afc02db92b57523e15a775",
+  "observations": [
+    {
+      "axis": "Vision of Family vs. Harsh Reality",
+      "polarity": "opposition",
+      "summary": "Dan's vision of a warm, ordinary, and unhaunted family contrasts sharply with the cold and hard nature of his actual reality, creating a tension between longing and harshness.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_72140a643e734cb23d6291bc722da651",
+          "quote": "The vision of it—a whole, unhaunted family, warm and ordinary and unhaunted—struck him like a blade of light"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_72140a643e734cb23d6291bc722da651",
+          "quote": "everything cold and hard in his reality"
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_72140a643e734cb23d6291bc722da651",
+          "quote": "Dan wavered. The hunger of it was a hole that went straight through to the other side of the world."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "vision_of_family_vs_harsh_reality",
+      "polarity": "opposition",
+      "summary": "Dan's vision of a warm, ordinary, and unhaunted family contrasts sharply with the cold and hard nature of his actual reality, creating a tension between longing and harshness.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_72140a643e734cb23d6291bc722da651",
+          "render_index": 66,
+          "quote": "The vision of it—a whole, unhaunted family, warm and ordinary and unhaunted—struck him like a blade of light",
+          "role": "left",
+          "start_char": 16075,
+          "end_char": 16183,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_7c8da06fe939e5c8b01954c807e0b262",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            131
+          ],
+          "evidence_sha256": "cdf9841f4a4fbb40f4f8c4059e2d0034f9bf2e275c03ba8379bbd50f5b35c759"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_72140a643e734cb23d6291bc722da651",
+          "render_index": 66,
+          "quote": "everything cold and hard in his reality",
+          "role": "right",
+          "start_char": 16192,
+          "end_char": 16231,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_7c8da06fe939e5c8b01954c807e0b262",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            131
+          ],
+          "evidence_sha256": "dfc2a0f441fda1ab33493d5cadd90f366030fb81e813605fa8f716b848dbff35"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "b06a8de980b2dfd8c8d0896116b433f1af0a32c7d3930f631decfc278f00dbe7",
+  "normalized_output_hash": "c900ecbce45cda75e5f1498db254abb0dfccc91b5b67136ba9eb5e8585b12640"
+}

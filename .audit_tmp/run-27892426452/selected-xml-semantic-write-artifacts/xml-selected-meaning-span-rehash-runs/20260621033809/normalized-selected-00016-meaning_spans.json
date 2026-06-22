@@ -1,0 +1,101 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_7b1975ddda6a96e7270c0c40878d4efa",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "e19b84424d34d641dc0abad1eaccaf2fe7e6a0b1c15da1e9fede963329c91b30",
+  "observations": [
+    {
+      "kind": "Sensory Description",
+      "summary": "Dan pinches the torch wick, causing darkness to rush in and a bitter tang of spent wick to hang in the air, which is described as parting's small, particular smell.",
+      "evidence": [
+        {
+          "render_para_key": "rp_b3c2d5fe86279e516add9fbc042f5ffc",
+          "quote": "Dan pinched the torch wick between thumb and forefinger. The darkness rushed in. A bitter tang of spent wick hung in the air—parting's small, particular smell."
+        }
+      ],
+      "thematic_weight": 0.7,
+      "gravity": 0.5,
+      "tension": 0.4,
+      "confidence": 0.95,
+      "notes": "This sensory detail emphasizes the transition from light to darkness and the ephemeral nature of the torch's flame."
+    },
+    {
+      "kind": "Spatial Orientation",
+      "summary": "Dan maintains his bearings by memory and a narrow slot of moonlight cutting a gray line across the corridor floor, which is barely a handspan wide.",
+      "evidence": [
+        {
+          "render_para_key": "rp_b3c2d5fe86279e516add9fbc042f5ffc",
+          "quote": "He held his bearings by memory and the single slot of moonlight through the narrow wall slit, barely a handspan wide, that cut a gray line across the corridor floor."
+        }
+      ],
+      "thematic_weight": 0.6,
+      "gravity": 0.4,
+      "tension": 0.5,
+      "confidence": 0.9,
+      "notes": "This highlights Dan's reliance on minimal light and memory to navigate a dark, confined space."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "Dan maintains his bearings by memory and a narrow slot of moonlight cutting a gray line across the corridor floor, which is barely a handspan wide.",
+      "evidence": [
+        {
+          "render_para_key": "rp_b3c2d5fe86279e516add9fbc042f5ffc",
+          "render_index": 17,
+          "quote": "He held his bearings by memory and the single slot of moonlight through the narrow wall slit, barely a handspan wide, that cut a gray line across the corridor floor.",
+          "role": null,
+          "start_char": 5317,
+          "end_char": 5482,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_7b1975ddda6a96e7270c0c40878d4efa",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            33
+          ],
+          "evidence_sha256": "5ab358d5b2ae08e0ed6815106fe64a5cf31a2fa5a547c25bcbef8297e8d93f2b"
+        }
+      ],
+      "thematic_weight": 0.6,
+      "gravity": 0.4,
+      "tension": 0.5,
+      "confidence": 0.9,
+      "notes": "This highlights Dan's reliance on minimal light and memory to navigate a dark, confined space."
+    },
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "Dan pinches the torch wick, causing darkness to rush in and a bitter tang of spent wick to hang in the air, which is described as parting's small, particular smell.",
+      "evidence": [
+        {
+          "render_para_key": "rp_b3c2d5fe86279e516add9fbc042f5ffc",
+          "render_index": 17,
+          "quote": "Dan pinched the torch wick between thumb and forefinger. The darkness rushed in. A bitter tang of spent wick hung in the air—parting's small, particular smell.",
+          "role": null,
+          "start_char": 5157,
+          "end_char": 5316,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_7b1975ddda6a96e7270c0c40878d4efa",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            33
+          ],
+          "evidence_sha256": "7ecee2bf00a05b09a66170bc42e8e3e8c296f1098d408b46158409bdb1d98789"
+        }
+      ],
+      "thematic_weight": 0.7,
+      "gravity": 0.5,
+      "tension": 0.4,
+      "confidence": 0.95,
+      "notes": "This sensory detail emphasizes the transition from light to darkness and the ephemeral nature of the torch's flame."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "5785b363c73a0bcf1c832f34b02b5f753312ca637748b4a39e8dfc5fe7ddea39",
+  "normalized_output_hash": "7fee480e92e36b48b93b64936a1eb0e4636f501a98989ceb57f9080d7b1101ad"
+}

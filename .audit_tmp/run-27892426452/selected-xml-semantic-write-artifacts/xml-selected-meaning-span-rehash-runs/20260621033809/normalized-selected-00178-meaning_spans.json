@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_fab84ddac1a32c060cfac39b7c78e9fd",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "3f5d1c2b9ce6c0fed798405f5b38a5bc3bac03c02c43244c81d21bba49e3554e",
+  "observations": [
+    {
+      "kind": "command",
+      "summary": "A command is issued to the wall to act quickly before the speaker changes their mind.",
+      "evidence": [
+        {
+          "render_para_key": "rp_77494962d3438b0d2bcad93afb478704",
+          "quote": "\"Go quickly,\" he said to the wall. \"Before I change my mind.\""
+        }
+      ],
+      "thematic_weight": 0.7,
+      "gravity": 0.5,
+      "tension": 0.8,
+      "confidence": 0.95,
+      "notes": "The phrase implies urgency and a potential reversal of decision, indicating tension and a critical moment."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "A command is issued to the wall to act quickly before the speaker changes their mind.",
+      "evidence": [
+        {
+          "render_para_key": "rp_77494962d3438b0d2bcad93afb478704",
+          "render_index": 85,
+          "quote": "\"Go quickly,\" he said to the wall. \"Before I change my mind.\"",
+          "role": null,
+          "start_char": 10869,
+          "end_char": 10930,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_fab84ddac1a32c060cfac39b7c78e9fd",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            169
+          ],
+          "evidence_sha256": "a84f74755afd9b7f8aea6fedb8f17f859ff284de00249c0740d0af29f8234082"
+        }
+      ],
+      "thematic_weight": 0.7,
+      "gravity": 0.5,
+      "tension": 0.8,
+      "confidence": 0.95,
+      "notes": "The phrase implies urgency and a potential reversal of decision, indicating tension and a critical moment."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "331cd58013931de24897070936e17f4b5fbb2203e985f3c09855109cb8aadb38",
+  "normalized_output_hash": "4ef442c54ecc0eb14423b8dac5623aa0bb8a7f36f259f2ea0fe64cdfe7921fb1"
+}

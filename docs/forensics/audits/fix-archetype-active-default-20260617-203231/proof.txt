@@ -1,0 +1,14 @@
+scripts/semantic/xml-grounded-vertex-rehash.mjs:206:  archetype_observations: {
+scripts/semantic/xml-grounded-vertex-rehash.mjs:359:  if (table === "archetype_observations") {
+scripts/semantic/xml-grounded-vertex-rehash.mjs:362:      active: row.active ?? true,
+scripts/semantic/xml-grounded-vertex-rehash.mjs:592:      "archetype_observations": [
+scripts/semantic/xml-grounded-vertex-rehash.mjs:953:      archetypes: pr.archetype_observations || [],
+scripts/semantic/xml-grounded-vertex-rehash.mjs:979:    const archetypes = (pr.archetype_observations || []).map((a) => ({
+scripts/semantic/xml-grounded-vertex-rehash.mjs:992:    if (archetypes.length) await insertRows("archetype_observations", archetypes);
+supabase/migrations/20260617000100_xml_grounded_semantic_rehash.sql:79:CREATE TABLE IF NOT EXISTS archetype_observations (
+supabase/migrations/20260617000100_xml_grounded_semantic_rehash.sql:179:CREATE INDEX IF NOT EXISTS idx_archetype_observations_paragraph ON archetype_observations(paragraph_id);
+supabase/migrations/20260617000100_xml_grounded_semantic_rehash.sql:180:CREATE INDEX IF NOT EXISTS idx_archetype_observations_run ON archetype_observations(semantic_run_id);
+supabase/migrations/20260617000100_xml_grounded_semantic_rehash.sql:195:ALTER TABLE archetype_observations ENABLE ROW LEVEL SECURITY;
+supabase/migrations/20260617000100_xml_grounded_semantic_rehash.sql:203:    CREATE POLICY "Allow public read-only archetype observations" ON archetype_observations FOR SELECT USING (active = true);
+supabase/migrations/20260617000100_xml_grounded_semantic_rehash.sql:241:alter table if exists public.archetype_observations
+supabase/migrations/20260617000100_xml_grounded_semantic_rehash.sql:242:  alter column active set default true;

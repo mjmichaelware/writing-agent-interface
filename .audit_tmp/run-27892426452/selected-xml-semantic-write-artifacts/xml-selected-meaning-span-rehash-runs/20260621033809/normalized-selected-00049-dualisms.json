@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_bbcd5857df4876fd565b0b9c7ddb18cc",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "978f6dd40bf0d08f654b9ebd6e977d00996a99457d4042d8ef95dc02da0be067",
+  "observations": [
+    {
+      "axis": "Rest vs. Summons",
+      "polarity": "Sleep is not rest but a summons",
+      "summary": "The act of lying down and attempting to sleep is portrayed not as restful but as a call to something beyond, indicating a tension between physical rest and an active, perhaps spiritual or psychological, summons.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_5aa8d3a8ff247e8e0d28db082e2bc7e9",
+          "quote": "He lay down on the mat. The torch guttered in its crack in the wall. His shadow, thrown large and hunched by the dying light, looked like a man who had been emptied out and not quite refilled."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_5aa8d3a8ff247e8e0d28db082e2bc7e9",
+          "quote": "Sleep was not rest. It was summons."
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "rest_vs_summons",
+      "polarity": "tension",
+      "summary": "The act of lying down and attempting to sleep is portrayed not as restful but as a call to something beyond, indicating a tension between physical rest and an active, perhaps spiritual or psychological, summons.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_5aa8d3a8ff247e8e0d28db082e2bc7e9",
+          "render_index": 50,
+          "quote": "He lay down on the mat. The torch guttered in its crack in the wall. His shadow, thrown large and hunched by the dying light, looked like a man who had been emptied out and not quite refilled.",
+          "role": "left",
+          "start_char": 12508,
+          "end_char": 12700,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_bbcd5857df4876fd565b0b9c7ddb18cc",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            99
+          ],
+          "evidence_sha256": "53e302f1e87d3454a68654af52d508ad2a2a7e4864fd51b8f58e9851910b96fd"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_5aa8d3a8ff247e8e0d28db082e2bc7e9",
+          "render_index": 50,
+          "quote": "Sleep was not rest. It was summons.",
+          "role": "right",
+          "start_char": 12701,
+          "end_char": 12736,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_bbcd5857df4876fd565b0b9c7ddb18cc",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            99
+          ],
+          "evidence_sha256": "112f1ac9b2081f924458154e020b7078330c606ad9ab8afb54d2a5c99451f21b"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "2cac6b4dcd08c79266d55a96f790fddd0b433dddb8ada7ee3892f9f11bdc20d4",
+  "normalized_output_hash": "bee66077ff91fcb7cb29081b92fbca32fe1a95c472874eb4f47401a2115fd5a1"
+}

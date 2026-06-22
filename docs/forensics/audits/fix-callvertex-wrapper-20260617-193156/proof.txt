@@ -1,0 +1,10 @@
+716:async function saveBadVertexJson(raw, meta = {}) {
+731:function parseJsonOrNull(raw) {
+737:async function repairJsonWithVertex(raw, originalPrompt) {
+746:  const parsed = parseJsonOrNull(repaired.text);
+749:    const badPath = await saveBadVertexJson(repaired.text, {
+760:async function callVertexRaw(prompt, overrideGenerationConfig = {}
+762:async function callVertex(prompt) {
+770:  const parsed = parseJsonOrNull(text);
+773:  const badPath = await saveBadVertexJson(text, {
+781:  return repairJsonWithVertex(text, prompt);

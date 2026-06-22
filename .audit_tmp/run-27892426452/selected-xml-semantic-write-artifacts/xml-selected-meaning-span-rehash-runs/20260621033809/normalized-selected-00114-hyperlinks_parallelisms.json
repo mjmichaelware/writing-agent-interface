@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_037212ccb8e5429cc9a0a8c50f5259c2",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "721841a38e7c44c8f9f805097e5aa07f0277746990d4145d88f03e1b92552c13",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The motif of 'accumulating stones' and 'crushing weight of choices' in Aviel's experience parallels the broader theme of burden and consequence seen throughout the narrative, reflecting the internal and external weight characters carry.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_98dcbc3b740469ced41705211ad825c8",
+          "quote": "Aviel had seen the gray field, the accumulating stones, the crushing weight of his own choices made manifest."
+        }
+      ],
+      "target_hint": "This motif echoes the recurring theme of burden and judgment in the narrative, such as the weight of the condemned dwelling and the psychological tax of will described in other chapters.",
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The motif of 'accumulating stones' and 'crushing weight of choices' in Aviel's experience parallels the broader theme of burden and consequence seen throughout the narrative, reflecting the internal and external weight characters carry.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_98dcbc3b740469ced41705211ad825c8",
+          "render_index": 21,
+          "quote": "Aviel had seen the gray field, the accumulating stones, the crushing weight of his own choices made manifest.",
+          "role": "source",
+          "start_char": 2807,
+          "end_char": 2916,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_037212ccb8e5429cc9a0a8c50f5259c2",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            41
+          ],
+          "evidence_sha256": "b2adbec3a566d2b15eff762f5c4fc2675b3615011f68dc99b13c5632653e61d7"
+        }
+      ],
+      "target_hint": "This motif echoes the recurring theme of burden and judgment in the narrative, such as the weight of the condemned dwelling and the psychological tax of will described in other chapters.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "1f2bb9338e65707d6cdd31e8fafcfc489c6e4df1bc8dfff0a16dcb28a069cda2",
+  "normalized_output_hash": "9ca64bd5b6732760db7ca35a41e8327f8b910a7a7203f127f69f5cd8aafa9e98"
+}

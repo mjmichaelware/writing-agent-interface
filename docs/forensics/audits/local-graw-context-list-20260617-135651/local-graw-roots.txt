@@ -1,0 +1,5 @@
+data/runtime_sources/weight_of_the_sky/10_ingestion_baselines/gdrive_raw_text_baseline
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw
+docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/gdrive_raw_182_20260613_232242
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw

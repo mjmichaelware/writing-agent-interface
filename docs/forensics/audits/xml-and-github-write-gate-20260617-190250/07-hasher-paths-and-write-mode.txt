@@ -1,0 +1,18 @@
+15:const writeMode = args.has("--write");
+21:const batchArg = process.argv.find((x) => x.startsWith("--batch-size="));
+29:  xmlManifest: join(ROOT, "reports/xml_recovery/materialized_ooxml_manifest.json"),
+30:  ooxmlRaw: join(ROOT, "src/data-layer/ingestion-buffer/gdrive_ooxml_raw"),
+90:const SUPABASE_ACCESS_TOKEN = env("SUPABASE_ACCESS_TOKEN", env("SUPABASE_MANAGEMENT_TOKEN", ""));
+94:const VERTEX_MODEL = env("VERTEX_MODEL", "gemini-2.5-pro");
+154:  must(SUPABASE_ACCESS_TOKEN, "Missing SUPABASE_ACCESS_TOKEN. Use a Supabase Management PAT/access token.");
+157:  const endpoint = `https://api.supabase.com/v1/projects/${SUPABASE_PROJECT_REF}/database/query`;
+162:      Authorization: `Bearer ${SUPABASE_ACCESS_TOKEN}`,
+445:      model: VERTEX_MODEL,
+456:    model: VERTEX_MODEL,
+510:      join("src/data-layer/ingestion-buffer/gdrive_ooxml_raw", entry.doc_folder || "", entry.part_path || ""),
+511:      join("src/data-layer/ingestion-buffer/gdrive_ooxml_raw", entry.doc_folder || "", "word", "document.xml"),
+716:      `/locations/${VERTEX_LOCATION}/publishers/google/models/${VERTEX_MODEL}:generateContent`;
+735:  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${VERTEX_MODEL}:generateContent?key=${key}`, {
+795:      model: VERTEX_MODEL,
+816:          model: VERTEX_MODEL,
+1038:    model: VERTEX_MODEL,

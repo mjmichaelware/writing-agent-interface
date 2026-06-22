@@ -1,0 +1,60 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_2fb589aadc0f93aac17706a1cd779608",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "20af042c7c1f55263949ca4b662406487cc9fe59f7d0cd2d418d7f95198531c9",
+  "observations": [
+    {
+      "relationship_type": "foreshadowing",
+      "summary": "The father's initial hesitation and correction from 'The Lord' to 'Lord Dagon' foreshadows the significant influence and presence of the deity Dagon beneath the house, indicating a looming, ancient force impacting the narrative.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_3abddcf2a33464b1427e45ab27c89112",
+          "quote": "\"I had a dream,\" his father continued, his voice gaining strength. \"A vision. The Lord—\" He stopped, corrected himself. \"Lord Dagon sent me a vision.\""
+        }
+      ],
+      "target_hint": "The bedrock groaning beneath the house and the presence of Dagon as an ancient, crushing force.",
+      "target_evidence": [
+        {
+          "render_para_key": "rp_3abddcf2a33464b1427e45ab27c89112",
+          "quote": "Below his room, the bedrock groaned—a low, grinding claim. Dagon, settling into the earth beneath the house, making his weight known."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The father's initial hesitation and correction from 'The Lord' to 'Lord Dagon' foreshadows the significant influence and presence of the deity Dagon beneath the house, indicating a looming, ancient force impacting the narrative.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_3abddcf2a33464b1427e45ab27c89112",
+          "render_index": 19,
+          "quote": "\"I had a dream,\" his father continued, his voice gaining strength. \"A vision. The Lord—\" He stopped, corrected himself. \"Lord Dagon sent me a vision.\"",
+          "role": "source",
+          "start_char": 2397,
+          "end_char": 2547,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_2fb589aadc0f93aac17706a1cd779608",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            37
+          ],
+          "evidence_sha256": "34ef6298bb58581e0707b08a8fb789eca764c16639c59d3c7afdcb249e0bfe37"
+        }
+      ],
+      "target_hint": "The bedrock groaning beneath the house and the presence of Dagon as an ancient, crushing force.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "dd56e0dfadbd134e93cb9f931b11ad0ef865a32243eddfdc1d8501e6d89a986c",
+  "normalized_output_hash": "2177fbc98a94f0b1a6ffc4d6fdc519cafdbe591625307113034c8c69373d06e5"
+}

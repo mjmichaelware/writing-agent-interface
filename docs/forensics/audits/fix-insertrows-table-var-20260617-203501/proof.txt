@@ -1,0 +1,8 @@
+206:  archetype_observations: {
+357:async function insertRows(tableArg, rows, chunkSize = 100) {
+359:  if (tableArg === "archetype_observations") {
+362:      active: row.active ?? true,
+592:      "archetype_observations": [
+953:      archetypes: pr.archetype_observations || [],
+979:    const archetypes = (pr.archetype_observations || []).map((a) => ({
+992:    if (archetypes.length) await insertRows("archetype_observations", archetypes);

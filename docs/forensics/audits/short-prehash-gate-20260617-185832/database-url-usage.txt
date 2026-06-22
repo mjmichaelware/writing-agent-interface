@@ -1,0 +1,18 @@
+src/services/memory-engine/vector-store.ts:7:    const connectionString = process.env.DATABASE_URL;
+src/services/memory-engine/vector-store.ts:21:      throw new Error("Postgres connection string not configured (DATABASE_URL)");
+src/data-layer/ingestion-buffer/readme_docs/tier_1_core/097__GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt:47:- Env vars documented and configured: DATABASE_URL, OPENAI_API_KEY, NEXT_PUBLIC_SITE_URL, GDRIVE credentials.
+src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/097__GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt:47:- Env vars documented and configured: DATABASE_URL, OPENAI_API_KEY, NEXT_PUBLIC_SITE_URL, GDRIVE credentials.
+src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/134__NOS_INTEGRATION_BLUEPRINT.txt:1348:  DATABASE_URL=postgresql://...                  # Supabase pooler
+src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/134__NOS_INTEGRATION_BLUEPRINT.txt:1349:  DIRECT_DATABASE_URL=postgresql://...           # Supabase direct
+src/data-layer/ingestion-buffer/readme_docs/tier_3_checkpoints/140__NOS_Master_Diagnostic.txt:320:src/services/memory-engine/vector-store.ts:8:      connectionString: process.env.DATABASE_URL,
+src/data-layer/ingestion-buffer/readme_docs/tier_3_checkpoints/140__NOS_Master_Diagnostic.txt:327: DATABASE_URL       Encrypted           Preview, Production         12h ago    
+src/lib/db.ts:4:  connectionString: process.env.DATABASE_URL,
+scripts/perfect_weight/00_generate_perfection_scripts.py:205:DBURL="${DATABASE_URL:-}"
+scripts/perfect_weight/00_generate_perfection_scripts.py:207:  DBURL="$(gcloud secrets versions access latest --project=ai-job-agent-498702 --secret=DATABASE_URL 2>/dev/null || true)"
+scripts/perfect_weight/00_generate_perfection_scripts.py:212:    echo "DATABASE_URL not available. Skipped DB snapshot."
+scripts/perfect_weight/00_generate_perfection_scripts.py:326:"Never expose service role or DATABASE_URL in logs.",
+scripts/perfect_weight/06_supabase_snapshot.sh:12:DBURL="${DATABASE_URL:-}"
+scripts/perfect_weight/06_supabase_snapshot.sh:14:  DBURL="$(gcloud secrets versions access latest --project=ai-job-agent-498702 --secret=DATABASE_URL 2>/dev/null || true)"
+scripts/perfect_weight/06_supabase_snapshot.sh:19:    echo "DATABASE_URL not available. Skipped DB snapshot."
+scripts/perfect_weight/08_next_100_actions.py:51:"Never expose service role or DATABASE_URL in logs.",
+scripts/diagnostics/test-db.js:4:  connectionString: process.env.DATABASE_URL,

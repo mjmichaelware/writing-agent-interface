@@ -1,0 +1,60 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_2de3714d1dad5a85d43e7c798aa1205b",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "7d4c6ec4cc5d1681c4960424c19e2b6e0a473f76e1b32e50b6ebfdcc52cd99ba",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The motif of a thin blanket as a protective or comforting barrier appears in the source paragraph and echoes earlier narrative descriptions where blankets symbolize vulnerability and the physical cost of spiritual or emotional states.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_97a5520c39ddf5b3ddd6e8a8ebf29bbf",
+          "quote": "He pulled the thin blanket to his chin and tried not to think of what might be gently entreating entrance at his chamber lattice in the dark."
+        }
+      ],
+      "target_hint": "Earlier chapters describe blankets as symbols of physical vulnerability and emotional weariness, such as in Chapter 4 where a blanket presses coarse truth against tired bones.",
+      "target_evidence": [
+        {
+          "render_para_key": "63b181b1f87727ee5202fe1f59a797a227f379a2446db5edd1cb47d50215b8a7",
+          "quote": "He stirred slowly beneath the thin, scratchy blanket, a heavy weariness clutching at him more stubbornly than any dream's fading tendrils."
+        }
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The motif of a thin blanket as a protective or comforting barrier appears in the source paragraph and echoes earlier narrative descriptions where blankets symbolize vulnerability and the physical cost of spiritual or emotional states.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_97a5520c39ddf5b3ddd6e8a8ebf29bbf",
+          "render_index": 94,
+          "quote": "He pulled the thin blanket to his chin and tried not to think of what might be gently entreating entrance at his chamber lattice in the dark.",
+          "role": "source",
+          "start_char": 21100,
+          "end_char": 21241,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_2de3714d1dad5a85d43e7c798aa1205b",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            187
+          ],
+          "evidence_sha256": "29fe168bdc6895777fc55393a5e82ce3fb4a28238c54a89fd460a37dd171251a"
+        }
+      ],
+      "target_hint": "Earlier chapters describe blankets as symbols of physical vulnerability and emotional weariness, such as in Chapter 4 where a blanket presses coarse truth against tired bones.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "4a071ab8de5fa80b660ab3e073f69b4b411e420373e20a3442707c5ecd4dcaa4",
+  "normalized_output_hash": "e3fe0e69f067b4ca5481cc85c6b9efaa76004d3eba872f4add876fe3c95b6855"
+}

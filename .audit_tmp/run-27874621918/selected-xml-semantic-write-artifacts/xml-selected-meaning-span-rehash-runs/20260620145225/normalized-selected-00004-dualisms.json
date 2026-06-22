@@ -1,0 +1,99 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_1af1a1d28a6652a7731b6c7780605e7a",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "44810ca203e77acb49c889bec59bd7a9392cc94076c6b1ba3bfa92a94085e36f",
+  "observations": [
+    {
+      "axis": "Grief Response",
+      "polarity": "Discarding vs. Clinging",
+      "summary": "The dualism contrasts those who respond to loss by discarding all reminders and starting fresh with those who cling tightly to every fragment of what was lost, leaving no room to breathe.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_1b81ea2d1676e70d59ae45513f4dd924",
+          "quote": "Some people throw everything away when they lose the thing they love most—burn it all, scatter the ashes, start fresh with empty hands."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_1b81ea2d1676e70d59ae45513f4dd924",
+          "quote": "Others keep every thread, every cracked vessel, every scrap of parchment with nothing written on it, and pull it tighter and tighter until there is no room left to breathe."
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_1b81ea2d1676e70d59ae45513f4dd924",
+          "quote": "Aviel was one of those. Which is relevant because it is exactly what his son was creeping through the dark to undo."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "grief_response",
+      "polarity": "tension",
+      "summary": "The dualism contrasts those who respond to loss by discarding all reminders and starting fresh with those who cling tightly to every fragment of what was lost, leaving no room to breathe.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_1b81ea2d1676e70d59ae45513f4dd924",
+          "render_index": 5,
+          "quote": "Some people throw everything away when they lose the thing they love most—burn it all, scatter the ashes, start fresh with empty hands.",
+          "role": "left",
+          "start_char": 1225,
+          "end_char": 1360,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_1af1a1d28a6652a7731b6c7780605e7a",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            9
+          ],
+          "evidence_sha256": "b5ce1b8571961607cbc2413e25af3756eeeaabfe501f051696aff21c2a0e59b7"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_1b81ea2d1676e70d59ae45513f4dd924",
+          "render_index": 5,
+          "quote": "Others keep every thread, every cracked vessel, every scrap of parchment with nothing written on it, and pull it tighter and tighter until there is no room left to breathe.",
+          "role": "right",
+          "start_char": 1361,
+          "end_char": 1533,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_1af1a1d28a6652a7731b6c7780605e7a",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            9
+          ],
+          "evidence_sha256": "24d23da9d96fb48e8c3b0c8f4ba89c8f5815da20430f9c951ae46ba34978d5b8"
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_1b81ea2d1676e70d59ae45513f4dd924",
+          "render_index": 5,
+          "quote": "Aviel was one of those. Which is relevant because it is exactly what his son was creeping through the dark to undo.",
+          "role": "bridge",
+          "start_char": 1534,
+          "end_char": 1649,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_1af1a1d28a6652a7731b6c7780605e7a",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            9
+          ],
+          "evidence_sha256": "dae55b2cf437e268ea4bf6f0083e08dffb3a35cf3759e393383826aa05612df1"
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "7d01db8050090695e402e74fde27256fb9acb1a2a8553c92a3a3eac42e8b09ed",
+  "normalized_output_hash": "360702669057eba142d233dec35b8a8c5c6491f632e39d7eb4369e9cf2290d2f"
+}

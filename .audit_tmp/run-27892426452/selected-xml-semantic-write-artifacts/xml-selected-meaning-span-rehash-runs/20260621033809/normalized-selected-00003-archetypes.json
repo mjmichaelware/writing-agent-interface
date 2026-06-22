@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "archetypes",
+  "scene_window_id": "scene_a3adaa6be6be83a7f0ff767d43b610ce",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "97e5eeaf2ea1ded7f2ed72c8d1b601b7d78cb106461e82881ed552af2f7fe0f5",
+  "observations": [
+    {
+      "character": "Aviel",
+      "archetype": "Shadow",
+      "archetype_gloss": "The internalized grief and paralysis following loss",
+      "movement": "descent",
+      "summary": "Aviel embodies the Shadow archetype as he ceases to function after the death of his wife, representing the internalized grief and emotional paralysis that haunts him.",
+      "evidence": [
+        {
+          "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+          "quote": "But when Mother Zuna passed beyond recall—when they buried his bride beneath the earth—something stopped within him. Not died, which would have been cleaner and quicker, but simply ceased like a cart with a cruelly shattered axle."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "archetypes",
+      "character": "Aviel",
+      "archetype": "Shadow",
+      "archetype_anchor_key": "jungian_shadow",
+      "archetype_gloss": null,
+      "movement": "descent",
+      "summary": "Aviel embodies the Shadow archetype as he ceases to function after the death of his wife, representing the internalized grief and emotional paralysis that haunts him.",
+      "evidence": [
+        {
+          "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+          "render_index": 4,
+          "quote": "But when Mother Zuna passed beyond recall—when they buried his bride beneath the earth—something stopped within him. Not died, which would have been cleaner and quicker, but simply ceased like a cart with a cruelly shattered axle.",
+          "role": null,
+          "start_char": 487,
+          "end_char": 717,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_a3adaa6be6be83a7f0ff767d43b610ce",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            7
+          ],
+          "evidence_sha256": "86da68a44c731e1fb1251cd1fca283bb1dc8e4b42397a5feea3135efb86d46b9"
+        }
+      ],
+      "confidence": 0.95,
+      "unresolved_subject": false
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "2a4df66e87f210bd88ba573615841dcd102e341b677bf045b42d6e9366972698",
+  "normalized_output_hash": "7e7b4b04b0b5049894a6f3d85382b6afd84c3a05da454b5478a2cb288ca25180"
+}

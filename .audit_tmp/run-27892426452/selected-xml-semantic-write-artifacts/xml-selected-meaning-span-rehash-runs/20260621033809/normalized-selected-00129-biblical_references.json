@@ -1,0 +1,68 @@
+{
+  "status": "ok",
+  "task_type": "biblical_references",
+  "scene_window_id": "scene_03507c9bb28f9675e305908d064ea22c",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "f6b3b5336df5945734e55efafcfb6d383501783985872538384a2059eccce02f",
+  "observations": [
+    {
+      "biblical_anchor_label": "Matthew 6:19-21",
+      "book": "Matthew",
+      "chapter": 6,
+      "verse_start": 19,
+      "verse_end": 21,
+      "motif_family": "Hoarding and Treasures",
+      "relationship_type": "explicit_allusion",
+      "correspondence_rationale": "The text's reference to 'stones' representing hoarding and the refusal to let go parallels Jesus' teaching in Matthew 6:19-21 about not storing up treasures on earth, which can weigh down the soul, but rather treasures in heaven. The motif of being crushed under the weight of possessions aligns with the biblical warning against earthly hoarding.",
+      "summary": "The passage alludes to the biblical teaching on hoarding earthly treasures and the spiritual burden it causes, as taught in Matthew 6:19-21.",
+      "evidence": [
+        {
+          "render_para_key": "rp_25771a13abaed649b86567beed04609a",
+          "quote": "\"The stones,\" Dan pressed on, \"they represented your hoarding. Your refusal to let go. The vision was showing you what you're doing to yourself, how you're being crushed under the weight of—\""
+        }
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Matthew 6:19-21",
+      "book": "Matthew",
+      "chapter": 6,
+      "verse_start": 19,
+      "verse_end": 21,
+      "motif_family": "hoarding_and_treasures",
+      "biblical_anchor_key": "bibanchor_82afb713d6522109f8de4f376589d19f",
+      "relationship_type": "explicit_allusion",
+      "correspondence_rationale": "The text's reference to 'stones' representing hoarding and the refusal to let go parallels Jesus' teaching in Matthew 6:19-21 about not storing up treasures on earth, which can weigh down the soul, but rather treasures in heaven. The motif of being crushed under the weight of possessions aligns with the biblical warnin",
+      "summary": "The passage alludes to the biblical teaching on hoarding earthly treasures and the spiritual burden it causes, as taught in Matthew 6:19-21.",
+      "evidence": [
+        {
+          "render_para_key": "rp_25771a13abaed649b86567beed04609a",
+          "render_index": 36,
+          "quote": "\"The stones,\" Dan pressed on, \"they represented your hoarding. Your refusal to let go. The vision was showing you what you're doing to yourself, how you're being crushed under the weight of—\"",
+          "role": null,
+          "start_char": 4711,
+          "end_char": 4902,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_03507c9bb28f9675e305908d064ea22c",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            71
+          ],
+          "evidence_sha256": "f22321fc4be3740e0d248f4872bca216b347d0a802d221ad091630a29d9d55a6"
+        }
+      ],
+      "confidence": 0.9,
+      "reference": "Matthew 6:19-21",
+      "motif": "hoarding_and_treasures"
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "a1fd6d49cc3bc82b3de25d9960d807541566251fb03f542d566ca3e71ec8d729",
+  "normalized_output_hash": "c8d481760d570211f0eafe7ebbb8e9e928d97d7f3cc1a2d11fcba4087413f06d"
+}

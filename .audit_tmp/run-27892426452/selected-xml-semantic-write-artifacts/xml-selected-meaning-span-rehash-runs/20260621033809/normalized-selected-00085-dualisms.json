@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_1caa7916674192358f2bee69310d4c48",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "781a42d8897b0583f6596addcde4a22c7b0b47f87b90697860c88ca70252aeaf",
+  "observations": [
+    {
+      "axis": "Darkness to Light",
+      "polarity": "left to right",
+      "summary": "The sky transitions from black, symbolizing darkness or despair, to a bruised and hopeful purple, indicating emerging hope and renewal.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_5818d8fecd239a9cb5565a5edcb54f9e",
+          "quote": "The sky was turning from black"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_5818d8fecd239a9cb5565a5edcb54f9e",
+          "quote": "to a bruised and hopeful purple"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "darkness_to_light",
+      "polarity": "tension",
+      "summary": "The sky transitions from black, symbolizing darkness or despair, to a bruised and hopeful purple, indicating emerging hope and renewal.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_5818d8fecd239a9cb5565a5edcb54f9e",
+          "render_index": 86,
+          "quote": "The sky was turning from black",
+          "role": "left",
+          "start_char": 19918,
+          "end_char": 19948,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_1caa7916674192358f2bee69310d4c48",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            171
+          ],
+          "evidence_sha256": "5cfe5fe1ba84a525d2b7f4e585f349a3d4ed588e4e134591af33d19c18330e00"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_5818d8fecd239a9cb5565a5edcb54f9e",
+          "render_index": 86,
+          "quote": "to a bruised and hopeful purple",
+          "role": "right",
+          "start_char": 19949,
+          "end_char": 19980,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_1caa7916674192358f2bee69310d4c48",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            171
+          ],
+          "evidence_sha256": "abcad88cedfbfea68bcf9e6b2f3d0f61c9119d79753b47872f4f83dffd50d700"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "4d4dc47277144c27b6b37afc5d9284ea7bc39f8e49ed6aaa1267039dbb0b5722",
+  "normalized_output_hash": "e29d6253e61a750e1d61757fa04b38c53f940855209a686360b8e5f2028edd43"
+}

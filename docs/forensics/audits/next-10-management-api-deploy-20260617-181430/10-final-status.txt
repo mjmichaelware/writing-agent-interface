@@ -1,0 +1,27 @@
+branch=cleanup/standard-app-tree
+52f16bc ci: apply semantic schema through Supabase Management API deploy rail
+24564e1 feat: add XML-grounded Vertex semantic rehash pipeline
+fc26bb0 fix: route chapters through Supabase and degrade health gracefully
+2b45690 feat: Address user feedback, re-implement secure PIN, enhance UI kinetics and accessibility
+289e841 feat: Refine Layer 4 panels, dualism analytics, and remove hardcoded values
+
+ M package-lock.json
+ M package.json
+ M src/app/api/graph/route.ts
+ M src/app/graph/page.tsx
+ M src/components/layers/panel/AuthorGateway.tsx
+ M src/components/layers/panel/HyperlinksGraph.tsx
+ M src/components/ui/graph-view.tsx
+ M tsconfig.json
+?? audit-where-the-data-went.sh
+?? definitive-data-loss-audit.sh
+?? docs/agent_context/source_drop/hasher_context_v1/
+?? docs/forensics/audits/
+?? docs/forensics/backups/xml-grounded-vertex-rehash-write-20260617-163715/
+?? hash-provenance-map.sh
+?? live-supabase-schema-truth.sh
+?? test-db.js
+
+audit_dir=docs/forensics/audits/next-10-management-api-deploy-20260617-181430
+If the GitHub run succeeded, schema migration and Edge Function deploy rail completed.
+If it failed, paste only the failing step from: docs/forensics/audits/next-10-management-api-deploy-20260617-181430/09-run-log.txt

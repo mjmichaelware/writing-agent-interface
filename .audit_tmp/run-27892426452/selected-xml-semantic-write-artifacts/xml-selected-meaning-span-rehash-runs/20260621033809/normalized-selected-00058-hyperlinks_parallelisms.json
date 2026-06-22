@@ -1,0 +1,76 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_86d7196ed0bae4eaba398cf92c4ff16e",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "25af96cd6b130d3242a53c21ad6c1a7039578d5913cbfba03c437f27e3c4573f",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The phrase 'The air choked with salt. The cold stench of the deep pressed in from every direction.' echoes the motif of oppressive, suffocating atmosphere associated with the deep or oceanic forces, paralleling earlier descriptions of Dan's internal and external struggles with overwhelming primal forces.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_6b8a1461f4f67e9747c51936873487d0",
+          "quote": "The air choked with salt. The cold stench of the deep pressed in from every direction."
+        }
+      ],
+      "target_hint": "This motif parallels earlier narrative descriptions of Dan's confrontation with the Leviathan and the primordial sea, where the oppressive presence of the deep is felt as a suffocating force.",
+      "target_evidence": [
+        {
+          "render_para_key": "rp_6b8a1461f4f67e9747c51936873487d0",
+          "quote": "The air choked with salt. The cold stench of the deep pressed in from every direction."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The phrase 'The air choked with salt. The cold stench of the deep pressed in from every direction.' echoes the motif of oppressive, suffocating atmosphere associated with the deep or oceanic forces, paralleling earlier descriptions of Dan's",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_6b8a1461f4f67e9747c51936873487d0",
+          "render_index": 59,
+          "quote": "The air choked with salt. The cold stench of the deep pressed in from every direction.",
+          "role": "source",
+          "start_char": 14734,
+          "end_char": 14820,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_86d7196ed0bae4eaba398cf92c4ff16e",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            117
+          ],
+          "evidence_sha256": "71b2ff35d7380f3d78eef0b1a795c6c00144941c4a56c61cf51ae7ba75412c15"
+        }
+      ],
+      "target_hint": "This motif parallels earlier narrative descriptions of Dan's confrontation with the Leviathan and the primordial sea, where the oppressive presence of the deep is felt as a suffocating force.",
+      "target_evidence": [
+        {
+          "render_para_key": "rp_6b8a1461f4f67e9747c51936873487d0",
+          "render_index": 59,
+          "quote": "The air choked with salt. The cold stench of the deep pressed in from every direction.",
+          "role": "target",
+          "start_char": 14734,
+          "end_char": 14820,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_86d7196ed0bae4eaba398cf92c4ff16e",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            117
+          ],
+          "evidence_sha256": "71b2ff35d7380f3d78eef0b1a795c6c00144941c4a56c61cf51ae7ba75412c15"
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "c0988497dde84d53e2ab92bb9acbb67e1b63532eaab4c23d322267457c15439a",
+  "normalized_output_hash": "4d1575b2ff72b2b485337f25b1500697ba648b4ca4d1efe51b56e0da04683d30"
+}

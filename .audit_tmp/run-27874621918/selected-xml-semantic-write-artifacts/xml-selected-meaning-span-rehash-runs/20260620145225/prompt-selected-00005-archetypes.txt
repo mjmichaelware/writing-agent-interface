@@ -1,0 +1,134 @@
+You are a semantic analyst, not a JSON/DB row generator.
+Return only valid JSON matching the requested schema.
+No markdown. No explanation. No extra keys.
+Selected XML render paragraphs are source truth.
+Narrative context capsule is interpretive context only, never source truth.
+
+TASK: archetypes
+
+TASK RUBRIC:
+Extract character-role or mythic-role observations grounded in the source packet.
+Movement should describe direction such as descent, ascent, confrontation, sacrifice, fragmentation, or integration.
+Do not emit static labels without evidence.
+
+EVIDENCE REQUIREMENTS:
+- Every observation must cite source evidence using render_para_key plus an exact quote.
+- Omit low-confidence claims instead of padding output.
+- Empty observations are valid.
+- Valid empty response is: {"observations":[]}
+- Do not force a claim.
+
+SOURCE PACKET:
+{
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "scene_window_id": "scene_0bfba90e3decce02c0a341ff28c7d4ac",
+  "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+  "folder": "0002_r_chapter_1_-_stardust_to_stardust_1tbodxyu5ezufogmr46f64o9u8fisifvmiaxn6qz_siq",
+  "render_paragraphs": [
+    {
+      "render_para_key": "rp_db7e231d7903292e75046c5010faa915",
+      "render_index": 6,
+      "start_char": 1653,
+      "end_char": 2238,
+      "source_xml_paragraph_indexes": [
+        11
+      ],
+      "text_sha256": "a428d9f8b04e9b772cc80750bb76be0b5c27f11552ebb4cd3998884191c430e9",
+      "text": "On a night when the moon was full on its third day, a boy with kind eyes moved through the monument his father's madness had made. His name was Dan. Sixteen, with messy black hair that tufted upward no matter how many times he patted it down or slicked it back. The torch trembled in his hand—the frail flame flickered not from wind but from the percussion against his ribs, casting suspicious shadows down the narrow hallway. Each barefoot step through the refuse was a wager against sound: one shard of pottery, one brittle bone breaking beneath his weight, and the house would know."
+    }
+  ]
+}
+
+NARRATIVE CONTEXT CAPSULE:
+{
+  "mode": "narrative_context_only",
+  "chapter_hints": [
+    1
+  ],
+  "keywords": [
+    "barefoot",
+    "beneath",
+    "black",
+    "breaking",
+    "brittle",
+    "casting",
+    "father",
+    "flame",
+    "flickered",
+    "frail",
+    "hallway",
+    "house"
+  ],
+  "selected_public_chapters": [
+    {
+      "chapter_number": 7,
+      "sha256": "fe21c269662112e63ae92118f80d1d68c5a94cb5fb3950a0d8cb1d0f3092b245",
+      "excerpt": "Chapter 7: The Pit The last rays of the sun, the color of old blood and bruised fruit, were staining the sky behind him as Dan approached the gates of Megiddo. The city rose before him, not a gentle hill like Bethlehem or a proud peak like Jebus, but a tell – a layered mound of history, built upon layers of forgotten ages. A place where countless lives had been lived, and countless more had ended, their dust mingling in the very soil of the place. The encounter with the **woman seeking her Winged Lord**, had left a **chill** in the air that had nothing to do with the setting sun. Her frantic energy, her warped faith, had cast a long shadow that seemed to stretch and deepen as he neared the ancient stones of the city walls. He tightened his grip on the strap of his waterskin, stood up straight with his shoulders back, and walked towards the gate, the heavy leather feeling oddly cold against his palm. The air itself seemed to grow heavy, thick with the scent of ancient earth and something else, something that whispered of things long buried and best left undisturbed, a faint, almost imperceptible hum that vibrated just beneath the threshold of hearing. He passed through the thick stone archway, the transition feeling less like entering a known city and more like stepping into new territory. The air didn't change temperature, but it felt... old. A stagnant"
+    }
+  ],
+  "available_narrative_context_map_excerpt": "CHAPTER 7 path=public/data/chapters/7.txt sha256=fe21c269662112e63ae92118f80d1d68c5a94cb5fb3950a0d8cb1d0f3092b245 word_count=4734 opening=Chapter 7: The Pit The last rays of the sun, the color of old blood and bruised fruit, were staining the sky behind him as Dan approached the gates of Megiddo. The city rose before him, not a gentle hill like Bethlehem or a proud peak like Jebus, but a tell – a layered mound of history, built upon layers of forgotten ages. A place where countless lives had been lived, and countless more had ended, their dust mingling in the very soil of the place. The encounter with the **woman seeking her Winged Lord**, had left a **chill** in the air that had nothing to do with the setting sun. Her frantic energy, her warped faith, had cast a long shadow that seemed to stretch and deepen as he neared the ancient stones of the city walls. He tightened his grip on the strap of his waterskin, stood up straight with his shoulders back, and walked towards the gate, the heavy leather feeling oddly cold again middle=ce, a physical payment for spiritual passage. The man's eyes widened slightly as he weighed the pieces in his hand, his thick fingers turning them over. A few Shekels was a significant sum, a payment well above the norm for a simple night's shelter. His expression softened marginally, the hardness easing into something like satisfied indifference, the look of someone who understood the true value of such a payment here. \"Aye,\" he grunted. \"That will suffice. Come in, traveler. Find a space by the hearth. The meal is finished, but the fire is warm, and no one here will bother you tonight. Your payment has been noted.\" Dan stepped inside the traveler's house, leaving the hostile streets of Megiddo behind. He felt the lingering pull of the earth,",
+  "context_pack_excerpt": "# Narrative Context Pack v1 # Purpose: context path for semantic hashing of archetypes, biblical allusions, conceptual dualisms, and cross-paragraph relations. # Created: 20260617-150000 # Includes: 106, 109, 169, real New Synopsis. ================================================================================ ROLE: archetype_protocol SOURCE_NUMBER: 106 SHA256: 089b3617b7dbc3b46ceb43a7053f55662dd11c5b931bc0b2453d8e66c5568a2d SOURCE_PATH: ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/3.0_Literary_&_Archetypal_Fusion_Rulebook_(The_Cat_God_&_The_Primal_Self).txt HASHER_PATH: docs/agent_context/source_drop/hasher_context_v1/01_archetype_protocol_cat_god_primal_self.txt ================================================================================ Literary & Archetypal Fusion Rulebook (The Cat God & The Primal Self) This rulebook dictates the final, deep-level edits required to create a \"New York Times Bestseller\" that operates as an existential mirror, compelling the reader to confront their own inner conflicts and unintegrated \"ego\" (the \"Dr. Jekyll/Mr. Hyde\" tension). I. The Narrator: Deity of Curiosity (The Cat God) The narrator's voice is the subtle, overarching thematic hyperlink for Truth and Love. The narrator is a deity of pure Curiosity in the Dreamscape, near The Source of All. * Voice Style: Highly observant, often focused on the unseen cost of knowledge or the unasked question. The tone must be ancient, knowing, yet slightly playful and precise. * Foreshadowing & Thematic Link: Introduce subtle, sensory language of a feline observer: * Emphasis on silent observation, stalking, low growls, the scent of fear/truth, and an unnerving lightness of foot. * Chapter 6 Anchor: The physical black kitten that joins Kasha MUST be present, serving as the physical avatar for the narrator's full reveal in Chapter 11. * Fourth Wall Breaks (CRITICAL): * Maximum: Twice per chapter. * Format: ALWAYS enclosed in parentheses ( ). * Function: The break must NEVER disrupt the plot momentum. It must instead heighten the thematic accusation by pointing to the reader’s shared human flaw (shame, unasked questions, the refusal to look in the mirror). * Example: (The cost of not asking is always the highest price paid, and most humans never realize they’ve already signed the scroll.) II. The Canaanite Pantheon as Dan's Psyche The interactions with the gods MUST be subtly reframed to represent Dan's internal battle for self-integration (Self vs. Shadow). This is the key to the psychological layering. Pantheon Figure Dan's Internal Conflict (Thematic Function) Narrative Expression (Show, Not Tell) Dagon (Ch. 1) The Shadow of Regression/Chaos. The pull back to the womb, the oceanic unthinking state, and the comfort of the uncons",
+  "context_capsule_sha256": "d3c6c05c091806bef183491f60476409392cd3157063ed6ab0f4859f949806d8"
+}
+
+OUTPUT CONTRACT:
+{
+  "type": "OBJECT",
+  "properties": {
+    "observations": {
+      "type": "ARRAY",
+      "items": {
+        "type": "OBJECT",
+        "properties": {
+          "character": {
+            "type": "STRING"
+          },
+          "archetype": {
+            "type": "STRING"
+          },
+          "movement": {
+            "type": "STRING"
+          },
+          "summary": {
+            "type": "STRING"
+          },
+          "evidence": {
+            "type": "ARRAY",
+            "items": {
+              "type": "OBJECT",
+              "properties": {
+                "render_para_key": {
+                  "type": "STRING"
+                },
+                "quote": {
+                  "type": "STRING"
+                }
+              },
+              "required": [
+                "render_para_key",
+                "quote"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "confidence": {
+            "type": "NUMBER"
+          }
+        },
+        "required": [
+          "character",
+          "archetype",
+          "movement",
+          "summary",
+          "evidence",
+          "confidence"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "observations"
+  ],
+  "additionalProperties": false
+}

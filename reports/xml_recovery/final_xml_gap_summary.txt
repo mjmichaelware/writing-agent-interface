@@ -1,0 +1,13 @@
+XML-backed docs:
+52 reports/xml_recovery/xml_55_name_keys.txt
+
+GRAW staged txt files:
+182
+
+Missing XML by name subtraction:
+101 reports/xml_recovery/graw_name_missing_xml.txt
+
+Report paths:
+reports/xml_recovery/xml_55_name_keys.txt
+reports/xml_recovery/graw_182_name_paired_to_xml.txt
+reports/xml_recovery/graw_name_missing_xml.txt

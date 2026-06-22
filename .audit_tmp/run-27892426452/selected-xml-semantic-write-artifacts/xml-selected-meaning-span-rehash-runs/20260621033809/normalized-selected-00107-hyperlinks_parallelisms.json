@@ -1,0 +1,68 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_b3c50f0500558a0a6351c40df73f77fd",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "7d87fefb019a9f69043812fb755fef4c02367b29eab6ec96ada86818b3921817",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The description of Dan as \"a man who'd just clawed his way out of a grave\" parallels earlier motifs of struggle, physical and spiritual torment, and emergence from darkness or death-like states throughout the narrative, emphasizing his resilience and rebirth.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_a62990d589869367f615d71ef18d0935",
+          "quote": "He looked like a man who'd just clawed his way out of a grave."
+        }
+      ],
+      "target_hint": "Dan's repeated experiences of physical and spiritual struggle and emergence from darkness or death-like states in earlier chapters, such as his internal war and the metaphorical 'Pit' at Megiddo.",
+      "target_evidence": [
+        {
+          "render_para_key": "bb2740591c75d6dd0ee22abf60c25523302ff6758cfd3052f1b2c72e9ffe191b",
+          "quote": "The hunger clawed. He stumbled, fell, scraped his knees on the unforgiving rock, but always, always, he pushed himself up."
+        },
+        {
+          "render_para_key": "fe21c269662112e63ae92118f80d1d68c5a94cb5fb3950a0d8cb1d0f3092b245",
+          "quote": "The last rays of the sun... The encounter with the woman seeking her Winged Lord had left a chill in the air."
+        },
+        {
+          "render_para_key": "3b0ede4310eca0fccf88e100972d161048f12333411bb4e14c4f6956eaacf039",
+          "quote": "The sun... pressed its dry, relentless heat onto Dan’s neck... The memory of its clean, simple light faded into the vast, silent glare of the road."
+        }
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The description of Dan as \"a man who'd just clawed his way out of a grave\" parallels earlier motifs of struggle, physical and spiritual torment, and emergence from darkness or death-like states throughout the narrative, emphasizing his resi",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_a62990d589869367f615d71ef18d0935",
+          "render_index": 14,
+          "quote": "He looked like a man who'd just clawed his way out of a grave.",
+          "role": "source",
+          "start_char": 1889,
+          "end_char": 1951,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_b3c50f0500558a0a6351c40df73f77fd",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            27
+          ],
+          "evidence_sha256": "13364f67a982644cd6de550b796979f03d40df20f876f7ed47fd0ef1292295f3"
+        }
+      ],
+      "target_hint": "Dan's repeated experiences of physical and spiritual struggle and emergence from darkness or death-like states in earlier chapters, such as his internal war and the metaphorical 'Pit' at Megiddo.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "ceec8a6d1194a95ac461a8d50c3cb12b977b735e1373099637e982834eae393c",
+  "normalized_output_hash": "62290c63e1545282a88aea49ad36ef245f22ed42462ecc04da904f96ab2bf84a"
+}

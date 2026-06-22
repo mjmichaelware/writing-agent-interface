@@ -1,0 +1,182 @@
+  1 |   22969 bytes | (A)Chapter_8:_Sea_People.txt
+  2 |   20031 bytes | (A)_Chapter:_1_Stardust_to_Stardust.txt
+  3 |   21370 bytes | (A)_Chapter_1-_Stardust_to_Stardust.txt
+  4 |   21228 bytes | (A)_Chapter_1:_Stardust_to_Stardust.txt
+  5 |   22015 bytes | (A)_Chapter_1_-_Stardust_to_Stardust.txt
+  6 |   19743 bytes | (A)_Chapter_2-_Living_Sacrifice.txt
+  7 |   18467 bytes | (A)_Chapter_2:_Living_Sacrifice.txt
+  8 |   22650 bytes | (A)_Chapter_3-_Lift_Up.txt
+  9 |   20360 bytes | (A)_Chapter_3_-_Lift_Up.txt
+ 10 |   19805 bytes | (A)_Chapter_5_-_The_Snare.txt
+ 11 |   21965 bytes | (A)_Chapter_6:_Beelzebub,_Beelzebub.txt
+ 12 |   19612 bytes | (B)Chapter_8:_Sea_People.txt
+ 13 |   20323 bytes | (B)_Chapter:_1_Stardust_to_Stardust.txt
+ 14 |   19605 bytes | (B)_Chapter_1-_Stardust_to_Stardust.txt
+ 15 |   21506 bytes | (B)_Chapter_1:_Stardust_to_Stardust.txt
+ 16 |   21458 bytes | (B)_Chapter_1_-_Stardust_to_Stardust.txt
+ 17 |   19692 bytes | (B)_Chapter_2-_Living_Sacrifice.txt
+ 18 |   19234 bytes | (B)_Chapter_2:_Living_Sacrifice.txt
+ 19 |   20517 bytes | (B)_Chapter_3-_Lift_Up.txt
+ 20 |   20545 bytes | (B)_Chapter_3:_Lift_Up.txt
+ 21 |   20546 bytes | (B)_Chapter_5-_The_Snare.txt
+ 22 |   22160 bytes | (B)_Chapter_6_-_Beelzebub,_Beelzebub.txt
+ 23 |   21400 bytes | (B)_Chapter_7:_The_Pit.txt
+ 24 |   20049 bytes | (B)_Chapter_9:_The_Ascent.txt
+ 25 |   20047 bytes | (B)_Stardust_to_Stardust.txt
+ 26 |   17219 bytes | (C)Chapter_8:_Sea_People.txt
+ 27 |   21142 bytes | (C)_Chapter:_1_-_Stardust_to_Stardust_.txt
+ 28 |   27331 bytes | (C)_Chapter:_7_-_The_Pit.txt
+ 29 |   21088 bytes | (C)_Chapter:_Stardust_to_Stardust.txt
+ 30 |   21548 bytes | (C)_Chapter_1-_Stardust_to_Stardust.txt
+ 31 |   21212 bytes | (C)_Chapter_1_-_Stardust_to_Stardust.txt
+ 32 |   18680 bytes | (C)_Chapter_2-_Living_Sacrifice.txt
+ 33 |   20200 bytes | (C)_Chapter_3-_Lift_Up.txt
+ 34 |   21752 bytes | (C)_Chapter_3_-_Lift_Up.txt
+ 35 |   17991 bytes | (C)_Chapter_4-_Pilgrimage.txt
+ 36 |   19881 bytes | (C)_Chapter_4_-_Pilgrimage.txt
+ 37 |   23717 bytes | (C)_Chapter_6-_Beelzebub,_Beelzebub.txt
+ 38 |   19331 bytes | (D)_Chapter:_7_-_The_Pit.txt
+ 39 |   23090 bytes | (D)_Chapter_1_-_Stardust_to_Stardust.txt
+ 40 |   18607 bytes | (D)_Chapter_2-_Living_Sacrifice.txt
+ 41 |   19019 bytes | (D)_Chapter_2_-_Living_Sacrifice.txt
+ 42 |   21595 bytes | (E)_Chapter_1-_Stardust_to_Stardust.txt
+ 43 |   23083 bytes | (E)_Chapter_1_-_Stardust_to_Stardust.txt
+ 44 |   23222 bytes | (E)_Chapter_2-_Living_Sacrifice.txt
+ 45 |   10827 bytes | (E)_Chapter_2_-_Living_Sacrifice.txt
+ 46 |   16482 bytes | (E)_Chapter_3-_Lift_Up.txt
+ 47 |   12506 bytes | (F)_Chapter:_1_Stardust_to_Stardust_.txt
+ 48 |   27311 bytes | (F)_Chapter_1:_Stardust_to_Stardust_.txt
+ 49 |   15479 bytes | (F)_Chapter_1_-_Stardust_to_Stardust.txt
+ 50 |   22306 bytes | (F)_Chapter_2-_Living_Sacrifice.txt
+ 51 |   18867 bytes | (F)_Chapter_3-_Lift_Up.txt
+ 52 |   27420 bytes | (Final) Chapter: 7 - The Pit.txt
+ 53 |   20429 bytes | (Final)_Chapter_1:_Stardust_to_Stardust.txt
+ 54 |   21106 bytes | (Final)_Chapter_1_-_Stardust_to_Stardust.txt
+ 55 |   19743 bytes | (Final)_Chapter_2-_Living_Sacrifice.txt
+ 56 |   20516 bytes | (Final)_Chapter_3-_Lift_Up.txt
+ 57 |   19556 bytes | (Final)_Chapter_3:_Lift_Up.txt
+ 58 |   20558 bytes | (Final)_Chapter_5_-_The_Snare.txt
+ 59 |   20133 bytes | (G)_Chapter_1:_Stardust_to_Stardust.txt
+ 60 |   22378 bytes | (G)_Chapter_2-_Living_Sacrifice.txt
+ 61 |   18859 bytes | (G)_Chapter_3-_Lift_Up.txt
+ 62 |   18992 bytes | (G)_Final_)_Chapter:_10_-_Forsaken.txt
+ 63 |   30806 bytes | (I)_(Notes)_Chapter:_1_Stardust_to_Stardust_.txt
+ 64 |   30796 bytes | (I)_Chapter:_1_Stardust_to_Stardust_.txt
+ 65 |   23311 bytes | (N)_CHAPTER_1-_STARDUST_TO_STARDUST.txt
+ 66 |   18278 bytes | (N)_Chapter_1_-_Stardust_to_Stardust.txt
+ 67 |   26546 bytes | (Notes)_(P)_Chapter:_1_-_Stardust_to_Stardust.txt
+ 68 |   30359 bytes | (Notes)_Chapter_2-_Living_Sacrifice.txt
+ 69 |   26308 bytes | (Notes)_Chapter_2:_Living_Sacrifice.txt
+ 70 |   18374 bytes | (O)_Chapter_1-_Stardust_to_Stardust.txt
+ 71 |   25593 bytes | (P)_Chapter:_1_-_Stardust_to_Stardust.txt
+ 72 |   21521 bytes | (Prompt_Guide_(E))_Chapter_10:_Forsaken.txt
+ 73 |   21556 bytes | (R) Chapter: 1 - Stardust to Stardust .txt
+ 74 |   22451 bytes | (R)_Chapter:_1_-_Stardust_to_Stardust_.txt
+ 75 |   20937 bytes | (Revision_Prompt_(D))_Chapter_10:_Forsaken.txt
+ 76 |   25907 bytes | (Revision_Prompt_(N)__Chapter_1_-_Stardust_to_Stardust.txt
+ 77 |   19376 bytes | (Revisions)_Chapter_1:_Stardust_to_Stardust.txt
+ 78 |   20901 bytes | (SDP)_v2.txt
+ 79 |   19237 bytes | (X)_Chapter_1:_Stardust_to_Stardust.txt
+ 80 |   20047 bytes | (X)_Chapter_1_-_Stardust_to_Stardust.docx.txt
+ 81 |   20060 bytes | (X)_Chapter_1_-_Stardust_to_Stardust.txt
+ 82 |   20127 bytes | (X)_Chapter_1__Stardust_to_Stardust_(1).txt
+ 83 |   22477 bytes | (X)_Chapter_1__Stardust_to_Stardust_(2).txt
+ 84 |   21441 bytes | (Z)_Chapter_1:_Stardust_to_Stardust.txt
+ 85 |   19162 bytes | *Chapter_1:_Stardust_to_Stardust.txt
+ 86 |   18574 bytes | *Chapter_2-_Living_Sacrifice.txt
+ 87 |   19636 bytes | *Chapter_3:_Lift_Up.txt
+ 88 |   18326 bytes | *Chapter_4:_Pilgrimage.txt
+ 89 |   27116 bytes | *Chapter_7:_The_Pit.txt
+ 90 |   22969 bytes | *Chapter_8:_Sea_People.txt
+ 91 |   27768 bytes | *Chapter_9:_The_Ascent.txt
+ 92 |    8940 bytes | -Final_Chapter_1_Revision_Prompt-.txt
+ 93 |   21666 bytes | 1.0_Revision.txt
+ 94 |    4609 bytes | 10.0_Blueprint_for_The_Ascent_of_Daniel:_The_Archetype_of_Sacrifice_(NYT_Bestseller_Focus).txt
+ 95 |   12722 bytes | 10.0_MASTER_SYSTEM_FOR_CHAPTER_REVISION.txt
+ 96 |   13975 bytes | 10.0_Mass_Market.txt
+ 97 |    7944 bytes | 11.0_Error_Catalog.txt
+ 98 |    7590 bytes | 11.0_Final_Revision.txt
+ 99 |    6356 bytes | 11.0_Marketability_.txt
+100 |    6433 bytes | 12.0_Perfection.txt
+101 |    8216 bytes | 13.0_Claude.txt
+102 |   19474 bytes | 13.0_GENERAL_PRINCIPLES.txt
+103 |   13169 bytes | 2.0_Critique_／_Analysis_Guide.txt
+104 |    4533 bytes | 2.0_This_is_the_critical_adjustment—the_final_layer_that_elevates_philosophical_storytelling_into_timeless,_devastating_human_tragedy.txt
+105 |    6905 bytes | 3.0_Final_.txt
+106 |    5085 bytes | 3.0_Literary_&_Archetypal_Fusion_Rulebook_(The_Cat_God_&_The_Primal_Self).txt
+107 |   10075 bytes | 3.0_Scientific_Guide.txt
+108 |    3660 bytes | 4.0_(12_Rules_For_Life).txt
+109 |    3895 bytes | 4.0_Emotional_&_Archetypal_Editing_Rulebook_(Visceral_Empathy_Focus).txt
+110 |   12831 bytes | 4.0_Psychology_Guide.txt
+111 |   30624 bytes | 4.0_REVISED.txt
+112 |    9382 bytes | 5.0_Final_Guide.txt
+113 |   12868 bytes | 5.0_Psychology_Guide.txt
+114 |    3736 bytes | 6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt
+115 |   20099 bytes | 6.0_HIGHEST_PRIORITY_(Read_this_first_and_then_again_last)_.txt
+116 |    8427 bytes | 6.0_SYNTHESIS_MANDATE.txt
+117 |   11330 bytes | 6.0_Supreme_Generative_Constraint.txt
+118 |    3603 bytes | 7.0_Chapter_Refinery.txt
+119 |   23510 bytes | 7.0_Nuclear_Edit!!!!_(CRITICAL!_DIRE!_EMERGENCY!!!).txt
+120 |   15094 bytes | 8.0_Pacing／Redundancy.txt
+121 |    4265 bytes | 8._0_This_is_the_final,_most_crucial_step:_ensuring_the_narrative's_structure_is_so_perfectly_weighted_that_the_profound_sadness—the_weeping_of_self-recognition—is_not_a_chance_event,_but_an_earned,_inevitable_catharsis_for_the_reader.txt
+122 |    8465 bytes | 9.0_Aesthetic.txt
+123 |    3317 bytes | 9.0_Stones.txt
+124 |    3044 bytes | ALITTERAS_SYSTEM_BLUEPRINT_v1.txt
+125 |    4796 bytes | Chapter 3 - Commerciality and Marketing 3.0.txt
+126 |   19769 bytes | Chapter2_Weight_of_the_Sky.txt
+127 |   21887 bytes | Chapter:_10_-_MASTER_BRIEFING.txt
+128 |   20564 bytes | Chapter:_1_-_Stardust_to_Stardust.txt
+129 |   13182 bytes | Chapter:_1_Proof_of_Authorship_1.0.txt
+130 |   17600 bytes | Chapter:_1_Proof_of_Authorship_1.1.txt
+131 |   17241 bytes | Chapter:_8_(Final).txt
+132 |   20311 bytes | Chapter_10.1.txt
+133 |   27367 bytes | Chapter_10.5.txt
+134 |   17281 bytes | Chapter_10:_Forsaken.txt
+135 |   28345 bytes | Chapter_10_Forsaken_FINAL_DEFINITIVE.txt
+136 |   26347 bytes | Chapter_10_Version_F.txt
+137 |   21365 bytes | Chapter_11.8.txt
+138 |   26263 bytes | Chapter_11._Forsaken.txt
+139 |   17060 bytes | Chapter_13:_Exodus.txt
+140 |   22126 bytes | Chapter_1:_Stardust_to_Stardust.txt
+141 |   19245 bytes | Chapter_1_-_Stardust_to_Stardust.txt
+142 |    5703 bytes | Chapter_1_Integration.txt
+143 |   18717 bytes | Chapter_1_Integration_2.0.txt
+144 |    7124 bytes | Chapter_1_Integration_Prompt.txt
+145 |   16922 bytes | Chapter_1_Merge_Prompt.txt
+146 |   31718 bytes | Chapter_1_Version_O.txt
+147 |   19181 bytes | Chapter_2:_Living_Sacrifice.txt
+148 |   17501 bytes | Chapter_2_-_Analysis_&_Guides_1.0.txt
+149 |   16963 bytes | Chapter_2_-_Commerciality_and_Marketing_3.0.txt
+150 |   15223 bytes | Chapter_2_-_Master_Revision_Prompt_2.0.txt
+151 |    7543 bytes | Chapter_2nd_to_last.txt
+152 |   19673 bytes | Chapter_3:_Lift_Up.txt
+153 |    7210 bytes | Chapter_3_-_Master_Revision_Prompt_2.0.txt
+154 |   18857 bytes | Chapter_3_Analysis_&_Guides.txt
+155 |    4388 bytes | Chapter_3_Integration_Prompt.txt
+156 |   18833 bytes | Chapter_4:_Pilgrimage.txt
+157 |   19304 bytes | Chapter_5:_The_Snare.txt
+158 |   21547 bytes | Chapter_6:_Beelzebub,_Beelzebub.txt
+159 |   28338 bytes | Chapter_8.1.txt
+160 |   24065 bytes | Chapter_8:_Sea_People.txt
+161 |   27027 bytes | Chapter_9:_The_Ascent.txt
+162 |   30850 bytes | Could_you_condense_that_chapter_by_500_to_1,000_w....txt
+163 |   13767 bytes | Critique_2.2.txt
+164 |    6989 bytes | Final Revision (Generalized For All Chapters).txt
+165 |   26548 bytes | Go_ahead_and_write_out_the_chapter_keep_in_mind_t....txt
+166 |    3998 bytes | MANUSCRIPT_AUTOPSY.txt
+167 |   11465 bytes | Narnia_.txt
+168 |    2541 bytes | Purple_Prose_Prompt.txt
+169 |    6562 bytes | THE_WEIGHT_OF_THE_SKY-_MASTER_COMPENDIUM_(SINGULARITY_v.txt
+170 |    2456 bytes | The_-Version_X-_Meta-Prompt.txt
+171 |   12645 bytes | The_Weight_of_the_Sky:_The_Fall_into_Megiddo.txt
+172 |   18320 bytes | The_scrape.txt
+173 |    3991 bytes | ToALITTERAS_ECOSYSTEM_v2.txt
+174 |   10474 bytes | Untitled_document.txt
+175 |   19536 bytes | Version_A.txt
+176 |   19366 bytes | Version_B.txt
+177 |   17321 bytes | WOS_Ch7_The_Pit.txt
+178 |   23683 bytes | Whole_Book.txt
+179 |   24874 bytes | chapter_11.2.txt
+180 |   19186 bytes | •(G)_Chapter:_1_Stardust_to_Stardust_.txt
+181 |   22989 bytes | •(G)_Chapter_2-_Living_Sacrifice.txt
+182 |   19162 bytes | ﻿Chapter_1-_Stardust_to_Stardust.txt

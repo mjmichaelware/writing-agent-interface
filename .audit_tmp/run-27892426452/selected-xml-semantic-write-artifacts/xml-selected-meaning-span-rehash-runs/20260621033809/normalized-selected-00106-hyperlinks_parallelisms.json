@@ -1,0 +1,60 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_accc0377fb50eb2cfbe772d9ac85acb8",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "e6dad40390a7d26e042728dd5f2431bb3f36722c70216df3f5c4bf31305bf487",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "Aviel's physical and psychological state in the source paragraph mirrors the thematic depiction of his systemic decay and spiritual breakdown described in the narrative context, emphasizing his intense internal struggle and collapse.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_d1dee69f87326286f9aaca614fe0e779",
+          "quote": "Inside, Aviel sat bolt upright on his cot, eyes wide and wild, chest heaving as if he'd just run a great distance. His hair—what remained of it—stuck up in wild, greasy tufts. His nightclothes were soaked with sweat. And his hands, Dan noticed, were clenched into fists so tight the knuckles had gone white."
+        }
+      ],
+      "target_hint": "Aviel's systemic decay and spiritual breakdown as described in the narrative context and archetype protocols.",
+      "target_evidence": [
+        {
+          "render_para_key": "f2a509eb8a6314cbdbc0dd9a3984fe09cb720101a4de0615dab3d6353db395d3",
+          "quote": "It was the perfect, audible manifestation of aviel's decay, a terrifying sound that resonated deep in dan's chest."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "Aviel's physical and psychological state in the source paragraph mirrors the thematic depiction of his systemic decay and spiritual breakdown described in the narrative context, emphasizing his intense internal struggle and collapse.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_d1dee69f87326286f9aaca614fe0e779",
+          "render_index": 13,
+          "quote": "Inside, Aviel sat bolt upright on his cot, eyes wide and wild, chest heaving as if he'd just run a great distance. His hair—what remained of it—stuck up in wild, greasy tufts. His nightclothes were soaked with sweat. And his hands, Dan noticed, were clenched into fists so tight the knuckles had gone white.",
+          "role": "source",
+          "start_char": 1578,
+          "end_char": 1885,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_accc0377fb50eb2cfbe772d9ac85acb8",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            25
+          ],
+          "evidence_sha256": "84e0d7d9b505faab2a42b93a14689aa45d6905d99b837d15d9c58ae15010d6aa"
+        }
+      ],
+      "target_hint": "Aviel's systemic decay and spiritual breakdown as described in the narrative context and archetype protocols.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "4375cbcaac904fdc319ceeac2a581074f1b62ef2d7e6bbaab5f77353633646c6",
+  "normalized_output_hash": "348c6877fd976f880afd6c3b81f68aa5e720e42c5202c7fc950c93be4d53e984"
+}

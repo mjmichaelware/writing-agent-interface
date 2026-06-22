@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_2244d82fa8160f6300a6b4e51fee132d",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "24cce98932702b9310d9e59c1a4b1dcb11fc0781cce87b38b2b74da6892e7856",
+  "observations": [
+    {
+      "kind": "Character Action",
+      "summary": "The character is reaching for a worn sack beside his cot with jerky movements indicating sudden purpose.",
+      "evidence": [
+        {
+          "render_para_key": "rp_aab8b32cd4a3d3653492bc2306d86b08",
+          "quote": "He was already reaching for the worn sack beside his cot, his movements jerky with sudden purpose."
+        }
+      ],
+      "thematic_weight": 0.6,
+      "gravity": 0.5,
+      "tension": 0.7,
+      "confidence": 0.95,
+      "notes": "This action suggests urgency or a decisive moment for the character, possibly indicating a transition or preparation for departure."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "The character is reaching for a worn sack beside his cot with jerky movements indicating sudden purpose.",
+      "evidence": [
+        {
+          "render_para_key": "rp_aab8b32cd4a3d3653492bc2306d86b08",
+          "render_index": 30,
+          "quote": "He was already reaching for the worn sack beside his cot, his movements jerky with sudden purpose.",
+          "role": null,
+          "start_char": 4243,
+          "end_char": 4341,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_2244d82fa8160f6300a6b4e51fee132d",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            59
+          ],
+          "evidence_sha256": "6a7446fb977a84d7c77188658611089f9dfa05f79a39ebd9e0cd538a64fe550c"
+        }
+      ],
+      "thematic_weight": 0.6,
+      "gravity": 0.5,
+      "tension": 0.7,
+      "confidence": 0.95,
+      "notes": "This action suggests urgency or a decisive moment for the character, possibly indicating a transition or preparation for departure."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "b7a6f947f0d0be9f49b9a06ddca3f56e611646461101e0b862b3e080a7b90688",
+  "normalized_output_hash": "a30c95d18b57c3dc99f02ffce4cba6a8914fb65df717519f67c87e99f84f6290"
+}

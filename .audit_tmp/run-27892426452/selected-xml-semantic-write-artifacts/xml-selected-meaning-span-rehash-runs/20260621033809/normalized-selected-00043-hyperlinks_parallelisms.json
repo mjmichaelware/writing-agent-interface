@@ -1,0 +1,93 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_4c2914e138249b3141c7597ba6ede724",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "8baea7d866c2acc117fa069d56dddb8913efef55dec25c1253e8ebca627feec5",
+  "observations": [
+    {
+      "relationship_type": "foreshadowing",
+      "summary": "The single star's radiant core with a colder light prefigures the first fratricide and envy, symbolizing the origin of conflict carried forward through ages.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_34dd7b68c4bc1557a4b288e3c4284602",
+          "quote": "A single star pierced the gray, impossibly bright. But even there, in the star's radiant core, a colder light struggled to be born—a subtle resentment prefiguring the first fratricide, the first envy of a younger fire for an older, the first burning carried forward into every age that followed."
+        }
+      ],
+      "target_hint": "This motif echoes the broader narrative theme of inherited conflict and spiritual struggle seen throughout the story, particularly in the father-son dynamic and the legacy of decay and sacrifice.",
+      "target_evidence": [],
+      "confidence": 0.95
+    },
+    {
+      "relationship_type": "parallelism",
+      "summary": "The motif of departure and preparation of the heart parallels the narrative arc of Dan's journey and Aviel's spiritual state, emphasizing the emotional and existential transition.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_34dd7b68c4bc1557a4b288e3c4284602",
+          "quote": "The boy must depart. The father must prepare his heart. He held it there and then, gently, released it."
+        }
+      ],
+      "target_hint": "This parallels the recurring theme of separation and internal struggle between Dan and Aviel, as well as the motif of sacrifice and acceptance found in other chapters.",
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The motif of departure and preparation of the heart parallels the narrative arc of Dan's journey and Aviel's spiritual state, emphasizing the emotional and existential transition.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_34dd7b68c4bc1557a4b288e3c4284602",
+          "render_index": 44,
+          "quote": "The boy must depart. The father must prepare his heart. He held it there and then, gently, released it.",
+          "role": "source",
+          "start_char": 11480,
+          "end_char": 11583,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_4c2914e138249b3141c7597ba6ede724",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            87
+          ],
+          "evidence_sha256": "6cd808ab2997f62bd903b8c5423a71430c0d5777943486fafecc5df77a1e787e"
+        }
+      ],
+      "target_hint": "This parallels the recurring theme of separation and internal struggle between Dan and Aviel, as well as the motif of sacrifice and acceptance found in other chapters.",
+      "target_evidence": [],
+      "confidence": 0.55
+    },
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The single star's radiant core with a colder light prefigures the first fratricide and envy, symbolizing the origin of conflict carried forward through ages.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_34dd7b68c4bc1557a4b288e3c4284602",
+          "render_index": 44,
+          "quote": "A single star pierced the gray, impossibly bright. But even there, in the star's radiant core, a colder light struggled to be born—a subtle resentment prefiguring the first fratricide, the first envy of a younger fire for an older, the first burning carried forward into every age that followed.",
+          "role": "source",
+          "start_char": 11107,
+          "end_char": 11402,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_4c2914e138249b3141c7597ba6ede724",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            87
+          ],
+          "evidence_sha256": "a67e1f57e2b804e5edc878cd79dba612c7963c7ffb3ed3bbb493b5d72baa20f0"
+        }
+      ],
+      "target_hint": "This motif echoes the broader narrative theme of inherited conflict and spiritual struggle seen throughout the story, particularly in the father-son dynamic and the legacy of decay and sacrifice.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "08a42e068e6794c73ee612b45d0f3417589a7bd11f2ae7997d80b9cd656ea9bb",
+  "normalized_output_hash": "6226fe10bbdcc092d3a1088752785afbe563da25db34e611f1c05b3a7cd7c2b8"
+}

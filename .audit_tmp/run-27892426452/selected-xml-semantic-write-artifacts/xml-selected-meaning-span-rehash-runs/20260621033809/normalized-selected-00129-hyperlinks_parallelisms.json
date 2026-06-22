@@ -1,0 +1,60 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_03507c9bb28f9675e305908d064ea22c",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "f6b3b5336df5945734e55efafcfb6d383501783985872538384a2059eccce02f",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The motif of 'stones' representing hoarding and refusal to let go in Dan's vision parallels the broader theme of being crushed under the weight of possessions and psychological burdens.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_25771a13abaed649b86567beed04609a",
+          "quote": "\"The stones,\" Dan pressed on, \"they represented your hoarding. Your refusal to let go. The vision was showing you what you're doing to yourself, how you're being crushed under the weight of—\""
+        }
+      ],
+      "target_hint": "This motif echoes the narrative context of Dan and his father Aviel being crushed by the mass of possessions and grief, symbolizing psychological and physical burden.",
+      "target_evidence": [
+        {
+          "render_para_key": "chapter_2_excerpt",
+          "quote": "The father, suffocated in the squalor of his own choices, crushed by the very mass of \"things\" and the sorrow of his own creation."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The motif of 'stones' representing hoarding and refusal to let go in Dan's vision parallels the broader theme of being crushed under the weight of possessions and psychological burdens.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_25771a13abaed649b86567beed04609a",
+          "render_index": 36,
+          "quote": "\"The stones,\" Dan pressed on, \"they represented your hoarding. Your refusal to let go. The vision was showing you what you're doing to yourself, how you're being crushed under the weight of—\"",
+          "role": "source",
+          "start_char": 4711,
+          "end_char": 4902,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_03507c9bb28f9675e305908d064ea22c",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            71
+          ],
+          "evidence_sha256": "f22321fc4be3740e0d248f4872bca216b347d0a802d221ad091630a29d9d55a6"
+        }
+      ],
+      "target_hint": "This motif echoes the narrative context of Dan and his father Aviel being crushed by the mass of possessions and grief, symbolizing psychological and physical burden.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "c370a1e789732af98504ce5e34cfc77844801d1e35e4cc1fa2f7a2d1ba181ef6",
+  "normalized_output_hash": "7a7db8fed1f4418765646ee1d32625b1bdc7f969fe27744e8bddec6655e6a92f"
+}

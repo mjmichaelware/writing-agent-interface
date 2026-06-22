@@ -1,0 +1,10 @@
+OK: context pack exists: /data/data/com.termux/files/home/Workspaces/Hybrid/writing-agent-interface/docs/agent_context/source_drop/hasher_context_v1/narrative_context_pack_v1.txt
+OK: XML manifest exists: /data/data/com.termux/files/home/Workspaces/Hybrid/writing-agent-interface/reports/xml_recovery/materialized_ooxml_manifest.json
+OK: OOXML raw root exists: /data/data/com.termux/files/home/Workspaces/Hybrid/writing-agent-interface/src/data-layer/ingestion-buffer/gdrive_ooxml_raw
+OK: public chapter txt root exists: /data/data/com.termux/files/home/Workspaces/Hybrid/writing-agent-interface/public/data/chapters
+OK: context sha matches 6e7e306c32940db56e82f1aff23942e6f3d62d7483db8e5735bb2ef2ef75eb8c
+context_bytes=30316
+OK: XML manifest sha matches bca8eeacca6a9dd260d50a14a8b2dce9f2f2e759dd16a5cc3ef2ee06d0a1b970
+OK: XML manifest is array
+OK: XML manifest count is 579
+xml_manifest_bytes=362761

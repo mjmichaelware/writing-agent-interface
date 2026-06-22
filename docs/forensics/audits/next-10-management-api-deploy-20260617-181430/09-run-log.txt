@@ -1,0 +1,286 @@
+deploy-functions-and-apply-semantic-schema	Set up job	﻿2026-06-18T00:14:53.3563701Z Current runner version: '2.335.1'
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.3598164Z ##[group]Runner Image Provisioner
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.3599612Z Hosted Compute Agent
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.3600554Z Version: 20260611.554
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.3601679Z Commit: 5e0782fdc9014723d3be820dd114dd31555c2bd1
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.3603255Z Build Date: 2026-06-11T21:40:46Z
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.3605109Z Worker ID: {67928c4f-f5a0-4a7f-ab46-ea8fbe6c70d7}
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.3606434Z Azure Region: eastus2
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.3607470Z ##[endgroup]
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.3609989Z ##[group]Operating System
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.3611045Z Ubuntu
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.3612073Z 24.04.4
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.3612914Z LTS
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.3613995Z ##[endgroup]
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.3615056Z ##[group]Runner Image
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.3616045Z Image: ubuntu-24.04
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.3617104Z Version: 20260615.205.1
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.3618894Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260615.205/images/ubuntu/Ubuntu2404-Readme.md
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.3622103Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260615.205
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.3625132Z ##[endgroup]
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.3627210Z ##[group]GITHUB_TOKEN Permissions
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.3630839Z Contents: read
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.3631988Z Metadata: read
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.3632938Z Packages: read
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.3634542Z ##[endgroup]
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.3637494Z Secret source: Actions
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.3638929Z Prepare workflow directory
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.4368390Z Prepare all required actions
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.4421034Z Getting action download info
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.6391524Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:53.7375549Z Download action repository 'supabase/setup-cli@v1' (SHA:ab058987d8d6c725971f6cf9d0b5c98467e30bd1)
+deploy-functions-and-apply-semantic-schema	Set up job	2026-06-18T00:14:54.0389157Z Complete job name: deploy-functions-and-apply-semantic-schema
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	﻿2026-06-18T00:14:54.1049512Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.1058749Z ##[group]Run actions/checkout@v4
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.1059485Z with:
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.1060060Z   repository: mjmichaelware/writing-agent-interface
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.1064873Z   token: ***
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.1065332Z   ssh-strict: true
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.1065790Z   ssh-user: git
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.1066251Z   persist-credentials: true
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.1066750Z   clean: true
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.1067201Z   sparse-checkout-cone-mode: true
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.1067735Z   fetch-depth: 1
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.1068181Z   fetch-tags: false
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.1068634Z   show-progress: true
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.1069087Z   lfs: false
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.1069502Z   submodules: false
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.1070015Z   set-safe-directory: true
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.1070717Z env:
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.1071328Z   SUPABASE_ACCESS_TOKEN: ***
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.1071921Z   SUPABASE_PROJECT_REF: ***
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.1072683Z   MIGRATION_FILE: supabase/migrations/20260617000100_xml_grounded_semantic_rehash.sql
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.1073606Z ##[endgroup]
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2082485Z Syncing repository: mjmichaelware/writing-agent-interface
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2084894Z ##[group]Getting Git version info
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2085801Z Working directory is '/home/runner/work/writing-agent-interface/writing-agent-interface'
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2087206Z [command]/usr/bin/git version
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2114397Z git version 2.54.0
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2134389Z ##[endgroup]
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2150770Z Temporarily overriding HOME='/home/runner/work/_temp/7ccb78ce-1230-41f6-af3e-060d95e7de0a' before making global git config changes
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2152231Z Adding repository directory to the temporary git global config as a safe directory
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2156769Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/writing-agent-interface/writing-agent-interface
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2200381Z Deleting the contents of '/home/runner/work/writing-agent-interface/writing-agent-interface'
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2204269Z ##[group]Initializing the repository
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2208970Z [command]/usr/bin/git init /home/runner/work/writing-agent-interface/writing-agent-interface
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2282045Z hint: Using 'master' as the name for the initial branch. This default branch name
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2283292Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2284658Z hint: to use in all of your new repositories, which will suppress this warning,
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2285746Z hint: call:
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2286156Z hint:
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2286672Z hint: 	git config --global init.defaultBranch <name>
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2287332Z hint:
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2287949Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2288896Z hint: 'development'. The just-created branch can be renamed via this command:
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2289625Z hint:
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2290176Z hint: 	git branch -m <name>
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2290667Z hint:
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2291295Z hint: Disable this message with "git config set advice.defaultBranchName false"
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2292501Z Initialized empty Git repository in /home/runner/work/writing-agent-interface/writing-agent-interface/.git/
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2296189Z [command]/usr/bin/git remote add origin https://github.com/mjmichaelware/writing-agent-interface
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2367541Z ##[endgroup]
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2368371Z ##[group]Disabling automatic garbage collection
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2371226Z [command]/usr/bin/git config --local gc.auto 0
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2401386Z ##[endgroup]
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2402152Z ##[group]Setting up auth
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2408211Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2441431Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2751797Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.2783743Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.3017604Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.3051291Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.3295971Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.3335456Z ##[endgroup]
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.3336726Z ##[group]Fetching the repository
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:54.3346249Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +52f16bced567c909cce9545f44d3590c9719ebaa:refs/remotes/origin/cleanup/standard-app-tree
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:56.2166678Z From https://github.com/mjmichaelware/writing-agent-interface
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:56.2169367Z  * [new ref]         52f16bced567c909cce9545f44d3590c9719ebaa -> origin/cleanup/standard-app-tree
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:56.2204411Z ##[endgroup]
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:56.2205550Z ##[group]Determining the checkout info
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:56.2207390Z ##[endgroup]
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:56.2215679Z [command]/usr/bin/git sparse-checkout disable
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:56.2264430Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:56.2296101Z ##[group]Checking out the ref
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:56.2301657Z [command]/usr/bin/git checkout --progress --force -B cleanup/standard-app-tree refs/remotes/origin/cleanup/standard-app-tree
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:56.6599168Z Switched to a new branch 'cleanup/standard-app-tree'
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:56.6624673Z branch 'cleanup/standard-app-tree' set up to track 'origin/cleanup/standard-app-tree'.
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:56.6645763Z ##[endgroup]
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:56.6697874Z [command]/usr/bin/git log -1 --format=%H
+deploy-functions-and-apply-semantic-schema	Run actions/checkout@v4	2026-06-18T00:14:56.6723070Z 52f16bced567c909cce9545f44d3590c9719ebaa
+deploy-functions-and-apply-semantic-schema	Run supabase/setup-cli@v1	﻿2026-06-18T00:14:56.6922289Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+deploy-functions-and-apply-semantic-schema	Run supabase/setup-cli@v1	2026-06-18T00:14:56.6924667Z ##[group]Run supabase/setup-cli@v1
+deploy-functions-and-apply-semantic-schema	Run supabase/setup-cli@v1	2026-06-18T00:14:56.6925003Z with:
+deploy-functions-and-apply-semantic-schema	Run supabase/setup-cli@v1	2026-06-18T00:14:56.6925259Z   version: latest
+deploy-functions-and-apply-semantic-schema	Run supabase/setup-cli@v1	2026-06-18T00:14:56.6925528Z env:
+deploy-functions-and-apply-semantic-schema	Run supabase/setup-cli@v1	2026-06-18T00:14:56.6926147Z   SUPABASE_ACCESS_TOKEN: ***
+deploy-functions-and-apply-semantic-schema	Run supabase/setup-cli@v1	2026-06-18T00:14:56.6926535Z   SUPABASE_PROJECT_REF: ***
+deploy-functions-and-apply-semantic-schema	Run supabase/setup-cli@v1	2026-06-18T00:14:56.6926986Z   MIGRATION_FILE: supabase/migrations/20260617000100_xml_grounded_semantic_rehash.sql
+deploy-functions-and-apply-semantic-schema	Run supabase/setup-cli@v1	2026-06-18T00:14:56.6927450Z ##[endgroup]
+deploy-functions-and-apply-semantic-schema	Run supabase/setup-cli@v1	2026-06-18T00:14:57.4132660Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/8f7e6f01-ee18-4c19-9a1f-4eb34a8e5ffb -f /home/runner/work/_temp/62a4fd18-9ca9-4b01-b22d-da0221481f08
+deploy-functions-and-apply-semantic-schema	Validate deploy environment	﻿2026-06-18T00:14:59.2931748Z ##[group]Run test -n "$SUPABASE_ACCESS_TOKEN"
+deploy-functions-and-apply-semantic-schema	Validate deploy environment	2026-06-18T00:14:59.2932235Z ^[[36;1mtest -n "$SUPABASE_ACCESS_TOKEN"^[[0m
+deploy-functions-and-apply-semantic-schema	Validate deploy environment	2026-06-18T00:14:59.2932568Z ^[[36;1mtest -n "$SUPABASE_PROJECT_REF"^[[0m
+deploy-functions-and-apply-semantic-schema	Validate deploy environment	2026-06-18T00:14:59.2932870Z ^[[36;1mtest -f "$MIGRATION_FILE"^[[0m
+deploy-functions-and-apply-semantic-schema	Validate deploy environment	2026-06-18T00:14:59.2933167Z ^[[36;1msupabase --version^[[0m
+deploy-functions-and-apply-semantic-schema	Validate deploy environment	2026-06-18T00:14:59.2933766Z ^[[36;1mecho "project_ref=$SUPABASE_PROJECT_REF"^[[0m
+deploy-functions-and-apply-semantic-schema	Validate deploy environment	2026-06-18T00:14:59.2934164Z ^[[36;1mecho "migration_file=$MIGRATION_FILE"^[[0m
+deploy-functions-and-apply-semantic-schema	Validate deploy environment	2026-06-18T00:14:59.2934474Z ^[[36;1mwc -c "$MIGRATION_FILE"^[[0m
+deploy-functions-and-apply-semantic-schema	Validate deploy environment	2026-06-18T00:14:59.3068444Z shell: /usr/bin/bash -e {0}
+deploy-functions-and-apply-semantic-schema	Validate deploy environment	2026-06-18T00:14:59.3068777Z env:
+deploy-functions-and-apply-semantic-schema	Validate deploy environment	2026-06-18T00:14:59.3069224Z   SUPABASE_ACCESS_TOKEN: ***
+deploy-functions-and-apply-semantic-schema	Validate deploy environment	2026-06-18T00:14:59.3069551Z   SUPABASE_PROJECT_REF: ***
+deploy-functions-and-apply-semantic-schema	Validate deploy environment	2026-06-18T00:14:59.3069961Z   MIGRATION_FILE: supabase/migrations/20260617000100_xml_grounded_semantic_rehash.sql
+deploy-functions-and-apply-semantic-schema	Validate deploy environment	2026-06-18T00:14:59.3070417Z   SUPABASE_INTERNAL_IMAGE_REGISTRY: ghcr.io
+deploy-functions-and-apply-semantic-schema	Validate deploy environment	2026-06-18T00:14:59.3070770Z ##[endgroup]
+deploy-functions-and-apply-semantic-schema	Validate deploy environment	2026-06-18T00:14:59.6807107Z 2.107.0
+deploy-functions-and-apply-semantic-schema	Validate deploy environment	2026-06-18T00:14:59.6947293Z project_ref=***
+deploy-functions-and-apply-semantic-schema	Validate deploy environment	2026-06-18T00:14:59.6948095Z migration_file=supabase/migrations/20260617000100_xml_grounded_semantic_rehash.sql
+deploy-functions-and-apply-semantic-schema	Validate deploy environment	2026-06-18T00:14:59.6963698Z 11017 supabase/migrations/20260617000100_xml_grounded_semantic_rehash.sql
+deploy-functions-and-apply-semantic-schema	Apply XML-grounded semantic schema through Supabase Management API	﻿2026-06-18T00:14:59.7002567Z ##[group]Run python - <<'PY'
+deploy-functions-and-apply-semantic-schema	Apply XML-grounded semantic schema through Supabase Management API	2026-06-18T00:14:59.7002921Z ^[[36;1mpython - <<'PY'^[[0m
+deploy-functions-and-apply-semantic-schema	Apply XML-grounded semantic schema through Supabase Management API	2026-06-18T00:14:59.7003226Z ^[[36;1mimport json^[[0m
+deploy-functions-and-apply-semantic-schema	Apply XML-grounded semantic schema through Supabase Management API	2026-06-18T00:14:59.7004650Z ^[[36;1mfrom pathlib import Path^[[0m
+deploy-functions-and-apply-semantic-schema	Apply XML-grounded semantic schema through Supabase Management API	2026-06-18T00:14:59.7004929Z ^[[36;1m^[[0m
+deploy-functions-and-apply-semantic-schema	Apply XML-grounded semantic schema through Supabase Management API	2026-06-18T00:14:59.7005470Z ^[[36;1msql = Path("supabase/migrations/20260617000100_xml_grounded_semantic_rehash.sql").read_text(encoding="utf-8")^[[0m
+deploy-functions-and-apply-semantic-schema	Apply XML-grounded semantic schema through Supabase Management API	2026-06-18T00:14:59.7006154Z ^[[36;1mPath("migration-body.json").write_text(^[[0m
+deploy-functions-and-apply-semantic-schema	Apply XML-grounded semantic schema through Supabase Management API	2026-06-18T00:14:59.7006526Z ^[[36;1m    json.dumps({"query": sql}, ensure_ascii=False),^[[0m
+deploy-functions-and-apply-semantic-schema	Apply XML-grounded semantic schema through Supabase Management API	2026-06-18T00:14:59.7006862Z ^[[36;1m    encoding="utf-8"^[[0m
+deploy-functions-and-apply-semantic-schema	Apply XML-grounded semantic schema through Supabase Management API	2026-06-18T00:14:59.7007108Z ^[[36;1m)^[[0m
+deploy-functions-and-apply-semantic-schema	Apply XML-grounded semantic schema through Supabase Management API	2026-06-18T00:14:59.7007307Z ^[[36;1mPY^[[0m
+deploy-functions-and-apply-semantic-schema	Apply XML-grounded semantic schema through Supabase Management API	2026-06-18T00:14:59.7007508Z ^[[36;1m^[[0m
+deploy-functions-and-apply-semantic-schema	Apply XML-grounded semantic schema through Supabase Management API	2026-06-18T00:14:59.7007763Z ^[[36;1mcurl --fail-with-body --show-error --silent \^[[0m
+deploy-functions-and-apply-semantic-schema	Apply XML-grounded semantic schema through Supabase Management API	2026-06-18T00:14:59.7008129Z ^[[36;1m  --request POST \^[[0m
+deploy-functions-and-apply-semantic-schema	Apply XML-grounded semantic schema through Supabase Management API	2026-06-18T00:14:59.7008564Z ^[[36;1m  "https://api.supabase.com/v1/projects/${SUPABASE_PROJECT_REF}/database/query" \^[[0m
+deploy-functions-and-apply-semantic-schema	Apply XML-grounded semantic schema through Supabase Management API	2026-06-18T00:14:59.7009320Z ^[[36;1m  --header "Authorization: ***" \^[[0m
+deploy-functions-and-apply-semantic-schema	Apply XML-grounded semantic schema through Supabase Management API	2026-06-18T00:14:59.7009681Z ^[[36;1m  --header "Content-Type: application/json" \^[[0m
+deploy-functions-and-apply-semantic-schema	Apply XML-grounded semantic schema through Supabase Management API	2026-06-18T00:14:59.7010022Z ^[[36;1m  --data @migration-body.json^[[0m
+deploy-functions-and-apply-semantic-schema	Apply XML-grounded semantic schema through Supabase Management API	2026-06-18T00:14:59.7044561Z shell: /usr/bin/bash -e {0}
+deploy-functions-and-apply-semantic-schema	Apply XML-grounded semantic schema through Supabase Management API	2026-06-18T00:14:59.7045092Z env:
+deploy-functions-and-apply-semantic-schema	Apply XML-grounded semantic schema through Supabase Management API	2026-06-18T00:14:59.7045466Z   SUPABASE_ACCESS_TOKEN: ***
+deploy-functions-and-apply-semantic-schema	Apply XML-grounded semantic schema through Supabase Management API	2026-06-18T00:14:59.7045770Z   SUPABASE_PROJECT_REF: ***
+deploy-functions-and-apply-semantic-schema	Apply XML-grounded semantic schema through Supabase Management API	2026-06-18T00:14:59.7046182Z   MIGRATION_FILE: supabase/migrations/20260617000100_xml_grounded_semantic_rehash.sql
+deploy-functions-and-apply-semantic-schema	Apply XML-grounded semantic schema through Supabase Management API	2026-06-18T00:14:59.7046636Z   SUPABASE_INTERNAL_IMAGE_REGISTRY: ghcr.io
+deploy-functions-and-apply-semantic-schema	Apply XML-grounded semantic schema through Supabase Management API	2026-06-18T00:14:59.7046928Z ##[endgroup]
+deploy-functions-and-apply-semantic-schema	Apply XML-grounded semantic schema through Supabase Management API	2026-06-18T00:15:00.6454204Z []
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	﻿2026-06-18T00:15:00.6487323Z ##[group]Run python - <<'PY'
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6487667Z ^[[36;1mpython - <<'PY'^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6487912Z ^[[36;1mimport json^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6488158Z ^[[36;1mfrom pathlib import Path^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6488443Z ^[[36;1m^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6488648Z ^[[36;1mquery = """^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6488882Z ^[[36;1mselect table_name^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6489150Z ^[[36;1mfrom information_schema.tables^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6489443Z ^[[36;1mwhere table_schema = 'public'^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6489732Z ^[[36;1m  and table_name in (^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6490010Z ^[[36;1m    'source_documents',^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6490295Z ^[[36;1m    'source_document_parts',^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6490579Z ^[[36;1m    'source_document_revisions',^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6490868Z ^[[36;1m    'semantic_runs',^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6491120Z ^[[36;1m    'semantic_batches',^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6491382Z ^[[36;1m    'archetype_observations',^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6491658Z ^[[36;1m    'archetype_movements',^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6491970Z ^[[36;1m    'dualism_relations',^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6492233Z ^[[36;1m    'dualism_relation_evidence'^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6492494Z ^[[36;1m  )^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6492705Z ^[[36;1morder by table_name;^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6492936Z ^[[36;1m"""^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6493179Z ^[[36;1mPath("verify-body.json").write_text(^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6493728Z ^[[36;1m    json.dumps({"query": query}, ensure_ascii=False),^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6494081Z ^[[36;1m    encoding="utf-8"^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6494331Z ^[[36;1m)^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6494541Z ^[[36;1mPY^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6494749Z ^[[36;1m^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6495047Z ^[[36;1mcurl --fail-with-body --show-error --silent \^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6495412Z ^[[36;1m  --request POST \^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6495844Z ^[[36;1m  "https://api.supabase.com/v1/projects/${SUPABASE_PROJECT_REF}/database/query" \^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6496558Z ^[[36;1m  --header "Authorization: ***" \^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6496916Z ^[[36;1m  --header "Content-Type: application/json" \^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6497257Z ^[[36;1m  --data @verify-body.json^[[0m
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6531738Z shell: /usr/bin/bash -e {0}
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6532019Z env:
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6532415Z   SUPABASE_ACCESS_TOKEN: ***
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6532720Z   SUPABASE_PROJECT_REF: ***
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6533120Z   MIGRATION_FILE: supabase/migrations/20260617000100_xml_grounded_semantic_rehash.sql
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6533766Z   SUPABASE_INTERNAL_IMAGE_REGISTRY: ghcr.io
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:00.6534068Z ##[endgroup]
+deploy-functions-and-apply-semantic-schema	Verify semantic schema through Supabase Management API	2026-06-18T00:15:01.5536979Z [{"table_name":"archetype_movements"},{"table_name":"archetype_observations"},{"table_name":"dualism_relation_evidence"},{"table_name":"dualism_relations"},{"table_name":"semantic_batches"},{"table_name":"semantic_runs"},{"table_name":"source_document_parts"},{"table_name":"source_document_revisions"},{"table_name":"source_documents"}]
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	﻿2026-06-18T00:15:01.5585642Z ##[group]Run supabase functions deploy create-upload-url --project-ref "$SUPABASE_PROJECT_REF"
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:01.5586524Z ^[[36;1msupabase functions deploy create-upload-url --project-ref "$SUPABASE_PROJECT_REF"^[[0m
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:01.5587170Z ^[[36;1msupabase functions deploy register-uploaded-artifact --project-ref "$SUPABASE_PROJECT_REF"^[[0m
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:01.5588347Z ^[[36;1msupabase functions deploy verify-artifact-hash --project-ref "$SUPABASE_PROJECT_REF"^[[0m
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:01.5588969Z ^[[36;1msupabase functions deploy enqueue-enrichment --project-ref "$SUPABASE_PROJECT_REF"^[[0m
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:01.5590071Z ^[[36;1msupabase functions deploy process-enrichment-batch --project-ref "$SUPABASE_PROJECT_REF"^[[0m
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:01.5637270Z shell: /usr/bin/bash -e {0}
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:01.5637700Z env:
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:01.5638659Z   SUPABASE_ACCESS_TOKEN: ***
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:01.5638993Z   SUPABASE_PROJECT_REF: ***
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:01.5639410Z   MIGRATION_FILE: supabase/migrations/20260617000100_xml_grounded_semantic_rehash.sql
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:01.5640451Z   SUPABASE_INTERNAL_IMAGE_REGISTRY: ghcr.io
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:01.5640752Z ##[endgroup]
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:02.8631774Z Bundling Function: create-upload-url
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:03.1022258Z v1.74.1: Pulling from supabase/edge-runtime
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:03.1598741Z 068fedd6b0f1: Pulling fs layer
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:03.1599228Z 9af3c2dc4120: Pulling fs layer
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:03.1599766Z 895c12cb16c4: Pulling fs layer
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:03.1600065Z 6c56faff70a9: Pulling fs layer
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:03.1600311Z f0184c725f12: Pulling fs layer
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:03.1600604Z 3f86a4e67f45: Pulling fs layer
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:03.1600993Z 6c56faff70a9: Waiting
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:03.1601329Z f0184c725f12: Waiting
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:03.1601636Z 3f86a4e67f45: Waiting
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:03.2429531Z 895c12cb16c4: Verifying Checksum
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:03.2430499Z 895c12cb16c4: Download complete
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:03.3770105Z 068fedd6b0f1: Verifying Checksum
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:03.3770960Z 068fedd6b0f1: Download complete
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:03.4305062Z 9af3c2dc4120: Verifying Checksum
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:03.4305774Z 9af3c2dc4120: Download complete
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:03.5397865Z 6c56faff70a9: Verifying Checksum
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:03.5398793Z 6c56faff70a9: Download complete
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:03.6251562Z 3f86a4e67f45: Verifying Checksum
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:03.6257539Z 3f86a4e67f45: Download complete
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:04.6396951Z 068fedd6b0f1: Pull complete
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:04.8609302Z f0184c725f12: Verifying Checksum
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:04.8610789Z f0184c725f12: Download complete
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:07.6584232Z 9af3c2dc4120: Pull complete
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:07.6694139Z 895c12cb16c4: Pull complete
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:08.5538690Z 6c56faff70a9: Pull complete
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:09.8973861Z f0184c725f12: Pull complete
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:10.1659694Z 3f86a4e67f45: Pull complete
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:10.1709724Z Digest: sha256:ac1fdaad6d62b892f3309578006ce208f4150bf2c484113cf2c32655ec7e6893
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:10.1719817Z Status: Downloaded newer image for ghcr.io/supabase/edge-runtime:v1.74.1
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:10.7104736Z No change found in Function: create-upload-url
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:10.7105720Z Deployed Functions on project ***: create-upload-url
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:10.7106408Z You can inspect your deployment in the Dashboard: https://supabase.com/dashboard/project/***/functions
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:11.8339844Z Bundling Function: register-uploaded-artifact
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:12.1721448Z No change found in Function: register-uploaded-artifact
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:12.1722559Z Deployed Functions on project ***: register-uploaded-artifact
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:12.1723834Z You can inspect your deployment in the Dashboard: https://supabase.com/dashboard/project/***/functions
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:13.0769414Z Bundling Function: verify-artifact-hash
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:13.4757712Z No change found in Function: verify-artifact-hash
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:13.4758954Z Deployed Functions on project ***: verify-artifact-hash
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:13.4759847Z You can inspect your deployment in the Dashboard: https://supabase.com/dashboard/project/***/functions
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:14.4671751Z Bundling Function: enqueue-enrichment
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:14.8291124Z No change found in Function: enqueue-enrichment
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:14.8292324Z Deployed Functions on project ***: enqueue-enrichment
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:14.8292999Z You can inspect your deployment in the Dashboard: https://supabase.com/dashboard/project/***/functions
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:15.8310222Z Bundling Function: process-enrichment-batch
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:16.2112511Z No change found in Function: process-enrichment-batch
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:16.2113742Z Deployed Functions on project ***: process-enrichment-batch
+deploy-functions-and-apply-semantic-schema	Deploy Supabase Edge Functions	2026-06-18T00:15:16.2115336Z You can inspect your deployment in the Dashboard: https://supabase.com/dashboard/project/***/functions
+deploy-functions-and-apply-semantic-schema	Post Run actions/checkout@v4	﻿2026-06-18T00:15:16.5547815Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+deploy-functions-and-apply-semantic-schema	Post Run actions/checkout@v4	2026-06-18T00:15:16.5549870Z Post job cleanup.
+deploy-functions-and-apply-semantic-schema	Post Run actions/checkout@v4	2026-06-18T00:15:16.6437736Z [command]/usr/bin/git version
+deploy-functions-and-apply-semantic-schema	Post Run actions/checkout@v4	2026-06-18T00:15:16.6479272Z git version 2.54.0
+deploy-functions-and-apply-semantic-schema	Post Run actions/checkout@v4	2026-06-18T00:15:16.6548336Z Temporarily overriding HOME='/home/runner/work/_temp/8b1899ba-123e-48e6-8168-4ea6188b08a4' before making global git config changes
+deploy-functions-and-apply-semantic-schema	Post Run actions/checkout@v4	2026-06-18T00:15:16.6549697Z Adding repository directory to the temporary git global config as a safe directory
+deploy-functions-and-apply-semantic-schema	Post Run actions/checkout@v4	2026-06-18T00:15:16.6554733Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/writing-agent-interface/writing-agent-interface
+deploy-functions-and-apply-semantic-schema	Post Run actions/checkout@v4	2026-06-18T00:15:16.6595289Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+deploy-functions-and-apply-semantic-schema	Post Run actions/checkout@v4	2026-06-18T00:15:16.6630515Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+deploy-functions-and-apply-semantic-schema	Post Run actions/checkout@v4	2026-06-18T00:15:16.6882239Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+deploy-functions-and-apply-semantic-schema	Post Run actions/checkout@v4	2026-06-18T00:15:16.6909346Z http.https://github.com/.extraheader
+deploy-functions-and-apply-semantic-schema	Post Run actions/checkout@v4	2026-06-18T00:15:16.6919372Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+deploy-functions-and-apply-semantic-schema	Post Run actions/checkout@v4	2026-06-18T00:15:16.6953863Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+deploy-functions-and-apply-semantic-schema	Post Run actions/checkout@v4	2026-06-18T00:15:16.7199096Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+deploy-functions-and-apply-semantic-schema	Post Run actions/checkout@v4	2026-06-18T00:15:16.7231884Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+deploy-functions-and-apply-semantic-schema	Complete job	﻿2026-06-18T00:15:16.7639542Z Cleaning up orphan processes
+deploy-functions-and-apply-semantic-schema	Complete job	2026-06-18T00:15:16.8051688Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, supabase/setup-cli@v1. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

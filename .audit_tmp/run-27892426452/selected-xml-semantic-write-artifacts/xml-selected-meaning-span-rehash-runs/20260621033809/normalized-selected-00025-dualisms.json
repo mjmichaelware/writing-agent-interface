@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_6e1191d013f97edba1d4f6575f03ae02",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "2048a86bd0cec3795e632889f72de8b332bd23166fd414daf852ba40909a0569",
+  "observations": [
+    {
+      "axis": "Use of supernatural power",
+      "polarity": "Testing vs. Mastery",
+      "summary": "Dan's use of his gift is portrayed as a youthful test of dangerous power rather than confident mastery, highlighting a tension between curiosity-driven experimentation and responsible control.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_6d68a643194f302143e8cbf5f1d1a5a9",
+          "quote": "Dan had the gift. Had used it twice before."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_6d68a643194f302143e8cbf5f1d1a5a9",
+          "quote": "he wanted to know if he could still do it, wanted to test the power the way young people test things they have been told are dangerous"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "use_of_supernatural_power",
+      "polarity": "tension",
+      "summary": "Dan's use of his gift is portrayed as a youthful test of dangerous power rather than confident mastery, highlighting a tension between curiosity-driven experimentation and responsible control.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_6d68a643194f302143e8cbf5f1d1a5a9",
+          "render_index": 26,
+          "quote": "Dan had the gift. Had used it twice before.",
+          "role": "left",
+          "start_char": 7217,
+          "end_char": 7260,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_6e1191d013f97edba1d4f6575f03ae02",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            51
+          ],
+          "evidence_sha256": "bdece2afc60e9dff790442e4cde7cac3a8901821cd877e3c14eda801d9a12d0a"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_6d68a643194f302143e8cbf5f1d1a5a9",
+          "render_index": 26,
+          "quote": "he wanted to know if he could still do it, wanted to test the power the way young people test things they have been told are dangerous",
+          "role": "right",
+          "start_char": 7326,
+          "end_char": 7460,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_6e1191d013f97edba1d4f6575f03ae02",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            51
+          ],
+          "evidence_sha256": "f7d40497369a0a05e0b5e70e708b7303f4b826bb96591927c3973e21673d4221"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "334da3c83a7811091dad23efbd95cdcd03c5cba4df98e7825c03e090d37ac9f9",
+  "normalized_output_hash": "9c623f7993341cfb778a6e126a388d056a8fb8774af4d9a7f733ddec0140a93d"
+}

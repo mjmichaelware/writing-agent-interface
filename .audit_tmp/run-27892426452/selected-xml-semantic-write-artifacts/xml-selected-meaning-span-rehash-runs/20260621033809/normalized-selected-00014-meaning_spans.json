@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_50f43a4f49283b5ac754a537b50fd8c0",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "5b3c19b4588b2838c3b0b2430e8ae0c903b48265fa8a205034165c22bf70557e",
+  "observations": [
+    {
+      "kind": "sensory_description",
+      "summary": "The sound of a man breathing in his sleep is low, ragged, rough, and uneven, indicating an unconscious struggle or unrest.",
+      "evidence": [
+        {
+          "render_para_key": "rp_70866e2cf2a744adf51c4da79971ff91",
+          "quote": "the low, ragged sound of a man trying to outrun his own breath in sleep. Rough and uneven. Unconscious of itself."
+        }
+      ],
+      "thematic_weight": 7,
+      "gravity": 6,
+      "tension": 8,
+      "confidence": 0.95,
+      "notes": "This observation captures the physical and psychological state of the man through the description of his breathing during sleep."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "The sound of a man breathing in his sleep is low, ragged, rough, and uneven, indicating an unconscious struggle or unrest.",
+      "evidence": [
+        {
+          "render_para_key": "rp_70866e2cf2a744adf51c4da79971ff91",
+          "render_index": 15,
+          "quote": "the low, ragged sound of a man trying to outrun his own breath in sleep. Rough and uneven. Unconscious of itself.",
+          "role": null,
+          "start_char": 5017,
+          "end_char": 5130,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_50f43a4f49283b5ac754a537b50fd8c0",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            29
+          ],
+          "evidence_sha256": "0e6ed06878228090f114b09d17c59ff3e04cb7ce84079ab7a4801a236ac2448c"
+        }
+      ],
+      "thematic_weight": 1,
+      "gravity": 1,
+      "tension": 1,
+      "confidence": 0.95,
+      "notes": "This observation captures the physical and psychological state of the man through the description of his breathing during sleep."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "430f86721ee8409227f0035e2a21da0db3ee3d4b64333da43a5e4ad19056aef3",
+  "normalized_output_hash": "6487e7a1725e10e0c9bc9b49b739d64ff1d0b07f97ba7cebf59ca465ee49f294"
+}

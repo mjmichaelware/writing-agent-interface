@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_9b04facd4a148407d76d8c0555d7e947",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "21ca084799483e2184db0af7160421cddfe8b1bc2916a582e1d5e0adf93dd416",
+  "observations": [
+    {
+      "kind": "Emotional Impact",
+      "summary": "The character experiences a sudden, intense realization that physically affects him, causing him to stop walking and lean against a wall to breathe.",
+      "evidence": [
+        {
+          "render_para_key": "rp_156c098d431c205046f3851c9d7a53dd",
+          "quote": "The realization hit him like a physical blow, and he had to stop walking for a moment, had to lean against a wall and just breathe."
+        }
+      ],
+      "thematic_weight": 0.8,
+      "gravity": 0.7,
+      "tension": 0.6,
+      "confidence": 0.95,
+      "notes": "This observation highlights the somatic cost of an internal revelation, consistent with the narrative's emphasis on physical manifestations of spiritual or emotional conflict."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "The character experiences a sudden, intense realization that physically affects him, causing him to stop walking and lean against a wall to breathe.",
+      "evidence": [
+        {
+          "render_para_key": "rp_156c098d431c205046f3851c9d7a53dd",
+          "render_index": 96,
+          "quote": "The realization hit him like a physical blow, and he had to stop walking for a moment, had to lean against a wall and just breathe.",
+          "role": null,
+          "start_char": 12320,
+          "end_char": 12451,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_9b04facd4a148407d76d8c0555d7e947",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            191
+          ],
+          "evidence_sha256": "06fefc2af5c66dd9aff24c77e7a9a2595406bbfa85bc5ada76daae95b3780a73"
+        }
+      ],
+      "thematic_weight": 0.8,
+      "gravity": 0.7,
+      "tension": 0.6,
+      "confidence": 0.95,
+      "notes": "This observation highlights the somatic cost of an internal revelation, consistent with the narrative's emphasis on physical manifestations of spiritual or emotional conflict."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "1f6feb8c3dac62e05c005f97254e5a708919481367ecf9defddbe683bcee21cf",
+  "normalized_output_hash": "6eda5b002e976c70c897f1044186b275334aac213711fbf4d2f65f9e7bdbee18"
+}

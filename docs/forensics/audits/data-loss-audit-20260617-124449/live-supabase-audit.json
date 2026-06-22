@@ -1,0 +1,378 @@
+{
+  "generated_at": "2026-06-17T18:44:53.182Z",
+  "project_ref": "yegricugzqbmoziycfnt",
+  "counts": [
+    {
+      "table": "chapters",
+      "exists": true,
+      "count": 50,
+      "error": null,
+      "code": null
+    },
+    {
+      "table": "paragraphs",
+      "exists": true,
+      "count": 4112,
+      "error": null,
+      "code": null
+    },
+    {
+      "table": "biblical_references",
+      "exists": true,
+      "count": 0,
+      "error": null,
+      "code": null
+    },
+    {
+      "table": "hyperlinks",
+      "exists": true,
+      "count": 0,
+      "error": null,
+      "code": null
+    },
+    {
+      "table": "runtime_sources",
+      "exists": true,
+      "count": null,
+      "error": null,
+      "code": null
+    },
+    {
+      "table": "documents",
+      "exists": true,
+      "count": 0,
+      "error": null,
+      "code": null
+    },
+    {
+      "table": "corpus",
+      "exists": true,
+      "count": null,
+      "error": null,
+      "code": null
+    },
+    {
+      "table": "chapter_manifests",
+      "exists": true,
+      "count": null,
+      "error": null,
+      "code": null
+    },
+    {
+      "table": "ema_history",
+      "exists": true,
+      "count": null,
+      "error": null,
+      "code": null
+    }
+  ],
+  "paragraph_enrichment_density": [
+    {
+      "label": "paragraphs_with_dualism_map_nonempty",
+      "table": "paragraphs",
+      "column": "dualism_map",
+      "error": null,
+      "code": null
+    },
+    {
+      "label": "paragraphs_with_archetypal_weights_nonempty",
+      "table": "paragraphs",
+      "column": "archetypal_weights",
+      "error": null,
+      "code": null
+    },
+    {
+      "label": "paragraphs_with_hebrew_spans_nonempty",
+      "table": "paragraphs",
+      "column": "hebrew_spans",
+      "error": null,
+      "code": null
+    },
+    {
+      "label": "paragraphs_with_metadata_nonempty",
+      "table": "paragraphs",
+      "column": "metadata",
+      "error": null,
+      "code": null
+    }
+  ],
+  "column_probes": [
+    {
+      "table": "paragraphs",
+      "column": "content_hash",
+      "exists": false,
+      "sample": [],
+      "error": "column paragraphs.content_hash does not exist",
+      "code": "42703"
+    },
+    {
+      "table": "paragraphs",
+      "column": "hash",
+      "exists": false,
+      "sample": [],
+      "error": "column paragraphs.hash does not exist",
+      "code": "42703"
+    },
+    {
+      "table": "paragraphs",
+      "column": "sha256",
+      "exists": false,
+      "sample": [],
+      "error": "column paragraphs.sha256 does not exist",
+      "code": "42703"
+    },
+    {
+      "table": "paragraphs",
+      "column": "checksum",
+      "exists": false,
+      "sample": [],
+      "error": "column paragraphs.checksum does not exist",
+      "code": "42703"
+    },
+    {
+      "table": "paragraphs",
+      "column": "archetypal_weights",
+      "exists": true,
+      "sample": [
+        {
+          "id": "19e8a5bd-f74f-4221-a4fd-226e58124cd4",
+          "archetypal_weights": {
+            "hero": 0,
+            "self": 0,
+            "anima": 0,
+            "shadow": 0,
+            "persona": 0
+          }
+        }
+      ],
+      "error": null,
+      "code": null
+    },
+    {
+      "table": "paragraphs",
+      "column": "dualism_map",
+      "exists": true,
+      "sample": [
+        {
+          "id": "19e8a5bd-f74f-4221-a4fd-226e58124cd4",
+          "dualism_map": {
+            "sacred": 0,
+            "descent": 0
+          }
+        }
+      ],
+      "error": null,
+      "code": null
+    },
+    {
+      "table": "paragraphs",
+      "column": "hebrew_spans",
+      "exists": true,
+      "sample": [
+        {
+          "id": "19e8a5bd-f74f-4221-a4fd-226e58124cd4",
+          "hebrew_spans": []
+        }
+      ],
+      "error": null,
+      "code": null
+    },
+    {
+      "table": "paragraphs",
+      "column": "metadata",
+      "exists": true,
+      "sample": [
+        {
+          "id": "19e8a5bd-f74f-4221-a4fd-226e58124cd4",
+          "metadata": {
+            "weather": "unknown",
+            "scene_id": "Chapter 1",
+            "time_of_day": "unknown",
+            "internal_state": "unknown",
+            "character_present": "unknown"
+          }
+        }
+      ],
+      "error": null,
+      "code": null
+    },
+    {
+      "table": "chapters",
+      "column": "content_hash",
+      "exists": false,
+      "sample": [],
+      "error": "column chapters.content_hash does not exist",
+      "code": "42703"
+    },
+    {
+      "table": "chapters",
+      "column": "hash",
+      "exists": false,
+      "sample": [],
+      "error": "column chapters.hash does not exist",
+      "code": "42703"
+    },
+    {
+      "table": "chapters",
+      "column": "source_hash",
+      "exists": false,
+      "sample": [],
+      "error": "column chapters.source_hash does not exist",
+      "code": "42703"
+    },
+    {
+      "table": "chapters",
+      "column": "manifest_id",
+      "exists": true,
+      "sample": [
+        {
+          "id": "e7c520e2-41b0-4503-af14-bb699d55857e",
+          "manifest_id": "a02f56e5ac0abd966aef2541b27fa8e4f9c5d36a2f7287d2c7bf7b46c026c6c7"
+        }
+      ],
+      "error": null,
+      "code": null
+    },
+    {
+      "table": "chapters",
+      "column": "thematic_embedding",
+      "exists": true,
+      "sample": [
+        {
+          "id": "e7c520e2-41b0-4503-af14-bb699d55857e",
+          "thematic_embedding": null
+        }
+      ],
+      "error": null,
+      "code": null
+    }
+  ],
+  "samples": [
+    {
+      "table": "chapters",
+      "select": "id, manifest_id, part_number, chapter_number, status",
+      "rows": [
+        {
+          "id": "e7c520e2-41b0-4503-af14-bb699d55857e",
+          "manifest_id": "a02f56e5ac0abd966aef2541b27fa8e4f9c5d36a2f7287d2c7bf7b46c026c6c7",
+          "part_number": "I",
+          "chapter_number": 8,
+          "status": "drafted"
+        },
+        {
+          "id": "4863de12-fabe-441d-9251-39926fb9885b",
+          "manifest_id": "08c436a8abb618701b29882882af371876b6533e5c52510fdc1d7a32df970895",
+          "part_number": "I",
+          "chapter_number": 9,
+          "status": "drafted"
+        },
+        {
+          "id": "8f17168d-dafc-44aa-86c2-5aba1a81241d",
+          "manifest_id": "ee97d6e6c16fe69851f0b11afe8419bd0db3c81bdaca8c8aa3180907983828f4",
+          "part_number": "I",
+          "chapter_number": 10,
+          "status": "drafted"
+        }
+      ],
+      "error": null,
+      "code": null
+    },
+    {
+      "table": "paragraphs",
+      "select": "id, chapter_id, chunk_index, content, archetypal_weights, dualism_map, hebrew_spans, metadata",
+      "rows": [
+        {
+          "id": "19e8a5bd-f74f-4221-a4fd-226e58124cd4",
+          "chapter_id": "ac85c45b-4e73-4b15-9914-106bf4d48862",
+          "chunk_index": null,
+          "content": "﻿Chapter 1: Stardust to Stardust",
+          "archetypal_weights": {
+            "hero": 0,
+            "self": 0,
+            "anima": 0,
+            "shadow": 0,
+            "persona": 0
+          },
+          "dualism_map": {
+            "sacred": 0,
+            "descent": 0
+          },
+          "hebrew_spans": [],
+          "metadata": {
+            "weather": "unknown",
+            "scene_id": "Chapter 1",
+            "time_of_day": "unknown",
+            "internal_state": "unknown",
+            "character_present": "unknown"
+          }
+        },
+        {
+          "id": "d77379a2-170c-4199-840d-d5440aaaf1fa",
+          "chapter_id": "ac85c45b-4e73-4b15-9914-106bf4d48862",
+          "chunk_index": null,
+          "content": "The torch light, clenched in the boy's hand, trembled, casting suspicious, dancing shadows across the dim hallway. The frail flame scattered light like cheap copper. It shivered not from wind, but from the erratic tempo of the boy's muffled heart, a frantic drummer in a condemned dwelling.",
+          "archetypal_weights": {
+            "hero": 0.3,
+            "self": 0.2,
+            "anima": 0,
+            "shadow": 0.7,
+            "persona": 0.2
+          },
+          "dualism_map": {
+            "sacred": 0,
+            "descent": 0.8
+          },
+          "hebrew_spans": [],
+          "metadata": {
+            "weather": "unknown",
+            "scene_id": "unknown",
+            "time_of_day": "night",
+            "internal_state": "fearful",
+            "character_present": "boy"
+          }
+        },
+        {
+          "id": "b2debe73-8d41-4196-abd1-7a9d5f109934",
+          "chapter_id": "ac85c45b-4e73-4b15-9914-106bf4d48862",
+          "chunk_index": null,
+          "content": "Each barefoot step on the cold, unforgiving stone was a profound, private wager, where the slightest misstep risked the betrayal of a clank, a dry scrape, or any clatter that might announce his small, forbidden errand. This was no mere silence; it was a coiled, ancient emptiness that smelled of sulfur and expectant soil—the still patience of serpents in a garden. This was no home, but the heavy, unmoving lair of a man devoted to the earth's sheer, magnetic pull. Therefore, the boy's every calculated movement toward his father’s room was an act of quiet, necessary heresy.",
+          "archetypal_weights": {
+            "hero": 0.4,
+            "self": 0.1,
+            "anima": 0,
+            "shadow": 0.4,
+            "persona": 0.1
+          },
+          "dualism_map": {
+            "sacred": 0.2,
+            "descent": 0.8
+          },
+          "hebrew_spans": [],
+          "metadata": {
+            "weather": "none",
+            "scene_id": "1",
+            "time_of_day": "night",
+            "internal_state": "anxious determination",
+            "character_present": "boy"
+          }
+        }
+      ],
+      "error": null,
+      "code": null
+    },
+    {
+      "table": "biblical_references",
+      "select": "*",
+      "rows": [],
+      "error": null,
+      "code": null
+    },
+    {
+      "table": "hyperlinks",
+      "select": "*",
+      "rows": [],
+      "error": null,
+      "code": null
+    }
+  ]
+}

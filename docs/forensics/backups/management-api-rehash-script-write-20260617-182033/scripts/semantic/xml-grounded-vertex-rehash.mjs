@@ -1,0 +1,779 @@
+#!/usr/bin/env node
+import { createHash } from "node:crypto";
+import { readFileSync, existsSync, readdirSync, statSync, mkdirSync, writeFileSync } from "node:fs";
+import { join, basename } from "node:path";
+import { execFileSync } from "node:child_process";
+
+const ROOT = process.cwd();
+const RUN_ID = new Date().toISOString().replace(/[-:.TZ]/g, "").slice(0, 14);
+const PROMPT_VERSION = "xml-grounded-semantic-v1";
+const NARRATIVE_CONTEXT_SHA256 = "6e7e306c32940db56e82f1aff23942e6f3d62d7483db8e5735bb2ef2ef75eb8c";
+const XML_MANIFEST_SHA256 = "bca8eeacca6a9dd260d50a14a8b2dce9f2f2e759dd16a5cc3ef2ee06d0a1b970";
+const XML_MANIFEST_COUNT = 579;
+
+const args = new Set(process.argv.slice(2));
+const writeMode = args.has("--write");
+const registerSources = args.has("--register-sources");
+const noAi = args.has("--no-ai");
+
+const limitArg = process.argv.find((x) => x.startsWith("--limit="));
+const chapterArg = process.argv.find((x) => x.startsWith("--chapter="));
+const batchArg = process.argv.find((x) => x.startsWith("--batch-size="));
+
+const LIMIT = limitArg ? Number(limitArg.split("=")[1]) : null;
+const CHAPTER_FILTER = chapterArg ? Number(chapterArg.split("=")[1]) : null;
+const BATCH_SIZE = batchArg ? Number(batchArg.split("=")[1]) : 8;
+
+const paths = {
+  contextPack: join(ROOT, "docs/agent_context/source_drop/hasher_context_v1/narrative_context_pack_v1.txt"),
+  xmlManifest: join(ROOT, "reports/xml_recovery/materialized_ooxml_manifest.json"),
+  ooxmlRaw: join(ROOT, "src/data-layer/ingestion-buffer/gdrive_ooxml_raw"),
+  publicChapters: join(ROOT, "public/data/chapters"),
+  outDir: join(ROOT, "docs/forensics/audits/xml-grounded-vertex-rehash-runs", RUN_ID),
+};
+
+mkdirSync(paths.outDir, { recursive: true });
+
+function sha256Text(text) {
+  return createHash("sha256").update(text).digest("hex");
+}
+
+function sha256File(path) {
+  return createHash("sha256").update(readFileSync(path)).digest("hex");
+}
+
+function readText(path) {
+  return readFileSync(path, "utf8");
+}
+
+function canonicalJson(value) {
+  return JSON.stringify(sortObject(value));
+}
+
+function sortObject(value) {
+  if (Array.isArray(value)) return value.map(sortObject);
+  if (value && typeof value === "object") {
+    return Object.fromEntries(Object.keys(value).sort().map((key) => [key, sortObject(value[key])]));
+  }
+  return value;
+}
+
+function clip(text, max = 12000) {
+  const normalized = String(text || "").replace(/\s+/g, " ").trim();
+  if (normalized.length <= max) return normalized;
+  return normalized.slice(0, max) + "\n[CLIPPED]";
+}
+
+function stripOoxml(xml) {
+  return String(xml || "")
+    .replace(/<w:tab\/>/g, "\t")
+    .replace(/<\/w:p>/g, "\n")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/[ \t]+/g, " ")
+    .replace(/\n\s+/g, "\n")
+    .trim();
+}
+
+function must(condition, message) {
+  if (!condition) throw new Error(message);
+}
+
+function env(name, fallback = "") {
+  return process.env[name] || fallback;
+}
+
+const SUPABASE_URL = env("SUPABASE_URL");
+const SUPABASE_SERVICE_ROLE_KEY = env("SUPABASE_SERVICE_ROLE_KEY");
+const VERTEX_PROJECT_ID = env("VERTEX_PROJECT_ID", env("GCP_PROJECT_ID", "ai-job-agent-498702"));
+const VERTEX_LOCATION = env("VERTEX_LOCATION", "us-central1");
+const VERTEX_MODEL = env("VERTEX_MODEL", "gemini-2.0-flash-001");
+
+function validateSources() {
+  must(existsSync(paths.contextPack), `Missing context pack: ${paths.contextPack}`);
+  must(existsSync(paths.xmlManifest), `Missing XML manifest: ${paths.xmlManifest}`);
+  must(existsSync(paths.ooxmlRaw), `Missing OOXML raw root: ${paths.ooxmlRaw}`);
+  must(existsSync(paths.publicChapters), `Missing public chapter corpus: ${paths.publicChapters}`);
+
+  const contextSha = sha256File(paths.contextPack);
+  const xmlSha = sha256File(paths.xmlManifest);
+  const manifest = JSON.parse(readText(paths.xmlManifest));
+
+  must(contextSha === NARRATIVE_CONTEXT_SHA256, `Context hash drift: ${contextSha}`);
+  must(xmlSha === XML_MANIFEST_SHA256, `XML manifest hash drift: ${xmlSha}`);
+  must(Array.isArray(manifest) && manifest.length === XML_MANIFEST_COUNT, `XML manifest count drift: ${manifest.length}`);
+
+  return manifest;
+}
+
+async function sb(path, options = {}) {
+  must(SUPABASE_URL, "Missing SUPABASE_URL");
+  must(SUPABASE_SERVICE_ROLE_KEY, "Missing SUPABASE_SERVICE_ROLE_KEY");
+
+  const url = `${SUPABASE_URL.replace(/\/$/, "")}/rest/v1/${path}`;
+  const headers = {
+    apikey: SUPABASE_SERVICE_ROLE_KEY,
+    Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
+    "Content-Type": "application/json",
+    Prefer: options.prefer || "return=representation",
+    ...(options.headers || {}),
+  };
+
+  const res = await fetch(url, { ...options, headers });
+  const text = await res.text();
+  if (!res.ok) {
+    throw new Error(`Supabase ${res.status} ${path}: ${text.slice(0, 800)}`);
+  }
+  if (!text) return null;
+  return JSON.parse(text);
+}
+
+async function fetchAll(table, select, order = "id.asc") {
+  const rows = [];
+  const pageSize = 1000;
+  for (let from = 0; ; from += pageSize) {
+    const to = from + pageSize - 1;
+    const path = `${table}?select=${encodeURIComponent(select)}&order=${encodeURIComponent(order)}`;
+    const chunk = await sb(path, {
+      method: "GET",
+      headers: { Range: `${from}-${to}`, Prefer: "count=exact" },
+    });
+    rows.push(...chunk);
+    if (chunk.length < pageSize) break;
+  }
+  return rows;
+}
+
+async function insertRows(table, rows, chunkSize = 100) {
+  if (!rows.length) return [];
+  const out = [];
+  for (let i = 0; i < rows.length; i += chunkSize) {
+    const chunk = rows.slice(i, i + chunkSize);
+    const inserted = await sb(table, {
+      method: "POST",
+      body: JSON.stringify(chunk),
+      prefer: "return=representation",
+    });
+    if (Array.isArray(inserted)) out.push(...inserted);
+  }
+  return out;
+}
+
+async function patchRow(table, id, body) {
+  return sb(`${table}?id=eq.${id}`, {
+    method: "PATCH",
+    body: JSON.stringify(body),
+    prefer: "return=minimal",
+  });
+}
+
+async function createSemanticRun(sourceSummary) {
+  if (!writeMode) {
+    return {
+      id: `dry-run-${RUN_ID}`,
+      status: "dry_run",
+      provider: "vertex",
+      model: VERTEX_MODEL,
+      prompt_version: PROMPT_VERSION,
+      narrative_context_sha256: NARRATIVE_CONTEXT_SHA256,
+      xml_manifest_sha256: XML_MANIFEST_SHA256,
+      xml_manifest_count: XML_MANIFEST_COUNT,
+    };
+  }
+
+  const rows = await insertRows("semantic_runs", [{
+    status: "running",
+    provider: "vertex",
+    model: VERTEX_MODEL,
+    prompt_version: PROMPT_VERSION,
+    narrative_context_sha256: NARRATIVE_CONTEXT_SHA256,
+    xml_manifest_sha256: XML_MANIFEST_SHA256,
+    xml_manifest_count: XML_MANIFEST_COUNT,
+    source_summary: sourceSummary,
+    metadata: { run_id: RUN_ID, script: "scripts/semantic/xml-grounded-vertex-rehash.mjs" },
+  }]);
+  return rows[0];
+}
+
+function loadPublicChapters() {
+  const files = readdirSync(paths.publicChapters)
+    .filter((x) => x.endsWith(".txt"))
+    .sort((a, b) => Number(a.replace(".txt", "")) - Number(b.replace(".txt", "")));
+
+  return files.map((file) => {
+    const chapterNumber = Number(file.replace(".txt", ""));
+    const fullPath = join(paths.publicChapters, file);
+    const content = readText(fullPath);
+    return {
+      chapter_number: chapterNumber,
+      path: `public/data/chapters/${file}`,
+      bytes: statSync(fullPath).size,
+      sha256: sha256File(fullPath),
+      content,
+    };
+  });
+}
+
+function relevantXmlEntriesForChapter(manifest, chapterNumber) {
+  const n = String(chapterNumber);
+  const needles = [
+    `chapter_${n}`,
+    `chapter ${n}`,
+    `chapter:${n}`,
+    `chapter_${n}_`,
+    `chapter-${n}`,
+    `ch${n}`,
+    `${n}.txt`,
+  ].map((x) => x.toLowerCase());
+
+  return manifest.filter((entry) => {
+    const hay = `${entry.source || ""} ${entry.dest || ""} ${entry.doc_folder || ""} ${entry.part_path || ""}`.toLowerCase();
+    return needles.some((needle) => hay.includes(needle));
+  }).slice(0, 16);
+}
+
+function loadXmlEvidence(entries, maxChars = 16000) {
+  const fragments = [];
+  for (const entry of entries) {
+    const possible = [
+      entry.dest,
+      join("src/data-layer/ingestion-buffer/gdrive_ooxml_raw", entry.doc_folder || "", entry.part_path || ""),
+      join("src/data-layer/ingestion-buffer/gdrive_ooxml_raw", entry.doc_folder || "", "word", "document.xml"),
+    ].filter(Boolean);
+
+    let found = null;
+    for (const p of possible) {
+      const full = p.startsWith("/") ? p : join(ROOT, p);
+      if (existsSync(full)) {
+        found = full;
+        break;
+      }
+    }
+    if (!found) continue;
+
+    try {
+      const text = stripOoxml(readText(found));
+      if (text) {
+        fragments.push({
+          source: entry.source || entry.dest || found,
+          part_path: entry.part_path || "",
+          sha256: entry.sha256 || "",
+          text: clip(text, 3500),
+        });
+      }
+    } catch {
+      continue;
+    }
+
+    if (fragments.map((f) => f.text).join("\n").length > maxChars) break;
+  }
+  return fragments;
+}
+
+function paragraphBatches(paragraphs) {
+  const batches = [];
+  for (let i = 0; i < paragraphs.length; i += BATCH_SIZE) {
+    batches.push(paragraphs.slice(i, i + BATCH_SIZE));
+  }
+  return batches;
+}
+
+function buildPrompt({ contextPack, chapter, xmlEvidence, paragraphs }) {
+  return `
+You are the XML-grounded semantic hasher for Michael Alonza P. Ware's "The Weight of the Sky".
+
+You must use the NARRATIVE CONTEXT PACK as the interpretive lens, and the CHAPTER PROSE / XML EVIDENCE / LIVE PARAGRAPHS as evidence.
+
+Definitions for this book:
+
+DUALISM:
+A conceptual mirror, inversion, opposition, or structural parallel between narrative objects. It is not a keyword pair.
+Examples: high gods above vs low gods beneath; Dan shedding weight vs Aviel hoarding weight; ascent toward Hermon vs descent into Megiddo/Pit; Daniel/Love vs Beelzebub/consumption; Isabel born from hell but choosing forgiveness; same terrain seen as green pasture by one consciousness and gray pasture by another; loyal star-love multiplying vs resentful twin consuming brother.
+
+ARCHETYPE:
+A Jungian/mythic role or transformation movement. It is not a flat label.
+Examples: Dan to Daniel as individuation, sacrifice, judge becoming judged; Aviel as wounded father/hoarder/restored witness; Zuna as mother-memory/stardust wisdom; Dagon as false abundance/death-raft; Beelzebub as consuming shadow; Isabel as hell-born shadow-child transformed into forgiveness; Rapha as giant/failed sky-bearer/threshold guardian transformed by hope; Sak as curiosity/witness.
+
+BIBLICAL REFERENCE:
+Direct, indirect, typological, symbolic, numerological, structural, or non-verbatim allusion. It may be layered and discreet.
+Examples: Dagon before the Ark; Samson and Dagon's temple; Babel/confused tongues; Flood/giants/Anakim/Goliath/six fingers and toes; Daniel identity; Cain/Abel recurrence in the stars; pride as self-enclosed nothingness; Enoch/Elijah-like ascent/body-spirit preservation.
+
+HYPERLINK:
+A derived graph/display edge. It is not source truth. It must point back to a dualism, archetype, biblical reference, or paragraph relation.
+
+Return strict JSON only with this shape:
+{
+  "paragraphs": [
+    {
+      "paragraph_id": "uuid",
+      "content_sha256": "sha256",
+      "archetypal_weights": {"shadow":0.0,"self":0.0},
+      "dualism_map": {"ascent_descent":0.0},
+      "metadata": {"summary":"", "semantic_notes": []},
+      "archetype_observations": [
+        {
+          "archetype": "",
+          "subject_name": "",
+          "movement_stage": "",
+          "evidence_text": "",
+          "interpretation": "",
+          "confidence": 0.0
+        }
+      ],
+      "biblical_references": [
+        {
+          "reference_text": "",
+          "book": "",
+          "chapter": null,
+          "verse": null,
+          "allusion_type": "direct|typological|symbolic|numerological|structural|non_verbatim|image_based",
+          "evidence_text": "",
+          "interpretation": "",
+          "confidence": 0.0
+        }
+      ],
+      "derived_hyperlinks": [
+        {
+          "theme_node_a": "",
+          "theme_node_b": "",
+          "connection_type": "",
+          "edge_type": "archetype|biblical|dualism|parallelism",
+          "confidence": 0.0,
+          "evidence_text": ""
+        }
+      ]
+    }
+  ],
+  "dualism_relations": [
+    {
+      "relation_type": "",
+      "shared_substrate": "",
+      "pole_a": {"label":"", "paragraph_id":"", "description":""},
+      "pole_b": {"label":"", "paragraph_id":"", "description":""},
+      "interpretation": "",
+      "confidence": 0.0,
+      "evidence": [
+        {"paragraph_id":"", "evidence_role":"pole_a|pole_b|bridge", "evidence_text":""}
+      ],
+      "derived_hyperlink": {
+        "theme_node_a": "",
+        "theme_node_b": "",
+        "connection_type": "",
+        "edge_type": "dualism",
+        "confidence": 0.0
+      }
+    }
+  ],
+  "archetype_movements": [
+    {
+      "subject_name": "",
+      "arc_label": "",
+      "from_state": "",
+      "to_state": "",
+      "start_paragraph_id": "",
+      "end_paragraph_id": "",
+      "evidence_summary": "",
+      "interpretation": "",
+      "confidence": 0.0
+    }
+  ]
+}
+
+Rules:
+- Do not invent chapter/prose evidence.
+- Empty arrays are valid when no strong evidence exists.
+- Prefer fewer high-confidence records over many weak records.
+- Hyperlinks are derived; do not treat them as source truth.
+- Dualisms can cross paragraphs and can use conceptual evidence, not exact repeated words.
+- Biblical references can be non-verbatim, but must explain why the allusion is valid.
+
+NARRATIVE CONTEXT PACK SHA256:
+${NARRATIVE_CONTEXT_SHA256}
+
+NARRATIVE CONTEXT PACK:
+${clip(contextPack, 30000)}
+
+CHAPTER:
+${JSON.stringify({ chapter_number: chapter.chapter_number, path: chapter.path, sha256: chapter.sha256 })}
+
+XML EVIDENCE:
+${JSON.stringify(xmlEvidence, null, 2)}
+
+LIVE PARAGRAPHS TO HASH:
+${JSON.stringify(paragraphs.map((p) => ({
+  paragraph_id: p.id,
+  chapter_id: p.chapter_id,
+  chunk_index: p.chunk_index,
+  content_sha256: sha256Text(p.content || ""),
+  content: p.content,
+})), null, 2)}
+`;
+}
+
+function getGcloudAccessToken() {
+  if (process.env.GCLOUD_ACCESS_TOKEN) return process.env.GCLOUD_ACCESS_TOKEN;
+  try {
+    return execFileSync("gcloud", ["auth", "application-default", "print-access-token"], { encoding: "utf8" }).trim();
+  } catch {
+    return "";
+  }
+}
+
+async function callVertex(prompt) {
+  if (noAi) {
+    return {
+      paragraphs: [],
+      dualism_relations: [],
+      archetype_movements: [],
+    };
+  }
+
+  const payload = {
+    contents: [{ role: "user", parts: [{ text: prompt }] }],
+    generationConfig: {
+      temperature: 0.15,
+      topP: 0.9,
+      maxOutputTokens: 8192,
+      responseMimeType: "application/json",
+    },
+  };
+
+  const token = getGcloudAccessToken();
+
+  if (token) {
+    const endpoint =
+      `https://${VERTEX_LOCATION}-aiplatform.googleapis.com/v1/projects/${VERTEX_PROJECT_ID}` +
+      `/locations/${VERTEX_LOCATION}/publishers/google/models/${VERTEX_MODEL}:generateContent`;
+
+    const res = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+    const json = await res.json();
+    if (!res.ok) throw new Error(`Vertex error: ${JSON.stringify(json).slice(0, 1200)}`);
+    const text = json?.candidates?.[0]?.content?.parts?.map((p) => p.text || "").join("") || "{}";
+    return JSON.parse(text);
+  }
+
+  const key = process.env.GOOGLE_API_KEY;
+  if (!key) throw new Error("No Vertex ADC token and no GOOGLE_API_KEY fallback.");
+
+  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${VERTEX_MODEL}:generateContent?key=${key}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  const json = await res.json();
+  if (!res.ok) throw new Error(`Gemini API fallback error: ${JSON.stringify(json).slice(0, 1200)}`);
+  const text = json?.candidates?.[0]?.content?.parts?.map((p) => p.text || "").join("") || "{}";
+  return JSON.parse(text);
+}
+
+async function registerXmlSources(manifest) {
+  const docs = new Map();
+  for (const item of manifest) {
+    const key = item.source || item.doc_folder || item.dest || item.sha256;
+    if (!docs.has(key)) {
+      docs.set(key, {
+        source_kind: "gdrive_ooxml",
+        source_path: String(item.source || item.doc_folder || item.dest || ""),
+        source_sha256: sha256Text(String(item.source || item.doc_folder || "") + String(item.sha256 || "")),
+        title: basename(String(item.source || item.doc_folder || "ooxml_source")),
+        byte_count: Number(item.bytes || 0),
+        metadata: { doc_folder: item.doc_folder || "", first_part_path: item.part_path || "" },
+      });
+    }
+  }
+
+  if (!writeMode) {
+    console.log(`DRY_RUN register source_documents: ${docs.size}`);
+    return;
+  }
+
+  await insertRows("source_documents?on_conflict=source_sha256", [...docs.values()].slice(0, 2000), 100);
+  console.log(`registered source_documents: ${docs.size}`);
+}
+
+async function writeSemanticResult({ semanticRun, batch, result }) {
+  const paragraphResults = Array.isArray(result.paragraphs) ? result.paragraphs : [];
+  const dualisms = Array.isArray(result.dualism_relations) ? result.dualism_relations : [];
+  const movements = Array.isArray(result.archetype_movements) ? result.archetype_movements : [];
+
+  if (!writeMode) {
+    console.log(JSON.stringify({
+      dry_run_batch: batch.map((p) => p.id),
+      paragraph_results: paragraphResults.length,
+      dualism_relations: dualisms.length,
+      archetype_movements: movements.length,
+    }, null, 2));
+    return;
+  }
+
+  for (const pr of paragraphResults) {
+    const paragraph = batch.find((p) => p.id === pr.paragraph_id);
+    if (!paragraph) continue;
+
+    const contentSha = sha256Text(paragraph.content || "");
+    const runtimeHash = sha256Text(canonicalJson({
+      narrative_context_sha256: NARRATIVE_CONTEXT_SHA256,
+      paragraph_id: paragraph.id,
+      content_sha256: contentSha,
+      model: VERTEX_MODEL,
+      prompt_version: PROMPT_VERSION,
+      archetypes: pr.archetype_observations || [],
+      biblical_references: pr.biblical_references || [],
+      dualism_participations: pr.dualism_map || {},
+      hyperlinks: pr.derived_hyperlinks || [],
+    }));
+
+    await patchRow("paragraphs", paragraph.id, {
+      content_sha256: contentSha,
+      active_semantic_run_id: semanticRun.id,
+      archetypal_weights: pr.archetypal_weights || {},
+      dualism_map: pr.dualism_map || {},
+      metadata: {
+        ...(paragraph.metadata || {}),
+        semantic: {
+          semantic_run_id: semanticRun.id,
+          runtime_semantic_sha256: runtimeHash,
+          narrative_context_sha256: NARRATIVE_CONTEXT_SHA256,
+          xml_manifest_sha256: XML_MANIFEST_SHA256,
+          prompt_version: PROMPT_VERSION,
+          model: VERTEX_MODEL,
+          summary: pr.metadata?.summary || "",
+          notes: pr.metadata?.semantic_notes || [],
+        },
+      },
+    });
+
+    const archetypes = (pr.archetype_observations || []).map((a) => ({
+      paragraph_id: paragraph.id,
+      semantic_run_id: semanticRun.id,
+      archetype: String(a.archetype || "unknown"),
+      subject_name: a.subject_name || null,
+      movement_stage: a.movement_stage || null,
+      evidence_text: a.evidence_text || null,
+      interpretation: a.interpretation || null,
+      confidence: Number(a.confidence || 0),
+      semantic_hash: sha256Text(canonicalJson({ semanticRun: semanticRun.id, paragraph: paragraph.id, a })),
+      metadata: { narrative_context_sha256: NARRATIVE_CONTEXT_SHA256 },
+    }));
+
+    if (archetypes.length) await insertRows("archetype_observations", archetypes);
+
+    const biblical = (pr.biblical_references || []).map((b) => ({
+      paragraph_id: paragraph.id,
+      semantic_run_id: semanticRun.id,
+      reference_text: b.reference_text || null,
+      book: b.book || null,
+      chapter: Number.isFinite(Number(b.chapter)) ? Number(b.chapter) : null,
+      verse: Number.isFinite(Number(b.verse)) ? Number(b.verse) : null,
+      allusion_type: b.allusion_type || null,
+      evidence_text: b.evidence_text || null,
+      interpretation: b.interpretation || null,
+      confidence: Number(b.confidence || 0),
+      source_label: "xml_grounded_vertex_rehash",
+      source_span: {},
+      semantic_hash: sha256Text(canonicalJson({ semanticRun: semanticRun.id, paragraph: paragraph.id, b })),
+      metadata: { narrative_context_sha256: NARRATIVE_CONTEXT_SHA256 },
+      active: true,
+    }));
+
+    if (biblical.length) await insertRows("biblical_references", biblical);
+
+    const links = (pr.derived_hyperlinks || []).map((h) => ({
+      paragraph_id: paragraph.id,
+      semantic_run_id: semanticRun.id,
+      theme_node_a: h.theme_node_a || null,
+      theme_node_b: h.theme_node_b || null,
+      connection_type: h.connection_type || h.edge_type || null,
+      edge_type: h.edge_type || null,
+      chapter_reference: String(paragraph.chapter_id || ""),
+      strength: Number(h.confidence || 0),
+      confidence: Number(h.confidence || 0),
+      source_table: "paragraph_semantics",
+      semantic_hash: sha256Text(canonicalJson({ semanticRun: semanticRun.id, paragraph: paragraph.id, h })),
+      metadata: { evidence_text: h.evidence_text || "", narrative_context_sha256: NARRATIVE_CONTEXT_SHA256 },
+      active: true,
+    }));
+
+    if (links.length) await insertRows("hyperlinks", links);
+  }
+
+  for (const d of dualisms) {
+    const relationHash = sha256Text(canonicalJson({
+      narrative_context_sha256: NARRATIVE_CONTEXT_SHA256,
+      relation_type: d.relation_type || "",
+      shared_substrate: d.shared_substrate || "",
+      pole_a: d.pole_a || {},
+      pole_b: d.pole_b || {},
+      evidence: d.evidence || [],
+      interpretation: d.interpretation || "",
+      confidence: Number(d.confidence || 0),
+    }));
+
+    const inserted = await insertRows("dualism_relations", [{
+      semantic_run_id: semanticRun.id,
+      relation_type: d.relation_type || "conceptual_dualism",
+      shared_substrate: d.shared_substrate || null,
+      pole_a: d.pole_a || {},
+      pole_b: d.pole_b || {},
+      interpretation: d.interpretation || null,
+      confidence: Number(d.confidence || 0),
+      semantic_relation_sha256: relationHash,
+      metadata: { narrative_context_sha256: NARRATIVE_CONTEXT_SHA256 },
+      active: true,
+    }]).catch(() => []);
+
+    const relation = inserted?.[0];
+    if (relation && Array.isArray(d.evidence) && d.evidence.length) {
+      await insertRows("dualism_relation_evidence", d.evidence.map((e) => ({
+        dualism_relation_id: relation.id,
+        paragraph_id: e.paragraph_id || null,
+        evidence_role: e.evidence_role || null,
+        evidence_text: e.evidence_text || null,
+        source_span: {},
+        metadata: {},
+      })));
+    }
+
+    if (relation && d.derived_hyperlink) {
+      const h = d.derived_hyperlink;
+      await insertRows("hyperlinks", [{
+        paragraph_id: d.pole_a?.paragraph_id || d.pole_b?.paragraph_id || null,
+        semantic_run_id: semanticRun.id,
+        theme_node_a: h.theme_node_a || d.pole_a?.label || null,
+        theme_node_b: h.theme_node_b || d.pole_b?.label || null,
+        connection_type: h.connection_type || "dualism",
+        edge_type: "dualism",
+        chapter_reference: "",
+        strength: Number(h.confidence || d.confidence || 0),
+        confidence: Number(h.confidence || d.confidence || 0),
+        source_table: "dualism_relations",
+        source_id: relation.id,
+        semantic_hash: sha256Text(canonicalJson({ relationHash, h })),
+        metadata: { narrative_context_sha256: NARRATIVE_CONTEXT_SHA256 },
+        active: true,
+      }]);
+    }
+  }
+
+  if (movements.length) {
+    await insertRows("archetype_movements", movements.map((m) => ({
+      semantic_run_id: semanticRun.id,
+      subject_name: m.subject_name || "unknown",
+      arc_label: m.arc_label || null,
+      from_state: m.from_state || null,
+      to_state: m.to_state || null,
+      start_paragraph_id: m.start_paragraph_id || null,
+      end_paragraph_id: m.end_paragraph_id || null,
+      evidence_summary: m.evidence_summary || null,
+      interpretation: m.interpretation || null,
+      confidence: Number(m.confidence || 0),
+      semantic_hash: sha256Text(canonicalJson({ semanticRun: semanticRun.id, m })),
+      metadata: { narrative_context_sha256: NARRATIVE_CONTEXT_SHA256 },
+      active: true,
+    })));
+  }
+}
+
+async function main() {
+  const manifest = validateSources();
+  const contextPack = readText(paths.contextPack);
+  const chapters = loadPublicChapters().filter((c) => !CHAPTER_FILTER || c.chapter_number === CHAPTER_FILTER);
+
+  const sourceSummary = {
+    context_pack_sha256: NARRATIVE_CONTEXT_SHA256,
+    xml_manifest_sha256: XML_MANIFEST_SHA256,
+    xml_manifest_count: XML_MANIFEST_COUNT,
+    public_chapter_count: chapters.length,
+    write_mode: writeMode,
+  };
+
+  writeFileSync(join(paths.outDir, "source-summary.json"), JSON.stringify(sourceSummary, null, 2));
+
+  if (registerSources) await registerXmlSources(manifest);
+
+  const semanticRun = await createSemanticRun(sourceSummary);
+
+  const chaptersDb = await fetchAll("chapters", "id,manifest_id,chapter_number,part_number,status", "chapter_number.asc");
+  let paragraphs = await fetchAll("paragraphs", "id,chapter_id,chunk_index,content,metadata", "chunk_index.asc");
+
+  const chapterIdByNumber = new Map();
+  for (const c of chaptersDb) {
+    if (c.chapter_number !== null && c.chapter_number !== undefined) chapterIdByNumber.set(Number(c.chapter_number), c.id);
+    const parsed = Number(String(c.manifest_id || "").match(/\d+/)?.[0]);
+    if (Number.isFinite(parsed)) chapterIdByNumber.set(parsed, c.id);
+  }
+
+  let totalProcessed = 0;
+
+  for (const chapter of chapters) {
+    const chapterId = chapterIdByNumber.get(chapter.chapter_number);
+    let chapterParagraphs = chapterId
+      ? paragraphs.filter((p) => p.chapter_id === chapterId)
+      : paragraphs.filter((p) => String(p.content || "").length > 0).slice(0, BATCH_SIZE);
+
+    if (LIMIT) chapterParagraphs = chapterParagraphs.slice(0, Math.max(0, LIMIT - totalProcessed));
+    if (!chapterParagraphs.length) continue;
+
+    const xmlEntries = relevantXmlEntriesForChapter(manifest, chapter.chapter_number);
+    const xmlEvidence = loadXmlEvidence(xmlEntries);
+
+    for (const batch of paragraphBatches(chapterParagraphs)) {
+      if (LIMIT && totalProcessed >= LIMIT) break;
+
+      const prompt = buildPrompt({ contextPack, chapter, xmlEvidence, paragraphs: batch });
+      const promptHash = sha256Text(prompt);
+      writeFileSync(join(paths.outDir, `prompt-${chapter.chapter_number}-${totalProcessed}.sha256`), `${promptHash}\n`);
+
+      const result = await callVertex(prompt);
+      writeFileSync(
+        join(paths.outDir, `result-${chapter.chapter_number}-${totalProcessed}.json`),
+        JSON.stringify(result, null, 2)
+      );
+
+      await writeSemanticResult({ semanticRun, batch, result });
+      totalProcessed += batch.length;
+
+      console.log(JSON.stringify({
+        run_id: semanticRun.id,
+        chapter: chapter.chapter_number,
+        processed: totalProcessed,
+        write_mode: writeMode,
+        prompt_hash: promptHash,
+      }));
+    }
+  }
+
+  if (writeMode) {
+    await patchRow("semantic_runs", semanticRun.id, {
+      status: "completed",
+      completed_at: new Date().toISOString(),
+      metadata: { ...(semanticRun.metadata || {}), total_processed: totalProcessed },
+    });
+  }
+
+  writeFileSync(join(paths.outDir, "run-summary.json"), JSON.stringify({
+    run_id: semanticRun.id,
+    write_mode: writeMode,
+    total_processed: totalProcessed,
+    narrative_context_sha256: NARRATIVE_CONTEXT_SHA256,
+    xml_manifest_sha256: XML_MANIFEST_SHA256,
+    provider: "vertex",
+    model: VERTEX_MODEL,
+  }, null, 2));
+}
+
+main().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});

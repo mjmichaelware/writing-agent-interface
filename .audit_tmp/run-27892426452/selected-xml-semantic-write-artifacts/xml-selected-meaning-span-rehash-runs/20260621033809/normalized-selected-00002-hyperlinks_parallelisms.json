@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_4ecbe3344e9578c9dfe3433ca17d01a8",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "61c47d3ec47e52a43611341e344bee3a2947295d5e64aebba112e1c26f009ab0",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The four-room house in Hebron is a physical metaphor for a man's heart divided against itself, echoing the internal conflict and division within the character.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_c6fcf73cdbb00e1972de91fa460a973d",
+          "quote": "The four-room house in Hebron had become the shape of one man's heart, divided against itself."
+        }
+      ],
+      "target_hint": "This motif parallels the recurring theme of internal division and spiritual conflict within the narrative, especially in Dan's struggles.",
+      "target_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The four-room house in Hebron is a physical metaphor for a man's heart divided against itself, echoing the internal conflict and division within the character.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_c6fcf73cdbb00e1972de91fa460a973d",
+          "render_index": 3,
+          "quote": "The four-room house in Hebron had become the shape of one man's heart, divided against itself.",
+          "role": "source",
+          "start_char": 50,
+          "end_char": 144,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_4ecbe3344e9578c9dfe3433ca17d01a8",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            5
+          ],
+          "evidence_sha256": "6d622337e8a753b97873a38618d0b05db73153eccbb2eda051f3470e563f111b"
+        }
+      ],
+      "target_hint": "This motif parallels the recurring theme of internal division and spiritual conflict within the narrative, especially in Dan's struggles.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "18e76328778dc108eee9c0d9d7b266da055bc44ff44738f9e1ec6bd5abbc9742",
+  "normalized_output_hash": "92a5db8bc47bf218b2777469e83a816489ee8db3bb6113342d5978de22711768"
+}

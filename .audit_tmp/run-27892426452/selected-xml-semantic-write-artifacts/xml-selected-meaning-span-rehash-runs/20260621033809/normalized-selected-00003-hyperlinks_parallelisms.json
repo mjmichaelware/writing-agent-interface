@@ -1,0 +1,93 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_a3adaa6be6be83a7f0ff767d43b610ce",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "97e5eeaf2ea1ded7f2ed72c8d1b601b7d78cb106461e82881ed552af2f7fe0f5",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "Father Aviel's grief and cessation of inner life after Mother Zuna's death parallels the motif of loss and halted progress seen in Dan's journey, reflecting a thematic echo of halted motion and emotional stasis.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+          "quote": "But when Mother Zuna passed beyond recall—when they buried his bride beneath the earth—something stopped within him. Not died, which would have been cleaner and quicker, but simply ceased like a cart with a cruelly shattered axle."
+        }
+      ],
+      "target_hint": "Dan's halted progress and physical pain during his journey as described in the narrative context capsule.",
+      "target_evidence": [],
+      "confidence": 0.9
+    },
+    {
+      "relationship_type": "motif_echo",
+      "summary": "The motif of earthly gods being insufficient to fill the void left by loss echoes the broader theme of seeking higher truth beyond earthly or material comforts, as Dan moves towards the stars and the light beyond earthly desires.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+          "quote": "The gathered gods he'd carried from the Western plains—bronze and brittle forms of fortune, flame, and fertility—could not fill the void. So he swept them away and kept only one: the lord of limitless dust and earthly plenty, who whispered in the watches and the waiting of the night that hoarded treasures might hold back time itself and defy the demands it made."
+        }
+      ],
+      "target_hint": "Dan's rejection of earthly burdens and movement towards the stars and light as described in the narrative context capsule.",
+      "target_evidence": [],
+      "confidence": 0.85
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "Father Aviel's grief and cessation of inner life after Mother Zuna's death parallels the motif of loss and halted progress seen in Dan's journey, reflecting a thematic echo of halted motion and emotional stasis.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+          "render_index": 4,
+          "quote": "But when Mother Zuna passed beyond recall—when they buried his bride beneath the earth—something stopped within him. Not died, which would have been cleaner and quicker, but simply ceased like a cart with a cruelly shattered axle.",
+          "role": "source",
+          "start_char": 487,
+          "end_char": 717,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_a3adaa6be6be83a7f0ff767d43b610ce",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            7
+          ],
+          "evidence_sha256": "86da68a44c731e1fb1251cd1fca283bb1dc8e4b42397a5feea3135efb86d46b9"
+        }
+      ],
+      "target_hint": "Dan's halted progress and physical pain during his journey as described in the narrative context capsule.",
+      "target_evidence": [],
+      "confidence": 0.55
+    },
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "motif_echo",
+      "summary": "The motif of earthly gods being insufficient to fill the void left by loss echoes the broader theme of seeking higher truth beyond earthly or material comforts, as Dan moves towards the stars and the light beyond earthly desires.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+          "render_index": 4,
+          "quote": "The gathered gods he'd carried from the Western plains—bronze and brittle forms of fortune, flame, and fertility—could not fill the void. So he swept them away and kept only one: the lord of limitless dust and earthly plenty, who whispered in the watches and the waiting of the night that hoarded treasures might hold back time itself and defy the demands it made.",
+          "role": "source",
+          "start_char": 718,
+          "end_char": 1082,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_a3adaa6be6be83a7f0ff767d43b610ce",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            7
+          ],
+          "evidence_sha256": "22a5573db75d431bd01eb9f4e10b80e897dec808e69a1abd76476fa0339b9d1e"
+        }
+      ],
+      "target_hint": "Dan's rejection of earthly burdens and movement towards the stars and light as described in the narrative context capsule.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "4eece165e50cc91ac2026085f5abd955470c162a844ab6baa0bfdabe596d5e62",
+  "normalized_output_hash": "4b08f8601aa049b3280c1ea20049633e59a7c9c7bac9c5087f82f2fe76653c33"
+}

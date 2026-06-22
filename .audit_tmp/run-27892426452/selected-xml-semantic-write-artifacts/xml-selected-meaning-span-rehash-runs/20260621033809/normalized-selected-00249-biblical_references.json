@@ -1,0 +1,70 @@
+{
+  "status": "ok",
+  "task_type": "biblical_references",
+  "scene_window_id": "scene_c6b06a8b3ffce4acb374a654fb69e23b",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "fbe728f05fc72b2f51670286659efaafce423774cf2411befa1d65df51007748",
+  "observations": [
+    {
+      "biblical_anchor_label": "Ecclesiastes 5:10",
+      "book": "Ecclesiastes",
+      "chapter": 5,
+      "verse_start": 10,
+      "verse_end": 10,
+      "motif_family": "Hoarding and the futility of accumulation",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The passage describes a character tempted by comfort and forgetfulness, reflecting on his father who is buried in his hoard, confusing accumulation for meaning. This parallels Ecclesiastes 5:10, which warns that those who love money will never be satisfied with it, highlighting the futility and spiritual emptiness of hoarding wealth.",
+      "summary": "The text symbolically resonates with Ecclesiastes 5:10's motif of the emptiness of hoarding wealth and the inability of material accumulation to provide true meaning or satisfaction.",
+      "evidence": [
+        {
+          "render_para_key": "rp_418ad1dbe5e39ae89751b4ae48ad110b",
+          "quote": "She was offering him forgetfulness. Comfort. A way to stop the endless, exhausting climb toward something he couldn't even name. And for just a moment, he was tempted. Then he thought of his father, buried in his hoard, confusing accumulation for meaning."
+        }
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Ecclesiastes 5:10",
+      "book": "Ecclesiastes",
+      "chapter": 5,
+      "verse_start": 10,
+      "verse_end": 10,
+      "motif_family": "hoarding_and_the_futility_of_accumulation",
+      "biblical_anchor_key": "bibanchor_228ca1d0445977f3a1ae9505bed67e73",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The passage describes a character tempted by comfort and forgetfulness, reflecting on his father who is buried in his hoard, confusing accumulation for meaning. This parallels Ecclesiastes 5:10, which warns that those who love money will never be satisfied with it, highlighting the futility and spiritual emptiness of h",
+      "summary": "The text symbolically resonates with Ecclesiastes 5:10's motif of the emptiness of hoarding wealth and the inability of material accumulation to provide true meaning or satisfaction.",
+      "evidence": [
+        {
+          "render_para_key": "rp_418ad1dbe5e39ae89751b4ae48ad110b",
+          "render_index": 156,
+          "quote": "She was offering him forgetfulness. Comfort. A way to stop the endless, exhausting climb toward something he couldn't even name. And for just a moment, he was tempted. Then he thought of his father, buried in his hoard, confusing accumulation for meaning.",
+          "role": null,
+          "start_char": 20254,
+          "end_char": 20509,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_c6b06a8b3ffce4acb374a654fb69e23b",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            311,
+            312,
+            313
+          ],
+          "evidence_sha256": "e7d08c0f25a0541521f241a0aa8b30a136d78b2ca39a4359286a7d4597cedc44"
+        }
+      ],
+      "confidence": 0.6,
+      "reference": "Ecclesiastes 5:10",
+      "motif": "hoarding_and_the_futility_of_accumulation"
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "fd88fc47ddf1bb3a8dc162e06f869f5a2a6633debf16ad19f8d36f8a08455465",
+  "normalized_output_hash": "462daa9187a7dc96255bcaaf1cd92c9c686ba34618ed4ee2b7aee33ab5f4b124"
+}

@@ -1,0 +1,60 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_80a855b5168d6eaa8f0d73ee27a548e4",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "6c8e1f79ab65e23bda5143623685ffe4491c876a9103b83458e38703b3f8fca6",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The motif of watching light through a narrow opening echoes the recurring theme of observation and silent vigilance present throughout the narrative, symbolizing moments of introspection and the tension between light and darkness.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_bd3f8a2ce503deff7a10c2bdba4735db",
+          "quote": "He stood one moment longer, watching the light through the slit."
+        }
+      ],
+      "target_hint": "This parallels earlier descriptions of Dan's cautious navigation by faint light and the narrator's feline-like silent observation motif.",
+      "target_evidence": [
+        {
+          "render_para_key": "2f49c451b048e73249daec5c732eff040a81f7310b547eb6a36177a08723deda",
+          "quote": "The small fire shivered, not from wind, but from the beat of his own muffled heart: a rough, offbeat thrum against the overwhelming mass of a condemned dwelling."
+        }
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The motif of watching light through a narrow opening echoes the recurring theme of observation and silent vigilance present throughout the narrative, symbolizing moments of introspection and the tension between light and darkness.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_bd3f8a2ce503deff7a10c2bdba4735db",
+          "render_index": 21,
+          "quote": "He stood one moment longer, watching the light through the slit.",
+          "role": "source",
+          "start_char": 6480,
+          "end_char": 6544,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_80a855b5168d6eaa8f0d73ee27a548e4",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            41
+          ],
+          "evidence_sha256": "26a3c03e112875984929166baa54ebb4ce4a1f501d4f50988d8edc4dde59417e"
+        }
+      ],
+      "target_hint": "This parallels earlier descriptions of Dan's cautious navigation by faint light and the narrator's feline-like silent observation motif.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "f4b4ce2ce70be35a39583e59c21e62926aa1e319192e0ba3954beb3cabb2c5f1",
+  "normalized_output_hash": "6e57fa4e9d665d3bbd84484d253a12f0d3c59bafa9f1755a3a09b13e49a737e2"
+}

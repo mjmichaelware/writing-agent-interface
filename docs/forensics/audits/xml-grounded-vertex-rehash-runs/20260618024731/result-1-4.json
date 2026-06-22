@@ -1,0 +1,108 @@
+{
+  "paragraphs": [
+    {
+      "paragraph_id": "00e7d37c-b1d2-43ff-b7e8-5266cd34f625",
+      "content_sha256": "bb258678f11ceb1246b24ed73175353ea424362e50651cc3b2ee85f537e847d5",
+      "archetypal_weights": {
+        "shadow": 0.1,
+        "self": 0.8
+      },
+      "dualism_map": {
+        "ascent_descent": 0.9
+      },
+      "metadata": {
+        "summary": "Dan internally questions the creation of gods from material objects, a practice embodied by his father, and instead chooses to seek answers by looking upward, preparing for a spiritual and physical ascent.",
+        "semantic_notes": [
+          "This paragraph establishes the core dualism of the narrative: the horizontal, man-made gods of material 'weight' versus the vertical, transcendent source of truth found in ascent.",
+          "Dan's 'unburdened heart' is a direct contrast to his father Aviel's, which is burdened by grief and possessions.",
+          "The 'ascent' is both a literal journey (to Mount Hermon) and a spiritual one (seeking the 'high god')."
+        ]
+      },
+      "archetype_observations": [
+        {
+          "archetype": "The Seeker/Individuation",
+          "subject_name": "Dan",
+          "movement_stage": "The Choice / Call to Adventure",
+          "evidence_text": "If gods could indeed be forged from stones... then where should an unburdened heart like his truly turn? Dan's gaze instinctively sought the vertical... preparing for the ascent.",
+          "interpretation": "Dan consciously rejects his father's materialist, horizontal worldview ('gods forged from stones') and chooses a spiritual, vertical path. This marks the beginning of his individuation arc, moving from a son defined by his father's house to a seeker on a personal quest for transcendent truth.",
+          "confidence": 0.95
+        }
+      ],
+      "biblical_references": [
+        {
+          "reference_text": "Idolatry / Graven Images",
+          "book": "Exodus",
+          "chapter": 20,
+          "verse": 4,
+          "allusion_type": "symbolic",
+          "evidence_text": "If gods could indeed be forged from stones by the sheer, crushing weight of a man's misguided attention and deliberate will...",
+          "interpretation": "The concept of 'gods forged from stones' is a direct symbolic allusion to the biblical prohibition against idolatry. Dan's internal conflict frames his father's hoarding and worship of Dagon as a form of creating graven images, which Dan rejects by turning his gaze 'upward' to a non-material, transcendent source, echoing the core conflict between Hebrew monotheism and Canaanite polytheism.",
+          "confidence": 0.85
+        }
+      ],
+      "derived_hyperlinks": [
+        {
+          "theme_node_a": "Dan's Vertical Ascent",
+          "theme_node_b": "Aviel's Horizontal Accumulation",
+          "connection_type": "Opposition",
+          "edge_type": "dualism",
+          "confidence": 0.9,
+          "evidence_text": "If gods could indeed be forged from stones by the sheer, crushing weight of a man's misguided attention... Dan's gaze instinctively sought the vertical... preparing for the ascent."
+        },
+        {
+          "theme_node_a": "Dan",
+          "theme_node_b": "The Seeker",
+          "connection_type": "Transformation",
+          "edge_type": "archetype",
+          "confidence": 0.95,
+          "evidence_text": "where should an unburdened heart like his truly turn? Dan's gaze instinctively sought the vertical... preparing for the ascent."
+        }
+      ]
+    }
+  ],
+  "dualism_relations": [
+    {
+      "relation_type": "Vertical Ascent vs. Horizontal Accumulation",
+      "shared_substrate": "Path to Divinity/Meaning",
+      "pole_a": {
+        "label": "Vertical Ascent",
+        "paragraph_id": "00e7d37c-b1d2-43ff-b7e8-5266cd34f625",
+        "description": "Seeking a transcendent, non-material source of truth ('high gods') by shedding earthly burdens and looking 'upward'."
+      },
+      "pole_b": {
+        "label": "Horizontal Accumulation",
+        "paragraph_id": "00e7d37c-b1d2-43ff-b7e8-5266cd34f625",
+        "description": "Creating false, material gods ('low gods') from 'stones' through the 'crushing weight' of misguided attention and hoarding."
+      },
+      "interpretation": "This paragraph crystallizes the novel's central dualism. It contrasts Aviel's worldview, where grief leads to hoarding and the worship of a material god (Dagon), with Dan's choice to find meaning by unburdening himself and seeking a higher, non-material reality. The 'ascent' is positioned as the direct antidote to the 'crushing weight' of materialism.",
+      "confidence": 1,
+      "evidence": [
+        {
+          "paragraph_id": "00e7d37c-b1d2-43ff-b7e8-5266cd34f625",
+          "evidence_role": "bridge",
+          "evidence_text": "If gods could indeed be forged from stones by the sheer, crushing weight of a man's misguided attention and deliberate will, then where should an unburdened heart like his truly turn? Dan's gaze instinctively sought the vertical..."
+        }
+      ],
+      "derived_hyperlink": {
+        "theme_node_a": "High Gods (Vertical)",
+        "theme_node_b": "Low Gods (Horizontal)",
+        "connection_type": "Opposition",
+        "edge_type": "dualism",
+        "confidence": 1
+      }
+    }
+  ],
+  "archetype_movements": [
+    {
+      "subject_name": "Dan",
+      "arc_label": "The Path of Individuation",
+      "from_state": "Son defined by father's material world",
+      "to_state": "Seeker on a spiritual quest for ascent",
+      "start_paragraph_id": "00e7d37c-b1d2-43ff-b7e8-5266cd34f625",
+      "end_paragraph_id": null,
+      "evidence_summary": "The paragraph marks Dan's conscious choice to reject his father's philosophy of 'gods forged from stones' and instead initiate his own journey by 'lifting his gaze' and 'preparing for the ascent.'",
+      "interpretation": "This moment represents the beginning of Dan's transformation from a passive resident in his father's 'House of Dust' into an active agent of his own destiny. By choosing the 'vertical' path, he begins the process of shedding his inherited identity and seeking a 'New Name' through a direct relationship with a higher power, a core movement from 'Dan' (judge) to 'Daniel' (God is my judge).",
+      "confidence": 0.95
+    }
+  ]
+}

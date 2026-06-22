@@ -1,0 +1,99 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_646a0bdacd6949d904c4760865d0ac9d",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "eaf93eb5a619047e5ce3116dfe1af464dcd87b9e55be94ed5d5cf90052a080ab",
+  "observations": [
+    {
+      "axis": "Pain vs. Conscious Hatred",
+      "polarity": "Pain leads to hatred",
+      "summary": "The father's accumulated failures and losses manifest as a conscious, hateful barrier of pain.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_f608980331fe49a02f8a9b3d3c644b6f",
+          "quote": "a wall dense and pulsing with old bruise-light, sick and humid"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_f608980331fe49a02f8a9b3d3c644b6f",
+          "quote": "a bruise that had achieved consciousness and learned to hate everything that was not pain"
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_f608980331fe49a02f8a9b3d3c644b6f",
+          "quote": "His father's private ledger of failure and loss, stacked and mortared together into a bruise"
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "pain_vs_conscious_hatred",
+      "polarity": "tension",
+      "summary": "The father's accumulated failures and losses manifest as a conscious, hateful barrier of pain.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_f608980331fe49a02f8a9b3d3c644b6f",
+          "render_index": 37,
+          "quote": "a wall dense and pulsing with old bruise-light, sick and humid",
+          "role": "left",
+          "start_char": 9305,
+          "end_char": 9367,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_646a0bdacd6949d904c4760865d0ac9d",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            73
+          ],
+          "evidence_sha256": "f4ae7a68f7fc61ce33252d9d13490b62347775d0d94c03835d6f38fd615fc673"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_f608980331fe49a02f8a9b3d3c644b6f",
+          "render_index": 37,
+          "quote": "a bruise that had achieved consciousness and learned to hate everything that was not pain",
+          "role": "right",
+          "start_char": 9634,
+          "end_char": 9723,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_646a0bdacd6949d904c4760865d0ac9d",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            73
+          ],
+          "evidence_sha256": "dc91d7b2123d4f07dc527437ec175d1dc3d22f53487953d6c5542c7ef4a3f275"
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_f608980331fe49a02f8a9b3d3c644b6f",
+          "render_index": 37,
+          "quote": "His father's private ledger of failure and loss, stacked and mortared together into a bruise",
+          "role": "bridge",
+          "start_char": 9550,
+          "end_char": 9642,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_646a0bdacd6949d904c4760865d0ac9d",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            73
+          ],
+          "evidence_sha256": "1b092d74087b637da663883fb932c15b6bc5a2ed97e14dd9486172280e5df079"
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "925464f877e611e248b82ed3f513ec7d7cf87905f448bf4b25664dd3ab8b942e",
+  "normalized_output_hash": "76a1a95fed0169dd3a03111f725ce7941cc97e9cc6e14a8331e5a2cdf5a8294c"
+}

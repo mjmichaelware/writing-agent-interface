@@ -1,0 +1,2 @@
+XML_ROOT=src/data-layer/ingestion-buffer/gdrive_ooxml_raw
+OK: XML root exists

@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_c9de7e0a60993133a4f7e9def8128a5f",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "2565285a0e8d888784be3576a8f3c12c6b4dd2395c446e9ad61e2f8af9cb2c43",
+  "observations": [
+    {
+      "axis": "Destruction vs. Illumination",
+      "polarity": "Destruction leads to singular illumination",
+      "summary": "The wind's destructive force that blows everything away contrasts with the emergence of a single, impossibly bright star, symbolizing a transition from obliteration to focused enlightenment.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_cc847a4de5170a015760654199c4e358",
+          "quote": "It blew everything away. All of it. The stones, the dust, everything."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_cc847a4de5170a015760654199c4e358",
+          "quote": "And I looked up, and there was a star. Just one. Impossibly bright."
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "destruction_vs_illumination",
+      "polarity": "tension",
+      "summary": "The wind's destructive force that blows everything away contrasts with the emergence of a single, impossibly bright star, symbolizing a transition from obliteration to focused enlightenment.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_cc847a4de5170a015760654199c4e358",
+          "render_index": 27,
+          "quote": "It blew everything away. All of it. The stones, the dust, everything.",
+          "role": "left",
+          "start_char": 3801,
+          "end_char": 3870,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_c9de7e0a60993133a4f7e9def8128a5f",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            53
+          ],
+          "evidence_sha256": "f58eea2d553245f120e0df451269f25d15ca6d17da87cadc97535602edb33a99"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_cc847a4de5170a015760654199c4e358",
+          "render_index": 27,
+          "quote": "And I looked up, and there was a star. Just one. Impossibly bright.",
+          "role": "right",
+          "start_char": 3871,
+          "end_char": 3938,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_c9de7e0a60993133a4f7e9def8128a5f",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            53
+          ],
+          "evidence_sha256": "b56c1e84ea5b876865c2f95c280b93081e3b54a3487f4c27b8a617436de3c36a"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "a3e9f4296f3a4abdcad13c0e591a76c0d96ddd7c6b1e6327409c9bfaafc6a7ff",
+  "normalized_output_hash": "ce1582d5601dbec9062127b650811bb60ade21322a07f86b9546cccf5874aee5"
+}

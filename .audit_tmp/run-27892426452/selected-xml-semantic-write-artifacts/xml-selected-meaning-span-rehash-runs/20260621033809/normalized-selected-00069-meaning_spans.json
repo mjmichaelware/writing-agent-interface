@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_730b5bc248a638c3ee4cfd23e6f7c731",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "39a36011b5dab20ec628e647969c73465321c842f326166ba4e60fb91414a3b4",
+  "observations": [
+    {
+      "kind": "Imagery",
+      "summary": "A vast head leans further in, with a seaweed beard dragging across the chaos below, evoking a powerful and possibly ominous presence.",
+      "evidence": [
+        {
+          "render_para_key": "rp_8e970386ae00f59e0eaaf145d4741381",
+          "quote": "The vast head leaned further in, seaweed beard dragging across the chaos below."
+        }
+      ],
+      "thematic_weight": 7,
+      "gravity": 6,
+      "tension": 5,
+      "confidence": 0.95,
+      "notes": "The description suggests a looming, possibly mythic or elemental figure observing or interacting with a chaotic scene beneath."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "A vast head leans further in, with a seaweed beard dragging across the chaos below, evoking a powerful and possibly ominous presence.",
+      "evidence": [
+        {
+          "render_para_key": "rp_8e970386ae00f59e0eaaf145d4741381",
+          "render_index": 70,
+          "quote": "The vast head leaned further in, seaweed beard dragging across the chaos below.",
+          "role": null,
+          "start_char": 16884,
+          "end_char": 16963,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_730b5bc248a638c3ee4cfd23e6f7c731",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            139
+          ],
+          "evidence_sha256": "3184650f38dc71825021cfbda6e7b3b59224cbeb382985ef5687ba04f5ef7cee"
+        }
+      ],
+      "thematic_weight": 1,
+      "gravity": 1,
+      "tension": 1,
+      "confidence": 0.95,
+      "notes": "The description suggests a looming, possibly mythic or elemental figure observing or interacting with a chaotic scene beneath."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "88515d596768299f50382c41709dbd9bc056a17aab2c17342d2f1b3b44333c3c",
+  "normalized_output_hash": "b2fb19f74e03dd98311f7e8cde4fb5379398b75bd3ec944085c1b9c506e008e3"
+}

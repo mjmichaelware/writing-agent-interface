@@ -1,0 +1,33 @@
+context_pack_sha:
+6e7e306c32940db56e82f1aff23942e6f3d62d7483db8e5735bb2ef2ef75eb8c  docs/agent_context/source_drop/hasher_context_v1/narrative_context_pack_v1.txt
+
+context_pack_roles:
+8:ROLE: archetype_protocol
+62:ROLE: archetype_protocol
+103:ROLE: story_compendium
+186:ROLE: new_synopsis
+193:﻿The Weight of the Sky - Full Manuscript Synopsis
+194:(New Synopsis)
+
+xml_manifest:
+exists True
+items 579
+keys ['bytes', 'dest', 'doc_folder', 'part_path', 'sha256', 'source']
+
+ooxml_raw_file_count:
+579
+
+public_chapter_txt:
+public/data/chapters/1.txt	21106	2f49c451b048e73249daec5c732eff040a81f7310b547eb6a36177a08723deda
+public/data/chapters/2.txt	19743	f2a509eb8a6314cbdbc0dd9a3984fe09cb720101a4de0615dab3d6353db395d3
+public/data/chapters/3.txt	20516	a3cba70f46c50af68ae2cdb748915e80578e1bcd905624a4b077fdc99ea693fd
+public/data/chapters/4.txt	18833	63b181b1f87727ee5202fe1f59a797a227f379a2446db5edd1cb47d50215b8a7
+public/data/chapters/5.txt	20558	3b0ede4310eca0fccf88e100972d161048f12333411bb4e14c4f6956eaacf039
+public/data/chapters/6.txt	21547	5b7b91ab7dc53343297f6b32b4a59443e75b629c2f1484de0f093bc2ff802a37
+public/data/chapters/7.txt	27420	fe21c269662112e63ae92118f80d1d68c5a94cb5fb3950a0d8cb1d0f3092b245
+public/data/chapters/8.txt	17241	a02f56e5ac0abd966aef2541b27fa8e4f9c5d36a2f7287d2c7bf7b46c026c6c7
+public/data/chapters/9.txt	27027	bb2740591c75d6dd0ee22abf60c25523302ff6758cfd3052f1b2c72e9ffe191b
+public/data/chapters/10.txt	28345	3fa62b7d098773c1051829693664fd31f16b7ff29ef23e2c7215cc215295460d
+public/data/chapters/11.txt	26263	8d3f998fafb7852f66f9a055c6233295c82b0fdbb2450663ec63c7e3961d23e1
+public/data/chapters/13.txt	17060	960479e956f95dc5674a44b34a4c5bc562dced3d80c43f4622b3c4ad2acc50e9
+public/data/chapters/24.txt	7543	3d4e278a0349a7f47569f4502b324bf0ffbf97adb96568920bef23a877dc0776

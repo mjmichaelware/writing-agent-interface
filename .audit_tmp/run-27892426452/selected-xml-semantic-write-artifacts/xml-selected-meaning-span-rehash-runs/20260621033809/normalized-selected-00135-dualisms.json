@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_932d37a6a329ca83e04625223a13bf90",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "901979b789ee762ac34d644c5582933c1ccd68b27410a7f693d96bf4f9586a27",
+  "observations": [
+    {
+      "axis": "Dreamer vs. Foolishness",
+      "polarity": "Dreamer (positive) vs. Fool (negative)",
+      "summary": "Aviel contrasts the idealistic dreamer who aspires to the stars with the foolishness of such dreams, implying a tension between noble aspiration and naive folly.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_d05e1550d2277c4d30a6875a1f6269b6",
+          "quote": "She was a fool. A dreamer who thought she could fly to the stars"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_d05e1550d2277c4d30a6875a1f6269b6",
+          "quote": "who thought the mud and shit of earthly life was beneath her"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "dreamer_vs_foolishness",
+      "polarity": "tension",
+      "summary": "Aviel contrasts the idealistic dreamer who aspires to the stars with the foolishness of such dreams, implying a tension between noble aspiration and naive folly.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_d05e1550d2277c4d30a6875a1f6269b6",
+          "render_index": 42,
+          "quote": "She was a fool. A dreamer who thought she could fly to the stars",
+          "role": "left",
+          "start_char": 5540,
+          "end_char": 5604,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_932d37a6a329ca83e04625223a13bf90",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            83
+          ],
+          "evidence_sha256": "ccc1e7c837d1a0f1e0bfe5b8ac3b1b1b33b82b752604cf5ab5014ca3627e9fdc"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_d05e1550d2277c4d30a6875a1f6269b6",
+          "render_index": 42,
+          "quote": "who thought the mud and shit of earthly life was beneath her",
+          "role": "right",
+          "start_char": 5606,
+          "end_char": 5666,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_932d37a6a329ca83e04625223a13bf90",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            83
+          ],
+          "evidence_sha256": "21396e563594377c8614ede6dc6282417294fd1aed7879c127b3395643bd7809"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "c17b81ffe4c7cd18142d6f567b2b950ba52aa6a2ed6c2af56f6a719aacda6018",
+  "normalized_output_hash": "f69579dc613426c45fc3c7fe888c716382e4068542a4d512d8153e0d10ffd7f8"
+}

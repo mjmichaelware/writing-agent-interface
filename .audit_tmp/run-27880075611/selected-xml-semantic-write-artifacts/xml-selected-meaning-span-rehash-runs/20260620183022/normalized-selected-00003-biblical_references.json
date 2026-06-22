@@ -1,0 +1,110 @@
+{
+  "status": "ok",
+  "task_type": "biblical_references",
+  "scene_window_id": "scene_a3adaa6be6be83a7f0ff767d43b610ce",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "97e5eeaf2ea1ded7f2ed72c8d1b601b7d78cb106461e82881ed552af2f7fe0f5",
+  "observations": [
+    {
+      "biblical_anchor_label": "Job 2:11-13",
+      "book": "Job",
+      "chapter": 2,
+      "verse_start": 11,
+      "verse_end": 13,
+      "motif_family": "Grief and Loss",
+      "relationship_type": "narrative_parallel",
+      "correspondence_rationale": "The passage describes Father Aviel's profound grief and emotional cessation after the death and burial of his bride, paralleling Job's experience of deep mourning and loss where friends come to console him but he is overwhelmed by sorrow.",
+      "summary": "Aviel's grief and emotional paralysis after his wife's death parallels Job's mourning and the presence of consoling figures in Job 2:11-13.",
+      "evidence": [
+        {
+          "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+          "quote": "Father Aviel had been a scholar, sharp as fresh-knapped flint, sought and summoned by those with questions knotted beyond common counsel. But when Mother Zuna passed beyond recall—when they buried his bride beneath the earth—something stopped within him. Not died, which would have been cleaner and quicker, but simply ceased like a cart with a cruelly shattered axle."
+        }
+      ],
+      "confidence": 0.9
+    },
+    {
+      "biblical_anchor_label": "Psalm 104:14-15",
+      "book": "Psalms",
+      "chapter": 104,
+      "verse_start": 14,
+      "verse_end": 15,
+      "motif_family": "Divine Provision and Earthly Plenty",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The text references a lord of limitless dust and earthly plenty who whispers that treasures might hold back time, symbolically resonating with the biblical theme of God providing sustenance and abundance to the earth as in Psalm 104:14-15.",
+      "summary": "The lord of limitless dust and earthly plenty symbolizes divine provision and abundance akin to God's provision in Psalm 104:14-15.",
+      "evidence": [
+        {
+          "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+          "quote": "So he swept them away and kept only one: the lord of limitless dust and earthly plenty, who whispered in the watches and the waiting of the night that hoarded treasures might hold back time itself and defy the demands it made."
+        }
+      ],
+      "confidence": 0.75
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Psalm 104:14-15",
+      "book": "Psalm",
+      "chapter": 104,
+      "verse_start": 14,
+      "verse_end": 15,
+      "motif_family": "divine_provision_and_earthly_plenty",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The text references a lord of limitless dust and earthly plenty who whispers that treasures might hold back time, symbolically resonating with the biblical theme of God providing sustenance and abundance to the earth as in Psalm 104:14-15.",
+      "summary": "The lord of limitless dust and earthly plenty symbolizes divine provision and abundance akin to God's provision in Psalm 104:14-15.",
+      "evidence": [
+        {
+          "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+          "render_index": 4,
+          "quote": "So he swept them away and kept only one: the lord of limitless dust and earthly plenty, who whispered in the watches and the waiting of the night that hoarded treasures might hold back time itself and defy the demands it made.",
+          "role": null,
+          "start_char": 856,
+          "end_char": 1082,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_a3adaa6be6be83a7f0ff767d43b610ce",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            7
+          ],
+          "evidence_sha256": "34f9b3fc3f6453245035eb32c8c76d1a1f27de8333e6aa79ad5933583b049066"
+        }
+      ],
+      "confidence": 0.6,
+      "reference": "Psalm 104:14-15",
+      "motif": "divine_provision_and_earthly_plenty"
+    }
+  ],
+  "rejected_observations": [
+    {
+      "index": 0,
+      "raw": {
+        "biblical_anchor_label": "Job 2:11-13",
+        "book": "Job",
+        "chapter": 2,
+        "verse_start": 11,
+        "verse_end": 13,
+        "motif_family": "Grief and Loss",
+        "relationship_type": "narrative_parallel",
+        "correspondence_rationale": "The passage describes Father Aviel's profound grief and emotional cessation after the death and burial of his bride, paralleling Job's experience of deep mourning and loss where friends come to console him but he is overwhelmed by sorrow.",
+        "summary": "Aviel's grief and emotional paralysis after his wife's death parallels Job's mourning and the presence of consoling figures in Job 2:11-13.",
+        "evidence": [
+          {
+            "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+            "quote": "Father Aviel had been a scholar, sharp as fresh-knapped flint, sought and summoned by those with questions knotted beyond common counsel. But when Mother Zuna passed beyond recall—when they buried his bride beneath the earth—something stopped within him. Not died, which would have been cleaner and quicker, but simply ceased like a cart with a cruelly shattered axle."
+          }
+        ],
+        "confidence": 0.9
+      },
+      "error": "observation[0]: Biblical anchor must be verse-addressable: Job 2:11-13"
+    }
+  ],
+  "failure_reason": null,
+  "validation_errors": [
+    "observation[0]: Biblical anchor must be verse-addressable: Job 2:11-13"
+  ],
+  "evidence_errors": [],
+  "raw_output_hash": "5d0f0080c8e88e9e3c77431a5f5f5cfda242faa9fe47a3a62f60211764028a34",
+  "normalized_output_hash": "dae3dc41a798d92e1cff03b517adc2cd4c85a5a343328eb36e25b0aa02b80000"
+}

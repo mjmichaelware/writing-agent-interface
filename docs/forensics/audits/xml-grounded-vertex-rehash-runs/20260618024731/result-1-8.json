@@ -1,0 +1,146 @@
+{
+  "paragraphs": [
+    {
+      "paragraph_id": "016cc75e-e31b-4e4f-b7e8-a015916ed8b4",
+      "content_sha256": "dcdefa259bd76770aed48c607fc3d38a89948b09254020adf20ac4a15e3961ad",
+      "archetypal_weights": {
+        "shadow": 0.9,
+        "self": 0.1
+      },
+      "dualism_map": {
+        "creation_destruction": 0.9,
+        "perception_reality": 0.8,
+        "life_death": 0.85
+      },
+      "metadata": {
+        "summary": "In a dream sequence initiated by Dan, his father Aviel perceives magically created matter as treasure. Aviel's greed compels him to hoard it until he is crushed and transformed into a stone pillar, a symbolic death caused by his own avarice and delusion.",
+        "semantic_notes": [
+          "This paragraph depicts a key event from the synopsis: Dan's dream-message to his father, making a spiritual sickness physically manifest.",
+          "It establishes the metaphysical rules of the 'Dust' from the Compendium, showing Dan's 'Volition' in action as the 'unseen hand'.",
+          "Aviel's transformation into a stone pillar is a direct consequence of his archetypal role as the 'Hoarder' and his spiritual alignment with Dagon, the god of accumulation and false abundance."
+        ]
+      },
+      "archetype_observations": [
+        {
+          "archetype": "Wounded Father/Hoarder",
+          "subject_name": "Aviel",
+          "movement_stage": "Consumption by Shadow",
+          "evidence_text": "His hands grasped at gold, copper, and fine silver... whispering, \"Mine,\" hoarding his own delusion... The suffocating density of his possessions silenced him, permanently locking his hands in the posture of hoarding.",
+          "interpretation": "Aviel is shown completely consumed by his shadow aspect of hoarding, a pathological state rooted in grief and materialism. The dream forces a confrontation where his shadow self, his greed, literally crushes his being, representing his spiritual state of being consumed by entropy ('Aviel's Rot'). This is the 'scholar collapsed into systemic decay' described in the context pack.",
+          "confidence": 0.95
+        },
+        {
+          "archetype": "Son/Judge",
+          "subject_name": "Dan",
+          "movement_stage": "Exercising Will/Volition",
+          "evidence_text": "By Dan's will and word... The dust, stirred by an unseen hand, began to dance...",
+          "interpretation": "Dan acts as the catalyst and judge, using his dreamwalking ability ('Volition') to create a mirror reflecting his father's spiritual sickness. This aligns with his initial role as 'Dan' (He who judges) before his later transformation into 'Daniel' (God is my Judge), as outlined in the Compendium.",
+          "confidence": 0.9
+        }
+      ],
+      "biblical_references": [
+        {
+          "reference_text": "Pillar of Stone",
+          "book": "Genesis",
+          "chapter": 19,
+          "verse": 26,
+          "allusion_type": "typological",
+          "evidence_text": "He became a lonesome pillar of stone in a barren field...",
+          "interpretation": "This is a typological parallel to Lot's wife turning into a pillar of salt for looking back at the sinful city of Sodom. Here, Aviel is transformed for clinging to earthly possessions, a form of spiritual stasis and idolatry. He is petrified not by looking back at a place, but by refusing to let go of the material world.",
+          "confidence": 0.9
+        },
+        {
+          "reference_text": "Corrupt Creation",
+          "book": "Genesis",
+          "chapter": 1,
+          "verse": null,
+          "allusion_type": "symbolic",
+          "evidence_text": "The creation was instantaneous and corrupt, an accelerated genesis toward a state of total collapse.",
+          "interpretation": "The language deliberately inverts the ordered, life-giving creation narrative in Genesis 1. This 'genesis' is a tool of judgment that leads to death and collapse, highlighting its 'unnatural' and 'devastating' nature—a creation built on 'the lie of rest' rather than divine truth.",
+          "confidence": 0.9
+        },
+        {
+          "reference_text": "Dust to Dust",
+          "book": "Genesis",
+          "chapter": 3,
+          "verse": 19,
+          "allusion_type": "symbolic",
+          "evidence_text": "Glittering motes rained down... The dust, stirred by an unseen hand, began to dance...",
+          "interpretation": "The scene uses 'dust' as the primordial element of creation, echoing the biblical concept. Aviel's obsession with things made from this dust (gold, silver, stones) leads to his own return to an inert, dust-like state (a pillar of stone), fulfilling the 'dust to dust' cycle in a symbolic, punitive manner.",
+          "confidence": 0.85
+        }
+      ],
+      "derived_hyperlinks": [
+        {
+          "theme_node_a": "Aviel's Hoarding",
+          "theme_node_b": "Dagon (God of Accumulation)",
+          "connection_type": "Embodiment",
+          "edge_type": "archetype",
+          "confidence": 0.95,
+          "evidence_text": "It was the unnatural accumulation of matter... He gathered the ever-burgeoning accumulation until his very form was distended, crushed."
+        },
+        {
+          "theme_node_a": "Dan's Will",
+          "theme_node_b": "Quantum Dust",
+          "connection_type": "Manipulation",
+          "edge_type": "parallelism",
+          "confidence": 0.9,
+          "evidence_text": "By Dan's will and word... The dust, stirred by an unseen hand, began to dance... It coalesced"
+        },
+        {
+          "theme_node_a": "Aviel's Transformation",
+          "theme_node_b": "Lot's Wife",
+          "connection_type": "Typological Parallel",
+          "edge_type": "biblical",
+          "confidence": 0.9,
+          "evidence_text": "He became a lonesome pillar of stone in a barren field"
+        }
+      ]
+    }
+  ],
+  "dualism_relations": [
+    {
+      "relation_type": "Perception vs. Reality",
+      "shared_substrate": "Dream-Matter created from Dust",
+      "pole_a": {
+        "label": "Perceived Treasure",
+        "paragraph_id": "016cc75e-e31b-4e4f-b7e8-a015916ed8b4",
+        "description": "Aviel perceives the dream-matter as valuable treasure (gold, copper, fine silver), a source of wealth and security."
+      },
+      "pole_b": {
+        "label": "Crushing Weight",
+        "paragraph_id": "016cc75e-e31b-4e4f-b7e8-a015916ed8b4",
+        "description": "The reality of the matter is that it is a heavy, crushing, and ultimately fatal burden that destroys him."
+      },
+      "interpretation": "This dualism highlights the core theme of Aviel's delusion. His greed causes him to misinterpret a destructive force as a desirable object. The dream makes literal the spiritual truth that his obsession with 'having' is destroying his 'being', a direct manifestation of the conflict between the 'Horizontal' gods of things and the 'Vertical' source of being.",
+      "confidence": 0.98,
+      "evidence": [
+        {
+          "paragraph_id": "016cc75e-e31b-4e4f-b7e8-a015916ed8b4",
+          "evidence_role": "bridge",
+          "evidence_text": "By Dan's will and word, Aviel saw only treasure. His hands grasped at gold, copper, and fine silver... He gathered the ever-burgeoning accumulation until his very form was distended, crushed."
+        }
+      ],
+      "derived_hyperlink": {
+        "theme_node_a": "Aviel's Delusion",
+        "theme_node_b": "Destructive Reality",
+        "connection_type": "Opposition",
+        "edge_type": "dualism",
+        "confidence": 0.98
+      }
+    }
+  ],
+  "archetype_movements": [
+    {
+      "subject_name": "Aviel",
+      "arc_label": "Collapse into Shadow",
+      "from_state": "Grieving Hoarder",
+      "to_state": "Symbolic Death by Hoarding",
+      "start_paragraph_id": "016cc75e-e31b-4e4f-b7e8-a015916ed8b4",
+      "end_paragraph_id": "016cc75e-e31b-4e4f-b7e8-a015916ed8b4",
+      "evidence_summary": "Aviel's greed leads him to hoard dream-treasures until they physically crush and petrify him, representing the culmination of his entropic decay and obsession with material possessions.",
+      "interpretation": "This event marks a critical point in Aviel's archetypal journey as the 'Wounded Father'. It is not a step toward integration but a full descent into his shadow, where his defining flaw becomes the literal instrument of his symbolic death. This is the 'Potential Rigorously Refused' described in the Compendium, a sacrifice not to a higher good, but to Dagon, the god of accumulation.",
+      "confidence": 0.9
+    }
+  ]
+}

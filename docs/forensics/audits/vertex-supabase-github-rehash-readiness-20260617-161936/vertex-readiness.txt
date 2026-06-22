@@ -1,0 +1,23 @@
+gcloud_path=/data/data/com.termux/files/home/google-cloud-sdk/bin/gcloud
+gcloud_version:
+Google Cloud SDK 572.0.0
+beta 2026.06.05
+bq 2.1.32
+core 2026.06.05
+gcloud-crc32c 1.0.0
+gsutil 5.37
+
+active_gcloud_auth:
+michaelware360@gmail.com
+
+gcloud_project:
+ai-job-agent-498702
+
+vertex_service_enabled:
+aiplatform.googleapis.com
+
+adc_token_check:
+ADC_OK
+
+vertex_env_names_only:
+GOOGLE_API_KEY=<set>

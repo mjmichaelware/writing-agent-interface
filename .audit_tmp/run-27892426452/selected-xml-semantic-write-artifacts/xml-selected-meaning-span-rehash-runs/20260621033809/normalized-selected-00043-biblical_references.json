@@ -1,0 +1,68 @@
+{
+  "status": "ok",
+  "task_type": "biblical_references",
+  "scene_window_id": "scene_4c2914e138249b3141c7597ba6ede724",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "8baea7d866c2acc117fa069d56dddb8913efef55dec25c1253e8ebca627feec5",
+  "observations": [
+    {
+      "biblical_anchor_label": "Genesis 4:8",
+      "book": "Genesis",
+      "chapter": 4,
+      "verse_start": 8,
+      "verse_end": 8,
+      "motif_family": "Fratricide and Envy",
+      "relationship_type": "explicit_allusion",
+      "correspondence_rationale": "The text references 'the first fratricide' and 'the first envy of a younger fire for an older,' directly alluding to the biblical story of Cain and Abel, where the first murder (fratricide) and envy between brothers is recorded.",
+      "summary": "The passage explicitly alludes to the biblical account of Cain killing Abel, the first fratricide motivated by envy.",
+      "evidence": [
+        {
+          "render_para_key": "rp_34dd7b68c4bc1557a4b288e3c4284602",
+          "quote": "a colder light struggled to be born—a subtle resentment prefiguring the first fratricide, the first envy of a younger fire for an older"
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Genesis 4:8",
+      "book": "Genesis",
+      "chapter": 4,
+      "verse_start": 8,
+      "verse_end": 8,
+      "motif_family": "fratricide_and_envy",
+      "biblical_anchor_key": "bibanchor_ac48dfa6042c5459c15a89d6a71b1f6c",
+      "relationship_type": "explicit_allusion",
+      "correspondence_rationale": "The text references 'the first fratricide' and 'the first envy of a younger fire for an older,' directly alluding to the biblical story of Cain and Abel, where the first murder (fratricide) and envy between brothers is recorded.",
+      "summary": "The passage explicitly alludes to the biblical account of Cain killing Abel, the first fratricide motivated by envy.",
+      "evidence": [
+        {
+          "render_para_key": "rp_34dd7b68c4bc1557a4b288e3c4284602",
+          "render_index": 44,
+          "quote": "a colder light struggled to be born—a subtle resentment prefiguring the first fratricide, the first envy of a younger fire for an older",
+          "role": null,
+          "start_char": 11202,
+          "end_char": 11337,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_4c2914e138249b3141c7597ba6ede724",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            87
+          ],
+          "evidence_sha256": "bd233ad98b602874021539db4f2ea060e1313f19d33d691a72cba60f62e350ec"
+        }
+      ],
+      "confidence": 0.95,
+      "reference": "Genesis 4:8",
+      "motif": "fratricide_and_envy"
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "e86168129b19392d7b0df135ac91255b9af93d7f3e3fe2929ddb7ea023445105",
+  "normalized_output_hash": "36903b703d0c0275e92355df233997d7bfa8f07ab1eea21cffbaa8b94685e8e3"
+}

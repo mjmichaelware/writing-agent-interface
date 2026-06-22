@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_2de3714d1dad5a85d43e7c798aa1205b",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "7d4c6ec4cc5d1681c4960424c19e2b6e0a473f76e1b32e50b6ebfdcc52cd99ba",
+  "observations": [
+    {
+      "kind": "emotional_state",
+      "summary": "The character experiences a physical and emotional reaction of fear or anxiety, indicated by pulling the blanket to his chin and trying not to think about an unknown presence at the chamber lattice.",
+      "evidence": [
+        {
+          "render_para_key": "rp_97a5520c39ddf5b3ddd6e8a8ebf29bbf",
+          "quote": "He pulled the thin blanket to his chin and tried not to think of what might be gently entreating entrance at his chamber lattice in the dark."
+        }
+      ],
+      "thematic_weight": 7,
+      "gravity": 6,
+      "tension": 8,
+      "confidence": 0.95,
+      "notes": "The phrase 'gently entreating entrance' suggests a presence that is both insistent and subtle, creating tension."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "The character experiences a physical and emotional reaction of fear or anxiety, indicated by pulling the blanket to his chin and trying not to think about an unknown presence at the chamber lattice.",
+      "evidence": [
+        {
+          "render_para_key": "rp_97a5520c39ddf5b3ddd6e8a8ebf29bbf",
+          "render_index": 94,
+          "quote": "He pulled the thin blanket to his chin and tried not to think of what might be gently entreating entrance at his chamber lattice in the dark.",
+          "role": null,
+          "start_char": 21100,
+          "end_char": 21241,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_2de3714d1dad5a85d43e7c798aa1205b",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            187
+          ],
+          "evidence_sha256": "29fe168bdc6895777fc55393a5e82ce3fb4a28238c54a89fd460a37dd171251a"
+        }
+      ],
+      "thematic_weight": 1,
+      "gravity": 1,
+      "tension": 1,
+      "confidence": 0.95,
+      "notes": "The phrase 'gently entreating entrance' suggests a presence that is both insistent and subtle, creating tension."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "0415e954c5d630d32d3c1a3382f2b608cc66ff288bda81412243dbd013e09360",
+  "normalized_output_hash": "97abd61db98545663e73570b9654946afa2c511ba5d7c3ca98a06b07206d3538"
+}

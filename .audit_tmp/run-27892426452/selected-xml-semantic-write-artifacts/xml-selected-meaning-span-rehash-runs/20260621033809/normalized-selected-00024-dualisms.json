@@ -1,0 +1,99 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_848fe9b93848a69be7d474b1760702ea",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "623648f1d6790dea9fcec753cde2da7b85dd2eee6ae506d1575bfb8e86e5b85c",
+  "observations": [
+    {
+      "axis": "Dreamwalking Ability vs. Danger",
+      "polarity": "positive vs. negative",
+      "summary": "The ability to enter and move within another person's sleep is portrayed as a rare and powerful gift, yet it is also described as considerably dangerous, highlighting a tension between empowerment and risk.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_75eb567923c27b983eca99b421cd38c8",
+          "quote": "His mother, Zuna, had been a dreamwalker—rarer than it sounds and considerably more dangerous than it looks."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_75eb567923c27b983eca99b421cd38c8",
+          "quote": "She had taught Dan the same capacity before she went, which is to say: she had taught him to enter another person's sleep and move within it with deliberate intention."
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_75eb567923c27b983eca99b421cd38c8",
+          "quote": "Some say such an ability belongs to those who consort with certain patient, curious watchers of the world—creatures of thread and careful observation whose tales are considerably longer than a ball of yarn."
+        }
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "dreamwalking_ability_vs_danger",
+      "polarity": "tension",
+      "summary": "The ability to enter and move within another person's sleep is portrayed as a rare and powerful gift, yet it is also described as considerably dangerous, highlighting a tension between empowerment and risk.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_75eb567923c27b983eca99b421cd38c8",
+          "render_index": 25,
+          "quote": "His mother, Zuna, had been a dreamwalker—rarer than it sounds and considerably more dangerous than it looks.",
+          "role": "left",
+          "start_char": 6684,
+          "end_char": 6792,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_848fe9b93848a69be7d474b1760702ea",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            49
+          ],
+          "evidence_sha256": "aef751fc34309f2df7f06f3b8d39d131609c9b45cd2baff3eb202a79f197ba38"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_75eb567923c27b983eca99b421cd38c8",
+          "render_index": 25,
+          "quote": "She had taught Dan the same capacity before she went, which is to say: she had taught him to enter another person's sleep and move within it with deliberate intention.",
+          "role": "right",
+          "start_char": 6793,
+          "end_char": 6960,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_848fe9b93848a69be7d474b1760702ea",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            49
+          ],
+          "evidence_sha256": "46583662a75241aa284ce5b246887067cb6b8ee5451b3160d593d9c1ffd76c83"
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_75eb567923c27b983eca99b421cd38c8",
+          "render_index": 25,
+          "quote": "Some say such an ability belongs to those who consort with certain patient, curious watchers of the world—creatures of thread and careful observation whose tales are considerably longer than a ball of yarn.",
+          "role": "bridge",
+          "start_char": 6961,
+          "end_char": 7167,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_848fe9b93848a69be7d474b1760702ea",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            49
+          ],
+          "evidence_sha256": "5bff2e3d48bc68fee2c646620dc36ad0593e2a30efe5e9b2462df1832bb18c2d"
+        }
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "8937238a5d4105cd4acbae2cf78a4f413ea1762c3123a99eaf7450210adedadf",
+  "normalized_output_hash": "b7d04e38bc260f5498e70bb1849b2b8f5eaff3b6073f61e0f32b9c850a3706a7"
+}

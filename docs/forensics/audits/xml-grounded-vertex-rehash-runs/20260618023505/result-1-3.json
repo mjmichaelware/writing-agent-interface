@@ -1,0 +1,116 @@
+{
+  "paragraphs": [
+    {
+      "paragraph_id": "00df743f-4a1c-47c8-a26f-fe6aff5d1215",
+      "content_sha256": "b1e31ce7aaceb3e78822d7c2978b01b0fc339c367c90f4950fa83ced89358415",
+      "archetypal_weights": {
+        "shadow": 0.2,
+        "self": 0.6
+      },
+      "dualism_map": {
+        "ascent_descent": 0.8
+      },
+      "metadata": {
+        "summary": "Dan experiences the physical and spiritual cost of his dream-intervention, feeling drained and empty after successfully bringing a temporary peace to his sleeping father, Aviel.",
+        "semantic_notes": [
+          "Highlights the 'Somatic Cost' of Dan's spiritual actions, a core theme.",
+          "Establishes a dualism where Dan's emptiness is exchanged for Aviel's peace.",
+          "The smell of 'rot' connects to the house's spiritual decay and the concept of 'Aviel's Rot' from the context pack."
+        ]
+      },
+      "archetype_observations": [
+        {
+          "archetype": "Living Sacrifice",
+          "subject_name": "Dan",
+          "movement_stage": "Initiation / Somatic Cost",
+          "evidence_text": "Exhaustion settled over him; he felt hollowed out, emptier now than before he'd entered.",
+          "interpretation": "This is an early instance of the 'Living Sacrifice' archetype. Dan expends his own spiritual and physical energy (volition) to bring peace to his father, experiencing the 'Somatic Cost' described in the rulebook. He is 'hollowed out' as a direct consequence of his spiritual action, showing the body's submission to the spirit's choice.",
+          "confidence": 0.9
+        },
+        {
+          "archetype": "Wounded Father",
+          "subject_name": "Aviel",
+          "movement_stage": "Temporary Restoration",
+          "evidence_text": "From behind his father's door came only peaceful sleep—the first Aviel had known in months.",
+          "interpretation": "Aviel, the 'Wounded Father' trapped in entropy and hoarding ('Aviel's Rot'), receives a moment of grace and peace. This restoration is not self-generated but comes from the external, sacrificial action of his son, Dan, highlighting Aviel's current passive and wounded state.",
+          "confidence": 0.85
+        }
+      ],
+      "biblical_references": [
+        {
+          "reference_text": "Son bearing the cost for the father's state",
+          "book": null,
+          "chapter": null,
+          "verse": null,
+          "allusion_type": "typological",
+          "evidence_text": "From behind his father's door came only peaceful sleep—the first Aviel had known in months. ... Exhaustion settled over him; he felt hollowed out, emptier now than before he'd entered.",
+          "interpretation": "The paragraph creates a typological parallel to the biblical concept of a righteous figure bearing a cost for another's sake. Dan expends his own vitality to grant his father peace, mirroring themes of substitutionary sacrifice and the son taking on the burden of the father's condition (in this case, spiritual entropy/decay).",
+          "confidence": 0.75
+        }
+      ],
+      "derived_hyperlinks": [
+        {
+          "theme_node_a": "Dan's Emptiness",
+          "theme_node_b": "Aviel's Peace",
+          "connection_type": "Inverse Relationship",
+          "edge_type": "dualism",
+          "confidence": 0.95,
+          "evidence_text": "From behind his father's door came only peaceful sleep... he felt hollowed out, emptier now than before he'd entered."
+        },
+        {
+          "theme_node_a": "Dan's Exhaustion",
+          "theme_node_b": "Living Sacrifice",
+          "connection_type": "Manifestation of",
+          "edge_type": "archetype",
+          "confidence": 0.9,
+          "evidence_text": "Exhaustion settled over him; he felt hollowed out..."
+        }
+      ]
+    }
+  ],
+  "dualism_relations": [
+    {
+      "relation_type": "Transference of State",
+      "shared_substrate": "Spiritual/Emotional Well-being",
+      "pole_a": {
+        "label": "Emptiness/Expenditure",
+        "paragraph_id": "00df743f-4a1c-47c8-a26f-fe6aff5d1215",
+        "description": "Dan is physically and spiritually drained, 'hollowed out' after his intervention."
+      },
+      "pole_b": {
+        "label": "Peace/Restoration",
+        "paragraph_id": "00df743f-4a1c-47c8-a26f-fe6aff5d1215",
+        "description": "Aviel experiences peaceful sleep for the first time in months, a state of restoration."
+      },
+      "interpretation": "A clear dualism is established where Dan's expenditure of energy directly results in Aviel's peace. One character is emptied while the other is filled, demonstrating the 'Somatic Cost' of Dan's volition against his father's entropy. This is a core dynamic of the narrative.",
+      "confidence": 0.95,
+      "evidence": [
+        {
+          "paragraph_id": "00df743f-4a1c-47c8-a26f-fe6aff5d1215",
+          "evidence_role": "bridge",
+          "evidence_text": "From behind his father's door came only peaceful sleep—the first Aviel had known in months. ... Exhaustion settled over him; he felt hollowed out, emptier now than before he'd entered."
+        }
+      ],
+      "derived_hyperlink": {
+        "theme_node_a": "Dan's Emptiness",
+        "theme_node_b": "Aviel's Peace",
+        "connection_type": "Inverse Relationship",
+        "edge_type": "dualism",
+        "confidence": 0.95
+      }
+    }
+  ],
+  "archetype_movements": [
+    {
+      "subject_name": "Dan",
+      "arc_label": "Volition against Entropy",
+      "from_state": "Potential Volition",
+      "to_state": "Realized Volition with Somatic Cost",
+      "start_paragraph_id": "00df743f-4a1c-47c8-a26f-fe6aff5d1215",
+      "end_paragraph_id": "00df743f-4a1c-47c8-a26f-fe6aff5d1215",
+      "evidence_summary": "Dan successfully uses his dreamwalking ability to affect his father, but the act leaves him physically and spiritually depleted.",
+      "interpretation": "This paragraph marks a critical step in Dan's archetypal journey as the 'Son/Volition'. He moves from simply possessing the ability to actively using it to counteract his father's 'Entropy'. The resulting exhaustion is the first major demonstration of the 'Somatic Cost' principle, initiating his path toward becoming a 'Living Sacrifice'.",
+      "confidence": 0.9
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_257fbcfffb26c6ab2af8b05432dac059",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "1f4f0703465ae99cf96495d212feef7d73025d4af317caa4e0296497a12d4dd4",
+  "observations": [
+    {
+      "kind": "Symbolic Setting",
+      "summary": "The place is described as a house that has chosen to destroy itself, symbolizing self-destruction and decay.",
+      "evidence": [
+        {
+          "render_para_key": "rp_b13bd3bacb4958904a10e9d7bea8a779",
+          "quote": "A house that had chosen to destroy itself."
+        }
+      ],
+      "thematic_weight": 0.9,
+      "gravity": 0.8,
+      "tension": 0.7,
+      "confidence": 0.95,
+      "notes": "The phrase implies agency attributed to the place, emphasizing its self-destructive nature."
+    },
+    {
+      "kind": "Cultural Warning",
+      "summary": "Old stories warn not to look back at such a place when leaving, indicating a cultural or mythic taboo associated with the house.",
+      "evidence": [
+        {
+          "render_para_key": "rp_b13bd3bacb4958904a10e9d7bea8a779",
+          "quote": "Some old stories warn you not to look back at such a place when you leave it."
+        }
+      ],
+      "thematic_weight": 0.7,
+      "gravity": 0.6,
+      "tension": 0.6,
+      "confidence": 0.9,
+      "notes": "This suggests a motif of forbidden retrospection linked to the place's destructive nature."
+    },
+    {
+      "kind": "Character Resolve",
+      "summary": "The character consciously decides not to look back at the place, indicating determination or acceptance of the past.",
+      "evidence": [
+        {
+          "render_para_key": "rp_b13bd3bacb4958904a10e9d7bea8a779",
+          "quote": "He was not going to look back."
+        }
+      ],
+      "thematic_weight": 0.8,
+      "gravity": 0.7,
+      "tension": 0.8,
+      "confidence": 0.95,
+      "notes": "This decision may reflect a psychological or spiritual stance towards moving forward."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "Old stories warn not to look back at such a place when leaving, indicating a cultural or mythic taboo associated with the house.",
+      "evidence": [
+        {
+          "render_para_key": "rp_b13bd3bacb4958904a10e9d7bea8a779",
+          "render_index": 13,
+          "quote": "Some old stories warn you not to look back at such a place when you leave it.",
+          "role": null,
+          "start_char": 4780,
+          "end_char": 4857,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_257fbcfffb26c6ab2af8b05432dac059",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            25
+          ],
+          "evidence_sha256": "75b77cf9dfe33da560854f0d541a5b1e4967f397ba99810774c71a2c9f7631d4"
+        }
+      ],
+      "thematic_weight": 0.7,
+      "gravity": 0.6,
+      "tension": 0.6,
+      "confidence": 0.9,
+      "notes": "This suggests a motif of forbidden retrospection linked to the place's destructive nature."
+    },
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "The character consciously decides not to look back at the place, indicating determination or acceptance of the past.",
+      "evidence": [
+        {
+          "render_para_key": "rp_b13bd3bacb4958904a10e9d7bea8a779",
+          "render_index": 13,
+          "quote": "He was not going to look back.",
+          "role": null,
+          "start_char": 4892,
+          "end_char": 4922,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_257fbcfffb26c6ab2af8b05432dac059",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            25
+          ],
+          "evidence_sha256": "eeaace88f52da10945f4d42ceed098abfa402916039b9b1c10572597778cd0de"
+        }
+      ],
+      "thematic_weight": 0.8,
+      "gravity": 0.7,
+      "tension": 0.8,
+      "confidence": 0.95,
+      "notes": "This decision may reflect a psychological or spiritual stance towards moving forward."
+    },
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "The place is described as a house that has chosen to destroy itself, symbolizing self-destruction and decay.",
+      "evidence": [
+        {
+          "render_para_key": "rp_b13bd3bacb4958904a10e9d7bea8a779",
+          "render_index": 13,
+          "quote": "A house that had chosen to destroy itself.",
+          "role": null,
+          "start_char": 4737,
+          "end_char": 4779,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_257fbcfffb26c6ab2af8b05432dac059",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            25
+          ],
+          "evidence_sha256": "a1631dd9da6755c6407ab1c1db4fbf7c8bac6e96a9be7b50b83f304de1d36065"
+        }
+      ],
+      "thematic_weight": 0.9,
+      "gravity": 0.8,
+      "tension": 0.7,
+      "confidence": 0.95,
+      "notes": "The phrase implies agency attributed to the place, emphasizing its self-destructive nature."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "1ed78d775738844f4d7fb61a782434d6187780b2415be68f5ad154e137e47dde",
+  "normalized_output_hash": "57967aaba1fb5fae4836358a9a8978986fe10865b37c6d900989c60e921241cf"
+}

@@ -1,0 +1,68 @@
+{
+  "status": "ok",
+  "task_type": "biblical_references",
+  "scene_window_id": "scene_54570e91165f4ff089571c532cad24bc",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "bcc0db2649101645945750741c8c816fc72ed602c7d5a780e1f2fb128a9cb638",
+  "observations": [
+    {
+      "biblical_anchor_label": "Luke 11:25-26",
+      "book": "Luke",
+      "chapter": 11,
+      "verse_start": 25,
+      "verse_end": 26,
+      "motif_family": "Spiritual Cleansing and Emptiness",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The phrase 'Make the vessel empty before you try to use it' symbolically resonates with the biblical teaching in Luke 11:25-26 about the necessity of emptying a person (or vessel) from unclean spirits before it can be filled with something new and pure. This reflects the motif of spiritual cleansing and preparation for new use or purpose.",
+      "summary": "The instruction to 'make the vessel empty' before use symbolically resonates with Luke 11:25-26's teaching on spiritual cleansing and emptiness before renewal.",
+      "evidence": [
+        {
+          "render_para_key": "rp_c4d9de547093e8ae06b165d11d1628ed",
+          "quote": "\"Make the vessel empty before you try to use it.\""
+        }
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Luke 11:25-26",
+      "book": "Luke",
+      "chapter": 11,
+      "verse_start": 25,
+      "verse_end": 26,
+      "motif_family": "spiritual_cleansing_and_emptiness",
+      "biblical_anchor_key": "bibanchor_53237fe8dd67b7c3ac1dbf8ff66b316e",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The phrase 'Make the vessel empty before you try to use it' symbolically resonates with the biblical teaching in Luke 11:25-26 about the necessity of emptying a person (or vessel) from unclean spirits before it can be filled with something new and pure. This reflects the motif of spiritual cleansing and preparation for",
+      "summary": "The instruction to 'make the vessel empty' before use symbolically resonates with Luke 11:25-26's teaching on spiritual cleansing and emptiness before renewal.",
+      "evidence": [
+        {
+          "render_para_key": "rp_c4d9de547093e8ae06b165d11d1628ed",
+          "render_index": 29,
+          "quote": "\"Make the vessel empty before you try to use it.\"",
+          "role": null,
+          "start_char": 7960,
+          "end_char": 8009,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_54570e91165f4ff089571c532cad24bc",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            57
+          ],
+          "evidence_sha256": "bd770c540708e4d1fc08648b2f2c9fee0ee9791d6cf6ff4a747ba12da8005b0a"
+        }
+      ],
+      "confidence": 0.6,
+      "reference": "Luke 11:25-26",
+      "motif": "spiritual_cleansing_and_emptiness"
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "a354a2e8e733a1edbbc8adb0789fe0f0ee75374cb688c9eab33b693179c4a2e1",
+  "normalized_output_hash": "70cceba5d3ceee48f4d9507e6430313c90aafeb95e56bb1da8144236d982265e"
+}

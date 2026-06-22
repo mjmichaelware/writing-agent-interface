@@ -1,0 +1,34 @@
+gh_path=/data/data/com.termux/files/usr/bin/gh
+gh version 2.93.0
+https://github.com/cli/cli/releases/tag/v2.93.0
+
+workflow_files:
+.github/workflows/build-and-deploy.yml
+.github/workflows/deploy-supabase-functions-only.yml
+
+workflow_list:
+build-and-deploy	active	278122143
+Deploy Supabase Edge Functions Only	active	295787631
+
+secret_names:
+GROQ_API_KEY	2026-05-21T06:39:49Z
+SUPABASE_ACCESS_TOKEN	2026-06-14T14:18:26Z
+SUPABASE_PROJECT_REF	2026-06-14T14:18:27Z
+SUPABASE_SERVICE_ROLE_KEY	2026-06-14T14:21:39Z
+TOGETHER_API_KEY	2026-05-21T06:57:29Z
+
+variable_names:
+SUPABASE_PROJECT_REF	yegricugzqbmoziycfnt	2026-06-14T14:09:56Z
+SUPABASE_URL	https://yegricugzqbmoziycfnt.supabase.co	2026-06-14T14:09:55Z
+
+recent_runs:
+completed	success	Deploy Supabase Edge Functions Only	Deploy Supabase Edge Functions Only	cleanup/standard-app-tree	workflow_dispatch	27501742749	32s	2026-06-14T14:23:07Z
+completed	failure	Deploy Supabase Edge Functions Only	Deploy Supabase Edge Functions Only	cleanup/standard-app-tree	workflow_dispatch	27501545362	13s	2026-06-14T14:15:24Z
+completed	failure	Allow Supabase function deploy from cleanup branch	Deploy Supabase Edge Functions Only	cleanup/standard-app-tree	push	27501239640	12s	2026-06-14T14:03:26Z
+completed	success	feat: NOS Complete - Multi-LLM Swarm, Document Analyzer, Audiobook La…	build-and-deploy	main	push	26832542674	1m25s	2026-06-02T16:11:06Z
+completed	success	feat: NOS Phase 1 Completion - Database-driven architecture, Ultra-iO…	build-and-deploy	main	push	26823305660	1m15s	2026-06-02T13:35:10Z
+completed	success	feat: ensure all assets are rendering correctly, including Title Page…	build-and-deploy	main	push	26730316665	1m20s	2026-06-01T01:23:29Z
+completed	success	feat: implement intelligent dual-layer cinematic projection for Chapt…	build-and-deploy	main	push	26728082450	1m18s	2026-05-31T23:52:00Z
+completed	success	fix: restore visibility of chapters and system tabs by copying manusc…	build-and-deploy	main	push	26726198614	1m12s	2026-05-31T22:23:23Z
+completed	success	fix: restore EventBus unsubscribe return and add defensive Array.isAr…	build-and-deploy	main	push	26726034857	1m21s	2026-05-31T22:15:40Z
+completed	success	feat: force-mount Layer4Panel with max z-index (2147483647), inline s…	build-and-deploy	main	push	26724303086	1m17s	2026-05-31T20:58:52Z

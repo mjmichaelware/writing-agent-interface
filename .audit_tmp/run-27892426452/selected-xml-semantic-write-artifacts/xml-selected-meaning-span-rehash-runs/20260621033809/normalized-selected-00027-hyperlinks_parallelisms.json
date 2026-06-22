@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_f7191bfea0dab5b79f33d17bdcba46c2",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "88e76b1323de4a799ed085b322d20f8b3faa7aeb90d0fa776e9fdc4f05da6a79",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The imagery of 'Her hands rough and reddened from the lye, holding a clay pot up to the afternoon sun' parallels the recurring motif of physical hardship and the passage of time marked by the afternoon sun in the narrative, symbolizing endurance and the tangible cost of labor.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_900f3f3b29f361bfbebdb55c48c25545",
+          "quote": "Her voice in the silence. Her hands rough and reddened from the lye, holding a clay pot up to the afternoon sun."
+        }
+      ],
+      "target_hint": "The motif of the afternoon sun and physical toil recurs throughout the narrative, marking endurance and the passage of time.",
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The imagery of 'Her hands rough and reddened from the lye, holding a clay pot up to the afternoon sun' parallels the recurring motif of physical hardship and the passage of time marked by the afternoon sun in the narrative, symbolizing endu",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_900f3f3b29f361bfbebdb55c48c25545",
+          "render_index": 28,
+          "quote": "Her voice in the silence. Her hands rough and reddened from the lye, holding a clay pot up to the afternoon sun.",
+          "role": "source",
+          "start_char": 7713,
+          "end_char": 7825,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_f7191bfea0dab5b79f33d17bdcba46c2",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            55
+          ],
+          "evidence_sha256": "85907a79aa965f956f97bddeeb1fe1a8446d125196e5ee42ace626d346438d2e"
+        }
+      ],
+      "target_hint": "The motif of the afternoon sun and physical toil recurs throughout the narrative, marking endurance and the passage of time.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "ea603782b072408c0e42fe2e7589e4e8e1ea6092ae99c4593a21e4392c152059",
+  "normalized_output_hash": "5649002d8e78a9ef8c7df1a41b2d29b60729d889a9b59697b371bd04e05e0949"
+}

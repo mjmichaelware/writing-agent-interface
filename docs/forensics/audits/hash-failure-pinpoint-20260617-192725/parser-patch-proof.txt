@@ -1,0 +1,10 @@
+693:class VertexJsonRepairError extends Error {
+696:    this.name = "VertexJsonRepairError";
+716:async function saveBadVertexJson(raw, meta = {}) {
+731:function parseJsonOrNull(raw) {
+737:async function repairJsonWithVertex(raw, originalPrompt) {
+745:  const repaired = await callVertexRaw(repairPrompt, { maxOutputTokens: 8192, temperature: 0 });
+746:  const parsed = parseJsonOrNull(repaired.text);
+749:    const badPath = await saveBadVertexJson(repaired.text, {
+754:    throw new VertexJsonRepairError(`Vertex JSON repair failed. Raw repair output saved: ${badPath}`, { badPath });
+760:async function callVertexRaw(prompt, overrideGenerationConfig = {}) {

@@ -1,0 +1,716 @@
+
+===== docs/forensics/audits/hashed-runtime-semantics-20260617-132525/hash-and-rebuild-runtime-semantics.cjs =====
+const fs = require('fs');
+const crypto = require('crypto');
+const { createClient } = require('@supabase/supabase-js');
+const OpenAI = require('openai');
+
+function loadDotEnv(path) {
+  if (!fs.existsSync(path)) return;
+
+  for (const line of fs.readFileSync(path, 'utf8').split(/\r?\n/)) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) continue;
+
+    const match = trimmed.match(/^([A-Za-z_][A-Za-z0-9_]*)=(.*)$/);
+    if (!match) continue;
+
+    const key = match[1];
+    let value = match[2].trim();
+
+    if (
+      (value.startsWith('"') && value.endsWith('"')) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
+      value = value.slice(1, -1);
+    }
+
+    if (!process.env[key]) process.env[key] = value;
+  }
+}
+
+loadDotEnv('.env.local');
+loadDotEnv('.env');
+
+const supabaseUrl = process.env.SUPABASE_URL;
+const serviceRoleKey = process.env.SERVICE_ROLE_KEY;
+const runId = process.env.RUN_ID;
+const model = process.env.ENRICHMENT_MODEL || 'gpt-4o-mini';
+const batchSize = Number(process.env.ENRICHMENT_BATCH_SIZE || 10);
+const maxParagraphs = Number(process.env.MAX_PARAGRAPHS || 0);
+
+if (!supabaseUrl || !serviceRoleKey) throw new Error('Missing Supabase credentials');
+if (!process.env.OPENAI_API_KEY) throw new Error('Missing OPENAI_API_KEY in shell, .env.local, or .env');
+
+const supabase = createClient(supabaseUrl, serviceRoleKey, {
+  auth: { persistSession: false, autoRefreshToken: false },
+});
+
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function sha256(value) {
+  return crypto.createHash('sha256').update(value, 'utf8').digest('hex');
+}
+
+function canonicalize(value) {
+  if (Array.isArray(value)) return value.map(canonicalize);
+
+  if (value && typeof value === 'object') {
+    return Object.fromEntries(
+      Object.entries(value)
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([key, val]) => [key, canonicalize(val)])
+    );
+  }
+
+  return value;
+}
+
+function deterministicUuid(seed) {
+  const hex = sha256(seed).slice(0, 32).split('');
+  hex[12] = '5';
+  hex[16] = ((parseInt(hex[16], 16) & 0x3) | 0x8).toString(16);
+  const joined = hex.join('');
+
+  return [
+    joined.slice(0, 8),
+    joined.slice(8, 12),
+    joined.slice(12, 16),
+    joined.slice(16, 20),
+    joined.slice(20, 32),
+  ].join('-');
+}
+
+function clamp(value) {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return 0;
+  return Math.max(0, Math.min(1, Number(n.toFixed(4))));
+}
+
+function normalizeWeights(input, keys) {
+  const out = {};
+  for (const key of keys) out[key] = clamp(input?.[key] ?? 0);
+  return out;
+}
+
+function normalizeRefs(refs) {
+  if (!Array.isArray(refs)) return [];
+
+  const out = [];
+  const seen = new Set();
+
+  for (const ref of refs) {
+    const reference_text = String(ref?.reference_text || ref?.text || '').trim();
+    const book = String(ref?.book || '').trim();
+    const chapterRaw = ref?.chapter;
+    const verseRaw = ref?.verse;
+
+    const chapter =
+      chapterRaw === null || chapterRaw === undefined || chapterRaw === ''
+        ? null
+        : Number(chapterRaw);
+
+    const verse =
+      verseRaw === null || verseRaw === undefined || verseRaw === ''
+        ? null
+        : Number(verseRaw);
+
+    if (!reference_text && !book) continue;
+
+    const row = {
+      reference_text: reference_text || [book, chapter, verse].filter((x) => x !== null && x !== '').join(' '),
+      book: book || null,
+      chapter: Number.isFinite(chapter) ? chapter : null,
+      verse: Number.isFinite(verse) ? verse : null,
+    };
+
+    const key = JSON.stringify(row);
+    if (!seen.has(key)) {
+      seen.add(key);
+      out.push(row);
+    }
+  }
+
+  return out.slice(0, 10);
+}
+
+function normalizeLinks(links, archetypalWeights, dualismMap) {
+  const out = [];
+  const seen = new Set();
+
+  const add = (theme_node_a, theme_node_b, link_type, weight) => {
+    theme_node_a = String(theme_node_a || '').trim();
+    theme_node_b = String(theme_node_b || '').trim();
+    link_type = String(link_type || 'semantic').trim();
+
+    if (!theme_node_a || !theme_node_b || theme_node_a === theme_node_b) return;
+
+    const key = `${theme_node_a}|${theme_node_b}|${link_type}`;
+    if (seen.has(key)) return;
+
+    seen.add(key);
+    out.push({
+      theme_node_a,
+      theme_node_b,
+      link_type,
+      weight: clamp(weight ?? 0.5),
+    });
+  };
+
+  if (Array.isArray(links)) {
+    for (const link of links) {
+      add(link?.theme_node_a, link?.theme_node_b, link?.link_type || 'semantic', link?.weight ?? 0.5);
+    }
+  }
+
+  for (const [dualism, dualismWeight] of Object.entries(dualismMap)) {
+    for (const [archetype, archetypeWeight] of Object.entries(archetypalWeights)) {
+      if (dualismWeight > 0 && archetypeWeight > 0) {
+        add(dualism, archetype, 'dualism_archetype', (dualismWeight + archetypeWeight) / 2);
+      }
+    }
+  }
+
+  const dualismEntries = Object.entries(dualismMap).filter(([, weight]) => weight > 0);
+  for (let i = 0; i < dualismEntries.length; i++) {
+    for (let j = i + 1; j < dualismEntries.length; j++) {
+      add(
+        dualismEntries[i][0],
+
+===== docs/forensics/audits/runtime-semantics-rebuild-20260617-131556/rebuild-runtime-semantics.cjs =====
+const fs = require('fs');
+const { createClient } = require('@supabase/supabase-js');
+const OpenAI = require('openai');
+
+function loadDotEnv(path) {
+  if (!fs.existsSync(path)) return;
+  const lines = fs.readFileSync(path, 'utf8').split(/\r?\n/);
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) continue;
+    const match = trimmed.match(/^([A-Za-z_][A-Za-z0-9_]*)=(.*)$/);
+    if (!match) continue;
+    const key = match[1];
+    let value = match[2].trim();
+    if (
+      (value.startsWith('"') && value.endsWith('"')) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
+      value = value.slice(1, -1);
+    }
+    if (!process.env[key]) process.env[key] = value;
+  }
+}
+
+loadDotEnv('.env.local');
+loadDotEnv('.env');
+
+const supabaseUrl = process.env.SUPABASE_URL;
+const serviceRoleKey = process.env.SERVICE_ROLE_KEY;
+const runId = process.env.RUN_ID;
+const model = process.env.ENRICHMENT_MODEL || 'gpt-4o-mini';
+const batchSize = Number(process.env.ENRICHMENT_BATCH_SIZE || 12);
+const maxParagraphs = Number(process.env.MAX_PARAGRAPHS || 0);
+
+if (!supabaseUrl || !serviceRoleKey) throw new Error('Missing Supabase credentials');
+if (!process.env.OPENAI_API_KEY) throw new Error('Missing OPENAI_API_KEY in shell, .env.local, or .env');
+
+const supabase = createClient(supabaseUrl, serviceRoleKey, {
+  auth: { persistSession: false, autoRefreshToken: false },
+});
+
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function fetchAllParagraphs() {
+  const rows = [];
+  const pageSize = 1000;
+
+  for (let from = 0; ; from += pageSize) {
+    const to = from + pageSize - 1;
+    const { data, error } = await supabase
+      .from('paragraphs')
+      .select('id, chapter_id, chunk_index, content, metadata')
+      .order('chapter_id', { ascending: true })
+      .order('chunk_index', { ascending: true, nullsFirst: false })
+      .range(from, to);
+
+    if (error) throw new Error(`fetch paragraphs: ${error.message}`);
+
+    rows.push(...(data || []));
+    if (!data || data.length < pageSize) break;
+  }
+
+  return maxParagraphs > 0 ? rows.slice(0, maxParagraphs) : rows;
+}
+
+function clampNumber(value) {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return 0;
+  return Math.max(0, Math.min(1, Number(n.toFixed(4))));
+}
+
+function normalizeWeights(input, keys) {
+  const out = {};
+  for (const key of keys) out[key] = clampNumber(input?.[key] ?? 0);
+  return out;
+}
+
+function normalizeBiblicalReferences(refs) {
+  if (!Array.isArray(refs)) return [];
+
+  const out = [];
+  const seen = new Set();
+
+  for (const ref of refs) {
+    const reference_text = String(ref?.text || ref?.reference_text || '').trim();
+    const book = String(ref?.book || '').trim();
+    const chapter = ref?.chapter === null || ref?.chapter === undefined ? null : Number(ref.chapter);
+    const verse = ref?.verse === null || ref?.verse === undefined ? null : Number(ref.verse);
+
+    if (!reference_text && !book) continue;
+
+    const row = {
+      reference_text: reference_text || [book, chapter, verse].filter((v) => v !== null && v !== '').join(' '),
+      book: book || null,
+      chapter: Number.isFinite(chapter) ? chapter : null,
+      verse: Number.isFinite(verse) ? verse : null,
+    };
+
+    const key = `${row.reference_text}|${row.book}|${row.chapter}|${row.verse}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      out.push(row);
+    }
+  }
+
+  return out.slice(0, 8);
+}
+
+function normalizeHyperlinks(links, archetypal_weights, dualism_map) {
+  const out = [];
+  const seen = new Set();
+
+  if (Array.isArray(links)) {
+    for (const link of links) {
+      const theme_node_a = String(link?.theme_node_a || '').trim();
+      const theme_node_b = String(link?.theme_node_b || '').trim();
+      const link_type = String(link?.link_type || 'semantic').trim();
+
+      if (!theme_node_a || !theme_node_b || theme_node_a === theme_node_b) continue;
+
+      const weight = clampNumber(link?.weight ?? 0.5);
+      const key = `${theme_node_a}|${theme_node_b}|${link_type}`;
+
+      if (!seen.has(key)) {
+        seen.add(key);
+        out.push({ theme_node_a, theme_node_b, link_type, weight });
+      }
+    }
+  }
+
+  for (const [dualismKey, dualismValue] of Object.entries(dualism_map)) {
+    for (const [archetypeKey, archetypeValue] of Object.entries(archetypal_weights)) {
+      if (dualismValue <= 0 || archetypeValue <= 0) continue;
+      const key = `${dualismKey}|${archetypeKey}|dualism_archetype`;
+      if (seen.has(key)) continue;
+
+      seen.add(key);
+      out.push({
+        theme_node_a: dualismKey,
+        theme_node_b: archetypeKey,
+        link_type: 'dualism_archetype',
+        weight: clampNumber((dualismValue + archetypeValue) / 2),
+      });
+    }
+  }
+
+  return out.slice(0, 12);
+}
+
+async function enrichBatch(batch) {
+  const payload = batch.map((p, index) => ({
+    batch_index: index,
+    paragraph_id: p.id,
+    chunk_index: p.chunk_index,
+    content: String(p.content || '').slice(0, 6000),
+  }));
+
+  const completion = await openai.chat.completions.create({
+    model,
+    temperature: 0.15,
+    response_format: { type: 'json_object' },
+    messages: [
+      {
+        role: 'system',
+        content:
+`You are a deterministic semantic enrichment engine for a literary runtime.
+
+Return valid JSON only:
+{
+  "results": [
+    {
+      "batch_index": 0,
+      "archetypal_weights": {
+        "shadow": 0.0,
+        "persona": 0.0,
+        "anima": 0.0,
+
+===== src/services/ingestion/pipeline.ts =====
+import OpenAI from 'openai';
+import { query } from '../../lib/db';
+import { GoogleSwarm } from '../orchestration-engine/google-swarm';
+
+function getOpenAI() {
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) return null;
+  return new OpenAI({ apiKey });
+}
+
+// Extractor for Hebrew typography terms
+function extractHebrewSpans(text: string) {
+  const hebrewTerms = ['Hebron', 'Hermon', 'Mamre', 'Beelzebub', 'Megiddo', 'Sak', 'Rafa'];
+  const spans: any[] = [];
+  hebrewTerms.forEach(term => {
+    let index = text.indexOf(term);
+    while (index !== -1) {
+      spans.push({ term, start: index, length: term.length });
+      index = text.indexOf(term, index + 1);
+    }
+  });
+  return spans;
+}
+
+// Extractor for XML metadata
+function extractEmaMetadata(xmlText: string) {
+  const metadata: any = {};
+  const sceneMatch = xmlText.match(/<scene\s+id="([^"]+)"/);
+  const timeMatch = xmlText.match(/time_of_day="([^"]+)"/);
+  const weatherMatch = xmlText.match(/weather="([^"]+)"/);
+  
+  if (sceneMatch) metadata.scene_id = sceneMatch[1];
+  if (timeMatch) metadata.time_of_day = timeMatch[1];
+  if (weatherMatch) metadata.weather = weatherMatch[1];
+  
+  return metadata;
+}
+
+/**
+ * ENGINE PLANE: NARRATIVE INGESTION PIPELINE
+ * * Feature 200: Meaning-Driven Semantic Weighting
+ * * BATCH OPTIMIZED: Processes 5 paragraphs per LLM call.
+ * * DATABASE: Direct PostgreSQL via pool (lib/db.ts)
+ */
+export async function ingestChapter(
+  partNumber: string,
+  chapterNumber: number,
+  status: 'drafted' | 'unwritten',
+  manifestId: string,
+  rawXmlText: string
+) {
+  const openai = getOpenAI(); 
+  if (!openai) throw new Error("OpenAI API key not configured");
+
+  await GoogleSwarm.logIntegrity('ingestion_start', { manifestId, partNumber, chapterNumber });
+
+  // 1. UPSERT Chapter
+  const { rows: chapters } = await query(
+    `INSERT INTO chapters (part_number, chapter_number, status, manifest_id)
+     VALUES ($1, $2, $3, $4)
+     ON CONFLICT (manifest_id) 
+     DO UPDATE SET part_number = EXCLUDED.part_number, chapter_number = EXCLUDED.chapter_number, status = EXCLUDED.status, updated_at = NOW()
+     RETURNING id, part_number, chapter_number`,
+    [partNumber, chapterNumber, status, manifestId]
+  );
+
+  const chapter = chapters[0];
+  if (!chapter) throw new Error("Failed to upsert chapter");
+
+  await GoogleSwarm.mirrorChapter(chapter);
+
+  const chapterMetadata = extractEmaMetadata(rawXmlText);
+
+  // Strip XML for paragraph chunking
+  const cleanText = rawXmlText.replace(/<[^>]*>?/gm, ''); 
+  const paragraphs = cleanText.split(/\n\s*\n/).filter((p) => p.trim().length > 0);
+
+  console.log(`Ingesting ${paragraphs.length} paragraphs for Ch ${chapterNumber}...`);
+
+  const BATCH_SIZE = 5;
+  for (let i = 0; i < paragraphs.length; i += BATCH_SIZE) {
+    const batch = paragraphs.slice(i, i + BATCH_SIZE);
+    
+    // Feature 200: Semantic Enrichment Batch Pass
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [
+        { 
+          role: "system", 
+          content: `You are the NOS Orchestration Engine. Analyze the ${batch.length} texts and return valid JSON only. 
+          Return an object with a "results" array. Each item must have:
+          "archetypal_weights": { "shadow": 0.0, "persona": 0.0, "anima": 0.0, "self": 0.0, "hero": 0.0 },
+          "dualism_map": { "sacred": 0.0, "descent": 0.0 },
+          "biblical_references": [{ "text": "...", "book": "...", "chapter": 0, "verse": 0 }],
+          "hyperlinks": [{ "theme_node_a": "...", "theme_node_b": "...", "link_type": "dualism" }]` 
+        },
+        { role: "user", content: JSON.stringify(batch) }
+      ],
+      response_format: { type: "json_object" }
+    });
+
+    const enrichedBatch = JSON.parse(completion.choices[0].message.content || '{"results":[]}').results;
+
+    for (let j = 0; j < batch.length; j++) {
+      const pText = batch[j];
+      const enrichment = enrichedBatch[j] || {};
+      const hebrewSpans = extractHebrewSpans(pText);
+
+      const embedResponse = await openai.embeddings.create({
+        model: "text-embedding-3-small",
+        input: pText,
+      });
+      const embedding = embedResponse.data[0].embedding;
+
+      // 2. INSERT Paragraph
+      const { rows: paragraphRows } = await query(
+        `INSERT INTO paragraphs (
+          chapter_id, content, chunk_index, embedding, 
+          archetypal_weights, dualism_map, hebrew_spans, metadata
+        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+        RETURNING id`,
+        [
+          chapter.id, pText, i + j, JSON.stringify(embedding),
+          enrichment.archetypal_weights || {},
+          enrichment.dualism_map || {},
+          JSON.stringify(hebrewSpans),
+          { ...chapterMetadata, batch_index: i }
+        ]
+      );
+
+      const paragraphData = paragraphRows[0];
+
+      if (paragraphData && enrichment.biblical_references?.length > 0) {
+        for (const ref of enrichment.biblical_references) {
+          await query(
+            `INSERT INTO biblical_references (paragraph_id, reference_text, book, chapter, verse)
+             VALUES ($1, $2, $3, $4, $5)`,
+            [paragraphData.id, ref.text || ref.reference_text, ref.book, ref.chapter, ref.verse]
+          );
+        }
+      }
+      
+      if (paragraphData && enrichment.hyperlinks?.length > 0) {
+        for (const link of enrichment.hyperlinks) {
+          await query(
+            `INSERT INTO hyperlinks (paragraph_id, theme_node_a, theme_node_b, link_type)
+             VALUES ($1, $2, $3, $4)`,
+            [paragraphData.id, link.theme_node_a, link.theme_node_b, link.link_type || 'dualism']
+          );
+        }
+      }
+
+      await GoogleSwarm.mirrorParagraph({
+        ...paragraphData,
+        content: pText,
+        chapter_number: chapter.chapter_number,
+        part_number: chapter.part_number,
+      });
+    }
+
+    console.log(`✓ Batch ${i/BATCH_SIZE + 1} complete for Ch ${chapterNumber}`);
+    await new Promise(resolve => setTimeout(resolve, 100));
+  }
+
+  await GoogleSwarm.logIntegrity('ingestion_complete', { manifestId, paragraphCount: paragraphs.length });
+
+  return { success: true, chapterId: chapter.id, parsedCount: paragraphs.length };
+}
+
+===== src/services/memory-engine/vector-store.ts =====
+import { Pool } from "pg";
+
+export class VectorStore {
+  private pool: Pool | null = null;
+
+  constructor() {
+    const connectionString = process.env.DATABASE_URL;
+    if (connectionString) {
+      this.pool = new Pool({
+        connectionString,
+        ssl: { rejectUnauthorized: false },
+        max: 5,
+        idleTimeoutMillis: 30000,
+        connectionTimeoutMillis: 10000,
+      });
+    }
+  }
+
+  private async query(text: string, params?: any[]) {
+    if (!this.pool) {
+      throw new Error("Postgres connection string not configured (DATABASE_URL)");
+    }
+    return this.pool.query(text, params);
+  }
+
+  async initializeSchema() {
+    await this.query(`
+      CREATE EXTENSION IF NOT EXISTS vector;
+      CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
+      CREATE TABLE IF NOT EXISTS chapters (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        manifest_id TEXT UNIQUE,
+        part_number TEXT,
+        chapter_number INT,
+        status TEXT,
+        thematic_embedding vector(1536),
+        created_at TIMESTAMP DEFAULT NOW()
+      );
+
+      CREATE TABLE IF NOT EXISTS paragraphs (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        chapter_id UUID REFERENCES chapters(id) ON DELETE CASCADE,
+        chunk_index INT,
+        content TEXT,
+        embedding vector(1536),
+        archetypal_weights JSONB DEFAULT '{}',
+        dualism_map JSONB DEFAULT '{}',
+        hebrew_spans JSONB DEFAULT '[]',
+        metadata JSONB DEFAULT '{}',
+        created_at TIMESTAMP DEFAULT NOW()
+      );
+
+      CREATE TABLE IF NOT EXISTS biblical_references (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        paragraph_id UUID REFERENCES paragraphs(id) ON DELETE CASCADE,
+        reference_text TEXT,
+        book TEXT,
+        chapter INT,
+        verse INT,
+        created_at TIMESTAMP DEFAULT NOW()
+      );
+
+      CREATE INDEX IF NOT EXISTS idx_paragraphs_chapter_chunk
+      ON paragraphs(chapter_id, chunk_index);
+    `);
+  }
+
+  async insertChapter(manifestId: string, embedding: number[]): Promise<string> {
+    const res = await this.query(
+      `INSERT INTO chapters (manifest_id, thematic_embedding)
+       VALUES ($1, $2)
+       ON CONFLICT (manifest_id)
+       DO UPDATE SET thematic_embedding = EXCLUDED.thematic_embedding
+       RETURNING id`,
+      [manifestId, embedding]
+    );
+
+    return res.rows[0].id;
+  }
+
+  async clearParagraphs(chapterId: string) {
+    await this.query(
+      `DELETE FROM paragraphs
+       WHERE chapter_id = $1`,
+      [chapterId]
+    );
+  }
+
+  async insertParagraph(chapterId: string, chunkIndex: number, content: string) {
+    await this.query(
+      `INSERT INTO paragraphs (
+         chapter_id,
+         chunk_index,
+         content
+       )
+       VALUES ($1, $2, $3)`,
+      [chapterId, chunkIndex, content]
+    );
+  }
+
+  async getChapterByManifestId(manifestId: string): Promise<string | null> {
+    const res = await this.query(
+      `SELECT id
+       FROM chapters
+       WHERE manifest_id = $1
+       LIMIT 1`,
+      [manifestId]
+    );
+
+    return res.rows[0]?.id || null;
+  }
+
+  async searchTopChapter(embedding: number[]): Promise<string | null> {
+    const res = await this.query(
+      `SELECT id
+       FROM chapters
+       ORDER BY thematic_embedding <=> $1
+       LIMIT 1`,
+      [embedding]
+    );
+
+    return res.rows[0]?.id || null;
+  }
+
+  async getParagraphsByChapter(chapterId: string): Promise<string[]> {
+    const res = await this.query(
+      `SELECT content
+       FROM paragraphs
+       WHERE chapter_id = $1
+       ORDER BY chunk_index ASC`,
+      [chapterId]
+    );
+
+    return res.rows.map((r) => String(r.content || ""));
+  }
+
+  async searchParagraphs(query: string): Promise<{
+    ref: string;
+    title: string;
+    note: string;
+    content: string;
+    para_index: number;
+  }[]> {
+    const res = await this.query(
+      `SELECT
+         p.content,
+         p.chunk_index,
+         c.manifest_id
+       FROM paragraphs p
+       JOIN chapters c
+         ON p.chapter_id = c.id
+       WHERE p.content ILIKE $1
+       ORDER BY
+         c.manifest_id ASC,
+         p.chunk_index ASC
+       LIMIT 40`,
+      [`%${query}%`]
+    );
+
+    return res.rows.map((r) => ({
+      ref: String(r.manifest_id || "Unknown"),
+      title: String(r.content || "").slice(0, 64),
+      note: String(r.content || ""),
+      content: String(r.content || ""),
+      para_index: Number(r.chunk_index ?? 0),
+    }));
+  }
+
+  async getDualismNodes(): Promise<{
+    id: string;
+    term: string;
+    parallel: string;
+    note: string;
+    chapters: string;
+    para_index: number;
+  }[]> {
+    const res = await this.query(
+      `SELECT
+         p.chunk_index,

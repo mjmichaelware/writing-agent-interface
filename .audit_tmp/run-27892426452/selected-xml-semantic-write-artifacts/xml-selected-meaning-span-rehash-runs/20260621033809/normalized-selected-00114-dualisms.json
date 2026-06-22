@@ -1,0 +1,181 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_037212ccb8e5429cc9a0a8c50f5259c2",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "721841a38e7c44c8f9f805097e5aa07f0277746990d4145d88f03e1b92552c13",
+  "observations": [
+    {
+      "axis": "Help Acceptance vs. Reinterpretation",
+      "polarity": "Left: Genuine help offered; Right: Help reshaped to fit preexisting narrative",
+      "summary": "The tension between offering help and the recipient's refusal or distortion of that help is highlighted, showing how gifts can be twisted to fit one's own story rather than accepted as intended.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_98dcbc3b740469ced41705211ad825c8",
+          "quote": "this is what happens when you try to help someone who doesn't want to be helped. They take your gift"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_98dcbc3b740469ced41705211ad825c8",
+          "quote": "and reinterpret it, reshape it, bend it until it fits the story they've already decided to tell themselves."
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_98dcbc3b740469ced41705211ad825c8",
+          "quote": "You see, this is what happens when you try to help someone who doesn't want to be helped. They take your gift and reinterpret it, reshape it, bend it until it fits the story they've already decided to tell themselves."
+        }
+      ],
+      "confidence": 0.95
+    },
+    {
+      "axis": "Manifestation of Choices vs. Inner Vision",
+      "polarity": "Left: Crushing weight of choices made manifest; Right: Glimpse of transcendent star",
+      "summary": "The dualism contrasts the heavy burden of past decisions with the hopeful, transcendent insight symbolized by the star, representing internal conflict between despair and hope.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_98dcbc3b740469ced41705211ad825c8",
+          "quote": "the gray field, the accumulating stones, the crushing weight of his own choices made manifest."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_98dcbc3b740469ced41705211ad825c8",
+          "quote": "He'd glimpsed the star."
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_98dcbc3b740469ced41705211ad825c8",
+          "quote": "Aviel had seen the gray field, the accumulating stones, the crushing weight of his own choices made manifest. He'd glimpsed the star."
+        }
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "manifestation_of_choices_vs_inner_vision",
+      "polarity": "tension",
+      "summary": "The dualism contrasts the heavy burden of past decisions with the hopeful, transcendent insight symbolized by the star, representing internal conflict between despair and hope.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_98dcbc3b740469ced41705211ad825c8",
+          "render_index": 21,
+          "quote": "the gray field, the accumulating stones, the crushing weight of his own choices made manifest.",
+          "role": "left",
+          "start_char": 2822,
+          "end_char": 2916,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_037212ccb8e5429cc9a0a8c50f5259c2",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            41
+          ],
+          "evidence_sha256": "d2696149d65c3716dc349e2c10d4be76877a58254377b6dccdca4dd184d3206e"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_98dcbc3b740469ced41705211ad825c8",
+          "render_index": 21,
+          "quote": "He'd glimpsed the star.",
+          "role": "right",
+          "start_char": 2917,
+          "end_char": 2940,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_037212ccb8e5429cc9a0a8c50f5259c2",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            41
+          ],
+          "evidence_sha256": "c72dcde4a2f0ed32b1625ac35e40759909e355843d722b174d4cfa1c8f0684c7"
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_98dcbc3b740469ced41705211ad825c8",
+          "render_index": 21,
+          "quote": "Aviel had seen the gray field, the accumulating stones, the crushing weight of his own choices made manifest. He'd glimpsed the star.",
+          "role": "bridge",
+          "start_char": 2807,
+          "end_char": 2940,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_037212ccb8e5429cc9a0a8c50f5259c2",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            41
+          ],
+          "evidence_sha256": "96af8a1a2ebcceed8b3e7b4da112df388eb87c5fae33edea2c76e4a446075309"
+        }
+      ],
+      "confidence": 0.9
+    },
+    {
+      "task": "dualisms",
+      "axis": "help_acceptance_vs_reinterpretation",
+      "polarity": "tension",
+      "summary": "The tension between offering help and the recipient's refusal or distortion of that help is highlighted, showing how gifts can be twisted to fit one's own story rather than accepted as intended.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_98dcbc3b740469ced41705211ad825c8",
+          "render_index": 21,
+          "quote": "this is what happens when you try to help someone who doesn't want to be helped. They take your gift",
+          "role": "left",
+          "start_char": 2598,
+          "end_char": 2698,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_037212ccb8e5429cc9a0a8c50f5259c2",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            41
+          ],
+          "evidence_sha256": "4433d9c16715e126e677cba22f4f1f43f0fde33db4b80d9844ead50018ef656a"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_98dcbc3b740469ced41705211ad825c8",
+          "render_index": 21,
+          "quote": "and reinterpret it, reshape it, bend it until it fits the story they've already decided to tell themselves.",
+          "role": "right",
+          "start_char": 2699,
+          "end_char": 2806,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_037212ccb8e5429cc9a0a8c50f5259c2",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            41
+          ],
+          "evidence_sha256": "aefa8653b1fc5537203576a73a72ad3a5f1b2698066bf5561458a9d8b6bd0622"
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_98dcbc3b740469ced41705211ad825c8",
+          "render_index": 21,
+          "quote": "You see, this is what happens when you try to help someone who doesn't want to be helped. They take your gift and reinterpret it, reshape it, bend it until it fits the story they've already decided to tell themselves.",
+          "role": "bridge",
+          "start_char": 2589,
+          "end_char": 2806,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_037212ccb8e5429cc9a0a8c50f5259c2",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            41
+          ],
+          "evidence_sha256": "f5b590ed2dc45e7e2e6556c743bf0913bbfb51e69530dffeb09c28bfe8511b19"
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "ff6865a2133e9b777a34291176deffa7952423af970a0cf90fb17655495cdd31",
+  "normalized_output_hash": "3bea21ca79ae6b39148c533dda13cfa5b5f489de6f90dd2edb1a1e609b230282"
+}

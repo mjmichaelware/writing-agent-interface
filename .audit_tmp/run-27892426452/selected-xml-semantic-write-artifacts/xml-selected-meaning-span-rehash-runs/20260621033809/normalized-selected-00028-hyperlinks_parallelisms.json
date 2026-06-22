@@ -1,0 +1,64 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_54570e91165f4ff089571c532cad24bc",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "bcc0db2649101645945750741c8c816fc72ed602c7d5a780e1f2fb128a9cb638",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The motif of 'making the vessel empty' in the source paragraph parallels Dan's internal struggle to empty himself of earthly attachments and fears to prepare for spiritual use or transformation.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_c4d9de547093e8ae06b165d11d1628ed",
+          "quote": "\"Make the vessel empty before you try to use it.\""
+        }
+      ],
+      "target_hint": "Dan's shedding of earthly treasures and burdens, such as trading silver and carrying only two smooth stones, symbolizes making himself empty for higher purpose.",
+      "target_evidence": [
+        {
+          "render_para_key": "6",
+          "quote": "He sought out a shepherd’s family, offering them a small piece of silver – a mere glint from the pouch, a tiny fragment of the earthly burden he was determined to shed."
+        },
+        {
+          "render_para_key": "new_synopsis",
+          "quote": "Upon his recovery, he sheds his last \"earthly treasure,\" his wineskin, symbolizing his complete liberation from even the body’s essential needs. He now carries only two smooth stones."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The motif of 'making the vessel empty' in the source paragraph parallels Dan's internal struggle to empty himself of earthly attachments and fears to prepare for spiritual use or transformation.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_c4d9de547093e8ae06b165d11d1628ed",
+          "render_index": 29,
+          "quote": "\"Make the vessel empty before you try to use it.\"",
+          "role": "source",
+          "start_char": 7960,
+          "end_char": 8009,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_54570e91165f4ff089571c532cad24bc",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            57
+          ],
+          "evidence_sha256": "bd770c540708e4d1fc08648b2f2c9fee0ee9791d6cf6ff4a747ba12da8005b0a"
+        }
+      ],
+      "target_hint": "Dan's shedding of earthly treasures and burdens, such as trading silver and carrying only two smooth stones, symbolizes making himself empty for higher purpose.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "3c3b00e33655afc73d7e86179cdddbc0d10004a3698d0eaa43d586badcd948b9",
+  "normalized_output_hash": "cb87076f14221409e4cf998e621d1d1b71a01e7c278accbfff06df05dde906af"
+}

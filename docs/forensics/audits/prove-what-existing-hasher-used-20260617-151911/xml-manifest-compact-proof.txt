@@ -1,0 +1,24 @@
+===== reports/xml_recovery/materialized_ooxml_manifest.json =====
+exists: True
+bytes: 362761
+json_type: list
+items: 579
+first_item_keys: ['bytes', 'dest', 'doc_folder', 'part_path', 'sha256', 'source']
+===== reports/name-matched-google-docs-archive-latest.json =====
+exists: True
+bytes: 530
+json_type: dict
+top_keys: ['archive_root', 'current_docx_saved', 'documents_with_errors', 'drive_doc_candidates', 'local_name_targets', 'matched_targets', 'target_dirs', 'total_comments', 'total_ooxml_current_entries', 'total_revision_records', 'unique_drive_docs_archived', 'unmatched_targets', 'weak_match_review_targets']
+archive_root: str
+target_dirs: list[1]
+local_name_targets: int
+drive_doc_candidates: int
+matched_targets: int
+weak_match_review_targets: int
+unmatched_targets: int
+unique_drive_docs_archived: int
+current_docx_saved: int
+total_ooxml_current_entries: int
+total_revision_records: int
+total_comments: int
+documents_with_errors: int

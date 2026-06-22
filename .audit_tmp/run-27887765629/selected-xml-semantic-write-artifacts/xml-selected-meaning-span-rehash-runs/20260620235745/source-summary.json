@@ -1,0 +1,74 @@
+{
+  "context_pack_sha256": "6e7e306c32940db56e82f1aff23942e6f3d62d7483db8e5735bb2ef2ef75eb8c",
+  "xml_manifest_sha256": "6e74a501762c3368a6b3fd421c59d13e0c5da26b5b3e56b8729e0bf29163daf7",
+  "xml_manifest_count": 195,
+  "selected_truth_path": "/home/runner/work/writing-agent-interface/writing-agent-interface/reports/xml_recovery/xml_starred_hash_truth.txt",
+  "selected_truth_sha256": "c30c33c74b2ede94aa8074896ff8d948f7a194f14b8e8c4e80ec4fb8cc00165d",
+  "selected_folder_count": 16,
+  "run_doc_count": 1,
+  "xml_paragraph_count": 94,
+  "render_paragraph_count": 94,
+  "scene_window_count": 25,
+  "planned_semantic_window_count": 18,
+  "planned_skipped_window_count": 7,
+  "expected_public_chapter_context_count": 13,
+  "public_chapter_context_count": 13,
+  "narrative_protocol_source_count": 4,
+  "narrative_protocol_sources": [
+    {
+      "role": "archetype_protocol",
+      "key": "cat_god_primal_self",
+      "sha256": "089b3617b7dbc3b46ceb43a7053f55662dd11c5b931bc0b2453d8e66c5568a2d"
+    },
+    {
+      "role": "archetype_protocol",
+      "key": "visceral_empathy",
+      "sha256": "59ed13c0f886611dc08299da8b74306aa860383038e2a645b6436c04c9af25d8"
+    },
+    {
+      "role": "story_compendium",
+      "key": "master_compendium",
+      "sha256": "7f86ab925e53d48f6e32e07950f30b81b82bd4270b77b826b7392d7d35e86758"
+    },
+    {
+      "role": "new_synopsis",
+      "key": "new_synopsis",
+      "sha256": "022c36c6525eda7d3abe4836aa6ca39647c5b7267cd8c2d7234c956a69569fe0"
+    }
+  ],
+  "available_narrative_context_map": true,
+  "available_narrative_context_map_sha256": "ada08c882bb893f4b7ed5acb6968ce3a917338c18a2f204792b3764f76adbb2a",
+  "optional_reference_corpus_status": [
+    {
+      "corpus": "bible",
+      "expected_dir": "/home/runner/work/writing-agent-interface/writing-agent-interface/docs/agent_context/canonical/reference_corpora/bible",
+      "expected_manifest": "/home/runner/work/writing-agent-interface/writing-agent-interface/docs/agent_context/canonical/reference_corpora/bible/manifest.json",
+      "manifest_present": false,
+      "dir_present": true
+    },
+    {
+      "corpus": "jung",
+      "expected_dir": "/home/runner/work/writing-agent-interface/writing-agent-interface/docs/agent_context/canonical/reference_corpora/jung",
+      "expected_manifest": "/home/runner/work/writing-agent-interface/writing-agent-interface/docs/agent_context/canonical/reference_corpora/jung/manifest.json",
+      "manifest_present": false,
+      "dir_present": true
+    }
+  ],
+  "selected_xml_driver": true,
+  "render_segmentation": "xml_plus_novel_grammar_v4",
+  "scene_window_packet_size": 1,
+  "ai_task_order": [
+    "meaning_spans",
+    "dualisms",
+    "archetypes",
+    "biblical_references",
+    "hyperlinks_parallelisms"
+  ],
+  "primary_hash_lane": "semantic_meaning_spans",
+  "old_semantic_table_writes": "blocked_on_first_run",
+  "semantic_provider": "openai_batch",
+  "semantic_model": "gpt-4.1-mini",
+  "batch_mode": "submit",
+  "write_mode": false,
+  "no_ai": false
+}

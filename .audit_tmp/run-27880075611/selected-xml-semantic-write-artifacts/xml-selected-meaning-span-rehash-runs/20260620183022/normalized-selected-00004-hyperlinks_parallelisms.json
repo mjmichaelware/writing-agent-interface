@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_1af1a1d28a6652a7731b6c7780605e7a",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "9ec12386c375df7b9ad4f311a5c9a015f40710b0904ed93f0719bd18407dd2a2",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The motif of grief manifesting in two contrasting ways is paralleled between Aviel and his son: Aviel hoards every fragment of loss tightly, suffocating himself, while his son seeks to undo this tight grip, symbolizing a reversal or healing of grief.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_1b81ea2d1676e70d59ae45513f4dd924",
+          "quote": "Some people throw everything away when they lose the thing they love most—burn it all, scatter the ashes, start fresh with empty hands. Others keep every thread, every cracked vessel, every scrap of parchment with nothing written on it, and pull it tighter and tighter until there is no room left to breathe. Aviel was one of those. Which is relevant because it is exactly what his son was creeping through the dark to undo."
+        }
+      ],
+      "target_hint": null,
+      "target_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The motif of grief manifesting in two contrasting ways is paralleled between Aviel and his son: Aviel hoards every fragment of loss tightly, suffocating himself, while his son seeks to undo this tight grip, symbolizing a reversal or healing",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_1b81ea2d1676e70d59ae45513f4dd924",
+          "render_index": 5,
+          "quote": "Some people throw everything away when they lose the thing they love most—burn it all, scatter the ashes, start fresh with empty hands. Others keep every thread, every cracked vessel, every scrap of parchment with nothing written on it, and pull it tighter and tighter until there is no room left to breathe. Aviel was one of those. Which is relevant because it is exactly what his son was creeping through the dark to undo.",
+          "role": "source",
+          "start_char": 1225,
+          "end_char": 1649,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_1af1a1d28a6652a7731b6c7780605e7a",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            9
+          ],
+          "evidence_sha256": "db00ce02f0903243d8a4ed2fa260f3208488a7057430575b24ef84f0e5d53a73"
+        }
+      ],
+      "target_hint": null,
+      "target_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "de58a6cd560d31d0a2e46441816e1dcba8e1e0613f60ab52dd929a9faabed3c6",
+  "normalized_output_hash": "bead1baf0d6aa4145d41b6ab6f43af6daa644940a24564816d8fd3e20286b3c3"
+}

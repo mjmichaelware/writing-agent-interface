@@ -1,0 +1,68 @@
+{
+  "status": "ok",
+  "task_type": "biblical_references",
+  "scene_window_id": "scene_db5444e30fd28f168468fcc43a5d3a64",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "23177119897206ce079787f6c5ab19c8a74e55a7c36091ef354dd48888299047",
+  "observations": [
+    {
+      "biblical_anchor_label": "Judges 16:23-30",
+      "book": "Judges",
+      "chapter": 16,
+      "verse_start": 23,
+      "verse_end": 30,
+      "motif_family": "Divine Defeat and Power of God over Idols",
+      "relationship_type": "explicit_allusion",
+      "correspondence_rationale": "The text references Dagon, the fish god of abundance, and recalls his statue crumbling before the Ark of the Covenant and his temple's destruction by Samson, directly alluding to the biblical narrative in Judges 16 where the temple of Dagon is destroyed.",
+      "summary": "The narrative explicitly alludes to the biblical account of Dagon's defeat in Judges 16, highlighting the god's loss of power before the God of Israel as a motif of divine supremacy over idols.",
+      "evidence": [
+        {
+          "render_para_key": "rp_dee746208690ca41c2ea9524529b00d1",
+          "quote": "\"I am Dagon. The power your father has chosen. Lord of Abundance.\" A pause the length of a slow tide. \"Ask, and receive. My path is ease.\""
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Judges 16:23-30",
+      "book": "Judges",
+      "chapter": 16,
+      "verse_start": 23,
+      "verse_end": 30,
+      "motif_family": "divine_defeat_and_power_of_god_over_idols",
+      "biblical_anchor_key": "bibanchor_d59a3368c2e7ed18342d3005e53b2fff",
+      "relationship_type": "explicit_allusion",
+      "correspondence_rationale": "The text references Dagon, the fish god of abundance, and recalls his statue crumbling before the Ark of the Covenant and his temple's destruction by Samson, directly alluding to the biblical narrative in Judges 16 where the temple of Dagon is destroyed.",
+      "summary": "The narrative explicitly alludes to the biblical account of Dagon's defeat in Judges 16, highlighting the god's loss of power before the God of Israel as a motif of divine supremacy over idols.",
+      "evidence": [
+        {
+          "render_para_key": "rp_dee746208690ca41c2ea9524529b00d1",
+          "render_index": 60,
+          "quote": "\"I am Dagon. The power your father has chosen. Lord of Abundance.\" A pause the length of a slow tide. \"Ask, and receive. My path is ease.\"",
+          "role": null,
+          "start_char": 14824,
+          "end_char": 14962,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_db5444e30fd28f168468fcc43a5d3a64",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            119
+          ],
+          "evidence_sha256": "74279c229278840b92b1d3d344a407922caf54b4d405d7037bf03a92963e853c"
+        }
+      ],
+      "confidence": 0.95,
+      "reference": "Judges 16:23-30",
+      "motif": "divine_defeat_and_power_of_god_over_idols"
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "97029da9f14c16d95d344c073517e7b2b32177a686c5217ac74a6bb1d4e2c2e4",
+  "normalized_output_hash": "10702310f0d11c581f69baa08431a900bffc7b6a801b8e7a7431c1fb00042b1a"
+}

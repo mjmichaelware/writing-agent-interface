@@ -1,0 +1,101 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_00163221229cdcd1bef808b01d4b9b6d",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "dafe4ef7fc619b417488743e9895a896418cf8277941d0b7f5da7e1df452d477",
+  "observations": [
+    {
+      "kind": "Emotional Release",
+      "summary": "Dan experiences a gradual lifting of a heavy emotional burden that had been pressing on his chest for seven years, related to his father's slow decline.",
+      "evidence": [
+        {
+          "render_para_key": "rp_92da0950e43e7d5d98ed6fc3bfddacf3",
+          "quote": "The weight that had been pressing on his chest for seven years—the terrible, suffocating weight of his father's slow collapse—began to lift."
+        }
+      ],
+      "thematic_weight": 8,
+      "gravity": 7,
+      "tension": 6,
+      "confidence": 0.95,
+      "notes": "This observation captures the core emotional shift in the passage, indicating relief from long-term suffering."
+    },
+    {
+      "kind": "Partial Healing",
+      "summary": "The relief Dan feels is not immediate or complete, but sufficient to allow him to breathe fully without guilt or fear of depriving others.",
+      "evidence": [
+        {
+          "render_para_key": "rp_92da0950e43e7d5d98ed6fc3bfddacf3",
+          "quote": "Not all at once. Not completely. But enough that he could take a full breath without feeling like he was stealing air from someone who needed it more."
+        }
+      ],
+      "thematic_weight": 7,
+      "gravity": 6,
+      "tension": 5,
+      "confidence": 0.9,
+      "notes": "This highlights the nuanced nature of Dan's emotional state, balancing ongoing struggle with emerging relief."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "Dan experiences a gradual lifting of a heavy emotional burden that had been pressing on his chest for seven years, related to his father's slow decline.",
+      "evidence": [
+        {
+          "render_para_key": "rp_92da0950e43e7d5d98ed6fc3bfddacf3",
+          "render_index": 94,
+          "quote": "The weight that had been pressing on his chest for seven years—the terrible, suffocating weight of his father's slow collapse—began to lift.",
+          "role": null,
+          "start_char": 11988,
+          "end_char": 12128,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_00163221229cdcd1bef808b01d4b9b6d",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            187
+          ],
+          "evidence_sha256": "1455ffad541e30d0e191ff833fde1109ba61f44cd607e797b7201569eb6c0dd5"
+        }
+      ],
+      "thematic_weight": 1,
+      "gravity": 1,
+      "tension": 1,
+      "confidence": 0.95,
+      "notes": "This observation captures the core emotional shift in the passage, indicating relief from long-term suffering."
+    },
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "The relief Dan feels is not immediate or complete, but sufficient to allow him to breathe fully without guilt or fear of depriving others.",
+      "evidence": [
+        {
+          "render_para_key": "rp_92da0950e43e7d5d98ed6fc3bfddacf3",
+          "render_index": 94,
+          "quote": "Not all at once. Not completely. But enough that he could take a full breath without feeling like he was stealing air from someone who needed it more.",
+          "role": null,
+          "start_char": 12129,
+          "end_char": 12279,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_00163221229cdcd1bef808b01d4b9b6d",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            187
+          ],
+          "evidence_sha256": "6097cfdcbd0a5d81156f2f9e95f475d68f848eec594120e3126b7e9c8ff5e78d"
+        }
+      ],
+      "thematic_weight": 1,
+      "gravity": 1,
+      "tension": 1,
+      "confidence": 0.9,
+      "notes": "This highlights the nuanced nature of Dan's emotional state, balancing ongoing struggle with emerging relief."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "f95f3936a3e7f1283f11fd7d59b414be16f1e3fc3ceb4ca815f3e2b679fb3811",
+  "normalized_output_hash": "e3c7c1548223724a17d27dbc8520fbc6135bdedd12cc269546a5a15bfd7fb85b"
+}

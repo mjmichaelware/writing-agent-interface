@@ -1,0 +1,4 @@
+SUPABASE_ACCESS_TOKEN=<set>
+SUPABASE_PROJECT_REF=yegricugzqbmoziycfnt
+VERTEX_MODEL=gemini-2.5-pro
+ADC_OK

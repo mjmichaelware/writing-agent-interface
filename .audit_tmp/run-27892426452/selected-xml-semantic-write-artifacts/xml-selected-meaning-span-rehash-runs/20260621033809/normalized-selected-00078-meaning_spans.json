@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_3a96ad3b31acc5c60c2b8ea77dd7a65b",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "e7a07a6edde5ad4c07f76549228e14adb5f7e8420dafe11e361ab0116627b383",
+  "observations": [
+    {
+      "kind": "dialogue_instruction",
+      "summary": "Dagon instructs that if his tone is altered, one should knock three times, ask twice, then wait for him to come, identifying himself as the cadence one seeks to outrun.",
+      "evidence": [
+        {
+          "render_para_key": "rp_39329b6c973e05e42b7b9959ba688939",
+          "quote": "\"If ever you should alter your tone,\" Dagon said, his voice the sound of bedrock grinding in the dark below the roots of mountains, \"merely knock three times, ask twice, then wait. I shall come. I am the cadence you seek to outrun.\""
+        }
+      ],
+      "thematic_weight": 8,
+      "gravity": 7,
+      "tension": 6,
+      "confidence": 0.95,
+      "notes": "This is a strong, metaphorical statement linking Dagon to an inevitable force or rhythm that one tries to escape."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "Dagon instructs that if his tone is altered, one should knock three times, ask twice, then wait for him to come, identifying himself as the cadence one seeks to outrun.",
+      "evidence": [
+        {
+          "render_para_key": "rp_39329b6c973e05e42b7b9959ba688939",
+          "render_index": 79,
+          "quote": "\"If ever you should alter your tone,\" Dagon said, his voice the sound of bedrock grinding in the dark below the roots of mountains, \"merely knock three times, ask twice, then wait. I shall come. I am the cadence you seek to outrun.\"",
+          "role": null,
+          "start_char": 18671,
+          "end_char": 18903,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_3a96ad3b31acc5c60c2b8ea77dd7a65b",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            157
+          ],
+          "evidence_sha256": "b021767ecc9c64c7a814b44aa9a06f61d0505233cc95cf66960e774cbe9fc65c"
+        }
+      ],
+      "thematic_weight": 1,
+      "gravity": 1,
+      "tension": 1,
+      "confidence": 0.95,
+      "notes": "This is a strong, metaphorical statement linking Dagon to an inevitable force or rhythm that one tries to escape."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "0c920939d8e81f0bdc3d8489a0e9eb86ecef14cab451daf9e5fcf3e7649566b3",
+  "normalized_output_hash": "0dd8581ca6e63445cafac758566fbae3c3275eecf01af127de064744da1e74de"
+}

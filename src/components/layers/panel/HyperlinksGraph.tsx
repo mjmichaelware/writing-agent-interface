@@ -144,7 +144,9 @@ export default function HyperlinksGraph() {
       event.subject.fy = null;
     }
 
-    return () => simulation.stop();
+    return () => {
+      simulation.stop();
+    };
   }, [data]);
 
   if (error) return <div className="panel-empty">{error}</div>;

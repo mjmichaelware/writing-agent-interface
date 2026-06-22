@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_d0a0999cc850baaf355046c67bdd7d32",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "292b559a594ebf480c5cebf08c6cf580ca69782d4529e0474bb6c1c51598bae4",
+  "observations": [
+    {
+      "kind": "Physical and Psychological Impact",
+      "summary": "Dan experiences a profound physical and psychological disconnection from his body after the dreamwork, feeling his body heavy and distant, as if ill-fitting, with sluggish thoughts and a thickened throat.",
+      "evidence": [
+        {
+          "render_para_key": "rp_09413884051bef42cee2d2ca0696a5cb",
+          "quote": "For a moment, he couldn't move. His body felt wrong—heavy and distant, as if he were wearing it like an ill-fitting coat. The dreamwork had taken something from him. He could feel it in his bones, in the strange thickness of his throat, in the way his thoughts moved sluggishly through his skull like honey through winter air."
+        }
+      ],
+      "thematic_weight": 8,
+      "gravity": 7,
+      "tension": 6,
+      "confidence": 0.95,
+      "notes": "This observation captures the somatic cost and internal conflict following the dreamwork, aligning with the narrative's emphasis on flesh versus spirit tension."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "Dan experiences a profound physical and psychological disconnection from his body after the dreamwork, feeling his body heavy and distant, as if ill-fitting, with sluggish thoughts and a thickened throat.",
+      "evidence": [
+        {
+          "render_para_key": "rp_09413884051bef42cee2d2ca0696a5cb",
+          "render_index": 6,
+          "quote": "For a moment, he couldn't move. His body felt wrong—heavy and distant, as if he were wearing it like an ill-fitting coat. The dreamwork had taken something from him. He could feel it in his bones, in the strange thickness of his throat, in the way his thoughts moved sluggishly through his skull like honey through winter air.",
+          "role": null,
+          "start_char": 409,
+          "end_char": 735,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_d0a0999cc850baaf355046c67bdd7d32",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            11
+          ],
+          "evidence_sha256": "21ddf2457ee621cdc6a06baa5fe29d4f1376f815d10c0c86e15345aa904a9f56"
+        }
+      ],
+      "thematic_weight": 1,
+      "gravity": 1,
+      "tension": 1,
+      "confidence": 0.95,
+      "notes": "This observation captures the somatic cost and internal conflict following the dreamwork, aligning with the narrative's emphasis on flesh versus spirit tension."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "1a16af4bf9f078af9771abba721ba1a815f7d8cdf04eeb495f00bab5c25df093",
+  "normalized_output_hash": "ce1f94685a4fe1110cb22c58516ce0bd8ebcd3a50b2854ef3180970fd46922cb"
+}

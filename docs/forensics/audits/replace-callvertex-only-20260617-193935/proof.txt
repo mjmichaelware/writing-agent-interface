@@ -1,0 +1,14 @@
+692:async function callVertex(prompt) {
+746:  const parseModelJson = (raw) => {
+763:  const saveBadJson = async (raw, phase) => {
+786:  const repairWithVertex = async (raw) => {
+824:    const repaired = parseModelJson(repairedText);
+827:      const badPath = await saveBadJson(repairedText, "repair-failed");
+828:      throw new Error(`Vertex JSON repair failed. Saved raw repair output: ${badPath}`);
+861:    const parsed = parseModelJson(candidateText);
+865:    const badPath = await saveBadJson(candidateText, "initial-parse-failed");
+866:    console.error(`Vertex returned malformed JSON. Saved raw output: ${badPath}`);
+867:    console.error("Retrying once with Vertex JSON repair.");
+868:    return repairWithVertex(candidateText);
+885:  const parsed = parseModelJson(candidateText);
+889:  const badPath = await saveBadJson(candidateText, "initial-parse-failed");

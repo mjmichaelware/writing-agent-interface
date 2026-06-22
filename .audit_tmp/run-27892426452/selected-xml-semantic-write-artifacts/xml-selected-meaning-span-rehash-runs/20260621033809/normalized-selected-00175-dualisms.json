@@ -1,0 +1,99 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_8121a9dd1e4b75dd40189f0c529d9200",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "5719d3870f63051eabf771c02945ae37fdcd63450f73c6d70d26a859f8827f4b",
+  "observations": [
+    {
+      "axis": "Emotional connection vs. Emotional severing",
+      "polarity": "Dan's desire to bridge the gap contrasts with the bitter severing of relationship",
+      "summary": "Dan experiences a tension between wanting to reconnect emotionally with his father and the painful reality of their separation.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_4c926d7cbaa43448f094543103a7d547",
+          "quote": "He wanted to say something—wanted to bridge the gap, to find words that would make this okay"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_4c926d7cbaa43448f094543103a7d547",
+          "quote": "that would turn this bitter severing into something that felt more like a blessing"
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_4c926d7cbaa43448f094543103a7d547",
+          "quote": "Dan took the coins. They were warm from his father's body heat, and that small detail nearly undid him."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "emotional_connection_vs_emotional_severing",
+      "polarity": "tension",
+      "summary": "Dan experiences a tension between wanting to reconnect emotionally with his father and the painful reality of their separation.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_4c926d7cbaa43448f094543103a7d547",
+          "render_index": 82,
+          "quote": "He wanted to say something—wanted to bridge the gap, to find words that would make this okay",
+          "role": "left",
+          "start_char": 10638,
+          "end_char": 10730,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_8121a9dd1e4b75dd40189f0c529d9200",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            163
+          ],
+          "evidence_sha256": "7c10ae23ecce49caa6826c263de7e618d370d0b9f9f7b39cc6b1cd96d215fae7"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_4c926d7cbaa43448f094543103a7d547",
+          "render_index": 82,
+          "quote": "that would turn this bitter severing into something that felt more like a blessing",
+          "role": "right",
+          "start_char": 10732,
+          "end_char": 10814,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_8121a9dd1e4b75dd40189f0c529d9200",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            163
+          ],
+          "evidence_sha256": "76ca6942f9341c224d40a5199291afe53fcf7cd7c1f399511ec1d60d8688feaf"
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_4c926d7cbaa43448f094543103a7d547",
+          "render_index": 82,
+          "quote": "Dan took the coins. They were warm from his father's body heat, and that small detail nearly undid him.",
+          "role": "bridge",
+          "start_char": 10534,
+          "end_char": 10637,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_8121a9dd1e4b75dd40189f0c529d9200",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            163
+          ],
+          "evidence_sha256": "0b865d5873730526cf39f93df499a06dd4e6fd5613bebfc775ecdb9a0bf94665"
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "26934b43ca166ff630baf0f19b2f2df7bf5b87c165e5c4fd8a1f1bd1b3135135",
+  "normalized_output_hash": "13df18144265877d9bed35aa2650b34dfe41f7f754c658939fda3d44998db17d"
+}

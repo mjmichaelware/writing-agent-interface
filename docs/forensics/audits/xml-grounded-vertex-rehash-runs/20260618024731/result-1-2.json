@@ -1,0 +1,26 @@
+{
+  "paragraphs": [
+    {
+      "paragraph_id": "00abb116-bf9c-4a13-a68a-6be638b89957",
+      "content_sha256": "cdf38544596f8ed680f7421c000fe25256ed73c0d161dca8ebafb03847f95cf2",
+      "archetypal_weights": {
+        "shadow": 0,
+        "self": 0
+      },
+      "dualism_map": {
+        "ascent_descent": 0
+      },
+      "metadata": {
+        "summary": "A checklist of grammar and mechanics rules for editing.",
+        "semantic_notes": [
+          "This paragraph is not part of the narrative prose of the novel. It is an editing checklist, similar in nature to the meta-instructional content found within the XML evidence files which detail revision protocols."
+        ]
+      },
+      "archetype_observations": [],
+      "biblical_references": [],
+      "derived_hyperlinks": []
+    }
+  ],
+  "dualism_relations": [],
+  "archetype_movements": []
+}

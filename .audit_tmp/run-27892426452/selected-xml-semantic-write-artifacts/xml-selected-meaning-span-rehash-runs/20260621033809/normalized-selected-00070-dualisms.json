@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_48de0fb6b142a41a47fbd8d93e85776c",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "a447831dfa2ec2c8cd994c1508b6666180dec1d2a6c667cee388a2f4bf2fcbc6",
+  "observations": [
+    {
+      "axis": "Life vs. Death",
+      "polarity": "Death as immediate and foundational vs. Life as struggle and ascent",
+      "summary": "The passage presents death not as a distant event but as the immediate 'sea' in which one stands, while life is framed as a struggle supported by the earth, symbolizing foundation and ascent.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_186378e2ab389b0a0fb00a227d9aa875",
+          "quote": "\"Look at the war within you. Look at the wars between peoples. Death is not a distant shore. It is the very sea in which you are standing at this moment.\""
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_186378e2ab389b0a0fb00a227d9aa875",
+          "quote": "\"And I am the very earth those mountains are rooted in, boy. Your struggle is my foundation. Every step you take upward is a step I must sustain.\""
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "life_vs_death",
+      "polarity": "tension",
+      "summary": "The passage presents death not as a distant event but as the immediate 'sea' in which one stands, while life is framed as a struggle supported by the earth, symbolizing foundation and ascent.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_186378e2ab389b0a0fb00a227d9aa875",
+          "render_index": 71,
+          "quote": "Look at the war within you. Look at the wars between peoples. Death is not a distant shore. It is the very sea in which you are standing at this moment",
+          "role": "left",
+          "start_char": 16968,
+          "end_char": 17119,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_48de0fb6b142a41a47fbd8d93e85776c",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            141
+          ],
+          "evidence_sha256": "4aef8249dfd8401ac89edfe4fb81da96a32bca3ba1f561822f32e420e2c387c1"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_186378e2ab389b0a0fb00a227d9aa875",
+          "render_index": 71,
+          "quote": "And I am the very earth those mountains are rooted in, boy. Your struggle is my foundation. Every step you take upward is a step I must sustain",
+          "role": "right",
+          "start_char": 17121,
+          "end_char": 17264,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_48de0fb6b142a41a47fbd8d93e85776c",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            141
+          ],
+          "evidence_sha256": "9cdd01cde8d4668ec8e07cbb73a82b3dc64e7bfad4cb22d255ad08668d946af8"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "6476499bba3e732a88ad13a8011a5f83edfc4d1a0db2bfb103feaf1d0fa2ca8c",
+  "normalized_output_hash": "47339dff420aef7104ead0ba2ec7f873beb5e0399b1ea8cf8797b2095a735758"
+}

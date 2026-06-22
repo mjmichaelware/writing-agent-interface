@@ -1,0 +1,68 @@
+{
+  "status": "ok",
+  "task_type": "biblical_references",
+  "scene_window_id": "scene_2b87c056ef551539e811123662142303",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "ded4695446feb8b94a4cbd761c954211eba664e3768d22316ddd019c30ff6395",
+  "observations": [
+    {
+      "biblical_anchor_label": "Psalm 42:7",
+      "book": "Psalms",
+      "chapter": 42,
+      "verse_start": 7,
+      "verse_end": 7,
+      "motif_family": "Chaos and Divine Presence",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The phrase 'The sea's phantom opera still echoed—a static cry of brine and chaos' evokes the biblical motif of the chaotic sea as a symbol of turmoil and divine presence, as in Psalm 42:7 where deep waters and chaos are associated with God's presence.",
+      "summary": "The text's depiction of the sea's chaotic and phantom-like opera symbolically resonates with the biblical image of the tumultuous sea representing divine presence and emotional turmoil.",
+      "evidence": [
+        {
+          "render_para_key": "rp_1cc8cd59a792fa41f1425f7b1aea56f1",
+          "quote": "The sea's phantom opera still echoed—a static cry of brine and chaos."
+        }
+      ],
+      "confidence": 0.7
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Psalm 42:7",
+      "book": "Psalm",
+      "chapter": 42,
+      "verse_start": 7,
+      "verse_end": 7,
+      "motif_family": "chaos_and_divine_presence",
+      "biblical_anchor_key": "bibanchor_13213a5d3ed6a29c50711d7a81c64cf6",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The phrase 'The sea's phantom opera still echoed—a static cry of brine and chaos' evokes the biblical motif of the chaotic sea as a symbol of turmoil and divine presence, as in Psalm 42:7 where deep waters and chaos are associated with God's presence.",
+      "summary": "The text's depiction of the sea's chaotic and phantom-like opera symbolically resonates with the biblical image of the tumultuous sea representing divine presence and emotional turmoil.",
+      "evidence": [
+        {
+          "render_para_key": "rp_1cc8cd59a792fa41f1425f7b1aea56f1",
+          "render_index": 82,
+          "quote": "The sea's phantom opera still echoed—a static cry of brine and chaos.",
+          "role": null,
+          "start_char": 18956,
+          "end_char": 19025,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_2b87c056ef551539e811123662142303",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            163
+          ],
+          "evidence_sha256": "fe802809885d4015de9b0a74ade774b5b103c7be6d756f60ad9a1fe720461f2d"
+        }
+      ],
+      "confidence": 0.6,
+      "reference": "Psalm 42:7",
+      "motif": "chaos_and_divine_presence"
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "f00c5ab02000d206b2e036fff88da63cd788e3967cc878d8d9f3260b9c6c51b6",
+  "normalized_output_hash": "965fb4fe5c107598bd5d0b6097901fc8ef69141e1eb9786d9a46edbe0ae6eb12"
+}

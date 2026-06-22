@@ -1,0 +1,60 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_0bfba90e3decce02c0a341ff28c7d4ac",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "f31a8e8c7deb886ab479503898f22a4a5b16d6e74c29a53cb0e1b39069db4062",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The trembling frail flame in Dan's hand mirrors the earlier description of the small fire shivering not from wind but from the beat of his own muffled heart, emphasizing his internal anxiety and the precariousness of his situation.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_db7e231d7903292e75046c5010faa915",
+          "quote": "The torch trembled in his hand—the frail flame flickered not from wind but from the percussion against his ribs, casting suspicious shadows down the narrow hallway."
+        }
+      ],
+      "target_hint": null,
+      "target_evidence": [
+        {
+          "render_para_key": "2f49c451b048e73249daec5c732eff040a81f7310b547eb6a36177a08723deda",
+          "quote": "The small fire shivered, not from wind, but from the beat of his own muffled heart: a rough, offbeat thrum against the overwhelming mass of a condemned dwelling."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The trembling frail flame in Dan's hand mirrors the earlier description of the small fire shivering not from wind but from the beat of his own muffled heart, emphasizing his internal anxiety and the precariousness of his situation.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_db7e231d7903292e75046c5010faa915",
+          "render_index": 6,
+          "quote": "The torch trembled in his hand—the frail flame flickered not from wind but from the percussion against his ribs, casting suspicious shadows down the narrow hallway.",
+          "role": "source",
+          "start_char": 1915,
+          "end_char": 2079,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_0bfba90e3decce02c0a341ff28c7d4ac",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            11
+          ],
+          "evidence_sha256": "3925dfb7e6213487533014ee01eec67b7bfe741ef3c7e62d4d0b4bb96de8c844"
+        }
+      ],
+      "target_hint": null,
+      "target_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "81cd6db64388f5a4593c677424625c69e92b4bcc50e903ae5cb3641261423a4e",
+  "normalized_output_hash": "8f8d628f7f8c62b6b4671da0099e828fc58a143fb5908766b1fd77cca4f02c56"
+}

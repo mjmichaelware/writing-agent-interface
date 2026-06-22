@@ -1,0 +1,60 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_9e9b43b20c8e2dab887b87822e325569",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "c89ca110dbcaf4883265f1fdb017fd506bd07b4ffcd6e50645e1aab27de504d9",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The metaphor of something cracking inside Dan's chest parallels the earlier description of a seismic, chilling shriek that cracked stones and sent a shiver of primordial dread down his spine, both signaling internal and external rupture and foreshadowing a profound transformation.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_0fca73071af386f60191bfbd3396e594",
+          "quote": "Dan felt something crack inside his chest—not break, not quite, but crack, the way ice cracks before it shatters."
+        }
+      ],
+      "target_hint": null,
+      "target_evidence": [
+        {
+          "render_para_key": "rp_0fca73071af386f60191bfbd3396e594",
+          "quote": "a seismic, chilling shriek tore through the air from the well—the sound of ancient power denied, of cosmic rage unleashed, a sound that cracked the very stones and sent a shiver of primordial dread down his spine."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The metaphor of something cracking inside Dan's chest parallels the earlier description of a seismic, chilling shriek that cracked stones and sent a shiver of primordial dread down his spine, both signaling internal and external rupture and",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_0fca73071af386f60191bfbd3396e594",
+          "render_index": 44,
+          "quote": "Dan felt something crack inside his chest—not break, not quite, but crack, the way ice cracks before it shatters.",
+          "role": "source",
+          "start_char": 5870,
+          "end_char": 5983,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_9e9b43b20c8e2dab887b87822e325569",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            87
+          ],
+          "evidence_sha256": "23353ea5b11782d86e95e07a1ae2d9b12da83d28eb3250fa6daec693146fa505"
+        }
+      ],
+      "target_hint": null,
+      "target_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "01a3723f0200abbd621727b23e59507b09f6547f0054c43efa5e1c443e6e6b36",
+  "normalized_output_hash": "df80e595b835f6f34438fe90560e59d009af41b19f98f8b0e77e2d06f1774ba5"
+}

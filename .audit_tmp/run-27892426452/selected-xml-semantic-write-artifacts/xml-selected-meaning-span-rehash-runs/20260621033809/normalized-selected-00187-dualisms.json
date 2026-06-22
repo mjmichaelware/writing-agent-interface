@@ -1,0 +1,99 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_00163221229cdcd1bef808b01d4b9b6d",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "dafe4ef7fc619b417488743e9895a896418cf8277941d0b7f5da7e1df452d477",
+  "observations": [
+    {
+      "axis": "Weight of Emotional Burden vs. Relief",
+      "polarity": "Opposition",
+      "summary": "The narrative contrasts the oppressive, suffocating weight of the father's slow collapse with the gradual lifting of that weight, allowing the son to breathe more freely.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_92da0950e43e7d5d98ed6fc3bfddacf3",
+          "quote": "The weight that had been pressing on his chest for seven years—the terrible, suffocating weight of his father's slow collapse"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_92da0950e43e7d5d98ed6fc3bfddacf3",
+          "quote": "began to lift. Not all at once. Not completely. But enough that he could take a full breath without feeling like he was stealing air from someone who needed it more."
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_92da0950e43e7d5d98ed6fc3bfddacf3",
+          "quote": "Not all at once. Not completely. But enough that he could take a full breath"
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "weight_of_emotional_burden_vs_relief",
+      "polarity": "opposition",
+      "summary": "The narrative contrasts the oppressive, suffocating weight of the father's slow collapse with the gradual lifting of that weight, allowing the son to breathe more freely.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_92da0950e43e7d5d98ed6fc3bfddacf3",
+          "render_index": 94,
+          "quote": "The weight that had been pressing on his chest for seven years—the terrible, suffocating weight of his father's slow collapse",
+          "role": "left",
+          "start_char": 11988,
+          "end_char": 12113,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_00163221229cdcd1bef808b01d4b9b6d",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            187
+          ],
+          "evidence_sha256": "6e2aea74370ad25d716b96b54fc4fa086150e26777d084d90491414a0863a40c"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_92da0950e43e7d5d98ed6fc3bfddacf3",
+          "render_index": 94,
+          "quote": "began to lift. Not all at once. Not completely. But enough that he could take a full breath without feeling like he was stealing air from someone who needed it more.",
+          "role": "right",
+          "start_char": 12114,
+          "end_char": 12279,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_00163221229cdcd1bef808b01d4b9b6d",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            187
+          ],
+          "evidence_sha256": "9909ce802faf145f66915f940e09dad950daeceb234d40cec6f5df50f13dd066"
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_92da0950e43e7d5d98ed6fc3bfddacf3",
+          "render_index": 94,
+          "quote": "Not all at once. Not completely. But enough that he could take a full breath",
+          "role": "bridge",
+          "start_char": 12129,
+          "end_char": 12205,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_00163221229cdcd1bef808b01d4b9b6d",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            187
+          ],
+          "evidence_sha256": "230145a60d2514dc5d4e49163609f013ffe747b14027d5e8eb68f4f2e0e7fbe4"
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "1f2a333cb5b7eeefb874ab78485795b8040b3f1b7750721486c5b7733514762e",
+  "normalized_output_hash": "2a20ab74e2673f1022c85eb6436ad9455ac9a7a02532eb673bc17557b1ba1240"
+}

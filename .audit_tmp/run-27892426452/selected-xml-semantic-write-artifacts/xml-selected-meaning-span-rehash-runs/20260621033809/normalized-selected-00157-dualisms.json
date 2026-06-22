@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_159a5de237ad2d5e7c9fa6938ed17c26",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "dd283d07f2d9eaed88b2b3907b211ddf345d3735fb44a33eac9c20d52cdd6c5f",
+  "observations": [
+    {
+      "axis": "Perception of Father",
+      "polarity": "Mistaken youth vs. possible non-existence",
+      "summary": "Dan's perception of his father is contrasted between his youthful misunderstanding and the possibility that his father never truly existed as he imagined.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_075c4ac9d77c341a0f71168f9fbf3b59",
+          "quote": "Perhaps Dan had simply been too young to see his father clearly, had mistaken temporary calm for genuine wisdom."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_075c4ac9d77c341a0f71168f9fbf3b59",
+          "quote": "Or perhaps he'd never really existed."
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "perception_of_father",
+      "polarity": "tension",
+      "summary": "Dan's perception of his father is contrasted between his youthful misunderstanding and the possibility that his father never truly existed as he imagined.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_075c4ac9d77c341a0f71168f9fbf3b59",
+          "render_index": 64,
+          "quote": "Perhaps Dan had simply been too young to see his father clearly, had mistaken temporary calm for genuine wisdom.",
+          "role": "left",
+          "start_char": 8335,
+          "end_char": 8447,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_159a5de237ad2d5e7c9fa6938ed17c26",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            127
+          ],
+          "evidence_sha256": "a1c20fe8e470893ca45cbe53a6e267ae0fbe3f190707913566ddf439f2177a16"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_075c4ac9d77c341a0f71168f9fbf3b59",
+          "render_index": 64,
+          "quote": "Or perhaps he'd never really existed.",
+          "role": "right",
+          "start_char": 8297,
+          "end_char": 8334,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_159a5de237ad2d5e7c9fa6938ed17c26",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            127
+          ],
+          "evidence_sha256": "0fe172da4a59e6df44697f7a359ff217ed5a2299ebdfe36e4b246e3f12221530"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "abbc4f657ea6ec6d67301dfc87da914fd44b2a76f6dae16afd68bf51f6ae9e0e",
+  "normalized_output_hash": "1ba19c65c348c6d840b63b36724b9964a9bb6639404062a7b3e1aceecb135c6f"
+}

@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_b17c46bbcc09a146a2ab0206b1c00822",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "facf0f4d4d114842bf0cde3c3d90d6ea69032e178dcd59d6b3d01ca24d7bc862",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The statement about ancient boundaries between the realm of the living and the realm of the dead echoes the broader metaphysical theme of distinct cosmic laws governing different planes of existence, as seen in the narrative's depiction of the Dreamscape and the internal conflicts of the protagonist.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_ce56d0caf570959556bc371d3b5fa6d3",
+          "quote": "\"My temple fell not for want of strength, boy. There exist boundaries—ancient lines that must not be transgressed. The realm of the living cannot trespass too far into the realm of the dead. We are bound by different laws. Mistake not my ancient restraint for impotence.\""
+        }
+      ],
+      "target_hint": "The narrative's metaphysical framework distinguishing realms and laws governing them, such as the Dreamscape's layered existence and the internal psychological battles of Dan.",
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The statement about ancient boundaries between the realm of the living and the realm of the dead echoes the broader metaphysical theme of distinct cosmic laws governing different planes of existence, as seen in the narrative's depiction of",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_ce56d0caf570959556bc371d3b5fa6d3",
+          "render_index": 69,
+          "quote": "\"My temple fell not for want of strength, boy. There exist boundaries—ancient lines that must not be transgressed. The realm of the living cannot trespass too far into the realm of the dead. We are bound by different laws. Mistake not my ancient restraint for impotence.\"",
+          "role": "source",
+          "start_char": 16609,
+          "end_char": 16880,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_b17c46bbcc09a146a2ab0206b1c00822",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            137
+          ],
+          "evidence_sha256": "756171a01a0c4a8663b7a986ae7a5c77192d1ac49f5c483017c27df1dd22c238"
+        }
+      ],
+      "target_hint": "The narrative's metaphysical framework distinguishing realms and laws governing them, such as the Dreamscape's layered existence and the internal psychological battles of Dan.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "9e4ee5b1897daca473bb4c3e1540f952fb22823472d48ebc37ce838938f3c22d",
+  "normalized_output_hash": "dbbb23f585493637dee8fac47c0ce88f8de737c104b11925f375a29ead2d33bf"
+}

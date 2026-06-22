@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "archetypes",
+  "scene_window_id": "scene_6e1191d013f97edba1d4f6575f03ae02",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "2048a86bd0cec3795e632889f72de8b332bd23166fd414daf852ba40909a0569",
+  "observations": [
+    {
+      "character": "Dan",
+      "archetype": "Hero",
+      "archetype_gloss": "A young individual testing his own power and limits, seeking self-knowledge and mastery",
+      "movement": "ordeal",
+      "summary": "Dan is portrayed as a young person who has a special gift and is choosing to test it again, indicating a personal trial or challenge that aligns with the Hero archetype undergoing an ordeal.",
+      "evidence": [
+        {
+          "render_para_key": "rp_6d68a643194f302143e8cbf5f1d1a5a9",
+          "quote": "What matters is that Dan had the gift. Had used it twice before. And tonight, for reasons that were not entirely about his father—he wanted to know if he could still do it, wanted to test the power the way young people test things they have been told are dangerous—he was going to use it a third time."
+        }
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "archetypes",
+      "character": "Dan",
+      "archetype": "Hero",
+      "archetype_anchor_key": "jungian_hero",
+      "archetype_gloss": null,
+      "movement": "ordeal",
+      "summary": "Dan is portrayed as a young person who has a special gift and is choosing to test it again, indicating a personal trial or challenge that aligns with the Hero archetype undergoing an ordeal.",
+      "evidence": [
+        {
+          "render_para_key": "rp_6d68a643194f302143e8cbf5f1d1a5a9",
+          "render_index": 26,
+          "quote": "What matters is that Dan had the gift. Had used it twice before. And tonight, for reasons that were not entirely about his father—he wanted to know if he could still do it, wanted to test the power the way young people test things they have been told are dangerous—he was going to use it a third time.",
+          "role": null,
+          "start_char": 7196,
+          "end_char": 7497,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_6e1191d013f97edba1d4f6575f03ae02",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            51
+          ],
+          "evidence_sha256": "46e23e3475a9bd0fd02954c0aa0546efa0cef81b7348e6888dba6284c0d764c4"
+        }
+      ],
+      "confidence": 0.9,
+      "unresolved_subject": false
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "9e55d0b7a865207b8a12783289c4d8798f47b32893abc1211aea178d7065b455",
+  "normalized_output_hash": "e66b3f2e81ed65d3e765f4dd004ea424aa3d106a8a13d48e08e471ea0b35072d"
+}

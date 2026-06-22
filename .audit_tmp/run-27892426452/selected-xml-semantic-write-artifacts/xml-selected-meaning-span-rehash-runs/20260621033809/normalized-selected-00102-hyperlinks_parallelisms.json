@@ -1,0 +1,60 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_e2969c1a4cc9173de33a2d81763e57ef",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "90c8b40661bfc4c66fcf74ef496d36504ee40623deff209fe68871ba91592aca",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The motif of decay permeating the house, including even the spaces that resist it, echoes the broader theme of systemic decay and structural emptiness in the narrative, symbolizing the pervasive corruption affecting all aspects of Dan's environment and psyche.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_6e92b3113ba6c1e8f01db06bc76e7f9a",
+          "quote": "His room, you'll remember, was the only clean space in the house, a tiny island of order in a sea of rot. But even here, the air tasted wrong. The house's decay had seeped into everything, including the spaces that resisted it."
+        }
+      ],
+      "target_hint": "This motif parallels the description of Aviel's house as a monument to systemic decay and potential rigorously refused, reflecting the internal and external collapse surrounding Dan.",
+      "target_evidence": [
+        {
+          "render_para_key": "2f49c451b048e73249daec5c732eff040a81f7310b547eb6a36177a08723deda",
+          "quote": "The air itself felt thick, as if the entire structure had swallowed all light and sound. Each calculated, barefoot step on the unforgiving limestone was a wager of his own mass against the increasing weight of the house."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The motif of decay permeating the house, including even the spaces that resist it, echoes the broader theme of systemic decay and structural emptiness in the narrative, symbolizing the pervasive corruption affecting all aspects of Dan's env",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_6e92b3113ba6c1e8f01db06bc76e7f9a",
+          "render_index": 9,
+          "quote": "His room, you'll remember, was the only clean space in the house, a tiny island of order in a sea of rot. But even here, the air tasted wrong. The house's decay had seeped into everything, including the spaces that resisted it.",
+          "role": "source",
+          "start_char": 900,
+          "end_char": 1127,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_e2969c1a4cc9173de33a2d81763e57ef",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            17
+          ],
+          "evidence_sha256": "ffb0f06f13c58b55aefcc41d0d1f8e89bb77fb5ace5bf46a406380ac38577dae"
+        }
+      ],
+      "target_hint": "This motif parallels the description of Aviel's house as a monument to systemic decay and potential rigorously refused, reflecting the internal and external collapse surrounding Dan.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "92e8d469602bfaa81e0aed00d0771860458060f3033f7d2caa371d7d85bf6c5b",
+  "normalized_output_hash": "9fc0fd73a165f20d69fbc4693d091004406b3d0be47a4c219be1fedd0ddd4769"
+}

@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_d6de7f0d4fe00fe4dd7da27081f11216",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "a738963747c8d8e4f9c1ea6245b4e96a30f7f177b33ca9b4c033456d87895c0a",
+  "observations": [
+    {
+      "axis": "Formlessness vs. Truth",
+      "polarity": "Formless void and darkness precede the emergence of spoken truth",
+      "summary": "The narrative contrasts an initial state of formless void and darkness with the moment when the first words of truth are spoken, marking the beginning of Time and order.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_79e3c6c195557aea54f2c81935ab73c4",
+          "quote": "Formless void, darkness on the deep—as things must have been before Time"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_79e3c6c195557aea54f2c81935ab73c4",
+          "quote": "when the first words of truth were spoken"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "formlessness_vs_truth",
+      "polarity": "tension",
+      "summary": "The narrative contrasts an initial state of formless void and darkness with the moment when the first words of truth are spoken, marking the beginning of Time and order.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_79e3c6c195557aea54f2c81935ab73c4",
+          "render_index": 36,
+          "quote": "Formless void, darkness on the deep—as things must have been before Time",
+          "role": "left",
+          "start_char": 9111,
+          "end_char": 9183,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_d6de7f0d4fe00fe4dd7da27081f11216",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            71
+          ],
+          "evidence_sha256": "72f622a37948b93867a58549180f46e4e9864a4d7ede887fe7dd562680e83e2d"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_79e3c6c195557aea54f2c81935ab73c4",
+          "render_index": 36,
+          "quote": "when the first words of truth were spoken",
+          "role": "right",
+          "start_char": 9185,
+          "end_char": 9226,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_d6de7f0d4fe00fe4dd7da27081f11216",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            71
+          ],
+          "evidence_sha256": "d64faa31113515b64d7031242556265b6b65eb4d8b6bd028eb5a476528fbb477"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "26a55914f4145d23e2d217b2c90e0368ac03c1d79f4f0a4f9a224c5910f4afcb",
+  "normalized_output_hash": "f1791c2a8316ea32392b17eadc5fb40d4a83771833ef8d861d150485823e68b8"
+}

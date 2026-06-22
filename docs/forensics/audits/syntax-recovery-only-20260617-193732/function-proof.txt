@@ -1,0 +1,14 @@
+94:const VERTEX_MODEL = env("VERTEX_MODEL", "gemini-2.5-pro");
+104:  const manifest = JSON.parse(readText(paths.xmlManifest));
+157:  const endpoint = `https://api.supabase.com/v1/projects/${SUPABASE_PROJECT_REF}/database/query`;
+171:    json = text ? JSON.parse(text) : null;
+445:      model: VERTEX_MODEL,
+456:    model: VERTEX_MODEL,
+692:async function callVertex(prompt) {
+716:      `/locations/${VERTEX_LOCATION}/publishers/google/models/${VERTEX_MODEL}:generateContent`;
+729:    return JSON.parse(text);
+735:  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${VERTEX_MODEL}:generateContent?key=${key}`, {
+743:  return JSON.parse(text);
+795:      model: VERTEX_MODEL,
+816:          model: VERTEX_MODEL,
+1038:    model: VERTEX_MODEL,

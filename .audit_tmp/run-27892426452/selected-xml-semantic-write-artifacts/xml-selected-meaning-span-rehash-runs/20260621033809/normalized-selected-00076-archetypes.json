@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "archetypes",
+  "scene_window_id": "scene_1625aaa4b4738858e40fcc7d397a7871",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "2dad144f48dbdf57ca1d0736f2c09e5e98e84ec7fcfdab0e66be31315aeeafc4",
+  "observations": [
+    {
+      "character": "Dan",
+      "archetype": "Shadow",
+      "archetype_gloss": "The internal burden and emotional weight settling within Dan, representing his unconscious struggles and unresolved conflicts.",
+      "movement": "descent",
+      "summary": "Dan experiences the settling of heavy, burdensome words within himself, symbolizing a psychological descent into confronting his Shadow aspects.",
+      "evidence": [
+        {
+          "render_para_key": "rp_82e8f02e9dbffc64247d31252782f3ef",
+          "quote": "The words settled into him like stones dropped into still water, sinking before he could stop them."
+        }
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "archetypes",
+      "character": "Dan",
+      "archetype": "Shadow",
+      "archetype_anchor_key": "jungian_shadow",
+      "archetype_gloss": null,
+      "movement": "descent",
+      "summary": "Dan experiences the settling of heavy, burdensome words within himself, symbolizing a psychological descent into confronting his Shadow aspects.",
+      "evidence": [
+        {
+          "render_para_key": "rp_82e8f02e9dbffc64247d31252782f3ef",
+          "render_index": 77,
+          "quote": "The words settled into him like stones dropped into still water, sinking before he could stop them.",
+          "role": null,
+          "start_char": 18222,
+          "end_char": 18321,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_1625aaa4b4738858e40fcc7d397a7871",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            153
+          ],
+          "evidence_sha256": "c9d38a7c4256c33950d4146d1bfcc9c3a5a6e907e90da53519b8b4c5fda21d8e"
+        }
+      ],
+      "confidence": 0.9,
+      "unresolved_subject": false
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "e6fa2c1944742473f69f73b6e273e57e6845958950c216626973e35b01ecde6d",
+  "normalized_output_hash": "a860b145928c3c95bb2994f680cbd4fd46dfedb531d62fa89360d95546d06053"
+}

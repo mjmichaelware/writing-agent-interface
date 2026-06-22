@@ -1,0 +1,102 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_dc5e038bb41a373188306f85f88ada5a",
+  "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+  "context_capsule_sha256": "3997cfce599049bccdcc491f67bbedc1bc0ca3224a854a751eff75801b1f67e3",
+  "observations": [
+    {
+      "axis": "Spiritual Ascent vs. Earthly Burden",
+      "polarity": "Ascent (positive) vs. Burden (negative)",
+      "summary": "Dan chooses to seek the light and truth above, rejecting the burdens of the flesh and the comforting lies of the earth's tribute, representing a tension between spiritual aspiration and earthly attachment.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_35f6998e8eaa7fc98fe263e3b13702f6",
+          "quote": "I seek the light. I seek the truth that is above, not the lie that is below. I will not be pulled down by the burdens of the flesh, nor the comforting lies of the earth’s tribute!"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_35f6998e8eaa7fc98fe263e3b13702f6",
+          "quote": "the booming wrath of Lady astarte"
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_35f6998e8eaa7fc98fe263e3b13702f6",
+          "quote": "a seismic, chilling shriek tore through the air from the well—the sound of ancient power denied, of cosmic rage unleashed"
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "spiritual_ascent_vs_earthly_burden",
+      "polarity": "tension",
+      "summary": "Dan chooses to seek the light and truth above, rejecting the burdens of the flesh and the comforting lies of the earth's tribute, representing a tension between spiritual aspiration and earthly attachment.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_35f6998e8eaa7fc98fe263e3b13702f6",
+          "render_index": 12,
+          "quote": "I seek the light. I seek the truth that is above, not the lie that is below. I will not be pulled down by the burdens of the flesh, nor the comforting lies of the earth’s tribute!",
+          "role": "left",
+          "start_char": 7948,
+          "end_char": 8127,
+          "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+          "scene_window_id": "scene_dc5e038bb41a373188306f85f88ada5a",
+          "source_document_xml_sha256": "4c43f128801df7d839bd5fda91fc148c0068a06a98530bf1c45d5fd004db3bcf",
+          "source_xml_paragraph_indexes": [
+            14,
+            15
+          ],
+          "evidence_sha256": "2cd557be55a979ba26e83b213ea596e1eee03160b76d5fc98efcbc0fb128e45d"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_35f6998e8eaa7fc98fe263e3b13702f6",
+          "render_index": 12,
+          "quote": "the booming wrath of Lady astarte",
+          "role": "right",
+          "start_char": 7867,
+          "end_char": 7900,
+          "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+          "scene_window_id": "scene_dc5e038bb41a373188306f85f88ada5a",
+          "source_document_xml_sha256": "4c43f128801df7d839bd5fda91fc148c0068a06a98530bf1c45d5fd004db3bcf",
+          "source_xml_paragraph_indexes": [
+            14,
+            15
+          ],
+          "evidence_sha256": "40237152e538a79e87e3baf9b5065a76cbd5d73d8a77d769eb582e41ec938d03"
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_35f6998e8eaa7fc98fe263e3b13702f6",
+          "render_index": 12,
+          "quote": "a seismic, chilling shriek tore through the air from the well—the sound of ancient power denied, of cosmic rage unleashed",
+          "role": "bridge",
+          "start_char": 8157,
+          "end_char": 8278,
+          "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+          "scene_window_id": "scene_dc5e038bb41a373188306f85f88ada5a",
+          "source_document_xml_sha256": "4c43f128801df7d839bd5fda91fc148c0068a06a98530bf1c45d5fd004db3bcf",
+          "source_xml_paragraph_indexes": [
+            14,
+            15
+          ],
+          "evidence_sha256": "1b39f13c0aad00027494c82ca26105df9ed94aef9380cdbfd286aaafa756e350"
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "9cc21f157cb04c6c19ee286c38ee8e96810358f35feeb89af2c4f3534781f6f0",
+  "normalized_output_hash": "d196ccd235fe47f08d7cca7bd36901308db44b72d8690f87c1f48153d9a28467"
+}

@@ -1,0 +1,68 @@
+{
+  "status": "ok",
+  "task_type": "biblical_references",
+  "scene_window_id": "scene_2fb589aadc0f93aac17706a1cd779608",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "20af042c7c1f55263949ca4b662406487cc9fe59f7d0cd2d418d7f95198531c9",
+  "observations": [
+    {
+      "biblical_anchor_label": "Judges 16:23-24",
+      "book": "Judges",
+      "chapter": 16,
+      "verse_start": 23,
+      "verse_end": 24,
+      "motif_family": "Divine Visions and False Gods",
+      "relationship_type": "explicit_allusion",
+      "correspondence_rationale": "The text references a vision sent by 'Lord Dagon,' directly alluding to the Philistine god Dagon, who appears in the Book of Judges as the deity before whom Samson is brought and whose temple is destroyed. The mention of a vision sent by Lord Dagon parallels the biblical motif of divine or prophetic visions associated with pagan gods, specifically Dagon in Judges 16.",
+      "summary": "The father's claim of receiving a vision from 'Lord Dagon' explicitly alludes to the biblical Philistine god Dagon, known from Judges 16, establishing a direct connection to the motif of divine visions and pagan deities in the Bible.",
+      "evidence": [
+        {
+          "render_para_key": "rp_3abddcf2a33464b1427e45ab27c89112",
+          "quote": "\"I had a dream,\" his father continued, his voice gaining strength. \"A vision. The Lord—\" He stopped, corrected himself. \"Lord Dagon sent me a vision.\""
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Judges 16:23-24",
+      "book": "Judges",
+      "chapter": 16,
+      "verse_start": 23,
+      "verse_end": 24,
+      "motif_family": "divine_visions_and_false_gods",
+      "biblical_anchor_key": "bibanchor_81f943123adbc36c558ea5add3ee9596",
+      "relationship_type": "explicit_allusion",
+      "correspondence_rationale": "The text references a vision sent by 'Lord Dagon,' directly alluding to the Philistine god Dagon, who appears in the Book of Judges as the deity before whom Samson is brought and whose temple is destroyed. The mention of a vision sent by Lord Dagon parallels the biblical motif of divine or prophetic visions associated",
+      "summary": "The father's claim of receiving a vision from 'Lord Dagon' explicitly alludes to the biblical Philistine god Dagon, known from Judges 16, establishing a direct connection to the motif of divine visions and pagan deities in the Bible.",
+      "evidence": [
+        {
+          "render_para_key": "rp_3abddcf2a33464b1427e45ab27c89112",
+          "render_index": 19,
+          "quote": "\"I had a dream,\" his father continued, his voice gaining strength. \"A vision. The Lord—\" He stopped, corrected himself. \"Lord Dagon sent me a vision.\"",
+          "role": null,
+          "start_char": 2397,
+          "end_char": 2547,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_2fb589aadc0f93aac17706a1cd779608",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            37
+          ],
+          "evidence_sha256": "34ef6298bb58581e0707b08a8fb789eca764c16639c59d3c7afdcb249e0bfe37"
+        }
+      ],
+      "confidence": 0.95,
+      "reference": "Judges 16:23-24",
+      "motif": "divine_visions_and_false_gods"
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "cdd100ef54ba934cb2384eeba7cab7a80e36f4bbb487a3e7e0514d44b57c0145",
+  "normalized_output_hash": "52e9c8e67e18dbb9b4c6735ab44f9f7ad0caa4cc4dd4e72ff1653e6950b461a3"
+}

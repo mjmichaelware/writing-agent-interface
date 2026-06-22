@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_ca2c09fa4436141578ca1c9099029552",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "95c5e1a718bd5e9781481b32b656ec889ac0dc7258282b84e4048bc61bb747a0",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The motif of 'letting go' and the dissolution of the stone beneath the knees in the source paragraph parallels the thematic motif of release from material burdens and spiritual transition found throughout the narrative, especially in Dan's father's hoarding and eventual letting go of possessions in the dreamscape.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_e280f22a9049ac1857a3a1f8f83d2fb6",
+          "quote": "He let go. The stone beneath his knees dissolved—not instantly, but with a slow horrifying certainty. In that terrifying, perfect stillness—that necessary, terrible emptiness—he stepped sideways, and into the Dreamscape."
+        }
+      ],
+      "target_hint": "Dan's father's hoarding and eventual letting go of possessions in the dreamscape as a metaphor for spiritual release.",
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The motif of 'letting go' and the dissolution of the stone beneath the knees in the source paragraph parallels the thematic motif of release from material burdens and spiritual transition found throughout the narrative, especially in Dan's",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_e280f22a9049ac1857a3a1f8f83d2fb6",
+          "render_index": 30,
+          "quote": "He let go. The stone beneath his knees dissolved—not instantly, but with a slow horrifying certainty. In that terrifying, perfect stillness—that necessary, terrible emptiness—he stepped sideways, and into the Dreamscape.",
+          "role": "source",
+          "start_char": 8013,
+          "end_char": 8233,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_ca2c09fa4436141578ca1c9099029552",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            59
+          ],
+          "evidence_sha256": "f40eb8c89e7b23ebe22209b99cb4bf49e23c01911210ff659b789d2827e3da42"
+        }
+      ],
+      "target_hint": "Dan's father's hoarding and eventual letting go of possessions in the dreamscape as a metaphor for spiritual release.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "480e008515f77c4f0a86b09abfff42aa3faf7322fa7e12d647ee1d781a858503",
+  "normalized_output_hash": "612a0aafbe8840609854107c7b3f30b96cb2b641baa486719da4e7b562635c31"
+}

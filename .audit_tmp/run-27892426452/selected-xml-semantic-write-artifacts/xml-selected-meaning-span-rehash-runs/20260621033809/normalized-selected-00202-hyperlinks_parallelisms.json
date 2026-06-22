@@ -1,0 +1,64 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_6e9b41bcc4af0ede64ffe4ad506c9cce",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "d6ac834c4317beeb94aaaf339eabfff84d309ed0448a4dd6d47eb47fc3e6e0c5",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The action of adjusting the pack on his shoulders and tightening his grip on the walking stick in the source paragraph echoes the motif of preparation and deliberate movement found throughout the narrative, symbolizing readiness for a challenging journey.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_8ae92460241da13792f918fe44cd2348",
+          "quote": "He adjusted the pack on his shoulders, tightened his grip on the walking stick, and took the first step."
+        }
+      ],
+      "target_hint": "This physical preparation parallels earlier and later moments where Dan prepares himself mentally and physically for his spiritual and physical journeys, such as his departure from Shechem and his ascent at Hermon.",
+      "target_evidence": [
+        {
+          "render_para_key": "6",
+          "quote": "He spoke to a merchant packing donkeys by the city gate. “North, you say? Towards Dothan?” The merchant adjusted a strap, his face kind."
+        },
+        {
+          "render_para_key": "9",
+          "quote": "The air, already thin and sharp at the base of Hermon, bit at Daniel’s lungs with the first step."
+        }
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The action of adjusting the pack on his shoulders and tightening his grip on the walking stick in the source paragraph echoes the motif of preparation and deliberate movement found throughout the narrative, symbolizing readiness for a chall",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_8ae92460241da13792f918fe44cd2348",
+          "render_index": 109,
+          "quote": "He adjusted the pack on his shoulders, tightened his grip on the walking stick, and took the first step.",
+          "role": "source",
+          "start_char": 13766,
+          "end_char": 13870,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_6e9b41bcc4af0ede64ffe4ad506c9cce",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            217
+          ],
+          "evidence_sha256": "93396f3b61d7c8e22505a7f6a685369078f999a9373a6ff1b38793f8db9d143e"
+        }
+      ],
+      "target_hint": "This physical preparation parallels earlier and later moments where Dan prepares himself mentally and physically for his spiritual and physical journeys, such as his departure from Shechem and his asc",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "f6f53191df54e9ec1850a7af45014929ce9161d1da12904a88eb93e85c654e35",
+  "normalized_output_hash": "04723865addc207aba84268fe326117c23fc5b56efa7e0b43cca42917f8a447c"
+}

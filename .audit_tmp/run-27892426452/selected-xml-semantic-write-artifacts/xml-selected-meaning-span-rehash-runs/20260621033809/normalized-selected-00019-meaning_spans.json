@@ -1,0 +1,143 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_cfd65d7a128b3b390266f6d72ed36c00",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "2e46c4ae6b7c8748d843bd838db6740f7d29b5e51170c020d80fdb4759f1ba3f",
+  "observations": [
+    {
+      "kind": "Symbolic Motif",
+      "summary": "The stars of Hebron symbolize the closest connection to the unseen source, representing the original light from which all existence borrows and to which all returns.",
+      "evidence": [
+        {
+          "render_para_key": "rp_56322e0639841a6f01b53f9dd61b090e",
+          "quote": "His mother had taught him they were the closest thing to the unseen source—that original light from which everything borrowed its brief existence and to which everything returned."
+        }
+      ],
+      "thematic_weight": 9,
+      "gravity": 8,
+      "tension": 3,
+      "confidence": 0.95,
+      "notes": "This motif establishes a metaphysical foundation linking stars to origin and destiny."
+    },
+    {
+      "kind": "Dream Imagery",
+      "summary": "Dan's dreams are deliberate and purposeful, involving climbing endless stairs in the dark, rising above the earth, and seeking open sky, symbolizing aspiration and transcendence.",
+      "evidence": [
+        {
+          "render_para_key": "rp_56322e0639841a6f01b53f9dd61b090e",
+          "quote": "He had dreamed of climbing endless stairs in the dark, his legs never tiring, the air growing thinner and cleaner with every step. Of jumping and not coming back down. Of spreading his arms and rising until the whole dark earth curved below him like a broken plate."
+        }
+      ],
+      "thematic_weight": 8,
+      "gravity": 7,
+      "tension": 5,
+      "confidence": 0.9,
+      "notes": "Dreams reflect internal striving and spiritual ascent."
+    },
+    {
+      "kind": "Emotional Resonance",
+      "summary": "The contrast between the dream's open sky and the waking reality of a ceiling above evokes a universal feeling of yearning and confinement.",
+      "evidence": [
+        {
+          "render_para_key": "rp_56322e0639841a6f01b53f9dd61b090e",
+          "quote": "Everyone who has ever woken from that kind of dream and found a ceiling above them instead of open sky will understand what he was after."
+        }
+      ],
+      "thematic_weight": 7,
+      "gravity": 6,
+      "tension": 6,
+      "confidence": 0.85,
+      "notes": "This observation connects the personal dream experience to a shared human condition."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "Dan's dreams are deliberate and purposeful, involving climbing endless stairs in the dark, rising above the earth, and seeking open sky, symbolizing aspiration and transcendence.",
+      "evidence": [
+        {
+          "render_para_key": "rp_56322e0639841a6f01b53f9dd61b090e",
+          "render_index": 20,
+          "quote": "He had dreamed of climbing endless stairs in the dark, his legs never tiring, the air growing thinner and cleaner with every step. Of jumping and not coming back down. Of spreading his arms and rising until the whole dark earth curved below him like a broken plate.",
+          "role": null,
+          "start_char": 6073,
+          "end_char": 6338,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_cfd65d7a128b3b390266f6d72ed36c00",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            39
+          ],
+          "evidence_sha256": "5820d65ba4e04715fe1fff34a793f055eb8994e4acdd0a2ccf45da2a578c1227"
+        }
+      ],
+      "thematic_weight": 1,
+      "gravity": 1,
+      "tension": 1,
+      "confidence": 0.9,
+      "notes": "Dreams reflect internal striving and spiritual ascent."
+    },
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "The contrast between the dream's open sky and the waking reality of a ceiling above evokes a universal feeling of yearning and confinement.",
+      "evidence": [
+        {
+          "render_para_key": "rp_56322e0639841a6f01b53f9dd61b090e",
+          "render_index": 20,
+          "quote": "Everyone who has ever woken from that kind of dream and found a ceiling above them instead of open sky will understand what he was after.",
+          "role": null,
+          "start_char": 6339,
+          "end_char": 6476,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_cfd65d7a128b3b390266f6d72ed36c00",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            39
+          ],
+          "evidence_sha256": "a3c06edb9fd51e1e9c8215e43a3ada5a12c60ddad38131e4a3445879fd4eeb1a"
+        }
+      ],
+      "thematic_weight": 1,
+      "gravity": 1,
+      "tension": 1,
+      "confidence": 0.85,
+      "notes": "This observation connects the personal dream experience to a shared human condition."
+    },
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "The stars of Hebron symbolize the closest connection to the unseen source, representing the original light from which all existence borrows and to which all returns.",
+      "evidence": [
+        {
+          "render_para_key": "rp_56322e0639841a6f01b53f9dd61b090e",
+          "render_index": 20,
+          "quote": "His mother had taught him they were the closest thing to the unseen source—that original light from which everything borrowed its brief existence and to which everything returned.",
+          "role": null,
+          "start_char": 5808,
+          "end_char": 5987,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_cfd65d7a128b3b390266f6d72ed36c00",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            39
+          ],
+          "evidence_sha256": "843432b35a0a66d1d5eb7d484525ab50c5741dd18313b3dc0d04e3e533e41375"
+        }
+      ],
+      "thematic_weight": 1,
+      "gravity": 1,
+      "tension": 1,
+      "confidence": 0.95,
+      "notes": "This motif establishes a metaphysical foundation linking stars to origin and destiny."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "84e2d776042ae602c375f5b9faf13a5fdcbf27a5ebfe00d3b0aa931894073992",
+  "normalized_output_hash": "357ae904013ff7b7f541d4afdf0c74ba3a47e29f8af868e399c566e4b3306388"
+}

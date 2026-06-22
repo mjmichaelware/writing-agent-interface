@@ -1,0 +1,15 @@
+{
+  "status": "skipped",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_21e30f2d6fea5a8493b9b77c56934111",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "621944ba738474192321dcda54bdb9602d4af7c6cc35068f5c66f8d0336d1e10",
+  "observations": [],
+  "accepted_observations": [],
+  "rejected_observations": [],
+  "failure_reason": "heading_window",
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "225e762caa8cb172d84527d9dafc91d35fa66926b5536689e683325e81945c89",
+  "normalized_output_hash": "42555ef6875ac54c190c9f2df4c163ddc3d66385e47efd10101b82f37c0df6f3"
+}

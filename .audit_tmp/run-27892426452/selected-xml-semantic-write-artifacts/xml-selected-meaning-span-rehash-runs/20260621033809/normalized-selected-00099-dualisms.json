@@ -1,0 +1,99 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_d0a0999cc850baaf355046c67bdd7d32",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "292b559a594ebf480c5cebf08c6cf580ca69782d4529e0474bb6c1c51598bae4",
+  "observations": [
+    {
+      "axis": "Physical Body vs. Dreamwork Influence",
+      "polarity": "Body feels heavy and distant vs. Dreamwork takes something intangible",
+      "summary": "Dan experiences a physical disconnection from his body, feeling it as heavy and ill-fitting, while the dreamwork is described as having taken something from him, affecting his physical and mental state.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_09413884051bef42cee2d2ca0696a5cb",
+          "quote": "His body felt wrong—heavy and distant, as if he were wearing it like an ill-fitting coat."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_09413884051bef42cee2d2ca0696a5cb",
+          "quote": "The dreamwork had taken something from him."
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_09413884051bef42cee2d2ca0696a5cb",
+          "quote": "He could feel it in his bones, in the strange thickness of his throat, in the way his thoughts moved sluggishly through his skull like honey through winter air."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "physical_body_vs_dreamwork_influence",
+      "polarity": "tension",
+      "summary": "Dan experiences a physical disconnection from his body, feeling it as heavy and ill-fitting, while the dreamwork is described as having taken something from him, affecting his physical and mental state.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_09413884051bef42cee2d2ca0696a5cb",
+          "render_index": 6,
+          "quote": "His body felt wrong—heavy and distant, as if he were wearing it like an ill-fitting coat.",
+          "role": "left",
+          "start_char": 441,
+          "end_char": 530,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_d0a0999cc850baaf355046c67bdd7d32",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            11
+          ],
+          "evidence_sha256": "cdef56fd91305f4dd4f01773da693b52b04a48044f26dcede4f63e812cd0f47d"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_09413884051bef42cee2d2ca0696a5cb",
+          "render_index": 6,
+          "quote": "The dreamwork had taken something from him.",
+          "role": "right",
+          "start_char": 531,
+          "end_char": 574,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_d0a0999cc850baaf355046c67bdd7d32",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            11
+          ],
+          "evidence_sha256": "9869167342d13d19a3dbfbddabf4cdfbdd0b6c13d072d8d70fc50253e8ab5267"
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_09413884051bef42cee2d2ca0696a5cb",
+          "render_index": 6,
+          "quote": "He could feel it in his bones, in the strange thickness of his throat, in the way his thoughts moved sluggishly through his skull like honey through winter air.",
+          "role": "bridge",
+          "start_char": 575,
+          "end_char": 735,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_d0a0999cc850baaf355046c67bdd7d32",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            11
+          ],
+          "evidence_sha256": "0680185eb4d452cb566106bf0602767864a8dc63da9c7daebebd795bedbdddb0"
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "2c8fcfc21c0d58913c457649876fe63f2958829ef26efa2d03e8b929e4607c58",
+  "normalized_output_hash": "24d6df8899203e8c6d2d1d2a2b9d9308b6d446b64cdb90cb50d4efc933ae45ad"
+}

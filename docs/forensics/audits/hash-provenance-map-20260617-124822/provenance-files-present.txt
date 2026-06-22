@@ -1,0 +1,5 @@
+FOUND reports/runtime_sources/active_runtime_source_manifest.json
+FOUND reports/ingestion-hash-references.txt
+FOUND reports/chapter-source-references.txt
+FOUND reports/xml_recovery/materialized_ooxml_manifest.json
+FOUND reports/xml_recovery/source_xml_supabase_schema_proposal.sql

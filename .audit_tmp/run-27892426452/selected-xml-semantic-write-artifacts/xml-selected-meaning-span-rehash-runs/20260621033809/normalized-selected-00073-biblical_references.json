@@ -1,0 +1,68 @@
+{
+  "status": "ok",
+  "task_type": "biblical_references",
+  "scene_window_id": "scene_2cd4b223ab83fcac93d8178c12184f83",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "6cf6199968832014efdd80dc13747d1aa823c6ba3106afeb5b26e298a423e972",
+  "observations": [
+    {
+      "biblical_anchor_label": "Isaiah 14:12-15",
+      "book": "Isaiah",
+      "chapter": 14,
+      "verse_start": 12,
+      "verse_end": 15,
+      "motif_family": "Pride and Fall",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The passage's theme of pursuing heights leading to isolation and downfall parallels Isaiah's depiction of the fall of Lucifer, the 'morning star' who aspired to ascend above God but was cast down to the earth, becoming isolated and alone.",
+      "summary": "The text's depiction of becoming a monument, cold and alone after pursuing heights, symbolically resonates with Isaiah's account of Lucifer's prideful ascent and subsequent fall.",
+      "evidence": [
+        {
+          "render_para_key": "rp_5c3813e33b8c0fef48852d271fe2307d",
+          "quote": "\"The one who pursues the heights becomes the monument—cold, isolated, and alone.\" The voice dropped further, a crushing personal judgment that bypassed his ears and lodged directly behind his sternum. \"Choose the heights if you must. But know this: the silence of the cosmos awaits you. The star you become shall burn alone."
+        }
+      ],
+      "confidence": 0.85
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Isaiah 14:12-15",
+      "book": "Isaiah",
+      "chapter": 14,
+      "verse_start": 12,
+      "verse_end": 15,
+      "motif_family": "pride_and_fall",
+      "biblical_anchor_key": "bibanchor_cb2a09819c47cbb75f9339489a56d322",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The passage's theme of pursuing heights leading to isolation and downfall parallels Isaiah's depiction of the fall of Lucifer, the 'morning star' who aspired to ascend above God but was cast down to the earth, becoming isolated and alone.",
+      "summary": "The text's depiction of becoming a monument, cold and alone after pursuing heights, symbolically resonates with Isaiah's account of Lucifer's prideful ascent and subsequent fall.",
+      "evidence": [
+        {
+          "render_para_key": "rp_5c3813e33b8c0fef48852d271fe2307d",
+          "render_index": 74,
+          "quote": "\"The one who pursues the heights becomes the monument—cold, isolated, and alone.\" The voice dropped further, a crushing personal judgment that bypassed his ears and lodged directly behind his sternum. \"Choose the heights if you must. But know this: the silence of the cosmos awaits you. The star you become shall burn alone.",
+          "role": null,
+          "start_char": 17646,
+          "end_char": 17970,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_2cd4b223ab83fcac93d8178c12184f83",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            147
+          ],
+          "evidence_sha256": "8907b56fe9a35ef5a84899a269b3167c84eb14a96b3b2bdef02c1e5cd6cde0e0"
+        }
+      ],
+      "confidence": 0.6,
+      "reference": "Isaiah 14:12-15",
+      "motif": "pride_and_fall"
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "94cf09211407f6240093a762b10a2d28aff47785c4a1418b2d8b6d95c00f7236",
+  "normalized_output_hash": "47434b0513182af3b9d58d49d208fa2b3366c9ba5427c48a9d5d177818b1895e"
+}

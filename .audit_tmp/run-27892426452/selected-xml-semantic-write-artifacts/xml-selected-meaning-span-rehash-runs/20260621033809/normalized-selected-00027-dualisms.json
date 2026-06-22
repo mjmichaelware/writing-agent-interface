@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_f7191bfea0dab5b79f33d17bdcba46c2",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "88e76b1323de4a799ed085b322d20f8b3faa7aeb90d0fa776e9fdc4f05da6a79",
+  "observations": [
+    {
+      "axis": "Voice vs. Silence",
+      "polarity": "Her voice in the silence",
+      "summary": "The dualism contrasts the presence of the woman's voice against the encompassing silence, highlighting the tension between expression and quiet.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_900f3f3b29f361bfbebdb55c48c25545",
+          "quote": "Her voice in the silence."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_900f3f3b29f361bfbebdb55c48c25545",
+          "quote": "Her hands rough and reddened from the lye, holding a clay pot up to the afternoon sun."
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.8
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "voice_vs_silence",
+      "polarity": "tension",
+      "summary": "The dualism contrasts the presence of the woman's voice against the encompassing silence, highlighting the tension between expression and quiet.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_900f3f3b29f361bfbebdb55c48c25545",
+          "render_index": 28,
+          "quote": "Her voice in the silence.",
+          "role": "left",
+          "start_char": 7713,
+          "end_char": 7738,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_f7191bfea0dab5b79f33d17bdcba46c2",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            55
+          ],
+          "evidence_sha256": "df07398be6cc6ce764422468385465bdca13ed5a9b30c6cc643295badf559784"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_900f3f3b29f361bfbebdb55c48c25545",
+          "render_index": 28,
+          "quote": "Her hands rough and reddened from the lye, holding a clay pot up to the afternoon sun.",
+          "role": "right",
+          "start_char": 7739,
+          "end_char": 7825,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_f7191bfea0dab5b79f33d17bdcba46c2",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            55
+          ],
+          "evidence_sha256": "dc90bd4ab8618496b056c799ba91d0b9a95c3f1f7a37dc576e07e7eeb7c9d5f5"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.8
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "d86aa2b730d9c2b4c2947b599f98534a2314093bc47d95b343950154652d03f8",
+  "normalized_output_hash": "a18761fa333ac1b8104fb5f8fd220e9984395cb0015a983ffd703f15656466be"
+}

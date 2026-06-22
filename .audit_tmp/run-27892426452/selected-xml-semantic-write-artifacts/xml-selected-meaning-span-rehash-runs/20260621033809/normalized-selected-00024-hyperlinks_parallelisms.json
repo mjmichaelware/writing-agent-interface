@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_848fe9b93848a69be7d474b1760702ea",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "623648f1d6790dea9fcec753cde2da7b85dd2eee6ae506d1575bfb8e86e5b85c",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "Dan's inherited ability to enter and move within another person's sleep with deliberate intention echoes the broader narrative motif of navigating the dreamscape as a realm of spiritual and psychological significance.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_75eb567923c27b983eca99b421cd38c8",
+          "quote": "His mother, Zuna, had been a dreamwalker—rarer than it sounds and considerably more dangerous than it looks. She had taught Dan the same capacity before she went, which is to say: she had taught him to enter another person's sleep and move within it with deliberate intention."
+        }
+      ],
+      "target_hint": "The dreamscape as a universal realm of dust and spiritual navigation explored throughout the narrative.",
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "Dan's inherited ability to enter and move within another person's sleep with deliberate intention echoes the broader narrative motif of navigating the dreamscape as a realm of spiritual and psychological significance.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_75eb567923c27b983eca99b421cd38c8",
+          "render_index": 25,
+          "quote": "His mother, Zuna, had been a dreamwalker—rarer than it sounds and considerably more dangerous than it looks. She had taught Dan the same capacity before she went, which is to say: she had taught him to enter another person's sleep and move within it with deliberate intention.",
+          "role": "source",
+          "start_char": 6684,
+          "end_char": 6960,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_848fe9b93848a69be7d474b1760702ea",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            49
+          ],
+          "evidence_sha256": "94154b624c12770c4928505eb468aa59245bf06f7f526fd35afd4b72831fe81b"
+        }
+      ],
+      "target_hint": "The dreamscape as a universal realm of dust and spiritual navigation explored throughout the narrative.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "469d7265e4d726c58f630479facb56c4379b9cdfdf2d224ab71077b4eb886450",
+  "normalized_output_hash": "51e7f4fde16e6fb6ba10d64f7aee7b6fda38b800d9370ec8eb11e923ac73e295"
+}

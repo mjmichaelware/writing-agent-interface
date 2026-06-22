@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "archetypes",
+  "scene_window_id": "scene_fd51af9e61eaff1a5b19db0b663f1cbf",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "d8feaa25d8ca438ffe813d2e971c35401363d72e3658e294e8d33800b2d48f38",
+  "observations": [
+    {
+      "character": "Narrator",
+      "archetype": "Wise Guide",
+      "archetype_gloss": "Deity of Curiosity, subtle thematic hyperlink for Truth and Love",
+      "movement": "emergence_of_self",
+      "summary": "The narrator acts as a Wise Guide, offering comfort and direction to Dan, promising restoration and a peaceful life, guiding him through the ordeal of death and spiritual passage.",
+      "evidence": [
+        {
+          "render_para_key": "rp_48805886f90e66b1ab6582bfbf55e1fe",
+          "quote": "\"I offer you a raft, so that the friction of death shall lose its sting. Follow me. I shall restore your mother's voice to you in the night—dreams in which she speaks comfort unceasing. I shall give you a wife whose hands need not be reddened by lye. Sons who will never know the stench of their grandfather's shame. The sluggish, sweet warmth of a life forgotten by the cruelties of the heights. The life your mother desired for you—peaceful, whole, and forgotten by the terrible heights that demand all.\""
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "archetypes",
+      "character": "Narrator",
+      "archetype": "Wise Guide",
+      "archetype_anchor_key": "jungian_wise_guide",
+      "archetype_gloss": null,
+      "movement": "emergence_of_self",
+      "summary": "The narrator acts as a Wise Guide, offering comfort and direction to Dan, promising restoration and a peaceful life, guiding him through the ordeal of death and spiritual passage.",
+      "evidence": [
+        {
+          "render_para_key": "rp_48805886f90e66b1ab6582bfbf55e1fe",
+          "render_index": 65,
+          "quote": "\"I offer you a raft, so that the friction of death shall lose its sting. Follow me. I shall restore your mother's voice to you in the night—dreams in which she speaks comfort unceasing. I shall give you a wife whose hands need not be reddened by lye. Sons who will never know the stench of their grandfather's shame. The sluggish, sweet warmth of a life forgotten by the cruelties of the heights. The life your mother desired for you—peaceful, whole, and forgotten by the terrible heights that demand",
+          "role": null,
+          "start_char": 15552,
+          "end_char": 16052,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_fd51af9e61eaff1a5b19db0b663f1cbf",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            129
+          ],
+          "evidence_sha256": "83c16083752c0904af79ecbefbcd29614321c4cfdbe83fa41c8874be3a0efcfe"
+        }
+      ],
+      "confidence": 0.95,
+      "unresolved_subject": false
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "2d5d510e2382a35b7dd756f21db05fd5171e6047410ab015e69c195666dcfdd2",
+  "normalized_output_hash": "ce3ffe99d54c854549e8d8759bea9aeeebd43e339e2071f13597b3c430601d57"
+}

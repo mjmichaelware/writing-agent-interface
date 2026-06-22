@@ -1,0 +1,3 @@
+BACKED_UP scripts/semantic/xml-grounded-vertex-rehash.mjs
+BACKED_UP .github/workflows/semantic-rehash-dry-run.yml
+BACKED_UP .github/workflows/semantic-rehash-full.yml

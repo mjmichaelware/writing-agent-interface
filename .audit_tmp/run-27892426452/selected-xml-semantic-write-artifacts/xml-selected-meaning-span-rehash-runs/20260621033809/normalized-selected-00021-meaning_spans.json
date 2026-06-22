@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_45de7aaa6603cb21a29d8f7d3dc51d44",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "a1395276c51892a6f4dafcf92df3ab0d9a47e395b42067feef3aef59ad0f1f45",
+  "observations": [
+    {
+      "kind": "Determined Resolve",
+      "summary": "The character expresses a strong, unwavering determination to ascend despite the risk of death or destruction.",
+      "evidence": [
+        {
+          "render_para_key": "rp_79974cbb1fb01e0c614eb7855fb9fda2",
+          "quote": "Up, he thought. Even if it kills me. Even if I'm ground to dust on the way. Up."
+        }
+      ],
+      "thematic_weight": 0.9,
+      "gravity": 0.8,
+      "tension": 0.85,
+      "confidence": 0.95,
+      "notes": "This span captures the core motif of relentless ascent and sacrifice."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "The character expresses a strong, unwavering determination to ascend despite the risk of death or destruction.",
+      "evidence": [
+        {
+          "render_para_key": "rp_79974cbb1fb01e0c614eb7855fb9fda2",
+          "render_index": 22,
+          "quote": "Up, he thought. Even if it kills me. Even if I'm ground to dust on the way. Up.",
+          "role": null,
+          "start_char": 6548,
+          "end_char": 6627,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_45de7aaa6603cb21a29d8f7d3dc51d44",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            43
+          ],
+          "evidence_sha256": "6600e4fa82810149319e2c4580faf14cfe5aab63d23cbdafa506cc9b40fcc8c7"
+        }
+      ],
+      "thematic_weight": 0.9,
+      "gravity": 0.8,
+      "tension": 0.85,
+      "confidence": 0.95,
+      "notes": "This span captures the core motif of relentless ascent and sacrifice."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "042750ba01ca831de8c70b8d0829a05ee1660537c2d8974871742977fd73c4dc",
+  "normalized_output_hash": "01d8c2d97ff1f0dbc9103310a35de18faf18dd6d22b900ea21be1062c4bd9f74"
+}

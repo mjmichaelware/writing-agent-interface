@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_8074a199df3cfae291ae647dae6c126b",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "cc14a71e98ac46d852f3c8a8af54f951dddb5f367fcf01f715a020e16f0d72f9",
+  "observations": [
+    {
+      "axis": "Decay vs. Presence",
+      "polarity": "Decay (left) vs. Presence (right)",
+      "summary": "The dualism contrasts the physical decay and internal rot of the father with the immediate, tangible presence of Dan sitting close by, highlighting the tension between death and life, deterioration and awareness.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_35b972719721c6ded01569cbde768af3",
+          "quote": "The smell was extraordinary—not just unwashed body, though that was certainly part of it, but something deeper. The smell of a man rotting from the inside out."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_35b972719721c6ded01569cbde768af3",
+          "quote": "Dan moved into the room and sat carefully on the edge of his father's cot. The straw mattress wheezed under his weight."
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "decay_vs_presence",
+      "polarity": "tension",
+      "summary": "The dualism contrasts the physical decay and internal rot of the father with the immediate, tangible presence of Dan sitting close by, highlighting the tension between death and life, deterioration and awareness.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_35b972719721c6ded01569cbde768af3",
+          "render_index": 23,
+          "quote": "the smell was extraordinary—not just unwashed body, though that was certainly part of it, but something deeper. The smell of a man rotting from the inside out.",
+          "role": "left",
+          "start_char": 3142,
+          "end_char": 3301,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_8074a199df3cfae291ae647dae6c126b",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            45
+          ],
+          "evidence_sha256": "377fe80592f756f61869563144c99e1d683915e8e50511dd7bd2f8ac4b83e444"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_35b972719721c6ded01569cbde768af3",
+          "render_index": 23,
+          "quote": "Dan moved into the room and sat carefully on the edge of his father's cot. The straw mattress wheezed under his weight.",
+          "role": "right",
+          "start_char": 3012,
+          "end_char": 3131,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_8074a199df3cfae291ae647dae6c126b",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            45
+          ],
+          "evidence_sha256": "347837a8f31ac54942998c364225c3e7972635b1e8941dca28d4a462ab074c94"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "1c20b4b87b9d21474060c9790f3294e1fe2595f52ae2d4d1242ffcfab16d463c",
+  "normalized_output_hash": "7f653816e6c9ff1c82e2481cef9ed23e64c679fb17877af7200c879ce2b58327"
+}

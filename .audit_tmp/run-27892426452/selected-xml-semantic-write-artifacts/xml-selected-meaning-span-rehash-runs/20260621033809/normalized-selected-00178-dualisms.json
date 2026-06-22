@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_fab84ddac1a32c060cfac39b7c78e9fd",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "3f5d1c2b9ce6c0fed798405f5b38a5bc3bac03c02c43244c81d21bba49e3554e",
+  "observations": [
+    {
+      "axis": "Urgency vs. Hesitation",
+      "polarity": "Urgency",
+      "summary": "The speaker commands immediate action to prevent a change of mind, emphasizing the need to act quickly before hesitation sets in.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_77494962d3438b0d2bcad93afb478704",
+          "quote": "\"Go quickly,\" he said to the wall."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_77494962d3438b0d2bcad93afb478704",
+          "quote": "\"Before I change my mind.\""
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "urgency_vs_hesitation",
+      "polarity": "tension",
+      "summary": "The speaker commands immediate action to prevent a change of mind, emphasizing the need to act quickly before hesitation sets in.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_77494962d3438b0d2bcad93afb478704",
+          "render_index": 85,
+          "quote": "\"Go quickly,\" he said to the wall.",
+          "role": "left",
+          "start_char": 10869,
+          "end_char": 10903,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_fab84ddac1a32c060cfac39b7c78e9fd",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            169
+          ],
+          "evidence_sha256": "df9426cfa3cd9f76c6889867eb99262e9e9c2d0d546900a8477f936d891d4656"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_77494962d3438b0d2bcad93afb478704",
+          "render_index": 85,
+          "quote": "\"Before I change my mind.\"",
+          "role": "right",
+          "start_char": 10904,
+          "end_char": 10930,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_fab84ddac1a32c060cfac39b7c78e9fd",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            169
+          ],
+          "evidence_sha256": "c60b88c36c8f7533e70367b82a2e7b269f29e21939fe540fba27779caf2c30ed"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "4b82586f9b996cf9c9af0ab63c0ca4241b821326ce83fa1324994248627ae854",
+  "normalized_output_hash": "ce1e439401b39c168930d747f3631e7f1e2a6b817d1ca41fd9883cd77b5645ec"
+}

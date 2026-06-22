@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "archetypes",
+  "scene_window_id": "scene_e8e749037844f48cccafbf2d724cc85f",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "08fdf09ae32a761c76215916b6247091092a557d994b4396105cd937024a21f2",
+  "observations": [
+    {
+      "character": "Dan",
+      "archetype": "Hero",
+      "archetype_gloss": "The protagonist who must move forward despite internal and external challenges",
+      "movement": "integration",
+      "summary": "Dan embodies the Hero archetype as he learns the lesson of not looking back, symbolizing his integration of past experiences and commitment to forward movement.",
+      "evidence": [
+        {
+          "render_para_key": "rp_20bdb65cd150f780c17e57aa1873ba31",
+          "quote": "He didn't look back. That lesson, at least, he'd learned from the old stories. Looking back turned you into salt, froze you in place, made you a monument to your own inability to move forward."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "archetypes",
+      "character": "Dan",
+      "archetype": "Hero",
+      "archetype_anchor_key": "jungian_hero",
+      "archetype_gloss": null,
+      "movement": "integration",
+      "summary": "Dan embodies the Hero archetype as he learns the lesson of not looking back, symbolizing his integration of past experiences and commitment to forward movement.",
+      "evidence": [
+        {
+          "render_para_key": "rp_20bdb65cd150f780c17e57aa1873ba31",
+          "render_index": 90,
+          "quote": "He didn't look back. That lesson, at least, he'd learned from the old stories. Looking back turned you into salt, froze you in place, made you a monument to your own inability to move forward.",
+          "role": null,
+          "start_char": 11309,
+          "end_char": 11501,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_e8e749037844f48cccafbf2d724cc85f",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            179
+          ],
+          "evidence_sha256": "4d9217d96ea89aa499a388aa0c83f3a133e677ec94589e89e3dd0d92a4137d4b"
+        }
+      ],
+      "confidence": 0.95,
+      "unresolved_subject": false
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "33a14a8739ef644f231c00bf13be11b4545db334c1218968faec900b0b31066a",
+  "normalized_output_hash": "3d077625da8cdbb2fbd56f060fa69838c311b0b55b1f7e80b06eb8066e454214"
+}

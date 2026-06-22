@@ -1,0 +1,17 @@
+{
+  "status": "failed",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_010fdae2ad7a9d91a6a6298403232013",
+  "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+  "context_capsule_sha256": "d0bb050e19912eeeca63cc1987c871018dde946e8df6524f890d86d10f8a9b4f",
+  "observations": [],
+  "accepted_observations": [],
+  "rejected_observations": [],
+  "failure_reason": "OpenAI API error: {\n    \"error\": {\n        \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.\",\n        \"type\": \"insufficient_quota\",\n        \"param\": null,\n        \"code\": \"insufficient_quota\"\n    }\n}\n",
+  "validation_errors": [
+    "OpenAI API error: {\n    \"error\": {\n        \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.\",\n        \"type\": \"insufficient_quota\",\n        \"param\": null,\n        \"code\": \"insufficient_quota\"\n    }\n}\n"
+  ],
+  "evidence_errors": [],
+  "raw_output_hash": "225e762caa8cb172d84527d9dafc91d35fa66926b5536689e683325e81945c89",
+  "normalized_output_hash": "1195cd1d1bb61aa3283eb7e066aa2daf994690732c97ef3abaa6f81203963abc"
+}

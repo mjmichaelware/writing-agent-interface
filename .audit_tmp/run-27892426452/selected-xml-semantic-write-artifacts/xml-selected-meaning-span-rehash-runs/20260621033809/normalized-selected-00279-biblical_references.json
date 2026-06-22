@@ -1,0 +1,68 @@
+{
+  "status": "ok",
+  "task_type": "biblical_references",
+  "scene_window_id": "scene_010fdae2ad7a9d91a6a6298403232013",
+  "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+  "context_capsule_sha256": "d0bb050e19912eeeca63cc1987c871018dde946e8df6524f890d86d10f8a9b4f",
+  "observations": [
+    {
+      "biblical_anchor_label": "Psalm 121:1-2",
+      "book": "Psalms",
+      "chapter": 121,
+      "verse_start": 1,
+      "verse_end": 2,
+      "motif_family": "Encouragement and Divine Help",
+      "relationship_type": "verbal_echo",
+      "correspondence_rationale": "The phrase 'Up, my little pigeon. Always up.' echoes the motif of looking upward for help and hope, similar to Psalm 121 where the psalmist lifts eyes to the hills for divine aid.",
+      "summary": "The encouragement to 'always up' parallels the biblical motif of looking upward for help and hope.",
+      "evidence": [
+        {
+          "render_para_key": "rp_0c8c8ac5e94a14c80983c952725061e5",
+          "quote": "He heard his mother, Zuna. Her voice was sharp against the chaos. \"Up, my little pigeon. Always up.\" He wrenched his gaze from the depths. His eyes fixed on the horizon. He sought the first, clean stars."
+        }
+      ],
+      "confidence": 0.85
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Psalm 121:1-2",
+      "book": "Psalm",
+      "chapter": 121,
+      "verse_start": 1,
+      "verse_end": 2,
+      "motif_family": "encouragement_and_divine_help",
+      "biblical_anchor_key": "bibanchor_60fc3321dccc674146871671e3a88711",
+      "relationship_type": "verbal_echo",
+      "correspondence_rationale": "The phrase 'Up, my little pigeon. Always up.' echoes the motif of looking upward for help and hope, similar to Psalm 121 where the psalmist lifts eyes to the hills for divine aid.",
+      "summary": "The encouragement to 'always up' parallels the biblical motif of looking upward for help and hope.",
+      "evidence": [
+        {
+          "render_para_key": "rp_0c8c8ac5e94a14c80983c952725061e5",
+          "render_index": 9,
+          "quote": "He heard his mother, Zuna. Her voice was sharp against the chaos. \"Up, my little pigeon. Always up.\" He wrenched his gaze from the depths. His eyes fixed on the horizon. He sought the first, clean stars.",
+          "role": null,
+          "start_char": 6354,
+          "end_char": 6557,
+          "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+          "scene_window_id": "scene_010fdae2ad7a9d91a6a6298403232013",
+          "source_document_xml_sha256": "4c43f128801df7d839bd5fda91fc148c0068a06a98530bf1c45d5fd004db3bcf",
+          "source_xml_paragraph_indexes": [
+            11
+          ],
+          "evidence_sha256": "818d88fa2e47336f87c65bb608964171e0eaf68c3fa2d62dd7327d2b8acb13ad"
+        }
+      ],
+      "confidence": 0.85,
+      "reference": "Psalm 121:1-2",
+      "motif": "encouragement_and_divine_help"
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "482d62ab7a56934094ef984d73d25d1fb32766388109fff6a25b39554a1e09e3",
+  "normalized_output_hash": "c8cf5876023ed149804218ab28255346a35967c46115503d4e00d0eef3bd0f3a"
+}

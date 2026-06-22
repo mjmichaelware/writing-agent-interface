@@ -1,0 +1,4 @@
+docs/forensics/audits/xml-grounded-vertex-rehash-runs/20260618012445/source-summary.json
+-rw-------. 1 u0_a448 u0_a448 268 Jun 17 19:24 docs/forensics/audits/xml-grounded-vertex-rehash-runs/20260618012445/source-summary.json
+docs/forensics/audits/xml-grounded-vertex-rehash-runs/20260618012445/prompt-7-0.sha256
+-rw-------. 1 u0_a448 u0_a448 65 Jun 17 19:24 docs/forensics/audits/xml-grounded-vertex-rehash-runs/20260618012445/prompt-7-0.sha256

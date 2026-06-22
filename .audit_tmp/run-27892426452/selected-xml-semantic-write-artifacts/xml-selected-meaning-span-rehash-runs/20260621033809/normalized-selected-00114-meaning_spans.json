@@ -1,0 +1,143 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_037212ccb8e5429cc9a0a8c50f5259c2",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "721841a38e7c44c8f9f805097e5aa07f0277746990d4145d88f03e1b92552c13",
+  "observations": [
+    {
+      "kind": "Thematic Claim",
+      "summary": "Attempting to help someone who resists help results in their reinterpretation and reshaping of the offered aid to fit their own preconceived narrative.",
+      "evidence": [
+        {
+          "render_para_key": "rp_98dcbc3b740469ced41705211ad825c8",
+          "quote": "this is what happens when you try to help someone who doesn't want to be helped. They take your gift and reinterpret it, reshape it, bend it until it fits the story they've already decided to tell themselves."
+        }
+      ],
+      "thematic_weight": 0.8,
+      "gravity": 0.7,
+      "tension": 0.6,
+      "confidence": 0.95,
+      "notes": "This observation highlights a key interpersonal dynamic and psychological motif."
+    },
+    {
+      "kind": "Character Insight",
+      "summary": "Aviel perceives his life choices as burdensome and manifesting as a crushing weight symbolized by a gray field and accumulating stones.",
+      "evidence": [
+        {
+          "render_para_key": "rp_98dcbc3b740469ced41705211ad825c8",
+          "quote": "Aviel had seen the gray field, the accumulating stones, the crushing weight of his own choices made manifest."
+        }
+      ],
+      "thematic_weight": 0.7,
+      "gravity": 0.8,
+      "tension": 0.7,
+      "confidence": 0.9,
+      "notes": "This metaphor conveys Aviel's internal struggle and regret."
+    },
+    {
+      "kind": "Symbolic Motif",
+      "summary": "Aviel glimpses a star, suggesting a moment of insight, hope, or transcendence amid his burden.",
+      "evidence": [
+        {
+          "render_para_key": "rp_98dcbc3b740469ced41705211ad825c8",
+          "quote": "He'd glimpsed the star."
+        }
+      ],
+      "thematic_weight": 0.6,
+      "gravity": 0.5,
+      "tension": 0.4,
+      "confidence": 0.85,
+      "notes": "The star likely symbolizes a pivotal or hopeful element in Aviel's experience."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "Attempting to help someone who resists help results in their reinterpretation and reshaping of the offered aid to fit their own preconceived narrative.",
+      "evidence": [
+        {
+          "render_para_key": "rp_98dcbc3b740469ced41705211ad825c8",
+          "render_index": 21,
+          "quote": "this is what happens when you try to help someone who doesn't want to be helped. They take your gift and reinterpret it, reshape it, bend it until it fits the story they've already decided to tell themselves.",
+          "role": null,
+          "start_char": 2598,
+          "end_char": 2806,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_037212ccb8e5429cc9a0a8c50f5259c2",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            41
+          ],
+          "evidence_sha256": "f9892c0008a59dc72a097ab4ffd50e93c989e9004f13f806912d4cdda3374d43"
+        }
+      ],
+      "thematic_weight": 0.8,
+      "gravity": 0.7,
+      "tension": 0.6,
+      "confidence": 0.95,
+      "notes": "This observation highlights a key interpersonal dynamic and psychological motif."
+    },
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "Aviel glimpses a star, suggesting a moment of insight, hope, or transcendence amid his burden.",
+      "evidence": [
+        {
+          "render_para_key": "rp_98dcbc3b740469ced41705211ad825c8",
+          "render_index": 21,
+          "quote": "He'd glimpsed the star.",
+          "role": null,
+          "start_char": 2917,
+          "end_char": 2940,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_037212ccb8e5429cc9a0a8c50f5259c2",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            41
+          ],
+          "evidence_sha256": "c72dcde4a2f0ed32b1625ac35e40759909e355843d722b174d4cfa1c8f0684c7"
+        }
+      ],
+      "thematic_weight": 0.6,
+      "gravity": 0.5,
+      "tension": 0.4,
+      "confidence": 0.85,
+      "notes": "The star likely symbolizes a pivotal or hopeful element in Aviel's experience."
+    },
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "Aviel perceives his life choices as burdensome and manifesting as a crushing weight symbolized by a gray field and accumulating stones.",
+      "evidence": [
+        {
+          "render_para_key": "rp_98dcbc3b740469ced41705211ad825c8",
+          "render_index": 21,
+          "quote": "Aviel had seen the gray field, the accumulating stones, the crushing weight of his own choices made manifest.",
+          "role": null,
+          "start_char": 2807,
+          "end_char": 2916,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_037212ccb8e5429cc9a0a8c50f5259c2",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            41
+          ],
+          "evidence_sha256": "b2adbec3a566d2b15eff762f5c4fc2675b3615011f68dc99b13c5632653e61d7"
+        }
+      ],
+      "thematic_weight": 0.7,
+      "gravity": 0.8,
+      "tension": 0.7,
+      "confidence": 0.9,
+      "notes": "This metaphor conveys Aviel's internal struggle and regret."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "c6ed1506fae1a239687d87349dd7876e532b0302530b916984567b8f42cd0af3",
+  "normalized_output_hash": "ff2720bd905e9e6d87dbaddc30cd6101f1aaef3072e161fa249831b4b19745fc"
+}

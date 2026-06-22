@@ -1,0 +1,397 @@
+You are a semantic analyst, not a JSON/DB row generator.
+Return only valid JSON matching the requested schema.
+No markdown. No explanation. No extra keys.
+Selected XML render paragraphs are source truth.
+Narrative context capsule is interpretive context only, never source truth, but must be used for narrative consistency and subject resolution.
+
+TASK: dualisms
+
+TASK RUBRIC:
+Extract active conceptual tensions, mirrors, inversions, or oppositions.
+Each dualism must include left and right evidence anchors from the source packet.
+Do not emit a dualism if the pairing is only keyword-level and not narratively active.
+
+EVIDENCE REQUIREMENTS:
+- Every observation must cite source evidence using render_para_key plus an exact quote.
+- Omit low-confidence claims instead of padding output.
+- Empty observations are valid.
+- Valid empty response is: {"observations":[]}
+- Do not force a claim.
+- Use the full narrative cognition capsule for consistency across the local corpus, but never treat context as source evidence.
+
+SOURCE PACKET:
+{
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "scene_window_id": "scene_00163221229cdcd1bef808b01d4b9b6d",
+  "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+  "folder": "0003_g_chapter_2-_living_sacrifice_1liqobbwqqwnybdbuqqoxp9hdt2ddoq8nxzwiycwas0s",
+  "render_paragraphs": [
+    {
+      "render_para_key": "rp_92da0950e43e7d5d98ed6fc3bfddacf3",
+      "render_index": 94,
+      "start_char": 11988,
+      "end_char": 12279,
+      "source_xml_paragraph_indexes": [
+        187
+      ],
+      "text_sha256": "42a199b48ec7b4f9aa8d643c0e880d5bcde5c61b0ac32ca7fed4c60fbef545dc",
+      "text": "The weight that had been pressing on his chest for seven years—the terrible, suffocating weight of his father's slow collapse—began to lift. Not all at once. Not completely. But enough that he could take a full breath without feeling like he was stealing air from someone who needed it more."
+    }
+  ]
+}
+
+NARRATIVE CONTEXT CAPSULE:
+{
+  "mode": "narrative_context_only",
+  "expected_public_chapter_count": 13,
+  "loaded_public_chapter_count": 13,
+  "chapter_hints": [
+    2
+  ],
+  "keywords": [
+    "weight",
+    "began",
+    "breath",
+    "chest",
+    "collapse",
+    "completely",
+    "enough",
+    "father",
+    "feeling",
+    "needed",
+    "pressing",
+    "seven"
+  ],
+  "full_public_chapter_corpus_loaded": true,
+  "public_chapter_corpus": [
+    {
+      "chapter_number": 2,
+      "sha256": "f2a509eb8a6314cbdbc0dd9a3984fe09cb720101a4de0615dab3d6353db395d3",
+      "score": 12,
+      "keyword_hits": 9,
+      "chapter_hint_boost": 3,
+      "excerpt": "olten things that sleep had revealed. Dan's eyes snapped open to the room's heavy gloom, the darkness possessing a cold, dense volume that pressed inward on his lungs; his heart was a frantic, panicked rhythm against his ribs, a chaotic tempo against the static silence of his condemnation. the cry carried the unspent weight of something ancient, leaving him suspended in that disorienting space where the gluttonous attraction of a dream collides with the cold certainty of waking. it was the perfect, audible manifestation of aviel's decay, a terrifying sound that resonated deep in dan's chest, demanding the tribute of his own inherite"
+    },
+    {
+      "chapter_number": 7,
+      "sha256": "fe21c269662112e63ae92118f80d1d68c5a94cb5fb3950a0d8cb1d0f3092b245",
+      "score": 10,
+      "keyword_hits": 10,
+      "chapter_hint_boost": 0,
+      "excerpt": "st left undisturbed, a faint, almost imperceptible hum that vibrated just beneath the threshold of hearing. He passed through the thick stone archway, the transition feeling less like entering a known city and more like stepping into new territory. The air didn't change temperature, but it felt... old. A stagnant weight, like standing at the bottom of a deep well where the air hasn't moved in years, thick with the breath of things long buried. The stones underfoot felt older here, worn smooth not just by the passage of feet, but by the relentless grind of Time itself, a force that felt coiled and watching, sensing his presence,"
+    },
+    {
+      "chapter_number": 4,
+      "sha256": "63b181b1f87727ee5202fe1f59a797a227f379a2446db5edd1cb47d50215b8a7",
+      "score": 9,
+      "keyword_hits": 9,
+      "chapter_hint_boost": 0,
+      "excerpt": "light faded, a town that, unlike others, did not feel like a place he was passing through. Its air was lighter, a cool, invisible current that rippled through him, a melody of peace he hadn't known he was missing. It was amazing; utterly unlike the heavy, humid air of the lowlands, and not the oppressive, suffocating weight of Dagon, nor the vibrant, earthy pull of Astarte. The very stones of Bethel seemed to glow with an inner light, a soft, inviting promise of solace. He walked into the heart of the town. His body was a symphony of aches, his throat parched, but he was more aware of his exhaustion now, as a separate thing from his"
+    },
+    {
+      "chapter_number": 11,
+      "sha256": "8d3f998fafb7852f66f9a055c6233295c82b0fdbb2450663ec63c7e3961d23e1",
+      "score": 9,
+      "keyword_hits": 9,
+      "chapter_hint_boost": 0,
+      "excerpt": "e air itself seemed deadened, refusing to bend or bow to her will, a thick, unresponsive veil drawn between her and the source of her strength. It was as if a great, silent wall had risen, deaf to her pleas, mirroring the silence that had fallen upon her heart. I twitched my whiskers and curled tighter beside her, the weight of her frustration settling into the tent like a tangible shadow, a miasma of failure. Outside, the wind rattled the tent poles, a restless, mournful sound, echoing her profound unease, a lament for what had been lost. It felt like the valley itself was mocking her, its ancient breath carrying the scent of trium"
+    },
+    {
+      "chapter_number": 1,
+      "sha256": "2f49c451b048e73249daec5c732eff040a81f7310b547eb6a36177a08723deda",
+      "score": 8,
+      "keyword_hits": 8,
+      "chapter_hint_boost": 0,
+      "excerpt": "from the beat of his own muffled heart: a rough, offbeat thrum against the overwhelming mass of a condemned dwelling. The air itself felt thick, as if the entire structure had swallowed all light and sound. Each calculated, barefoot step on the unforgiving limestone was a wager of his own mass against the increasing weight of the house. The slightest change in pressure risked a betrayal: a metallic sound, a dry scrape, or any clatter that might announce his forbidden errand. This was not mere silence. The atmosphere felt like the still patience of serpents in a garden. The suffocating emptiness smelled of sulfur and expectant soil,"
+    },
+    {
+      "chapter_number": 3,
+      "sha256": "a3cba70f46c50af68ae2cdb748915e80578e1bcd905624a4b077fdc99ea693fd",
+      "score": 8,
+      "keyword_hits": 8,
+      "chapter_hint_boost": 0,
+      "excerpt": "coated Dan's face like a shroud, burning his skin, the cost of his sacrifice made physical and immediate. Astarte's terrible image expanded, filling his vision, twisting into something monstrous, its form becoming pure, concentrated mass. The air grew impossibly dense, each inhale a painful struggle against an unseen weight—the tangible form of the chaos given flesh. He felt an invisible, crushing pressure designed to shatter his spine and drive him back into the earth, a million times the weight of his father’s nightmare. The very ground trembled with her wrath. He slammed his hand against the stone curb, bracing his entire body to"
+    },
+    {
+      "chapter_number": 6,
+      "sha256": "5b7b91ab7dc53343297f6b32b4a59443e75b629c2f1484de0f093bc2ff802a37",
+      "score": 8,
+      "keyword_hits": 8,
+      "chapter_hint_boost": 0,
+      "excerpt": "nd her, leaving him alone on the road. The setting sun cast long, lonely shadows across the Jezreel Valley, the air growing heavy with the scent of dry earth and the lingering echo of Kasha's words. He stood there for a long moment, the warmth of the kitten's brief presence still a phantom comfort on his shoulder, the weight of his walking stick and water container familiar in his hands. He had faced another, and had been judged, again. But he had not broken. He had not turned back. The path ahead, though unseen, still called. And the gates of Megiddo, dark and silent, seemed to watch him, waiting."
+    },
+    {
+      "chapter_number": 10,
+      "sha256": "3fa62b7d098773c1051829693664fd31f16b7ff29ef23e2c7215cc215295460d",
+      "score": 8,
+      "keyword_hits": 8,
+      "chapter_hint_boost": 0,
+      "excerpt": "tending to something else entirely, a small, solitary figure on the north road with the specific quality of a man paying a debt with every step. What drew her was not brightness—that quality she associated with the hill-people and their upward-reaching religion, which gave her teeth a specific kind of ache. It was the weight of his direction. His aim registered in her bones the way a heavy stone registers in the palm: by its pressure, its refusal to pretend it is lighter than it is. He did not bargain with the road. He paid and kept walking. She had intercepted his dreamwalk into his sleeping father's mind—a frantic, rhythmic call t"
+    },
+    {
+      "chapter_number": 5,
+      "sha256": "3b0ede4310eca0fccf88e100972d161048f12333411bb4e14c4f6956eaacf039",
+      "score": 7,
+      "keyword_hits": 7,
+      "chapter_hint_boost": 0,
+      "excerpt": "ragments of bullion equivalent to three heavy Shekels and a scattering of smaller Gerah, dull against his skin. This metal, wrested from the dark depths of the earth, felt strangely alive, possessing a stubborn gravimetric claim that pulled not just on his hand, but seemed to tug at the very breath he drew. It was the weight of possession itself, a polished, quantifiable reminder of the material prison he was attempting to transcend, an exact, finite measure of his remaining tether to the horizontal plane. He returned the bullion to the pouch, the soft chink of metal against leather sounding like a final, small fastener securing him"
+    },
+    {
+      "chapter_number": 9,
+      "sha256": "bb2740591c75d6dd0ee22abf60c25523302ff6758cfd3052f1b2c72e9ffe191b",
+      "score": 7,
+      "keyword_hits": 7,
+      "chapter_hint_boost": 0,
+      "excerpt": "ed roar of Lord Baal, expressing a primal displeasure at Daniel's upward aim, seeking to cast him down with the might of a tempest. As the storm raged, a suffocating heat, thick and cloying, began to rise from the very stones, clinging to his skin, making each breath a struggle. The air grew heavy, like the oppressive weight of a grave, pressing down on him, stealing his strength, making his limbs feel like lead. A profound lethargy seeped into his bones, making every movement an act of monumental effort. He stumbled, his walking stick slipping on the slick rock, and a wave of nausea washed over him, leaving him clammy and weak. His"
+    },
+    {
+      "chapter_number": 13,
+      "sha256": "960479e956f95dc5674a44b34a4c5bc562dced3d80c43f4622b3c4ad2acc50e9",
+      "score": 6,
+      "keyword_hits": 6,
+      "chapter_hint_boost": 0,
+      "excerpt": "eneath her touch from countless packings and unpackings, slid from their sockets with a soft, sighing scrape of wood against earth. Each bundled cloth, each jar of powdered root, each scroll of ancient script, was carefully placed within the leather satchels and woven baskets, becoming part of the familiar, comforting weight she would soon bear upon her back. It was a weight that was not merely of possessions, but of her craft, her heritage, her very purpose, a tangible link to the power she commanded. A faint, earthy scent of dried herbs and the lingering metallic tang of her potions clung to the canvas as she folded it, pressing i"
+    },
+    {
+      "chapter_number": 8,
+      "sha256": "a02f56e5ac0abd966aef2541b27fa8e4f9c5d36a2f7287d2c7bf7b46c026c6c7",
+      "score": 5,
+      "keyword_hits": 5,
+      "chapter_hint_boost": 0,
+      "excerpt": "physical testament to a catastrophic, systemic decay. He lay there, his mind a scrambled knot of visions, the pit's acid still churning in his belly, a continuous, slow burn that registered the spiritual cost of his survival. His body, a vessel battered by unseen, metaphysical storms, felt an immense, dull, relentless weight that spoke of infinite gravity, yet it was strangely hollowed out, evacuated of all fear and desire, achieving a kind of thermodynamic zero-point. This sudden, unearned human kindness, this anchor of soft material comfort, was his Investment Premise: he was risking his final capacity for Hope by allowing connect"
+    },
+    {
+      "chapter_number": 24,
+      "sha256": "3d4e278a0349a7f47569f4502b324bf0ffbf97adb96568920bef23a877dc0776",
+      "score": 3,
+      "keyword_hits": 3,
+      "chapter_hint_boost": 0,
+      "excerpt": "dless, teeming sea. Not water, but flies. The horrifying, buzzing expanse that was Beelzebub, the manifestation of boundless Gluttony and Envy. A churning ocean of motion and form, a perversion of ground, a desecration. And beneath that, sensed rather than clearly seen, lay something heavier still. Pride. A vast, cold weight, a gravity older than the stars, the essence of the Morningstar's fall. They could feel its tug, distant but undeniable, seeking to devour them too, to pull their light into its crushing density. They looked up. And there, above them, shining with an intensity that surpassed even their own radiant light, was som"
+    }
+  ],
+  "narrative_protocol_sources": [
+    {
+      "role": "archetype_protocol",
+      "key": "cat_god_primal_self",
+      "sha256": "089b3617b7dbc3b46ceb43a7053f55662dd11c5b931bc0b2453d8e66c5568a2d",
+      "excerpt": "Literary & Archetypal Fusion Rulebook (The Cat God & The Primal Self) This rulebook dictates the final, deep-level edits required to create a \"New York Times Bestseller\" that operates as an existential mirror, compelling the reader to confront their own inner conflicts and unintegrated \"ego\" (the \"Dr. Jekyll/Mr. Hyde\" tension). I. The Narrator: Deity of Curiosity (The Cat God) The narrator's voice is the subtle, overarching thematic hyperlink for Truth and Love. The narrator is a deity of pure Curiosity in the Dreamscape, near The Source of All. * Voice Style: Highly observant, often focused on the unseen cost of knowledge or the unasked question. The tone must be ancient, knowing, yet slightly playful and precise. * Foreshadowing & Thematic Link: Introduce subtle, sensory language of a feline observer: * Emphasis on silent observation, stalking, low growls, the scent of fear/truth, and an unnerving lightness of foot. * Chapter 6 Anchor: The physical black kitten that joins Kasha MUST be present, serving as the physical a"
+    },
+    {
+      "role": "archetype_protocol",
+      "key": "visceral_empathy",
+      "sha256": "59ed13c0f886611dc08299da8b74306aa860383038e2a645b6436c04c9af25d8",
+      "excerpt": "Emotional & Archetypal Editing Rulebook (Visceral Empathy Focus) This rulebook incorporates all previous historical and hyperlinking instructions while adding a new, critical layer to ensure maximum reader empathy. The goal is to make Dan's internal war between flesh and spirit feel universally relatable (like the Dr. Jekyll and Mr. Hyde struggle you described, without using those specific terms). I. Visceral Empathy & Relatability Rules * Replace Detachment with Somatic Cost: When Dan makes a great spiritual decision (e.g., leaving Bethel, refusing silver), the text MUST emphasize the physical pain and emotional cost of that choice. * Instead of: \"Dan felt a cold resolve.\" * Use: \"A cold, sharp ache settled in the marrow of his chest, a physical rending as he chose the higher, colder truth.\" * Biochemical/Flesh vs. Spirit Conflict (The Dr. Jekyll/Mr. Hyde): Focus on the body's revolt against the spirit's ascetic demands. This is the internal war that makes Dan universally relatable to anyone battling self-control, tempta"
+    },
+    {
+      "role": "story_compendium",
+      "key": "master_compendium",
+      "sha256": "7f86ab925e53d48f6e32e07950f30b81b82bd4270b77b826b7392d7d35e86758",
+      "excerpt": "THE WEIGHT OF THE SKY: MASTER COMPENDIUM (SINGULARITY v.1.0) Author: Michael Alonza Prentice Ware | Tone: Lewis/Snicket/Gaiman/Dahl | Genre: Archetypal Mythic Realism I. THE CORE METAPHYSICAL LAWS The \"I AM\" vs. The \"Gods of Things\": The Vertical Source is pure motion/being. The Canaanite gods are \"Horizontal\" fragments of the material world (lust, greed, dust). The Fragmented Self: The gods (Dagon, Beelzebub, Astarte) are Dan’s own psychological drives looking back at him from the \"inside out.\" Encountering a god is a"
+    },
+    {
+      "role": "new_synopsis",
+      "key": "new_synopsis",
+      "sha256": "022c36c6525eda7d3abe4836aa6ca39647c5b7267cd8c2d7234c956a69569fe0",
+      "excerpt": "The Weight of the Sky - Full Manuscript Synopsis (New Synopsis) The story begins in Hebron in 1003 BCE, a time when King David ruled over Judah, but the Philistines, with their iron weapons, still held significant power. In this tumultuous era, we meet a young boy named Dan, whose home is a physical manifestation of his father Aviel's grief-fueled hoarding after the death of Dan's mother, Zuna. Unlike his father, Dan is a dreamwalker, a rare visionary who can consciously control his dreams. He sees the dreamscape not just a"
+    }
+  ],
+  "subject_resolution_candidates": [
+    {
+      "name": "Dan",
+      "mentions": 15
+    },
+    {
+      "name": "Then",
+      "mentions": 12
+    },
+    {
+      "name": "Aviel",
+      "mentions": 10
+    },
+    {
+      "name": "Hebron",
+      "mentions": 10
+    },
+    {
+      "name": "Dagon",
+      "mentions": 9
+    },
+    {
+      "name": "Kasha",
+      "mentions": 9
+    },
+    {
+      "name": "There",
+      "mentions": 9
+    },
+    {
+      "name": "You",
+      "mentions": 9
+    },
+    {
+      "name": "Beelzebub",
+      "mentions": 8
+    },
+    {
+      "name": "One",
+      "mentions": 8
+    },
+    {
+      "name": "What",
+      "mentions": 8
+    },
+    {
+      "name": "Yet",
+      "mentions": 8
+    },
+    {
+      "name": "Zuna",
+      "mentions": 8
+    },
+    {
+      "name": "Astarte",
+      "mentions": 7
+    },
+    {
+      "name": "Baal",
+      "mentions": 7
+    },
+    {
+      "name": "Bethel",
+      "mentions": 7
+    },
+    {
+      "name": "Hermon",
+      "mentions": 7
+    },
+    {
+      "name": "Megiddo",
+      "mentions": 7
+    },
+    {
+      "name": "Sea",
+      "mentions": 7
+    },
+    {
+      "name": "Bethlehem",
+      "mentions": 6
+    },
+    {
+      "name": "Curiosity",
+      "mentions": 6
+    },
+    {
+      "name": "Daniel",
+      "mentions": 6
+    },
+    {
+      "name": "Israel",
+      "mentions": 6
+    },
+    {
+      "name": "Its",
+      "mentions": 6
+    }
+  ],
+  "available_narrative_context_map_excerpt": "CHAPTER 1 path=public/data/chapters/1.txt sha256=2f49c451b048e73249daec5c732eff040a81f7310b547eb6a36177a08723deda word_count=3457 opening=The trembling torch clutched in the boy's hand scattered dull copper light across the corridor. The frail flame fought against the invading dark, casting suspicious, jittering shadows across the narrow hallway. The small fire shivered, not from wind, but from the beat of his own muffled heart: a rough, offbeat thrum against the overwhelming mass of a condemned dwelling. The air itself felt thick, as if the entire structure had swallowed all light and sound. Each calculated, barefoot step on the unforgiving limestone was a wager of his own mass against the increasing weight of the house. The slightest change in pressure risked a betrayal: a metallic sound, a dry scrape, or any clatter that might announce his forbidden errand. This was not mere silence. The atmosphere felt like the still patience of serpents in a garden. The suffocating emptiness smelled of sulfur and expectant soil, but h middle=then beneath his clothing, whispering, \"Mine,\" hoarding his own delusion. He gathered the ever-burgeoning accumulation until his very form was distended, crushed. He became a lonesome pillar of stone in a barren field, the mass of the precious metal squeezing the breath from his lungs. The father's eyes glazed over, his mouth open in a soundless gasp. The suffocating density of his possessions silenced him, permanently locking his hands in the posture of hoarding. Then, with a final, deliberate breath that was both a sigh and a judgment, Dan summoned a wind, a cold",
+  "context_pack_excerpt": "ferenced 'hyperlinks' across the text. * The Unmanifest / The Source of All: Ultimate, formless divine destination. * The Snare / The Tangle: The material world, possessions, or comfortable distractions. * Living Sacrifice / A Willing Offering: A deliberate choice to endure suffering or shed a lower good. * The Chaos / Aviel's Rot: The destructive, entropic force of the world. * The Pit / Descent into the Depths: Physical or spiritual low points (e.g., Megiddo, the vision of the fallen). * The Lord of the Flies / Winged Lord: The specific antagonist/force in Megiddo. * The Two Hundred Holes: The fallen entities on Hermon (danger of Pride). * The New Name / The Essence of Ascent: A transformation or new, sacred identity. * The Dagger / The Sword of Will: Rafa’s gift, representing the necessary union of spirit and action. * Internal War / Flesh and Spirit: (New addition) Use this phrase or close variations to directly link Dan's struggle to the Pauline concept. I am ready to receive your chapters one by one and apply these deep emotional and philosophical revisions according to this new rulebook. ================================================================================ ROLE: story_compendium SOURCE_NUMBER: 169 SHA256: 7f86ab925e53d48f6e32e07950f30b81b82bd4270b77b826b7392d7d35e86758 SOURCE_PATH: ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/THE_WEIGHT_OF_THE_SKY-_MASTER_COMPENDIUM_(SINGULARITY_v.txt HASHER_PATH: docs/agent_context/source_drop/hasher_context_v1/03_master_compendium_singularity.txt ================================================================================ THE WEIGHT OF THE SKY: MASTER COMPENDIUM (SINGULARITY v.1.0) Author: Michael Alonza Prentice Ware | Tone: Lewis/Snicket/Gaiman/Dahl | Genre: Archetypal Mythic Realism I. THE CORE METAPHYSICAL LAWS The \"I AM\" vs. The \"Gods of Things\": The Vertical Source is pure motion/being. The Canaanite gods are \"Horizontal\" fragments of the material world (lust, greed, dust). The Fragmented Self: The gods (Dagon, Beelzebub, Astarte) are Dan’s own psychological drives looking back at him from the \"inside out.\" Encountering a god is an act of internal mirror-imaging. The Quantum Dust: The Dreamscape (Jungian Collective Subconscious) is made of \"Dust\"—Planck-length cells containing the potential for a Big Bang in every unit. Without Will and Intent (Spirit), these particles collapse into nothingness. The Sacrifice of Judgment: To move from Dan (He who judges the fragments) to Daniel (God is my Judge), the protagonist must undergo a \"thermodynamic zero-point\" descent in the Pit at Megiddo, losing his voice (human language) to gain crystalline vertical clarity. II. KEY ARCHETYPES & ENTITIES The Trinity: Established in Ch. 1: Father (Aviel/Entropy), Mother (",
+  "context_capsule_sha256": "dafe4ef7fc619b417488743e9895a896418cf8277941d0b7f5da7e1df452d477"
+}
+
+OUTPUT CONTRACT:
+{
+  "type": "OBJECT",
+  "properties": {
+    "observations": {
+      "type": "ARRAY",
+      "items": {
+        "type": "OBJECT",
+        "properties": {
+          "axis": {
+            "type": "STRING"
+          },
+          "polarity": {
+            "type": "STRING"
+          },
+          "summary": {
+            "type": "STRING"
+          },
+          "left_evidence": {
+            "type": "ARRAY",
+            "items": {
+              "type": "OBJECT",
+              "properties": {
+                "render_para_key": {
+                  "type": "STRING"
+                },
+                "quote": {
+                  "type": "STRING"
+                }
+              },
+              "required": [
+                "render_para_key",
+                "quote"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "right_evidence": {
+            "type": "ARRAY",
+            "items": {
+              "type": "OBJECT",
+              "properties": {
+                "render_para_key": {
+                  "type": "STRING"
+                },
+                "quote": {
+                  "type": "STRING"
+                }
+              },
+              "required": [
+                "render_para_key",
+                "quote"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "bridge_evidence": {
+            "type": "ARRAY",
+            "items": {
+              "type": "OBJECT",
+              "properties": {
+                "render_para_key": {
+                  "type": "STRING"
+                },
+                "quote": {
+                  "type": "STRING"
+                }
+              },
+              "required": [
+                "render_para_key",
+                "quote"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "confidence": {
+            "type": "NUMBER"
+          }
+        },
+        "required": [
+          "axis",
+          "polarity",
+          "summary",
+          "left_evidence",
+          "right_evidence",
+          "bridge_evidence",
+          "confidence"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "observations"
+  ],
+  "additionalProperties": false
+}

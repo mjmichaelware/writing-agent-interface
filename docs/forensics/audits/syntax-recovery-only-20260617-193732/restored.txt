@@ -1,0 +1,1 @@
+RESTORED=docs/forensics/backups/vertex-json-repair-patch-20260617-192439/scripts/semantic/xml-grounded-vertex-rehash.mjs

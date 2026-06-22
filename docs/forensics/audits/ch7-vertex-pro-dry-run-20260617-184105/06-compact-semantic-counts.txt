@@ -1,0 +1,10 @@
+run_dir docs/forensics/audits/xml-grounded-vertex-rehash-runs/20260618004114
+files	0
+paragraph_results	0
+dualism_relations	0
+archetype_movements	0
+archetype_observations	0
+biblical_references	0
+derived_hyperlinks	0
+
+per_file

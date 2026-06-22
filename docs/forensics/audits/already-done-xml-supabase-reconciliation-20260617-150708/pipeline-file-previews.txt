@@ -1,0 +1,999 @@
+
+===== src/actions/ingest.action.ts =====
+import { CorpusLoader } from "../services/memory-engine/corpus-loader";
+import * as dotenv from "dotenv";
+import path from "path";
+
+// Load .env.local explicitly
+dotenv.config({ path: path.join(process.cwd(), ".env.local") });
+
+async function main() {
+  const loader = new CorpusLoader();
+  await loader.ingestCorpus();
+  console.log("Ingest complete.");
+  process.exit(0);
+}
+
+main().catch((err) => {
+  console.error("Ingest failed:", err);
+  process.exit(1);
+});
+
+===== src/actions/retrieve.action.ts =====
+export async function retrieveContext() { "use server"; return { context: [] }; }
+
+===== src/actions/update-memory.action.ts =====
+export async function updateMemoryStore() { "use server"; return { synchronized: true }; }
+
+===== src/actions/write.action.ts =====
+export async function writeChapterDraft() { "use server"; return { draft: "" }; }
+
+===== src/app/api/analyze-document/route.ts =====
+import { NextResponse } from 'next/server';
+import { parseDocument } from '@/services/document-analyzer/parser';
+import { searchCorpus } from '@/services/document-analyzer/corpus-searcher';
+import { synthesizeAnalysis } from '@/services/document-analyzer/synthesis-engine';
+
+export async function POST(request: Request) {
+  try {
+    const { fileBase64, mimeType, pin } = await request.json();
+
+    // Security Gate: Feature 91 (Single-Operator Pin Validation)
+    if (pin && pin !== "1994") { // Assuming 1994 as placeholder pin or from env
+       // return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    if (!fileBase64 || !mimeType) {
+      return NextResponse.json({ error: 'fileBase64 and mimeType are required' }, { status: 400 });
+    }
+
+    // 1. Parse Document (Multimodal OCR) - Ninth System
+    const extractedText = await parseDocument(fileBase64, mimeType);
+
+    if (!extractedText) {
+      throw new Error("Failed to extract text from document");
+    }
+
+    // 2. Search Corpus (Semantic RAG) - Ninth System
+    const corpusMatches = await searchCorpus(extractedText);
+
+    // 3. Synthesize (LLM Analysis) - Ninth System
+    const analysis = await synthesizeAnalysis(extractedText, corpusMatches);
+
+    return NextResponse.json({ 
+      analysis, 
+      extractedText: extractedText.slice(0, 1000), // Return snippet for preview
+      matchCount: corpusMatches.length 
+    });
+  } catch (error: any) {
+    console.error("Document analysis failed:", error);
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+}
+===== src/app/api/execute/route.ts =====
+import { BigQuery } from '@google-cloud/bigquery';
+import { NextResponse } from 'next/server';
+
+function getClient() {
+  const email = process.env.GOOGLE_CLIENT_EMAIL;
+  const key = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
+  const project = process.env.GOOGLE_CLOUD_PROJECT;
+
+  if (!email || !key || !project) return null;
+
+  return new BigQuery({
+    credentials: {
+      client_email: email,
+      private_key: key,
+    },
+    projectId: project,
+  });
+}
+
+export async function POST(request: Request) {
+  try {
+    const { query } = await request.json();
+    const bq = getClient();
+
+    if (!bq) {
+      return NextResponse.json({ error: 'Google Cloud credentials not configured' }, { status: 503 });
+    }
+
+    // Feature 165: Narrative Analytics via BigQuery
+    const [job] = await bq.createQueryJob({
+      query: query || "SELECT part_number, count(*) as count FROM `the-weight-of-the-sky.narrative_os.paragraphs` GROUP BY part_number",
+    });
+
+    const [rows] = await job.getQueryResults();
+
+    return NextResponse.json(rows);
+  } catch (error: any) {
+    console.error("BigQuery execution failed:", error);
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+}
+
+===== src/app/api/graph/route.ts =====
+import { NextResponse } from 'next/server';
+import { query } from '@/lib/db';
+
+export const dynamic = 'force-dynamic'; // Ensure real-time graph updates
+
+export async function GET() {
+  try {
+    // 1. Fetch paragraphs with archetypes and dualisms
+    const { rows: paragraphs } = await query(
+      `SELECT id, chapter_id, content, archetypal_weights, dualism_map 
+       FROM paragraphs 
+       WHERE (archetypal_weights IS NOT NULL AND archetypal_weights != '{}'::jsonb)
+          OR (dualism_map IS NOT NULL AND dualism_map != '{}'::jsonb)`
+    );
+
+    // 2. Fetch biblical references
+    const { rows: bibRefs } = await query(
+      `SELECT id, paragraph_id, reference_text, book, chapter, verse 
+       FROM biblical_references`
+    );
+
+    // 3. Fetch explicit hyperlinks
+    const { rows: hyperlinks } = await query(
+      `SELECT id, paragraph_id, theme_node_a, theme_node_b, link_type, weight 
+       FROM hyperlinks`
+    );
+
+    const nodes = new Map<string, any>();
+    const links: any[] = [];
+
+    // Helper to add nodes
+    const addNode = (id: string, group: string, label: string, val: number = 1) => {
+      if (!nodes.has(id)) {
+        nodes.set(id, { id, group, label, val });
+      } else {
+        nodes.get(id).val += val;
+      }
+    };
+
+    // Helper to add links
+    const addLink = (source: string, target: string, type: string, value: number = 1) => {
+      if (!source || !target) return;
+      links.push({ source, target, type, value });
+    };
+
+    // Process Paragraphs
+    for (const p of paragraphs) {
+      addNode(p.id, 'paragraph', p.content ? (p.content.substring(0, 40) + '...') : 'Paragraph', 1);
+
+      // Process Archetypes
+      if (p.archetypal_weights && typeof p.archetypal_weights === 'object') {
+        Object.entries(p.archetypal_weights).forEach(([arch, weight]) => {
+          const archId = `arch_${arch}`;
+          addNode(archId, 'archetype', arch.toUpperCase(), 3);
+          addLink(p.id, archId, 'has_archetype', Number(weight) || 1);
+        });
+      }
+
+      // Process Dualisms
+      if (p.dualism_map && typeof p.dualism_map === 'object') {
+        Object.entries(p.dualism_map).forEach(([dual, val]) => {
+          const dualId = `dual_${dual}`;
+          addNode(dualId, 'dualism', dual, 2);
+          addLink(p.id, dualId, 'exhibits_dualism', Number(val) || 1);
+        });
+      }
+    }
+
+    // Process Biblical References
+    for (const ref of bibRefs) {
+      const refId = `bib_${ref.book}_${ref.chapter}`;
+      addNode(refId, 'biblical', `${ref.book} ${ref.chapter}:${ref.verse}`, 4);
+      if (ref.paragraph_id) {
+        addLink(ref.paragraph_id, refId, 'references', 2);
+      }
+    }
+
+    // Process Hyperlinks
+    for (const hl of hyperlinks) {
+      const nodeA = `theme_${hl.theme_node_a}`;
+      const nodeB = hl.theme_node_b ? `theme_${hl.theme_node_b}` : null;
+      
+      addNode(nodeA, 'theme', hl.theme_node_a, 2);
+      if (nodeB) {
+        addNode(nodeB, 'theme', hl.theme_node_b, 2);
+        addLink(nodeA, nodeB, hl.link_type, hl.weight || 1);
+      }
+      if (hl.paragraph_id) {
+        addLink(hl.paragraph_id, nodeA, hl.link_type, hl.weight || 1);
+      }
+    }
+
+    return NextResponse.json({ 
+      nodes: Array.from(nodes.values()),
+      links 
+    });
+  } catch (e: any) {
+    console.error("Graph API Error:", e);
+    return NextResponse.json({ error: e.message }, { status: 500 });
+  }
+}
+
+===== src/app/api/biblical-references/route.ts =====
+import { NextResponse } from "next/server";
+import { query } from "@/lib/db";
+
+export async function GET() {
+  try {
+    const { rows: references } = await query(
+      `SELECT * FROM biblical_references ORDER BY book ASC, chapter ASC, verse ASC`
+    );
+    return NextResponse.json({ references });
+  } catch (e: any) {
+    console.error("Biblical References API Error:", e);
+    return NextResponse.json({ error: e.message, references: [] }, { status: 500 });
+  }
+}
+
+===== src/app/api/runtime-sources/route.ts =====
+import { NextRequest, NextResponse } from "next/server";
+import {
+  getRuntimeSourceSummary,
+  listRuntimeSources,
+  type RuntimeSourceKind,
+} from "@/lib/runtime-source-reader";
+
+export const dynamic = "force-dynamic";
+
+export async function GET(request: NextRequest) {
+  const url = new URL(request.url);
+  const includePreview = url.searchParams.get("preview") === "1";
+  const kind = url.searchParams.get("kind") as RuntimeSourceKind | null;
+
+  try {
+    const sources = listRuntimeSources({
+      includePreview,
+      maxPreviewChars: 1200,
+      kind: kind || undefined,
+    });
+
+    return NextResponse.json({
+      status: "ok",
+      activeRuntimeSources: true,
+      archive: false,
+      summary: getRuntimeSourceSummary(),
+      sources,
+    });
+  } catch (error) {
+    return NextResponse.json(
+      {
+        status: "error",
+        activeRuntimeSources: true,
+        archive: false,
+        message: error instanceof Error ? error.message : "Unknown runtime source error",
+      },
+      { status: 500 },
+    );
+  }
+}
+
+===== src/services/ingestion/pipeline.ts =====
+import OpenAI from 'openai';
+import { query } from '../../lib/db';
+import { GoogleSwarm } from '../orchestration-engine/google-swarm';
+
+function getOpenAI() {
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) return null;
+  return new OpenAI({ apiKey });
+}
+
+// Extractor for Hebrew typography terms
+function extractHebrewSpans(text: string) {
+  const hebrewTerms = ['Hebron', 'Hermon', 'Mamre', 'Beelzebub', 'Megiddo', 'Sak', 'Rafa'];
+  const spans: any[] = [];
+  hebrewTerms.forEach(term => {
+    let index = text.indexOf(term);
+    while (index !== -1) {
+      spans.push({ term, start: index, length: term.length });
+      index = text.indexOf(term, index + 1);
+    }
+  });
+  return spans;
+}
+
+// Extractor for XML metadata
+function extractEmaMetadata(xmlText: string) {
+  const metadata: any = {};
+  const sceneMatch = xmlText.match(/<scene\s+id="([^"]+)"/);
+  const timeMatch = xmlText.match(/time_of_day="([^"]+)"/);
+  const weatherMatch = xmlText.match(/weather="([^"]+)"/);
+  
+  if (sceneMatch) metadata.scene_id = sceneMatch[1];
+  if (timeMatch) metadata.time_of_day = timeMatch[1];
+  if (weatherMatch) metadata.weather = weatherMatch[1];
+  
+  return metadata;
+}
+
+/**
+ * ENGINE PLANE: NARRATIVE INGESTION PIPELINE
+ * * Feature 200: Meaning-Driven Semantic Weighting
+ * * BATCH OPTIMIZED: Processes 5 paragraphs per LLM call.
+ * * DATABASE: Direct PostgreSQL via pool (lib/db.ts)
+ */
+export async function ingestChapter(
+  partNumber: string,
+  chapterNumber: number,
+  status: 'drafted' | 'unwritten',
+  manifestId: string,
+  rawXmlText: string
+) {
+  const openai = getOpenAI(); 
+  if (!openai) throw new Error("OpenAI API key not configured");
+
+  await GoogleSwarm.logIntegrity('ingestion_start', { manifestId, partNumber, chapterNumber });
+
+  // 1. UPSERT Chapter
+  const { rows: chapters } = await query(
+    `INSERT INTO chapters (part_number, chapter_number, status, manifest_id)
+     VALUES ($1, $2, $3, $4)
+     ON CONFLICT (manifest_id) 
+     DO UPDATE SET part_number = EXCLUDED.part_number, chapter_number = EXCLUDED.chapter_number, status = EXCLUDED.status, updated_at = NOW()
+     RETURNING id, part_number, chapter_number`,
+    [partNumber, chapterNumber, status, manifestId]
+  );
+
+  const chapter = chapters[0];
+  if (!chapter) throw new Error("Failed to upsert chapter");
+
+  await GoogleSwarm.mirrorChapter(chapter);
+
+  const chapterMetadata = extractEmaMetadata(rawXmlText);
+
+  // Strip XML for paragraph chunking
+  const cleanText = rawXmlText.replace(/<[^>]*>?/gm, ''); 
+  const paragraphs = cleanText.split(/\n\s*\n/).filter((p) => p.trim().length > 0);
+
+  console.log(`Ingesting ${paragraphs.length} paragraphs for Ch ${chapterNumber}...`);
+
+  const BATCH_SIZE = 5;
+  for (let i = 0; i < paragraphs.length; i += BATCH_SIZE) {
+    const batch = paragraphs.slice(i, i + BATCH_SIZE);
+    
+    // Feature 200: Semantic Enrichment Batch Pass
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [
+        { 
+          role: "system", 
+          content: `You are the NOS Orchestration Engine. Analyze the ${batch.length} texts and return valid JSON only. 
+          Return an object with a "results" array. Each item must have:
+          "archetypal_weights": { "shadow": 0.0, "persona": 0.0, "anima": 0.0, "self": 0.0, "hero": 0.0 },
+          "dualism_map": { "sacred": 0.0, "descent": 0.0 },
+          "biblical_references": [{ "text": "...", "book": "...", "chapter": 0, "verse": 0 }],
+          "hyperlinks": [{ "theme_node_a": "...", "theme_node_b": "...", "link_type": "dualism" }]` 
+        },
+        { role: "user", content: JSON.stringify(batch) }
+      ],
+      response_format: { type: "json_object" }
+    });
+
+    const enrichedBatch = JSON.parse(completion.choices[0].message.content || '{"results":[]}').results;
+
+    for (let j = 0; j < batch.length; j++) {
+      const pText = batch[j];
+      const enrichment = enrichedBatch[j] || {};
+      const hebrewSpans = extractHebrewSpans(pText);
+
+      const embedResponse = await openai.embeddings.create({
+        model: "text-embedding-3-small",
+        input: pText,
+      });
+      const embedding = embedResponse.data[0].embedding;
+
+      // 2. INSERT Paragraph
+      const { rows: paragraphRows } = await query(
+        `INSERT INTO paragraphs (
+          chapter_id, content, chunk_index, embedding, 
+          archetypal_weights, dualism_map, hebrew_spans, metadata
+        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+        RETURNING id`,
+        [
+          chapter.id, pText, i + j, JSON.stringify(embedding),
+          enrichment.archetypal_weights || {},
+          enrichment.dualism_map || {},
+          JSON.stringify(hebrewSpans),
+          { ...chapterMetadata, batch_index: i }
+        ]
+      );
+
+      const paragraphData = paragraphRows[0];
+
+      if (paragraphData && enrichment.biblical_references?.length > 0) {
+        for (const ref of enrichment.biblical_references) {
+          await query(
+            `INSERT INTO biblical_references (paragraph_id, reference_text, book, chapter, verse)
+             VALUES ($1, $2, $3, $4, $5)`,
+            [paragraphData.id, ref.text || ref.reference_text, ref.book, ref.chapter, ref.verse]
+          );
+        }
+      }
+      
+      if (paragraphData && enrichment.hyperlinks?.length > 0) {
+        for (const link of enrichment.hyperlinks) {
+          await query(
+            `INSERT INTO hyperlinks (paragraph_id, theme_node_a, theme_node_b, link_type)
+             VALUES ($1, $2, $3, $4)`,
+            [paragraphData.id, link.theme_node_a, link.theme_node_b, link.link_type || 'dualism']
+          );
+        }
+      }
+
+      await GoogleSwarm.mirrorParagraph({
+        ...paragraphData,
+        content: pText,
+        chapter_number: chapter.chapter_number,
+        part_number: chapter.part_number,
+      });
+    }
+
+    console.log(`✓ Batch ${i/BATCH_SIZE + 1} complete for Ch ${chapterNumber}`);
+    await new Promise(resolve => setTimeout(resolve, 100));
+  }
+
+  await GoogleSwarm.logIntegrity('ingestion_complete', { manifestId, paragraphCount: paragraphs.length });
+
+  return { success: true, chapterId: chapter.id, parsedCount: paragraphs.length };
+}
+
+===== src/services/memory-engine/vector-store.ts =====
+import { Pool } from "pg";
+
+export class VectorStore {
+  private pool: Pool | null = null;
+
+  constructor() {
+    const connectionString = process.env.DATABASE_URL;
+    if (connectionString) {
+      this.pool = new Pool({
+        connectionString,
+        ssl: { rejectUnauthorized: false },
+        max: 5,
+        idleTimeoutMillis: 30000,
+        connectionTimeoutMillis: 10000,
+      });
+    }
+  }
+
+  private async query(text: string, params?: any[]) {
+    if (!this.pool) {
+      throw new Error("Postgres connection string not configured (DATABASE_URL)");
+    }
+    return this.pool.query(text, params);
+  }
+
+  async initializeSchema() {
+    await this.query(`
+      CREATE EXTENSION IF NOT EXISTS vector;
+      CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
+      CREATE TABLE IF NOT EXISTS chapters (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        manifest_id TEXT UNIQUE,
+        part_number TEXT,
+        chapter_number INT,
+        status TEXT,
+        thematic_embedding vector(1536),
+        created_at TIMESTAMP DEFAULT NOW()
+      );
+
+      CREATE TABLE IF NOT EXISTS paragraphs (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        chapter_id UUID REFERENCES chapters(id) ON DELETE CASCADE,
+        chunk_index INT,
+        content TEXT,
+        embedding vector(1536),
+        archetypal_weights JSONB DEFAULT '{}',
+        dualism_map JSONB DEFAULT '{}',
+        hebrew_spans JSONB DEFAULT '[]',
+        metadata JSONB DEFAULT '{}',
+        created_at TIMESTAMP DEFAULT NOW()
+      );
+
+      CREATE TABLE IF NOT EXISTS biblical_references (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        paragraph_id UUID REFERENCES paragraphs(id) ON DELETE CASCADE,
+        reference_text TEXT,
+        book TEXT,
+        chapter INT,
+        verse INT,
+        created_at TIMESTAMP DEFAULT NOW()
+      );
+
+      CREATE INDEX IF NOT EXISTS idx_paragraphs_chapter_chunk
+      ON paragraphs(chapter_id, chunk_index);
+    `);
+  }
+
+  async insertChapter(manifestId: string, embedding: number[]): Promise<string> {
+    const res = await this.query(
+      `INSERT INTO chapters (manifest_id, thematic_embedding)
+       VALUES ($1, $2)
+       ON CONFLICT (manifest_id)
+       DO UPDATE SET thematic_embedding = EXCLUDED.thematic_embedding
+       RETURNING id`,
+      [manifestId, embedding]
+    );
+
+    return res.rows[0].id;
+  }
+
+  async clearParagraphs(chapterId: string) {
+    await this.query(
+      `DELETE FROM paragraphs
+       WHERE chapter_id = $1`,
+      [chapterId]
+    );
+  }
+
+  async insertParagraph(chapterId: string, chunkIndex: number, content: string) {
+    await this.query(
+      `INSERT INTO paragraphs (
+         chapter_id,
+         chunk_index,
+         content
+       )
+       VALUES ($1, $2, $3)`,
+      [chapterId, chunkIndex, content]
+    );
+  }
+
+  async getChapterByManifestId(manifestId: string): Promise<string | null> {
+    const res = await this.query(
+      `SELECT id
+       FROM chapters
+       WHERE manifest_id = $1
+       LIMIT 1`,
+      [manifestId]
+    );
+
+    return res.rows[0]?.id || null;
+  }
+
+  async searchTopChapter(embedding: number[]): Promise<string | null> {
+    const res = await this.query(
+      `SELECT id
+       FROM chapters
+       ORDER BY thematic_embedding <=> $1
+       LIMIT 1`,
+      [embedding]
+    );
+
+    return res.rows[0]?.id || null;
+  }
+
+  async getParagraphsByChapter(chapterId: string): Promise<string[]> {
+    const res = await this.query(
+      `SELECT content
+       FROM paragraphs
+       WHERE chapter_id = $1
+       ORDER BY chunk_index ASC`,
+      [chapterId]
+    );
+
+    return res.rows.map((r) => String(r.content || ""));
+  }
+
+  async searchParagraphs(query: string): Promise<{
+    ref: string;
+    title: string;
+    note: string;
+    content: string;
+    para_index: number;
+  }[]> {
+    const res = await this.query(
+      `SELECT
+         p.content,
+         p.chunk_index,
+         c.manifest_id
+       FROM paragraphs p
+       JOIN chapters c
+         ON p.chapter_id = c.id
+       WHERE p.content ILIKE $1
+       ORDER BY
+         c.manifest_id ASC,
+         p.chunk_index ASC
+       LIMIT 40`,
+      [`%${query}%`]
+    );
+
+    return res.rows.map((r) => ({
+      ref: String(r.manifest_id || "Unknown"),
+      title: String(r.content || "").slice(0, 64),
+      note: String(r.content || ""),
+      content: String(r.content || ""),
+      para_index: Number(r.chunk_index ?? 0),
+    }));
+  }
+
+  async getDualismNodes(): Promise<{
+    id: string;
+    term: string;
+    parallel: string;
+    note: string;
+    chapters: string;
+    para_index: number;
+  }[]> {
+    const res = await this.query(
+      `SELECT
+         p.chunk_index,
+         p.content,
+         c.manifest_id
+       FROM paragraphs p
+       JOIN chapters c
+         ON p.chapter_id = c.id
+       WHERE p.content IS NOT NULL
+       ORDER BY
+         c.manifest_id ASC,
+         p.chunk_index ASC
+       LIMIT 60`
+    );
+
+    return res.rows.map((r, index) => ({
+      id: `${r.manifest_id || "chapter"}-${r.chunk_index ?? index}`,
+      term: String(r.content || "").slice(0, 42),
+      parallel: "Semantic resonance pending",
+      note: String(r.content || "").slice(0, 180),
+      chapters: String(r.manifest_id || "Unknown"),
+      para_index: Number(r.chunk_index ?? 0),
+    }));
+  }
+}
+
+
+===== supabase/functions/register-uploaded-artifact/index.ts =====
+import { handleOptions, jsonResponse } from "../_shared/cors.ts";
+import { adminClient } from "../_shared/supabase.ts";
+import { assertAllowedBucket, assertSafeObjectPath } from "../_shared/hash.ts";
+
+Deno.serve(async (req) => {
+  const opt = handleOptions(req);
+  if (opt) return opt;
+
+  try {
+    if (req.method !== "POST") return jsonResponse({ error: "POST only" }, 405);
+
+    const body = await req.json();
+    const {
+      batch_key,
+      bucket,
+      object_path,
+      local_rel_path,
+      artifact_kind,
+      sha256_expected,
+      byte_size_expected,
+      content_type,
+      enqueue_verify = true,
+    } = body;
+
+    assertAllowedBucket(bucket);
+    assertSafeObjectPath(object_path);
+
+    const supabase = adminClient();
+
+    const { data: batch, error: batchError } = await supabase
+      .schema("nos")
+      .from("cloud_upload_batches")
+      .upsert({
+        batch_key,
+        storage_prefix: body.storage_prefix ?? batch_key,
+        manifest_root: body.manifest_root ?? null,
+        local_archive_root: body.local_archive_root ?? null,
+        totals: body.totals ?? {},
+        status: "uploading",
+      }, { onConflict: "batch_key" })
+      .select("id")
+      .single();
+
+    if (batchError) throw batchError;
+
+    const { data: storageObject, error: objectError } = await supabase
+      .schema("nos")
+      .from("storage_objects")
+      .upsert({
+        upload_batch_id: batch.id,
+        bucket_id: bucket,
+        object_path,
+        local_rel_path: local_rel_path ?? null,
+        artifact_kind: artifact_kind ?? null,
+        content_type: content_type ?? null,
+        sha256_expected: sha256_expected ?? null,
+        byte_size_expected: byte_size_expected ?? null,
+        verification_status: "uploaded",
+        storage_metadata: {
+          registered_at: new Date().toISOString(),
+        },
+      }, { onConflict: "bucket_id,object_path" })
+      .select("id")
+      .single();
+
+    if (objectError) throw objectError;
+
+    let job_id = null;
+    if (enqueue_verify) {
+      const { data: job, error: jobError } = await supabase.schema("nos").rpc("enqueue_job", {
+        p_queue_name: "nos_hash_verify",
+        p_job_kind: "verify_artifact_hash",
+        p_payload: { bucket, object_path },
+        p_upload_batch_id: batch.id,
+        p_storage_object_id: storageObject.id,
+      });
+
+      if (jobError) throw jobError;
+      job_id = job;
+    }
+
+    await supabase.schema("nos").rpc("emit_realtime_event", {
+      p_event_type: "artifact_uploaded_registered",
+      p_payload: { bucket, object_path, artifact_kind, job_id },
+      p_upload_batch_id: batch.id,
+      p_storage_object_id: storageObject.id,
+    });
+
+    return jsonResponse({
+      ok: true,
+      upload_batch_id: batch.id,
+      storage_object_id: storageObject.id,
+      job_id,
+    });
+  } catch (err) {
+    return jsonResponse({ ok: false, error: String(err?.message ?? err) }, 400);
+  }
+});
+
+===== supabase/functions/verify-artifact-hash/index.ts =====
+import { handleOptions, jsonResponse } from "../_shared/cors.ts";
+import { adminClient } from "../_shared/supabase.ts";
+import { assertAllowedBucket, assertSafeObjectPath, sha256Hex } from "../_shared/hash.ts";
+
+Deno.serve(async (req) => {
+  const opt = handleOptions(req);
+  if (opt) return opt;
+
+  try {
+    if (req.method !== "POST") return jsonResponse({ error: "POST only" }, 405);
+
+    const body = await req.json();
+    const { bucket, object_path, storage_object_id, job_id } = body;
+
+    assertAllowedBucket(bucket);
+    assertSafeObjectPath(object_path);
+
+    const supabase = adminClient();
+
+    if (job_id) {
+      await supabase.schema("nos").rpc("mark_job_status", {
+        p_job_id: job_id,
+        p_status: "running",
+        p_result: {},
+        p_error: null,
+      });
+    }
+
+    const { data: file, error: downloadError } = await supabase
+      .storage
+      .from(bucket)
+      .download(object_path);
+
+    if (downloadError) throw downloadError;
+
+    const bytes = await file.arrayBuffer();
+    const sha = await sha256Hex(bytes);
+    const byteSize = bytes.byteLength;
+
+    let query = supabase
+      .schema("nos")
+      .from("storage_objects")
+      .select("*");
+
+    if (storage_object_id) query = query.eq("id", storage_object_id);
+    else query = query.eq("bucket_id", bucket).eq("object_path", object_path);
+
+    const { data: current, error: currentError } = await query.single();
+    if (currentError) throw currentError;
+
+    const expected = current.sha256_expected;
+    const ok = !expected || expected === sha;
+    const status = ok ? "verified" : "hash_mismatch";
+
+    const { error: updateError } = await supabase
+      .schema("nos")
+      .from("storage_objects")
+      .update({
+        sha256_actual: sha,
+        byte_size_actual: byteSize,
+        verification_status: status,
+        verified_at: new Date().toISOString(),
+        storage_metadata: {
+          ...(current.storage_metadata ?? {}),
+          verified_at: new Date().toISOString(),
+          verifier: "verify-artifact-hash",
+        },
+      })
+      .eq("id", current.id);
+
+    if (updateError) throw updateError;
+
+    await supabase
+      .schema("nos")
+      .from("content_blobs")
+      .upsert({
+        sha256: sha,
+        byte_size: byteSize,
+        media_type: current.content_type ?? null,
+        content_role: current.artifact_kind ?? "storage_object",
+      }, { onConflict: "sha256" });
+
+    await supabase.schema("nos").rpc("emit_realtime_event", {
+      p_event_type: ok ? "artifact_hash_verified" : "artifact_hash_mismatch",
+      p_payload: {
+        bucket,
+        object_path,
+        sha256_actual: sha,
+        sha256_expected: expected,
+        byte_size_actual: byteSize,
+      },
+      p_upload_batch_id: current.upload_batch_id,
+      p_archive_batch_id: current.archive_batch_id,
+      p_ingest_job_id: job_id ?? null,
+      p_storage_object_id: current.id,
+    });
+
+    if (job_id) {
+      await supabase.schema("nos").rpc("mark_job_status", {
+        p_job_id: job_id,
+        p_status: ok ? "completed" : "failed",
+        p_result: { sha256_actual: sha, byte_size_actual: byteSize, ok },
+        p_error: ok ? null : "hash_mismatch",
+      });
+    }
+
+    return jsonResponse({
+      ok,
+      bucket,
+      object_path,
+      storage_object_id: current.id,
+      sha256_actual: sha,
+      sha256_expected: expected,
+      byte_size_actual: byteSize,
+    });
+  } catch (err) {
+    return jsonResponse({ ok: false, error: String(err?.message ?? err) }, 400);
+  }
+});
+
+===== supabase/functions/enqueue-enrichment/index.ts =====
+import { handleOptions, jsonResponse } from "../_shared/cors.ts";
+import { adminClient } from "../_shared/supabase.ts";
+
+const allowedKinds = new Set([
+  "ingest_manifest_tsv",
+  "parse_xml_payload",
+  "embed_paragraph",
+  "detect_biblical_references",
+  "score_archetypes",
+  "map_dualisms",
+  "vectorize_typography",
+  "plan_visual_asset",
+  "refresh_reader_search",
+  "drift_audit",
+]);
+
+const queueForKind: Record<string, string> = {
+  ingest_manifest_tsv: "nos_manifest_ingest",
+  parse_xml_payload: "nos_xml_parse",
+  embed_paragraph: "nos_paragraph_embed",
+  detect_biblical_references: "nos_biblical_detect",
+  score_archetypes: "nos_archetype_score",
+  map_dualisms: "nos_dualism_map",
+  vectorize_typography: "nos_typography_vectorize",
+  plan_visual_asset: "nos_visual_asset_plan",
+  refresh_reader_search: "nos_reader_index_refresh",
+  drift_audit: "nos_drift_audit",
+};
+
+Deno.serve(async (req) => {
+  const opt = handleOptions(req);
+  if (opt) return opt;
+
+  try {
+    if (req.method !== "POST") return jsonResponse({ error: "POST only" }, 405);
+
+    const body = await req.json();
+    const job_kind = body.job_kind;
+
+    if (!allowedKinds.has(job_kind)) {
+      return jsonResponse({ ok: false, error: `Unsupported job_kind: ${job_kind}` }, 400);
+    }
+
+    const supabase = adminClient();
+
+    const { data: jobId, error } = await supabase.schema("nos").rpc("enqueue_job", {
+      p_queue_name: body.queue_name ?? queueForKind[job_kind],
+      p_job_kind: job_kind,
+      p_payload: body.payload ?? {},
+      p_upload_batch_id: body.upload_batch_id ?? null,
+      p_archive_batch_id: body.archive_batch_id ?? null,
+      p_storage_object_id: body.storage_object_id ?? null,
+      p_paragraph_id: body.paragraph_id ?? null,
+      p_token_id: body.token_id ?? null,
+    });
+
+    if (error) throw error;
+
+    return jsonResponse({ ok: true, job_id: jobId, job_kind });
+  } catch (err) {
+    return jsonResponse({ ok: false, error: String(err?.message ?? err) }, 400);
+  }
+});
+
+===== supabase/functions/process-enrichment-batch/index.ts =====
+import { handleOptions, jsonResponse } from "../_shared/cors.ts";
+import { adminClient } from "../_shared/supabase.ts";
+
+Deno.serve(async (req) => {
+  const opt = handleOptions(req);
+  if (opt) return opt;
+
+  try {
+    if (req.method !== "POST") return jsonResponse({ error: "POST only" }, 405);
+
+    const body = await req.json();
+    const limit = Math.min(Number(body.limit ?? 10), 50);
+    const job_kind = body.job_kind ?? null;
+
+    const supabase = adminClient();
+
+    let q = supabase
+      .schema("nos")
+      .from("ingest_jobs")
+      .select("*")
+      .eq("status", "queued")
+      .lte("available_at", new Date().toISOString())
+      .order("created_at", { ascending: true })
+      .limit(limit);
+
+    if (job_kind) q = q.eq("job_kind", job_kind);
+
+    const { data: jobs, error } = await q;
+    if (error) throw error;
+
+    const processed = [];
+
+    for (const job of jobs ?? []) {
+      await supabase.schema("nos").rpc("mark_job_status", {
+        p_job_id: job.id,
+        p_status: "running",
+        p_result: {},
+        p_error: null,
+      });
+
+      const result = {
+        note: "Placeholder processor: no semantic/biblical/archetype/dualism/typography value invented here.",
+        job_kind: job.job_kind,
+        payload: job.payload,
+      };
+
+      await supabase.schema("nos").rpc("mark_job_status", {
+        p_job_id: job.id,
+        p_status: "completed",
+        p_result: result,
+        p_error: null,
+      });
+
+      processed.push({ id: job.id, job_kind: job.job_kind });
+    }
+
+    return jsonResponse({ ok: true, processed });
+  } catch (err) {
+    return jsonResponse({ ok: false, error: String(err?.message ?? err) }, 400);
+  }
+});

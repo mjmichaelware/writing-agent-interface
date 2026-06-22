@@ -1,0 +1,34 @@
+28:  contextPack: join(ROOT, "docs/agent_context/source_drop/hasher_context_v1/narrative_context_pack_v1.txt"),
+29:  xmlManifest: join(ROOT, "reports/xml_recovery/materialized_ooxml_manifest.json"),
+30:  ooxmlRaw: join(ROOT, "src/data-layer/ingestion-buffer/gdrive_ooxml_raw"),
+31:  publicChapters: join(ROOT, "public/data/chapters"),
+97:  must(existsSync(paths.contextPack), `Missing context pack: ${paths.contextPack}`);
+98:  must(existsSync(paths.xmlManifest), `Missing XML manifest: ${paths.xmlManifest}`);
+99:  must(existsSync(paths.ooxmlRaw), `Missing OOXML raw root: ${paths.ooxmlRaw}`);
+100:  must(existsSync(paths.publicChapters), `Missing public chapter corpus: ${paths.publicChapters}`);
+102:  const contextSha = sha256File(paths.contextPack);
+103:  const xmlSha = sha256File(paths.xmlManifest);
+104:  const manifest = JSON.parse(readText(paths.xmlManifest));
+196:    prompt_version: "text",
+446:      prompt_version: PROMPT_VERSION,
+457:    prompt_version: PROMPT_VERSION,
+468:function loadPublicChapters() {
+469:  const files = readdirSync(paths.publicChapters)
+475:    const fullPath = join(paths.publicChapters, file);
+510:      join("src/data-layer/ingestion-buffer/gdrive_ooxml_raw", entry.doc_folder || "", entry.part_path || ""),
+511:      join("src/data-layer/ingestion-buffer/gdrive_ooxml_raw", entry.doc_folder || "", "word", "document.xml"),
+551:function buildPrompt({ contextPack, chapter, xmlEvidence, paragraphs }) {
+664:${clip(contextPack, 30000)}
+692:async function callVertex(prompt) {
+702:    contents: [{ role: "user", parts: [{ text: prompt }] }],
+752:        source_kind: "gdrive_ooxml",
+755:        title: basename(String(item.source || item.doc_folder || "ooxml_source")),
+796:      prompt_version: PROMPT_VERSION,
+815:          prompt_version: PROMPT_VERSION,
+956:  const contextPack = readText(paths.contextPack);
+957:  const chapters = loadPublicChapters().filter((c) => !CHAPTER_FILTER || c.chapter_number === CHAPTER_FILTER);
+1000:      const prompt = buildPrompt({ contextPack, chapter, xmlEvidence, paragraphs: batch });
+1001:      const promptHash = sha256Text(prompt);
+1002:      writeFileSync(join(paths.outDir, `prompt-${chapter.chapter_number}-${totalProcessed}.sha256`), `${promptHash}\n`);
+1004:      const result = await callVertex(prompt);
+1018:        prompt_hash: promptHash,

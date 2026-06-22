@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_57de14c42dacc65f6e7fbcf0993de324",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "da5e9acf66a3d91d923705d7b0a467b27952175c3e7e0bfab928cc202fae21af",
+  "observations": [
+    {
+      "kind": "emotional_expression",
+      "summary": "Aviel's facial expression shows a flicker of recognition and a disturbing sense of accusation directed at Dan.",
+      "evidence": [
+        {
+          "render_para_key": "rp_392fa7bf3f95ea73f763fd4a8a059099",
+          "quote": "Aviel's gaze snapped to him, and for a moment, Dan saw something flicker across his father's face. Recognition, yes. But also something else—something that looked disturbingly like accusation."
+        }
+      ],
+      "thematic_weight": 7,
+      "gravity": 6,
+      "tension": 8,
+      "confidence": 0.95,
+      "notes": "This observation highlights a complex emotional dynamic between Aviel and Dan, suggesting underlying conflict or blame."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "Aviel's facial expression shows a flicker of recognition and a disturbing sense of accusation directed at Dan.",
+      "evidence": [
+        {
+          "render_para_key": "rp_392fa7bf3f95ea73f763fd4a8a059099",
+          "render_index": 16,
+          "quote": "Aviel's gaze snapped to him, and for a moment, Dan saw something flicker across his father's face. Recognition, yes. But also something else—something that looked disturbingly like accusation.",
+          "role": null,
+          "start_char": 2117,
+          "end_char": 2309,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_57de14c42dacc65f6e7fbcf0993de324",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            31
+          ],
+          "evidence_sha256": "cb8ac74122399a8399ee71350853b7f6229a2a05918b47d643c609fa0d42dcf3"
+        }
+      ],
+      "thematic_weight": 1,
+      "gravity": 1,
+      "tension": 1,
+      "confidence": 0.95,
+      "notes": "This observation highlights a complex emotional dynamic between Aviel and Dan, suggesting underlying conflict or blame."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "17a2f2121d1e44e1b6be3e2b9ba87fda3d19abc9e919abf14416588c276dadb6",
+  "normalized_output_hash": "2062b774c6a1b68dfe52c84e70bee0acef9472fd69f75949e95efc701fa310fa"
+}

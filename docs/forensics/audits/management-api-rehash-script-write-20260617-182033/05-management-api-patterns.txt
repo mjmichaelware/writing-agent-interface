@@ -1,0 +1,12 @@
+OK: old REST/service-role patterns absent
+
+90:const SUPABASE_ACCESS_TOKEN = env("SUPABASE_ACCESS_TOKEN", env("SUPABASE_MANAGEMENT_TOKEN", ""));
+91:const SUPABASE_PROJECT_REF = env("SUPABASE_PROJECT_REF", "yegricugzqbmoziycfnt");
+153:async function managementQuery(sql) {
+154:  must(SUPABASE_ACCESS_TOKEN, "Missing SUPABASE_ACCESS_TOKEN. Use a Supabase Management PAT/access token.");
+155:  must(SUPABASE_PROJECT_REF, "Missing SUPABASE_PROJECT_REF.");
+157:  const endpoint = `https://api.supabase.com/v1/projects/${SUPABASE_PROJECT_REF}/database/query`;
+162:      Authorization: `Bearer ${SUPABASE_ACCESS_TOKEN}`,
+349:    const chunk = await managementQuery(sql);
+402:    const inserted = await managementQuery(sql);
+436:  return managementQuery(sql);

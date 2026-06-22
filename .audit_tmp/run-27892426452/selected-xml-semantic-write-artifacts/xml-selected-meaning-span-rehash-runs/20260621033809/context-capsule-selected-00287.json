@@ -1,0 +1,256 @@
+{
+  "mode": "narrative_context_only",
+  "expected_public_chapter_count": 13,
+  "loaded_public_chapter_count": 13,
+  "chapter_hints": [
+    3
+  ],
+  "keywords": [
+    "night",
+    "shelter",
+    "bethlehem",
+    "bleating",
+    "bread",
+    "cheese",
+    "comforting",
+    "corner",
+    "distant",
+    "earth",
+    "entirely",
+    "faded"
+  ],
+  "full_public_chapter_corpus_loaded": true,
+  "public_chapter_corpus": [
+    {
+      "chapter_number": 3,
+      "sha256": "a3cba70f46c50af68ae2cdb748915e80578e1bcd905624a4b077fdc99ea693fd",
+      "score": 15,
+      "keyword_hits": 12,
+      "chapter_hint_boost": 3,
+      "excerpt": "ad consumed his father. They were adorned not with mere metal and stone, but with the very essence of them: rubies that pulsed with the primal, undeniable warmth of a lover’s heart, emeralds that gleamed with the earth’s promise of green pastures and endless harvest, and sapphires that held the cool, deep mystery of a night not yet born. Symbols of decay and abundance, carved from ancient bone and polished stone, seemed to orbit the goddess like silent satellites, humming with a vibrant, potent energy that sang a promise of solace and the comforting, irresistible density of the soil. Their eyes, luminous and impossibly ancient, were"
+    },
+    {
+      "chapter_number": 2,
+      "sha256": "f2a509eb8a6314cbdbc0dd9a3984fe09cb720101a4de0615dab3d6353db395d3",
+      "score": 8,
+      "keyword_hits": 8,
+      "chapter_hint_boost": 0,
+      "excerpt": "itement drained, replaced by a bone-weary sadness that curdled instantly into self-loathing masked as furious bitterness; the sulfurous flare of his internal state felt heavy in the air. \"Your journey?\" aviel's voice dropped, gaining a dangerous, resentful steel. \"Your mother used to do this; sending me riddles in the night. Did you think I wouldn't know? You dare to disrupt my peace at rest, simply because you scorn Lord Dagon?!\" He spat the words: \"If you want to know your source, boy, then pick up a stone and give it a name!\" aviel's fury was the deep deity's disdain made domestic, an agonizing whisper against any soul daring to"
+    },
+    {
+      "chapter_number": 4,
+      "sha256": "63b181b1f87727ee5202fe1f59a797a227f379a2446db5edd1cb47d50215b8a7",
+      "score": 8,
+      "keyword_hits": 8,
+      "chapter_hint_boost": 0,
+      "excerpt": "seeping in. Not just the absence of light, but the quiet dread that settles in the corners of the mind when the world goes silent. It just waits, patient as a spider in its web, for the moment one lets their guard down, for the sliver of primal fear that creeps in when the light begins to fade. And for young Dan, the night had been a long, whispering journey indeed, though light danced in his vision from distant stars, bright sentinels in the cosmic dark. He stirred slowly beneath the thin, scratchy blanket, a heavy weariness clutching at him more stubbornly than any dream's fading tendrils. The straw beneath his blanket, sharp as a"
+    },
+    {
+      "chapter_number": 5,
+      "sha256": "3b0ede4310eca0fccf88e100972d161048f12333411bb4e14c4f6956eaacf039",
+      "score": 8,
+      "keyword_hits": 8,
+      "chapter_hint_boost": 0,
+      "excerpt": "TE] bearest the density of a long road and the unburdened volume of one who flees a great inheritance.\" \"From Hebron, yes,\" Dan confirmed, accepting the implicit reading of his soul. \"I make my way north, towards Shechem. Is the path ahead true, and what manner of speed must I keep to avoid the final surrender to the night?\" Dan inquired, framing his query not as a request for distance, but as a test of his own endurance. The man studied him—the simple clothes, the determined line of his jaw, the strange, cold fire in his eyes that spoke of things far beyond mere destination. \"Shechem is a fair road yet, a full day's trial for a man"
+    },
+    {
+      "chapter_number": 7,
+      "sha256": "fe21c269662112e63ae92118f80d1d68c5a94cb5fb3950a0d8cb1d0f3092b245",
+      "score": 8,
+      "keyword_hits": 8,
+      "chapter_hint_boost": 0,
+      "excerpt": "of the city's hostility was beginning to weigh heavily. The earth pulled at him with invisible ropes, the air felt thick and resistant, like trying to breathe underwater, and the people were cold, greedy, and unwelcoming. This was the battleground of his Internal War. He pushed on, needing to find shelter before night fell completely, before his strength failed entirely. The feeling of lethargy grew stronger with every step, as if the very stones of the tell were trying to absorb his energy, to make him part of their ancient, layered history. He walked through the maze of streets, past homes made of sun-baked mud brick and stone, p"
+    },
+    {
+      "chapter_number": 6,
+      "sha256": "5b7b91ab7dc53343297f6b32b4a59443e75b629c2f1484de0f093bc2ff802a37",
+      "score": 7,
+      "keyword_hits": 7,
+      "chapter_hint_boost": 0,
+      "excerpt": "Chapter 6: Beelzebub, Beelzebub The stones of Shechem felt lighter beneath Dan’s feet as he stepped out of the House of Smoke and Oil into the soft morning light. A new day, a fresh start, or so they always promised, those bright, clean mornings after a night of necessary indulgence. He had woken before the sun, the scents of perfume and spiced lamb still clinging to his clothes, a ghost of the night's comfort, but his mind was clear, sharp, and eager to embark on the road ahead. He sought out a shepherd’s family, offering them a small piece of silver – a mere glint from t"
+    },
+    {
+      "chapter_number": 9,
+      "sha256": "bb2740591c75d6dd0ee22abf60c25523302ff6758cfd3052f1b2c72e9ffe191b",
+      "score": 6,
+      "keyword_hits": 6,
+      "chapter_hint_boost": 0,
+      "excerpt": "Chapter 9: The Ascent The air, already thin and sharp at the base of Hermon, bit at Daniel’s lungs with the first step. A faint, earthy scent of damp rock and ancient snow filled his nostrils, a prelude to the climb. The ground, still damp from Rafa’s cleansing tears, felt cold beneath his bare feet, a stark contrast to the warmth of the giant's parting words. He looked up, his single eye taking in the colossal, snow-capped sentinel that pierced the sky like a spear. Its upper reaches were shrouded in a permanent, icy shroud, even in the warmth of the season below, a stark reminder of the heights he sought. \"Where the veil is thin"
+    },
+    {
+      "chapter_number": 10,
+      "sha256": "3fa62b7d098773c1051829693664fd31f16b7ff29ef23e2c7215cc215295460d",
+      "score": 6,
+      "keyword_hits": 6,
+      "chapter_hint_boost": 0,
+      "excerpt": "'s weave. \"I am owed a response.\" The ground received this and gave nothing back, which was within its ancient rights—but there had always been a warmth in the receiving before, a vibration beneath the silence that meant the address had been registered, that something below knew the weight of what pressed above it. Tonight the soil was only soil: cold packed earth and the dense, mineral patience of the valley floor and silence as complete and unyielding as a brass ceiling, all the way down. Outside, the Peleset camp had become its daily symphony—dry rock grinding against bedrock, the steady massive labor of warriors sharpening iron"
+    },
+    {
+      "chapter_number": 11,
+      "sha256": "8d3f998fafb7852f66f9a055c6233295c82b0fdbb2450663ec63c7e3961d23e1",
+      "score": 5,
+      "keyword_hits": 5,
+      "chapter_hint_boost": 0,
+      "excerpt": "st betrayer. I myself had once fought a great serpent in that churning void, a battle I recall with a shiver, but that is a tale for another time. Kasha recoiled at the thought, a shiver running down her spine. Unlike others, she did not fear the Dreamscape’s horrors as such. She had faced monsters born of collective nightmares, walked through fields of screaming specters, and witnessed the primordial forms of fear itself. Her fear was more subtle — the treacherous shifts in perspective, the unstable seas where even the surest step might betray, where the very ground beneath one's feet could dissolve into nothingness. In that place,"
+    },
+    {
+      "chapter_number": 13,
+      "sha256": "960479e956f95dc5674a44b34a4c5bc562dced3d80c43f4622b3c4ad2acc50e9",
+      "score": 5,
+      "keyword_hits": 5,
+      "chapter_hint_boost": 0,
+      "excerpt": "Chapter 13: Exodus The Dreamscape, as you may recall, is a place where the soul may wander free, unburdened by the tedious laws of the waking world, yet the return to the confines of flesh is rarely a gentle one. For Kasha, it was a jarring impact, a painful snap back into the familiar ache of bone and sinew, as if a great, invisible hand had seized her spirit and thrust it back into its earthen vessel. Her gasp, sharp and sudden, tore through the silent tent, a ragged sound that seemed to shred the last vestiges of the Dreamscape’s shimmering illusions. Her eyes, flying open, found the worn canvas roof above her, solid and unyiel"
+    },
+    {
+      "chapter_number": 1,
+      "sha256": "2f49c451b048e73249daec5c732eff040a81f7310b547eb6a36177a08723deda",
+      "score": 4,
+      "keyword_hits": 4,
+      "chapter_hint_boost": 0,
+      "excerpt": ", deliberately extinguished the torch. He plunged the area into a deep, drowning darkness, relying only on the sharp memory of light and the faint moonlight filtering through a narrow window slit in the hallway wall. The pungent smell of burnt wick lingered: a bitter tang of parting, the first small expenditure of the night. The ache in Dan's chest was a fixed pressure. He remembered his father's final, damning dismissal from three nights past, a statement of total surrender to matter: \"If you're still searching for your source, boy,\" Aviel had hissed, his voice heavy with the sluggish drag of his own self-deception, \"then pick up a"
+    },
+    {
+      "chapter_number": 8,
+      "sha256": "a02f56e5ac0abd966aef2541b27fa8e4f9c5d36a2f7287d2c7bf7b46c026c6c7",
+      "score": 4,
+      "keyword_hits": 4,
+      "chapter_hint_boost": 0,
+      "excerpt": "He climbed higher. The air grew cold and sharp, burning his lungs with its purity. He walked above the tree-line, onto the bare, uncompromising stone. He was approaching the zenith of the horizontal claim, the point where the earth and the sky fought for final jurisdiction. He looked up at the deep, black vault of the night sky, a vision of the unmanifest. He saw the cold, perfect fire of the distant stars, the loyal light that had guided him since his first dreamwalk. But as he watched, a faint flicker, a spectral shadow, an object of consuming envy, appeared beside the loyal star. It was a subtle, almost imperceptible density, a d"
+    },
+    {
+      "chapter_number": 24,
+      "sha256": "3d4e278a0349a7f47569f4502b324bf0ffbf97adb96568920bef23a877dc0776",
+      "score": 4,
+      "keyword_hits": 4,
+      "chapter_hint_boost": 0,
+      "excerpt": "In the vast expanse of the dreamscape, where souls exist beyond physical form, where the very air hums with the resonance of pure being, Dan and Isabel's essences finally converged after three millennia of separation. Their spiritual forms, composed not of flesh, but of the shimmering, incandescent energy of their divine aspects – Love and Forgiveness – recognized each other instantly across the cosmic void. \"I have searched for you through countless cycles of stars,\" Dan's presence resonated through the dreamscape, a wave of pure warmth that touched every corner of this ethereal realm, reaching out, a deep, ancient yearning. \"And"
+    }
+  ],
+  "narrative_protocol_sources": [
+    {
+      "role": "archetype_protocol",
+      "key": "cat_god_primal_self",
+      "sha256": "089b3617b7dbc3b46ceb43a7053f55662dd11c5b931bc0b2453d8e66c5568a2d",
+      "excerpt": "Literary & Archetypal Fusion Rulebook (The Cat God & The Primal Self) This rulebook dictates the final, deep-level edits required to create a \"New York Times Bestseller\" that operates as an existential mirror, compelling the reader to confront their own inner conflicts and unintegrated \"ego\" (the \"Dr. Jekyll/Mr. Hyde\" tension). I. The Narrator: Deity of Curiosity (The Cat God) The narrator's voice is the subtle, overarching thematic hyperlink for Truth and Love. The narrator is a deity of pure Curiosity in the Dreamscape, near The Source of All. * Voice Style: Highly observant, often focused on the unseen cost of knowledge or the unasked question. The tone must be ancient, knowing, yet slightly playful and precise. * Foreshadowing & Thematic Link: Introduce subtle, sensory language of a feline observer: * Emphasis on silent observation, stalking, low growls, the scent of fear/truth, and an unnerving lightness of foot. * Chapter 6 Anchor: The physical black kitten that joins Kasha MUST be present, serving as the physical a"
+    },
+    {
+      "role": "archetype_protocol",
+      "key": "visceral_empathy",
+      "sha256": "59ed13c0f886611dc08299da8b74306aa860383038e2a645b6436c04c9af25d8",
+      "excerpt": "Emotional & Archetypal Editing Rulebook (Visceral Empathy Focus) This rulebook incorporates all previous historical and hyperlinking instructions while adding a new, critical layer to ensure maximum reader empathy. The goal is to make Dan's internal war between flesh and spirit feel universally relatable (like the Dr. Jekyll and Mr. Hyde struggle you described, without using those specific terms). I. Visceral Empathy & Relatability Rules * Replace Detachment with Somatic Cost: When Dan makes a great spiritual decision (e.g., leaving Bethel, refusing silver), the text MUST emphasize the physical pain and emotional cost of that choice. * Instead of: \"Dan felt a cold resolve.\" * Use: \"A cold, sharp ache settled in the marrow of his chest, a physical rending as he chose the higher, colder truth.\" * Biochemical/Flesh vs. Spirit Conflict (The Dr. Jekyll/Mr. Hyde): Focus on the body's revolt against the spirit's ascetic demands. This is the internal war that makes Dan universally relatable to anyone battling self-control, tempta"
+    },
+    {
+      "role": "story_compendium",
+      "key": "master_compendium",
+      "sha256": "7f86ab925e53d48f6e32e07950f30b81b82bd4270b77b826b7392d7d35e86758",
+      "excerpt": "THE WEIGHT OF THE SKY: MASTER COMPENDIUM (SINGULARITY v.1.0) Author: Michael Alonza Prentice Ware | Tone: Lewis/Snicket/Gaiman/Dahl | Genre: Archetypal Mythic Realism I. THE CORE METAPHYSICAL LAWS The \"I AM\" vs. The \"Gods of Things\": The Vertical Source is pure motion/being. The Canaanite gods are \"Horizontal\" fragments of the material world (lust, greed, dust). The Fragmented Self: The gods (Dagon, Beelzebub, Astarte) are Dan’s own psychological drives looking back at him from the \"inside out.\" Encountering a god is an act of internal mirror-imaging. The Quantum Dust: The Dreamscape (Jungian Collective Subconscious) is made of \"Dust\"—Planck-length cells containing the potential for a Big Bang in every unit. Without Will and Intent (Spirit), these particles collapse into nothingness. The Sacrifice of Judgment: To move from Dan (He who judges the fragments) to Daniel (God is my Judge), the protagonist must undergo a \"thermodynamic zero-point\" descent in the Pit at Megiddo, losing his voice (human language) to gain cr"
+    },
+    {
+      "role": "new_synopsis",
+      "key": "new_synopsis",
+      "sha256": "022c36c6525eda7d3abe4836aa6ca39647c5b7267cd8c2d7234c956a69569fe0",
+      "excerpt": "eaches of Truth and a mysterious Light. In the dreamscape, all things are possible because all things exist within it. The novel establishes a crucial metaphysical conflict: some people believe the \"low gods,\" such as Dagon, Baal, and El, hold up the Earth from beneath, making them the most powerful. Others believe the \"high gods\" who watch from above—Yahweh, Courage, and Hope—are the true divine authorities. Dan's journey is a physical manifestation of his spiritual quest to ascend and find the highest God. One night, Dan enters the dreamscape to send a message to his sleeping father. He forms creative \"dust\" into rocks that fall around Aviel. As his father instinctively hoards them, Dan's message becomes clear: his father is being consumed by his earthly possessions. Only when the rocks threaten to suffocate him does Aviel reluctantly let go, and Dan ends the dream. Aviel, having brought the gods of Philistia with him, worships Dagon, the fish god of abundance. Angered by Dan’s interference, Dagon appears to Dan in an unco"
+    }
+  ],
+  "subject_resolution_candidates": [
+    {
+      "name": "Dan",
+      "mentions": 15
+    },
+    {
+      "name": "Then",
+      "mentions": 12
+    },
+    {
+      "name": "Aviel",
+      "mentions": 10
+    },
+    {
+      "name": "Hebron",
+      "mentions": 10
+    },
+    {
+      "name": "Dagon",
+      "mentions": 9
+    },
+    {
+      "name": "Kasha",
+      "mentions": 9
+    },
+    {
+      "name": "There",
+      "mentions": 9
+    },
+    {
+      "name": "You",
+      "mentions": 9
+    },
+    {
+      "name": "Beelzebub",
+      "mentions": 8
+    },
+    {
+      "name": "One",
+      "mentions": 8
+    },
+    {
+      "name": "What",
+      "mentions": 8
+    },
+    {
+      "name": "Yet",
+      "mentions": 8
+    },
+    {
+      "name": "Zuna",
+      "mentions": 8
+    },
+    {
+      "name": "Astarte",
+      "mentions": 7
+    },
+    {
+      "name": "Baal",
+      "mentions": 7
+    },
+    {
+      "name": "Bethel",
+      "mentions": 7
+    },
+    {
+      "name": "Bethlehem",
+      "mentions": 7
+    },
+    {
+      "name": "Hermon",
+      "mentions": 7
+    },
+    {
+      "name": "Megiddo",
+      "mentions": 7
+    },
+    {
+      "name": "Sea",
+      "mentions": 7
+    },
+    {
+      "name": "Curiosity",
+      "mentions": 6
+    },
+    {
+      "name": "Daniel",
+      "mentions": 6
+    },
+    {
+      "name": "Israel",
+      "mentions": 6
+    },
+    {
+      "name": "Its",
+      "mentions": 6
+    }
+  ],
+  "available_narrative_context_map_excerpt": "ming wrath of Astarte, but utterly resolute. “No. I will not return. I seek the light. I seek the truth that is above, not the lie that is below. I will not be pulled down by the burdens of the flesh, nor the comforting lies of the earth’s tribute!” As Dan uttered those words, a seismic, chilling shriek tore through the air from the well—the sound of ancient power denied, of cosmic rage unleashed, a sound that cracked the very stones and sent a shiver of primordial dread down his spine. The image of Astarte flare ending=at other ancient beings might test his resolve. But he knew, with a certainty that resonated in his very center of gravity, that he was no longer just running from something. He was moving towards something. Something vast and true and utterly beyond the confines of earthly desires. He was moving towards the stars, and the stars, he now knew, were moving towards him. The night was young, and the road, though unseen, called to him with a new, quiet urgency, but a seismic ache in his thighs brought him instantly back to the raw, hard fact of the present. He awoke not to the silent triumph of the cosmic ocean, but to the cold, scratchy straw pressing against his skin, his legs burning with a pain that was not weariness, but injury. The goddess had failed to pull him down entirely, but she had ensured that his horizontal progress would be a daily, agonizing cost—a living tribute to his will. --- CHAPTER 4 path=public/data/chapters/4.txt sha256=63b181b1f87727ee5202fe1f59a797a227f379a2446db5edd1cb47d50215b8a7 word_count=3323 opening=Chapter 4: Pilgrimage The dark, it has a way of seeping in. Not just the absence of light, but the quiet dread that settles in the corners of the mind when the world goes silent. It just waits, patient as a spider in its web, for t",
+  "context_pack_excerpt": "_context/source_drop/hasher_context_v1/04_new_synopsis_the_weight_of_the_sky.txt ================================================================================ The Weight of the Sky - Full Manuscript Synopsis (New Synopsis) The story begins in Hebron in 1003 BCE, a time when King David ruled over Judah, but the Philistines, with their iron weapons, still held significant power. In this tumultuous era, we meet a young boy named Dan, whose home is a physical manifestation of his father Aviel's grief-fueled hoarding after the death of Dan's mother, Zuna. Unlike his father, Dan is a dreamwalker, a rare visionary who can consciously control his dreams. He sees the dreamscape not just as a subconscious world, but as a universal realm made of \"dust,\" the smallest unit of creativity. The dreamscape is layered, from the lowest depths of Pride and Gluttony to the highest reaches of Truth and a mysterious Light. In the dreamscape, all things are possible because all things exist within it. The novel establishes a crucial metaphysical conflict: some people believe the \"low gods,\" such as Dagon, Baal, and El, hold up the Earth from beneath, making them the most powerful. Others believe the \"high gods\" who watch from above—Yahweh, Courage, and Hope—are the true divine authorities. Dan's journey is a physical manifestation of his spiritual quest to ascend and find the highest God. One night, Dan enters the dreamscape to send a message to his sleeping father. He forms creative \"dust\" into rocks that fall around Aviel. As his father instinctively hoards them, Dan's message becomes clear: his father is being consumed by his earthly possessions. Only when the rocks threaten to suffocate him does Aviel reluctantly let go, and Dan ends the dream. Aviel, having brought the gods of Philistia with him, worships Dagon, the fish god of abundance. Angered by Dan’s interference, Dagon appears to Dan in an uncontrolled dream. Dan finds himself on a ship in an endless ocean, face-to-face with the deity. Dagon attempts to coerce him, but Dan remains steadfast, recalling Dagon’s past specific defeats: how his statue crumbled before the Ark of the Covenant and how his temple was destroyed by Samson. Dagon dismisses this, claiming the \"realm of the living cannot touch the realm of the Dead.\" Dan calls Dagon a \"deity of death,\" to which Dagon replies, \"Look at the war within you and the wars around you; death is ever upon you. I provide you a raft for it to lose its sting.\" Dan denies him, enraging the god, and the dream ends. The next morning, a heated conversation ensues. Aviel, realizing the dream was a message for his son—a rejection of Dagon—recalls a past, cynical conversation where he told Dan, \"if you're looking for a God, then pick up a rock and make it so.\" In his anger,",
+  "context_capsule_sha256": "a70c19e281a172f5f15a1c64ece4781f8072083db6639ced3f4c46a7bc67be03"
+}

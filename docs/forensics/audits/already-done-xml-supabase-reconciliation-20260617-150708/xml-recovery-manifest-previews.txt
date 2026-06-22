@@ -1,0 +1,255 @@
+
+===== reports/xml_recovery/materialized_ooxml_manifest.json =====
+362761 reports/xml_recovery/materialized_ooxml_manifest.json
+[
+  {
+    "source": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0001__-Final_Chapter_1_Revision_Prompt-__1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0/ooxml_current/[Content_Types].xml",
+    "dest": "src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0001_-final_chapter_1_revision_prompt-_1b0h6t2dlmd-5sm1xgdf1e1qrgddb2d-pu8p8gz20hk0/[Content_Types].xml",
+    "doc_folder": "0001_-final_chapter_1_revision_prompt-_1b0h6t2dlmd-5sm1xgdf1e1qrgddb2d-pu8p8gz20hk0",
+    "part_path": "[Content_Types].xml",
+    "bytes": 1172,
+    "sha256": "70100a2bc0a6ff5fcce135d1b8ab0d9f108c4cdd39ead3ce88eda6ca2b6d7581"
+  },
+  {
+    "source": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0001__-Final_Chapter_1_Revision_Prompt-__1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0/ooxml_current/_rels/.rels",
+    "dest": "src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0001_-final_chapter_1_revision_prompt-_1b0h6t2dlmd-5sm1xgdf1e1qrgddb2d-pu8p8gz20hk0/_rels/.rels",
+    "doc_folder": "0001_-final_chapter_1_revision_prompt-_1b0h6t2dlmd-5sm1xgdf1e1qrgddb2d-pu8p8gz20hk0",
+    "part_path": "_rels/.rels",
+    "bytes": 298,
+    "sha256": "1cc87395d4a229f21c23af406724de12dd9454071925f983e4b648a7b2be8cc5"
+  },
+  {
+    "source": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0001__-Final_Chapter_1_Revision_Prompt-__1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0/ooxml_current/word/_rels/document.xml.rels",
+    "dest": "src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0001_-final_chapter_1_revision_prompt-_1b0h6t2dlmd-5sm1xgdf1e1qrgddb2d-pu8p8gz20hk0/word/_rels/document.xml.rels",
+    "doc_folder": "0001_-final_chapter_1_revision_prompt-_1b0h6t2dlmd-5sm1xgdf1e1qrgddb2d-pu8p8gz20hk0",
+    "part_path": "word/_rels/document.xml.rels",
+    "bytes": 812,
+    "sha256": "2f88ba313d7d77c73d3737c12338686a29f13f029e69a783e026da83a7dd891c"
+  },
+  {
+    "source": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0001__-Final_Chapter_1_Revision_Prompt-__1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0/ooxml_current/word/document.xml",
+    "dest": "src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0001_-final_chapter_1_revision_prompt-_1b0h6t2dlmd-5sm1xgdf1e1qrgddb2d-pu8p8gz20hk0/word/document.xml",
+    "doc_folder": "0001_-final_chapter_1_revision_prompt-_1b0h6t2dlmd-5sm1xgdf1e1qrgddb2d-pu8p8gz20hk0",
+    "part_path": "word/document.xml",
+    "bytes": 151301,
+    "sha256": "7d47f296e57e31b2b1dfc8975eaea4f3280bba5b11f24db9206b3c04889ffd90"
+  },
+  {
+    "source": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0001__-Final_Chapter_1_Revision_Prompt-__1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0/ooxml_current/word/fontTable.xml",
+    "dest": "src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0001_-final_chapter_1_revision_prompt-_1b0h6t2dlmd-5sm1xgdf1e1qrgddb2d-pu8p8gz20hk0/word/fontTable.xml",
+    "doc_folder": "0001_-final_chapter_1_revision_prompt-_1b0h6t2dlmd-5sm1xgdf1e1qrgddb2d-pu8p8gz20hk0",
+    "part_path": "word/fontTable.xml",
+    "bytes": 1753,
+    "sha256": "826eb12279bc8d6e0e5739bf49ddee0b46e9613f9997650c502626fd8c8ac998"
+  },
+  {
+    "source": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0001__-Final_Chapter_1_Revision_Prompt-__1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0/ooxml_current/word/numbering.xml",
+    "dest": "src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0001_-final_chapter_1_revision_prompt-_1b0h6t2dlmd-5sm1xgdf1e1qrgddb2d-pu8p8gz20hk0/word/numbering.xml",
+    "doc_folder": "0001_-final_chapter_1_revision_prompt-_1b0h6t2dlmd-5sm1xgdf1e1qrgddb2d-pu8p8gz20hk0",
+    "part_path": "word/numbering.xml",
+    "bytes": 1690,
+    "sha256": "d2a3e08465525eee874ea10d780540816951a37b115e90f1cd56aefdd76adc2e"
+  },
+  {
+    "source": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0001__-Final_Chapter_1_Revision_Prompt-__1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0/ooxml_current/word/settings.xml",
+    "dest": "src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0001_-final_chapter_1_revision_prompt-_1b0h6t2dlmd-5sm1xgdf1e1qrgddb2d-pu8p8gz20hk0/word/settings.xml",
+    "doc_folder": "0001_-final_chapter_1_revision_prompt-_1b0h6t2dlmd-5sm1xgdf1e1qrgddb2d-pu8p8gz20hk0",
+    "part_path": "word/settings.xml",
+    "bytes": 2152,
+    "sha256": "26f2853fde05b88d4b0a9da0bb016d56a896901f60c9272dddf33c3f3fa61e4a"
+  },
+  {
+    "source": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0001__-Final_Chapter_1_Revision_Prompt-__1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0/ooxml_current/word/styles.xml",
+    "dest": "src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0001_-final_chapter_1_revision_prompt-_1b0h6t2dlmd-5sm1xgdf1e1qrgddb2d-pu8p8gz20hk0/word/styles.xml",
+    "doc_folder": "0001_-final_chapter_1_revision_prompt-_1b0h6t2dlmd-5sm1xgdf1e1qrgddb2d-pu8p8gz20hk0",
+    "part_path": "word/styles.xml",
+    "bytes": 5421,
+    "sha256": "a87a72b0775935f9723642f7678c4e9d51dd74e2ff64f037f3c68911ce68066c"
+  },
+  {
+    "source": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0001__-Final_Chapter_1_Revision_Prompt-__1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0/ooxml_current/word/theme/theme1.xml",
+    "dest": "src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0001_-final_chapter_1_revision_prompt-_1b0h6t2dlmd-5sm1xgdf1e1qrgddb2d-pu8p8gz20hk0/word/theme/theme1.xml",
+    "doc_folder": "0001_-final_chapter_1_revision_prompt-_1b0h6t2dlmd-5sm1xgdf1e1qrgddb2d-pu8p8gz20hk0",
+    "part_path": "word/theme/theme1.xml",
+    "bytes": 7643,
+    "sha256": "b2295d3198893d2c03f5e584c749a15751b798aefdcd9bee2889f13903d68cb2"
+  },
+  {
+    "source": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z/documents/0002__R_Chapter_1_-_Stardust_to_Stardust__1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ/ooxml_current/[Content_Types].xml",
+    "dest": "src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0002_r_chapter_1_-_stardust_to_stardust_1tbodxyu5ezufogmr46f64o9u8fisifvmiaxn6qz_siq/[Content_Types].xml",
+    "doc_folder": "0002_r_chapter_1_-_stardust_to_stardust_1tbodxyu5ezufogmr46f64o9u8fisifvmiaxn6qz_siq",
+    "part_path": "[Content_Types].xml",
+    "bytes": 1235,
+    "sha256": "8a875455da6f1e077ea4a44be6536c9f5057845cd41b7c14b37b1a237bad36be"
+
+===== reports/xml_recovery/google_xml_extraction_audit.md =====
+452 reports/xml_recovery/google_xml_extraction_audit.md
+# Google XML / OOXML Extraction Audit
+
+Generated: Fri Jun 12 22:11:44 MDT 2026
+
+## Local gdrive_raw text targets
+
+- gdrive_raw file count: 182
+
+## Active XML folder
+- gdrive_ooxml_raw file count: 0
+
+## Name-matched Google archive report
+- No latest Google archive report exists.
+- Conclusion: Google export/extraction has not completed in this repo.
+
+## Existing current.docx files
+
+## Existing extracted OOXML folders
+
+## Existing extracted XML files
+
+===== reports/xml_recovery/source_xml_supabase_schema_proposal.sql =====
+1335 reports/xml_recovery/source_xml_supabase_schema_proposal.sql
+-- Proposal only. Do not execute until reviewed.
+-- Best practice: keep raw OOXML files in the repo/storage folder and store metadata/index rows in Supabase.
+
+create table if not exists public.source_documents (
+  id uuid primary key default gen_random_uuid(),
+  source_kind text not null default 'google_drive_docx_ooxml',
+  drive_file_id text,
+  original_name text,
+  normalized_name text,
+  local_source_path text,
+  current_docx_path text,
+  current_docx_sha256 text,
+  created_at timestamptz default now(),
+  updated_at timestamptz default now()
+);
+
+create table if not exists public.source_document_parts (
+  id uuid primary key default gen_random_uuid(),
+  source_document_id uuid references public.source_documents(id) on delete cascade,
+  part_path text not null,
+  local_path text not null,
+  content_type text,
+  bytes integer,
+  sha256 text,
+  text_preview text,
+  created_at timestamptz default now(),
+  unique(source_document_id, part_path)
+);
+
+create table if not exists public.source_document_revisions (
+  id uuid primary key default gen_random_uuid(),
+  source_document_id uuid references public.source_documents(id) on delete cascade,
+  drive_revision_id text,
+  modified_time timestamptz,
+  metadata jsonb default '{}'::jsonb,
+  local_media_path text,
+  media_sha256 text,
+  created_at timestamptz default now()
+);
+
+===== reports/gdrive_ooxml_raw_files.txt =====
+86157 reports/gdrive_ooxml_raw_files.txt
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0001_-final_chapter_1_revision_prompt-_1b0h6t2dlmd-5sm1xgdf1e1qrgddb2d-pu8p8gz20hk0/[Content_Types].xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0001_-final_chapter_1_revision_prompt-_1b0h6t2dlmd-5sm1xgdf1e1qrgddb2d-pu8p8gz20hk0/_rels/.rels
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0001_-final_chapter_1_revision_prompt-_1b0h6t2dlmd-5sm1xgdf1e1qrgddb2d-pu8p8gz20hk0/word/_rels/document.xml.rels
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0001_-final_chapter_1_revision_prompt-_1b0h6t2dlmd-5sm1xgdf1e1qrgddb2d-pu8p8gz20hk0/word/document.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0001_-final_chapter_1_revision_prompt-_1b0h6t2dlmd-5sm1xgdf1e1qrgddb2d-pu8p8gz20hk0/word/fontTable.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0001_-final_chapter_1_revision_prompt-_1b0h6t2dlmd-5sm1xgdf1e1qrgddb2d-pu8p8gz20hk0/word/numbering.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0001_-final_chapter_1_revision_prompt-_1b0h6t2dlmd-5sm1xgdf1e1qrgddb2d-pu8p8gz20hk0/word/settings.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0001_-final_chapter_1_revision_prompt-_1b0h6t2dlmd-5sm1xgdf1e1qrgddb2d-pu8p8gz20hk0/word/styles.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0001_-final_chapter_1_revision_prompt-_1b0h6t2dlmd-5sm1xgdf1e1qrgddb2d-pu8p8gz20hk0/word/theme/theme1.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0002_r_chapter_1_-_stardust_to_stardust_1tbodxyu5ezufogmr46f64o9u8fisifvmiaxn6qz_siq/[Content_Types].xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0002_r_chapter_1_-_stardust_to_stardust_1tbodxyu5ezufogmr46f64o9u8fisifvmiaxn6qz_siq/_rels/.rels
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0002_r_chapter_1_-_stardust_to_stardust_1tbodxyu5ezufogmr46f64o9u8fisifvmiaxn6qz_siq/word/_rels/document.xml.rels
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0002_r_chapter_1_-_stardust_to_stardust_1tbodxyu5ezufogmr46f64o9u8fisifvmiaxn6qz_siq/word/_rels/fontTable.xml.rels
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0002_r_chapter_1_-_stardust_to_stardust_1tbodxyu5ezufogmr46f64o9u8fisifvmiaxn6qz_siq/word/document.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0002_r_chapter_1_-_stardust_to_stardust_1tbodxyu5ezufogmr46f64o9u8fisifvmiaxn6qz_siq/word/fontTable.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0002_r_chapter_1_-_stardust_to_stardust_1tbodxyu5ezufogmr46f64o9u8fisifvmiaxn6qz_siq/word/fonts/EBGaramond-bold.ttf
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0002_r_chapter_1_-_stardust_to_stardust_1tbodxyu5ezufogmr46f64o9u8fisifvmiaxn6qz_siq/word/fonts/EBGaramond-boldItalic.ttf
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0002_r_chapter_1_-_stardust_to_stardust_1tbodxyu5ezufogmr46f64o9u8fisifvmiaxn6qz_siq/word/fonts/EBGaramond-italic.ttf
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0002_r_chapter_1_-_stardust_to_stardust_1tbodxyu5ezufogmr46f64o9u8fisifvmiaxn6qz_siq/word/fonts/EBGaramond-regular.ttf
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0002_r_chapter_1_-_stardust_to_stardust_1tbodxyu5ezufogmr46f64o9u8fisifvmiaxn6qz_siq/word/numbering.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0002_r_chapter_1_-_stardust_to_stardust_1tbodxyu5ezufogmr46f64o9u8fisifvmiaxn6qz_siq/word/settings.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0002_r_chapter_1_-_stardust_to_stardust_1tbodxyu5ezufogmr46f64o9u8fisifvmiaxn6qz_siq/word/styles.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0002_r_chapter_1_-_stardust_to_stardust_1tbodxyu5ezufogmr46f64o9u8fisifvmiaxn6qz_siq/word/theme/theme1.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0003_g_chapter_2-_living_sacrifice_1liqobbwqqwnybdbuqqoxp9hdt2ddoq8nxzwiycwas0s/[Content_Types].xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0003_g_chapter_2-_living_sacrifice_1liqobbwqqwnybdbuqqoxp9hdt2ddoq8nxzwiycwas0s/_rels/.rels
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0003_g_chapter_2-_living_sacrifice_1liqobbwqqwnybdbuqqoxp9hdt2ddoq8nxzwiycwas0s/word/_rels/document.xml.rels
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0003_g_chapter_2-_living_sacrifice_1liqobbwqqwnybdbuqqoxp9hdt2ddoq8nxzwiycwas0s/word/_rels/fontTable.xml.rels
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0003_g_chapter_2-_living_sacrifice_1liqobbwqqwnybdbuqqoxp9hdt2ddoq8nxzwiycwas0s/word/document.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0003_g_chapter_2-_living_sacrifice_1liqobbwqqwnybdbuqqoxp9hdt2ddoq8nxzwiycwas0s/word/fontTable.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0003_g_chapter_2-_living_sacrifice_1liqobbwqqwnybdbuqqoxp9hdt2ddoq8nxzwiycwas0s/word/fonts/EBGaramond-bold.ttf
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0003_g_chapter_2-_living_sacrifice_1liqobbwqqwnybdbuqqoxp9hdt2ddoq8nxzwiycwas0s/word/fonts/EBGaramond-boldItalic.ttf
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0003_g_chapter_2-_living_sacrifice_1liqobbwqqwnybdbuqqoxp9hdt2ddoq8nxzwiycwas0s/word/fonts/EBGaramond-italic.ttf
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0003_g_chapter_2-_living_sacrifice_1liqobbwqqwnybdbuqqoxp9hdt2ddoq8nxzwiycwas0s/word/fonts/EBGaramond-regular.ttf
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0003_g_chapter_2-_living_sacrifice_1liqobbwqqwnybdbuqqoxp9hdt2ddoq8nxzwiycwas0s/word/numbering.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0003_g_chapter_2-_living_sacrifice_1liqobbwqqwnybdbuqqoxp9hdt2ddoq8nxzwiycwas0s/word/settings.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0003_g_chapter_2-_living_sacrifice_1liqobbwqqwnybdbuqqoxp9hdt2ddoq8nxzwiycwas0s/word/styles.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0003_g_chapter_2-_living_sacrifice_1liqobbwqqwnybdbuqqoxp9hdt2ddoq8nxzwiycwas0s/word/theme/theme1.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0004_g_chapter_3-_lift_up_1xobnlljg3yy72d9i_360v-utttubr_5mhgn1ydmsrtk/[Content_Types].xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0004_g_chapter_3-_lift_up_1xobnlljg3yy72d9i_360v-utttubr_5mhgn1ydmsrtk/_rels/.rels
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0004_g_chapter_3-_lift_up_1xobnlljg3yy72d9i_360v-utttubr_5mhgn1ydmsrtk/word/_rels/document.xml.rels
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0004_g_chapter_3-_lift_up_1xobnlljg3yy72d9i_360v-utttubr_5mhgn1ydmsrtk/word/_rels/fontTable.xml.rels
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0004_g_chapter_3-_lift_up_1xobnlljg3yy72d9i_360v-utttubr_5mhgn1ydmsrtk/word/document.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0004_g_chapter_3-_lift_up_1xobnlljg3yy72d9i_360v-utttubr_5mhgn1ydmsrtk/word/fontTable.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0004_g_chapter_3-_lift_up_1xobnlljg3yy72d9i_360v-utttubr_5mhgn1ydmsrtk/word/fonts/EBGaramond-bold.ttf
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0004_g_chapter_3-_lift_up_1xobnlljg3yy72d9i_360v-utttubr_5mhgn1ydmsrtk/word/fonts/EBGaramond-boldItalic.ttf
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0004_g_chapter_3-_lift_up_1xobnlljg3yy72d9i_360v-utttubr_5mhgn1ydmsrtk/word/fonts/EBGaramond-italic.ttf
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0004_g_chapter_3-_lift_up_1xobnlljg3yy72d9i_360v-utttubr_5mhgn1ydmsrtk/word/fonts/EBGaramond-regular.ttf
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0004_g_chapter_3-_lift_up_1xobnlljg3yy72d9i_360v-utttubr_5mhgn1ydmsrtk/word/numbering.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0004_g_chapter_3-_lift_up_1xobnlljg3yy72d9i_360v-utttubr_5mhgn1ydmsrtk/word/settings.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0004_g_chapter_3-_lift_up_1xobnlljg3yy72d9i_360v-utttubr_5mhgn1ydmsrtk/word/styles.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0004_g_chapter_3-_lift_up_1xobnlljg3yy72d9i_360v-utttubr_5mhgn1ydmsrtk/word/theme/theme1.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0005_final_chapter_5_-_the_snare_1lmmvyvwhmyuexbywewlh-rgpubirdpg7uper4gfh37g/[Content_Types].xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0005_final_chapter_5_-_the_snare_1lmmvyvwhmyuexbywewlh-rgpubirdpg7uper4gfh37g/_rels/.rels
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0005_final_chapter_5_-_the_snare_1lmmvyvwhmyuexbywewlh-rgpubirdpg7uper4gfh37g/word/_rels/document.xml.rels
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0005_final_chapter_5_-_the_snare_1lmmvyvwhmyuexbywewlh-rgpubirdpg7uper4gfh37g/word/_rels/fontTable.xml.rels
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0005_final_chapter_5_-_the_snare_1lmmvyvwhmyuexbywewlh-rgpubirdpg7uper4gfh37g/word/document.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0005_final_chapter_5_-_the_snare_1lmmvyvwhmyuexbywewlh-rgpubirdpg7uper4gfh37g/word/fontTable.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0005_final_chapter_5_-_the_snare_1lmmvyvwhmyuexbywewlh-rgpubirdpg7uper4gfh37g/word/fonts/EBGaramond-bold.ttf
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0005_final_chapter_5_-_the_snare_1lmmvyvwhmyuexbywewlh-rgpubirdpg7uper4gfh37g/word/fonts/EBGaramond-boldItalic.ttf
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0005_final_chapter_5_-_the_snare_1lmmvyvwhmyuexbywewlh-rgpubirdpg7uper4gfh37g/word/fonts/EBGaramond-italic.ttf
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0005_final_chapter_5_-_the_snare_1lmmvyvwhmyuexbywewlh-rgpubirdpg7uper4gfh37g/word/fonts/EBGaramond-regular.ttf
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0005_final_chapter_5_-_the_snare_1lmmvyvwhmyuexbywewlh-rgpubirdpg7uper4gfh37g/word/numbering.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0005_final_chapter_5_-_the_snare_1lmmvyvwhmyuexbywewlh-rgpubirdpg7uper4gfh37g/word/settings.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0005_final_chapter_5_-_the_snare_1lmmvyvwhmyuexbywewlh-rgpubirdpg7uper4gfh37g/word/styles.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0005_final_chapter_5_-_the_snare_1lmmvyvwhmyuexbywewlh-rgpubirdpg7uper4gfh37g/word/theme/theme1.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0006_final_chapter_6-_beelzebub_beelzebub_126vrnrfcocizrxxqdi8yhhjqym0oddgk772ykll5eqg/[Content_Types].xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0006_final_chapter_6-_beelzebub_beelzebub_126vrnrfcocizrxxqdi8yhhjqym0oddgk772ykll5eqg/_rels/.rels
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0006_final_chapter_6-_beelzebub_beelzebub_126vrnrfcocizrxxqdi8yhhjqym0oddgk772ykll5eqg/word/_rels/document.xml.rels
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0006_final_chapter_6-_beelzebub_beelzebub_126vrnrfcocizrxxqdi8yhhjqym0oddgk772ykll5eqg/word/_rels/fontTable.xml.rels
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0006_final_chapter_6-_beelzebub_beelzebub_126vrnrfcocizrxxqdi8yhhjqym0oddgk772ykll5eqg/word/document.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0006_final_chapter_6-_beelzebub_beelzebub_126vrnrfcocizrxxqdi8yhhjqym0oddgk772ykll5eqg/word/fontTable.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0006_final_chapter_6-_beelzebub_beelzebub_126vrnrfcocizrxxqdi8yhhjqym0oddgk772ykll5eqg/word/fonts/EBGaramond-bold.ttf
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0006_final_chapter_6-_beelzebub_beelzebub_126vrnrfcocizrxxqdi8yhhjqym0oddgk772ykll5eqg/word/fonts/EBGaramond-boldItalic.ttf
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0006_final_chapter_6-_beelzebub_beelzebub_126vrnrfcocizrxxqdi8yhhjqym0oddgk772ykll5eqg/word/fonts/EBGaramond-italic.ttf
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0006_final_chapter_6-_beelzebub_beelzebub_126vrnrfcocizrxxqdi8yhhjqym0oddgk772ykll5eqg/word/fonts/EBGaramond-regular.ttf
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0006_final_chapter_6-_beelzebub_beelzebub_126vrnrfcocizrxxqdi8yhhjqym0oddgk772ykll5eqg/word/numbering.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0006_final_chapter_6-_beelzebub_beelzebub_126vrnrfcocizrxxqdi8yhhjqym0oddgk772ykll5eqg/word/settings.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0006_final_chapter_6-_beelzebub_beelzebub_126vrnrfcocizrxxqdi8yhhjqym0oddgk772ykll5eqg/word/styles.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0006_final_chapter_6-_beelzebub_beelzebub_126vrnrfcocizrxxqdi8yhhjqym0oddgk772ykll5eqg/word/theme/theme1.xml
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/0007_chapter_8_final_1oc5a8cwy91hg-xdfrovutr8ojdcgrlw7lz7cbc_l5ki/[Content_Types].xml
+
+===== reports/local-docx-xml-files.txt =====
+37 reports/local-docx-xml-files.txt
+=== Local doc/docx/zip/xml files ===
+
+===== reports/name-matched-google-docs-archive-latest.json =====
+530 reports/name-matched-google-docs-archive-latest.json
+{
+  "archive_root": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z",
+  "target_dirs": [
+    "docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw"
+  ],
+  "local_name_targets": 181,
+  "drive_doc_candidates": 319,
+  "matched_targets": 165,
+  "weak_match_review_targets": 2,
+  "unmatched_targets": 14,
+  "unique_drive_docs_archived": 57,
+  "current_docx_saved": 57,
+  "total_ooxml_current_entries": 579,
+  "total_revision_records": 125,
+  "total_comments": 0,
+  "documents_with_errors": 0
+}

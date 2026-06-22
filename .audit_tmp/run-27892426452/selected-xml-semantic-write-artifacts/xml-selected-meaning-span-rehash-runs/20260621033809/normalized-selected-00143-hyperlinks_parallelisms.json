@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_0e6a4eb2ab78e6d4913625124410bca6",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "6457ef46bfbf1a120fd91073d89052682535a6625134de005b8b2d8cf4a7c8a9",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "Aviel's command to Dan to leave the house and chase his mother's delusions echoes the motif of spiritual and physical separation from the father's decayed domain, highlighting the conflict between ascension and groveling in the mud.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_fbf01271728de3c12b9be5fabe789c6d",
+          "quote": "\"GET OUT!\" Aviel's voice cracked like a whip. \"Pack your things! Leave this house! If you're so eager to chase your mother's delusions, if you're so certain you can climb to the heavens while the rest of us grovel in the mud, then GO! See how far your self-righteousness takes you!\""
+        }
+      ],
+      "target_hint": "This parallels the broader narrative motif of Dan's spiritual ascent contrasted with Aviel's systemic decay and withdrawal, as seen in the house's physical and symbolic ruin in earlier chapters.",
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "Aviel's command to Dan to leave the house and chase his mother's delusions echoes the motif of spiritual and physical separation from the father's decayed domain, highlighting the conflict between ascension and groveling in the mud.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_fbf01271728de3c12b9be5fabe789c6d",
+          "render_index": 50,
+          "quote": "\"GET OUT!\" Aviel's voice cracked like a whip. \"Pack your things! Leave this house! If you're so eager to chase your mother's delusions, if you're so certain you can climb to the heavens while the rest of us grovel in the mud, then GO! See how far your self-righteousness takes you!\"",
+          "role": "source",
+          "start_char": 6319,
+          "end_char": 6601,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_0e6a4eb2ab78e6d4913625124410bca6",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            99
+          ],
+          "evidence_sha256": "9d30bec299eb74670b8b7fe488ee1d41ffec8b470a0abf595cfe4a6c86924e8c"
+        }
+      ],
+      "target_hint": "This parallels the broader narrative motif of Dan's spiritual ascent contrasted with Aviel's systemic decay and withdrawal, as seen in the house's physical and symbolic ruin in earlier chapters.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "2097a43120029093ead49a33aa4aa03a62b5f655d00ae7e3f3d5f7aef720a69f",
+  "normalized_output_hash": "5200f47fd7f52687ec02db34c4ef4edf58683591329c7e56951931d81ab02310"
+}

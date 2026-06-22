@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_7c8da06fe939e5c8b01954c807e0b262",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "572e925ce7357cd45d7577c3d985a9885ac883afd5afc02db92b57523e15a775",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The vision of a warm, ordinary, and unhaunted family in Dan's perception parallels the motif of light as a symbol of hope and contrast to his cold, hard reality.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_72140a643e734cb23d6291bc722da651",
+          "quote": "Dan wavered. The vision of it—a whole, unhaunted family, warm and ordinary and unhaunted—struck him like a blade of light against everything cold and hard in his reality."
+        }
+      ],
+      "target_hint": "This motif echoes the recurring thematic use of light as a symbol of hope and warmth contrasted with coldness and hardship throughout the narrative.",
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The vision of a warm, ordinary, and unhaunted family in Dan's perception parallels the motif of light as a symbol of hope and contrast to his cold, hard reality.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_72140a643e734cb23d6291bc722da651",
+          "render_index": 66,
+          "quote": "Dan wavered. The vision of it—a whole, unhaunted family, warm and ordinary and unhaunted—struck him like a blade of light against everything cold and hard in his reality.",
+          "role": "source",
+          "start_char": 16062,
+          "end_char": 16232,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_7c8da06fe939e5c8b01954c807e0b262",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            131
+          ],
+          "evidence_sha256": "321cafc01d8ff7b1276258ce56439feec1c05feb68fc2560b3c4a19f5fd65f7c"
+        }
+      ],
+      "target_hint": "This motif echoes the recurring thematic use of light as a symbol of hope and warmth contrasted with coldness and hardship throughout the narrative.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "919c63a2ab710a1f0c8dfcf64e268e75cea0f0be2c62e9e23d91c0365073d3ff",
+  "normalized_output_hash": "deedd0ff4f0dc5fa9bddca861359f32e6d24007a2d1fa40aa4a67048b0ebacbc"
+}

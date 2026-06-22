@@ -1,0 +1,4 @@
+gcloud_project=ai-job-agent-498702
+active_account=michaelware360@gmail.com
+aiplatform=aiplatform.googleapis.com
+ADC_OK

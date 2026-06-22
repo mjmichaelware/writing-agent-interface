@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_026c439ad5c580fa538ac080df56a53d",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "de2cc936d1f31b5796d95270118a23d2c42598a52a8cc9ef4bdc234714e4cee8",
+  "observations": [
+    {
+      "axis": "House as Passive vs. House as Active",
+      "polarity": "Passive listening vs. Active problem",
+      "summary": "The house is portrayed as an entity that listens passively, which paradoxically becomes a problem, suggesting a tension between the house's silent presence and its active impact on the narrative.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_9dc5be53bf512d005535883b46e27401",
+          "quote": "And the house, I should tell you, was listening."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_9dc5be53bf512d005535883b46e27401",
+          "quote": "That was rather the problem."
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "house_as_passive_vs_house_as_active",
+      "polarity": "tension",
+      "summary": "The house is portrayed as an entity that listens passively, which paradoxically becomes a problem, suggesting a tension between the house's silent presence and its active impact on the narrative.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_9dc5be53bf512d005535883b46e27401",
+          "render_index": 7,
+          "quote": "And the house, I should tell you, was listening.",
+          "role": "left",
+          "start_char": 2242,
+          "end_char": 2290,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_026c439ad5c580fa538ac080df56a53d",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            13
+          ],
+          "evidence_sha256": "30afd0673ef2a6e60ad5583b9de2654f0f04b2b62e885074a053e2df0372285f"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_9dc5be53bf512d005535883b46e27401",
+          "render_index": 7,
+          "quote": "That was rather the problem.",
+          "role": "right",
+          "start_char": 2291,
+          "end_char": 2319,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_026c439ad5c580fa538ac080df56a53d",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            13
+          ],
+          "evidence_sha256": "91c0065162d57943d212c3cc037d95ce5ec13cfdcf957b705793e5f8a7ce29bd"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "c47643d3b7cf8dbd6e99a92ae4416e24aebe85ff9443fb4cff578e02ea0c624a",
+  "normalized_output_hash": "910a9f57fb77affb7f5e91578aa552ec4bc63fa4d32a1f165639f08f42f63b7e"
+}

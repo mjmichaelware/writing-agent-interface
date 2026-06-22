@@ -1,0 +1,141 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_b3d85689f185a387973cc055f9ffbd43",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "9bc93b91335e75956c40116df21001b754a91b2b8e094accfbb2cfd3bbc710bd",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The depiction of a vast, churning maelstrom of liquid stone and bitter brine in the source paragraph echoes earlier descriptions of a churning oceanic force representing primordial chaos and spiritual turmoil.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_7a58fd484c0172403f8bd544d81b2d16",
+          "quote": "A maelstrom of liquid stone and bitter brine, a churning so vast it made the previous night's dreamwalk seem like a puddle."
+        }
+      ],
+      "target_hint": null,
+      "target_evidence": [
+        {
+          "render_para_key": "bb2740591c75d6dd0ee22abf60c25523302ff6758cfd3052f1b2c72e9ffe191b",
+          "quote": "Dark, churning clouds, the color of old lead and bruised fruit, boiled up from the horizon, swallowing the sun whole."
+        }
+      ],
+      "confidence": 0.95
+    },
+    {
+      "relationship_type": "motif_echo",
+      "summary": "The imagery of a suffocating, churning blanket of obsidian blackness in the sky parallels earlier motifs of oppressive darkness symbolizing spiritual and psychological weight.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_7a58fd484c0172403f8bd544d81b2d16",
+          "quote": "The sky above was a suffocating churning blanket of obsidian blackness that offered no exit and no stars."
+        }
+      ],
+      "target_hint": null,
+      "target_evidence": [
+        {
+          "render_para_key": "a02f56e5ac0abd966aef2541b27fa8e4f9c5d36a2f7287d2c7bf7b46c026c6c7",
+          "quote": "The sky, a suffocating, churning blanket of obsidian blackness, offered no escape, only the inverse reflection of the water's depths."
+        }
+      ],
+      "confidence": 0.98
+    },
+    {
+      "relationship_type": "foreshadowing",
+      "summary": "The fracturing of the peaceful blue into bruised purple and the eruption of the sea foreshadows a profound spiritual and psychological upheaval experienced by the protagonist.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_7a58fd484c0172403f8bd544d81b2d16",
+          "quote": "It cracked from beneath his feet outward in every direction at once—beautiful, in a terrible way—the fracture lines racing out through everything he'd trusted. The peaceful blue bled to bruised purple. The sea erupted."
+        }
+      ],
+      "target_hint": "Later chapters depict Dan's internal spiritual crisis and transformation involving profound upheaval and loss of trust.",
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The depiction of a vast, churning maelstrom of liquid stone and bitter brine in the source paragraph echoes earlier descriptions of a churning oceanic force representing primordial chaos and spiritual turmoil.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_7a58fd484c0172403f8bd544d81b2d16",
+          "render_index": 54,
+          "quote": "A maelstrom of liquid stone and bitter brine, a churning so vast it made the previous night's dreamwalk seem like a puddle.",
+          "role": "source",
+          "start_char": 13372,
+          "end_char": 13495,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_b3d85689f185a387973cc055f9ffbd43",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            107
+          ],
+          "evidence_sha256": "c34e3a57a50eb5cc039073deac0cbebdb6b6ba9b8a8e3c1db755f1c611d2f651"
+        }
+      ],
+      "target_hint": null,
+      "target_evidence": [],
+      "confidence": 0.95
+    },
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The fracturing of the peaceful blue into bruised purple and the eruption of the sea foreshadows a profound spiritual and psychological upheaval experienced by the protagonist.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_7a58fd484c0172403f8bd544d81b2d16",
+          "render_index": 54,
+          "quote": "It cracked from beneath his feet outward in every direction at once—beautiful, in a terrible way—the fracture lines racing out through everything he'd trusted. The peaceful blue bled to bruised purple. The sea erupted.",
+          "role": "source",
+          "start_char": 13119,
+          "end_char": 13337,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_b3d85689f185a387973cc055f9ffbd43",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            107
+          ],
+          "evidence_sha256": "04131aedbc45e2fdf0b1dddd55d36c15c4b874f1ae8fed9d8a091c9bf7803a3a"
+        }
+      ],
+      "target_hint": "Later chapters depict Dan's internal spiritual crisis and transformation involving profound upheaval and loss of trust.",
+      "target_evidence": [],
+      "confidence": 0.55
+    },
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "motif_echo",
+      "summary": "The imagery of a suffocating, churning blanket of obsidian blackness in the sky parallels earlier motifs of oppressive darkness symbolizing spiritual and psychological weight.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_7a58fd484c0172403f8bd544d81b2d16",
+          "render_index": 54,
+          "quote": "The sky above was a suffocating churning blanket of obsidian blackness that offered no exit and no stars.",
+          "role": "source",
+          "start_char": 13652,
+          "end_char": 13757,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_b3d85689f185a387973cc055f9ffbd43",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            107
+          ],
+          "evidence_sha256": "29dcb47df5b448190ed520128030bb0e2ac67a71a40a62bb81cf6db6ab057ccf"
+        }
+      ],
+      "target_hint": null,
+      "target_evidence": [],
+      "confidence": 0.98
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "76b42c87ab8aceeb730c729cbaab6fd6091b50e59f1e1c4fa5516bd1baab423d",
+  "normalized_output_hash": "7eb7411c853cabcfef26319a9512ad0c2e9bc7517eedd5c93f4492d00c67c201"
+}

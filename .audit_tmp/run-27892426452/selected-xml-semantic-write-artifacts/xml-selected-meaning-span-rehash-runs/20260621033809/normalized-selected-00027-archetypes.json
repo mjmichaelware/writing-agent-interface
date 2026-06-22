@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "archetypes",
+  "scene_window_id": "scene_f7191bfea0dab5b79f33d17bdcba46c2",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "88e76b1323de4a799ed085b322d20f8b3faa7aeb90d0fa776e9fdc4f05da6a79",
+  "observations": [
+    {
+      "character": "Unnamed Woman",
+      "archetype": "Great Mother",
+      "archetype_gloss": "A nurturing, life-giving figure symbolized by her rough, reddened hands and care in holding a clay pot to the sun",
+      "movement": "emergence_of_self",
+      "summary": "The woman embodies the Great Mother archetype through her tactile connection to the earth and nurturing act of holding a clay pot to the sun, symbolizing life and sustenance.",
+      "evidence": [
+        {
+          "render_para_key": "rp_900f3f3b29f361bfbebdb55c48c25545",
+          "quote": "Her voice in the silence. Her hands rough and reddened from the lye, holding a clay pot up to the afternoon sun."
+        }
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "archetypes",
+      "character": "Unnamed",
+      "archetype": "Great Mother",
+      "archetype_anchor_key": "jungian_great_mother",
+      "archetype_gloss": null,
+      "movement": "emergence_of_self",
+      "summary": "The woman embodies the Great Mother archetype through her tactile connection to the earth and nurturing act of holding a clay pot to the sun, symbolizing life and sustenance.",
+      "evidence": [
+        {
+          "render_para_key": "rp_900f3f3b29f361bfbebdb55c48c25545",
+          "render_index": 28,
+          "quote": "Her voice in the silence. Her hands rough and reddened from the lye, holding a clay pot up to the afternoon sun.",
+          "role": null,
+          "start_char": 7713,
+          "end_char": 7825,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_f7191bfea0dab5b79f33d17bdcba46c2",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            55
+          ],
+          "evidence_sha256": "85907a79aa965f956f97bddeeb1fe1a8446d125196e5ee42ace626d346438d2e"
+        }
+      ],
+      "confidence": 0.8,
+      "unresolved_subject": false
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "45de1bf6af2b7d8be1352164998d2b2c88a911e1b71e98d6ce3464c67c38046d",
+  "normalized_output_hash": "0d4f6241fa6d45a3d392fbb358cbc6ae81788ac10a31ab61582d410111415de1"
+}

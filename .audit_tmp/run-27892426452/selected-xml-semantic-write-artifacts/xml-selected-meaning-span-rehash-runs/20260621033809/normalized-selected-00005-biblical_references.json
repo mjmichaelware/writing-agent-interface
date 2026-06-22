@@ -1,0 +1,68 @@
+{
+  "status": "ok",
+  "task_type": "biblical_references",
+  "scene_window_id": "scene_0bfba90e3decce02c0a341ff28c7d4ac",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "f31a8e8c7deb886ab479503898f22a4a5b16d6e74c29a53cb0e1b39069db4062",
+  "observations": [
+    {
+      "biblical_anchor_label": "Psalm 23:4",
+      "book": "Psalms",
+      "chapter": 23,
+      "verse_start": 4,
+      "verse_end": 4,
+      "motif_family": "Fear and Divine Protection",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The description of the boy Dan moving barefoot through a dark, threatening house with a trembling torch evokes the motif of walking through a valley of deep darkness yet being protected, as in Psalm 23:4, where the psalmist walks through the valley of the shadow of death but fears no evil due to God's presence. The frail flame flickering from the percussion against his ribs symbolizes fragile hope and courage amid danger, paralleling the psalm's theme of divine comfort in peril.",
+      "summary": "Dan's cautious, barefoot passage through a dark, oppressive house with a trembling torch symbolically resonates with the biblical motif of walking through darkness with divine protection, as expressed in Psalm 23:4.",
+      "evidence": [
+        {
+          "render_para_key": "rp_db7e231d7903292e75046c5010faa915",
+          "quote": "The torch trembled in his hand—the frail flame flickered not from wind but from the percussion against his ribs, casting suspicious shadows down the narrow hallway. Each barefoot step through the refuse was a wager against sound: one shard of pottery, one brittle bone breaking beneath his weight, and the house would know."
+        }
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Psalm 23:4",
+      "book": "Psalm",
+      "chapter": 23,
+      "verse_start": 4,
+      "verse_end": 4,
+      "motif_family": "fear_and_divine_protection",
+      "biblical_anchor_key": "bibanchor_959a601f4a7ed196183c858c29bb0912",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The description of the boy Dan moving barefoot through a dark, threatening house with a trembling torch evokes the motif of walking through a valley of deep darkness yet being protected, as in Psalm 23:4, where the psalmist walks through the valley of the shadow of death but fears no evil due to God's presence. The fra",
+      "summary": "Dan's cautious, barefoot passage through a dark, oppressive house with a trembling torch symbolically resonates with the biblical motif of walking through darkness with divine protection, as expressed in Psalm 23:4.",
+      "evidence": [
+        {
+          "render_para_key": "rp_db7e231d7903292e75046c5010faa915",
+          "render_index": 6,
+          "quote": "The torch trembled in his hand—the frail flame flickered not from wind but from the percussion against his ribs, casting suspicious shadows down the narrow hallway. Each barefoot step through the refuse was a wager against sound: one shard of pottery, one brittle bone breaking beneath his weight, and the house would know.",
+          "role": null,
+          "start_char": 1915,
+          "end_char": 2238,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_0bfba90e3decce02c0a341ff28c7d4ac",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            11
+          ],
+          "evidence_sha256": "7e6f53ca827b68a5b142a65e06cd0bbcc36e8220e76e1a451965bbe79c528555"
+        }
+      ],
+      "confidence": 0.6,
+      "reference": "Psalm 23:4",
+      "motif": "fear_and_divine_protection"
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "85c764d6a8edea70f07e9ccf0e227303c2cd7ffc2cb77f6c9575c35734ec64a8",
+  "normalized_output_hash": "a31b020fa31785dad3cc0e01675bac6fb7982761b379f7099ca09edaff13d20c"
+}

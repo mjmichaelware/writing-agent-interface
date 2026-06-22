@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_159a5de237ad2d5e7c9fa6938ed17c26",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "dd283d07f2d9eaed88b2b3907b211ddf345d3735fb44a33eac9c20d52cdd6c5f",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The source paragraph suggests Dan's perception of his father was clouded by youth and mistaking temporary calm for genuine wisdom, paralleling the broader theme of unreliable perception and the elusive nature of truth in the narrative.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_075c4ac9d77c341a0f71168f9fbf3b59",
+          "quote": "Or perhaps he'd never really existed. Perhaps Dan had simply been too young to see his father clearly, had mistaken temporary calm for genuine wisdom."
+        }
+      ],
+      "target_hint": "This motif echoes the narrative's recurring exploration of perception versus reality, especially in Dan's internal conflicts and his interactions with figures representing fragmented aspects of self and truth.",
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The source paragraph suggests Dan's perception of his father was clouded by youth and mistaking temporary calm for genuine wisdom, paralleling the broader theme of unreliable perception and the elusive nature of truth in the narrative.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_075c4ac9d77c341a0f71168f9fbf3b59",
+          "render_index": 64,
+          "quote": "Or perhaps he'd never really existed. Perhaps Dan had simply been too young to see his father clearly, had mistaken temporary calm for genuine wisdom.",
+          "role": "source",
+          "start_char": 8297,
+          "end_char": 8447,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_159a5de237ad2d5e7c9fa6938ed17c26",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            127
+          ],
+          "evidence_sha256": "7c2974fe8f0cbeab30dffc82ded0b7aa7c9b4ee6ffe2c11ca0893627ad1687e3"
+        }
+      ],
+      "target_hint": "This motif echoes the narrative's recurring exploration of perception versus reality, especially in Dan's internal conflicts and his interactions with figures representing fragmented aspects of self a",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "afa82728105181be1cf2526437a4026f38cc0b2fd1d28238ac7020956c90e8b1",
+  "normalized_output_hash": "a0646342e120b10f1c020c90706b494ef72de85959d9f1f0e5ca7cf2d5fd66cc"
+}

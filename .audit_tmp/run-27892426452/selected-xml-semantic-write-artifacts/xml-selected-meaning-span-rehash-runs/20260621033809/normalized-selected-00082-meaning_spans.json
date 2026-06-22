@@ -1,0 +1,143 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_ffb1db7e0d19a40b346eac1db1103606",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "267daa4175cb8c8ad833085c5ade1680a0b4171faef40e7bbbb9087254a68dc4",
+  "observations": [
+    {
+      "kind": "Emotional State",
+      "summary": "The subject is not just terrified but shattered, indicating a profound emotional breakdown.",
+      "evidence": [
+        {
+          "render_para_key": "rp_a81cc6025ffde3dd5df85005a80a9400",
+          "quote": "He was not merely terrified. He was shattered."
+        }
+      ],
+      "thematic_weight": 0.9,
+      "gravity": 0.8,
+      "tension": 0.7,
+      "confidence": 0.95,
+      "notes": "Strong emotional emphasis on the depth of fear and breakdown."
+    },
+    {
+      "kind": "Physical Manifestation of Stress",
+      "summary": "The subject's muscles are clenched rigidly, jaw locked, and breathing is a frantic high-pitched whistle, showing intense physical stress.",
+      "evidence": [
+        {
+          "render_para_key": "rp_a81cc6025ffde3dd5df85005a80a9400",
+          "quote": "The muscles clenched to rigid, jaw locked, breathing a frantic high-pitched whistle."
+        }
+      ],
+      "thematic_weight": 0.85,
+      "gravity": 0.75,
+      "tension": 0.8,
+      "confidence": 0.9,
+      "notes": "Physical symptoms underscore the emotional turmoil."
+    },
+    {
+      "kind": "Personal Sacrifice and Defiance",
+      "summary": "The subject has invested his will into shaping his father's dream and has spent all reserves defying an ancient force present since Hebron's early days.",
+      "evidence": [
+        {
+          "render_para_key": "rp_a81cc6025ffde3dd5df85005a80a9400",
+          "quote": "He had poured his will into shaping his father's dream and then spent every reserve defying something that had been old when Hebron was new."
+        }
+      ],
+      "thematic_weight": 0.95,
+      "gravity": 0.9,
+      "tension": 0.85,
+      "confidence": 0.95,
+      "notes": "Indicates a deep internal conflict and struggle against a longstanding, possibly ancestral or metaphysical force."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "The subject has invested his will into shaping his father's dream and has spent all reserves defying an ancient force present since Hebron's early days.",
+      "evidence": [
+        {
+          "render_para_key": "rp_a81cc6025ffde3dd5df85005a80a9400",
+          "render_index": 83,
+          "quote": "He had poured his will into shaping his father's dream and then spent every reserve defying something that had been old when Hebron was new.",
+          "role": null,
+          "start_char": 19308,
+          "end_char": 19448,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_ffb1db7e0d19a40b346eac1db1103606",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            165
+          ],
+          "evidence_sha256": "a24f8670cdb0c5198b9c5613d0eb2ec7d6cdebb23c8226fbfc0544a9749280f4"
+        }
+      ],
+      "thematic_weight": 0.95,
+      "gravity": 0.9,
+      "tension": 0.85,
+      "confidence": 0.95,
+      "notes": "Indicates a deep internal conflict and struggle against a longstanding, possibly ancestral or metaphysical force."
+    },
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "The subject is not just terrified but shattered, indicating a profound emotional breakdown.",
+      "evidence": [
+        {
+          "render_para_key": "rp_a81cc6025ffde3dd5df85005a80a9400",
+          "render_index": 83,
+          "quote": "He was not merely terrified. He was shattered.",
+          "role": null,
+          "start_char": 19176,
+          "end_char": 19222,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_ffb1db7e0d19a40b346eac1db1103606",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            165
+          ],
+          "evidence_sha256": "00061d324f673ec03b64baa9513609d267a96eb83dd0de3126ab2e81bfd0d8f7"
+        }
+      ],
+      "thematic_weight": 0.9,
+      "gravity": 0.8,
+      "tension": 0.7,
+      "confidence": 0.95,
+      "notes": "Strong emotional emphasis on the depth of fear and breakdown."
+    },
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "The subject's muscles are clenched rigidly, jaw locked, and breathing is a frantic high-pitched whistle, showing intense physical stress.",
+      "evidence": [
+        {
+          "render_para_key": "rp_a81cc6025ffde3dd5df85005a80a9400",
+          "render_index": 83,
+          "quote": "The muscles clenched to rigid, jaw locked, breathing a frantic high-pitched whistle.",
+          "role": null,
+          "start_char": 19223,
+          "end_char": 19307,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_ffb1db7e0d19a40b346eac1db1103606",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            165
+          ],
+          "evidence_sha256": "caafff1ae2e3c64a59de56657897c90e02f9ab1f50282d8eeab4a5d9cb6dff70"
+        }
+      ],
+      "thematic_weight": 0.85,
+      "gravity": 0.75,
+      "tension": 0.8,
+      "confidence": 0.9,
+      "notes": "Physical symptoms underscore the emotional turmoil."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "425387d80e304156bb486164d726c7761a3953efcf6dc7bd3aa41064fad661f9",
+  "normalized_output_hash": "ad31c07af46cb3c62203898904dd31eb53f47dc852cf70b0cc28c35dd1bac190"
+}

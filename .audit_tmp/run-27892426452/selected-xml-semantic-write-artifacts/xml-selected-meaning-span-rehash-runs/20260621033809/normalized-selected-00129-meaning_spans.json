@@ -1,0 +1,101 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_03507c9bb28f9675e305908d064ea22c",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "f6b3b5336df5945734e55efafcfb6d383501783985872538384a2059eccce02f",
+  "observations": [
+    {
+      "kind": "Interpretation of Symbolism",
+      "summary": "The stones symbolize the protagonist's hoarding behavior and refusal to let go, representing a self-imposed burden.",
+      "evidence": [
+        {
+          "render_para_key": "rp_25771a13abaed649b86567beed04609a",
+          "quote": "\"The stones,\" Dan pressed on, \"they represented your hoarding. Your refusal to let go."
+        }
+      ],
+      "thematic_weight": 0.9,
+      "gravity": 0.8,
+      "tension": 0.7,
+      "confidence": 0.95,
+      "notes": "This observation is strongly supported by the direct quote linking stones to hoarding and refusal to release possessions."
+    },
+    {
+      "kind": "Psychological Impact",
+      "summary": "The vision reveals the self-destructive consequences of hoarding, showing how the individual is crushed under the weight of their own actions.",
+      "evidence": [
+        {
+          "render_para_key": "rp_25771a13abaed649b86567beed04609a",
+          "quote": "The vision was showing you what you're doing to yourself, how you're being crushed under the weight of—\""
+        }
+      ],
+      "thematic_weight": 0.85,
+      "gravity": 0.9,
+      "tension": 0.8,
+      "confidence": 0.9,
+      "notes": "The metaphor of being crushed under weight conveys psychological and emotional burden resulting from hoarding."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "The stones symbolize the protagonist's hoarding behavior and refusal to let go, representing a self-imposed burden.",
+      "evidence": [
+        {
+          "render_para_key": "rp_25771a13abaed649b86567beed04609a",
+          "render_index": 36,
+          "quote": "\"The stones,\" Dan pressed on, \"they represented your hoarding. Your refusal to let go.",
+          "role": null,
+          "start_char": 4711,
+          "end_char": 4797,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_03507c9bb28f9675e305908d064ea22c",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            71
+          ],
+          "evidence_sha256": "2636c1d633d15d4edbe288c4337cd035c8e935035b54484dd40b83a44a65cce4"
+        }
+      ],
+      "thematic_weight": 0.9,
+      "gravity": 0.8,
+      "tension": 0.7,
+      "confidence": 0.95,
+      "notes": "This observation is strongly supported by the direct quote linking stones to hoarding and refusal to release possessions."
+    },
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "The vision reveals the self-destructive consequences of hoarding, showing how the individual is crushed under the weight of their own actions.",
+      "evidence": [
+        {
+          "render_para_key": "rp_25771a13abaed649b86567beed04609a",
+          "render_index": 36,
+          "quote": "The vision was showing you what you're doing to yourself, how you're being crushed under the weight of—\"",
+          "role": null,
+          "start_char": 4798,
+          "end_char": 4902,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_03507c9bb28f9675e305908d064ea22c",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            71
+          ],
+          "evidence_sha256": "12e9d044a7155d031946077137f7cbba293e127b26575ba9defd63c32fe3068f"
+        }
+      ],
+      "thematic_weight": 0.85,
+      "gravity": 0.9,
+      "tension": 0.8,
+      "confidence": 0.9,
+      "notes": "The metaphor of being crushed under weight conveys psychological and emotional burden resulting from hoarding."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "9f568d875c901db55e327fb314db08150926853c39276ff520e5782fcebb8c31",
+  "normalized_output_hash": "bde878feff79c88dd2e6f970a13a9396e1492578a48842c59b95b7b8daf3d0bc"
+}

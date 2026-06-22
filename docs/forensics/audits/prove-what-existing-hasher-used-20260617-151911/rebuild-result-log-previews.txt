@@ -1,0 +1,67 @@
+
+===== docs/forensics/audits/hashed-runtime-semantics-20260617-132525/rebuild-result.log =====
+{
+  "run_id": "20260617-132525",
+  "mode": "hash_existing_paragraphs_then_rebuild_runtime_semantics",
+  "model": "gpt-4o-mini",
+  "batch_size": 10,
+  "max_paragraphs": null,
+  "before": {
+    "chapters": 50,
+    "paragraphs": 4112,
+    "biblical_references": 0,
+    "hyperlinks": 0
+  },
+  "paragraph_count_to_process": 4112
+}
+processed 10/4112
+processed 20/4112
+processed 30/4112
+processed 40/4112
+processed 50/4112
+processed 60/4112
+processed 70/4112
+processed 80/4112
+processed 90/4112
+processed 100/4112
+processed 110/4112
+processed 120/4112
+processed 130/4112
+processed 140/4112
+processed 150/4112
+processed 160/4112
+processed 170/4112
+processed 180/4112
+processed 190/4112
+processed 200/4112
+processed 210/4112
+processed 220/4112
+processed 230/4112
+processed 240/4112
+processed 250/4112
+processed 260/4112
+processed 270/4112
+processed 280/4112
+
+===== docs/forensics/audits/runtime-semantics-rebuild-20260617-131556/rebuild-result.log =====
+{
+  "run_id": "20260617-131556",
+  "mode": "ai_runtime_semantic_rebuild_existing_paragraphs_only",
+  "model": "gpt-4o-mini",
+  "batch_size": 12,
+  "paragraph_count": 4112,
+  "before": {
+    "chapters": 50,
+    "paragraphs": 4112,
+    "biblical_references": 0,
+    "hyperlinks": 0
+  }
+}
+processed 12/4112
+processed 24/4112
+processed 36/4112
+processed 48/4112
+processed 60/4112
+processed 72/4112
+processed 84/4112
+processed 96/4112

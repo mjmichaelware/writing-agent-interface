@@ -1,0 +1,76 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_251afbb8be35e9ec3dd3a5eda51308ee",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "5fb3cf6ca2bc05ae3f5c63de4d7c4951caf8ba964c14926000450668fa8a0560",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The description of the barrier giving way with a painful inward implosion parallels earlier thematic motifs of internal struggle and collapse, reflecting Dan's psychological and spiritual battles.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_6de65604bf2f1f006d0eedc1dc59a322",
+          "quote": "He pressed through. The barrier gave way—not with a burst, but with a painful inward implosion, like a collapsing lung—and then there was silence and release."
+        }
+      ],
+      "target_hint": "This echoes earlier narrative descriptions of Dan confronting internal barriers and the physical, painful cost of spiritual progress, such as the cold, sharp ache behind his ribs and the suffocating density of his father's possessions.",
+      "target_evidence": [
+        {
+          "render_para_key": "rp_6de65604bf2f1f006d0eedc1dc59a322",
+          "quote": "He pressed through. The barrier gave way—not with a burst, but with a painful inward implosion, like a collapsing lung—and then there was silence and release."
+        }
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The description of the barrier giving way with a painful inward implosion parallels earlier thematic motifs of internal struggle and collapse, reflecting Dan's psychological and spiritual battles.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_6de65604bf2f1f006d0eedc1dc59a322",
+          "render_index": 38,
+          "quote": "He pressed through. The barrier gave way—not with a burst, but with a painful inward implosion, like a collapsing lung—and then there was silence and release.",
+          "role": "source",
+          "start_char": 9728,
+          "end_char": 9886,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_251afbb8be35e9ec3dd3a5eda51308ee",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            75
+          ],
+          "evidence_sha256": "8073766b5ad899d8c2e258d52635ffdb82676fed2aca76896c451027ac9cb4a8"
+        }
+      ],
+      "target_hint": "This echoes earlier narrative descriptions of Dan confronting internal barriers and the physical, painful cost of spiritual progress, such as the cold, sharp ache behind his ribs and the suffocating d",
+      "target_evidence": [
+        {
+          "render_para_key": "rp_6de65604bf2f1f006d0eedc1dc59a322",
+          "render_index": 38,
+          "quote": "He pressed through. The barrier gave way—not with a burst, but with a painful inward implosion, like a collapsing lung—and then there was silence and release.",
+          "role": "target",
+          "start_char": 9728,
+          "end_char": 9886,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_251afbb8be35e9ec3dd3a5eda51308ee",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            75
+          ],
+          "evidence_sha256": "8073766b5ad899d8c2e258d52635ffdb82676fed2aca76896c451027ac9cb4a8"
+        }
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "df4b4e35d1ecebccbae17d6d6aabbb83a042611dd6a58b2cd671090604bfe9b9",
+  "normalized_output_hash": "8b261cdf3a989e4fccd0ae3b8c632223ec4fd1bb816af1230c7e3ecc604aeb3b"
+}

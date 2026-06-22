@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_820c5e567a1662528c51f58a300cc679",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "d85e8c2279a99d42b64d294c28695f80b9c342ae327233fe5f89ed286edaaed4",
+  "observations": [
+    {
+      "kind": "EmotionalState",
+      "summary": "The hunger described is not a normal physical need for food but a profound, desperate emptiness experienced by someone who has been deprived for so long that they have forgotten what it feels like to be full.",
+      "evidence": [
+        {
+          "render_para_key": "rp_554e04ed090ff0e2eb3a667bf8cc0e62",
+          "quote": "Hunger. Not the clean hunger of someone who needs food, but the desperate, bottomless hunger of someone who's been empty so long they've forgotten what fullness feels like."
+        }
+      ],
+      "thematic_weight": 0.9,
+      "gravity": 0.8,
+      "tension": 0.85,
+      "confidence": 0.95,
+      "notes": "This observation captures a strong motif of existential or spiritual hunger rather than mere physical hunger."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "The hunger described is not a normal physical need for food but a profound, desperate emptiness experienced by someone who has been deprived for so long that they have forgotten what it feels like to be full.",
+      "evidence": [
+        {
+          "render_para_key": "rp_554e04ed090ff0e2eb3a667bf8cc0e62",
+          "render_index": 155,
+          "quote": "Hunger. Not the clean hunger of someone who needs food, but the desperate, bottomless hunger of someone who's been empty so long they've forgotten what fullness feels like.",
+          "role": null,
+          "start_char": 20078,
+          "end_char": 20250,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_820c5e567a1662528c51f58a300cc679",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            309
+          ],
+          "evidence_sha256": "b17b2d1b1a2ad728de463b532af7da2d43725cae73f3d313a2bf97584d54d872"
+        }
+      ],
+      "thematic_weight": 0.9,
+      "gravity": 0.8,
+      "tension": 0.85,
+      "confidence": 0.95,
+      "notes": "This observation captures a strong motif of existential or spiritual hunger rather than mere physical hunger."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "fecb4a1e1e785ba9e6ce72efc95c702293a363997fc289fce81032fbc63c9496",
+  "normalized_output_hash": "26302d3dcd6feea9e2ef95566a6f67437d431c6f3a4d3e892e12fe54ba3f7552"
+}

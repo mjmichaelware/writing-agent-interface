@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "archetypes",
+  "scene_window_id": "scene_5f505ccc5666184ea1cec89ab6e9cccd",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "6ffe1d2fc91590ed0adb172c1e77876a2b6678808bdb799eebb53842c0d22cc2",
+  "observations": [
+    {
+      "character": "Dan",
+      "archetype": "Ego",
+      "archetype_gloss": "The conscious self struggling with internal conflict and perception",
+      "movement": "shadow_confrontation",
+      "summary": "Dan confronts his father's vision, recognizing it was about him but not meant for him, indicating an internal struggle with understanding and integrating his shadow aspects.",
+      "evidence": [
+        {
+          "render_para_key": "rp_77ec9d43e53e4c87fc126c397b7acd34",
+          "quote": "Dan took a breath, tried to soften his tone. Failed. \"Father. Listen to yourself. That vision wasn't for you. It was *about* you, but it wasn't *for* you.\""
+        }
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "archetypes",
+      "character": "Dan",
+      "archetype": "Ego",
+      "archetype_anchor_key": "jungian_ego",
+      "archetype_gloss": null,
+      "movement": "shadow_confrontation",
+      "summary": "Dan confronts his father's vision, recognizing it was about him but not meant for him, indicating an internal struggle with understanding and integrating his shadow aspects.",
+      "evidence": [
+        {
+          "render_para_key": "rp_77ec9d43e53e4c87fc126c397b7acd34",
+          "render_index": 34,
+          "quote": "Dan took a breath, tried to soften his tone. Failed. \"Father. Listen to yourself. That vision wasn't for you. It was *about* you, but it wasn't *for* you.\"",
+          "role": null,
+          "start_char": 4480,
+          "end_char": 4635,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_5f505ccc5666184ea1cec89ab6e9cccd",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            67
+          ],
+          "evidence_sha256": "4a63209754f2c4d58a67a5d0a39517ffdcb0edd65d20feb52abf6d9df60d88dd"
+        }
+      ],
+      "confidence": 0.9,
+      "unresolved_subject": false
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "a3f3ae4baa89e9c2daa1a6b392b2a60dbb34b89477fd1a6861833ddd29ef26b8",
+  "normalized_output_hash": "00a311a9d94a0960f9ad6c76e47166ad5a89166162d4086d7606d2b301f2b2d0"
+}

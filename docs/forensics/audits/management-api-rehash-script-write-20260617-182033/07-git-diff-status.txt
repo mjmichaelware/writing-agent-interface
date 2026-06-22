@@ -1,0 +1,56 @@
+ .github/workflows/semantic-rehash-dry-run.yml   |   4 +-
+ .github/workflows/semantic-rehash-full.yml      |   4 +-
+ package-lock.json                               | 560 ++++++++++++++++++++++++
+ package.json                                    |   4 +
+ scripts/semantic/xml-grounded-vertex-rehash.mjs | 344 +++++++++++++--
+ src/app/api/graph/route.ts                      |  88 +++-
+ src/app/graph/page.tsx                          |  23 +-
+ src/components/layers/panel/AuthorGateway.tsx   |   2 +-
+ src/components/layers/panel/HyperlinksGraph.tsx |   4 +-
+ src/components/ui/graph-view.tsx                | 166 ++++++-
+ tsconfig.json                                   |   1 +
+ 11 files changed, 1139 insertions(+), 61 deletions(-)
+
+src/app/api/graph/route.ts:10: trailing whitespace.
++      `SELECT id, chapter_id, content, archetypal_weights, dualism_map 
+src/app/api/graph/route.ts:18: trailing whitespace.
++      `SELECT id, paragraph_id, reference_text, book, chapter, verse 
+src/app/api/graph/route.ts:24: trailing whitespace.
++      `SELECT id, paragraph_id, theme_node_a, theme_node_b, link_type, weight 
+src/app/api/graph/route.ts:82: trailing whitespace.
++      
+src/app/api/graph/route.ts:95: trailing whitespace.
++      links 
+src/app/graph/page.tsx:10: trailing whitespace.
++          <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" /> 
+src/app/graph/page.tsx:14: trailing whitespace.
++      
+src/components/ui/graph-view.tsx:85: trailing whitespace.
++        
+src/components/ui/graph-view.tsx:105: trailing whitespace.
++          
+src/components/ui/graph-view.tsx:128: trailing whitespace.
++        
+src/components/ui/graph-view.tsx:137: trailing whitespace.
++      
+
+ M .github/workflows/semantic-rehash-dry-run.yml
+ M .github/workflows/semantic-rehash-full.yml
+ M package-lock.json
+ M package.json
+ M scripts/semantic/xml-grounded-vertex-rehash.mjs
+ M src/app/api/graph/route.ts
+ M src/app/graph/page.tsx
+ M src/components/layers/panel/AuthorGateway.tsx
+ M src/components/layers/panel/HyperlinksGraph.tsx
+ M src/components/ui/graph-view.tsx
+ M tsconfig.json
+?? audit-where-the-data-went.sh
+?? definitive-data-loss-audit.sh
+?? docs/agent_context/source_drop/hasher_context_v1/
+?? docs/forensics/audits/
+?? docs/forensics/backups/management-api-rehash-script-write-20260617-182033/
+?? docs/forensics/backups/xml-grounded-vertex-rehash-write-20260617-163715/
+?? hash-provenance-map.sh
+?? live-supabase-schema-truth.sh
+?? test-db.js

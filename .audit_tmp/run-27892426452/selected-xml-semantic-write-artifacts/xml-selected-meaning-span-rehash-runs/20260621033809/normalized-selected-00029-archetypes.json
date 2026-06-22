@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "archetypes",
+  "scene_window_id": "scene_ca2c09fa4436141578ca1c9099029552",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "95c5e1a718bd5e9781481b32b656ec889ac0dc7258282b84e4048bc61bb747a0",
+  "observations": [
+    {
+      "character": "Dan",
+      "archetype": "Hero",
+      "archetype_gloss": "The protagonist undertaking a spiritual and existential quest",
+      "movement": "descent",
+      "summary": "Dan lets go of his burdens and steps into the Dreamscape, symbolizing a descent into the unconscious and the beginning of his transformative journey.",
+      "evidence": [
+        {
+          "render_para_key": "rp_e280f22a9049ac1857a3a1f8f83d2fb6",
+          "quote": "He let go. The stone beneath his knees dissolved—not instantly, but with a slow horrifying certainty. In that terrifying, perfect stillness—that necessary, terrible emptiness—he stepped sideways, and into the Dreamscape."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "archetypes",
+      "character": "Dan",
+      "archetype": "Hero",
+      "archetype_anchor_key": "jungian_hero",
+      "archetype_gloss": null,
+      "movement": "descent",
+      "summary": "Dan lets go of his burdens and steps into the Dreamscape, symbolizing a descent into the unconscious and the beginning of his transformative journey.",
+      "evidence": [
+        {
+          "render_para_key": "rp_e280f22a9049ac1857a3a1f8f83d2fb6",
+          "render_index": 30,
+          "quote": "He let go. The stone beneath his knees dissolved—not instantly, but with a slow horrifying certainty. In that terrifying, perfect stillness—that necessary, terrible emptiness—he stepped sideways, and into the Dreamscape.",
+          "role": null,
+          "start_char": 8013,
+          "end_char": 8233,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_ca2c09fa4436141578ca1c9099029552",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            59
+          ],
+          "evidence_sha256": "f40eb8c89e7b23ebe22209b99cb4bf49e23c01911210ff659b789d2827e3da42"
+        }
+      ],
+      "confidence": 0.95,
+      "unresolved_subject": false
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "e13d3428feb026196300a1b8ad43319c90a12da8e0686f6cc00d09338257e78d",
+  "normalized_output_hash": "1833442863d16a336583200db7adf5e0e099fa01446287b47532b039ed9e02f6"
+}

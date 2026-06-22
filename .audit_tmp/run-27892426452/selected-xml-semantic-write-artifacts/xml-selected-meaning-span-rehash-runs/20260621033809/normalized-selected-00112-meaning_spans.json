@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_2fb589aadc0f93aac17706a1cd779608",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "20af042c7c1f55263949ca4b662406487cc9fe59f7d0cd2d418d7f95198531c9",
+  "observations": [
+    {
+      "kind": "vision_claim",
+      "summary": "Aviel reports having a dream that he initially calls a vision, then corrects to specify it as a vision sent by Lord Dagon.",
+      "evidence": [
+        {
+          "render_para_key": "rp_3abddcf2a33464b1427e45ab27c89112",
+          "quote": "\"I had a dream,\" his father continued, his voice gaining strength. \"A vision. The Lord—\" He stopped, corrected himself. \"Lord Dagon sent me a vision.\""
+        }
+      ],
+      "thematic_weight": 7,
+      "gravity": 6,
+      "tension": 5,
+      "confidence": 0.95,
+      "notes": "The correction from 'The Lord' to 'Lord Dagon' indicates a deliberate emphasis on the source of the vision, highlighting its significance."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "Aviel reports having a dream that he initially calls a vision, then corrects to specify it as a vision sent by Lord Dagon.",
+      "evidence": [
+        {
+          "render_para_key": "rp_3abddcf2a33464b1427e45ab27c89112",
+          "render_index": 19,
+          "quote": "\"I had a dream,\" his father continued, his voice gaining strength. \"A vision. The Lord—\" He stopped, corrected himself. \"Lord Dagon sent me a vision.\"",
+          "role": null,
+          "start_char": 2397,
+          "end_char": 2547,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_2fb589aadc0f93aac17706a1cd779608",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            37
+          ],
+          "evidence_sha256": "34ef6298bb58581e0707b08a8fb789eca764c16639c59d3c7afdcb249e0bfe37"
+        }
+      ],
+      "thematic_weight": 1,
+      "gravity": 1,
+      "tension": 1,
+      "confidence": 0.95,
+      "notes": "The correction from 'The Lord' to 'Lord Dagon' indicates a deliberate emphasis on the source of the vision, highlighting its significance."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "937671411d2d71f1bd8ec32bce7ff736979bfa3b8995bc510063a0d184c2f4df",
+  "normalized_output_hash": "0a1a848defff209a5c3be40aa4b6fbf488bc47b439dad8c28bbb4ed754f7478d"
+}

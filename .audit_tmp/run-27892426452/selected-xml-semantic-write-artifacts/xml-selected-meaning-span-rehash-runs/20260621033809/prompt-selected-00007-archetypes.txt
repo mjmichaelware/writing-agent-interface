@@ -1,0 +1,368 @@
+You are a semantic analyst, not a JSON/DB row generator.
+Return only valid JSON matching the requested schema.
+No markdown. No explanation. No extra keys.
+Selected XML render paragraphs are source truth.
+Narrative context capsule is interpretive context only, never source truth, but must be used for narrative consistency and subject resolution.
+
+TASK: archetypes
+
+TASK RUBRIC:
+Use Jungian ontology first. Accepted archetype labels must be one of: Self, Ego, Shadow, Persona, Anima, Animus, Great Mother, Wise Guide, Trickster, Child, Hero, OrphanExile.
+Descriptive labels may appear only as archetype_gloss and must not replace the canonical Jungian archetype field.
+Movement must be one of: fragmentation, inflation, descent, ordeal, projection, persona_fracture, shadow_confrontation, anima_animus_encounter, integration, emergence_of_self.
+Resolve subject identity using the wider narrative corpus when possible. Do not leave generic labels like 'the man' as accepted subjects.
+If the subject remains unresolved after context resolution, use only controlled placeholders.
+
+EVIDENCE REQUIREMENTS:
+- Every observation must cite source evidence using render_para_key plus an exact quote.
+- Omit low-confidence claims instead of padding output.
+- Empty observations are valid.
+- Valid empty response is: {"observations":[]}
+- Do not force a claim.
+- Use the full narrative cognition capsule for consistency across the local corpus, but never treat context as source evidence.
+
+SOURCE PACKET:
+{
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "scene_window_id": "scene_2e5d1b901ba3e70bcc51a7ddc1702097",
+  "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+  "folder": "0002_r_chapter_1_-_stardust_to_stardust_1tbodxyu5ezufogmr46f64o9u8fisifvmiaxn6qz_siq",
+  "render_paragraphs": [
+    {
+      "render_para_key": "rp_2fd3f78160471d56016083e6b9583bc7",
+      "render_index": 8,
+      "start_char": 2323,
+      "end_char": 3563,
+      "source_xml_paragraph_indexes": [
+        15
+      ],
+      "text_sha256": "ab33602236b6a562e233765f72456ae960dcf4c5aba31fdc12808a158aabf62f",
+      "text": "The smell of the place was a terrible architecture—designed, it seemed, by someone who had thought very carefully about what it would take to make a person stop wanting to breathe. Sulfur and sweet rot and the patient mineral cold of turned earth. The still patience of serpents in a garden. Rotting textiles—Zuna's sacred threads left mid-shuttle—had unraveled into mildew and draped over discarded animal bones, making a dry rustling sound when disturbed that was the sound of all life giving up its last argument with death. The threads had once been extraordinary things. You could still see what they had been if you looked with the right kind of attention: crimson like pomegranate seeds split open, saffron like desert flowers at dawn, emerald like new wheat pushing through soil, amber like honey held to sunlight, violet like the sky at dusk, rose like oleander petals after rain. Every color under heaven woven together in patterns that had made people stop in the street and stare. Every color, that is, except the three she never touched—never blue, never purple, never scarlet—and she had never explained why, but Dan had understood in the wordless way children understand holy things that some colors were not for human hands."
+    }
+  ]
+}
+
+NARRATIVE CONTEXT CAPSULE:
+{
+  "mode": "narrative_context_only",
+  "expected_public_chapter_count": 13,
+  "loaded_public_chapter_count": 13,
+  "chapter_hints": [
+    1
+  ],
+  "keywords": [
+    "never",
+    "color",
+    "sound",
+    "things",
+    "threads",
+    "amber",
+    "animal",
+    "architecture",
+    "argument",
+    "attention",
+    "bones",
+    "breathe"
+  ],
+  "full_public_chapter_corpus_loaded": true,
+  "public_chapter_corpus": [
+    {
+      "chapter_number": 1,
+      "sha256": "2f49c451b048e73249daec5c732eff040a81f7310b547eb6a36177a08723deda",
+      "score": 10,
+      "keyword_hits": 7,
+      "chapter_hint_boost": 3,
+      "excerpt": "n had brought his own gods from the Western plains to fill the void, creating a vile, intricate shrine built of forgotten things. It was consecrated by a scholar who willingly surrendered his life's momentum to the earth's claim. This divided house was cold, but with the specific, internal chill of a place the sun had never reached. The air itself was a heavy, saturated cloak, making every inhalation an exhausting chore. The entire structure pressed inward, a manifestation of the collective mass of his self-pity, seeking to crush its inhabitants back into formless dust. The ceiling beams sagged not from age, but from the sheer, inte"
+    },
+    {
+      "chapter_number": 7,
+      "sha256": "fe21c269662112e63ae92118f80d1d68c5a94cb5fb3950a0d8cb1d0f3092b245",
+      "score": 8,
+      "keyword_hits": 8,
+      "chapter_hint_boost": 0,
+      "excerpt": "waters are blessed by the Lords who hold up the Earth. Perhaps you prefer the thin, tasteless water of the high places, where nothing truly grows.\" She snatched the coin from the counter where he had placed it, pocketing it with a speed that belied her casual cruelty, the Gerah disappearing into her robes as if it had never been offered. Dan wiped his mouth with the back of his hand, the rotten taste refusing to leave, a constant reminder of the city's rejection. A cold anger began to simmer within him, a slow burn against the injustice. The water, meant to sustain, had become a weapon, a physical manifestation of the city's spiritu"
+    },
+    {
+      "chapter_number": 2,
+      "sha256": "f2a509eb8a6314cbdbc0dd9a3984fe09cb720101a4de0615dab3d6353db395d3",
+      "score": 7,
+      "keyword_hits": 7,
+      "chapter_hint_boost": 0,
+      "excerpt": "he ice. You choose the ascent, my boy? Then understand this: You will find only the abrasion of proof: the unforgiving stone where your knees will bleed before noon, and the source you seek will not appear; your pain is merely proof of your physical weakness, for the mountain offers the raw muscle of continuous cost, never rest. This whole path is a denial of the very soil that bore you, merely running from your origin. I tell you this because it is the path of a fool, and all fools must be warned.\" aviel leaned back, his breath ragged, the fury spent, replaced by a devastating emptiness. the silence in the stone dwelling remained h"
+    },
+    {
+      "chapter_number": 4,
+      "sha256": "63b181b1f87727ee5202fe1f59a797a227f379a2446db5edd1cb47d50215b8a7",
+      "score": 7,
+      "keyword_hits": 7,
+      "chapter_hint_boost": 0,
+      "excerpt": "as still hugging the eastern horizon, its light spreading like spilled honey. He held a direction in his mind, clear and unwavering as the sky overhead. His journey led him north, towards the great, rugged heights of the Jebusite lands—a place he had only glimpsed in the strange, shimmering tapestry of dreams. Dan had never traveled this far in flesh, only as far north as this very town of Bethlehem. The road ahead would be long, and indeed, the journey already felt vast, the hours stretching thin and quiet, measured only by the steady rhythm of his wandering thoughts, a low, constant murmur in his mind. The path led him first throu"
+    },
+    {
+      "chapter_number": 9,
+      "sha256": "bb2740591c75d6dd0ee22abf60c25523302ff6758cfd3052f1b2c72e9ffe191b",
+      "score": 7,
+      "keyword_hits": 7,
+      "chapter_hint_boost": 0,
+      "excerpt": "fount for all, a wellspring of pure, generative energy. This realm shimmered with a soft, inner luminescence, like moonlight filtered through clean water, its air tasting of dew and nascent life, the very breath of a reality more solid and joyous than any he had known, yet also the taste of a world from which he could never return. Higher still. The grasping void of Gluttony dissolved, and the scorching heat of Anger faded into cool air. An absolute Serenity settled deep within his core, a Cooling Presence washing over him like balm, leaving behind only the most gentle calm, a profound Healing Essence that resonated through him, men"
+    },
+    {
+      "chapter_number": 10,
+      "sha256": "3fa62b7d098773c1051829693664fd31f16b7ff29ef23e2c7215cc215295460d",
+      "score": 7,
+      "keyword_hits": 7,
+      "chapter_hint_boost": 0,
+      "excerpt": "went hot in her hands. Then very hot. She dropped it. In the gap between releasing and landing—the interval that is not nothing, however brief—a fragment of something that predated the current arrangement of things tore free from the broken path and crossed the tent's interior and arrived in me. Every question I had never known I was not asking became, simultaneously, necessary. The crease in the goat-hair where the canvas had been folded for transport: how many times folded, in what season, by whose hands, and does the folding persist in some form beneath the fiber's surface? The basalt shard on the table: what formation, what pres"
+    },
+    {
+      "chapter_number": 11,
+      "sha256": "8d3f998fafb7852f66f9a055c6233295c82b0fdbb2450663ec63c7e3961d23e1",
+      "score": 7,
+      "keyword_hits": 7,
+      "chapter_hint_boost": 0,
+      "excerpt": "expanse of time that truly governs all things. I am the silent keeper of her solitude, the one who doesn't judge, but simply observes. My purpose, too, is woven into this tapestry, a guardian of thresholds, a whisper of what might be. Presence is many things, dear reader. Sometimes it is simply waiting—silent, still, never truly passive. Like ancient stars waiting indifferently, it is a vigil, a quiet witnessing, a holding of space for what is to come, or what has irrevocably passed. Like the enduring mountains that watch epochs rise and fall, I have waited, seeing the dust of ages settle upon even the most formidable figures. The a"
+    },
+    {
+      "chapter_number": 5,
+      "sha256": "3b0ede4310eca0fccf88e100972d161048f12333411bb4e14c4f6956eaacf039",
+      "score": 5,
+      "keyword_hits": 5,
+      "chapter_hint_boost": 0,
+      "excerpt": "Tab 1 Chapter 5: The Snare The sun, a brazen, indifferent eye in the heavens, pressed its dry, relentless heat onto Dan’s neck, a palpable force urging him ever north. This was not the light of revelation, but the viscous drag of endless day—the psychological tax of a will that had to be continuously renewed. Bethel’s walls, the house of the Unmanifest where the very stones once dreamed of a path between worlds, were now no more than a pale smudge on the rim of the southern horizon. The memory of its clean, simple light faded into the vast, silent glare of the road, leaving behind a subtle, pervasive ache—the perfect, subtle Snare"
+    },
+    {
+      "chapter_number": 6,
+      "sha256": "5b7b91ab7dc53343297f6b32b4a59443e75b629c2f1484de0f093bc2ff802a37",
+      "score": 5,
+      "keyword_hits": 5,
+      "chapter_hint_boost": 0,
+      "excerpt": "ence, not naming It with words Dan had heard elsewhere, but speaking of Its nature in a way that felt true. They talked as the sun dipped below the horizon, painting the sky in glorious, fading colors. They shared their meal – a simple stew, fresh bread, and fruit. And before they ate, the family did something Dan had never seen before. The father, mother, and even the small children looked up towards the darkening sky, their faces turned upwards, and whispered words of thanks. It was a peculiar practice, this quiet act of acknowledging the unseen, of speaking gratitude to the source before partaking of the bounty come from above. I"
+    },
+    {
+      "chapter_number": 3,
+      "sha256": "a3cba70f46c50af68ae2cdb748915e80578e1bcd905624a4b077fdc99ea693fd",
+      "score": 4,
+      "keyword_hits": 4,
+      "chapter_hint_boost": 0,
+      "excerpt": "Chapter 3: Lift Up The air, which had been dry and light, now grew heavy with a terrible, sudden promise of paradise; cloyingly sweet with the narcotic scent of jasmine and the heavy, earthy aroma of ripe pomegranates. The combined fragrance was the specific, intoxicating lie of the low places, a perfume that smelled like blood but tasted like the air in Aviel's closed-off room. The well water, which had initially promised the sterile, life-giving clarity of the desert's heart, had instantly and violently betrayed itself, twisting into a mirror for a presence utterly alien to the difficult truth of ascent. It was a phenomenon so j"
+    },
+    {
+      "chapter_number": 8,
+      "sha256": "a02f56e5ac0abd966aef2541b27fa8e4f9c5d36a2f7287d2c7bf7b46c026c6c7",
+      "score": 4,
+      "keyword_hits": 4,
+      "chapter_hint_boost": 0,
+      "excerpt": "to his knees by the edge of the water. He scooped up handfuls of the blessed coldness. The water, clear before, was stained crimson only where it met his hand. The surface itself remained unblemished, reflecting his shattered image. The water, which represented the absolute horizontal, had claimed its tribute. I will never see the world as fully again. This is the Unpaid Debt. The loss of the eye, horrific as it was, was a necessary Willing Offering that would not break his will. The journey to Dan was a blur of pain and forced endurance. He walked with his head bowed, his single eye scanning the dusty path. I must not stop. I must"
+    },
+    {
+      "chapter_number": 13,
+      "sha256": "960479e956f95dc5674a44b34a4c5bc562dced3d80c43f4622b3c4ad2acc50e9",
+      "score": 4,
+      "keyword_hits": 4,
+      "chapter_hint_boost": 0,
+      "excerpt": "spirits clinging to the crumbling stones, heard the echoes of ancient laughter carried on the wind, felt the deep, slow pulse of the earth itself, all of it a symphony of information for my newly awakened senses.) It chased lizards into thorny bushes, its sleek fur snagging on sharp spines, its body scratched, but it never hesitated, never learned caution, for the thrill of the chase, the pursuit of the unknown, was a far greater impetus than any fleeting discomfort. It climbed every sun-warmed rock, every gnarled olive tree, its agile form a blur of black fur, always seeking the highest point, the most dangerous perch, as if driven"
+    },
+    {
+      "chapter_number": 24,
+      "sha256": "3d4e278a0349a7f47569f4502b324bf0ffbf97adb96568920bef23a877dc0776",
+      "score": 2,
+      "keyword_hits": 2,
+      "chapter_hint_boost": 0,
+      "excerpt": "In the vast expanse of the dreamscape, where souls exist beyond physical form, where the very air hums with the resonance of pure being, Dan and Isabel's essences finally converged after three millennia of separation. Their spiritual forms, composed not of flesh, but of the shimmering, incandescent energy of their divine aspects – Love and Forgiveness – recognized each other instantly across the cosmic void. \"I have searched for you through countless cycles of stars,\" Dan's presence resonated through the dreamscape, a wave of pure warmth that touched every corner of this ethereal realm, reaching out, a deep, ancient yearning. \"And"
+    }
+  ],
+  "narrative_protocol_sources": [
+    {
+      "role": "archetype_protocol",
+      "key": "cat_god_primal_self",
+      "sha256": "089b3617b7dbc3b46ceb43a7053f55662dd11c5b931bc0b2453d8e66c5568a2d",
+      "excerpt": "l and precise. * Foreshadowing & Thematic Link: Introduce subtle, sensory language of a feline observer: * Emphasis on silent observation, stalking, low growls, the scent of fear/truth, and an unnerving lightness of foot. * Chapter 6 Anchor: The physical black kitten that joins Kasha MUST be present, serving as the physical avatar for the narrator's full reveal in Chapter 11. * Fourth Wall Breaks (CRITICAL): * Maximum: Twice per chapter. * Format: ALWAYS enclosed in parentheses ( ). * Function: The break must NEVER disrupt the plot momentum. It must instead heighten the thematic accusation by pointing to the reader’s shared human flaw (shame, unasked questions, the refusal to look in the mirror). * Example: (The cost of not asking is always the highest price paid, and most humans never realize they’ve already signed the scroll.) II. The Canaanite Pantheon as Dan's Psyche The interactions with the gods MUST be subtly reframed to represent Dan's internal battle for self-integration (Self vs. Shadow). This is the key to the ps"
+    },
+    {
+      "role": "archetype_protocol",
+      "key": "visceral_empathy",
+      "sha256": "59ed13c0f886611dc08299da8b74306aa860383038e2a645b6436c04c9af25d8",
+      "excerpt": "Emotional & Archetypal Editing Rulebook (Visceral Empathy Focus) This rulebook incorporates all previous historical and hyperlinking instructions while adding a new, critical layer to ensure maximum reader empathy. The goal is to make Dan's internal war between flesh and spirit feel universally relatable (like the Dr. Jekyll and Mr. Hyde struggle you described, without using those specific terms). I. Visceral Empathy & Relatability Rules * Replace Detachment with Somatic Cost: When Dan makes a great spiritual decision (e.g., leaving Bethel, refusing silver), the text MUST emphasize the physical pain and emotional cost of that choice. * Instead of: \"Dan felt a cold resolve.\" * Use: \"A cold, sharp ache settled in the marrow of his chest, a physical rending as he chose the higher, colder truth.\" * Biochemical/Flesh vs. Spirit Conflict (The Dr. Jekyll/Mr. Hyde): Focus on the body's revolt against the spirit's ascetic demands. This is the internal war that makes Dan universally relatable to anyone battling self-control, tempta"
+    },
+    {
+      "role": "story_compendium",
+      "key": "master_compendium",
+      "sha256": "7f86ab925e53d48f6e32e07950f30b81b82bd4270b77b826b7392d7d35e86758",
+      "excerpt": "THE WEIGHT OF THE SKY: MASTER COMPENDIUM (SINGULARITY v.1.0) Author: Michael Alonza Prentice Ware | Tone: Lewis/Snicket/Gaiman/Dahl | Genre: Archetypal Mythic Realism I. THE CORE METAPHYSICAL LAWS The \"I AM\" vs. The \"Gods of Things\": The Vertical Source is pure motion/being. The Canaanite gods are \"Horizontal\" fragments of the material world (lust, greed, dust). The Fragmented Self: The gods (Dagon, Beelzebub, Astarte) are Dan’s own psychological drives looking back at him from the \"inside out.\" Encountering a god is an act of internal mirror-imaging. The Quantum Dust: The Dreamscape (Jungian Collective Subconscious) is made of \"Dust\"—Planck-length cells containing the potential for a Big Bang in every unit. Without Will and Intent (Spirit), these particles collapse into nothingness. The Sacrifice of Judgment: To move from Dan (He who judges the fragments) to Daniel (God is my Judge), the protagonist must undergo a \"thermodynamic zero-point\" descent in the Pit at Megiddo, losing his voice (human language) to gain cr"
+    },
+    {
+      "role": "new_synopsis",
+      "key": "new_synopsis",
+      "sha256": "022c36c6525eda7d3abe4836aa6ca39647c5b7267cd8c2d7234c956a69569fe0",
+      "excerpt": "high palace in the dreamscape. Beelzebub, the Lord of the Flies, has grown lazy because the Philistines’ self-destruction with iron weapons has made his work of chaos unnecessary. Kasha finds him lounging, but Sak, seeing through his handsome disguise, flees. Kasha is angry, but Beelzebub, who is \"second to Lucifer,\" offers her his \"truth.\" He tells her to look into his eyes, and she sees every pain, betrayal, and fall she has ever experienced. He tells her, \"the truth I see is, it would have been better to have never been born or things made.\" and she agrees, joining him on a descent to the bottom of the pit where his brother, Lucifer, is sure to be as soon as his work is done. From their unspeakable union, Isabel is born, an immortal being who embodies hell itself. Isabel lives a life where \"hell is everything is bad and getting worse.\" She tries to end her life, cutting herself into a million pieces until she is just shy of returning to dust. She experiences all the negative states of being, even reaching the nothingness"
+    }
+  ],
+  "subject_resolution_candidates": [
+    {
+      "name": "Dan",
+      "mentions": 16
+    },
+    {
+      "name": "Then",
+      "mentions": 12
+    },
+    {
+      "name": "Aviel",
+      "mentions": 10
+    },
+    {
+      "name": "Hebron",
+      "mentions": 10
+    },
+    {
+      "name": "You",
+      "mentions": 10
+    },
+    {
+      "name": "Dagon",
+      "mentions": 9
+    },
+    {
+      "name": "Kasha",
+      "mentions": 9
+    },
+    {
+      "name": "There",
+      "mentions": 9
+    },
+    {
+      "name": "Zuna",
+      "mentions": 9
+    },
+    {
+      "name": "Beelzebub",
+      "mentions": 8
+    },
+    {
+      "name": "One",
+      "mentions": 8
+    },
+    {
+      "name": "What",
+      "mentions": 8
+    },
+    {
+      "name": "Yet",
+      "mentions": 8
+    },
+    {
+      "name": "Astarte",
+      "mentions": 7
+    },
+    {
+      "name": "Baal",
+      "mentions": 7
+    },
+    {
+      "name": "Bethel",
+      "mentions": 7
+    },
+    {
+      "name": "Hermon",
+      "mentions": 7
+    },
+    {
+      "name": "Megiddo",
+      "mentions": 7
+    },
+    {
+      "name": "Sea",
+      "mentions": 7
+    },
+    {
+      "name": "Bethlehem",
+      "mentions": 6
+    },
+    {
+      "name": "Curiosity",
+      "mentions": 6
+    },
+    {
+      "name": "Daniel",
+      "mentions": 6
+    },
+    {
+      "name": "Israel",
+      "mentions": 6
+    },
+    {
+      "name": "Its",
+      "mentions": 6
+    }
+  ],
+  "available_narrative_context_map_excerpt": "e pouch, a tiny fragment of the earthly burden he was determined to shed. Their simple kindness was a balm after the chaos of Gibeah and the subtle, rooting atmosphere of Bethel. He’d traded more silver for sturdy new sandals, the leather promising many miles, and a pouch of dried figs and hardtack – practical provisio middle=onance with his own deepest yearnings. They, too, looked past the immediate, the tangible, towards something higher. They spoke of El and Baal with a quiet disapproval that mirrored his own instinctive recoil. They spoke of the Source of All with reverence, not naming It with words Dan had heard elsewhere, but speaking of Its nature in a way that felt true. They talked as the sun dipped below the horizon, painting the sky in glorious, fading colors. They shared their meal – a simple stew, fresh bread, and fruit. And before they ate, the family did something Dan had never seen before. The father, mother, and even the small children looked up towards the darkening sky, their faces turned upwards, and whispered words of thanks. It was a peculiar practice, this quiet act of acknowledging the unseen, of speaking gratitude to the source before partaking of the bounty come from above. It settle ending= her dark robes and silver streaks swirling around her, and began to walk briskly southward, her tiny black cat, after one last affectionate head-nudge to Dan, leaping from his shoulder to follow her, a small, dark shadow melting into the fading light. Dan watched her go, the dust settling behind her, leaving him alone on the road. The setting sun cast long, lonely shadows across the Jezreel Valley, the air growing heavy with the scent of dry earth and the lingering echo of Kasha's words. He stood there for a long moment, the warmth of the kitten's brief pre",
+  "context_pack_excerpt": "nt_context/source_drop/hasher_context_v1/01_archetype_protocol_cat_god_primal_self.txt ================================================================================ Literary & Archetypal Fusion Rulebook (The Cat God & The Primal Self) This rulebook dictates the final, deep-level edits required to create a \"New York Times Bestseller\" that operates as an existential mirror, compelling the reader to confront their own inner conflicts and unintegrated \"ego\" (the \"Dr. Jekyll/Mr. Hyde\" tension). I. The Narrator: Deity of Curiosity (The Cat God) The narrator's voice is the subtle, overarching thematic hyperlink for Truth and Love. The narrator is a deity of pure Curiosity in the Dreamscape, near The Source of All. * Voice Style: Highly observant, often focused on the unseen cost of knowledge or the unasked question. The tone must be ancient, knowing, yet slightly playful and precise. * Foreshadowing & Thematic Link: Introduce subtle, sensory language of a feline observer: * Emphasis on silent observation, stalking, low growls, the scent of fear/truth, and an unnerving lightness of foot. * Chapter 6 Anchor: The physical black kitten that joins Kasha MUST be present, serving as the physical avatar for the narrator's full reveal in Chapter 11. * Fourth Wall Breaks (CRITICAL): * Maximum: Twice per chapter. * Format: ALWAYS enclosed in parentheses ( ). * Function: The break must NEVER disrupt the plot momentum. It must instead heighten the thematic accusation by pointing to the reader’s shared human flaw (shame, unasked questions, the refusal to look in the mirror). * Example: (The cost of not asking is always the highest price paid, and most humans never realize they’ve already signed the scroll.) II. The Canaanite Pantheon as Dan's Psyche The interactions with the gods MUST be subtly reframed to represent Dan's internal battle for self-integration (Self vs. Shadow). This is the key to the psychological layering. Pantheon Figure Dan's Internal Conflict (Thematic Function) Narrative Expression (Show, Not Tell) Dagon (Ch. 1) The Shadow of Regression/Chaos. The pull back to the womb, the oceanic unthinking state, and the comfort of the unconscious mind. Show: Dagon is consuming, oceanic, and promises a total end to struggle (a spiritual death). Asherah/Edomite Woman (Ch. 2 & 3) The Snare of the Flesh/Lower Good. The temptation of earthly comfort, sensuality, and settling for a \"small heaven on earth.\" Show: Scent, warmth, immediate rest, and the hypnotic pull that makes Dan's Flesh and Spirit ache for surrender. Baal/Winged Lord (Ch. 7) The Shadow of Pride/Hubris. The localized power Dan must overcome. The temptation to believe he is the Source of All rather than a conduit. Show: The god's follower is manic, loud, and seeks only power over others—",
+  "context_capsule_sha256": "52f5fc5cf16887cb1d2c6a869a2a2f7d6344fcea26e14e879741e4b815b83bfa"
+}
+
+OUTPUT CONTRACT:
+{
+  "type": "OBJECT",
+  "properties": {
+    "observations": {
+      "type": "ARRAY",
+      "items": {
+        "type": "OBJECT",
+        "properties": {
+          "character": {
+            "type": "STRING"
+          },
+          "archetype": {
+            "type": "STRING"
+          },
+          "archetype_gloss": {
+            "type": "STRING",
+            "nullable": true
+          },
+          "movement": {
+            "type": "STRING"
+          },
+          "summary": {
+            "type": "STRING"
+          },
+          "evidence": {
+            "type": "ARRAY",
+            "items": {
+              "type": "OBJECT",
+              "properties": {
+                "render_para_key": {
+                  "type": "STRING"
+                },
+                "quote": {
+                  "type": "STRING"
+                }
+              },
+              "required": [
+                "render_para_key",
+                "quote"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "confidence": {
+            "type": "NUMBER"
+          }
+        },
+        "required": [
+          "character",
+          "archetype",
+          "archetype_gloss",
+          "movement",
+          "summary",
+          "evidence",
+          "confidence"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "observations"
+  ],
+  "additionalProperties": false
+}

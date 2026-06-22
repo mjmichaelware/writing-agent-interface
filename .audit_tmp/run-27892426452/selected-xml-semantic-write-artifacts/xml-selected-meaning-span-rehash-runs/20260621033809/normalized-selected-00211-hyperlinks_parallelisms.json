@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_901c7f40610f2b5a84f98f3b017cf886",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "fb7a71dec84b6977396ea6f250e9420913eec4042f24395d3e33ef250624b9f0",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The motif of thirst and the inadequacy of water to quench it is echoed as a physical and symbolic representation of deeper longing and dissatisfaction.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_47546202e064644eccb53235aaf15458",
+          "quote": "He stopped once to drink from his waterskin and immediately regretted it. The water was already warm, and it did little to quench his thirst—just reminded him how thirsty he was."
+        }
+      ],
+      "target_hint": "This motif parallels earlier narrative themes of spiritual and emotional thirst that remain unfulfilled despite physical attempts at satisfaction, reflecting Dan's internal struggle between flesh and spirit.",
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The motif of thirst and the inadequacy of water to quench it is echoed as a physical and symbolic representation of deeper longing and dissatisfaction.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_47546202e064644eccb53235aaf15458",
+          "render_index": 118,
+          "quote": "He stopped once to drink from his waterskin and immediately regretted it. The water was already warm, and it did little to quench his thirst—just reminded him how thirsty he was.",
+          "role": "source",
+          "start_char": 14694,
+          "end_char": 14872,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_901c7f40610f2b5a84f98f3b017cf886",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            235
+          ],
+          "evidence_sha256": "f9f480605f1f0de9a0346bb2a8d9c92064feb62b52de1e840d53d63595765237"
+        }
+      ],
+      "target_hint": "This motif parallels earlier narrative themes of spiritual and emotional thirst that remain unfulfilled despite physical attempts at satisfaction, reflecting Dan's internal struggle between flesh and",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "50c0a4a0f2f5045aebac7b2e65751bb36bcafdcb74e565a121b3d1b99209b2dc",
+  "normalized_output_hash": "70e7b51708260654914ee7004568560f05b35d49dbe48360c7c8a64ea3d73a6a"
+}

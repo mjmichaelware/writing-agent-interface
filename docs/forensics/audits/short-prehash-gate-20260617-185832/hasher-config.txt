@@ -1,0 +1,12 @@
+90:const SUPABASE_ACCESS_TOKEN = env("SUPABASE_ACCESS_TOKEN", env("SUPABASE_MANAGEMENT_TOKEN", ""));
+94:const VERTEX_MODEL = env("VERTEX_MODEL", "gemini-2.5-pro");
+154:  must(SUPABASE_ACCESS_TOKEN, "Missing SUPABASE_ACCESS_TOKEN. Use a Supabase Management PAT/access token.");
+157:  const endpoint = `https://api.supabase.com/v1/projects/${SUPABASE_PROJECT_REF}/database/query`;
+162:      Authorization: `Bearer ${SUPABASE_ACCESS_TOKEN}`,
+445:      model: VERTEX_MODEL,
+456:    model: VERTEX_MODEL,
+716:      `/locations/${VERTEX_LOCATION}/publishers/google/models/${VERTEX_MODEL}:generateContent`;
+735:  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${VERTEX_MODEL}:generateContent?key=${key}`, {
+795:      model: VERTEX_MODEL,
+816:          model: VERTEX_MODEL,
+1038:    model: VERTEX_MODEL,

@@ -1,0 +1,12 @@
+timestamp=20260619-015912
+repo=/data/data/com.termux/files/home/Workspaces/Hybrid/writing-agent-interface
+branch=cleanup/standard-app-tree
+commit=b282a5051f10f0f0554da8b338e3316d54f29c09
+old_script=/storage/emulated/0/Download/PR6_MASTER_HASH_INSPECTION_20260618-112246/files/scripts/semantic/xml-grounded-vertex-rehash.mjs
+selected_truth=/storage/emulated/0/Download/PR6_MASTER_HASH_INSPECTION_20260618-112246/files/reports/xml_recovery/xml_starred_hash_truth.txt
+
+patched_script=scripts/semantic/xml-selected-meaning-span-rehash.mjs
+migration=supabase/migrations/20260619004000_selected_xml_primary_meaning_span_ledger.sql
+proof_log=docs/forensics/audits/SAFE_SELECTED_XML_MEANING_SPAN_PATCH_20260619-015912/patch-and-dry-run.log
+
+core_fix=PR6 old semantic logic preserved; active source driver replaced with selected XML; first-run old semantic table writes blocked; primary hash lane is semantic_meaning_spans.

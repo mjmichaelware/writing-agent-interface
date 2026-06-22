@@ -1,0 +1,58 @@
+## local .github workflows
+.github/workflows/build-and-deploy.yml
+.github/workflows/deploy-supabase-functions-only.yml
+
+## workflow command/secrets/env references
+.github/workflows/build-and-deploy.yml:1:name: build-and-deploy
+.github/workflows/deploy-supabase-functions-only.yml:10:      - "supabase/functions/**"
+.github/workflows/deploy-supabase-functions-only.yml:11:      - ".github/workflows/deploy-supabase-functions-only.yml"
+.github/workflows/deploy-supabase-functions-only.yml:14:  deploy-functions:
+.github/workflows/deploy-supabase-functions-only.yml:17:    env:
+.github/workflows/deploy-supabase-functions-only.yml:18:      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+.github/workflows/deploy-supabase-functions-only.yml:19:      SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF }}
+.github/workflows/deploy-supabase-functions-only.yml:26:        uses: supabase/setup-cli@v1
+.github/workflows/deploy-supabase-functions-only.yml:32:          test -n "$SUPABASE_ACCESS_TOKEN"
+.github/workflows/deploy-supabase-functions-only.yml:33:          test -n "$SUPABASE_PROJECT_REF"
+.github/workflows/deploy-supabase-functions-only.yml:34:          supabase --version
+.github/workflows/deploy-supabase-functions-only.yml:37:        run: supabase functions deploy create-upload-url --project-ref "$SUPABASE_PROJECT_REF"
+.github/workflows/deploy-supabase-functions-only.yml:40:        run: supabase functions deploy register-uploaded-artifact --project-ref "$SUPABASE_PROJECT_REF"
+.github/workflows/deploy-supabase-functions-only.yml:43:        run: supabase functions deploy verify-artifact-hash --project-ref "$SUPABASE_PROJECT_REF"
+.github/workflows/deploy-supabase-functions-only.yml:46:        run: supabase functions deploy enqueue-enrichment --project-ref "$SUPABASE_PROJECT_REF"
+.github/workflows/deploy-supabase-functions-only.yml:49:        run: supabase functions deploy process-enrichment-batch --project-ref "$SUPABASE_PROJECT_REF"
+
+## gh workflow list
+build-and-deploy	active	278122143
+Deploy Supabase Edge Functions Only	active	295787631
+
+## gh variable names only
+SUPABASE_PROJECT_REF	yegricugzqbmoziycfnt	2026-06-14T14:09:56Z
+SUPABASE_URL	https://yegricugzqbmoziycfnt.supabase.co	2026-06-14T14:09:55Z
+
+## gh secret names only
+GROQ_API_KEY	2026-05-21T06:39:49Z
+SUPABASE_ACCESS_TOKEN	2026-06-14T14:18:26Z
+SUPABASE_PROJECT_REF	2026-06-14T14:18:27Z
+SUPABASE_SERVICE_ROLE_KEY	2026-06-14T14:21:39Z
+TOGETHER_API_KEY	2026-05-21T06:57:29Z
+
+## recent gh runs
+completed	success	Deploy Supabase Edge Functions Only	Deploy Supabase Edge Functions Only	cleanup/standard-app-tree	workflow_dispatch	27501742749	32s	2026-06-14T14:23:07Z
+completed	failure	Deploy Supabase Edge Functions Only	Deploy Supabase Edge Functions Only	cleanup/standard-app-tree	workflow_dispatch	27501545362	13s	2026-06-14T14:15:24Z
+completed	failure	Allow Supabase function deploy from cleanup branch	Deploy Supabase Edge Functions Only	cleanup/standard-app-tree	push	27501239640	12s	2026-06-14T14:03:26Z
+completed	success	feat: NOS Complete - Multi-LLM Swarm, Document Analyzer, Audiobook La…	build-and-deploy	main	push	26832542674	1m25s	2026-06-02T16:11:06Z
+completed	success	feat: NOS Phase 1 Completion - Database-driven architecture, Ultra-iO…	build-and-deploy	main	push	26823305660	1m15s	2026-06-02T13:35:10Z
+completed	success	feat: ensure all assets are rendering correctly, including Title Page…	build-and-deploy	main	push	26730316665	1m20s	2026-06-01T01:23:29Z
+completed	success	feat: implement intelligent dual-layer cinematic projection for Chapt…	build-and-deploy	main	push	26728082450	1m18s	2026-05-31T23:52:00Z
+completed	success	fix: restore visibility of chapters and system tabs by copying manusc…	build-and-deploy	main	push	26726198614	1m12s	2026-05-31T22:23:23Z
+completed	success	fix: restore EventBus unsubscribe return and add defensive Array.isAr…	build-and-deploy	main	push	26726034857	1m21s	2026-05-31T22:15:40Z
+completed	success	feat: force-mount Layer4Panel with max z-index (2147483647), inline s…	build-and-deploy	main	push	26724303086	1m17s	2026-05-31T20:58:52Z
+completed	success	chore: ignore typescript and eslint errors during build to unblock pr…	build-and-deploy	main	push	26724196012	1m19s	2026-05-31T20:54:01Z
+completed	failure	fix: install openai and groq-sdk for agent routes	build-and-deploy	main	push	26724148030	1m18s	2026-05-31T20:51:51Z
+completed	failure	fix: remove --webpack from vercel.json and install missing gcloud/luc…	build-and-deploy	main	push	26724108902	50s	2026-05-31T20:50:09Z
+completed	failure	fix: downgrade React to 18 to satisfy Next 14 peer dependencies	build-and-deploy	main	push	26724023718	41s	2026-05-31T20:46:12Z
+completed	failure	fix: add missing @tailwindcss/postcss and react dependencies to fix V…	build-and-deploy	main	push	26723956592	18s	2026-05-31T20:43:17Z
+completed	failure	chore: add NOS-V4-LIVE deploy proof marker — verifying production pip…	build-and-deploy	main	push	26723858013	32s	2026-05-31T20:39:00Z
+completed	failure	fix: dependency injection for cloud build	build-and-deploy	main	push	26516167356	38s	2026-05-27T14:04:27Z
+completed	failure	fix: restore missing dependencies	build-and-deploy	main	push	26515641680	28s	2026-05-27T13:55:28Z
+completed	failure	force: remove all webpack flags	build-and-deploy	main	push	26513139399	46s	2026-05-27T13:10:25Z
+completed	success	force: nuke webpack flag and lock vercel build command	build-and-deploy	main	push	26512560392	58s	2026-05-27T12:59:54Z

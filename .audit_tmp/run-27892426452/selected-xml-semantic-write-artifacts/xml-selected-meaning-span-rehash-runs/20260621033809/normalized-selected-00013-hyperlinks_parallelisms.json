@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_5a139a3b0a002a72913d151c55640999",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "1408b686037b6218afdeb889476b34e6f48f16d2de9fb8dfc713a1d548fcda06",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The act of Dan creeping to Father Aviel's doorframe and pressing his ear against the wood echoes the motif of secretive, intimate listening and the threshold between known and unknown, reflecting Dan's cautious approach to his father's hidden state and the decay symbolized by Aviel's withdrawal.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_f9d379b74650db5cad390ef0e1aafadb",
+          "quote": "He crept to Father Aviel's doorframe and pressed his ear against the wood."
+        }
+      ],
+      "target_hint": "This action parallels earlier narrative moments where Dan confronts the silence and decay of his father's presence, symbolizing the boundary between life and spiritual decay (Aviel's Rot).",
+      "target_evidence": [],
+      "confidence": 0.85
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The act of Dan creeping to Father Aviel's doorframe and pressing his ear against the wood echoes the motif of secretive, intimate listening and the threshold between known and unknown, reflecting Dan's cautious approach to his father's hidd",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_f9d379b74650db5cad390ef0e1aafadb",
+          "render_index": 14,
+          "quote": "He crept to Father Aviel's doorframe and pressed his ear against the wood.",
+          "role": "source",
+          "start_char": 4926,
+          "end_char": 5000,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_5a139a3b0a002a72913d151c55640999",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            27
+          ],
+          "evidence_sha256": "cf521567003a04e8a68457e77c4e4ebfcfa91ec7282041e718b4d4b6e6677ad0"
+        }
+      ],
+      "target_hint": "This action parallels earlier narrative moments where Dan confronts the silence and decay of his father's presence, symbolizing the boundary between life and spiritual decay (Aviel's Rot).",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "2ad2fd92dd32579968fd702655eb412dd3f3e523bf0609daa6eb9cfd433fd155",
+  "normalized_output_hash": "a731ff6b6a0177acd4a43c9402d402e01d8afe84d6c355d1db2110e15d9cab9f"
+}

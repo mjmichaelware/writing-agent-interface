@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_0e6a4eb2ab78e6d4913625124410bca6",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "6457ef46bfbf1a120fd91073d89052682535a6625134de005b8b2d8cf4a7c8a9",
+  "observations": [
+    {
+      "kind": "Character Emotion",
+      "summary": "Aviel expresses intense anger and rejection towards another character, commanding them to leave the house due to their pursuit of their mother's delusions and self-righteousness.",
+      "evidence": [
+        {
+          "render_para_key": "rp_fbf01271728de3c12b9be5fabe789c6d",
+          "quote": "\"GET OUT!\" Aviel's voice cracked like a whip. \"Pack your things! Leave this house! If you're so eager to chase your mother's delusions, if you're so certain you can climb to the heavens while the rest of us grovel in the mud, then GO! See how far your self-righteousness takes you!\""
+        }
+      ],
+      "thematic_weight": 0.9,
+      "gravity": 0.8,
+      "tension": 0.9,
+      "confidence": 1,
+      "notes": "This span captures a pivotal emotional outburst revealing familial conflict and thematic elements of delusion, aspiration, and social division."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "Aviel expresses intense anger and rejection towards another character, commanding them to leave the house due to their pursuit of their mother's delusions and self-righteousness.",
+      "evidence": [
+        {
+          "render_para_key": "rp_fbf01271728de3c12b9be5fabe789c6d",
+          "render_index": 50,
+          "quote": "\"GET OUT!\" Aviel's voice cracked like a whip. \"Pack your things! Leave this house! If you're so eager to chase your mother's delusions, if you're so certain you can climb to the heavens while the rest of us grovel in the mud, then GO! See how far your self-righteousness takes you!\"",
+          "role": null,
+          "start_char": 6319,
+          "end_char": 6601,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_0e6a4eb2ab78e6d4913625124410bca6",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            99
+          ],
+          "evidence_sha256": "9d30bec299eb74670b8b7fe488ee1d41ffec8b470a0abf595cfe4a6c86924e8c"
+        }
+      ],
+      "thematic_weight": 0.9,
+      "gravity": 0.8,
+      "tension": 0.9,
+      "confidence": 1,
+      "notes": "This span captures a pivotal emotional outburst revealing familial conflict and thematic elements of delusion, aspiration, and social division."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "846b5bfaf7fc01d003b7f0d84f5ba63ccd82a5aa49da4518be0cad473203495c",
+  "normalized_output_hash": "109e86ed3d3fb8ffa0b599d044b7092b821dce6954b7b96cb2c62d8d511aa513"
+}

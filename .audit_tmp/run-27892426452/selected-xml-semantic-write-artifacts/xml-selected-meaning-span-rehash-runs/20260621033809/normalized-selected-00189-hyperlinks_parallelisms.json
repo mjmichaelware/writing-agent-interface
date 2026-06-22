@@ -1,0 +1,60 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_9b04facd4a148407d76d8c0555d7e947",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "21ca084799483e2184db0af7160421cddfe8b1bc2916a582e1d5e0adf93dd416",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The physical impact of a sudden realization causing the character to stop and breathe mirrors earlier motifs of physical and emotional struggle, emphasizing the somatic cost of spiritual or psychological insight.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_156c098d431c205046f3851c9d7a53dd",
+          "quote": "The realization hit him like a physical blow, and he had to stop walking for a moment, had to lean against a wall and just breathe."
+        }
+      ],
+      "target_hint": "This echoes earlier narrative moments where Dan experiences physical manifestations of internal conflict, such as the psychological tax of will in Chapter 5 and the body's revolt against spirit in the Visceral Empathy protocol.",
+      "target_evidence": [
+        {
+          "render_para_key": "3b0ede4310eca0fccf88e100972d161048f12333411bb4e14c4f6956eaacf039",
+          "quote": "The sun, a brazen, indifferent eye in the heavens, pressed its dry, relentless heat onto Dan’s neck, a palpable force urging him ever north. This was not the light of revelation, but the viscous drag of endless day—the psychological tax of a will that had to be continuously renewed."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The physical impact of a sudden realization causing the character to stop and breathe mirrors earlier motifs of physical and emotional struggle, emphasizing the somatic cost of spiritual or psychological insight.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_156c098d431c205046f3851c9d7a53dd",
+          "render_index": 96,
+          "quote": "The realization hit him like a physical blow, and he had to stop walking for a moment, had to lean against a wall and just breathe.",
+          "role": "source",
+          "start_char": 12320,
+          "end_char": 12451,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_9b04facd4a148407d76d8c0555d7e947",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            191
+          ],
+          "evidence_sha256": "06fefc2af5c66dd9aff24c77e7a9a2595406bbfa85bc5ada76daae95b3780a73"
+        }
+      ],
+      "target_hint": "This echoes earlier narrative moments where Dan experiences physical manifestations of internal conflict, such as the psychological tax of will in Chapter 5 and the body's revolt against spirit in the",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "1bbb3fcdff9c046190d64a5ce0f57a72ccf837da8d87d0e3b76a40b4da342d0f",
+  "normalized_output_hash": "32b57f4674e33575d0e85c9b01f9d17bc0d18e1a70fec7233ea397dc5d2396a4"
+}

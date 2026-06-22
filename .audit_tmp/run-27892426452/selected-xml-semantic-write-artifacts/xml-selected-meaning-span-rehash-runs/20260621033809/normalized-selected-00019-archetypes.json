@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "archetypes",
+  "scene_window_id": "scene_cfd65d7a128b3b390266f6d72ed36c00",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "2e46c4ae6b7c8748d843bd838db6740f7d29b5e51170c020d80fdb4759f1ba3f",
+  "observations": [
+    {
+      "character": "Dan",
+      "archetype": "Hero",
+      "archetype_gloss": "The seeker striving towards higher truth and transcendence",
+      "movement": "ascent",
+      "summary": "Dan is depicted as a heroic figure on a spiritual quest, dreaming of climbing endless stairs and rising above the earth, symbolizing his striving for transcendence and connection to the original light or source.",
+      "evidence": [
+        {
+          "render_para_key": "rp_56322e0639841a6f01b53f9dd61b090e",
+          "quote": "His dreams had always found their way there. Not the shapeless kind. Deliberate. He had dreamed of climbing endless stairs in the dark, his legs never tiring, the air growing thinner and cleaner with every step. Of jumping and not coming back down. Of spreading his arms and rising until the whole dark earth curved below him like a broken plate."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "archetypes",
+      "character": "Dan",
+      "archetype": "Hero",
+      "archetype_anchor_key": "jungian_hero",
+      "archetype_gloss": null,
+      "movement": "emergence_of_self",
+      "summary": "Dan is depicted as a heroic figure on a spiritual quest, dreaming of climbing endless stairs and rising above the earth, symbolizing his striving for transcendence and connection to the original light or source.",
+      "evidence": [
+        {
+          "render_para_key": "rp_56322e0639841a6f01b53f9dd61b090e",
+          "render_index": 20,
+          "quote": "his dreams had always found their way there. Not the shapeless kind. Deliberate. He had dreamed of climbing endless stairs in the dark, his legs never tiring, the air growing thinner and cleaner with every step. Of jumping and not coming back down. Of spreading his arms and rising until the whole dark earth curved below him like a broken plate.",
+          "role": null,
+          "start_char": 5992,
+          "end_char": 6338,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_cfd65d7a128b3b390266f6d72ed36c00",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            39
+          ],
+          "evidence_sha256": "9003f446cf107d9f89d6bbafa7afc1e937e33abd50443dccec7d6313b7b20cac"
+        }
+      ],
+      "confidence": 0.95,
+      "unresolved_subject": false
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "69ddb647b40ba9948293c5badaa1f1e66b45400bd4e3f920931bb7a30c714400",
+  "normalized_output_hash": "797bc79dc0f4cbd2b65da7530950c28eda80faf7e621259b54f550a0b14903fb"
+}

@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_239aed2b0811e4dd2a7a85feb0b26dc0",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "81648772929a6c81409b94dcf8e601e1d9361901a243956cfc5df8b612b6d851",
+  "observations": [
+    {
+      "kind": "Character Speech",
+      "summary": "Dan addresses his father with a voice that sounds strange and slurred, indicating a possible physical or emotional impairment.",
+      "evidence": [
+        {
+          "render_para_key": "rp_0356c1df224dd387a5f9b345aa49706b",
+          "quote": "\"Father,\" Dan said, and even to his own ears his voice sounded strange—thick, slurred, as if his tongue had forgotten how to shape words properly. \"I'm here.\""
+        }
+      ],
+      "thematic_weight": 7,
+      "gravity": 6,
+      "tension": 8,
+      "confidence": 0.95,
+      "notes": "The slurred voice suggests a significant change or struggle in Dan's condition, possibly symbolic of his internal conflict or transformation."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "Dan addresses his father with a voice that sounds strange and slurred, indicating a possible physical or emotional impairment.",
+      "evidence": [
+        {
+          "render_para_key": "rp_0356c1df224dd387a5f9b345aa49706b",
+          "render_index": 15,
+          "quote": "\"Father,\" Dan said, and even to his own ears his voice sounded strange—thick, slurred, as if his tongue had forgotten how to shape words properly. \"I'm here.\"",
+          "role": null,
+          "start_char": 1955,
+          "end_char": 2113,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_239aed2b0811e4dd2a7a85feb0b26dc0",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            29
+          ],
+          "evidence_sha256": "d1fd8d0cae16e8cab08f387d7f7c2242bee9d9d14f75a3c2aa5fb76d867beb11"
+        }
+      ],
+      "thematic_weight": 1,
+      "gravity": 1,
+      "tension": 1,
+      "confidence": 0.95,
+      "notes": "The slurred voice suggests a significant change or struggle in Dan's condition, possibly symbolic of his internal conflict or transformation."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "9893d2220d206616d5d43e59743b695e818a841e4dde7821ba4cd59e1a12abfa",
+  "normalized_output_hash": "26d41e4c062fb1e95a9486ac7076e9614220e0e142adead474125f7bc8734d0e"
+}

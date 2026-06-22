@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_88039e18a61d445ac850f062ce1b4f86",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "e486455ca89dfdcca51b21d79f5850bef27a7255bb450f03c8cb044a47706607",
+  "observations": [
+    {
+      "axis": "Presence Duality",
+      "polarity": "Ancient and Crushing vs. Watchful and Strange",
+      "summary": "Dan experiences two distinct presences: one beneath him that is ancient and crushing, symbolizing a deep, overwhelming force; the other at his chamber door, watchful and strange, representing a curious and patient entity.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_c816ff5e3ac24f88c4b25bb568e4e14b",
+          "quote": "One below, ancient and crushing."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_c816ff5e3ac24f88c4b25bb568e4e14b",
+          "quote": "One at the entrance, watchful and strange."
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "presence_duality",
+      "polarity": "tension",
+      "summary": "Dan experiences two distinct presences: one beneath him that is ancient and crushing, symbolizing a deep, overwhelming force; the other at his chamber door, watchful and strange, representing a curious and patient entity.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_c816ff5e3ac24f88c4b25bb568e4e14b",
+          "render_index": 93,
+          "quote": "one below, ancient and crushing.",
+          "role": "left",
+          "start_char": 21021,
+          "end_char": 21053,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_88039e18a61d445ac850f062ce1b4f86",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            185
+          ],
+          "evidence_sha256": "1ccac7791201b6f2cd6ab3527f3d3f546e63d10181d2a6ad009b6107d3701e79"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_c816ff5e3ac24f88c4b25bb568e4e14b",
+          "render_index": 93,
+          "quote": "One at the entrance, watchful and strange.",
+          "role": "right",
+          "start_char": 21054,
+          "end_char": 21096,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_88039e18a61d445ac850f062ce1b4f86",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            185
+          ],
+          "evidence_sha256": "ff7136966370cc952f56e59ae785b5c526ac0bbb1654ab8adaa5bdbe1c31fb8a"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "43b776e6df7d462d699acc5d91f1e72cc12ddae5d313ff71db329f138e3de66a",
+  "normalized_output_hash": "6e911fe5b96aef5b4fef5beb7a28b92d7514db1c30b1230e568fccaeb0f5a188"
+}

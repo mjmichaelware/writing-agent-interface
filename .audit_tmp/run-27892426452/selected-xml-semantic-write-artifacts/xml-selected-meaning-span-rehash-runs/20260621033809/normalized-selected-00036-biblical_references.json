@@ -1,0 +1,68 @@
+{
+  "status": "ok",
+  "task_type": "biblical_references",
+  "scene_window_id": "scene_646a0bdacd6949d904c4760865d0ac9d",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "eaf93eb5a619047e5ce3116dfe1af464dcd87b9e55be94ed5d5cf90052a080ab",
+  "observations": [
+    {
+      "biblical_anchor_label": "Psalm 22:14-15",
+      "book": "Psalms",
+      "chapter": 22,
+      "verse_start": 14,
+      "verse_end": 15,
+      "motif_family": "Suffering and Desolation",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The description of a wall 'dense and pulsing with old bruise-light, sick and humid' that 'bled through its surface' with images of a child's face screaming, a woman's hand slipping from a grasp, and blood on white stone evokes the visceral suffering and desolation expressed in Psalm 22:14-15, where the psalmist describes being poured out like water and bones being out of joint, with a tongue sticking to the roof of the mouth, symbolizing extreme anguish and abandonment.",
+      "summary": "The passage symbolically resonates with Psalm 22's vivid depiction of suffering and abandonment, using imagery of bruises, blood, and screams to evoke deep pain and loss.",
+      "evidence": [
+        {
+          "render_para_key": "rp_f608980331fe49a02f8a9b3d3c644b6f",
+          "quote": "a wall dense and pulsing with old bruise-light, sick and humid. It bled through its surface: a child's face screaming in smoke, a woman's hand slipping from a grasp, blood on white stone, a city's final scream before silence swallowed it whole."
+        }
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Psalm 22:14-15",
+      "book": "Psalm",
+      "chapter": 22,
+      "verse_start": 14,
+      "verse_end": 15,
+      "motif_family": "suffering_and_desolation",
+      "biblical_anchor_key": "bibanchor_64a5025ac0cc8fe07164f642ffa7ac4a",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The description of a wall 'dense and pulsing with old bruise-light, sick and humid' that 'bled through its surface' with images of a child's face screaming, a woman's hand slipping from a grasp, and blood on white stone evokes the visceral suffering and desolation expressed in Psalm 22:14-15, where the psalmist describ",
+      "summary": "The passage symbolically resonates with Psalm 22's vivid depiction of suffering and abandonment, using imagery of bruises, blood, and screams to evoke deep pain and loss.",
+      "evidence": [
+        {
+          "render_para_key": "rp_f608980331fe49a02f8a9b3d3c644b6f",
+          "render_index": 37,
+          "quote": "a wall dense and pulsing with old bruise-light, sick and humid. It bled through its surface: a child's face screaming in smoke, a woman's hand slipping from a grasp, blood on white stone, a city's final scream before silence swallowed it whole.",
+          "role": null,
+          "start_char": 9305,
+          "end_char": 9549,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_646a0bdacd6949d904c4760865d0ac9d",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            73
+          ],
+          "evidence_sha256": "aaa1c14985cb03a72c47c489a8f7848481f09ff75bf947ea5d1feba0b50326ec"
+        }
+      ],
+      "confidence": 0.6,
+      "reference": "Psalm 22:14-15",
+      "motif": "suffering_and_desolation"
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "ec8d16ef3f799bd04f4ca42082bc0d12bf3da624584f08a641f086594927313e",
+  "normalized_output_hash": "dcda2a7b9771159dfd6352bb8d4b3c83d6fdb2e7f42ebe26b8a6cb6794518fae"
+}

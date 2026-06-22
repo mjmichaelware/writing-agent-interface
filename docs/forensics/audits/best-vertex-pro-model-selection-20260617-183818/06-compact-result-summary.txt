@@ -1,0 +1,10 @@
+run_dir docs/forensics/audits/xml-grounded-vertex-rehash-runs/20260618003838
+file result-1-0.json
+paragraph_results 1
+dualism_relations 0
+archetype_movements 0
+paragraph_id 007fdf90-65e2-46e6-82ca-5e774e5e2614
+archetype_observations 0
+biblical_references 0
+derived_hyperlinks 0
+---

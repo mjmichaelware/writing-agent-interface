@@ -1,0 +1,68 @@
+{
+  "status": "ok",
+  "task_type": "biblical_references",
+  "scene_window_id": "scene_b3d85689f185a387973cc055f9ffbd43",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "9bc93b91335e75956c40116df21001b754a91b2b8e094accfbb2cfd3bbc710bd",
+  "observations": [
+    {
+      "biblical_anchor_label": "Psalm 46:2-3",
+      "book": "Psalms",
+      "chapter": 46,
+      "verse_start": 2,
+      "verse_end": 3,
+      "motif_family": "Divine Protection Amidst Chaos",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The description of the earth cracking beneath the feet, the sea erupting, and waves crashing over the figure parallels the imagery of God as a refuge amid tumultuous waters and earth shaking, as depicted in Psalm 46:2-3, where despite the earth giving way and waters roaring, the faithful find safety in God.",
+      "summary": "The passage's imagery of fracturing earth and overwhelming waters symbolically resonates with Psalm 46's depiction of divine protection amid natural chaos.",
+      "evidence": [
+        {
+          "render_para_key": "rp_7a58fd484c0172403f8bd544d81b2d16",
+          "quote": "It cracked from beneath his feet outward in every direction at once—beautiful, in a terrible way—the fracture lines racing out through everything he'd trusted. The peaceful blue bled to bruised purple. The sea erupted. Not weather. Something far older. A maelstrom of liquid stone and bitter brine, a churning so vast it made the previous night's dreamwalk seem like a puddle. He found himself clinging to a single inadequate plank of wood. Waves the size of walls crashed over him. The cold stench of the deep invaded every breath."
+        }
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Psalm 46:2-3",
+      "book": "Psalm",
+      "chapter": 46,
+      "verse_start": 2,
+      "verse_end": 3,
+      "motif_family": "divine_protection_amidst_chaos",
+      "biblical_anchor_key": "bibanchor_37985a7ec8394ae55d81f9868eab0cac",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The description of the earth cracking beneath the feet, the sea erupting, and waves crashing over the figure parallels the imagery of God as a refuge amid tumultuous waters and earth shaking, as depicted in Psalm 46:2-3, where despite the earth giving way and waters roaring, the faithful find safety in God.",
+      "summary": "The passage's imagery of fracturing earth and overwhelming waters symbolically resonates with Psalm 46's depiction of divine protection amid natural chaos.",
+      "evidence": [
+        {
+          "render_para_key": "rp_7a58fd484c0172403f8bd544d81b2d16",
+          "render_index": 54,
+          "quote": "It cracked from beneath his feet outward in every direction at once—beautiful, in a terrible way—the fracture lines racing out through everything he'd trusted. The peaceful blue bled to bruised purple. The sea erupted. Not weather. Something far older. A maelstrom of liquid stone and bitter brine, a churning so vast it made the previous night's dreamwalk seem like a puddle. He found himself clinging to a single inadequate plank of wood. Waves the size of walls crashed over him. The cold stench o",
+          "role": null,
+          "start_char": 13119,
+          "end_char": 13619,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_b3d85689f185a387973cc055f9ffbd43",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            107
+          ],
+          "evidence_sha256": "723aca9af48c5025494e5e7aa42152235344c64c89b930c2056eeadea1e76b1b"
+        }
+      ],
+      "confidence": 0.6,
+      "reference": "Psalm 46:2-3",
+      "motif": "divine_protection_amidst_chaos"
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "c9383cf4f01b64790307d8d76d1e82cce814ef7c4facdcc3283c8399e8a4bb45",
+  "normalized_output_hash": "21d2d96e046ddb95b923c6989ea6ebcd952600f69e7c05d02ff31247e0387517"
+}

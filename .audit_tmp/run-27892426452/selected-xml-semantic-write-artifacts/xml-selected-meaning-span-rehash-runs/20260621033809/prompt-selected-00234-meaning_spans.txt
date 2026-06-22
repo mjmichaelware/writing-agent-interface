@@ -1,0 +1,370 @@
+You are a semantic analyst, not a JSON/DB row generator.
+Return only valid JSON matching the requested schema.
+No markdown. No explanation. No extra keys.
+Selected XML render paragraphs are source truth.
+Narrative context capsule is interpretive context only, never source truth, but must be used for narrative consistency and subject resolution.
+
+TASK: meaning_spans
+
+TASK RUBRIC:
+Identify the smallest strong semantic claims or motif-bearing spans in the source packet.
+A meaning span is not a database row. It is a grounded observation tied to source evidence.
+Use empty observations when evidence is weak.
+
+EVIDENCE REQUIREMENTS:
+- Every observation must cite source evidence using render_para_key plus an exact quote.
+- Omit low-confidence claims instead of padding output.
+- Empty observations are valid.
+- Valid empty response is: {"observations":[]}
+- Do not force a claim.
+- Use the full narrative cognition capsule for consistency across the local corpus, but never treat context as source evidence.
+
+SOURCE PACKET:
+{
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "scene_window_id": "scene_1a35d84cc977a520dbfb6b433ae7c867",
+  "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+  "folder": "0003_g_chapter_2-_living_sacrifice_1liqobbwqqwnybdbuqqoxp9hdt2ddoq8nxzwiycwas0s",
+  "render_paragraphs": [
+    {
+      "render_para_key": "rp_52e69bd206d60fa7951abc0c2e3280cb",
+      "render_index": 141,
+      "start_char": 17685,
+      "end_char": 17983,
+      "source_xml_paragraph_indexes": [
+        281
+      ],
+      "text_sha256": "0e5871cbbe2000b93ab6a4fdea8854ca6dfa8b28cdbafb561df985a13381e192",
+      "text": "You could tell by looking at her. Her clothes were wrong—too fine, too brightly colored. Her hair was uncovered, which no decent woman would allow in public. And the way she moved, the way she held herself, suggested someone who was used to being looked at and knew exactly what that looking meant."
+    }
+  ]
+}
+
+NARRATIVE CONTEXT CAPSULE:
+{
+  "mode": "narrative_context_only",
+  "expected_public_chapter_count": 13,
+  "loaded_public_chapter_count": 13,
+  "chapter_hints": [
+    2
+  ],
+  "keywords": [
+    "looking",
+    "allow",
+    "brightly",
+    "clothes",
+    "colored",
+    "decent",
+    "exactly",
+    "looked",
+    "meant",
+    "moved",
+    "public",
+    "someone"
+  ],
+  "full_public_chapter_corpus_loaded": true,
+  "public_chapter_corpus": [
+    {
+      "chapter_number": 2,
+      "sha256": "f2a509eb8a6314cbdbc0dd9a3984fe09cb720101a4de0615dab3d6353db395d3",
+      "score": 10,
+      "keyword_hits": 7,
+      "chapter_hint_boost": 3,
+      "excerpt": "orn leather satchel with dried figs and grain, his small, sharp dagger, flint and pyrite for fire, his mother's small, smooth carving stone, and a precious pinch of salt. He stood at the threshold of his father's room and paused. Aviel remained silent, his gaze fixed on the ceiling, refusing to be drawn back. without looking, aviel reached into the leather pouch he kept under his cot, his hand trembling as he withdrew three worn, heavy silver shekels. He tossed them onto the stone floor. Then, with an agonizing slowness that belied his earlier rage, Aviel pushed two more items toward the center of the room: a sturdy, sealed waterski"
+    },
+    {
+      "chapter_number": 7,
+      "sha256": "fe21c269662112e63ae92118f80d1d68c5a94cb5fb3950a0d8cb1d0f3092b245",
+      "score": 8,
+      "keyword_hits": 8,
+      "chapter_hint_boost": 0,
+      "excerpt": "t an endless sea. It was literally made of flies. Not billions, not trillions, but an endless, unnamed number, a living, moving carpet of shiny black bodies, buzzing wings, and eyes with eyes beyond counting. It was the ground itself, a vast, moving ocean of dark insects that reached to a horizon he couldn't see. Like looking down from high above the deepest ocean, where all is water, here all was fly. It moved with a low, inner power, a gross, sticky, awful, rotting tide that seemed to breathe with the life of the swarm, like madness made real, an abomination of creation itself. And as his fall stopped, leaving him hanging just abo"
+    },
+    {
+      "chapter_number": 4,
+      "sha256": "63b181b1f87727ee5202fe1f59a797a227f379a2446db5edd1cb47d50215b8a7",
+      "score": 6,
+      "keyword_hits": 6,
+      "chapter_hint_boost": 0,
+      "excerpt": "ne cool to the touch, and drew a bucket of water. He drank deeply, the coolness a shock to his system, before sitting down in the shade of a small pomegranate tree. The people of Bethel moved with a quiet, purposeful calm, their voices a soft hum, a counterpoint to the chaotic wails of Gibeah. They seemed to be always looking up, their gazes aimed at the gathering stars. They too, he saw, had found a way to look to the heavens. It was then he noticed her. An old woman, with a face like a dried riverbed, etched with countless stories, and hair like spun silver, she was stirring a pot over a small fire in her courtyard. She had her he"
+    },
+    {
+      "chapter_number": 5,
+      "sha256": "3b0ede4310eca0fccf88e100972d161048f12333411bb4e14c4f6956eaacf039",
+      "score": 6,
+      "keyword_hits": 6,
+      "chapter_hint_boost": 0,
+      "excerpt": "Tab 1 Chapter 5: The Snare The sun, a brazen, indifferent eye in the heavens, pressed its dry, relentless heat onto Dan’s neck, a palpable force urging him ever north. This was not the light of revelation, but the viscous drag of endless day—the psychological tax of a will that had to be continuously renewed. Bethel’s walls, the house of the Unmanifest where the very stones once dreamed of a path between worlds, were now no more than a pale smudge on the rim of the southern horizon. The memory of its clean, simple light faded into the vast, silent glare of the road, leaving behind a subtle, pervasive ache—the perfect, subtle Snare"
+    },
+    {
+      "chapter_number": 10,
+      "sha256": "3fa62b7d098773c1051829693664fd31f16b7ff29ef23e2c7215cc215295460d",
+      "score": 6,
+      "keyword_hits": 6,
+      "chapter_hint_boost": 0,
+      "excerpt": "even a small one, even one wearing a cat, does not get named accidentally. Or perhaps all naming is accident. I was still working through this particular question when she pointed at the mat. \"You are my beast,\" she said. Her finger was steady. \"Not my master. You do not look at me that way. Sit.\" I sat. I continued looking at her in exactly the manner she had objected to, because the quality of the look was not a decision I was making but the condition I had entered, and there was no path back to the condition I had been in before the syllable broke. You may as reasonably ask the river to stop being water. She held my gaze. She loo"
+    },
+    {
+      "chapter_number": 3,
+      "sha256": "a3cba70f46c50af68ae2cdb748915e80578e1bcd905624a4b077fdc99ea693fd",
+      "score": 5,
+      "keyword_hits": 5,
+      "chapter_hint_boost": 0,
+      "excerpt": "lder, tied to the quiet rhythm of flocks and fields, but also expectant, alive with whispers of the times. It felt like a place rooted in the soil, dreaming ancient dreams of a kingdom that would dwell securely. He saw a few townsfolk gathered near a lamp hanging by a doorway, their faces illuminated in the soft glow, looking like faces carved from warm wood as they spoke in hushed tones. Curiosity, that familiar companion, drew him closer. He lingered just within earshot, listening. Dan listened, the talk of leaders and uncertain futures an echo against the battles he had just fought. He heard a man declare, \"King David! A true war"
+    },
+    {
+      "chapter_number": 6,
+      "sha256": "5b7b91ab7dc53343297f6b32b4a59443e75b629c2f1484de0f093bc2ff802a37",
+      "score": 4,
+      "keyword_hits": 4,
+      "chapter_hint_boost": 0,
+      "excerpt": "n, blessedly present. He walked for many more hours, the landscape gradually changing as he left the hills behind and approached the vast, open expanse of an enormous fertile valley. The terrain softened, the fields stretching out towards distant horizons, a gape beneath the endless sky. He knew Megiddo lay ahead, overlooking the great valley, a place of countless battles and history etched into the earth. The city rose ahead, built upon a tell, a mound of countless layers of history, each one a tombstone for a forgotten past. The moment his foot crossed some unseen boundary into the city's sphere of influence, he heard an absurdity"
+    },
+    {
+      "chapter_number": 8,
+      "sha256": "a02f56e5ac0abd966aef2541b27fa8e4f9c5d36a2f7287d2c7bf7b46c026c6c7",
+      "score": 4,
+      "keyword_hits": 4,
+      "chapter_hint_boost": 0,
+      "excerpt": "Chapter 8: The Gravity of Judgment The first truth Daniel truly understood, beyond the roaring silence that had settled inside his fractured head, was the simple, profound warmth of the mat. It was a woven thing, smelling faintly of sun-dried straw and hearth smoke—a scent that carried the deep, psychological threat of home and its gravitational pull. This was not the hard, packed earth of Megiddo, the city built upon layers of endless, bloody, horizontal history. This was not the clammy, weeping stone of his father’s condemned dwelling, the place of Aviel's Rot, where the very structure had become a physical testament to a catast"
+    },
+    {
+      "chapter_number": 9,
+      "sha256": "bb2740591c75d6dd0ee22abf60c25523302ff6758cfd3052f1b2c72e9ffe191b",
+      "score": 4,
+      "keyword_hits": 4,
+      "chapter_hint_boost": 0,
+      "excerpt": "Chapter 9: The Ascent The air, already thin and sharp at the base of Hermon, bit at Daniel’s lungs with the first step. A faint, earthy scent of damp rock and ancient snow filled his nostrils, a prelude to the climb. The ground, still damp from Rafa’s cleansing tears, felt cold beneath his bare feet, a stark contrast to the warmth of the giant's parting words. He looked up, his single eye taking in the colossal, snow-capped sentinel that pierced the sky like a spear. Its upper reaches were shrouded in a permanent, icy shroud, even in the warmth of the season below, a stark reminder of the heights he sought. \"Where the veil is thin"
+    },
+    {
+      "chapter_number": 24,
+      "sha256": "3d4e278a0349a7f47569f4502b324bf0ffbf97adb96568920bef23a877dc0776",
+      "score": 4,
+      "keyword_hits": 4,
+      "chapter_hint_boost": 0,
+      "excerpt": "settling into comfortable lies. But what’s above it? What’s holding up the whole damn show? That’s the question, isn’t it? The one the mirror won’t answer. The one that costs something just to ask. Some truths… some truths are meant to be sought, not seen. Or perhaps, they are meant to be seen only in reflection. Like looking into a polished shield and seeing not the warrior, but the potential for both glory and ruin. The Bible, you see, it’s a bit like that mirror. Shows you a lot about yourself. A lot about what you're capable of. Both the good and the… buzzing.) Their spiritual energies met, a soft collision that sparked a cascad"
+    },
+    {
+      "chapter_number": 1,
+      "sha256": "2f49c451b048e73249daec5c732eff040a81f7310b547eb6a36177a08723deda",
+      "score": 3,
+      "keyword_hits": 3,
+      "chapter_hint_boost": 0,
+      "excerpt": "The trembling torch clutched in the boy's hand scattered dull copper light across the corridor. The frail flame fought against the invading dark, casting suspicious, jittering shadows across the narrow hallway. The small fire shivered, not from wind, but from the beat of his own muffled heart: a rough, offbeat thrum against the overwhelming mass of a condemned dwelling. The air itself felt thick, as if the entire structure had swallowed all light and sound. Each calculated, barefoot step on the unforgiving limestone was a wager of his own mass against the increasing weight of the house. The slightest change in pressure risked a be"
+    },
+    {
+      "chapter_number": 13,
+      "sha256": "960479e956f95dc5674a44b34a4c5bc562dced3d80c43f4622b3c4ad2acc50e9",
+      "score": 3,
+      "keyword_hits": 3,
+      "chapter_hint_boost": 0,
+      "excerpt": "Chapter 13: Exodus The Dreamscape, as you may recall, is a place where the soul may wander free, unburdened by the tedious laws of the waking world, yet the return to the confines of flesh is rarely a gentle one. For Kasha, it was a jarring impact, a painful snap back into the familiar ache of bone and sinew, as if a great, invisible hand had seized her spirit and thrust it back into its earthen vessel. Her gasp, sharp and sudden, tore through the silent tent, a ragged sound that seemed to shred the last vestiges of the Dreamscape’s shimmering illusions. Her eyes, flying open, found the worn canvas roof above her, solid and unyiel"
+    },
+    {
+      "chapter_number": 11,
+      "sha256": "8d3f998fafb7852f66f9a055c6233295c82b0fdbb2450663ec63c7e3961d23e1",
+      "score": 2,
+      "keyword_hits": 2,
+      "chapter_hint_boost": 0,
+      "excerpt": "Chapter 11: Forsaken Since you've journeyed with me this far, through dust and starlight, through the echoing halls of Hermon and the becoming of a boy, you've surely earned a secret. A very old secret, one I've kept tucked away beneath the grand tapestry of this tale, a thread interwoven so subtly that only the keenest eye might follow its glint. For not all who observe stories are merely voices from thin air, nor are all companions quite what they seem. Some have been here all along, present as the breath drawn, curled at Kasha’s feet, a silent shadow in her tent, just as you may remember from those earlier chapters. Indeed, I'v"
+    }
+  ],
+  "narrative_protocol_sources": [
+    {
+      "role": "archetype_protocol",
+      "key": "cat_god_primal_self",
+      "sha256": "089b3617b7dbc3b46ceb43a7053f55662dd11c5b931bc0b2453d8e66c5568a2d",
+      "excerpt": "Literary & Archetypal Fusion Rulebook (The Cat God & The Primal Self) This rulebook dictates the final, deep-level edits required to create a \"New York Times Bestseller\" that operates as an existential mirror, compelling the reader to confront their own inner conflicts and unintegrated \"ego\" (the \"Dr. Jekyll/Mr. Hyde\" tension). I. The Narrator: Deity of Curiosity (The Cat God) The narrator's voice is the subtle, overarching thematic hyperlink for Truth and Love. The narrator is a deity of pure Curiosity in the Dreamscape, near The Source of All. * Voice Style: Highly observant, often focused on the unseen cost of knowledge or the unasked question. The tone must be ancient, knowing, yet slightly playful and precise. * Foreshadowing & Thematic Link: Introduce subtle, sensory language of a feline observer: * Emphasis on silent observation, stalking, low growls, the scent of fear/truth, and an unnerving lightness of foot. * Chapter 6 Anchor: The physical black kitten that joins Kasha MUST be present, serving as the physical a"
+    },
+    {
+      "role": "archetype_protocol",
+      "key": "visceral_empathy",
+      "sha256": "59ed13c0f886611dc08299da8b74306aa860383038e2a645b6436c04c9af25d8",
+      "excerpt": "Emotional & Archetypal Editing Rulebook (Visceral Empathy Focus) This rulebook incorporates all previous historical and hyperlinking instructions while adding a new, critical layer to ensure maximum reader empathy. The goal is to make Dan's internal war between flesh and spirit feel universally relatable (like the Dr. Jekyll and Mr. Hyde struggle you described, without using those specific terms). I. Visceral Empathy & Relatability Rules * Replace Detachment with Somatic Cost: When Dan makes a great spiritual decision (e.g., leaving Bethel, refusing silver), the text MUST emphasize the physical pain and emotional cost of that choice. * Instead of: \"Dan felt a cold resolve.\" * Use: \"A cold, sharp ache settled in the marrow of his chest, a physical rending as he chose the higher, colder truth.\" * Biochemical/Flesh vs. Spirit Conflict (The Dr. Jekyll/Mr. Hyde): Focus on the body's revolt against the spirit's ascetic demands. This is the internal war that makes Dan universally relatable to anyone battling self-control, tempta"
+    },
+    {
+      "role": "story_compendium",
+      "key": "master_compendium",
+      "sha256": "7f86ab925e53d48f6e32e07950f30b81b82bd4270b77b826b7392d7d35e86758",
+      "excerpt": "THE WEIGHT OF THE SKY: MASTER COMPENDIUM (SINGULARITY v.1.0) Author: Michael Alonza Prentice Ware | Tone: Lewis/Snicket/Gaiman/Dahl | Genre: Archetypal Mythic Realism I. THE CORE METAPHYSICAL LAWS The \"I AM\" vs. The \"Gods of Things\": The Vertical Source is pure motion/being. The Canaanite gods are \"Horizontal\" fragments of the material world (lust, greed, dust). The Fragmented Self: The gods (Dagon, Beelzebub, Astarte) are Dan’s own psychological drives looking back at him from the \"inside out.\" Encountering a god is an act of internal mirror-imaging. The Quantum Dust: The Dreamscape (Jungian Collective Subconscious) is made of \"Dust\"—Planck-length cells containing the potential for a Big Bang in every unit. Without Will and Intent (Spirit), these particles collapse into nothingness. The Sacrifice of Judgment: To move from Dan (He who judges the fragments) to Daniel (God is my Judge), the protagonist must undergo a \"thermodynamic zero-point\" descent in the Pit at Megid"
+    },
+    {
+      "role": "new_synopsis",
+      "key": "new_synopsis",
+      "sha256": "022c36c6525eda7d3abe4836aa6ca39647c5b7267cd8c2d7234c956a69569fe0",
+      "excerpt": "gon dismisses this, claiming the \"realm of the living cannot touch the realm of the Dead.\" Dan calls Dagon a \"deity of death,\" to which Dagon replies, \"Look at the war within you and the wars around you; death is ever upon you. I provide you a raft for it to lose its sting.\" Dan denies him, enraging the god, and the dream ends. The next morning, a heated conversation ensues. Aviel, realizing the dream was a message for his son—a rejection of Dagon—recalls a past, cynical conversation where he told Dan, \"if you're looking for a God, then pick up a rock and make it so.\" In his anger, Aviel tells Dan to leave. Dan packs his meager possessions and begins his spiritual and physical quest, traveling north from Hebron to Mount Hermon, the closest point to the spirit realm. His journey is an effort to shed \"earthly treasures\" that tie him down. Part 2: Trials and Transformations As Dan travels, he encounters people and places that reflect the very gods he has rejected. In Bethlehem, he rejects the seductions of an Edomite woman, ang"
+    }
+  ],
+  "subject_resolution_candidates": [
+    {
+      "name": "Dan",
+      "mentions": 15
+    },
+    {
+      "name": "Then",
+      "mentions": 12
+    },
+    {
+      "name": "Aviel",
+      "mentions": 10
+    },
+    {
+      "name": "Hebron",
+      "mentions": 10
+    },
+    {
+      "name": "You",
+      "mentions": 10
+    },
+    {
+      "name": "Dagon",
+      "mentions": 9
+    },
+    {
+      "name": "Kasha",
+      "mentions": 9
+    },
+    {
+      "name": "There",
+      "mentions": 9
+    },
+    {
+      "name": "Beelzebub",
+      "mentions": 8
+    },
+    {
+      "name": "One",
+      "mentions": 8
+    },
+    {
+      "name": "What",
+      "mentions": 8
+    },
+    {
+      "name": "Yet",
+      "mentions": 8
+    },
+    {
+      "name": "Zuna",
+      "mentions": 8
+    },
+    {
+      "name": "Astarte",
+      "mentions": 7
+    },
+    {
+      "name": "Baal",
+      "mentions": 7
+    },
+    {
+      "name": "Bethel",
+      "mentions": 7
+    },
+    {
+      "name": "Hermon",
+      "mentions": 7
+    },
+    {
+      "name": "Megiddo",
+      "mentions": 7
+    },
+    {
+      "name": "Sea",
+      "mentions": 7
+    },
+    {
+      "name": "Bethlehem",
+      "mentions": 6
+    },
+    {
+      "name": "Curiosity",
+      "mentions": 6
+    },
+    {
+      "name": "Daniel",
+      "mentions": 6
+    },
+    {
+      "name": "Israel",
+      "mentions": 6
+    },
+    {
+      "name": "Its",
+      "mentions": 6
+    }
+  ],
+  "available_narrative_context_map_excerpt": "ted through the dreamscape, a wave of pure warmth that touched every corner of this ethereal realm, reaching out, a deep, ancient yearning. \"And I have carried you within me through my earthly journey,\" Isabel responded, her divine light pulsing in recognition, drawing him closer, a reciprocal pull that felt both ancient and utterly new, a silent, powerful craving. Their reunion transcended ordinary und middle=. But even I, ancient as I am, cannot see past that mirror. Curiosity, yes. I know Curiosity. It’s a powerful force, that one. Keeps things moving. Keeps things from settling into comfortable lies. But what’s above it? What’s holding up the whole damn show? That’s the question, isn’t it? The one the mirror won’t answer. The one that costs something just to ask. Some truths… some truths are meant to be sought, not seen. Or perhaps, they are meant to be seen only in reflection. Like looking into a polished shield and seeing not the warrior, but the potential for both glory and ruin. The Bible, you see, it’s a bit like that mirror. Shows you a lot about yourself. A lot about what you're capable of. Both the good and the… buzzing.) Their spiritual energies met, a soft collision that sparked a cascade of resonant frequencies. They began to move together, not side by side, but into one another ending=began their own cosmic dance among the heavens, a distant echo of the profound union that had birthed them. Yet as these stellar siblings orbited one another, one gradually grew more powerful, eventually drawing its brother into its gravitational embrace. This cosmic echo of humanity's oldest tale ensured that the cycle of creation and destruction would continue throughout eternity. In the dreamscape, Dan and Isabel remained forever changed by their reunion—their divine ess",
+  "context_pack_excerpt": "on or new, sacred identity. * The Dagger / The Sword of Will: Rafa’s gift, representing the necessary union of spirit and action. * Internal War / Flesh and Spirit: (New addition) Use this phrase or close variations to directly link Dan's struggle to the Pauline concept. I am ready to receive your chapters one by one and apply these deep emotional and philosophical revisions according to this new rulebook. ================================================================================ ROLE: story_compendium SOURCE_NUMBER: 169 SHA256: 7f86ab925e53d48f6e32e07950f30b81b82bd4270b77b826b7392d7d35e86758 SOURCE_PATH: ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/THE_WEIGHT_OF_THE_SKY-_MASTER_COMPENDIUM_(SINGULARITY_v.txt HASHER_PATH: docs/agent_context/source_drop/hasher_context_v1/03_master_compendium_singularity.txt ================================================================================ THE WEIGHT OF THE SKY: MASTER COMPENDIUM (SINGULARITY v.1.0) Author: Michael Alonza Prentice Ware | Tone: Lewis/Snicket/Gaiman/Dahl | Genre: Archetypal Mythic Realism I. THE CORE METAPHYSICAL LAWS The \"I AM\" vs. The \"Gods of Things\": The Vertical Source is pure motion/being. The Canaanite gods are \"Horizontal\" fragments of the material world (lust, greed, dust). The Fragmented Self: The gods (Dagon, Beelzebub, Astarte) are Dan’s own psychological drives looking back at him from the \"inside out.\" Encountering a god is an act of internal mirror-imaging. The Quantum Dust: The Dreamscape (Jungian Collective Subconscious) is made of \"Dust\"—Planck-length cells containing the potential for a Big Bang in every unit. Without Will and Intent (Spirit), these particles collapse into nothingness. The Sacrifice of Judgment: To move from Dan (He who judges the fragments) to Daniel (God is my Judge), the protagonist must undergo a \"thermodynamic zero-point\" descent in the Pit at Megiddo, losing his voice (human language) to gain crystalline vertical clarity. II. KEY ARCHETYPES & ENTITIES The Trinity: Established in Ch. 1: Father (Aviel/Entropy), Mother (Zuna/Vision), Son (Dan/Volition). Father Aviel: A scholar collapsed into \"systemic decay.\" His hoarding is a literal sacrifice to Dagon, the god of accumulation. His house is a monument to \"Potential Rigorously Refused.\" Beelzebub (The Deceptive Light): A head taller than men, impossibly handsome, bored by his own victory. He has a nervous tick: rubbing his head (The Fall) and checking a watch frozen at 6:00 (The invention of Time). He created Isabel (via Kasha) to have something to control. Kasha (The Witch of Jezreel): Not evil, but ignorant of the \"Vertical.\" Her 7-day Dreamscape journey (6 days of Princes/Sins, 7th day of Nothing) mirrors a corrupted creation. The Cat Narrator: A \"silen",
+  "context_capsule_sha256": "5188e65fd3df7d5c05773f51bb9580ccd4564fea3e6fdd0bfb9e237603d21d4e"
+}
+
+OUTPUT CONTRACT:
+{
+  "type": "OBJECT",
+  "properties": {
+    "observations": {
+      "type": "ARRAY",
+      "items": {
+        "type": "OBJECT",
+        "properties": {
+          "kind": {
+            "type": "STRING"
+          },
+          "summary": {
+            "type": "STRING"
+          },
+          "evidence": {
+            "type": "ARRAY",
+            "items": {
+              "type": "OBJECT",
+              "properties": {
+                "render_para_key": {
+                  "type": "STRING"
+                },
+                "quote": {
+                  "type": "STRING"
+                }
+              },
+              "required": [
+                "render_para_key",
+                "quote"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "thematic_weight": {
+            "type": "NUMBER"
+          },
+          "gravity": {
+            "type": "NUMBER"
+          },
+          "tension": {
+            "type": "NUMBER"
+          },
+          "confidence": {
+            "type": "NUMBER"
+          },
+          "notes": {
+            "type": "STRING",
+            "nullable": true
+          }
+        },
+        "required": [
+          "kind",
+          "summary",
+          "evidence",
+          "thematic_weight",
+          "gravity",
+          "tension",
+          "confidence",
+          "notes"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "observations"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_2cd4b223ab83fcac93d8178c12184f83",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "6cf6199968832014efdd80dc13747d1aa823c6ba3106afeb5b26e298a423e972",
+  "observations": [
+    {
+      "axis": "Aspiration vs. Isolation",
+      "polarity": "Heights pursued vs. solitude endured",
+      "summary": "Pursuing the heights leads to becoming a monument that is cold, isolated, and alone, highlighting the tension between ambition and the loneliness it entails.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_5c3813e33b8c0fef48852d271fe2307d",
+          "quote": "\"The one who pursues the heights becomes the monument—cold, isolated, and alone.\""
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_5c3813e33b8c0fef48852d271fe2307d",
+          "quote": "\"The star you become shall burn alone.\""
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "aspiration_vs_isolation",
+      "polarity": "tension",
+      "summary": "Pursuing the heights leads to becoming a monument that is cold, isolated, and alone, highlighting the tension between ambition and the loneliness it entails.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_5c3813e33b8c0fef48852d271fe2307d",
+          "render_index": 74,
+          "quote": "\"The one who pursues the heights becomes the monument—cold, isolated, and alone.\"",
+          "role": "left",
+          "start_char": 17646,
+          "end_char": 17727,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_2cd4b223ab83fcac93d8178c12184f83",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            147
+          ],
+          "evidence_sha256": "720301d3043a951db4394830eb3a7915ca8e2b72c7146e74e715aa86188629b4"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_5c3813e33b8c0fef48852d271fe2307d",
+          "render_index": 74,
+          "quote": "The star you become shall burn alone",
+          "role": "right",
+          "start_char": 17933,
+          "end_char": 17969,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_2cd4b223ab83fcac93d8178c12184f83",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            147
+          ],
+          "evidence_sha256": "a50d226a83ece99fff8f2401ec958f248b32b1a17dd6fa4c933c54ef24d1207a"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "595f26b831dc2ba2898d3ed32235b7aab999e826b02e9306795553b115b331ba",
+  "normalized_output_hash": "609f42b9a5b9671bd1427cce3953dc3753f4f4f69307412f2b425e59afd02708"
+}

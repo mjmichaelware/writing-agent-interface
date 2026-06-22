@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_5c37acd399ec0db38f09a2e120317fd2",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "8e6582c4fbe6f969e5ae789a0f53a2dc750bbe4c97d767d31e7aa526b6166924",
+  "observations": [
+    {
+      "kind": "emotional_state",
+      "summary": "Aviel's face becomes very still, revealing a cold, killing rage triggered by the threat to his comfortable lies.",
+      "evidence": [
+        {
+          "render_para_key": "rp_73677d5937378ce81e007aaad46f741b",
+          "quote": "Aviel's face had gone very still, and in that stillness, Dan saw something he'd hoped never to see: the cold, killing rage of a man whose comfortable lies have been threatened."
+        }
+      ],
+      "thematic_weight": 0.9,
+      "gravity": 0.8,
+      "tension": 0.85,
+      "confidence": 0.95,
+      "notes": "This observation captures a pivotal emotional shift in Aviel, indicating deep internal conflict and potential narrative consequences."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "Aviel's face becomes very still, revealing a cold, killing rage triggered by the threat to his comfortable lies.",
+      "evidence": [
+        {
+          "render_para_key": "rp_73677d5937378ce81e007aaad46f741b",
+          "render_index": 39,
+          "quote": "Aviel's face had gone very still, and in that stillness, Dan saw something he'd hoped never to see: the cold, killing rage of a man whose comfortable lies have been threatened.",
+          "role": null,
+          "start_char": 4964,
+          "end_char": 5140,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_5c37acd399ec0db38f09a2e120317fd2",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            77
+          ],
+          "evidence_sha256": "2b7b69970296c71cfdbf255f5ef2d44b06b7917129958f425016c80344cd6b65"
+        }
+      ],
+      "thematic_weight": 0.9,
+      "gravity": 0.8,
+      "tension": 0.85,
+      "confidence": 0.95,
+      "notes": "This observation captures a pivotal emotional shift in Aviel, indicating deep internal conflict and potential narrative consequences."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "1c801add86bceb3820acaa8402e1125e758caa51a2fe89649f2e3790f63cd60b",
+  "normalized_output_hash": "5b58a55e18b2f45f51d3aa49a92179d9f368a88c3b3651f402d935b60c5f7985"
+}

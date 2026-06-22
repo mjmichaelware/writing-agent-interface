@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_010fdae2ad7a9d91a6a6298403232013",
+  "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+  "context_capsule_sha256": "d0bb050e19912eeeca63cc1987c871018dde946e8df6524f890d86d10f8a9b4f",
+  "observations": [
+    {
+      "axis": "Hope vs. Despair",
+      "polarity": "Hopeful upward striving vs. crushing despair",
+      "summary": "Dan experiences a tension between the crushing despair caused by his patriarch's squalor and broken spirit, and the hopeful, determined striving symbolized by his mother's voice urging him 'Always up' and his gaze fixed on the clean stars on the horizon.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_0c8c8ac5e94a14c80983c952725061e5",
+          "quote": "His patriarch, suffocated in squalor. The crushing mass broke his spirit."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_0c8c8ac5e94a14c80983c952725061e5",
+          "quote": "He heard his mother, Zuna. Her voice was sharp against the chaos. \"Up, my little pigeon. Always up.\" He wrenched his gaze from the depths. His eyes fixed on the horizon. He sought the first, clean stars."
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "hope_vs_despair",
+      "polarity": "tension",
+      "summary": "Dan experiences a tension between the crushing despair caused by his patriarch's squalor and broken spirit, and the hopeful, determined striving symbolized by his mother's voice urging him 'Always up' and his gaze fixed on the clean stars o",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_0c8c8ac5e94a14c80983c952725061e5",
+          "render_index": 9,
+          "quote": "His patriarch, suffocated in squalor. The crushing mass broke his spirit.",
+          "role": "left",
+          "start_char": 6280,
+          "end_char": 6353,
+          "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+          "scene_window_id": "scene_010fdae2ad7a9d91a6a6298403232013",
+          "source_document_xml_sha256": "4c43f128801df7d839bd5fda91fc148c0068a06a98530bf1c45d5fd004db3bcf",
+          "source_xml_paragraph_indexes": [
+            11
+          ],
+          "evidence_sha256": "ec2babf4df914f0a5f0b09ee62a90c805b1cf9ffc7ceacf22c9d052d54160687"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_0c8c8ac5e94a14c80983c952725061e5",
+          "render_index": 9,
+          "quote": "He heard his mother, Zuna. Her voice was sharp against the chaos. \"Up, my little pigeon. Always up.\" He wrenched his gaze from the depths. His eyes fixed on the horizon. He sought the first, clean stars.",
+          "role": "right",
+          "start_char": 6354,
+          "end_char": 6557,
+          "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+          "scene_window_id": "scene_010fdae2ad7a9d91a6a6298403232013",
+          "source_document_xml_sha256": "4c43f128801df7d839bd5fda91fc148c0068a06a98530bf1c45d5fd004db3bcf",
+          "source_xml_paragraph_indexes": [
+            11
+          ],
+          "evidence_sha256": "818d88fa2e47336f87c65bb608964171e0eaf68c3fa2d62dd7327d2b8acb13ad"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "837e4f956a193091e4595d0c975a3d022d94f347c2c15a100371805832d1f885",
+  "normalized_output_hash": "4937b07c5b01dda0b2a71326784e3fefe579f044a27bd4e4f3205edc29b845f5"
+}

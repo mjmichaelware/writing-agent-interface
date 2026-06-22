@@ -1,0 +1,200 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_4c2914e138249b3141c7597ba6ede724",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "8baea7d866c2acc117fa069d56dddb8913efef55dec25c1253e8ebca627feec5",
+  "observations": [
+    {
+      "axis": "Light and Coldness",
+      "polarity": "Bright vs. Colder",
+      "summary": "The star is described as impossibly bright, yet within its radiant core, a colder light struggles to be born, symbolizing a tension between warmth and coldness.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_34dd7b68c4bc1557a4b288e3c4284602",
+          "quote": "A single star pierced the gray, impossibly bright."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_34dd7b68c4bc1557a4b288e3c4284602",
+          "quote": "But even there, in the star's radiant core, a colder light struggled to be born"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    },
+    {
+      "axis": "Generational Conflict",
+      "polarity": "Older Fire vs. Younger Fire",
+      "summary": "There is an opposition between an older fire and a younger fire, with the younger fire envying the older, prefiguring the first fratricide and a burning carried forward through ages.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_34dd7b68c4bc1557a4b288e3c4284602",
+          "quote": "the first envy of a younger fire for an older"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_34dd7b68c4bc1557a4b288e3c4284602",
+          "quote": "the first fratricide"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.95
+    },
+    {
+      "axis": "Departure and Preparation",
+      "polarity": "The boy must depart vs. The father must prepare his heart",
+      "summary": "A dualism between the boy's departure and the father's emotional preparation is presented, highlighting a tension between leaving and readiness.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_34dd7b68c4bc1557a4b288e3c4284602",
+          "quote": "The boy must depart."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_34dd7b68c4bc1557a4b288e3c4284602",
+          "quote": "The father must prepare his heart."
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "departure_and_preparation",
+      "polarity": "tension",
+      "summary": "A dualism between the boy's departure and the father's emotional preparation is presented, highlighting a tension between leaving and readiness.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_34dd7b68c4bc1557a4b288e3c4284602",
+          "render_index": 44,
+          "quote": "The boy must depart.",
+          "role": "left",
+          "start_char": 11480,
+          "end_char": 11500,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_4c2914e138249b3141c7597ba6ede724",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            87
+          ],
+          "evidence_sha256": "e4f4a3e29ccd5e565781d0db5c714cc995cf1419e3befb9a449c1c92aa3397e5"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_34dd7b68c4bc1557a4b288e3c4284602",
+          "render_index": 44,
+          "quote": "The father must prepare his heart.",
+          "role": "right",
+          "start_char": 11501,
+          "end_char": 11535,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_4c2914e138249b3141c7597ba6ede724",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            87
+          ],
+          "evidence_sha256": "ee616ffe334104c68077518fe250a80a41fa4560d0f531f91303c9a629c1fa01"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    },
+    {
+      "task": "dualisms",
+      "axis": "light_and_coldness",
+      "polarity": "tension",
+      "summary": "The star is described as impossibly bright, yet within its radiant core, a colder light struggles to be born, symbolizing a tension between warmth and coldness.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_34dd7b68c4bc1557a4b288e3c4284602",
+          "render_index": 44,
+          "quote": "A single star pierced the gray, impossibly bright.",
+          "role": "left",
+          "start_char": 11107,
+          "end_char": 11157,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_4c2914e138249b3141c7597ba6ede724",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            87
+          ],
+          "evidence_sha256": "aaf253191332920b4ace79a8f864d8d9502a4c2562cb04e09f3bbafff998cf1a"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_34dd7b68c4bc1557a4b288e3c4284602",
+          "render_index": 44,
+          "quote": "But even there, in the star's radiant core, a colder light struggled to be born",
+          "role": "right",
+          "start_char": 11158,
+          "end_char": 11237,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_4c2914e138249b3141c7597ba6ede724",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            87
+          ],
+          "evidence_sha256": "d03235a27933a12d77badbae930b4afd59b6e60b5925549eb8d82c233a324b5e"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    },
+    {
+      "task": "dualisms",
+      "axis": "generational_conflict",
+      "polarity": "tension",
+      "summary": "There is an opposition between an older fire and a younger fire, with the younger fire envying the older, prefiguring the first fratricide and a burning carried forward through ages.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_34dd7b68c4bc1557a4b288e3c4284602",
+          "render_index": 44,
+          "quote": "the first envy of a younger fire for an older",
+          "role": "left",
+          "start_char": 11292,
+          "end_char": 11337,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_4c2914e138249b3141c7597ba6ede724",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            87
+          ],
+          "evidence_sha256": "f21aa1acb505c1cf0b6eb1f3368a4d45be7197553fa8781e2eb915b4a1894a9a"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_34dd7b68c4bc1557a4b288e3c4284602",
+          "render_index": 44,
+          "quote": "the first fratricide",
+          "role": "right",
+          "start_char": 11270,
+          "end_char": 11290,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_4c2914e138249b3141c7597ba6ede724",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            87
+          ],
+          "evidence_sha256": "f213939d4ce2b3b245177738e8b1a1f6c1483e6c54101eb60e0b58e24e2cad22"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "1c3e1caab299aee81d3fcbca0dded4e587eddcef2e3c56e4aaf20f827ae5d8e7",
+  "normalized_output_hash": "0e2b2695132521fbc8a4e9767fea671c60da70af87d301cface3b8b73256d1a0"
+}

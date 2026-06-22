@@ -1,0 +1,64 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_3b864f513580bf890fe144d7542e5ecd",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "02de873f8a0aa9fc8cc44fed67c861e0588eda3149338c1e88241307d48a122c",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The phrase 'kept his eyes ahead and put one foot in front of the other' echoes the recurring motif of perseverance and forward movement despite hardship throughout the narrative.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_1c8e40ecaf557d51d7d70b07555b1a1f",
+          "quote": "So he kept his eyes ahead and put one foot in front of the other."
+        }
+      ],
+      "target_hint": "This motif parallels earlier descriptions of Dan's journey north, emphasizing steady progress despite physical and spiritual burdens.",
+      "target_evidence": [
+        {
+          "render_para_key": "63b181b1f87727ee5202fe1f59a797a227f379a2446db5edd1cb47d50215b8a7",
+          "quote": "The road ahead would be long, and indeed, the journey already felt vast, the hours stretching thin and quiet, measured only by the steady rhythm of his wandering thoughts, a low, constant murmur in his mind."
+        },
+        {
+          "render_para_key": "5b7b91ab7dc53343297f6b32b4a59443e75b629c2f1484de0f093bc2ff802a37",
+          "quote": "He had woken before the sun... his mind was clear, sharp, and eager to embark on the road ahead."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The phrase 'kept his eyes ahead and put one foot in front of the other' echoes the recurring motif of perseverance and forward movement despite hardship throughout the narrative.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_1c8e40ecaf557d51d7d70b07555b1a1f",
+          "render_index": 91,
+          "quote": "So he kept his eyes ahead and put one foot in front of the other.",
+          "role": "source",
+          "start_char": 11505,
+          "end_char": 11570,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_3b864f513580bf890fe144d7542e5ecd",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            181
+          ],
+          "evidence_sha256": "e87359736673cc1f68a41f8760fdd178e782c4c7863ea9b64cd01e02e9a761a7"
+        }
+      ],
+      "target_hint": "This motif parallels earlier descriptions of Dan's journey north, emphasizing steady progress despite physical and spiritual burdens.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "003a3cf19d9d5dc1aafb5c2014c32e201841f50ffb43b9d20aeab9576711c987",
+  "normalized_output_hash": "e175c24026c831bf7f2e1b897eca20a7cc2ce0ce5b264a148c7a4244c01f4509"
+}

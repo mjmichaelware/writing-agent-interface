@@ -1,0 +1,75 @@
+{
+  "paragraphs": [
+    {
+      "paragraph_id": "01465d23-ba2e-4e2f-ac88-bb9c2415c065",
+      "content_sha256": "7ee2b068589df42a75cc789e0a24c868dcb56e73c095bd2801b6902125a87a95",
+      "archetypal_weights": {
+        "shadow": 0.8,
+        "self": 0.5
+      },
+      "dualism_map": {
+        "ascent_descent": 0.9
+      },
+      "metadata": {
+        "summary": "A moment of profound, cold realization for the protagonist that he is unwitnessed, coinciding with the failure of light and marking a spiritual low point.",
+        "semantic_notes": [
+          "The paragraph emphasizes a state of absolute isolation and the internal absorption of a harsh truth.",
+          "The imagery of cold, stone, and failing light points to a spiritual descent, aligning with the concept of 'The Pit'.",
+          "The explicit negation of a 'witness' is thematically significant, contrasting with other narrative elements like Aviel's eventual witnessing of the star and Sak's role as the curious observer."
+        ]
+      },
+      "archetype_observations": [
+        {
+          "archetype": "Individuation (Confrontation with the Shadow)",
+          "subject_name": "Dan",
+          "movement_stage": "Nigredo / Dark Night of the Soul",
+          "evidence_text": "the plain fact of it, settling into him the way cold settles into stone — *no witness* — as the last light failed.",
+          "interpretation": "This moment represents a stage of profound isolation and the integration of a harsh, cold reality, characteristic of the 'dark night of the soul' or the alchemical Nigredo phase. The failure of external light forces an internal reckoning. The lack of a 'witness' signifies a moment where the ego is stripped of external validation, a necessary step for confronting the unvarnished self and shadow.",
+          "confidence": 0.9
+        }
+      ],
+      "biblical_references": [
+        {
+          "reference_text": "Darkness at the Crucifixion",
+          "book": "Matthew",
+          "chapter": 27,
+          "verse": 45,
+          "allusion_type": "symbolic",
+          "evidence_text": "as the last light failed.",
+          "interpretation": "The phrase 'as the last light failed' symbolically alludes to the supernatural darkness that covered the land during the crucifixion of Christ, a moment of ultimate sacrifice and perceived divine abandonment. This paragraph captures a similar feeling of existential isolation and the death of a certain kind of hope or light, marking a descent.",
+          "confidence": 0.75
+        },
+        {
+          "reference_text": "Heart of Stone",
+          "book": "Ezekiel",
+          "chapter": 36,
+          "verse": 26,
+          "allusion_type": "image_based",
+          "evidence_text": "settling into him the way cold settles into stone",
+          "interpretation": "This image inverts the biblical promise of replacing a heart of stone with a heart of flesh. Here, a cold, hard truth makes the protagonist's inner state akin to stone. It's not about rebellion, but about the chilling, petrifying effect of a profound and desolate realization, signifying a state of being rather than an imminent transformation.",
+          "confidence": 0.6
+        }
+      ],
+      "derived_hyperlinks": [
+        {
+          "theme_node_a": "Dan",
+          "theme_node_b": "The Pit",
+          "connection_type": "Experiencing Descent",
+          "edge_type": "archetype",
+          "confidence": 0.9,
+          "evidence_text": "settling into him the way cold settles into stone — *no witness* — as the last light failed."
+        },
+        {
+          "theme_node_a": "Witness",
+          "theme_node_b": "Isolation",
+          "connection_type": "Negation",
+          "edge_type": "dualism",
+          "confidence": 0.95,
+          "evidence_text": "*No witness*"
+        }
+      ]
+    }
+  ],
+  "dualism_relations": [],
+  "archetype_movements": []
+}

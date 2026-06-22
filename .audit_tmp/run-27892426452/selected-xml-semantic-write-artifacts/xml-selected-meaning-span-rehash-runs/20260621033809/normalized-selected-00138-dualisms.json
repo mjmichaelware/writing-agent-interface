@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_9ce8615ec10073b3d4dffe8360bd6644",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "872f262e971f6822ea10437afd82a23c897fb551b09670583462e1af4a9d6c68",
+  "observations": [
+    {
+      "axis": "Presence vs. Absence",
+      "polarity": "Left: Presence; Right: Absence",
+      "summary": "The dualism between the act of 'leaving' (absence) and the reason for leaving being the inability to 'stand to watch' (presence of suffering or witnessing) creates a tension between engagement and withdrawal.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_aa3c8fb4ba2cc02bbb47f5c25ccaa0aa",
+          "quote": "\"She left because she couldn't stand to watch you drown.\""
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_aa3c8fb4ba2cc02bbb47f5c25ccaa0aa",
+          "quote": "\"She left,\" he said quietly."
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "presence_vs_absence",
+      "polarity": "tension",
+      "summary": "The dualism between the act of 'leaving' (absence) and the reason for leaving being the inability to 'stand to watch' (presence of suffering or witnessing) creates a tension between engagement and withdrawal.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_aa3c8fb4ba2cc02bbb47f5c25ccaa0aa",
+          "render_index": 45,
+          "quote": "\"She left because she couldn't stand to watch you drown.\"",
+          "role": "left",
+          "start_char": 6016,
+          "end_char": 6073,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_9ce8615ec10073b3d4dffe8360bd6644",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            89
+          ],
+          "evidence_sha256": "715149246a90e4787de01fa910bd25a8cf60b0acc1bbca9a71168695f12fbb9a"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_aa3c8fb4ba2cc02bbb47f5c25ccaa0aa",
+          "render_index": 45,
+          "quote": "\"She left,\" he said quietly.",
+          "role": "right",
+          "start_char": 5987,
+          "end_char": 6015,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_9ce8615ec10073b3d4dffe8360bd6644",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            89
+          ],
+          "evidence_sha256": "ae53b736841c72a9c61b28bbbd2e19155df557e8ca81ac5ebe195b44ac1483e1"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "5f4c073d50de71037303b2461d107833c1f61ec6c64a295bc6d71cc11b153b1e",
+  "normalized_output_hash": "cfd65738f79b29e108742c6fe27693da6644c889d2650b76885bb9a67f413a8f"
+}

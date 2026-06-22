@@ -1,0 +1,80 @@
+src/app/api/graph/route.ts:10:      `SELECT id, chapter_id, content, archetypal_weights, dualism_map 
+src/app/api/graph/route.ts:12:       WHERE (archetypal_weights IS NOT NULL AND archetypal_weights != '{}'::jsonb)
+src/app/api/graph/route.ts:13:          OR (dualism_map IS NOT NULL AND dualism_map != '{}'::jsonb)`
+src/app/api/graph/route.ts:19:       FROM biblical_references`
+src/app/api/graph/route.ts:22:    // 3. Fetch explicit hyperlinks
+src/app/api/graph/route.ts:23:    const { rows: hyperlinks } = await query(
+src/app/api/graph/route.ts:24:      `SELECT id, paragraph_id, theme_node_a, theme_node_b, link_type, weight 
+src/app/api/graph/route.ts:25:       FROM hyperlinks`
+src/app/api/graph/route.ts:51:      if (p.archetypal_weights && typeof p.archetypal_weights === 'object') {
+src/app/api/graph/route.ts:52:        Object.entries(p.archetypal_weights).forEach(([arch, weight]) => {
+src/app/api/graph/route.ts:60:      if (p.dualism_map && typeof p.dualism_map === 'object') {
+src/app/api/graph/route.ts:61:        Object.entries(p.dualism_map).forEach(([dual, val]) => {
+src/app/api/graph/route.ts:79:    for (const hl of hyperlinks) {
+src/app/api/graph/route.ts:80:      const nodeA = `theme_${hl.theme_node_a}`;
+src/app/api/graph/route.ts:81:      const nodeB = hl.theme_node_b ? `theme_${hl.theme_node_b}` : null;
+src/app/api/graph/route.ts:83:      addNode(nodeA, 'theme', hl.theme_node_a, 2);
+src/app/api/graph/route.ts:85:        addNode(nodeB, 'theme', hl.theme_node_b, 2);
+src/app/api/graph/route.ts:86:        addLink(nodeA, nodeB, hl.link_type, hl.weight || 1);
+src/app/api/graph/route.ts:89:        addLink(hl.paragraph_id, nodeA, hl.link_type, hl.weight || 1);
+src/app/api/manuscript/route.ts:26:    .select('*, biblical_references(*), chapters(part_number, chapter_number)')
+src/app/api/search/route.ts:37:        archetypal_weights,
+src/app/api/search/route.ts:38:        dualism_map,
+src/app/api/chapters/route.ts:96:      .select('id, content, chunk_index, archetypal_weights, dualism_map, hebrew_spans, metadata')
+src/app/api/chapters/route.ts:113:        archetypal_weights: p.archetypal_weights,
+src/app/api/chapters/route.ts:114:        dualism_map: p.dualism_map,
+src/app/api/chapters/route.ts:116:        metadata: p.metadata,
+src/app/api/health/route.ts:64:        timestamp: entry.metadata.timestamp,
+src/app/api/biblical-references/route.ts:7:      `SELECT * FROM biblical_references ORDER BY book ASC, chapter ASC, verse ASC`
+src/services/orchestration-engine/orchestrator.py:7:    infrastructure_nodes = ["logic-governance", "reference-data", "initialization-metadata"]
+src/services/orchestration-engine/google-swarm.ts:76:  static async logIntegrity(event: string, metadata: any) {
+src/services/orchestration-engine/google-swarm.ts:82:        metadata: JSON.stringify(metadata),
+src/services/orchestration-engine/google-swarm.ts:118:        archetypal_weights: JSON.stringify(para.archetypal_weights),
+src/services/orchestration-engine/google-swarm.ts:119:        dualism_map: JSON.stringify(para.dualism_map),
+src/services/memory-engine/vector-store.ts:47:        archetypal_weights JSONB DEFAULT '{}',
+src/services/memory-engine/vector-store.ts:48:        dualism_map JSONB DEFAULT '{}',
+src/services/memory-engine/vector-store.ts:50:        metadata JSONB DEFAULT '{}',
+src/services/memory-engine/vector-store.ts:54:      CREATE TABLE IF NOT EXISTS biblical_references (
+src/services/document-analyzer/corpus-searcher.ts:32:        archetypal_weights,
+src/services/document-analyzer/corpus-searcher.ts:33:        dualism_map,
+src/services/ingestion/pipeline.ts:25:// Extractor for XML metadata
+src/services/ingestion/pipeline.ts:27:  const metadata: any = {};
+src/services/ingestion/pipeline.ts:32:  if (sceneMatch) metadata.scene_id = sceneMatch[1];
+src/services/ingestion/pipeline.ts:33:  if (timeMatch) metadata.time_of_day = timeMatch[1];
+src/services/ingestion/pipeline.ts:34:  if (weatherMatch) metadata.weather = weatherMatch[1];
+src/services/ingestion/pipeline.ts:36:  return metadata;
+src/services/ingestion/pipeline.ts:92:          "archetypal_weights": { "shadow": 0.0, "persona": 0.0, "anima": 0.0, "self": 0.0, "hero": 0.0 },
+src/services/ingestion/pipeline.ts:93:          "dualism_map": { "sacred": 0.0, "descent": 0.0 },
+src/services/ingestion/pipeline.ts:94:          "biblical_references": [{ "text": "...", "book": "...", "chapter": 0, "verse": 0 }],
+src/services/ingestion/pipeline.ts:95:          "hyperlinks": [{ "theme_node_a": "...", "theme_node_b": "...", "link_type": "dualism" }]` 
+src/services/ingestion/pipeline.ts:119:          archetypal_weights, dualism_map, hebrew_spans, metadata
+src/services/ingestion/pipeline.ts:124:          enrichment.archetypal_weights || {},
+src/services/ingestion/pipeline.ts:125:          enrichment.dualism_map || {},
+src/services/ingestion/pipeline.ts:133:      if (paragraphData && enrichment.biblical_references?.length > 0) {
+src/services/ingestion/pipeline.ts:134:        for (const ref of enrichment.biblical_references) {
+src/services/ingestion/pipeline.ts:136:            `INSERT INTO biblical_references (paragraph_id, reference_text, book, chapter, verse)
+src/services/ingestion/pipeline.ts:143:      if (paragraphData && enrichment.hyperlinks?.length > 0) {
+src/services/ingestion/pipeline.ts:144:        for (const link of enrichment.hyperlinks) {
+src/services/ingestion/pipeline.ts:146:            `INSERT INTO hyperlinks (paragraph_id, theme_node_a, theme_node_b, link_type)
+src/services/ingestion/pipeline.ts:148:            [paragraphData.id, link.theme_node_a, link.theme_node_b, link.link_type || 'dualism']
+supabase/migrations/20260521000000_initial_schema.sql:24:    archetypal_weights JSONB DEFAULT '{}'::jsonb, -- shadow, persona, anima, self, hero
+supabase/migrations/20260521000000_initial_schema.sql:25:    dualism_map JSONB DEFAULT '{}'::jsonb, -- sacred vs descent
+supabase/migrations/20260521000000_initial_schema.sql:27:    metadata JSONB DEFAULT '{}'::jsonb, -- System 14: EMA XML metadata (scene_id, time_of_day, weather)
+supabase/migrations/20260521000000_initial_schema.sql:32:CREATE TABLE biblical_references (
+supabase/migrations/20260521000000_initial_schema.sql:45:ALTER TABLE biblical_references ENABLE ROW LEVEL SECURITY;
+supabase/migrations/20260521000000_initial_schema.sql:50:CREATE POLICY "Allow public read-only access to biblical references" ON biblical_references FOR SELECT USING (true);
+supabase/migrations/20260521000000_initial_schema.sql:56:CREATE POLICY "Allow public read-only access to biblical references" ON biblical_references FOR SELECT USING (true);
+supabase/migrations/20260521000001_vector_search.sql:11:  archetypal_weights jsonb,
+supabase/migrations/20260521000001_vector_search.sql:12:  dualism_map jsonb,
+supabase/migrations/20260521000001_vector_search.sql:23:    paragraphs.archetypal_weights,
+supabase/migrations/20260521000001_vector_search.sql:24:    paragraphs.dualism_map,
+supabase/migrations/20260602000000_phase1_sync.sql:2:-- Ensure hyperlinks table exists
+supabase/migrations/20260602000000_phase1_sync.sql:3:CREATE TABLE IF NOT EXISTS hyperlinks (
+supabase/migrations/20260602000000_phase1_sync.sql:6:    theme_node_a TEXT NOT NULL,
+supabase/migrations/20260602000000_phase1_sync.sql:7:    theme_node_b TEXT,
+supabase/migrations/20260602000000_phase1_sync.sql:8:    link_type TEXT DEFAULT 'dualism', -- e.g. 'dualism', 'foreshadowing', 'motif'
+supabase/migrations/20260602000000_phase1_sync.sql:16:ALTER TABLE biblical_references ENABLE ROW LEVEL SECURITY;
+supabase/migrations/20260602000000_phase1_sync.sql:17:ALTER TABLE hyperlinks ENABLE ROW LEVEL SECURITY;
+supabase/migrations/20260602000000_phase1_sync.sql:29:        CREATE POLICY "Allow public read-only access to biblical references" ON biblical_references FOR SELECT USING (true);
+supabase/migrations/20260602000000_phase1_sync.sql:31:    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Allow public read-only access to hyperlinks') THEN
+supabase/migrations/20260602000000_phase1_sync.sql:32:        CREATE POLICY "Allow public read-only access to hyperlinks" ON hyperlinks FOR SELECT USING (true);

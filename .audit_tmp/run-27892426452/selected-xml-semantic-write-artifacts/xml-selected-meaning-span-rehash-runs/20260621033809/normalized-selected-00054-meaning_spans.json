@@ -1,0 +1,15 @@
+{
+  "status": "skipped",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_d6b56c282a5e90bc6cd51f4022ce2782",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "cb1d9a3d6a479fa608db45123cf1ca8caaf33b180addbead3acb90adefbb05ac",
+  "observations": [],
+  "accepted_observations": [],
+  "rejected_observations": [],
+  "failure_reason": "below_min_chars",
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "225e762caa8cb172d84527d9dafc91d35fa66926b5536689e683325e81945c89",
+  "normalized_output_hash": "3d395269f14a4c7370e1bbf748c08b1940ad897b9c49c5d34ae831407065425b"
+}

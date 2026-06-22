@@ -1,0 +1,101 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_d94924957572763d9e6ca9111260ac31",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "904efef73172095d3685c4516b234b54c6803d2f656689bddf78d3924298a7ce",
+  "observations": [
+    {
+      "kind": "PhysicalAction",
+      "summary": "Dagon leaned closer, causing a significant displacement of water.",
+      "evidence": [
+        {
+          "render_para_key": "rp_2fddd7a3ec6b78fb176b512049a0f00d",
+          "quote": "Dagon leaned closer. The movement displaced mountains of water"
+        }
+      ],
+      "thematic_weight": 0.7,
+      "gravity": 0.6,
+      "tension": 0.5,
+      "confidence": 0.95,
+      "notes": "This action emphasizes Dagon's imposing presence and the physical impact of his movement."
+    },
+    {
+      "kind": "EnvironmentalEffect",
+      "summary": "The displacement of water by Dagon's movement caused a secondary wave that crashed over the plank and over Dan.",
+      "evidence": [
+        {
+          "render_para_key": "rp_2fddd7a3ec6b78fb176b512049a0f00d",
+          "quote": "the secondary wave crashing over the plank and over Dan."
+        }
+      ],
+      "thematic_weight": 0.8,
+      "gravity": 0.7,
+      "tension": 0.6,
+      "confidence": 0.95,
+      "notes": "This highlights the physical consequences of Dagon's movement on Dan and the environment."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "Dagon leaned closer, causing a significant displacement of water.",
+      "evidence": [
+        {
+          "render_para_key": "rp_2fddd7a3ec6b78fb176b512049a0f00d",
+          "render_index": 64,
+          "quote": "Dagon leaned closer. The movement displaced mountains of water",
+          "role": null,
+          "start_char": 15428,
+          "end_char": 15490,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_d94924957572763d9e6ca9111260ac31",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            127
+          ],
+          "evidence_sha256": "b1c45dabdcbe4acbcee4cc2c589ae0d24dfa69db00be335d71222df97d6a76a3"
+        }
+      ],
+      "thematic_weight": 0.7,
+      "gravity": 0.6,
+      "tension": 0.5,
+      "confidence": 0.95,
+      "notes": "This action emphasizes Dagon's imposing presence and the physical impact of his movement."
+    },
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "The displacement of water by Dagon's movement caused a secondary wave that crashed over the plank and over Dan.",
+      "evidence": [
+        {
+          "render_para_key": "rp_2fddd7a3ec6b78fb176b512049a0f00d",
+          "render_index": 64,
+          "quote": "the secondary wave crashing over the plank and over Dan.",
+          "role": null,
+          "start_char": 15492,
+          "end_char": 15548,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_d94924957572763d9e6ca9111260ac31",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            127
+          ],
+          "evidence_sha256": "276e61ccf4e2be9b748513746e6f288816dc76f54f9589041958da7f34acc2fe"
+        }
+      ],
+      "thematic_weight": 0.8,
+      "gravity": 0.7,
+      "tension": 0.6,
+      "confidence": 0.95,
+      "notes": "This highlights the physical consequences of Dagon's movement on Dan and the environment."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "78eaa6dba1fd79d3b26f4540115e4524e246ff9af701dbe1ae72ba02212ca807",
+  "normalized_output_hash": "e4d73cf61aea9c0ad5a8c767257e24a95e6eaec269e4e8205f1dfc6c057deb42"
+}

@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_b00ba2986294fe1a261b10dacaded044",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "be2fa235e14e737700807dce9d5a48cd0be90e301dc0d5285b252729d63a228f",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "Aviel's advice to 'pick up a stone and give it a name' as a way to seek answers from a tangible power parallels the thematic motif of seeking concrete sources of power or truth in the narrative.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_ec7260feb00757161f76b9b9b5714f38",
+          "quote": "Three nights ago Aviel had hissed across their fire: \"If you are still searching for your source, boy, pick up a stone and give it a name. Seek answers from a power you can touch.\""
+        }
+      ],
+      "target_hint": "This echoes the broader narrative theme of Dan's quest for understanding and connection to a tangible source of power or truth, as seen in his journey and interactions with physical and metaphysical elements.",
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "Aviel's advice to 'pick up a stone and give it a name' as a way to seek answers from a tangible power parallels the thematic motif of seeking concrete sources of power or truth in the narrative.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_ec7260feb00757161f76b9b9b5714f38",
+          "render_index": 18,
+          "quote": "Three nights ago Aviel had hissed across their fire: \"If you are still searching for your source, boy, pick up a stone and give it a name. Seek answers from a power you can touch.\"",
+          "role": "source",
+          "start_char": 5486,
+          "end_char": 5666,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_b00ba2986294fe1a261b10dacaded044",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            35
+          ],
+          "evidence_sha256": "839373c5e8366e3162ca9daa980a8a41b4b5ae49b65e0fbd3ead9789207c2b4d"
+        }
+      ],
+      "target_hint": "This echoes the broader narrative theme of Dan's quest for understanding and connection to a tangible source of power or truth, as seen in his journey and interactions with physical and metaphysical e",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "1a6390955bba486318e57f312111c812736815bdb9f209a046ed2112e1dba8b5",
+  "normalized_output_hash": "1aa9702c1cad201a39f8eb7a01a953bd406a69690386ab284922ef58f9903a78"
+}

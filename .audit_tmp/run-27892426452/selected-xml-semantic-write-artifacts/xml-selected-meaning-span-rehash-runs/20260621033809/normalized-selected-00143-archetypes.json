@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "archetypes",
+  "scene_window_id": "scene_0e6a4eb2ab78e6d4913625124410bca6",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "6457ef46bfbf1a120fd91073d89052682535a6625134de005b8b2d8cf4a7c8a9",
+  "observations": [
+    {
+      "character": "Aviel",
+      "archetype": "Shadow",
+      "archetype_gloss": "Represents decay, obstruction, and the dark aspects of the psyche resisting growth",
+      "movement": "ordeal",
+      "summary": "Aviel embodies the Shadow archetype as he confronts Dan with harsh rejection and condemnation, reflecting his internal decay and resistance to Dan's aspirations.",
+      "evidence": [
+        {
+          "render_para_key": "rp_fbf01271728de3c12b9be5fabe789c6d",
+          "quote": "\"GET OUT!\" Aviel's voice cracked like a whip. \"Pack your things! Leave this house! If you're so eager to chase your mother's delusions, if you're so certain you can climb to the heavens while the rest of us grovel in the mud, then GO! See how far your self-righteousness takes you!\""
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "archetypes",
+      "character": "Aviel",
+      "archetype": "Shadow",
+      "archetype_anchor_key": "jungian_shadow",
+      "archetype_gloss": null,
+      "movement": "ordeal",
+      "summary": "Aviel embodies the Shadow archetype as he confronts Dan with harsh rejection and condemnation, reflecting his internal decay and resistance to Dan's aspirations.",
+      "evidence": [
+        {
+          "render_para_key": "rp_fbf01271728de3c12b9be5fabe789c6d",
+          "render_index": 50,
+          "quote": "\"GET OUT!\" Aviel's voice cracked like a whip. \"Pack your things! Leave this house! If you're so eager to chase your mother's delusions, if you're so certain you can climb to the heavens while the rest of us grovel in the mud, then GO! See how far your self-righteousness takes you!\"",
+          "role": null,
+          "start_char": 6319,
+          "end_char": 6601,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_0e6a4eb2ab78e6d4913625124410bca6",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            99
+          ],
+          "evidence_sha256": "9d30bec299eb74670b8b7fe488ee1d41ffec8b470a0abf595cfe4a6c86924e8c"
+        }
+      ],
+      "confidence": 0.95,
+      "unresolved_subject": false
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "5cfd1aece70af94c21d40e8fe2e6b7e18340ea7823dfc109363ce7e1b62ba920",
+  "normalized_output_hash": "ec1d5cd0fd32e511098c303573a1432f6e2c4933a6c55d2c1f233e8cf810e4e5"
+}

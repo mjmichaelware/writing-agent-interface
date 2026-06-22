@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_58fd68e61ee092ca79d25a7495c7f0a6",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "66170f1ac4f99f997f9fed1f8f04fd1dd333a296c5f224723c7e55b342ea2e22",
+  "observations": [
+    {
+      "axis": "Life vs. Death",
+      "polarity": "Life on the left, Death on the right",
+      "summary": "The passage contrasts the boundary between what still counts as life and what has crossed over into death or decay, symbolized by the count of eighteen pottery shards and the pervasive ruin around Dan.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_9c518c9e2e2820c569482dec3994eefd",
+          "quote": "Dan had counted eighteen visible pottery shards one morning, and something about that number had made him stop counting there, as if eighteen marked the boundary between what still counted as life"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_9c518c9e2e2820c569482dec3994eefd",
+          "quote": "The failed records lay everywhere—parchment and crumbling wax tablets, stripped clean by mold that had developed what could only be called ambition. Ruined astrolabes in the corners, their rings seized into arrangements pointing toward no coordinate in heaven or earth. Desiccated fruits clinging to their seeds. Water skins cracked and smelling of stale leather. Even the well had stopped remembering how to hold water."
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "life_vs_death",
+      "polarity": "tension",
+      "summary": "The passage contrasts the boundary between what still counts as life and what has crossed over into death or decay, symbolized by the count of eighteen pottery shards and the pervasive ruin around Dan.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_9c518c9e2e2820c569482dec3994eefd",
+          "render_index": 10,
+          "quote": "Dan had counted eighteen visible pottery shards one morning, and something about that number had made him stop counting there, as if eighteen marked the boundary between what still counted as life",
+          "role": "left",
+          "start_char": 3704,
+          "end_char": 3900,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_58fd68e61ee092ca79d25a7495c7f0a6",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            19
+          ],
+          "evidence_sha256": "bdb956e0234e36e988bcc38f18aef4368cb2d467f700ab8646df6e46041ee164"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_9c518c9e2e2820c569482dec3994eefd",
+          "render_index": 10,
+          "quote": "The failed records lay everywhere—parchment and crumbling wax tablets, stripped clean by mold that had developed what could only be called ambition. Ruined astrolabes in the corners, their rings seized into arrangements pointing toward no coordinate in heaven or earth. Desiccated fruits clinging to their seeds. Water skins cracked and smelling of stale leather. Even the well had stopped remembering how to hold water.",
+          "role": "right",
+          "start_char": 3937,
+          "end_char": 4357,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_58fd68e61ee092ca79d25a7495c7f0a6",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            19
+          ],
+          "evidence_sha256": "bbb78a71ae2ece9cd98900a07b1488037ac55ad9816ac339c382f9424acdbf97"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "8564bd93bcbdd72917a034a80a78fc8e3f3bece400a18ca796ed2e6150848013",
+  "normalized_output_hash": "2d2941a0e723ba17c9772b9c25a7f23e69b42f91782a7acebeef3f0b44c45ccd"
+}

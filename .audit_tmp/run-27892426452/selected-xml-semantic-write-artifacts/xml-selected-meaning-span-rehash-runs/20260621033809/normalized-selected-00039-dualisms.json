@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_6defa6c2d5b1008772d9b5e35c67ec45",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "6233308c0d2188fa2a5d880daaaa01a6630957d6190cf9673e7b3c51f905c47c",
+  "observations": [
+    {
+      "axis": "Intent vs. Emptiness",
+      "polarity": "Intent as active force vs. Emptiness as passive space",
+      "summary": "Dan's act of lifting his palm and commanding 'Let it rain' demonstrates the power of intent over the emptiness above, highlighting a tension between active will and passive void.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_d461bee641fe59aa1647bd62d9a2f01f",
+          "quote": "Dan lifted his palm toward the emptiness above. Intent was enough. \"Let it rain.\""
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_d461bee641fe59aa1647bd62d9a2f01f",
+          "quote": "Dan lifted his palm toward the emptiness above."
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "intent_vs_emptiness",
+      "polarity": "tension",
+      "summary": "Dan's act of lifting his palm and commanding 'Let it rain' demonstrates the power of intent over the emptiness above, highlighting a tension between active will and passive void.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_d461bee641fe59aa1647bd62d9a2f01f",
+          "render_index": 40,
+          "quote": "Dan lifted his palm toward the emptiness above. Intent was enough. \"Let it rain.\"",
+          "role": "left",
+          "start_char": 9942,
+          "end_char": 10023,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_6defa6c2d5b1008772d9b5e35c67ec45",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            79
+          ],
+          "evidence_sha256": "856d597f6ed71a17d4069ad1ab73d1c5258698998ad60887649b6251b10cd04b"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_d461bee641fe59aa1647bd62d9a2f01f",
+          "render_index": 40,
+          "quote": "Dan lifted his palm toward the emptiness above.",
+          "role": "right",
+          "start_char": 9942,
+          "end_char": 9989,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_6defa6c2d5b1008772d9b5e35c67ec45",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            79
+          ],
+          "evidence_sha256": "5a0647c5533fbcb5f6f25b9447314b5b578a649bc23a740b315214b40684d21c"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "ce7bdbeac8c0e869e5b8d96e4c7292e59d5abe406563a7125022a2efea879ec8",
+  "normalized_output_hash": "bea790985ebfe0ab26840d303c382c47b0bf8fd12b5ab08c0dee582c26510b94"
+}

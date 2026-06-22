@@ -1,0 +1,67 @@
+{
+  "status": "ok",
+  "task_type": "biblical_references",
+  "scene_window_id": "scene_1af1a1d28a6652a7731b6c7780605e7a",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "9ec12386c375df7b9ad4f311a5c9a015f40710b0904ed93f0719bd18407dd2a2",
+  "observations": [
+    {
+      "biblical_anchor_label": "Luke 15:11-32",
+      "book": "Luke",
+      "chapter": 15,
+      "verse_start": 11,
+      "verse_end": 32,
+      "motif_family": "Grief and Restoration",
+      "relationship_type": "narrative_parallel",
+      "correspondence_rationale": "The passage describes two contrasting responses to loss: one who discards all and starts fresh, and another who clings tightly to remnants, paralleling the parable of the Prodigal Son where the son leaves and the father awaits restoration. The son's act of creeping through the dark to undo his father's tight grasp on grief echoes the son's return and reconciliation in Luke 15.",
+      "summary": "The narrative parallels the Prodigal Son's story, illustrating contrasting grief responses and the son's effort to restore his father from grief's tight hold.",
+      "evidence": [
+        {
+          "render_para_key": "rp_1b81ea2d1676e70d59ae45513f4dd924",
+          "quote": "Some people throw everything away when they lose the thing they love most—burn it all, scatter the ashes, start fresh with empty hands. Others keep every thread, every cracked vessel, every scrap of parchment with nothing written on it, and pull it tighter and tighter until there is no room left to breathe. Aviel was one of those. Which is relevant because it is exactly what his son was creeping through the dark to undo."
+        }
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Luke 15:11-32",
+      "book": "Luke",
+      "chapter": 15,
+      "verse_start": 11,
+      "verse_end": 32,
+      "motif_family": "grief_and_restoration",
+      "relationship_type": "narrative_parallel",
+      "correspondence_rationale": "The passage describes two contrasting responses to loss: one who discards all and starts fresh, and another who clings tightly to remnants, paralleling the parable of the Prodigal Son where the son leaves and the father awaits restoration. The son's act of creeping through the dark to undo his father's tight grasp on g",
+      "summary": "The narrative parallels the Prodigal Son's story, illustrating contrasting grief responses and the son's effort to restore his father from grief's tight hold.",
+      "evidence": [
+        {
+          "render_para_key": "rp_1b81ea2d1676e70d59ae45513f4dd924",
+          "render_index": 5,
+          "quote": "Some people throw everything away when they lose the thing they love most—burn it all, scatter the ashes, start fresh with empty hands. Others keep every thread, every cracked vessel, every scrap of parchment with nothing written on it, and pull it tighter and tighter until there is no room left to breathe. Aviel was one of those. Which is relevant because it is exactly what his son was creeping through the dark to undo.",
+          "role": null,
+          "start_char": 1225,
+          "end_char": 1649,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_1af1a1d28a6652a7731b6c7780605e7a",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            9
+          ],
+          "evidence_sha256": "db00ce02f0903243d8a4ed2fa260f3208488a7057430575b24ef84f0e5d53a73"
+        }
+      ],
+      "confidence": 0.9,
+      "reference": "Luke 15:11-32",
+      "motif": "grief_and_restoration"
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "058cf77c851eff8468c0cd3b26d0bf766b7fb5b7a6b74f398ec05e2268c6b488",
+  "normalized_output_hash": "5acdfef30df7ab8013ea1de0678f2f9fa221fab7cc9508f39fde1e370a054412"
+}

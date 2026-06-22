@@ -1,0 +1,101 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_6e1191d013f97edba1d4f6575f03ae02",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "2048a86bd0cec3795e632889f72de8b332bd23166fd414daf852ba40909a0569",
+  "observations": [
+    {
+      "kind": "Character Ability",
+      "summary": "Dan possesses a special gift which he has used twice before.",
+      "evidence": [
+        {
+          "render_para_key": "rp_6d68a643194f302143e8cbf5f1d1a5a9",
+          "quote": "Dan had the gift. Had used it twice before."
+        }
+      ],
+      "thematic_weight": 0.7,
+      "gravity": 0.6,
+      "tension": 0.4,
+      "confidence": 0.9,
+      "notes": "The nature of the gift is not specified here but is significant to Dan's character."
+    },
+    {
+      "kind": "Character Motivation",
+      "summary": "Dan intends to use his gift a third time tonight to test if he still can, motivated partly by curiosity and not solely by his father.",
+      "evidence": [
+        {
+          "render_para_key": "rp_6d68a643194f302143e8cbf5f1d1a5a9",
+          "quote": "tonight, for reasons that were not entirely about his father—he wanted to know if he could still do it, wanted to test the power the way young people test things they have been told are dangerous—he was going to use it a third time."
+        }
+      ],
+      "thematic_weight": 0.8,
+      "gravity": 0.7,
+      "tension": 0.6,
+      "confidence": 0.95,
+      "notes": "This highlights Dan's youthful curiosity and the theme of testing limits despite warnings."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "Dan intends to use his gift a third time tonight to test if he still can, motivated partly by curiosity and not solely by his father.",
+      "evidence": [
+        {
+          "render_para_key": "rp_6d68a643194f302143e8cbf5f1d1a5a9",
+          "render_index": 26,
+          "quote": "tonight, for reasons that were not entirely about his father—he wanted to know if he could still do it, wanted to test the power the way young people test things they have been told are dangerous—he was going to use it a third time.",
+          "role": null,
+          "start_char": 7265,
+          "end_char": 7497,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_6e1191d013f97edba1d4f6575f03ae02",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            51
+          ],
+          "evidence_sha256": "d1fb4e6a50cb651557ccaa4a700c4351e0e3fa1557651dd973e59aee669b4a28"
+        }
+      ],
+      "thematic_weight": 0.8,
+      "gravity": 0.7,
+      "tension": 0.6,
+      "confidence": 0.95,
+      "notes": "This highlights Dan's youthful curiosity and the theme of testing limits despite warnings."
+    },
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "Dan possesses a special gift which he has used twice before.",
+      "evidence": [
+        {
+          "render_para_key": "rp_6d68a643194f302143e8cbf5f1d1a5a9",
+          "render_index": 26,
+          "quote": "Dan had the gift. Had used it twice before.",
+          "role": null,
+          "start_char": 7217,
+          "end_char": 7260,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_6e1191d013f97edba1d4f6575f03ae02",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            51
+          ],
+          "evidence_sha256": "bdece2afc60e9dff790442e4cde7cac3a8901821cd877e3c14eda801d9a12d0a"
+        }
+      ],
+      "thematic_weight": 0.7,
+      "gravity": 0.6,
+      "tension": 0.4,
+      "confidence": 0.9,
+      "notes": "The nature of the gift is not specified here but is significant to Dan's character."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "ea949984102b98d2ff83f4a77528f5d5a9fefc61702becc69c5bf93812b49c29",
+  "normalized_output_hash": "a788f140fc9bf2cbb42ced53062c0f33404e0e2298c90768e9756aab0fe71de7"
+}

@@ -1,0 +1,68 @@
+{
+  "status": "ok",
+  "task_type": "biblical_references",
+  "scene_window_id": "scene_d300d16b32af8d7262933388098cc6de",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "2c75c8950ae89b0ddd1a0da54e40b7c65a2481b46ba3221d8019c1f378c961b0",
+  "observations": [
+    {
+      "biblical_anchor_label": "Psalm 22:1",
+      "book": "Psalms",
+      "chapter": 22,
+      "verse_start": 1,
+      "verse_end": 1,
+      "motif_family": "Desolation and Cry for Help",
+      "relationship_type": "verbal_echo",
+      "correspondence_rationale": "The text's depiction of a speaker whose truth is heard as noise and the heavy, foreboding sensation in the mouth when trying to speak parallels the Psalmist's cry 'My God, my God, why have you forsaken me?', expressing a profound sense of abandonment and inability to communicate effectively.",
+      "summary": "The passage echoes the Psalmist's lament of feeling forsaken and voiceless, highlighting the terror of being unheard despite the effort to speak.",
+      "evidence": [
+        {
+          "render_para_key": "rp_93959be2408516933c455efa9dc29691",
+          "quote": "He tried to say the simplest word—Mother—and the tongue went heavy in his mouth. Not silent. Not yet. But dense, forewarning, a cold thing lodged where certainty used to live. The terror was not the physical sensation. It was what it foretold: to be a speaker whose truth was only ever heard as noise."
+        }
+      ],
+      "confidence": 0.85
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Psalm 22:1",
+      "book": "Psalm",
+      "chapter": 22,
+      "verse_start": 1,
+      "verse_end": 1,
+      "motif_family": "desolation_and_cry_for_help",
+      "biblical_anchor_key": "bibanchor_f2ab0b8d038d6c78507da945df858973",
+      "relationship_type": "verbal_echo",
+      "correspondence_rationale": "The text's depiction of a speaker whose truth is heard as noise and the heavy, foreboding sensation in the mouth when trying to speak parallels the Psalmist's cry 'My God, my God, why have you forsaken me?', expressing a profound sense of abandonment and inability to communicate effectively.",
+      "summary": "The passage echoes the Psalmist's lament of feeling forsaken and voiceless, highlighting the terror of being unheard despite the effort to speak.",
+      "evidence": [
+        {
+          "render_para_key": "rp_93959be2408516933c455efa9dc29691",
+          "render_index": 84,
+          "quote": "He tried to say the simplest word—Mother—and the tongue went heavy in his mouth. Not silent. Not yet. But dense, forewarning, a cold thing lodged where certainty used to live. The terror was not the physical sensation. It was what it foretold: to be a speaker whose truth was only ever heard as noise.",
+          "role": null,
+          "start_char": 19509,
+          "end_char": 19810,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_d300d16b32af8d7262933388098cc6de",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            167
+          ],
+          "evidence_sha256": "172f8606e3fce28767c18e687d659895a1083a22eeaaa3aa451bd433828473d8"
+        }
+      ],
+      "confidence": 0.85,
+      "reference": "Psalm 22:1",
+      "motif": "desolation_and_cry_for_help"
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "7cd54484b945c7fb54123ca38186ff1a988b3cbbecf3d258e13d674007e69bb9",
+  "normalized_output_hash": "f7332195a3451665954c01cb9930566c27fc73c5903698a49b6af72595339bf9"
+}

@@ -1,0 +1,181 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_a3adaa6be6be83a7f0ff767d43b610ce",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "97e5eeaf2ea1ded7f2ed72c8d1b601b7d78cb106461e82881ed552af2f7fe0f5",
+  "observations": [
+    {
+      "axis": "Life and Death",
+      "polarity": "Father Aviel's cessation vs. Mother's passing",
+      "summary": "Father Aviel's internal life ceased like a broken cart axle after Mother's death, contrasting the finality of her passing.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+          "quote": "But when Mother Zuna passed beyond recall—when they buried his bride beneath the earth—something stopped within him. Not died, which would have been cleaner and quicker, but simply ceased like a cart with a cruelly shattered axle."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+          "quote": "Father Aviel had been a scholar, sharp as fresh-knapped flint, sought and summoned by those with questions knotted beyond common counsel."
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+          "quote": "Not died, which would have been cleaner and quicker, but simply ceased like a cart with a cruelly shattered axle."
+        }
+      ],
+      "confidence": 0.9
+    },
+    {
+      "axis": "Faith and Emptiness",
+      "polarity": "Many gods vs. One god retained",
+      "summary": "Father Aviel swept away many gods he once carried but kept only one, the lord of limitless dust and earthly plenty, highlighting a tension between polytheistic faith and singular devotion.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+          "quote": "The gathered gods he'd carried from the Western plains—bronze and brittle forms of fortune, flame, and fertility—could not fill the void."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+          "quote": "So he swept them away and kept only one: the lord of limitless dust and earthly plenty, who whispered in the watches and the waiting of the night that hoarded treasures might hold back time itself and defy the demands it made."
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+          "quote": "The gathered gods he'd carried from the Western plains—bronze and brittle forms of fortune, flame, and fertility—could not fill the void. So he swept them away and kept only one."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "faith_and_emptiness",
+      "polarity": "tension",
+      "summary": "Father Aviel swept away many gods he once carried but kept only one, the lord of limitless dust and earthly plenty, highlighting a tension between polytheistic faith and singular devotion.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+          "render_index": 4,
+          "quote": "The gathered gods he'd carried from the Western plains—bronze and brittle forms of fortune, flame, and fertility—could not fill the void.",
+          "role": "left",
+          "start_char": 718,
+          "end_char": 855,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_a3adaa6be6be83a7f0ff767d43b610ce",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            7
+          ],
+          "evidence_sha256": "5a220df5512fb8a929944e4821c8aff4b387c2fd2234d399e36114fb74683ab6"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+          "render_index": 4,
+          "quote": "So he swept them away and kept only one: the lord of limitless dust and earthly plenty, who whispered in the watches and the waiting of the night that hoarded treasures might hold back time itself and defy the demands it made.",
+          "role": "right",
+          "start_char": 856,
+          "end_char": 1082,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_a3adaa6be6be83a7f0ff767d43b610ce",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            7
+          ],
+          "evidence_sha256": "34f9b3fc3f6453245035eb32c8c76d1a1f27de8333e6aa79ad5933583b049066"
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+          "render_index": 4,
+          "quote": "The gathered gods he'd carried from the Western plains—bronze and brittle forms of fortune, flame, and fertility—could not fill the void. So he swept them away and kept only one",
+          "role": "bridge",
+          "start_char": 718,
+          "end_char": 895,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_a3adaa6be6be83a7f0ff767d43b610ce",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            7
+          ],
+          "evidence_sha256": "8eac37451ff49ac9ec29e3a1a641355353d6e08475c12d0c071e62c1d6e3e2cc"
+        }
+      ],
+      "confidence": 0.95
+    },
+    {
+      "task": "dualisms",
+      "axis": "life_and_death",
+      "polarity": "tension",
+      "summary": "Father Aviel's internal life ceased like a broken cart axle after Mother's death, contrasting the finality of her passing.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+          "render_index": 4,
+          "quote": "But when Mother Zuna passed beyond recall—when they buried his bride beneath the earth—something stopped within him. Not died, which would have been cleaner and quicker, but simply ceased like a cart with a cruelly shattered axle.",
+          "role": "left",
+          "start_char": 487,
+          "end_char": 717,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_a3adaa6be6be83a7f0ff767d43b610ce",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            7
+          ],
+          "evidence_sha256": "86da68a44c731e1fb1251cd1fca283bb1dc8e4b42397a5feea3135efb86d46b9"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+          "render_index": 4,
+          "quote": "Father Aviel had been a scholar, sharp as fresh-knapped flint, sought and summoned by those with questions knotted beyond common counsel.",
+          "role": "right",
+          "start_char": 349,
+          "end_char": 486,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_a3adaa6be6be83a7f0ff767d43b610ce",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            7
+          ],
+          "evidence_sha256": "3b2f33f73144938a1af4c60afefa1868ebb1fabe4d9da72c892d78e9c6df1264"
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_eeecfdec39e45b52a13a29437f0246ae",
+          "render_index": 4,
+          "quote": "Not died, which would have been cleaner and quicker, but simply ceased like a cart with a cruelly shattered axle.",
+          "role": "bridge",
+          "start_char": 604,
+          "end_char": 717,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_a3adaa6be6be83a7f0ff767d43b610ce",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            7
+          ],
+          "evidence_sha256": "7afdea1361a7cbf94057c46b5d2fe402da7e022c6bfc98a3e35f4b3107e98abc"
+        }
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "3fc67275485b42d0771fc899597518d60dacb8eb3867f5182f62b1d48f36e5f5",
+  "normalized_output_hash": "e12b20bb7bc28fe3595fc8dd15cb923f9d63624a294906a5746d0611be4e350b"
+}

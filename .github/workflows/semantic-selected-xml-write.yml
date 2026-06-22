@@ -3,6 +3,22 @@ name: Selected XML semantic write
 on:
   workflow_dispatch:
     inputs:
+      provider:
+        description: "Selected XML semantic provider."
+        required: false
+        default: "vertex"
+        type: choice
+        options:
+          - "vertex"
+          - "ollama"
+      runner:
+        description: "Runner for the job. Ollama requires a self-hosted runner because localhost is runner-local."
+        required: false
+        default: "ubuntu-latest"
+        type: choice
+        options:
+          - "ubuntu-latest"
+          - "self-hosted"
       limit_docs:
         description: "Optional selected XML document limit. Leave blank for all selected docs."
         required: false
@@ -16,9 +32,9 @@ on:
         required: false
         default: "8"
       model:
-        description: "Gemini model. Use Flash unless quota/billing supports Pro."
+        description: "Optional Vertex model override. Leave blank for provider default. Ollama remains llama3.2:1b."
         required: false
-        default: "gemini-2.5-flash"
+        default: ""
       apply_migration_first:
         description: "Apply selected XML meaning-span migration before running."
         required: false
@@ -33,14 +49,17 @@ permissions:
 
 jobs:
   selected-xml-semantic-write:
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.runner }}
     timeout-minutes: 360
 
     env:
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
       SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF || vars.SUPABASE_PROJECT_REF }}
       GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+      SELECTED_XML_PROVIDER: ${{ inputs.provider }}
       VERTEX_MODEL: ${{ inputs.model }}
+      OLLAMA_BASE_URL: http://127.0.0.1:11434
+      OLLAMA_MODEL: llama3.2:1b
       SELECTED_XML_MIGRATION_FILE: supabase/migrations/20260619004000_selected_xml_primary_meaning_span_ledger.sql
       SELECTED_XML_SCRIPT: scripts/semantic/xml-selected-meaning-span-rehash.mjs
 
@@ -77,16 +96,32 @@ jobs:
 
           test -n "$SUPABASE_ACCESS_TOKEN"
           test -n "$SUPABASE_PROJECT_REF"
-          test -n "$GOOGLE_API_KEY"
-          test -n "$VERTEX_MODEL"
 
           test -f "$SELECTED_XML_SCRIPT"
           test -f "$SELECTED_XML_MIGRATION_FILE"
 
           node --check "$SELECTED_XML_SCRIPT"
 
+          if [ "$SELECTED_XML_PROVIDER" = "vertex" ]; then
+            test -n "$GOOGLE_API_KEY"
+          fi
+
+          if [ "$SELECTED_XML_PROVIDER" = "ollama" ]; then
+            if [ "${{ inputs.runner }}" != "self-hosted" ]; then
+              echo "provider=ollama requires runner=self-hosted because http://127.0.0.1:11434 is local to the runner"
+              exit 1
+            fi
+
+            curl -fsS "$OLLAMA_BASE_URL/api/version"
+          fi
+
           echo "project_ref=$SUPABASE_PROJECT_REF"
-          echo "model=$VERTEX_MODEL"
+          echo "provider=$SELECTED_XML_PROVIDER"
+          if [ "$SELECTED_XML_PROVIDER" = "ollama" ]; then
+            echo "model=$OLLAMA_MODEL"
+          else
+            echo "model=${VERTEX_MODEL:-gemini-2.5-flash}"
+          fi
           echo "script=$SELECTED_XML_SCRIPT"
           echo "migration=$SELECTED_XML_MIGRATION_FILE"
 
@@ -143,14 +178,18 @@ jobs:
         run: |
           set -euo pipefail
 
-          node "$SELECTED_XML_SCRIPT" --no-ai --limit-docs=1 --limit=1 --batch-size=2
+          node "$SELECTED_XML_SCRIPT" --provider="${{ inputs.provider }}" --no-ai --limit-docs=1 --limit=1 --batch-size=2
 
       - name: Run selected XML semantic write
         shell: bash
         run: |
           set -euo pipefail
 
-          ARGS=(--write "--batch-size=${{ inputs.batch_size }}")
+          ARGS=(--write "--provider=${{ inputs.provider }}" "--batch-size=${{ inputs.batch_size }}")
+
+          if [ "$SELECTED_XML_PROVIDER" = "vertex" ] && [ -n "${{ inputs.model }}" ]; then
+            ARGS+=("--model=${{ inputs.model }}")
+          fi
 
           if [ -n "${{ inputs.limit_docs }}" ]; then
             ARGS+=("--limit-docs=${{ inputs.limit_docs }}")

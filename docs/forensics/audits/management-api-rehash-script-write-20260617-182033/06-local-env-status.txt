@@ -1,0 +1,4 @@
+SUPABASE_ACCESS_TOKEN=<missing>
+SUPABASE_PROJECT_REF=yegricugzqbmoziycfnt
+GOOGLE_API_KEY=<set>
+ADC_OK

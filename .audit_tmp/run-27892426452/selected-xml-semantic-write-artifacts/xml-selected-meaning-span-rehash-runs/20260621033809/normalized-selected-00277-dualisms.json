@@ -1,0 +1,99 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_024b578996c73ba69720e4e631a88ebd",
+  "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+  "context_capsule_sha256": "dc1d7ff0216242244adcd44d0e038aa7411807d3780720b22a2886f18e0be889",
+  "observations": [
+    {
+      "axis": "Flesh vs. Spirit",
+      "polarity": "Flesh as burden and weakness vs. Spirit as ascent and truth",
+      "summary": "Dan experiences a profound internal conflict between the physical body's weakness and the spiritual call to ascend beyond earthly desires, represented by Astarte's offer of earthly abundance versus Dan's rejection of flesh for spiritual truth.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_c51edd6fed56aed320656d66b9ef4cfe",
+          "quote": "\"That one was a vessel of my power, a small taste of the boundless abundance I offer to all who kneel. And thou didst scorn the flesh, the very fount of life and joy, for the empty air of your ascent.\""
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_c51edd6fed56aed320656d66b9ef4cfe",
+          "quote": "\"Dan stumbled back, his hands scraping the rough, abrasive stone curb of the well. His mind reeled, a knot of confusion and exhaustion. His body, already broken by the long day’s march, felt an abrupt, profound, and debilitating weakness—a vulnerability that craved nothing more than relief that overrode all logic.\""
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_c51edd6fed56aed320656d66b9ef4cfe",
+          "quote": "\"Give over your burdensome gravity, and accept the absolute rest.\""
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "flesh_vs_spirit",
+      "polarity": "tension",
+      "summary": "Dan experiences a profound internal conflict between the physical body's weakness and the spiritual call to ascend beyond earthly desires, represented by Astarte's offer of earthly abundance versus Dan's rejection of flesh for spiritual tru",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_c51edd6fed56aed320656d66b9ef4cfe",
+          "render_index": 7,
+          "quote": "That one was a vessel of my power, a small taste of the boundless abundance I offer to all who kneel. And thou didst scorn the flesh, the very fount of life and joy, for the empty air of your ascent",
+          "role": "left",
+          "start_char": 4386,
+          "end_char": 4584,
+          "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+          "scene_window_id": "scene_024b578996c73ba69720e4e631a88ebd",
+          "source_document_xml_sha256": "4c43f128801df7d839bd5fda91fc148c0068a06a98530bf1c45d5fd004db3bcf",
+          "source_xml_paragraph_indexes": [
+            9
+          ],
+          "evidence_sha256": "5af3755073117614b0cd31e9e6f463307d7e7b8fddeaf325623fd7daed0248a6"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_c51edd6fed56aed320656d66b9ef4cfe",
+          "render_index": 7,
+          "quote": "Dan stumbled back, his hands scraping the rough, abrasive stone curb of the well. His mind reeled, a knot of confusion and exhaustion. His body, already broken by the long day’s march, felt an abrupt, profound, and debilitating weakness—a vulnerability that craved nothing more than relief that overrode all logic",
+          "role": "right",
+          "start_char": 5017,
+          "end_char": 5330,
+          "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+          "scene_window_id": "scene_024b578996c73ba69720e4e631a88ebd",
+          "source_document_xml_sha256": "4c43f128801df7d839bd5fda91fc148c0068a06a98530bf1c45d5fd004db3bcf",
+          "source_xml_paragraph_indexes": [
+            9
+          ],
+          "evidence_sha256": "c5da7e808c3b01546eb43bf2d3ac0d11db9c9df10e47e4bf60e19a20258d61c4"
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_c51edd6fed56aed320656d66b9ef4cfe",
+          "render_index": 7,
+          "quote": "Give over your burdensome gravity, and accept the absolute rest",
+          "role": "bridge",
+          "start_char": 4586,
+          "end_char": 4649,
+          "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+          "scene_window_id": "scene_024b578996c73ba69720e4e631a88ebd",
+          "source_document_xml_sha256": "4c43f128801df7d839bd5fda91fc148c0068a06a98530bf1c45d5fd004db3bcf",
+          "source_xml_paragraph_indexes": [
+            9
+          ],
+          "evidence_sha256": "1df9bfaad0882c78b3bdd5094f586f8e940cd10ea46a647aabfb397c964060c0"
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "514fe021042fc40fb30f789ec84cf17db567657ebfb6afa78063ab2e2ae2de7b",
+  "normalized_output_hash": "b4855070cdf9548dcb6de51230c4d6773548828cbf617eb112e807113d984722"
+}

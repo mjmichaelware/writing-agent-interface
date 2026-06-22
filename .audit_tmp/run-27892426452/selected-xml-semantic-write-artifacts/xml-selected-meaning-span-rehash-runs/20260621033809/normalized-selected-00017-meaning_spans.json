@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_b00ba2986294fe1a261b10dacaded044",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "be2fa235e14e737700807dce9d5a48cd0be90e301dc0d5285b252729d63a228f",
+  "observations": [
+    {
+      "kind": "advice",
+      "summary": "Aviel advises the boy to seek answers from a tangible power by picking up a stone and naming it.",
+      "evidence": [
+        {
+          "render_para_key": "rp_ec7260feb00757161f76b9b9b5714f38",
+          "quote": "If you are still searching for your source, boy, pick up a stone and give it a name. Seek answers from a power you can touch."
+        }
+      ],
+      "thematic_weight": 0.8,
+      "gravity": 0.7,
+      "tension": 0.5,
+      "confidence": 0.95,
+      "notes": "This advice suggests a theme of grounding spiritual or existential search in the physical world."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "Aviel advises the boy to seek answers from a tangible power by picking up a stone and naming it.",
+      "evidence": [
+        {
+          "render_para_key": "rp_ec7260feb00757161f76b9b9b5714f38",
+          "render_index": 18,
+          "quote": "If you are still searching for your source, boy, pick up a stone and give it a name. Seek answers from a power you can touch.",
+          "role": null,
+          "start_char": 5540,
+          "end_char": 5665,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_b00ba2986294fe1a261b10dacaded044",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            35
+          ],
+          "evidence_sha256": "4d6230a1009d1cfc60052a20cb5d66a73a1e0ef51866b4b3383a925b96887bbe"
+        }
+      ],
+      "thematic_weight": 0.8,
+      "gravity": 0.7,
+      "tension": 0.5,
+      "confidence": 0.95,
+      "notes": "This advice suggests a theme of grounding spiritual or existential search in the physical world."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "31665b575551c1bdffe5b978fc782cbc9df52ae378a7ab39f09e9e5bae4c6d21",
+  "normalized_output_hash": "960e94c8477b880414a5f692b8040fa8ed85e4d7a6807f85222b7cd23b206006"
+}

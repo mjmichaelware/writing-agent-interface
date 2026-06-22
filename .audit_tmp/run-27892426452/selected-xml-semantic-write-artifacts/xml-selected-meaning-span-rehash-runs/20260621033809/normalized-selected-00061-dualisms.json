@@ -1,0 +1,99 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_96e384bf06dcb25351984741f77e4db4",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "614909f93becbeb6e8175984ef59e8dbe1c924399c2f32e0612bcc860fd8d87c",
+  "observations": [
+    {
+      "axis": "Flesh vs. Spirit",
+      "polarity": "Flesh calls for rest vs. Spirit demands living offering",
+      "summary": "The tension between the body's ceaseless call for rest and the spiritual demand for a living offering is highlighted, emphasizing the conflict between physical desire and spiritual duty.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_f07b98a9e6d9377e9d5d19bf9e42070a",
+          "quote": "\"Your flesh calls still, ceaselessly, seeking its appointed rest.\""
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_f07b98a9e6d9377e9d5d19bf9e42070a",
+          "quote": "\"Do not mistake your petty will for a living offering.\""
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_f07b98a9e6d9377e9d5d19bf9e42070a",
+          "quote": "\"And this night have you sinned—daring to undo my work in your father's house.\""
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "flesh_vs_spirit",
+      "polarity": "tension",
+      "summary": "The tension between the body's ceaseless call for rest and the spiritual demand for a living offering is highlighted, emphasizing the conflict between physical desire and spiritual duty.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_f07b98a9e6d9377e9d5d19bf9e42070a",
+          "render_index": 62,
+          "quote": "\"Your flesh calls still, ceaselessly, seeking its appointed rest.\"",
+          "role": "left",
+          "start_char": 15032,
+          "end_char": 15098,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_96e384bf06dcb25351984741f77e4db4",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            123
+          ],
+          "evidence_sha256": "7be795c262c49e27cb21a28fc5c718958578db8fb49bb3f549b5fb989e4b5073"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_f07b98a9e6d9377e9d5d19bf9e42070a",
+          "render_index": 62,
+          "quote": "Do not mistake your petty will for a living offering",
+          "role": "right",
+          "start_char": 15245,
+          "end_char": 15297,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_96e384bf06dcb25351984741f77e4db4",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            123
+          ],
+          "evidence_sha256": "ef0b35f830a0ba624ac04de2fcefcb1185997978bf7e2321725c03405e9088e7"
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_f07b98a9e6d9377e9d5d19bf9e42070a",
+          "render_index": 62,
+          "quote": "And this night have you sinned—daring to undo my work in your father's house",
+          "role": "bridge",
+          "start_char": 15167,
+          "end_char": 15243,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_96e384bf06dcb25351984741f77e4db4",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            123
+          ],
+          "evidence_sha256": "949709d97dcd7f62bdb5690126e02a4274d3eadd2d87539dcc2931693a530aba"
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "8c3894faac6d32562c467e0a8006e6af2d5793221ae4fcbaf7e8d4fd0bae5ce7",
+  "normalized_output_hash": "6e50bb951221eae4e22f5004a6ce6d7488cf98f156de18b7a317bf0a6dfd2c1d"
+}

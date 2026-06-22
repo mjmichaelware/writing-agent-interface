@@ -1,0 +1,68 @@
+{
+  "status": "ok",
+  "task_type": "biblical_references",
+  "scene_window_id": "scene_a707a8ef442fd171aaf7293bdff0cbc7",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "01b2348a5d4d49931566fee997599ec687d8b5709d35f96eff7679c84e266d4d",
+  "observations": [
+    {
+      "biblical_anchor_label": "Psalm 42:1",
+      "book": "Psalms",
+      "chapter": 42,
+      "verse_start": 1,
+      "verse_end": 1,
+      "motif_family": "Divine Presence and Longing",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The description of a soft, gentle sound at the chamber door, characterized as a purr, low and patient, neither threat nor comfort, evokes the motif of a quiet, watchful presence that is both curious and waiting. This resonates symbolically with the Psalmist's longing for God as a deer pants for streams of water, a quiet, patient yearning for divine presence and comfort.",
+      "summary": "The gentle, insistent sound at the chamber door symbolically echoes the Psalmist's deep longing and patient waiting for God's presence.",
+      "evidence": [
+        {
+          "render_para_key": "rp_61f9fb3f8a64f4e148946cd62e407b5d",
+          "quote": "A soft sound—not quite tapping, not quite rapping—a gentle insistence at the threshold. A purr, low and patient, neither threat nor comfort. Something curious. Something waiting."
+        }
+      ],
+      "confidence": 0.7
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Psalm 42:1",
+      "book": "Psalm",
+      "chapter": 42,
+      "verse_start": 1,
+      "verse_end": 1,
+      "motif_family": "divine_presence_and_longing",
+      "biblical_anchor_key": "bibanchor_fbf513b73688b942f56c6c6a13e11b15",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The description of a soft, gentle sound at the chamber door, characterized as a purr, low and patient, neither threat nor comfort, evokes the motif of a quiet, watchful presence that is both curious and waiting. This resonates symbolically with the Psalmist's longing for God as a deer pants for streams of water, a quie",
+      "summary": "The gentle, insistent sound at the chamber door symbolically echoes the Psalmist's deep longing and patient waiting for God's presence.",
+      "evidence": [
+        {
+          "render_para_key": "rp_61f9fb3f8a64f4e148946cd62e407b5d",
+          "render_index": 92,
+          "quote": "A soft sound—not quite tapping, not quite rapping—a gentle insistence at the threshold. A purr, low and patient, neither threat nor comfort. Something curious. Something waiting.",
+          "role": null,
+          "start_char": 20799,
+          "end_char": 20977,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_a707a8ef442fd171aaf7293bdff0cbc7",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            183
+          ],
+          "evidence_sha256": "35f47fc9f10a006878b28218e4c02b455ee99d8ca3a8383aa90fbd1c4559e6d8"
+        }
+      ],
+      "confidence": 0.6,
+      "reference": "Psalm 42:1",
+      "motif": "divine_presence_and_longing"
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "486cdd333620ee14e7e855f05dd65fc258177f9fb26e6d9d38c407a9308c050d",
+  "normalized_output_hash": "a3db8877206b0210596b3ce85683e5e10b75a98b186b8cb059eec886b3df09d5"
+}

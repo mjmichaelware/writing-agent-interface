@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_19c4b383d4f6bd5f748e3393142c26b3",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "8ffe32833e205fa9bf3a28bee8bc132d857c1188e027233ab428f6992b927260",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The motif of 'heavy shekels' given by Aviel to Dan echoes the archetype protocol's emphasis on the significance of '5 heavy Shekels' as initial wealth, symbolizing a substantial and meaningful transfer that carries thematic weight in the narrative.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_6d0d7795f5c25f1c866710923dd68e96",
+          "quote": "Aviel reached into his belt and pulled out three heavy shekels. He held them out to Dan, his hand shaking slightly."
+        }
+      ],
+      "target_hint": "The archetype protocol's mention of '5 heavy Shekels' as initial wealth and significant currency in the story's historical context.",
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The motif of 'heavy shekels' given by Aviel to Dan echoes the archetype protocol's emphasis on the significance of '5 heavy Shekels' as initial wealth, symbolizing a substantial and meaningful transfer that carries thematic weight in the na",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_6d0d7795f5c25f1c866710923dd68e96",
+          "render_index": 80,
+          "quote": "Aviel reached into his belt and pulled out three heavy shekels. He held them out to Dan, his hand shaking slightly.",
+          "role": "source",
+          "start_char": 10348,
+          "end_char": 10463,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_19c4b383d4f6bd5f748e3393142c26b3",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            159
+          ],
+          "evidence_sha256": "3919b7a497d00b24c3091f154d033763851640e742bb4c989f2d2b89fd314646"
+        }
+      ],
+      "target_hint": "The archetype protocol's mention of '5 heavy Shekels' as initial wealth and significant currency in the story's historical context.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "61bca75a6821dd73f1ba7bb0b5953c40b6622ec53194c871e2d9fa7c22663ce0",
+  "normalized_output_hash": "2a041d7507d92e5707524462f5834233b42a3e540d003d0cd8352d63731b4337"
+}

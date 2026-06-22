@@ -1,0 +1,185 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_ea09f13b9844854eba656e709a74fa53",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "58cb33711d9a8801722166c56df4954eaced273f4fd5e024dbfb073f1d264ee0",
+  "observations": [
+    {
+      "kind": "setting_description",
+      "summary": "The streets of Hebron are narrow and twisting, designed more for shade than straight lines, indicating an ancient and possibly climate-adapted urban design.",
+      "evidence": [
+        {
+          "render_para_key": "rp_6a04cd60109394f1d29ac72c967169dd",
+          "quote": "The streets of Hebron were narrow and twisting, designed more for shade than straight lines."
+        }
+      ],
+      "thematic_weight": 0.6,
+      "gravity": 0.4,
+      "tension": 0.2,
+      "confidence": 0.95,
+      "notes": null
+    },
+    {
+      "kind": "daily_life_detail",
+      "summary": "Families in Hebron still sleep with their doors shut tight against the night, suggesting a community cautious or protective during nighttime.",
+      "evidence": [
+        {
+          "render_para_key": "rp_6a04cd60109394f1d29ac72c967169dd",
+          "quote": "He passed houses where families still slept, their doors shut tight against the night."
+        }
+      ],
+      "thematic_weight": 0.5,
+      "gravity": 0.3,
+      "tension": 0.3,
+      "confidence": 0.9,
+      "notes": null
+    },
+    {
+      "kind": "social_gathering",
+      "summary": "Women in Hebron gather at the well in the morning to draw water and trade gossip, indicating a social ritual and communal interaction centered around daily chores.",
+      "evidence": [
+        {
+          "render_para_key": "rp_6a04cd60109394f1d29ac72c967169dd",
+          "quote": "Passed the well where women would gather in a few hours to draw water and trade gossip."
+        }
+      ],
+      "thematic_weight": 0.7,
+      "gravity": 0.5,
+      "tension": 0.1,
+      "confidence": 0.95,
+      "notes": null
+    },
+    {
+      "kind": "religious_practice",
+      "summary": "There is a small shrine to Yahweh in Hebron where the faithful come to offer their morning prayers, highlighting the presence of religious devotion in daily life.",
+      "evidence": [
+        {
+          "render_para_key": "rp_6a04cd60109394f1d29ac72c967169dd",
+          "quote": "Passed the small shrine to Yahweh where the faithful would come to offer their morning prayers."
+        }
+      ],
+      "thematic_weight": 0.8,
+      "gravity": 0.6,
+      "tension": 0.2,
+      "confidence": 0.95,
+      "notes": null
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "Families in Hebron still sleep with their doors shut tight against the night, suggesting a community cautious or protective during nighttime.",
+      "evidence": [
+        {
+          "render_para_key": "rp_6a04cd60109394f1d29ac72c967169dd",
+          "render_index": 92,
+          "quote": "He passed houses where families still slept, their doors shut tight against the night.",
+          "role": null,
+          "start_char": 11667,
+          "end_char": 11753,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_ea09f13b9844854eba656e709a74fa53",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            183
+          ],
+          "evidence_sha256": "897892c7cdef6e8d930e9a2d47e046fa4ba5a23bf50b9c4be5b4549f3fe272e8"
+        }
+      ],
+      "thematic_weight": 0.5,
+      "gravity": 0.3,
+      "tension": 0.3,
+      "confidence": 0.9,
+      "notes": null
+    },
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "The streets of Hebron are narrow and twisting, designed more for shade than straight lines, indicating an ancient and possibly climate-adapted urban design.",
+      "evidence": [
+        {
+          "render_para_key": "rp_6a04cd60109394f1d29ac72c967169dd",
+          "render_index": 92,
+          "quote": "The streets of Hebron were narrow and twisting, designed more for shade than straight lines.",
+          "role": null,
+          "start_char": 11574,
+          "end_char": 11666,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_ea09f13b9844854eba656e709a74fa53",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            183
+          ],
+          "evidence_sha256": "9b4041a7b217ea7fb5eab599192398df9c56875c0b4ea8dde09b7624d2575d46"
+        }
+      ],
+      "thematic_weight": 0.6,
+      "gravity": 0.4,
+      "tension": 0.2,
+      "confidence": 0.95,
+      "notes": null
+    },
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "There is a small shrine to Yahweh in Hebron where the faithful come to offer their morning prayers, highlighting the presence of religious devotion in daily life.",
+      "evidence": [
+        {
+          "render_para_key": "rp_6a04cd60109394f1d29ac72c967169dd",
+          "render_index": 92,
+          "quote": "Passed the small shrine to Yahweh where the faithful would come to offer their morning prayers.",
+          "role": null,
+          "start_char": 11842,
+          "end_char": 11937,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_ea09f13b9844854eba656e709a74fa53",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            183
+          ],
+          "evidence_sha256": "1fa1dae7b16c96132bd7d42500ad6156b54fa6fac3166a404165a7f4aac8f6ff"
+        }
+      ],
+      "thematic_weight": 0.8,
+      "gravity": 0.6,
+      "tension": 0.2,
+      "confidence": 0.95,
+      "notes": null
+    },
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "Women in Hebron gather at the well in the morning to draw water and trade gossip, indicating a social ritual and communal interaction centered around daily chores.",
+      "evidence": [
+        {
+          "render_para_key": "rp_6a04cd60109394f1d29ac72c967169dd",
+          "render_index": 92,
+          "quote": "Passed the well where women would gather in a few hours to draw water and trade gossip.",
+          "role": null,
+          "start_char": 11754,
+          "end_char": 11841,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_ea09f13b9844854eba656e709a74fa53",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            183
+          ],
+          "evidence_sha256": "8a6815d9088231c9d565090b3de6bcab130fb6897dbc3135e5e678dda12d6431"
+        }
+      ],
+      "thematic_weight": 0.7,
+      "gravity": 0.5,
+      "tension": 0.1,
+      "confidence": 0.95,
+      "notes": null
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "eb8e96fcaad06a3c607c4c30ac754c6991ca7adf1a64e12ad1526d3b98466c28",
+  "normalized_output_hash": "efe2309897955945c2baf2a0019b86f19e14e0416c7c883973758fe8dab6dcc9"
+}

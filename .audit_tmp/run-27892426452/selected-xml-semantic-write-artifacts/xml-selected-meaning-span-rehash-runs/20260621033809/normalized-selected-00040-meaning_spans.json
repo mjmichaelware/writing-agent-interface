@@ -1,0 +1,101 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_0730a80703a06344e5d3dc6e88cab606",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "c71af43a9b79cf609a7c50f0bd163828365bb8cadf0b5f0f14757c7791d7a3eb",
+  "observations": [
+    {
+      "kind": "Creation Description",
+      "summary": "The creation event is described as instantaneous and corrupt, producing glittering motes that harden into various precious stones and valuable items.",
+      "evidence": [
+        {
+          "render_para_key": "rp_9755b6350fe0ba40ff13f540e01ec28e",
+          "quote": "The creation was instantaneous and corrupt. Glittering motes fell from nowhere, hardening—smooth pebbles first, then stones, then rubies like frozen blood and sapphires like captured sky and emeralds like distilled envy, gold and fine silver and copper, oil jars and bolts of linen, everything Aviel had ever catalogued in his hunger."
+        }
+      ],
+      "thematic_weight": 0.9,
+      "gravity": 0.8,
+      "tension": 0.7,
+      "confidence": 0.95,
+      "notes": "Strong imagery linking creation to material greed and corruption."
+    },
+    {
+      "kind": "Aviel's Greed Manifestation",
+      "summary": "Aviel's greed is portrayed as a silent, intense internal scream, manifesting physically as he greedily gathers the created items and claims them as 'Mine', blending prayer and curse.",
+      "evidence": [
+        {
+          "render_para_key": "rp_9755b6350fe0ba40ff13f540e01ec28e",
+          "quote": "The noise of his hidden greed was a soundless scream. He grasped and shoved and gathered—pockets, then clothing, then his arms wrapped around the growing pile—and his lips barely shaped the word: \"Mine.\" Half prayer. Half curse."
+        }
+      ],
+      "thematic_weight": 1,
+      "gravity": 0.9,
+      "tension": 0.9,
+      "confidence": 0.98,
+      "notes": "Highlights the internal conflict and possessiveness of Aviel."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "Aviel's greed is portrayed as a silent, intense internal scream, manifesting physically as he greedily gathers the created items and claims them as 'Mine', blending prayer and curse.",
+      "evidence": [
+        {
+          "render_para_key": "rp_9755b6350fe0ba40ff13f540e01ec28e",
+          "render_index": 41,
+          "quote": "The noise of his hidden greed was a soundless scream. He grasped and shoved and gathered—pockets, then clothing, then his arms wrapped around the growing pile—and his lips barely shaped the word: \"Mine.\" Half prayer. Half curse.",
+          "role": null,
+          "start_char": 10362,
+          "end_char": 10590,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_0730a80703a06344e5d3dc6e88cab606",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            81
+          ],
+          "evidence_sha256": "2ad24df43d4a5fc3ea74ca58872a65a7b187bb08d827d5fd3a9508e7cfc95572"
+        }
+      ],
+      "thematic_weight": 1,
+      "gravity": 0.9,
+      "tension": 0.9,
+      "confidence": 0.98,
+      "notes": "Highlights the internal conflict and possessiveness of Aviel."
+    },
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "The creation event is described as instantaneous and corrupt, producing glittering motes that harden into various precious stones and valuable items.",
+      "evidence": [
+        {
+          "render_para_key": "rp_9755b6350fe0ba40ff13f540e01ec28e",
+          "render_index": 41,
+          "quote": "The creation was instantaneous and corrupt. Glittering motes fell from nowhere, hardening—smooth pebbles first, then stones, then rubies like frozen blood and sapphires like captured sky and emeralds like distilled envy, gold and fine silver and copper, oil jars and bolts of linen, everything Aviel had ever catalogued in his hunger.",
+          "role": null,
+          "start_char": 10027,
+          "end_char": 10361,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_0730a80703a06344e5d3dc6e88cab606",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            81
+          ],
+          "evidence_sha256": "d21928e5515744304b77229ba630ef2879cc2b3d11aa495e288247ca4d6fad90"
+        }
+      ],
+      "thematic_weight": 0.9,
+      "gravity": 0.8,
+      "tension": 0.7,
+      "confidence": 0.95,
+      "notes": "Strong imagery linking creation to material greed and corruption."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "515c956d54950334c00701bfd5c02e26b55579741a3ede157edea426174f31da",
+  "normalized_output_hash": "0bedab7e7c156a35a549d64e1901c78681021a39d762181f779d8b98fbc1005f"
+}

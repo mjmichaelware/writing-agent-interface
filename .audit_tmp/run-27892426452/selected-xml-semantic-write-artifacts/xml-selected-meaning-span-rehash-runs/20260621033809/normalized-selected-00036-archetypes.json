@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "archetypes",
+  "scene_window_id": "scene_646a0bdacd6949d904c4760865d0ac9d",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "eaf93eb5a619047e5ce3116dfe1af464dcd87b9e55be94ed5d5cf90052a080ab",
+  "observations": [
+    {
+      "character": "Aviel",
+      "archetype": "Shadow",
+      "archetype_gloss": "Embodiment of failure, loss, and pain as a conscious barrier",
+      "movement": "projection",
+      "summary": "Aviel's presence manifests as a dense, pulsing barrier filled with imagery of pain and loss, representing his internalized Shadow projected outward as a wall of suffering and hatred.",
+      "evidence": [
+        {
+          "render_para_key": "rp_f608980331fe49a02f8a9b3d3c644b6f",
+          "quote": "He turned toward his father's presence and found the barrier immediately: a wall dense and pulsing with old bruise-light, sick and humid. It bled through its surface: a child's face screaming in smoke, a woman's hand slipping from a grasp, blood on white stone, a city's final scream before silence swallowed it whole. His father's private ledger of failure and loss, stacked and mortared together into a bruise that had achieved consciousness and learned to hate everything that was not pain."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "archetypes",
+      "character": "Aviel",
+      "archetype": "Shadow",
+      "archetype_anchor_key": "jungian_shadow",
+      "archetype_gloss": null,
+      "movement": "projection",
+      "summary": "Aviel's presence manifests as a dense, pulsing barrier filled with imagery of pain and loss, representing his internalized Shadow projected outward as a wall of suffering and hatred.",
+      "evidence": [
+        {
+          "render_para_key": "rp_f608980331fe49a02f8a9b3d3c644b6f",
+          "render_index": 37,
+          "quote": "He turned toward his father's presence and found the barrier immediately: a wall dense and pulsing with old bruise-light, sick and humid. It bled through its surface: a child's face screaming in smoke, a woman's hand slipping from a grasp, blood on white stone, a city's final scream before silence swallowed it whole. His father's private ledger of failure and loss, stacked and mortared together into a bruise that had achieved consciousness and learned to hate everything that was not pain.",
+          "role": null,
+          "start_char": 9231,
+          "end_char": 9724,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_646a0bdacd6949d904c4760865d0ac9d",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            73
+          ],
+          "evidence_sha256": "2fe1037e9905b71b8f9e33ae6c2aded63b9b123a0415f769532e066a9c03cb13"
+        }
+      ],
+      "confidence": 0.95,
+      "unresolved_subject": false
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "790850bea5113805f2a51b1e50cd82c946266104289a00b51d087d6ba5eca574",
+  "normalized_output_hash": "8467c930a771fa9a32e2ccba1df1946ac5bbc9116290ae4592ab7cad5129d327"
+}

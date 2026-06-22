@@ -1,0 +1,27 @@
+workflow_files:
+.github/workflows/build-and-deploy.yml
+.github/workflows/deploy-supabase-functions-only.yml
+
+edge_functions:
+supabase/functions/create-upload-url/index.ts
+supabase/functions/enqueue-enrichment/index.ts
+supabase/functions/process-enrichment-batch/index.ts
+supabase/functions/register-uploaded-artifact/index.ts
+supabase/functions/verify-artifact-hash/index.ts
+
+migrations:
+supabase/migrations/20260521000000_initial_schema.sql
+supabase/migrations/20260521000001_vector_search.sql
+supabase/migrations/20260521000002_seed_chapters.sql
+supabase/migrations/20260602000000_phase1_sync.sql
+
+gh_secrets:
+GROQ_API_KEY	2026-05-21T06:39:49Z
+SUPABASE_ACCESS_TOKEN	2026-06-14T14:18:26Z
+SUPABASE_PROJECT_REF	2026-06-14T14:18:27Z
+SUPABASE_SERVICE_ROLE_KEY	2026-06-14T14:21:39Z
+TOGETHER_API_KEY	2026-05-21T06:57:29Z
+
+gh_variables:
+SUPABASE_PROJECT_REF	yegricugzqbmoziycfnt	2026-06-14T14:09:56Z
+SUPABASE_URL	https://yegricugzqbmoziycfnt.supabase.co	2026-06-14T14:09:55Z

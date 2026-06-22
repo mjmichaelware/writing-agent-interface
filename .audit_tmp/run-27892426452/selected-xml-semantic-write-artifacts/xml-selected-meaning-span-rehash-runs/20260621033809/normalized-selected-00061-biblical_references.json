@@ -1,0 +1,119 @@
+{
+  "status": "ok",
+  "task_type": "biblical_references",
+  "scene_window_id": "scene_96e384bf06dcb25351984741f77e4db4",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "614909f93becbeb6e8175984ef59e8dbe1c924399c2f32e0612bcc860fd8d87c",
+  "observations": [
+    {
+      "biblical_anchor_label": "Romans 12:1",
+      "book": "Romans",
+      "chapter": 12,
+      "verse_start": 1,
+      "verse_end": 1,
+      "motif_family": "Sacrifice and Offering",
+      "relationship_type": "verbal_echo",
+      "correspondence_rationale": "The phrase \"Do not mistake your petty will for a living offering\" echoes the biblical motif of presenting oneself as a living sacrifice, as in Romans 12:1, where believers are urged to offer their bodies as living sacrifices, holy and pleasing to God. The text contrasts the true spiritual offering with mere personal willfulness, reflecting this motif.",
+      "summary": "The text echoes the biblical call to present oneself as a living sacrifice, contrasting true spiritual offering with mere personal will.",
+      "evidence": [
+        {
+          "render_para_key": "rp_f07b98a9e6d9377e9d5d19bf9e42070a",
+          "quote": "Do not mistake your petty will for a living offering."
+        }
+      ],
+      "confidence": 0.9
+    },
+    {
+      "biblical_anchor_label": "Genesis 28:15",
+      "book": "Genesis",
+      "chapter": 28,
+      "verse_start": 15,
+      "verse_end": 15,
+      "motif_family": "Divine Patience and Assurance",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The voice described as having \"no hurry in it. No offense. The patience of bedrock.\" symbolically resonates with the biblical theme of God's patient and steadfast presence, as in Genesis 28:15 where God assures Jacob of His constant presence and protection. The metaphor of bedrock conveys unchanging stability and patience, aligning with this motif.",
+      "summary": "The voice's patient, unhurried nature symbolically resonates with the biblical theme of God's steadfast and patient presence.",
+      "evidence": [
+        {
+          "render_para_key": "rp_f07b98a9e6d9377e9d5d19bf9e42070a",
+          "quote": "The voice had no hurry in it. No offense. The patience of bedrock."
+        }
+      ],
+      "confidence": 0.75
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Romans 12:1",
+      "book": "Romans",
+      "chapter": 12,
+      "verse_start": 1,
+      "verse_end": 1,
+      "motif_family": "sacrifice_and_offering",
+      "biblical_anchor_key": "bibanchor_7cb2fe0b34a2fd99fe54107a11d0f922",
+      "relationship_type": "verbal_echo",
+      "correspondence_rationale": "The phrase \"Do not mistake your petty will for a living offering\" echoes the biblical motif of presenting oneself as a living sacrifice, as in Romans 12:1, where believers are urged to offer their bodies as living sacrifices, holy and pleasing to God. The text contrasts the true spiritual offering with mere personal wi",
+      "summary": "The text echoes the biblical call to present oneself as a living sacrifice, contrasting true spiritual offering with mere personal will.",
+      "evidence": [
+        {
+          "render_para_key": "rp_f07b98a9e6d9377e9d5d19bf9e42070a",
+          "render_index": 62,
+          "quote": "Do not mistake your petty will for a living offering.",
+          "role": null,
+          "start_char": 15245,
+          "end_char": 15298,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_96e384bf06dcb25351984741f77e4db4",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            123
+          ],
+          "evidence_sha256": "2027fd17b72c61f53be03f5845ebc175b3fd15ed3fe87d13eab86e8f1d6fda77"
+        }
+      ],
+      "confidence": 0.9,
+      "reference": "Romans 12:1",
+      "motif": "sacrifice_and_offering"
+    },
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Genesis 28:15",
+      "book": "Genesis",
+      "chapter": 28,
+      "verse_start": 15,
+      "verse_end": 15,
+      "motif_family": "divine_patience_and_assurance",
+      "biblical_anchor_key": "bibanchor_80985d84098e976205ca1bf6e55f0728",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The voice described as having \"no hurry in it. No offense. The patience of bedrock.\" symbolically resonates with the biblical theme of God's patient and steadfast presence, as in Genesis 28:15 where God assures Jacob of His constant presence and protection. The metaphor of bedrock conveys unchanging stability and patie",
+      "summary": "The voice's patient, unhurried nature symbolically resonates with the biblical theme of God's steadfast and patient presence.",
+      "evidence": [
+        {
+          "render_para_key": "rp_f07b98a9e6d9377e9d5d19bf9e42070a",
+          "render_index": 62,
+          "quote": "The voice had no hurry in it. No offense. The patience of bedrock.",
+          "role": null,
+          "start_char": 15099,
+          "end_char": 15165,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_96e384bf06dcb25351984741f77e4db4",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            123
+          ],
+          "evidence_sha256": "33eed989c7de38ba08043ce0b08cf985103734e1b173ff4896d760c5a5c6d303"
+        }
+      ],
+      "confidence": 0.6,
+      "reference": "Genesis 28:15",
+      "motif": "divine_patience_and_assurance"
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "d0c6abb1dd60baa7441d1cc3c283748edd92afc82d69c4ae19ba21692fd0670d",
+  "normalized_output_hash": "9b130f1690461d02c35a2e72d9aac9da466c6b212e49cfb12d57a389adf77540"
+}

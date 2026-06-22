@@ -1,0 +1,99 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_55f2fbef4918e1cd913087ce68530ab4",
+  "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+  "context_capsule_sha256": "2895f9d66570fd7e8fa87349bd8ee425fe53542a1dac8f1f3a6193d60c1eabce",
+  "observations": [
+    {
+      "axis": "Physical Resistance vs. Spiritual Submission",
+      "polarity": "Dan resists Lady Astarte's overwhelming physical and spiritual demand",
+      "summary": "Dan physically resists the oppressive, dense force embodied by Lady Astarte, symbolizing a tension between submission to a powerful spiritual force and the exertion of human will and resistance.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_8f2d80d2059464ba203f03d3a3f0bb57",
+          "quote": "Lady astarte's terrible image expanded. Her form became pure, concentrated mass. The air grew impossibly dense. He felt her terrible weight. She demanded submission."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_8f2d80d2059464ba203f03d3a3f0bb57",
+          "quote": "He braced his whole body. His muscles screamed. He resisted the downward pull. He slammed his hand down. The ground shook. His shibboleth held."
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_8f2d80d2059464ba203f03d3a3f0bb57",
+          "quote": "The well water began to boil violently, sending up plumes of fragrant steam that coated Dan's face like a shroud, burning his skin, the physical cost of the thermodynamic exchange made immediate."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "physical_resistance_vs_spiritual_submission",
+      "polarity": "tension",
+      "summary": "Dan physically resists the oppressive, dense force embodied by Lady Astarte, symbolizing a tension between submission to a powerful spiritual force and the exertion of human will and resistance.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_8f2d80d2059464ba203f03d3a3f0bb57",
+          "render_index": 11,
+          "quote": "Lady astarte's terrible image expanded. Her form became pure, concentrated mass. The air grew impossibly dense. He felt her terrible weight. She demanded submission.",
+          "role": "left",
+          "start_char": 7468,
+          "end_char": 7633,
+          "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+          "scene_window_id": "scene_55f2fbef4918e1cd913087ce68530ab4",
+          "source_document_xml_sha256": "4c43f128801df7d839bd5fda91fc148c0068a06a98530bf1c45d5fd004db3bcf",
+          "source_xml_paragraph_indexes": [
+            13
+          ],
+          "evidence_sha256": "f9a83a4206b4006857f95365bfbdd018e0245fef54369f30aaf6c39837a8e490"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_8f2d80d2059464ba203f03d3a3f0bb57",
+          "render_index": 11,
+          "quote": "He braced his whole body. His muscles screamed. He resisted the downward pull. He slammed his hand down. The ground shook. His shibboleth held.",
+          "role": "right",
+          "start_char": 7634,
+          "end_char": 7777,
+          "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+          "scene_window_id": "scene_55f2fbef4918e1cd913087ce68530ab4",
+          "source_document_xml_sha256": "4c43f128801df7d839bd5fda91fc148c0068a06a98530bf1c45d5fd004db3bcf",
+          "source_xml_paragraph_indexes": [
+            13
+          ],
+          "evidence_sha256": "85fef3ace598d166c985f17d3cc27ab9171e9d561e5444efc166e6df01f27166"
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_8f2d80d2059464ba203f03d3a3f0bb57",
+          "render_index": 11,
+          "quote": "The well water began to boil violently, sending up plumes of fragrant steam that coated Dan's face like a shroud, burning his skin, the physical cost of the thermodynamic exchange made immediate.",
+          "role": "bridge",
+          "start_char": 7272,
+          "end_char": 7467,
+          "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+          "scene_window_id": "scene_55f2fbef4918e1cd913087ce68530ab4",
+          "source_document_xml_sha256": "4c43f128801df7d839bd5fda91fc148c0068a06a98530bf1c45d5fd004db3bcf",
+          "source_xml_paragraph_indexes": [
+            13
+          ],
+          "evidence_sha256": "994f85159b5ed1df4b5df2889c13e436e3e2fb02e5ab0a570791f38e0a28c740"
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "56ba2c3a475813fd98ad0a0c26756f13762120eb857bb4d5b09d3d35f7bb9482",
+  "normalized_output_hash": "639428db800865b9d04b7335bb87dd1a4038a5b35279162b69e530ac1786137c"
+}

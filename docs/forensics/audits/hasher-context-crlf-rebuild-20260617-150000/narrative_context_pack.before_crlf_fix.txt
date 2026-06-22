@@ -1,0 +1,45 @@
+# Narrative Context Pack v1
+# Purpose: context path for semantic hashing of archetypes, biblical allusions, conceptual dualisms, and cross-paragraph relations.
+# Created: 20260617-145659
+# Corrected: real New Synopsis installed; old synopsis excluded.
+
+
+================================================================================
+ROLE: archetype_protocol
+SOURCE_NUMBER: 106
+SHA256: 089b3617b7dbc3b46ceb43a7053f55662dd11c5b931bc0b2453d8e66c5568a2d
+SOURCE_PATH: ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/3.0_Literary_&_Archetypal_Fusion_Rulebook_(The_Cat_God_&_The_Primal_Self).txt
+HASHER_PATH: docs/agent_context/source_drop/hasher_context_v1/01_archetype_protocol_cat_god_primal_self.txt
+================================================================================
+
+
+
+================================================================================
+ROLE: archetype_protocol
+SOURCE_NUMBER: 109
+SHA256: 59ed13c0f886611dc08299da8b74306aa860383038e2a645b6436c04c9af25d8
+SOURCE_PATH: ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/4.0_Emotional_&_Archetypal_Editing_Rulebook_(Visceral_Empathy_Focus).txt
+HASHER_PATH: docs/agent_context/source_drop/hasher_context_v1/02_archetype_protocol_visceral_empathy.txt
+================================================================================
+
+
+
+================================================================================
+ROLE: story_compendium
+SOURCE_NUMBER: 169
+SHA256: 7f86ab925e53d48f6e32e07950f30b81b82bd4270b77b826b7392d7d35e86758
+SOURCE_PATH: ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/THE_WEIGHT_OF_THE_SKY-_MASTER_COMPENDIUM_(SINGULARITY_v.txt
+HASHER_PATH: docs/agent_context/source_drop/hasher_context_v1/03_master_compendium_singularity.txt
+================================================================================
+
+
+
+================================================================================
+ROLE: new_synopsis
+SOURCE_NUMBER: gdrive_new_synopsis
+SHA256: 022c36c6525eda7d3abe4836aa6ca39647c5b7267cd8c2d7234c956a69569fe0
+SOURCE_PATH: /sdcard/Documents/WeightOfTheSky_Project/00_LORE_VAULT/New_Synopsis-_The_Weight_of_the_Sky.txt
+HASHER_PATH: docs/agent_context/source_drop/hasher_context_v1/04_new_synopsis_the_weight_of_the_sky.txt
+================================================================================
+
+

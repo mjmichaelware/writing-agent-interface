@@ -1,0 +1,4 @@
+8:ROLE: archetype_protocol
+62:ROLE: archetype_protocol
+103:ROLE: story_compendium
+186:ROLE: new_synopsis

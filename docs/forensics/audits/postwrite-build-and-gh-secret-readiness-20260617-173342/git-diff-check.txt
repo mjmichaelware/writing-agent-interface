@@ -1,0 +1,22 @@
+src/app/api/graph/route.ts:10: trailing whitespace.
++      `SELECT id, chapter_id, content, archetypal_weights, dualism_map 
+src/app/api/graph/route.ts:18: trailing whitespace.
++      `SELECT id, paragraph_id, reference_text, book, chapter, verse 
+src/app/api/graph/route.ts:24: trailing whitespace.
++      `SELECT id, paragraph_id, theme_node_a, theme_node_b, link_type, weight 
+src/app/api/graph/route.ts:82: trailing whitespace.
++      
+src/app/api/graph/route.ts:95: trailing whitespace.
++      links 
+src/app/graph/page.tsx:10: trailing whitespace.
++          <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" /> 
+src/app/graph/page.tsx:14: trailing whitespace.
++      
+src/components/ui/graph-view.tsx:85: trailing whitespace.
++        
+src/components/ui/graph-view.tsx:105: trailing whitespace.
++          
+src/components/ui/graph-view.tsx:128: trailing whitespace.
++        
+src/components/ui/graph-view.tsx:137: trailing whitespace.
++      

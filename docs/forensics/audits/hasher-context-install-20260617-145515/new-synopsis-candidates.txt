@@ -1,0 +1,8 @@
+/sdcard/Documents/WeightOfTheSky_Project/00_LORE_VAULT/(Old)_Synopsis_of_-The_Weight_of_the_Sky-v2.0.docx.txt
+/sdcard/Documents/WeightOfTheSky_Project/00_LORE_VAULT/New_Synopsis-_The_Weight_of_the_Sky.txt
+/sdcard/Download/Weight_Singularity_Build (1)/WeightOfTheSky_Project/00_LORE_VAULT/(Old)_Synopsis_of_-The_Weight_of_the_Sky-v2.0.docx.txt
+/sdcard/Download/Weight_Singularity_Build (1)/WeightOfTheSky_Project/00_LORE_VAULT/New_Synopsis-_The_Weight_of_the_Sky.txt
+/storage/emulated/0/Documents/WeightOfTheSky_Project/00_LORE_VAULT/(Old)_Synopsis_of_-The_Weight_of_the_Sky-v2.0.docx.txt
+/storage/emulated/0/Documents/WeightOfTheSky_Project/00_LORE_VAULT/New_Synopsis-_The_Weight_of_the_Sky.txt
+/storage/emulated/0/Download/Weight_Singularity_Build (1)/WeightOfTheSky_Project/00_LORE_VAULT/(Old)_Synopsis_of_-The_Weight_of_the_Sky-v2.0.docx.txt
+/storage/emulated/0/Download/Weight_Singularity_Build (1)/WeightOfTheSky_Project/00_LORE_VAULT/New_Synopsis-_The_Weight_of_the_Sky.txt

@@ -102,7 +102,7 @@ export default function AuthorGateway() {
               const res = await fetch("/api/analyze-document", { method: "POST", body: fd });
               const d = await res.json();
               setAgentOut(d.summary || JSON.stringify(d));
-            } catch (err: any) { setAgentOut(`Error: ${e.message}`); }
+            } catch (err: any) { setAgentOut(`Error: ${err.message}`); }
           }} />
       </section>
       <button onClick={() => { setUnlocked(false); setEntry(""); try { localStorage.removeItem(KEY); } catch {} }} style={{ display: "block", margin: "2rem auto 0", fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "0.75rem", color: muted, background: "transparent", border: "none", cursor: "pointer", padding: "0.5rem 1rem" }}>Lock gateway</button>

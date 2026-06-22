@@ -1,0 +1,68 @@
+{
+  "status": "ok",
+  "task_type": "biblical_references",
+  "scene_window_id": "scene_9548c4ef666797a074b5fa4ba76ddd6e",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "0cfb418a2ce2bc157201391694e1ecbe6f929d3d4ade5f3238383e10ca253078",
+  "observations": [
+    {
+      "biblical_anchor_label": "Judges 16:23-30",
+      "book": "Judges",
+      "chapter": 16,
+      "verse_start": 23,
+      "verse_end": 30,
+      "motif_family": "Divine Power and Earthly Foundations",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The text references Dagon settling into the earth beneath the house, making his weight known, which symbolically resonates with the biblical narrative of Dagon as a Philistine deity associated with earth and grain, notably in Judges 16 where the temple of Dagon collapses under Samson's strength, symbolizing the power and weight of divine forces manifesting physically in the earth and structures.",
+      "summary": "The passage's depiction of Dagon settling into the earth beneath the house and making his weight known symbolically resonates with the biblical account of Dagon's temple in Judges 16, where the deity's presence is tied to physical foundations and divine power manifesting through earth and stone.",
+      "evidence": [
+        {
+          "render_para_key": "rp_9153a95fc1d13b36a9ee8e6fd77631fd",
+          "quote": "Below his room, the bedrock groaned—a low, grinding claim. Dagon, settling into the earth beneath the house, making his weight known."
+        }
+      ],
+      "confidence": 0.85
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Judges 16:23-30",
+      "book": "Judges",
+      "chapter": 16,
+      "verse_start": 23,
+      "verse_end": 30,
+      "motif_family": "divine_power_and_earthly_foundations",
+      "biblical_anchor_key": "bibanchor_90ed5c2f64d4ddf776927f758570d651",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The text references Dagon settling into the earth beneath the house, making his weight known, which symbolically resonates with the biblical narrative of Dagon as a Philistine deity associated with earth and grain, notably in Judges 16 where the temple of Dagon collapses under Samson's strength, symbolizing the power a",
+      "summary": "The passage's depiction of Dagon settling into the earth beneath the house and making his weight known symbolically resonates with the biblical account of Dagon's temple in Judges 16, where the deity's presence is tied to physical foundatio",
+      "evidence": [
+        {
+          "render_para_key": "rp_9153a95fc1d13b36a9ee8e6fd77631fd",
+          "render_index": 91,
+          "quote": "Below his room, the bedrock groaned—a low, grinding claim. Dagon, settling into the earth beneath the house, making his weight known.",
+          "role": null,
+          "start_char": 20613,
+          "end_char": 20746,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_9548c4ef666797a074b5fa4ba76ddd6e",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            181
+          ],
+          "evidence_sha256": "6acd80669110aa1231edbdb2b38c0090e9aed869f6887adc6c19301bba3dd108"
+        }
+      ],
+      "confidence": 0.6,
+      "reference": "Judges 16:23-30",
+      "motif": "divine_power_and_earthly_foundations"
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "9241ff093c47ce59ec0c22ea6fb70ff27a629ec1d04ec64aedc277a1d25d0a48",
+  "normalized_output_hash": "00334dfa410d0f7ca8fc9fb7de971b29aa3409ff24e3ac8002de263abbc7bac0"
+}

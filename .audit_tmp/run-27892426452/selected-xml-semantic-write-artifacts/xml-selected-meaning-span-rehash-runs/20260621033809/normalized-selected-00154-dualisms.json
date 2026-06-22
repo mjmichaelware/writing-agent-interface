@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_78e597f35b6969193467a2287608eb66",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "ed20539e6fe510e971a2230726f43a9fc37843627ffa0b1607d72b23dc34c2c5",
+  "observations": [
+    {
+      "axis": "Memory and Loss vs. Practical Survival",
+      "polarity": "left: Memory and Loss, right: Practical Survival",
+      "summary": "The tension between the emotional weight of memories tied to the father and the practical necessities of survival is evident in the protagonist's actions and possessions.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_53fed296e91138b22c89c0faf85b3f32",
+          "quote": "His knife—the good one his father had given him years ago, back when Aviel still remembered how to be a father."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_53fed296e91138b22c89c0faf85b3f32",
+          "quote": "He gathered his things: a tunic, a cloak, a blanket. The bare necessities. He filled his satchel with a small pouch of dried figs, some cured olives, a precious pinch of salt."
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "memory_and_loss_vs_practical_survival",
+      "polarity": "tension",
+      "summary": "The tension between the emotional weight of memories tied to the father and the practical necessities of survival is evident in the protagonist's actions and possessions.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_53fed296e91138b22c89c0faf85b3f32",
+          "render_index": 61,
+          "quote": "His knife—the good one his father had given him years ago, back when Aviel still remembered how to be a father.",
+          "role": "left",
+          "start_char": 7929,
+          "end_char": 8040,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_78e597f35b6969193467a2287608eb66",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            121
+          ],
+          "evidence_sha256": "c0725939bba2992c2bd4f057484cb58f59c4770ed45097ba065eceae7fa96801"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_53fed296e91138b22c89c0faf85b3f32",
+          "render_index": 61,
+          "quote": "He gathered his things: a tunic, a cloak, a blanket. The bare necessities. He filled his satchel with a small pouch of dried figs, some cured olives, a precious pinch of salt.",
+          "role": "right",
+          "start_char": 7753,
+          "end_char": 7928,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_78e597f35b6969193467a2287608eb66",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            121
+          ],
+          "evidence_sha256": "7a25e10889318ca5a0258be642334bb708f64f5a9031d76ca733aa2b464b92c2"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "e8b94368caa4c6c70b842d9124b1e9e267c613abb5d4b4d5fba67887fdfaef51",
+  "normalized_output_hash": "1495297f2c882cca255028fe157b7857f81f1b3d28757bbabd0c3fd9761b1bc1"
+}

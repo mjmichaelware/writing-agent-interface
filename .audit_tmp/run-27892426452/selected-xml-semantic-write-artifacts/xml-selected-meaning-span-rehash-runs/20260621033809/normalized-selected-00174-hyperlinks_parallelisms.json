@@ -1,0 +1,60 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_e80a3c46e031f5170d035859e0b902e1",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "a1d4ca2b8dd6ff423eac183afe4f41bf1e54baf956c388b5186963034d905695",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The phrase \"For bribes,\" he said gruffly. \"Or food. Or whatever you need.\" echoes the motif of transactional exchanges and survival tactics seen in earlier chapters where Dan offers silver to a shepherd's family, highlighting a recurring theme of barter and necessity in harsh conditions.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_80124c82e3dcb41a087c9565fd77efd6",
+          "quote": "\"For bribes,\" he said gruffly. \"Or food. Or whatever you need.\""
+        }
+      ],
+      "target_hint": "Dan's offering of silver to a shepherd's family as a form of barter in Chapter 6.",
+      "target_evidence": [
+        {
+          "render_para_key": "6",
+          "quote": "He sought out a shepherd’s family, offering them a small piece of silver – a mere glint from the pouch, a tiny fragment of the earthly burden he was det..."
+        }
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The phrase \"For bribes,\" he said gruffly. \"Or food. Or whatever you need.\" echoes the motif of transactional exchanges and survival tactics seen in earlier chapters where Dan offers silver to a shepherd's family, highlighting a recurring th",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_80124c82e3dcb41a087c9565fd77efd6",
+          "render_index": 81,
+          "quote": "\"For bribes,\" he said gruffly. \"Or food. Or whatever you need.\"",
+          "role": "source",
+          "start_char": 10467,
+          "end_char": 10530,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_e80a3c46e031f5170d035859e0b902e1",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            161
+          ],
+          "evidence_sha256": "89d114f66a3fa36c6684f0842571b97312af64066bafd4b90fc136bd48fa56ee"
+        }
+      ],
+      "target_hint": "Dan's offering of silver to a shepherd's family as a form of barter in Chapter 6.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "ea2ee1e097cda3b9f3455327a17755c2444b5564dcec9bd1b2ad54251fe99e72",
+  "normalized_output_hash": "f29363dea61f3ac2d5d97df3c06da010f59414c611c68055a378779a7b1d3c4d"
+}

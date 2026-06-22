@@ -1,0 +1,15 @@
+{
+  "status": "skipped",
+  "task_type": "biblical_references",
+  "scene_window_id": "scene_49ee97765629a716c18598da11340978",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "e425eed54eab25988cd377ff7d7ca2958752656d909217de88470557dc7a02b7",
+  "observations": [],
+  "accepted_observations": [],
+  "rejected_observations": [],
+  "failure_reason": "below_min_chars",
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "225e762caa8cb172d84527d9dafc91d35fa66926b5536689e683325e81945c89",
+  "normalized_output_hash": "59afa6fc5210448cb15911aa1e10184a4abaa31e23db7e1c3afb65000c08604c"
+}

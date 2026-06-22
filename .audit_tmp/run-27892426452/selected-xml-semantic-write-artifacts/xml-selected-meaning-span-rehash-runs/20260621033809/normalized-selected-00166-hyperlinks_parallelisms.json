@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_3c472da833080741fbabe333a7c131d3",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "8823fd0c5e17b48146b1be14d19bbc13e4558458e7d2ca152200543682411f3b",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "Dan's neglect of the 'where' in his departure parallels earlier thematic emphasis on his internal conflict and the physical and emotional costs of his decisions, highlighting a recurring motif of focus on process over place.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_fbcfbd6c75f600601e3033684a4e14a7",
+          "quote": "Dan hadn't actually thought about it. He'd been so focused on the how of leaving that he'd neglected the where."
+        }
+      ],
+      "target_hint": "This motif echoes the visceral empathy rulebook's emphasis on Dan's internal war and the somatic cost of his choices, as well as the narrative focus on his psychological journey rather than physical locations.",
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "Dan's neglect of the 'where' in his departure parallels earlier thematic emphasis on his internal conflict and the physical and emotional costs of his decisions, highlighting a recurring motif of focus on process over place.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_fbcfbd6c75f600601e3033684a4e14a7",
+          "render_index": 73,
+          "quote": "Dan hadn't actually thought about it. He'd been so focused on the how of leaving that he'd neglected the where.",
+          "role": "source",
+          "start_char": 9334,
+          "end_char": 9445,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_3c472da833080741fbabe333a7c131d3",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            145
+          ],
+          "evidence_sha256": "682689a8853c77c65e7b59e8d16f7749ead5b0d63f96b71c30e1939fc1f54b0e"
+        }
+      ],
+      "target_hint": "This motif echoes the visceral empathy rulebook's emphasis on Dan's internal war and the somatic cost of his choices, as well as the narrative focus on his psychological journey rather than physical l",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "17157fb83b01ccc6d5179bd08094935d7b94d12b8b2dd509c60e42ea5fb9780c",
+  "normalized_output_hash": "07afdde1880665a42a071fc8c1c30cdfb52a0db165aac046c6682101bdd64664"
+}

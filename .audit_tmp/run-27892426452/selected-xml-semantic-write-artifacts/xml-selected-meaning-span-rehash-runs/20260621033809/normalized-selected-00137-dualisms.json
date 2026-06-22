@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_9e9b43b20c8e2dab887b87822e325569",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "c89ca110dbcaf4883265f1fdb017fd506bd07b4ffcd6e50645e1aab27de504d9",
+  "observations": [
+    {
+      "axis": "Internal Emotional State",
+      "polarity": "Crack vs. Break",
+      "summary": "Dan experiences an internal emotional fracture that is not a complete break but a crack, symbolizing a fragile state of being on the verge of shattering.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_0fca73071af386f60191bfbd3396e594",
+          "quote": "Dan felt something crack inside his chest"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_0fca73071af386f60191bfbd3396e594",
+          "quote": "not break, not quite, but crack, the way ice cracks before it shatters"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "internal_emotional_state",
+      "polarity": "tension",
+      "summary": "Dan experiences an internal emotional fracture that is not a complete break but a crack, symbolizing a fragile state of being on the verge of shattering.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_0fca73071af386f60191bfbd3396e594",
+          "render_index": 44,
+          "quote": "Dan felt something crack inside his chest",
+          "role": "left",
+          "start_char": 5870,
+          "end_char": 5911,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_9e9b43b20c8e2dab887b87822e325569",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            87
+          ],
+          "evidence_sha256": "65f49c7ed4fbefbe074dec879736f99afa6462644888164cd9a5626b520c3f19"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_0fca73071af386f60191bfbd3396e594",
+          "render_index": 44,
+          "quote": "not break, not quite, but crack, the way ice cracks before it shatters",
+          "role": "right",
+          "start_char": 5912,
+          "end_char": 5982,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_9e9b43b20c8e2dab887b87822e325569",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            87
+          ],
+          "evidence_sha256": "e057d810b24d4ab98712e26a4e73ba04f53ba832997dc04e2fd5c8b4717cdad5"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "8a9641a8f976fbddaa648eb44f0650e52ea459c967d7c88abd6a4a98ea9c63cc",
+  "normalized_output_hash": "58879b44ad6dacf60e38f921a382bf0d62f176946630c64e4d6248d60289f949"
+}

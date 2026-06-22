@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_4bad17846532b0c2c0efc32286b2fe1b",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "b5e8a8cfbeedec0cc49bf573eebb4d3a83d2da02f7823975bc00bce634eadff6",
+  "observations": [
+    {
+      "kind": "Command",
+      "summary": "A directive is given to leave immediately before sunrise.",
+      "evidence": [
+        {
+          "render_para_key": "rp_7449b80e6e257fcea1905c67f0d2469f",
+          "quote": "\"Go now. This morning. I want you gone before the sun rises.\""
+        }
+      ],
+      "thematic_weight": 0.7,
+      "gravity": 0.6,
+      "tension": 0.8,
+      "confidence": 0.95,
+      "notes": "This command implies urgency and possibly conflict or a significant turning point."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "A directive is given to leave immediately before sunrise.",
+      "evidence": [
+        {
+          "render_para_key": "rp_7449b80e6e257fcea1905c67f0d2469f",
+          "render_index": 52,
+          "quote": "\"Go now. This morning. I want you gone before the sun rises.\"",
+          "role": null,
+          "start_char": 6654,
+          "end_char": 6715,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_4bad17846532b0c2c0efc32286b2fe1b",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            103
+          ],
+          "evidence_sha256": "0859dc663ba8218cc52c0d059c02ab23eb34c64164e758d37ee913f58d217e9e"
+        }
+      ],
+      "thematic_weight": 0.7,
+      "gravity": 0.6,
+      "tension": 0.8,
+      "confidence": 0.95,
+      "notes": "This command implies urgency and possibly conflict or a significant turning point."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "2120765cdd6950df6dbba2c66543b3d84ed38d3dfe015df91198d1f0402b3c76",
+  "normalized_output_hash": "a0b66e6da410e2f7e9d9d88ed7093838563e0170992cb95d969204d5a7769e72"
+}

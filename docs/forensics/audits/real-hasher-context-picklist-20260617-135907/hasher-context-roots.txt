@@ -1,0 +1,8 @@
+data/runtime_sources/weight_of_the_sky/09_synopsis_compendiums
+data/runtime_sources/weight_of_the_sky/08_worldbuilding_lore
+data/runtime_sources/weight_of_the_sky/11_agent_context
+data/runtime_sources/weight_of_the_sky/00_protocols
+docs/agent_context/canonical
+docs/agent_context/indexes
+reports/runtime_sources
+reports/perfect_weight

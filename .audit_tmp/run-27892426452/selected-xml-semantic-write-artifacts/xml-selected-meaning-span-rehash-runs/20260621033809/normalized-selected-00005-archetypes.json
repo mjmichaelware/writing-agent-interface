@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "archetypes",
+  "scene_window_id": "scene_0bfba90e3decce02c0a341ff28c7d4ac",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "f31a8e8c7deb886ab479503898f22a4a5b16d6e74c29a53cb0e1b39069db4062",
+  "observations": [
+    {
+      "character": "Dan",
+      "archetype": "Child",
+      "archetype_gloss": "The innocent youth embarking on a journey, embodying vulnerability and potential",
+      "movement": "ordeal",
+      "summary": "Dan, a sixteen-year-old boy with kind eyes, moves cautiously through his father's monument, symbolizing his initial vulnerable state and the beginning of his personal trial.",
+      "evidence": [
+        {
+          "render_para_key": "rp_db7e231d7903292e75046c5010faa915",
+          "quote": "On a night when the moon was full on its third day, a boy with kind eyes moved through the monument his father's madness had made. His name was Dan. Sixteen, with messy black hair that tufted upward no matter how many times he patted it down or slicked it back. The torch trembled in his hand—the frail flame flickered not from wind but from the percussion against his ribs, casting suspicious shadows down the narrow hallway."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "archetypes",
+      "character": "Dan",
+      "archetype": "Child",
+      "archetype_anchor_key": "jungian_child",
+      "archetype_gloss": null,
+      "movement": "ordeal",
+      "summary": "Dan, a sixteen-year-old boy with kind eyes, moves cautiously through his father's monument, symbolizing his initial vulnerable state and the beginning of his personal trial.",
+      "evidence": [
+        {
+          "render_para_key": "rp_db7e231d7903292e75046c5010faa915",
+          "render_index": 6,
+          "quote": "On a night when the moon was full on its third day, a boy with kind eyes moved through the monument his father's madness had made. His name was Dan. Sixteen, with messy black hair that tufted upward no matter how many times he patted it down or slicked it back. The torch trembled in his hand—the frail flame flickered not from wind but from the percussion against his ribs, casting suspicious shadows down the narrow hallway.",
+          "role": null,
+          "start_char": 1653,
+          "end_char": 2079,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_0bfba90e3decce02c0a341ff28c7d4ac",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            11
+          ],
+          "evidence_sha256": "d729ffde38a180113d74cb8ebd1579d64aa02944e7a70ad507f1e9dda98b915f"
+        }
+      ],
+      "confidence": 0.95,
+      "unresolved_subject": false
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "5d029d45558bf5ef00be074b37264780eba215153815bb94f5c6185411cf8154",
+  "normalized_output_hash": "45a2412a8d4c81065d749292ad101390c1450adca470e1b47b9f05ee86bc1820"
+}

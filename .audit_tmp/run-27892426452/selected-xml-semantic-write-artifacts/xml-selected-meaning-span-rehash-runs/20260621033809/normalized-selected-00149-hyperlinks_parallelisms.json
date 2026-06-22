@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_533895ef1cf198800423bc2aae5de3f0",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "6939b109d95a5f2c5c1339733651eb61e5e8f36a6bb43df3d6b370bb9c8ae6c1",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The description of Aviel's trembling hands and wild eyes in the source paragraph parallels the motif of physical and emotional turmoil experienced by characters facing profound internal conflict throughout the narrative, emphasizing the somatic cost of spiritual and emotional struggle.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_0000df34de6d9ceee9a56cda01d2b04e",
+          "quote": "He looked at his father—really looked—and tried to memorize this moment. The wild eyes. The trembling hands. The way Aviel's whole body seemed to vibrate with suppressed fury and something else, something that might have been fear or might have been grief or might have been both."
+        }
+      ],
+      "target_hint": "This motif echoes the visceral empathy theme where physical manifestations of internal conflict are emphasized, such as Dan's own bodily reactions to spiritual decisions.",
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The description of Aviel's trembling hands and wild eyes in the source paragraph parallels the motif of physical and emotional turmoil experienced by characters facing profound internal conflict throughout the narrative, emphasizing the som",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_0000df34de6d9ceee9a56cda01d2b04e",
+          "render_index": 56,
+          "quote": "He looked at his father—really looked—and tried to memorize this moment. The wild eyes. The trembling hands. The way Aviel's whole body seemed to vibrate with suppressed fury and something else, something that might have been fear or might have been grief or might have been both.",
+          "role": "source",
+          "start_char": 7054,
+          "end_char": 7334,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_533895ef1cf198800423bc2aae5de3f0",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            111
+          ],
+          "evidence_sha256": "8e112c4a6afeeab05b92c7f08c82252cb05d7fac1f7b040e3b86045e8efe91b1"
+        }
+      ],
+      "target_hint": "This motif echoes the visceral empathy theme where physical manifestations of internal conflict are emphasized, such as Dan's own bodily reactions to spiritual decisions.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "07ab2a03d51d4f0643cb4a7d2ade38bdab1aac07e23bfa77a6f64902bb18c937",
+  "normalized_output_hash": "801b20e52b1da8fd5461ebb85bd2c22c034f74331907242716980a64c27cd853"
+}

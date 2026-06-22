@@ -1,0 +1,34 @@
+audit_dir=docs/forensics/audits/best-vertex-pro-model-selection-20260617-183818
+best_vertex_pro_model=gemini-2.5-pro
+ .github/workflows/semantic-rehash-dry-run.yml   |   2 +-
+ .github/workflows/semantic-rehash-full.yml      |   2 +-
+ package-lock.json                               | 560 ++++++++++++++++++++++++
+ package.json                                    |   4 +
+ scripts/semantic/xml-grounded-vertex-rehash.mjs |   2 +-
+ src/app/api/graph/route.ts                      |  88 +++-
+ src/app/graph/page.tsx                          |  23 +-
+ src/components/layers/panel/AuthorGateway.tsx   |   2 +-
+ src/components/layers/panel/HyperlinksGraph.tsx |   4 +-
+ src/components/ui/graph-view.tsx                | 166 ++++++-
+ tsconfig.json                                   |   1 +
+ 11 files changed, 833 insertions(+), 21 deletions(-)
+ M .github/workflows/semantic-rehash-dry-run.yml
+ M .github/workflows/semantic-rehash-full.yml
+ M package-lock.json
+ M package.json
+ M scripts/semantic/xml-grounded-vertex-rehash.mjs
+ M src/app/api/graph/route.ts
+ M src/app/graph/page.tsx
+ M src/components/layers/panel/AuthorGateway.tsx
+ M src/components/layers/panel/HyperlinksGraph.tsx
+ M src/components/ui/graph-view.tsx
+ M tsconfig.json
+?? audit-where-the-data-went.sh
+?? definitive-data-loss-audit.sh
+?? docs/agent_context/source_drop/hasher_context_v1/
+?? docs/forensics/audits/
+?? docs/forensics/backups/management-api-rehash-script-write-20260617-182033/
+?? docs/forensics/backups/xml-grounded-vertex-rehash-write-20260617-163715/
+?? hash-provenance-map.sh
+?? live-supabase-schema-truth.sh
+?? test-db.js

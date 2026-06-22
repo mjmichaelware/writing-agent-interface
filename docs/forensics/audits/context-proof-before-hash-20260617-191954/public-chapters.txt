@@ -1,0 +1,13 @@
+public/data/chapters/1.txt
+public/data/chapters/10.txt
+public/data/chapters/11.txt
+public/data/chapters/13.txt
+public/data/chapters/2.txt
+public/data/chapters/24.txt
+public/data/chapters/3.txt
+public/data/chapters/4.txt
+public/data/chapters/5.txt
+public/data/chapters/6.txt
+public/data/chapters/7.txt
+public/data/chapters/8.txt
+public/data/chapters/9.txt

@@ -1,0 +1,10 @@
+4:# Includes: 106, 109, 169, real New Synopsis.
+8:ROLE: archetype_protocol
+12:HASHER_PATH: docs/agent_context/source_drop/hasher_context_v1/01_archetype_protocol_cat_god_primal_self.txt
+62:ROLE: archetype_protocol
+66:HASHER_PATH: docs/agent_context/source_drop/hasher_context_v1/02_archetype_protocol_visceral_empathy.txt
+103:ROLE: story_compendium
+106:SOURCE_PATH: ./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/THE_WEIGHT_OF_THE_SKY-_MASTER_COMPENDIUM_(SINGULARITY_v.txt
+186:ROLE: new_synopsis
+193:﻿The Weight of the Sky - Full Manuscript Synopsis
+194:(New Synopsis)

@@ -1,0 +1,8 @@
+docs/forensics/audits/xml-grounded-vertex-rehash-runs/20260618004726 files 1 {'paragraphs': 1, 'dualisms': 1, 'movements': 1, 'archetypes': 3, 'biblical': 4, 'links': 3}
+docs/forensics/audits/xml-grounded-vertex-rehash-runs/20260618004454 files 2 {'paragraphs': 2, 'dualisms': 2, 'movements': 2, 'archetypes': 6, 'biblical': 9, 'links': 7}
+docs/forensics/audits/xml-grounded-vertex-rehash-runs/20260618004337 files 1 {'paragraphs': 1, 'dualisms': 2, 'movements': 1, 'archetypes': 3, 'biblical': 4, 'links': 4}
+docs/forensics/audits/xml-grounded-vertex-rehash-runs/20260618004114 files 0 {'paragraphs': 0, 'dualisms': 0, 'movements': 0, 'archetypes': 0, 'biblical': 0, 'links': 0}
+docs/forensics/audits/xml-grounded-vertex-rehash-runs/20260618003838 files 1 {'paragraphs': 1, 'dualisms': 0, 'movements': 0, 'archetypes': 0, 'biblical': 0, 'links': 0}
+docs/forensics/audits/xml-grounded-vertex-rehash-runs/20260618003509 files 0 {'paragraphs': 0, 'dualisms': 0, 'movements': 0, 'archetypes': 0, 'biblical': 0, 'links': 0}
+docs/forensics/audits/xml-grounded-vertex-rehash-runs/20260618003307 files 1 {'paragraphs': 0, 'dualisms': 0, 'movements': 0, 'archetypes': 0, 'biblical': 0, 'links': 0}
+docs/forensics/audits/xml-grounded-vertex-rehash-runs/20260618002115 files 0 {'paragraphs': 0, 'dualisms': 0, 'movements': 0, 'archetypes': 0, 'biblical': 0, 'links': 0}

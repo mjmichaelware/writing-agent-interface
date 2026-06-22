@@ -1,0 +1,99 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_5ab130e999ed92dcbfe7add0a392b701",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "287ff16a9d1d8ca85d1bac23534d43d500b4ea48cbdd7d9d1bce3bd0d8fb1a83",
+  "observations": [
+    {
+      "axis": "Climbing as Struggle vs. Climbing as Triumph",
+      "polarity": "Struggle to Triumph",
+      "summary": "The act of climbing the rope is depicted as a painful, arduous struggle marked by physical pain and doubt, which culminates in a triumphant overcoming when the climber reaches a solid edge and pulls himself over.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_c204847432c9a02cf52a40ecc843b2af",
+          "quote": "Each grip burned with tiny splinters. He climbed. The air grew thin, then cold, then ringing-silent. A moment of doubt arrived and lodged in him like a stone: some barriers are meant to stand. Some fathers are meant to stay broken."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_c204847432c9a02cf52a40ecc843b2af",
+          "quote": "He climbed through it. His arms ached and his breath came in sharp urgent gasps and he climbed through that too, until his hand found an edge—solid, unmoving—and he pulled himself up and over."
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_c204847432c9a02cf52a40ecc843b2af",
+          "quote": "He stood at the base of a rope—thick, rough-woven hemp, blood-warm and slick with something between sweat and oil, vibrating with the hum of the emptiness it pierced."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "climbing_as_struggle_vs_climbing_as_triumph",
+      "polarity": "tension",
+      "summary": "The act of climbing the rope is depicted as a painful, arduous struggle marked by physical pain and doubt, which culminates in a triumphant overcoming when the climber reaches a solid edge and pulls himself over.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_c204847432c9a02cf52a40ecc843b2af",
+          "render_index": 33,
+          "quote": "Each grip burned with tiny splinters. He climbed. The air grew thin, then cold, then ringing-silent. A moment of doubt arrived and lodged in him like a stone: some barriers are meant to stand. Some fathers are meant to stay broken.",
+          "role": "left",
+          "start_char": 8475,
+          "end_char": 8706,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_5ab130e999ed92dcbfe7add0a392b701",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            65
+          ],
+          "evidence_sha256": "c5b14d937cffa2e243efbe601a55b4994f14624e9ca69893c817d664d807902a"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_c204847432c9a02cf52a40ecc843b2af",
+          "render_index": 33,
+          "quote": "He climbed through it. His arms ached and his breath came in sharp urgent gasps and he climbed through that too, until his hand found an edge—solid, unmoving—and he pulled himself up and over.",
+          "role": "right",
+          "start_char": 8707,
+          "end_char": 8899,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_5ab130e999ed92dcbfe7add0a392b701",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            65
+          ],
+          "evidence_sha256": "b50bd4ee036b1df924bc81e7c598033db244df77f840d512b6a9be1ea1d27ff3"
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_c204847432c9a02cf52a40ecc843b2af",
+          "render_index": 33,
+          "quote": "He stood at the base of a rope—thick, rough-woven hemp, blood-warm and slick with something between sweat and oil, vibrating with the hum of the emptiness it pierced.",
+          "role": "bridge",
+          "start_char": 8308,
+          "end_char": 8474,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_5ab130e999ed92dcbfe7add0a392b701",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            65
+          ],
+          "evidence_sha256": "b89394313d9b3b788008061a418dd2b39b33832806aa8757f48de0c161933697"
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "687a40462b4b6c7725ab440cfb386cbd7ef1e2d0632d15be8c4fbd2c2e3856b4",
+  "normalized_output_hash": "4438bf6e9b99a1dc67ea9a8e99980f4e5fbcea64d69effda7f259734513e981c"
+}

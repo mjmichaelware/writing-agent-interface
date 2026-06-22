@@ -1,0 +1,7 @@
+28:  contextPack: join(ROOT, "docs/agent_context/source_drop/hasher_context_v1/narrative_context_pack_v1.txt"),
+29:  xmlManifest: join(ROOT, "reports/xml_recovery/materialized_ooxml_manifest.json"),
+30:  ooxmlRaw: join(ROOT, "src/data-layer/ingestion-buffer/gdrive_ooxml_raw"),
+31:  publicChapters: join(ROOT, "public/data/chapters"),
+479:      path: `public/data/chapters/${file}`,
+510:      join("src/data-layer/ingestion-buffer/gdrive_ooxml_raw", entry.doc_folder || "", entry.part_path || ""),
+511:      join("src/data-layer/ingestion-buffer/gdrive_ooxml_raw", entry.doc_folder || "", "word", "document.xml"),

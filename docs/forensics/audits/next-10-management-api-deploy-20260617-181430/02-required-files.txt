@@ -1,0 +1,6 @@
+OK supabase/migrations/20260617000100_xml_grounded_semantic_rehash.sql
+OK supabase/functions/_shared/semantic.ts
+OK supabase/functions/enqueue-enrichment/index.ts
+OK supabase/functions/process-enrichment-batch/index.ts
+OK supabase/functions/register-uploaded-artifact/index.ts
+OK supabase/functions/verify-artifact-hash/index.ts

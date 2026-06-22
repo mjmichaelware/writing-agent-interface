@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "archetypes",
+  "scene_window_id": "scene_9d823873565abcbcf0b34f697c38531e",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "1eaefb326603fb285c037dfdf1656fcafe0ea66296991cabaca05b77713da019",
+  "observations": [
+    {
+      "character": "Unnamed female traveler",
+      "archetype": "Trickster",
+      "archetype_gloss": "A figure who uses charm and deception, promising much but delivering little or nothing",
+      "movement": "projection",
+      "summary": "The female traveler uses a honey-sweet voice and bright smile to promise everything but mean nothing, suggesting a deceptive or illusory nature projecting false promises onto others.",
+      "evidence": [
+        {
+          "render_para_key": "rp_a0e06faa8be05fec2160b4d2ee77cec7",
+          "quote": "her smile brightening once more, her voice taking on that honey-sweet quality that promised everything and meant nothing."
+        }
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "archetypes",
+      "character": "Unnamed",
+      "archetype": "Trickster",
+      "archetype_anchor_key": "jungian_trickster",
+      "archetype_gloss": null,
+      "movement": "projection",
+      "summary": "The female traveler uses a honey-sweet voice and bright smile to promise everything but mean nothing, suggesting a deceptive or illusory nature projecting false promises onto others.",
+      "evidence": [
+        {
+          "render_para_key": "rp_a0e06faa8be05fec2160b4d2ee77cec7",
+          "render_index": 175,
+          "quote": "her smile brightening once more, her voice taking on that honey-sweet quality that promised everything and meant nothing.",
+          "role": null,
+          "start_char": 22586,
+          "end_char": 22707,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_9d823873565abcbcf0b34f697c38531e",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            343
+          ],
+          "evidence_sha256": "71eaae9efe00235825d948a7adb2059e1231f922959c5faed3454d7c29d30797"
+        }
+      ],
+      "confidence": 0.9,
+      "unresolved_subject": false
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "14e5d3a1b9c0a7bde85b360f06156d538476e35a696e5d72ceb1692167cba75f",
+  "normalized_output_hash": "f4d2191f85e0e374a71d9dd797db046dfa5bb2da7e15e7644bb11c4098c14bb5"
+}

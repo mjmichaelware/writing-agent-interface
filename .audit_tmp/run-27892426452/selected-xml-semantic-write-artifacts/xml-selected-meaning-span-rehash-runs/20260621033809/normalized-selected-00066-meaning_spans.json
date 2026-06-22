@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_394179b515b2010504ea4f45be27fc51",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "7c08259f99853eda36196a008584ce2cbf001134309dc8c5d65ea20400bb1df5",
+  "observations": [
+    {
+      "kind": "Character Conflict",
+      "summary": "A character accuses another of their temple's fall due to a blinded man and questions loyalty, suggesting a higher deity El deserves service instead.",
+      "evidence": [
+        {
+          "render_para_key": "rp_dda58a21c4d5f5baca9bb36543722697",
+          "quote": "\"Your temple fell because of a blinded man,\" he snarled, the hesitation hardening. \"You crumpled before the sacred chest. Why should I serve you rather than El, who dwells higher?\""
+        }
+      ],
+      "thematic_weight": 0.9,
+      "gravity": 0.8,
+      "tension": 0.85,
+      "confidence": 0.95,
+      "notes": "This reflects a pivotal moment of challenge and doubt towards a deity figure, highlighting themes of faith, hierarchy, and failure."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "A character accuses another of their temple's fall due to a blinded man and questions loyalty, suggesting a higher deity El deserves service instead.",
+      "evidence": [
+        {
+          "render_para_key": "rp_dda58a21c4d5f5baca9bb36543722697",
+          "render_index": 67,
+          "quote": "\"Your temple fell because of a blinded man,\" he snarled, the hesitation hardening. \"You crumpled before the sacred chest. Why should I serve you rather than El, who dwells higher?\"",
+          "role": null,
+          "start_char": 16323,
+          "end_char": 16503,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_394179b515b2010504ea4f45be27fc51",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            133
+          ],
+          "evidence_sha256": "688324f4ee83ece233149afb3372934bec0fcf9c8a7db47fa2d012eb12139477"
+        }
+      ],
+      "thematic_weight": 0.9,
+      "gravity": 0.8,
+      "tension": 0.85,
+      "confidence": 0.95,
+      "notes": "This reflects a pivotal moment of challenge and doubt towards a deity figure, highlighting themes of faith, hierarchy, and failure."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "bd72401d465d9b48d81e212b2f5b188d147621fe78b71e619d78313432590bba",
+  "normalized_output_hash": "2587cfdf55a68ac55284f46154ecf80b7ac2f5e5f1579926399f0a87d3da0073"
+}

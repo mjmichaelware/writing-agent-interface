@@ -1,0 +1,89 @@
+{
+  "paragraphs": [
+    {
+      "paragraph_id": "00df743f-4a1c-47c8-a26f-fe6aff5d1215",
+      "content_sha256": "b1e31ce7aaceb3e78822d7c2978b01b0fc339c367c90f4950fa83ced89358415",
+      "archetypal_weights": {
+        "shadow": 0.1,
+        "self": 0.4
+      },
+      "dualism_map": {
+        "ascent_descent": 0.5
+      },
+      "metadata": {
+        "summary": "After using his dreamwalking ability to influence his father, Dan is left physically and spiritually drained. The effort brings his father, Aviel, a peaceful sleep, but leaves Dan feeling hollowed out, establishing the personal, somatic cost of his spiritual actions.",
+        "semantic_notes": [
+          "This paragraph is a direct manifestation of the 'Somatic Cost' and 'Visceral Empathy' rules from the context pack. Dan's spiritual exertion has a tangible, negative physical effect.",
+          "The contrast between Aviel's newfound peace and Dan's exhaustion creates a dualism of transference, where a positive state in one character is paid for by a negative state in another."
+        ]
+      },
+      "archetype_observations": [
+        {
+          "archetype": "Living Sacrifice",
+          "subject_name": "Dan",
+          "movement_stage": "Expenditure of Volition",
+          "evidence_text": "Exhaustion settled over him; he felt hollowed out, emptier now than before he'd entered.",
+          "interpretation": "This is a micro-instance of the 'Living Sacrifice' archetype. Dan expends his own spiritual energy ('volition') to affect change in the world (giving his father peace). The feeling of being 'hollowed out' is the direct somatic cost of this act, a foundational rule of the narrative's metaphysics where spiritual power is a finite, personal resource that must be spent.",
+          "confidence": 0.95
+        }
+      ],
+      "biblical_references": [],
+      "derived_hyperlinks": [
+        {
+          "theme_node_a": "Dan's Emptiness",
+          "theme_node_b": "Aviel's Peace",
+          "connection_type": "is the cost of",
+          "edge_type": "dualism",
+          "confidence": 0.9,
+          "evidence_text": "From behind his father's door came only peaceful sleep—the first Aviel had known in months. ... he felt hollowed out, emptier now than before he'd entered."
+        },
+        {
+          "theme_node_a": "Dan (Son/Volition)",
+          "theme_node_b": "Somatic Cost",
+          "connection_type": "experiences",
+          "edge_type": "archetype",
+          "confidence": 0.95,
+          "evidence_text": "Exhaustion settled over him; he felt hollowed out, emptier now than before he'd entered."
+        }
+      ]
+    }
+  ],
+  "dualism_relations": [
+    {
+      "relation_type": "Energy Transference",
+      "shared_substrate": "Spiritual/Psychic Energy",
+      "pole_a": {
+        "label": "Dan's Emptiness",
+        "paragraph_id": "00df743f-4a1c-47c8-a26f-fe6aff5d1215",
+        "description": "Dan is left physically weak and spiritually 'hollowed out' after exerting his will in the dreamscape."
+      },
+      "pole_b": {
+        "label": "Aviel's Peace",
+        "paragraph_id": "00df743f-4a1c-47c8-a26f-fe6aff5d1215",
+        "description": "Aviel, the subject of Dan's intervention, receives the benefit of peaceful sleep, a state he had not known for months."
+      },
+      "interpretation": "This dualism establishes a core metaphysical law of the narrative: spiritual action has a direct, equivalent cost. Dan's expenditure of volition (Pole A) is directly converted into Aviel's peace (Pole B). It is a closed system of transference, where one person's gain is paid for by another's loss, mirroring the concept of a 'Living Sacrifice'.",
+      "confidence": 0.95,
+      "evidence": [
+        {
+          "paragraph_id": "00df743f-4a1c-47c8-a26f-fe6aff5d1215",
+          "evidence_role": "pole_a",
+          "evidence_text": "Exhaustion settled over him; he felt hollowed out, emptier now than before he'd entered."
+        },
+        {
+          "paragraph_id": "00df743f-4a1c-47c8-a26f-fe6aff5d1215",
+          "evidence_role": "pole_b",
+          "evidence_text": "From behind his father's door came only peaceful sleep—the first Aviel had known in months."
+        }
+      ],
+      "derived_hyperlink": {
+        "theme_node_a": "Dan's Emptiness",
+        "theme_node_b": "Aviel's Peace",
+        "connection_type": "is inverse of",
+        "edge_type": "dualism",
+        "confidence": 0.95
+      }
+    }
+  ],
+  "archetype_movements": []
+}

@@ -21,6 +21,9 @@ const chapterArg = process.argv.find((x) => x.startsWith("--chapter="));
 const batchArg = process.argv.find((x) => x.startsWith("--batch-size="));
 const limitDocsArg = process.argv.find((x) => x.startsWith("--limit-docs="));
 const selectedTruthArg = process.argv.find((x) => x.startsWith("--selected-truth="));
+const providerArg = process.argv.find((x) => x.startsWith("--provider="));
+const modelArg = process.argv.find((x) => x.startsWith("--model="));
+const ollamaBaseUrlArg = process.argv.find((x) => x.startsWith("--ollama-base-url="));
 
 const LIMIT = limitArg ? Number(limitArg.split("=")[1]) : null;
 const CHAPTER_FILTER = chapterArg ? Number(chapterArg.split("=")[1]) : null;
@@ -98,6 +101,11 @@ const SUPABASE_PROJECT_REF = env("SUPABASE_PROJECT_REF", "yegricugzqbmoziycfnt")
 const VERTEX_PROJECT_ID = env("VERTEX_PROJECT_ID", env("GCP_PROJECT_ID", ""));
 const VERTEX_LOCATION = env("VERTEX_LOCATION", "us-central1");
 const VERTEX_MODEL = env("VERTEX_MODEL", "gemini-2.5-flash");
+const SELECTED_XML_PROVIDER = (providerArg ? providerArg.split("=").slice(1).join("=") : env("SELECTED_XML_PROVIDER", "vertex")).trim().toLowerCase();
+const OLLAMA_BASE_URL = (ollamaBaseUrlArg ? ollamaBaseUrlArg.split("=").slice(1).join("=") : env("OLLAMA_BASE_URL", "http://127.0.0.1:11434")).trim().replace(/\/+$/, "");
+const OLLAMA_MODEL = env("OLLAMA_MODEL", "llama3.2:1b");
+const SELECTED_XML_MODEL = (modelArg ? modelArg.split("=").slice(1).join("=") : "").trim() || (SELECTED_XML_PROVIDER === "ollama" ? OLLAMA_MODEL : VERTEX_MODEL);
+const SUPPORTED_SELECTED_XML_PROVIDERS = new Set(["vertex", "ollama"]);
 
 function validateSources() {
   must(existsSync(paths.contextPack), `Missing context pack: ${paths.contextPack}`);
@@ -114,6 +122,18 @@ function validateSources() {
   must(Array.isArray(manifest) && manifest.length === XML_MANIFEST_COUNT, `XML manifest count drift: ${manifest.length}`);
 
   return manifest;
+}
+
+function validateProviderSelection() {
+  must(
+    SUPPORTED_SELECTED_XML_PROVIDERS.has(SELECTED_XML_PROVIDER),
+    `Unsupported selected XML provider: ${SELECTED_XML_PROVIDER}. Expected one of ${Array.from(SUPPORTED_SELECTED_XML_PROVIDERS).join(", ")}`
+  );
+
+  if (SELECTED_XML_PROVIDER === "ollama") {
+    must(OLLAMA_BASE_URL, "Missing OLLAMA_BASE_URL.");
+    must(SELECTED_XML_MODEL, "Missing OLLAMA_MODEL or --model for Ollama.");
+  }
 }
 
 function sqlText(value) {
@@ -171,6 +191,101 @@ function geminiRetryDelayMs(attempt) {
 
 async function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function stripFence(raw) {
+  return String(raw || "")
+    .trim()
+    .replace(/^\s*```(?:json)?\s*/i, "")
+    .replace(/\s*```\s*$/i, "")
+    .trim();
+}
+
+function balancedSlice(raw) {
+  const text = stripFence(raw);
+  const obj = text.indexOf("{");
+  const arr = text.indexOf("[");
+  const starts = [obj, arr].filter((x) => x >= 0);
+  if (!starts.length) return text;
+
+  const start = Math.min(...starts);
+  const open = text[start];
+  const close = open === "{" ? "}" : "]";
+  let depth = 0;
+  let inString = false;
+  let escaped = false;
+
+  for (let i = start; i < text.length; i++) {
+    const ch = text[i];
+
+    if (escaped) {
+      escaped = false;
+      continue;
+    }
+
+    if (ch === "\\") {
+      escaped = true;
+      continue;
+    }
+
+    if (ch === '"') {
+      inString = !inString;
+      continue;
+    }
+
+    if (inString) continue;
+
+    if (ch === open) depth++;
+    if (ch === close) depth--;
+
+    if (depth === 0) return text.slice(start, i + 1);
+  }
+
+  return text.slice(start);
+}
+
+function cleanJson(raw) {
+  return balancedSlice(raw)
+    .replace(/,\s*([}\]])/g, "$1")
+    .replace(/([{,]\s*)([A-Za-z_][A-Za-z0-9_]*)(\s*:)/g, '$1"$2"$3');
+}
+
+function parseModelJson(raw) {
+  const attempts = [
+    String(raw || ""),
+    stripFence(raw),
+    balancedSlice(raw),
+    cleanJson(raw),
+  ];
+
+  for (const attempt of attempts) {
+    try {
+      return JSON.parse(attempt);
+    } catch {}
+  }
+
+  return null;
+}
+
+async function saveProviderBadJson(raw, phase, provider, model) {
+  const fs = await import("node:fs/promises");
+  const path = await import("node:path");
+  const crypto = await import("node:crypto");
+
+  const dir = path.join("docs", "forensics", "audits", `${provider}-bad-json`);
+  await fs.mkdir(dir, { recursive: true });
+
+  const hash = crypto.createHash("sha256").update(String(raw || "")).digest("hex").slice(0, 16);
+  const file = path.join(dir, `${new Date().toISOString().replace(/[:.]/g, "-")}-${phase}-${hash}.json`);
+
+  await fs.writeFile(file, JSON.stringify({
+    phase,
+    provider,
+    model,
+    raw,
+  }, null, 2), "utf-8");
+
+  return file;
 }
 
 async function callVertex(prompt) {
@@ -672,8 +787,8 @@ async function createSemanticRun(sourceSummary) {
     return {
       id: `dry-run-${RUN_ID}`,
       status: "dry_run",
-      provider: "vertex",
-      model: VERTEX_MODEL,
+      provider: SELECTED_XML_PROVIDER,
+      model: SELECTED_XML_MODEL,
       prompt_version: PROMPT_VERSION,
       narrative_context_sha256: NARRATIVE_CONTEXT_SHA256,
       xml_manifest_sha256: XML_MANIFEST_SHA256,
@@ -683,15 +798,15 @@ async function createSemanticRun(sourceSummary) {
 
   const rows = await insertRows("semantic_runs", [{
     status: "running",
-    provider: "vertex",
-    model: VERTEX_MODEL,
+    provider: SELECTED_XML_PROVIDER,
+    model: SELECTED_XML_MODEL,
     prompt_version: PROMPT_VERSION,
     narrative_context_sha256: NARRATIVE_CONTEXT_SHA256,
     xml_manifest_sha256: XML_MANIFEST_SHA256,
     xml_manifest_count: XML_MANIFEST_COUNT,
     source_summary: sourceSummary,
     reset_policy: "supersede_by_semantic_run_id",
-    metadata: { run_id: RUN_ID, script: "scripts/semantic/xml-selected-meaning-span-rehash.mjs", derived_from: "xml-grounded-vertex-rehash.mjs", db_write_mode: "supabase_management_api", selected_xml_driver: true, primary_hash_lane: "semantic_meaning_spans", old_semantic_table_writes: "blocked_on_first_run" },
+    metadata: { run_id: RUN_ID, script: "scripts/semantic/xml-selected-meaning-span-rehash.mjs", derived_from: "xml-grounded-vertex-rehash.mjs", db_write_mode: "supabase_management_api", selected_xml_driver: true, primary_hash_lane: "semantic_meaning_spans", old_semantic_table_writes: "blocked_on_first_run", selected_xml_provider: SELECTED_XML_PROVIDER, selected_xml_model: SELECTED_XML_MODEL },
   }]);
   return rows[0];
 }
@@ -982,96 +1097,6 @@ function getGcloudAccessToken() {
 }
 
 async function callVertexOnce(prompt) {
-  const stripFence = (raw) => String(raw || "")
-    .trim()
-    .replace(/^\s*```(?:json)?\s*/i, "")
-    .replace(/\s*```\s*$/i, "")
-    .trim();
-
-  const balancedSlice = (raw) => {
-    const text = stripFence(raw);
-    const obj = text.indexOf("{");
-    const arr = text.indexOf("[");
-    const starts = [obj, arr].filter((x) => x >= 0);
-    if (!starts.length) return text;
-
-    const start = Math.min(...starts);
-    const open = text[start];
-    const close = open === "{" ? "}" : "]";
-    let depth = 0;
-    let inString = false;
-    let escaped = false;
-
-    for (let i = start; i < text.length; i++) {
-      const ch = text[i];
-
-      if (escaped) {
-        escaped = false;
-        continue;
-      }
-
-      if (ch === "\\") {
-        escaped = true;
-        continue;
-      }
-
-      if (ch === '"') {
-        inString = !inString;
-        continue;
-      }
-
-      if (inString) continue;
-
-      if (ch === open) depth++;
-      if (ch === close) depth--;
-
-      if (depth === 0) return text.slice(start, i + 1);
-    }
-
-    return text.slice(start);
-  };
-
-  const cleanJson = (raw) => balancedSlice(raw)
-    .replace(/,\s*([}\]])/g, "$1")
-    .replace(/([{,]\s*)([A-Za-z_][A-Za-z0-9_]*)(\s*:)/g, '$1"$2"$3');
-
-  const parseModelJson = (raw) => {
-    const attempts = [
-      String(raw || ""),
-      stripFence(raw),
-      balancedSlice(raw),
-      cleanJson(raw),
-    ];
-
-    for (const attempt of attempts) {
-      try {
-        return JSON.parse(attempt);
-      } catch {}
-    }
-
-    return null;
-  };
-
-  const saveBadJson = async (raw, phase) => {
-    const fs = await import("node:fs/promises");
-    const path = await import("node:path");
-    const crypto = await import("node:crypto");
-
-    const dir = path.join("docs", "forensics", "audits", "vertex-bad-json");
-    await fs.mkdir(dir, { recursive: true });
-
-    const hash = crypto.createHash("sha256").update(String(raw || "")).digest("hex").slice(0, 16);
-    const file = path.join(dir, `${new Date().toISOString().replace(/[:.]/g, "-")}-${phase}-${hash}.json`);
-
-    await fs.writeFile(file, JSON.stringify({
-      phase,
-      model: VERTEX_MODEL,
-      raw,
-    }, null, 2), "utf-8");
-
-    return file;
-  };
-
   const extractCandidateText = (json) =>
     json?.candidates?.[0]?.content?.parts?.map((part) => part.text || "").join("") || "";
 
@@ -1097,7 +1122,7 @@ async function callVertexOnce(prompt) {
     };
 
     const token = await getGcloudAccessToken();
-    const url = `https://${VERTEX_LOCATION}-aiplatform.googleapis.com/v1/projects/${VERTEX_PROJECT_ID}/locations/${VERTEX_LOCATION}/publishers/google/models/${VERTEX_MODEL}:generateContent`;
+    const url = `https://${VERTEX_LOCATION}-aiplatform.googleapis.com/v1/projects/${VERTEX_PROJECT_ID}/locations/${VERTEX_LOCATION}/publishers/google/models/${SELECTED_XML_MODEL}:generateContent`;
 
     const res = await fetch(url, {
       method: "POST",
@@ -1116,7 +1141,7 @@ async function callVertexOnce(prompt) {
     const repaired = parseModelJson(repairedText);
 
     if (!repaired) {
-      const badPath = await saveBadJson(repairedText, "repair-failed");
+      const badPath = await saveProviderBadJson(repairedText, "repair-failed", "vertex", SELECTED_XML_MODEL);
       throw new Error(`Vertex JSON repair failed. Saved raw repair output: ${badPath}`);
     }
 
@@ -1134,7 +1159,7 @@ async function callVertexOnce(prompt) {
 
   if (VERTEX_PROJECT_ID) {
     const token = await getGcloudAccessToken();
-    const url = `https://${VERTEX_LOCATION}-aiplatform.googleapis.com/v1/projects/${VERTEX_PROJECT_ID}/locations/${VERTEX_LOCATION}/publishers/google/models/${VERTEX_MODEL}:generateContent`;
+    const url = `https://${VERTEX_LOCATION}-aiplatform.googleapis.com/v1/projects/${VERTEX_PROJECT_ID}/locations/${VERTEX_LOCATION}/publishers/google/models/${SELECTED_XML_MODEL}:generateContent`;
 
     const res = await fetch(url, {
       method: "POST",
@@ -1154,7 +1179,7 @@ async function callVertexOnce(prompt) {
 
     if (parsed) return parsed;
 
-    const badPath = await saveBadJson(candidateText, "initial-parse-failed");
+    const badPath = await saveProviderBadJson(candidateText, "initial-parse-failed", "vertex", SELECTED_XML_MODEL);
     console.error(`Vertex returned malformed JSON. Saved raw output: ${badPath}`);
     console.error("Retrying once with Vertex JSON repair.");
     return repairWithVertex(candidateText);
@@ -1163,7 +1188,7 @@ async function callVertexOnce(prompt) {
   const key = env("GOOGLE_API_KEY", env("GEMINI_API_KEY", ""));
   must(key, "Missing GOOGLE_API_KEY or Vertex configuration.");
 
-  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${VERTEX_MODEL}:generateContent?key=${key}`, {
+  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${SELECTED_XML_MODEL}:generateContent?key=${key}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
@@ -1178,8 +1203,44 @@ async function callVertexOnce(prompt) {
 
   if (parsed) return parsed;
 
-  const badPath = await saveBadJson(candidateText, "initial-parse-failed");
+  const badPath = await saveProviderBadJson(candidateText, "initial-parse-failed", "vertex", SELECTED_XML_MODEL);
   throw new Error(`Gemini returned malformed JSON. Saved raw output: ${badPath}`);
+}
+
+async function callOllama(prompt) {
+  const body = {
+    model: SELECTED_XML_MODEL,
+    prompt,
+    stream: false,
+    format: "json",
+    options: {
+      temperature: 0,
+      num_predict: 8192,
+    },
+  };
+
+  const res = await fetch(`${OLLAMA_BASE_URL}/api/generate`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+
+  const text = await res.text();
+  if (!res.ok) throw new Error(`Ollama error: ${text}`);
+
+  const json = JSON.parse(text);
+  const candidateText = json?.response || "";
+  const parsed = parseModelJson(candidateText);
+
+  if (parsed) return parsed;
+
+  const badPath = await saveProviderBadJson(candidateText, "initial-parse-failed", "ollama", SELECTED_XML_MODEL);
+  throw new Error(`Ollama returned malformed JSON. Saved raw output: ${badPath}`);
+}
+
+async function callSelectedXmlProvider(prompt) {
+  if (SELECTED_XML_PROVIDER === "ollama") return callOllama(prompt);
+  return callVertex(prompt);
 }
 
 async function registerXmlSources(manifest) {
@@ -1231,7 +1292,7 @@ async function writeSemanticResult({ semanticRun, batch, result }) {
       narrative_context_sha256: NARRATIVE_CONTEXT_SHA256,
       paragraph_id: paragraph.id,
       content_sha256: contentSha,
-      model: VERTEX_MODEL,
+      model: SELECTED_XML_MODEL,
       prompt_version: PROMPT_VERSION,
       archetypes: pr.archetype_observations || [],
       biblical_references: pr.biblical_references || [],
@@ -1252,7 +1313,7 @@ async function writeSemanticResult({ semanticRun, batch, result }) {
           narrative_context_sha256: NARRATIVE_CONTEXT_SHA256,
           xml_manifest_sha256: XML_MANIFEST_SHA256,
           prompt_version: PROMPT_VERSION,
-          model: VERTEX_MODEL,
+          model: SELECTED_XML_MODEL,
           summary: pr.metadata?.summary || "",
           notes: pr.metadata?.semantic_notes || [],
         },
@@ -1758,7 +1819,8 @@ function meaningSpanRow({ semanticRun, family, spanType, label, subjectName, evi
       primary_lane: "semantic_meaning_spans",
       old_table_mirror_blocked_on_first_run: true,
       prompt_version: PROMPT_VERSION,
-      model: VERTEX_MODEL,
+      provider: SELECTED_XML_PROVIDER,
+      model: SELECTED_XML_MODEL,
       raw,
     },
     active: true,
@@ -1898,6 +1960,7 @@ async function writeSelectedSemanticResult({ semanticRun, window, result, prompt
 }
 
 async function main() {
+  validateProviderSelection();
   validateSources();
   const contextPack = readText(paths.contextPack);
   const chapters = loadPublicChapters();
@@ -1925,6 +1988,8 @@ async function main() {
     old_semantic_table_writes: "blocked_on_first_run",
     write_mode: writeMode,
     no_ai: noAi,
+    selected_xml_provider: SELECTED_XML_PROVIDER,
+    selected_xml_model: SELECTED_XML_MODEL,
   };
 
   writeFileSync(join(paths.outDir, "source-summary.json"), JSON.stringify(sourceSummary, null, 2));
@@ -1963,7 +2028,7 @@ async function main() {
     writeFileSync(join(paths.outDir, `prompt-selected-${String(totalProcessed).padStart(5, "0")}.txt`), prompt);
     writeFileSync(join(paths.outDir, `prompt-selected-${String(totalProcessed).padStart(5, "0")}.sha256`), `${promptHash}\n`);
 
-    const result = noAi ? emptySemanticResult() : await callVertex(prompt);
+    const result = noAi ? emptySemanticResult() : await callSelectedXmlProvider(prompt);
     const outputText = JSON.stringify(result, null, 2);
     const outputHash = sha256Text(outputText);
 
@@ -2023,8 +2088,8 @@ async function main() {
     total_meaning_spans: totalMeaningSpans,
     narrative_context_sha256: NARRATIVE_CONTEXT_SHA256,
     xml_manifest_sha256: XML_MANIFEST_SHA256,
-    provider: noAi ? "none" : "vertex",
-    model: noAi ? "no-ai" : VERTEX_MODEL,
+    provider: noAi ? "none" : SELECTED_XML_PROVIDER,
+    model: noAi ? "no-ai" : SELECTED_XML_MODEL,
     sourceSummary,
   }, null, 2));
 }

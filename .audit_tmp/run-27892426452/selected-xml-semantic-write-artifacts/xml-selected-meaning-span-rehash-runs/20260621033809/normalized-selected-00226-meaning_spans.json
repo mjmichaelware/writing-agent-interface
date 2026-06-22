@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_dc23c598e7f9e04811518dee89731316",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "31eda1b20ca0bbccfb3e5c25ba9548103b04b633407312678677d4ed854016be",
+  "observations": [
+    {
+      "kind": "Action",
+      "summary": "The character took a breath, adjusted his pack, and began descending toward the shore.",
+      "evidence": [
+        {
+          "render_para_key": "rp_2db164127c8e5d67a609f08c3dbceda3",
+          "quote": "He took a breath, adjusted his pack, and started down the long descent toward the shore."
+        }
+      ],
+      "thematic_weight": 0.3,
+      "gravity": 0.2,
+      "tension": 0.1,
+      "confidence": 0.95,
+      "notes": "This is a straightforward narrative action indicating movement and preparation."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "The character took a breath, adjusted his pack, and began descending toward the shore.",
+      "evidence": [
+        {
+          "render_para_key": "rp_2db164127c8e5d67a609f08c3dbceda3",
+          "render_index": 133,
+          "quote": "He took a breath, adjusted his pack, and started down the long descent toward the shore.",
+          "role": null,
+          "start_char": 16865,
+          "end_char": 16953,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_dc23c598e7f9e04811518dee89731316",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            265
+          ],
+          "evidence_sha256": "63f1cf9c19719782e72715b4f6ea61570f7013de0c7edd9b5e3ff03ebf209d8a"
+        }
+      ],
+      "thematic_weight": 0.3,
+      "gravity": 0.2,
+      "tension": 0.1,
+      "confidence": 0.95,
+      "notes": "This is a straightforward narrative action indicating movement and preparation."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "94c7bc44801a2d6ba53c5426fb18fb6b89d2e94a90a3bfd554b860adf51d46fe",
+  "normalized_output_hash": "c74bf199a2b31b712abbcd5a823c64a232fde5f31acbecea8bdc67ad0954a7bc"
+}

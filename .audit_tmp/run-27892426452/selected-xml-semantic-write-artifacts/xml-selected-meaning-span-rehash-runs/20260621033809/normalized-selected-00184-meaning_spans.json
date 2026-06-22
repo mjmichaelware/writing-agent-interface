@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_3b864f513580bf890fe144d7542e5ecd",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "02de873f8a0aa9fc8cc44fed67c861e0588eda3149338c1e88241307d48a122c",
+  "observations": [
+    {
+      "kind": "Action",
+      "summary": "The character maintains focus on the path ahead and continues moving forward steadily.",
+      "evidence": [
+        {
+          "render_para_key": "rp_1c8e40ecaf557d51d7d70b07555b1a1f",
+          "quote": "So he kept his eyes ahead and put one foot in front of the other."
+        }
+      ],
+      "thematic_weight": 0.7,
+      "gravity": 0.6,
+      "tension": 0.3,
+      "confidence": 0.95,
+      "notes": "This reflects determination and perseverance in the face of challenges."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "The character maintains focus on the path ahead and continues moving forward steadily.",
+      "evidence": [
+        {
+          "render_para_key": "rp_1c8e40ecaf557d51d7d70b07555b1a1f",
+          "render_index": 91,
+          "quote": "So he kept his eyes ahead and put one foot in front of the other.",
+          "role": null,
+          "start_char": 11505,
+          "end_char": 11570,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_3b864f513580bf890fe144d7542e5ecd",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            181
+          ],
+          "evidence_sha256": "e87359736673cc1f68a41f8760fdd178e782c4c7863ea9b64cd01e02e9a761a7"
+        }
+      ],
+      "thematic_weight": 0.7,
+      "gravity": 0.6,
+      "tension": 0.3,
+      "confidence": 0.95,
+      "notes": "This reflects determination and perseverance in the face of challenges."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "ed6d834be9cb980bb42e5d6347f8edbea50268c8a13e5c8849f36ac66f737dee",
+  "normalized_output_hash": "bfebed28cd184b00e1c32d0e497f1199fc657194cf11c983be074f564cd97f9f"
+}

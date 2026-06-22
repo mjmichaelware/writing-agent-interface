@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_5d68710c3e4cca02107798061de3d3f9",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "f7a7f0249dc1e76b62a3e2ee7610e1f4d3e2811a7bc924b2f5dcee40d6b44e19",
+  "observations": [
+    {
+      "axis": "Reality vs. Dream",
+      "polarity": "Dream as realm of control vs. Reality as realm of limitation",
+      "summary": "The passage contrasts the impossible ease and control in the dream realm with the implied limitations of reality, highlighting a dualism between the dream's fluidity and reality's constraints.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_88241b62e25aea618833e87b9f064b17",
+          "quote": "He stood on a shore of glittering black sand, the water before him unnaturally calm—a sheet of polished glass. A small boat sat at the water's edge; he dismissed it with a thought."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_88241b62e25aea618833e87b9f064b17",
+          "quote": "He stepped out onto the surface, savoring the impossible ease of it. This was his dream, and he decided how things worked here."
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "reality_vs_dream",
+      "polarity": "tension",
+      "summary": "The passage contrasts the impossible ease and control in the dream realm with the implied limitations of reality, highlighting a dualism between the dream's fluidity and reality's constraints.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_88241b62e25aea618833e87b9f064b17",
+          "render_index": 52,
+          "quote": "He stood on a shore of glittering black sand, the water before him unnaturally calm—a sheet of polished glass. A small boat sat at the water's edge; he dismissed it with a thought.",
+          "role": "left",
+          "start_char": 12747,
+          "end_char": 12927,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_5d68710c3e4cca02107798061de3d3f9",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            103
+          ],
+          "evidence_sha256": "4e42532c1540f25f55372558011cfa53c1f6d724a36b92aa8afe27f1250e77de"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_88241b62e25aea618833e87b9f064b17",
+          "render_index": 52,
+          "quote": "He stepped out onto the surface, savoring the impossible ease of it. This was his dream, and he decided how things worked here.",
+          "role": "right",
+          "start_char": 12928,
+          "end_char": 13055,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_5d68710c3e4cca02107798061de3d3f9",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            103
+          ],
+          "evidence_sha256": "047065ab0ef4739137ecd4fa1f8703e31e3be5a8648ea56828aa208d2d7b2bf8"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "2663d67bafd38ac9143157aa362d52a65cec877a52226a288023007ab1c0facd",
+  "normalized_output_hash": "ae99ec4a4761df50e220cd8449910923f077085f0ace26a12a909622894261f4"
+}

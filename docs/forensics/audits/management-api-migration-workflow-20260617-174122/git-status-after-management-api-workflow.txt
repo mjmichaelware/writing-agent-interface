@@ -1,0 +1,27 @@
+ M package-lock.json
+ M package.json
+ M src/app/api/graph/route.ts
+ M src/app/graph/page.tsx
+ M src/components/layers/panel/AuthorGateway.tsx
+ M src/components/layers/panel/HyperlinksGraph.tsx
+ M src/components/ui/graph-view.tsx
+ M supabase/functions/enqueue-enrichment/index.ts
+ M supabase/functions/process-enrichment-batch/index.ts
+ M supabase/functions/register-uploaded-artifact/index.ts
+ M supabase/functions/verify-artifact-hash/index.ts
+ M tsconfig.json
+?? .github/workflows/apply-supabase-migration-management-api.yml
+?? .github/workflows/deploy-supabase.yml
+?? .github/workflows/semantic-rehash-dry-run.yml
+?? .github/workflows/semantic-rehash-full.yml
+?? audit-where-the-data-went.sh
+?? definitive-data-loss-audit.sh
+?? docs/agent_context/source_drop/hasher_context_v1/
+?? docs/forensics/audits/
+?? docs/forensics/backups/xml-grounded-vertex-rehash-write-20260617-163715/
+?? hash-provenance-map.sh
+?? live-supabase-schema-truth.sh
+?? scripts/semantic/
+?? supabase/functions/_shared/semantic.ts
+?? supabase/migrations/20260617000100_xml_grounded_semantic_rehash.sql
+?? test-db.js

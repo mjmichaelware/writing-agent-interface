@@ -1,0 +1,68 @@
+{
+  "status": "ok",
+  "task_type": "biblical_references",
+  "scene_window_id": "scene_1ee1de3c8c1f8a29e5df36302dc4db6d",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "adfdb16ccf3d63182d902e019e72e9b5c0ff91a53d53a2cade694799b559f4eb",
+  "observations": [
+    {
+      "biblical_anchor_label": "Psalm 46:2-3",
+      "book": "Psalms",
+      "chapter": 46,
+      "verse_start": 2,
+      "verse_end": 3,
+      "motif_family": "Divine Stability and Earthquake Imagery",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The description of 'mountains of bedrock grinding against each other in the deeps of the earth' evokes the imagery of upheaval and foundational shaking found in Psalm 46:2-3, where the earth's mountains quake but the faithful find refuge in God. The 'slow, foundational, utterly certain' nature of the sound parallels the assuredness of divine protection amid chaos.",
+      "summary": "The passage's metaphor of grinding mountains in the earth symbolically resonates with Psalm 46's depiction of mountains shaking during divine intervention, emphasizing foundational upheaval and certainty.",
+      "evidence": [
+        {
+          "render_para_key": "rp_5a8ffd003f680622ea5789829f5122ad",
+          "quote": "The laugh that followed was the sound of mountains of bedrock grinding against each other in the deeps of the earth—slow, foundational, utterly certain it would arrive."
+        }
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Psalm 46:2-3",
+      "book": "Psalm",
+      "chapter": 46,
+      "verse_start": 2,
+      "verse_end": 3,
+      "motif_family": "divine_stability_and_earthquake_imagery",
+      "biblical_anchor_key": "bibanchor_2300b52e2f6bd956bcb5d74f0d50fda2",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The description of 'mountains of bedrock grinding against each other in the deeps of the earth' evokes the imagery of upheaval and foundational shaking found in Psalm 46:2-3, where the earth's mountains quake but the faithful find refuge in God. The 'slow, foundational, utterly certain' nature of the sound parallels th",
+      "summary": "The passage's metaphor of grinding mountains in the earth symbolically resonates with Psalm 46's depiction of mountains shaking during divine intervention, emphasizing foundational upheaval and certainty.",
+      "evidence": [
+        {
+          "render_para_key": "rp_5a8ffd003f680622ea5789829f5122ad",
+          "render_index": 73,
+          "quote": "The laugh that followed was the sound of mountains of bedrock grinding against each other in the deeps of the earth—slow, foundational, utterly certain it would arrive.",
+          "role": null,
+          "start_char": 17474,
+          "end_char": 17642,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_1ee1de3c8c1f8a29e5df36302dc4db6d",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            145
+          ],
+          "evidence_sha256": "4d5cca6eff915d22cd2bc1bb59d3a4d4d88a75403d71078fb5535b2dfa11a795"
+        }
+      ],
+      "confidence": 0.6,
+      "reference": "Psalm 46:2-3",
+      "motif": "divine_stability_and_earthquake_imagery"
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "34339a410ab94a7410b0080ae50202859a1036caec64e574eddac1908e5e2ba5",
+  "normalized_output_hash": "8fa83ab9422ad0b3a412e28259c0918cbef21ef11b81f016a601874eb7d0b795"
+}

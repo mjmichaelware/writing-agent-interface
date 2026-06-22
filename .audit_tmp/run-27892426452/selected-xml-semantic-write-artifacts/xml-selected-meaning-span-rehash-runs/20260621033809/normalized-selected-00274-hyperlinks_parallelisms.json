@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_c4ec62a7737c1be247faa12d63c8c772",
+  "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+  "context_capsule_sha256": "888ef19e9a9463b14b7628aa2e97c5075af7898fb87fae0c1c9525a6dca26aa2",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The vision of an active, impossible entity embodying the innermost longing parallels the motif of spiritual zero-point and fatal choice consuming the patriarch, highlighting a recurring theme of surrendering burden and seeking peace.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_c7c24d4665837a4dfe60dee195ad3bc1",
+          "quote": "This vision was not an illusion; it was a physical force. The image that had coalesced was not a mere, passive reflection; it was an active, shimmering, impossible entity, rising with deliberate, hypnotic speed from the gloom, motionless depths of the well. A being of impossible, almost agonizing beauty emerged, a form not fixed, but dangerously fluid, instantly and perfectly wrought to embody the utmost, innermost longing of the consciousness that beheld it. A dizzying, profound emptiness, a hunger for the absolute end of all struggle and of the density that pulled inward toward peace, settled deep in the pit of his stomach. This was the longing to simply lay down his burden and reap what he had not sown, the same fatal choice that had consumed his patriarch, forcing him into a spiritual zero-point."
+        }
+      ],
+      "target_hint": "The motif of spiritual zero-point and fatal choice is a recurring thematic element in the narrative, reflecting internal conflict and surrender.",
+      "target_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The vision of an active, impossible entity embodying the innermost longing parallels the motif of spiritual zero-point and fatal choice consuming the patriarch, highlighting a recurring theme of surrendering burden and seeking peace.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_c7c24d4665837a4dfe60dee195ad3bc1",
+          "render_index": 4,
+          "quote": "This vision was not an illusion; it was a physical force. The image that had coalesced was not a mere, passive reflection; it was an active, shimmering, impossible entity, rising with deliberate, hypnotic speed from the gloom, motionless depths of the well. A being of impossible, almost agonizing beauty emerged, a form not fixed, but dangerously fluid, instantly and perfectly wrought to embody the utmost, innermost longing of the consciousness that beheld it. A dizzying, profound emptiness, a hu",
+          "role": "source",
+          "start_char": 1002,
+          "end_char": 1502,
+          "source_doc_id": "srcdoc_c1cec57b29e9d4020a6b8fea7e5e800e",
+          "scene_window_id": "scene_c4ec62a7737c1be247faa12d63c8c772",
+          "source_document_xml_sha256": "4c43f128801df7d839bd5fda91fc148c0068a06a98530bf1c45d5fd004db3bcf",
+          "source_xml_paragraph_indexes": [
+            6
+          ],
+          "evidence_sha256": "8d46f50f704199b576fabfbc2c10feaa1d6b95ea4918092dca73b7ce0ffa7f90"
+        }
+      ],
+      "target_hint": "The motif of spiritual zero-point and fatal choice is a recurring thematic element in the narrative, reflecting internal conflict and surrender.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "3f0ceee1044851220b6771ad3611465b7084f0d11132133adad5a0a31cad0c49",
+  "normalized_output_hash": "a0956854bdcc8c949911da6bb5b4d07d90a104d607c8101b0d92813ba1c228b5"
+}

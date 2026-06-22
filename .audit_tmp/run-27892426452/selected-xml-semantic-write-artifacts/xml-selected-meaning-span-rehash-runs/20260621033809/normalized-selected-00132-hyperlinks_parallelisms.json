@@ -1,0 +1,60 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_5c37acd399ec0db38f09a2e120317fd2",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "8e6582c4fbe6f969e5ae789a0f53a2dc750bbe4c97d767d31e7aa526b6166924",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "Aviel's cold, killing rage upon having his comfortable lies threatened parallels the thematic motif of catastrophic collapse of a man's final, necessary lie, as introduced in the narrative context where Aviel's voice is described as a raw, guttural seam tearing the pre-dawn stillness.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_73677d5937378ce81e007aaad46f741b",
+          "quote": "Aviel's face had gone very still, and in that stillness, Dan saw something he'd hoped never to see: the cold, killing rage of a man whose comfortable lies have been threatened."
+        }
+      ],
+      "target_hint": null,
+      "target_evidence": [
+        {
+          "render_para_key": "f2a509eb8a6314cbdbc0dd9a3984fe09cb720101a4de0615dab3d6353db395d3",
+          "quote": "\"Dan!\" the sound was not a human name but a raw, guttural seam—a tear in the pre-dawn stillness that precisely registered the catastrophic collapse of a man's final, necessary lie. It was the voice of Aviel: a noise belonging not to the peace of sleep, but to the terrifying, molten things that sleep had revealed."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "Aviel's cold, killing rage upon having his comfortable lies threatened parallels the thematic motif of catastrophic collapse of a man's final, necessary lie, as introduced in the narrative context where Aviel's voice is described as a raw,",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_73677d5937378ce81e007aaad46f741b",
+          "render_index": 39,
+          "quote": "Aviel's face had gone very still, and in that stillness, Dan saw something he'd hoped never to see: the cold, killing rage of a man whose comfortable lies have been threatened.",
+          "role": "source",
+          "start_char": 4964,
+          "end_char": 5140,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_5c37acd399ec0db38f09a2e120317fd2",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            77
+          ],
+          "evidence_sha256": "2b7b69970296c71cfdbf255f5ef2d44b06b7917129958f425016c80344cd6b65"
+        }
+      ],
+      "target_hint": null,
+      "target_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "4321332df2107dcd8bb2dd847f33d86f07dccd3a01552d27fb02ef1691be6cf3",
+  "normalized_output_hash": "774dbb6d006bdcbfce33e4b26a57e01206b4277bc525acb27122fd6e06664971"
+}

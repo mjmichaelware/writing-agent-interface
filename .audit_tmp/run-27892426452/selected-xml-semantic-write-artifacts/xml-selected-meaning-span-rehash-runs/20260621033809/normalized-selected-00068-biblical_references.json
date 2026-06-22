@@ -1,0 +1,68 @@
+{
+  "status": "ok",
+  "task_type": "biblical_references",
+  "scene_window_id": "scene_b17c46bbcc09a146a2ab0206b1c00822",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "facf0f4d4d114842bf0cde3c3d90d6ea69032e178dcd59d6b3d01ca24d7bc862",
+  "observations": [
+    {
+      "biblical_anchor_label": "Ecclesiastes 3:1-2",
+      "book": "Ecclesiastes",
+      "chapter": 3,
+      "verse_start": 1,
+      "verse_end": 2,
+      "motif_family": "Boundaries between life and death",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The text's mention of 'ancient lines that must not be transgressed' and the boundary between the realm of the living and the realm of the dead echoes Ecclesiastes 3:1-2, which speaks of a time for everything, including a time to be born and a time to die, implying divinely ordained boundaries between life and death.",
+      "summary": "The passage reflects the biblical motif of divinely established boundaries between life and death, emphasizing the necessity of respecting these limits.",
+      "evidence": [
+        {
+          "render_para_key": "rp_ce56d0caf570959556bc371d3b5fa6d3",
+          "quote": "There exist boundaries—ancient lines that must not be transgressed. The realm of the living cannot trespass too far into the realm of the dead."
+        }
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Ecclesiastes 3:1-2",
+      "book": "Ecclesiastes",
+      "chapter": 3,
+      "verse_start": 1,
+      "verse_end": 2,
+      "motif_family": "boundaries_between_life_and_death",
+      "biblical_anchor_key": "bibanchor_d8f3e902e7decd9f45f2fe9f6316d3d4",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The text's mention of 'ancient lines that must not be transgressed' and the boundary between the realm of the living and the realm of the dead echoes Ecclesiastes 3:1-2, which speaks of a time for everything, including a time to be born and a time to die, implying divinely ordained boundaries between life and death.",
+      "summary": "The passage reflects the biblical motif of divinely established boundaries between life and death, emphasizing the necessity of respecting these limits.",
+      "evidence": [
+        {
+          "render_para_key": "rp_ce56d0caf570959556bc371d3b5fa6d3",
+          "render_index": 69,
+          "quote": "There exist boundaries—ancient lines that must not be transgressed. The realm of the living cannot trespass too far into the realm of the dead.",
+          "role": null,
+          "start_char": 16656,
+          "end_char": 16799,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_b17c46bbcc09a146a2ab0206b1c00822",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            137
+          ],
+          "evidence_sha256": "cbca5c6c339fe86c92157c1658b56d4ee5f428a742dd4db45f74001108a3f33b"
+        }
+      ],
+      "confidence": 0.6,
+      "reference": "Ecclesiastes 3:1-2",
+      "motif": "boundaries_between_life_and_death"
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "365f36d2739c217f101fd1fed31c85bf987aa4132238b9643fbe5a9cc89f1a45",
+  "normalized_output_hash": "5fe6196737578778bff4392cb20d1fc7ae97fd1a153548d682feabd1953c90f1"
+}

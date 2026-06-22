@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "archetypes",
+  "scene_window_id": "scene_41e6ec23f2584d6d3177ced5908d8403",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "23d7cc0e71bb427ade681bd5a2a4b04a6e059de1b5984befd739d3b5b24c15af",
+  "observations": [
+    {
+      "character": "Aviel",
+      "archetype": "Shadow",
+      "archetype_gloss": "Represents the darker, decaying aspects of the psyche, embodying internal rot and collapse",
+      "movement": "descent",
+      "summary": "Aviel's expression shifts from confusion to something darker, indicating a movement into a shadow state reflecting internal decay and collapse.",
+      "evidence": [
+        {
+          "render_para_key": "rp_e6027ef5b2c6bdb14410943bbfd99a64",
+          "quote": "Aviel's expression shifted—confusion giving way to something darker."
+        }
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "archetypes",
+      "character": "Aviel",
+      "archetype": "Shadow",
+      "archetype_anchor_key": "jungian_shadow",
+      "archetype_gloss": null,
+      "movement": "descent",
+      "summary": "Aviel's expression shifts from confusion to something darker, indicating a movement into a shadow state reflecting internal decay and collapse.",
+      "evidence": [
+        {
+          "render_para_key": "rp_e6027ef5b2c6bdb14410943bbfd99a64",
+          "render_index": 35,
+          "quote": "Aviel's expression shifted—confusion giving way to something darker.",
+          "role": null,
+          "start_char": 4639,
+          "end_char": 4707,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_41e6ec23f2584d6d3177ced5908d8403",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            69
+          ],
+          "evidence_sha256": "565fa5d80a089c72dd4892d751ca18412876b419da0ff419f1657a3a307eebe9"
+        }
+      ],
+      "confidence": 0.9,
+      "unresolved_subject": false
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "c66a2c47b35bbba467528114f9d0ee8cfdc8f9467858efc20e2ce0b2b10a27f8",
+  "normalized_output_hash": "0e57f0aad168bac5f44675ff48f8e311ff8b4451496aa292592cef91cfb920d4"
+}

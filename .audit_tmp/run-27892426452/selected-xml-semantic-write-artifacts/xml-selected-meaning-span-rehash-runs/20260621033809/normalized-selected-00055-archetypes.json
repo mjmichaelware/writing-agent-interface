@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "archetypes",
+  "scene_window_id": "scene_0c91897ba9f00a2e385ffb06b56e7fae",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "ad1bd72ad60494c9b9c2c7ee9555afd77595ad6b1f61fe667e7a65c762fea5a3",
+  "observations": [
+    {
+      "character": "The colossal stone head beneath the waves",
+      "archetype": "Shadow",
+      "archetype_gloss": "An ancient, impassive, and corrupted presence embodying hidden darkness and primal fear",
+      "movement": "emergence_of_self",
+      "summary": "The colossal stone head emerging from the sea represents a primordial Shadow archetype, embodying ancient, inhuman coldness and corruption, symbolizing the deep unconscious forces surfacing at the edge of the world.",
+      "evidence": [
+        {
+          "render_para_key": "rp_8495cd980a9211d3d13f773ae8982efd",
+          "quote": "At the southern edge of the world, where the horizon bled into an endless turbulent gray, a colossal head emerged from the waves. The face was carved from drowned stone—ancient, impassive, radiating an inhuman profound cold. Eyes wide as abysses, blacker than the deepest trench in the sea floor. Seaweed, thick and rotting, draped the chin like a hideous beard. Barnacles, sharp and encrusted, clung to the cheeks like jewels of corruption. The body stretched boundlessly beneath the waves, connecting the stone face to a massive serpentine form so far to the south that Dan could not see it but knew it with dream-certainty, spanning the width of the world."
+        }
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "archetypes",
+      "character": "unresolved_male_figure",
+      "archetype": "Shadow",
+      "archetype_anchor_key": "jungian_shadow",
+      "archetype_gloss": null,
+      "movement": "emergence_of_self",
+      "summary": "The colossal stone head emerging from the sea represents a primordial Shadow archetype, embodying ancient, inhuman coldness and corruption, symbolizing the deep unconscious forces surfacing at the edge of the world.",
+      "evidence": [
+        {
+          "render_para_key": "rp_8495cd980a9211d3d13f773ae8982efd",
+          "render_index": 56,
+          "quote": "At the southern edge of the world, where the horizon bled into an endless turbulent gray, a colossal head emerged from the waves. The face was carved from drowned stone—ancient, impassive, radiating an inhuman profound cold. Eyes wide as abysses, blacker than the deepest trench in the sea floor. Seaweed, thick and rotting, draped the chin like a hideous beard. Barnacles, sharp and encrusted, clung to the cheeks like jewels of corruption. The body stretched boundlessly beneath the waves, connecti",
+          "role": null,
+          "start_char": 13890,
+          "end_char": 14390,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_0c91897ba9f00a2e385ffb06b56e7fae",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            111
+          ],
+          "evidence_sha256": "e5acc80219abe6e01edc40280a85155cd76f357aea46092e7dea550af1c30eef"
+        }
+      ],
+      "confidence": 0.55,
+      "unresolved_subject": true
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "15c1fa9da8cb15589ce00f93e3d27e23db11a9b8aba3220395fbc0ddacbcbce9",
+  "normalized_output_hash": "41cbad24c8e682afda9a796ce21fec6324b8953a66c26e9038958f670936c153"
+}

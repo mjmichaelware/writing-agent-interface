@@ -1,0 +1,252 @@
+{
+  "mode": "narrative_context_only",
+  "expected_public_chapter_count": 13,
+  "loaded_public_chapter_count": 13,
+  "chapter_hints": [
+    1
+  ],
+  "keywords": [
+    "abundance",
+    "chosen",
+    "dagon",
+    "father",
+    "length",
+    "pause",
+    "power",
+    "receive"
+  ],
+  "full_public_chapter_corpus_loaded": true,
+  "public_chapter_corpus": [
+    {
+      "chapter_number": 1,
+      "sha256": "2f49c451b048e73249daec5c732eff040a81f7310b547eb6a36177a08723deda",
+      "score": 10,
+      "keyword_hits": 7,
+      "chapter_hint_boost": 3,
+      "excerpt": "earth's mass. The voice, ancient and vast, echoed not from the mouth, but from the depths of Dan's own skull. It was a resonant hum that shook his teeth. The air choked with salt; the cold stench of the deep clung. \"I am Dagon, the power [PRIMORDIAL_SEVERE_MANDATE] father [PRIMORDIAL_SEVERE_MANDATE] chosen. Lord of Abundance. Ask and receive, for my path is ease.\" \"I didn't call you!\" Dan choked out, his throat burning with brine. \"[PRIMORDIAL_SEVERE_MANDATE] [PRIMORDIAL_SEVERE_MANDATE] ever called,\" Dagon rumbled. \"[PRIMORDIAL_SEVERE_MANDATE] very flesh [PRIMORDIAL_SEVERE_MANDATE] so, seeking its due rest. But this night [PRIMORDIA"
+    },
+    {
+      "chapter_number": 5,
+      "sha256": "3b0ede4310eca0fccf88e100972d161048f12333411bb4e14c4f6956eaacf039",
+      "score": 7,
+      "keyword_hits": 7,
+      "chapter_hint_boost": 0,
+      "excerpt": "in his father had spoken of. The path upward, he knew, often starts by going down; one must descend into the lowest valley to gain the necessary leverage for the highest ascent. He reached Shechem just as the sun’s light had been completely devoured by the west, the twilight deepening into full night. It was a city of abundance and crossroads, a meeting place nestled in a damp, fertile basin, alive with the muffled hum of commerce and travelers. The air was a damp blanket, thick with the scent of rich vegetation and abundant springs—the water of life that drew all paths here. The streets were narrow, winding, built of mud-brick and"
+    },
+    {
+      "chapter_number": 2,
+      "sha256": "f2a509eb8a6314cbdbc0dd9a3984fe09cb720101a4de0615dab3d6353db395d3",
+      "score": 6,
+      "keyword_hits": 6,
+      "chapter_hint_boost": 0,
+      "excerpt": "chants and the cries of local inhabitants rose in a palpable tension, creating an atmosphere that was immediate and deafening. the city's noise was not communication, but a drowning, distracting roar. Near the central market, the sound of music broke through the din—a celebratory, rolling cadence meant to proclaim the abundance of the market day. This entire cacophony—the sights, the scents, the sounds—was the ambient roar engineered to suppress the single, clean note of the source he was now seeking; it was the sound of static chaos made [primordial_severe_mandate]. He closed his eyes for a single breath and clung to the counter-me"
+    },
+    {
+      "chapter_number": 6,
+      "sha256": "5b7b91ab7dc53343297f6b32b4a59443e75b629c2f1484de0f093bc2ff802a37",
+      "score": 5,
+      "keyword_hits": 5,
+      "chapter_hint_boost": 0,
+      "excerpt": "Chapter 6: Beelzebub, Beelzebub The stones of Shechem felt lighter beneath Dan’s feet as he stepped out of the House of Smoke and Oil into the soft morning light. A new day, a fresh start, or so they always promised, those bright, clean mornings after a night of necessary indulgence. He had woken before the sun, the scents of perfume and spiced lamb still clinging to his clothes, a ghost of the night's comfort, but his mind was clear, sharp, and eager to embark on the road ahead. He sought out a shepherd’s family, offering them a small piece of silver – a mere glint from the pouch, a tiny fragment of the earthly burden he was dete"
+    },
+    {
+      "chapter_number": 3,
+      "sha256": "a3cba70f46c50af68ae2cdb748915e80578e1bcd905624a4b077fdc99ea693fd",
+      "score": 4,
+      "keyword_hits": 4,
+      "chapter_hint_boost": 0,
+      "excerpt": "not with mere metal and stone, but with the very essence of them: rubies that pulsed with the primal, undeniable warmth of a lover’s heart, emeralds that gleamed with the earth’s promise of green pastures and endless harvest, and sapphires that held the cool, deep mystery of a night not yet born. Symbols of decay and abundance, carved from ancient bone and polished stone, seemed to orbit the goddess like silent satellites, humming with a vibrant, potent energy that sang a promise of solace and the comforting, irresistible density of the soil. Their eyes, luminous and impossibly ancient, were pools of shadowed desire and cold starlig"
+    },
+    {
+      "chapter_number": 4,
+      "sha256": "63b181b1f87727ee5202fe1f59a797a227f379a2446db5edd1cb47d50215b8a7",
+      "score": 4,
+      "keyword_hits": 4,
+      "chapter_hint_boost": 0,
+      "excerpt": "earn for a king! A true king!\" Dan’s brow furrowed with genuine puzzlement. The beggar’s words echoed the same desperate cries he was hearing everywhere in Gibeah. A hunger for a king. A ruler. A man to fix their problems. He thought of his father, the madness in his eyes, his house filled with chaos and devoted to an abundance of earthly treasures. Here, in this city of lamentation, Dan saw that the yearning for a king was a similar hunger, a desperate reaching for an earthly solution to an internal problem. The city, reeling from the brutal, tragic death of its recently fallen leader, was a testament to that void. The air felt hea"
+    },
+    {
+      "chapter_number": 9,
+      "sha256": "bb2740591c75d6dd0ee22abf60c25523302ff6758cfd3052f1b2c72e9ffe191b",
+      "score": 4,
+      "keyword_hits": 4,
+      "chapter_hint_boost": 0,
+      "excerpt": "and delivered emptiness, a crystalline Purity now permeated his very essence. It was a cool, clear current, washing away all stain, leaving behind a profound Fulfillment that sang through his being, needing no outward object, only the quiet knowing of perfect completeness. His essence swelled into currents of Heavenly Abundance, a boundless fount for all, a wellspring of pure, generative energy. This realm shimmered with a soft, inner luminescence, like moonlight filtered through clean water, its air tasting of dew and nascent life, the very breath of a reality more solid and joyous than any he had known, yet also the taste of a wor"
+    },
+    {
+      "chapter_number": 7,
+      "sha256": "fe21c269662112e63ae92118f80d1d68c5a94cb5fb3950a0d8cb1d0f3092b245",
+      "score": 3,
+      "keyword_hits": 3,
+      "chapter_hint_boost": 0,
+      "excerpt": "Chapter 7: The Pit The last rays of the sun, the color of old blood and bruised fruit, were staining the sky behind him as Dan approached the gates of Megiddo. The city rose before him, not a gentle hill like Bethlehem or a proud peak like Jebus, but a tell – a layered mound of history, built upon layers of forgotten ages. A place where countless lives had been lived, and countless more had ended, their dust mingling in the very soil of the place. The encounter with the **woman seeking her Winged Lord**, had left a **chill** in the air that had nothing to do with the setting sun. Her frantic energy, her warped faith,"
+    },
+    {
+      "chapter_number": 8,
+      "sha256": "a02f56e5ac0abd966aef2541b27fa8e4f9c5d36a2f7287d2c7bf7b46c026c6c7",
+      "score": 3,
+      "keyword_hits": 3,
+      "chapter_hint_boost": 0,
+      "excerpt": "Chapter 8: The Gravity of Judgment The first truth Daniel truly understood, beyond the roaring silence that had settled inside his fractured head, was the simple, profound warmth of the mat. It was a woven thing, smelling faintly of sun-dried straw and hearth smoke—a scent that carried the deep, psychological threat of home and its gravitational pull. This was not the hard, packed earth of Megiddo, the city built upon layers of endless, bloody, horizontal history. This was not the clammy, weeping stone of his father’s condemned dwelling, the place of Aviel's Rot, where the very structure had become a physical testament to a catast"
+    },
+    {
+      "chapter_number": 10,
+      "sha256": "3fa62b7d098773c1051829693664fd31f16b7ff29ef23e2c7215cc215295460d",
+      "score": 3,
+      "keyword_hits": 3,
+      "chapter_hint_boost": 0,
+      "excerpt": "CHAPTER 10: FORSAKEN The interior of the goat-hair sanctuary hung heavy with the residue of the unuttered, like the flaking skin of dead gods caught in a tomb where the light of the zenith had long since been refused entry. Now, you must understand—and I say this with the slow, rhythmic blink of a creature that has watched the foundations of the Levant settle into the mud—that for a daughter of the Peleset, this stitched sanctuary was a secondary skin. It was a dark womb built to hide the frantic, staccato vibration against the ribs from the cold, judgmental eye of the deep sky. A space where she could pretend that Ba'al-Zebub of"
+    },
+    {
+      "chapter_number": 11,
+      "sha256": "8d3f998fafb7852f66f9a055c6233295c82b0fdbb2450663ec63c7e3961d23e1",
+      "score": 3,
+      "keyword_hits": 3,
+      "chapter_hint_boost": 0,
+      "excerpt": "Chapter 11: Forsaken Since you've journeyed with me this far, through dust and starlight, through the echoing halls of Hermon and the becoming of a boy, you've surely earned a secret. A very old secret, one I've kept tucked away beneath the grand tapestry of this tale, a thread interwoven so subtly that only the keenest eye might follow its glint. For not all who observe stories are merely voices from thin air, nor are all companions quite what they seem. Some have been here all along, present as the breath drawn, curled at Kasha’s feet, a silent shadow in her tent, just as you may remember from those earlier chapters. Indeed, I'v"
+    },
+    {
+      "chapter_number": 13,
+      "sha256": "960479e956f95dc5674a44b34a4c5bc562dced3d80c43f4622b3c4ad2acc50e9",
+      "score": 3,
+      "keyword_hits": 3,
+      "chapter_hint_boost": 0,
+      "excerpt": "Chapter 13: Exodus The Dreamscape, as you may recall, is a place where the soul may wander free, unburdened by the tedious laws of the waking world, yet the return to the confines of flesh is rarely a gentle one. For Kasha, it was a jarring impact, a painful snap back into the familiar ache of bone and sinew, as if a great, invisible hand had seized her spirit and thrust it back into its earthen vessel. Her gasp, sharp and sudden, tore through the silent tent, a ragged sound that seemed to shred the last vestiges of the Dreamscape’s shimmering illusions. Her eyes, flying open, found the worn canvas roof above her, solid and unyiel"
+    },
+    {
+      "chapter_number": 24,
+      "sha256": "3d4e278a0349a7f47569f4502b324bf0ffbf97adb96568920bef23a877dc0776",
+      "score": 1,
+      "keyword_hits": 1,
+      "chapter_hint_boost": 0,
+      "excerpt": "In the vast expanse of the dreamscape, where souls exist beyond physical form, where the very air hums with the resonance of pure being, Dan and Isabel's essences finally converged after three millennia of separation. Their spiritual forms, composed not of flesh, but of the shimmering, incandescent energy of their divine aspects – Love and Forgiveness – recognized each other instantly across the cosmic void. \"I have searched for you through countless cycles of stars,\" Dan's presence resonated through the dreamscape, a wave of pure warmth that touched every corner of this ethereal realm, reaching out, a deep, ancient yearning. \"And"
+    }
+  ],
+  "narrative_protocol_sources": [
+    {
+      "role": "archetype_protocol",
+      "key": "cat_god_primal_self",
+      "sha256": "089b3617b7dbc3b46ceb43a7053f55662dd11c5b931bc0b2453d8e66c5568a2d",
+      "excerpt": "Literary & Archetypal Fusion Rulebook (The Cat God & The Primal Self) This rulebook dictates the final, deep-level edits required to create a \"New York Times Bestseller\" that operates as an existential mirror, compelling the reader to confront their own inner conflicts and unintegrated \"ego\" (the \"Dr. Jekyll/Mr. Hyde\" tension). I. The Narrator: Deity of Curiosity (The Cat God) The narrator's voice is the subtle, overarching thematic hyperlink for Truth and Love. The narrator is a deity of pure Curiosity in the Dreamscape, near The Source of All. * Voice Style: Highly observant, often focused on the unseen cost of knowledge or the unasked question. The tone must be ancient, knowing, yet slightly playful and precise. * Foreshadowing & Thematic Link: Introduce subtle, sensory language of a feline observer: * Emphasis on silent observation, stalking, low growls, the scent of fear/truth, and an unnerving lightness of foot. * Chapter 6 Anchor: The physical black kitten that joins Kasha MUST be present, serving as the physical a"
+    },
+    {
+      "role": "archetype_protocol",
+      "key": "visceral_empathy",
+      "sha256": "59ed13c0f886611dc08299da8b74306aa860383038e2a645b6436c04c9af25d8",
+      "excerpt": "Emotional & Archetypal Editing Rulebook (Visceral Empathy Focus) This rulebook incorporates all previous historical and hyperlinking instructions while adding a new, critical layer to ensure maximum reader empathy. The goal is to make Dan's internal war between flesh and spirit feel universally relatable (like the Dr. Jekyll and Mr. Hyde struggle you described, without using those specific terms). I. Visceral Empathy & Relatability Rules * Replace Detachment with Somatic Cost: When Dan makes a great spiritual decision (e.g., leaving Bethel, refusing silver), the text MUST emphasize the physical pain and emotional cost of that choice. * Instead of: \"Dan felt a cold resolve.\" * Use: \"A cold, sharp ache settled in the marrow of his chest, a physical rending as he chose the higher, colder truth.\" * Biochemical/Flesh vs. Spirit Conflict (The Dr. Jekyll/Mr. Hyde): Focus on the body's revolt against the spirit's ascetic demands. This is the internal war that makes Dan universally relatable to anyone battling self-control, tempta"
+    },
+    {
+      "role": "story_compendium",
+      "key": "master_compendium",
+      "sha256": "7f86ab925e53d48f6e32e07950f30b81b82bd4270b77b826b7392d7d35e86758",
+      "excerpt": "THE WEIGHT OF THE SKY: MASTER COMPENDIUM (SINGULARITY v.1.0) Author: Michael Alonza Prentice Ware | Tone: Lewis/Snicket/Gaiman/Dahl | Genre: Archetypal Mythic Realism I. THE CORE METAPHYSICAL LAWS The \"I AM\" vs. The \"Gods of Things\": The Vertical Source is pure motion/being. The Canaanite gods are \"Horizontal\" fragments of the material world (lust, greed, dust). The Fragmented Self: The gods (Dagon, Beelzebub, Astarte) are Dan’s own psychological drives looking back at him from the \"inside out.\" Encountering a god is an act of internal mirror-imaging. The Quantum Dust: The Dreamscape (Jungian Collective Subconscious) is made of \"Dust\"—Planck-length cells containing the potential for a Big Bang in every unit. Without Will and Intent (Spirit), these particles collapse into nothingness. The Sacrifice of Judgment: To move from Dan (He who judges the fragments) to Daniel (God is my Judge), the protagonist must undergo a \"thermodynamic zero-point\" descent in the Pit at Megiddo, losing his voice (human language) to gain cr"
+    },
+    {
+      "role": "new_synopsis",
+      "key": "new_synopsis",
+      "sha256": "022c36c6525eda7d3abe4836aa6ca39647c5b7267cd8c2d7234c956a69569fe0",
+      "excerpt": "tation of his spiritual quest to ascend and find the highest God. One night, Dan enters the dreamscape to send a message to his sleeping father. He forms creative \"dust\" into rocks that fall around Aviel. As his father instinctively hoards them, Dan's message becomes clear: his father is being consumed by his earthly possessions. Only when the rocks threaten to suffocate him does Aviel reluctantly let go, and Dan ends the dream. Aviel, having brought the gods of Philistia with him, worships Dagon, the fish god of abundance. Angered by Dan’s interference, Dagon appears to Dan in an uncontrolled dream. Dan finds himself on a ship in an endless ocean, face-to-face with the deity. Dagon attempts to coerce him, but Dan remains steadfast, recalling Dagon’s past specific defeats: how his statue crumbled before the Ark of the Covenant and how his temple was destroyed by Samson. Dagon dismisses this, claiming the \"realm of the living cannot touch the realm of the Dead.\" Dan calls Dagon a \"deity of death,\" to which Dagon replies, \"Loo"
+    }
+  ],
+  "subject_resolution_candidates": [
+    {
+      "name": "Dan",
+      "mentions": 15
+    },
+    {
+      "name": "Then",
+      "mentions": 12
+    },
+    {
+      "name": "Aviel",
+      "mentions": 10
+    },
+    {
+      "name": "Dagon",
+      "mentions": 10
+    },
+    {
+      "name": "Hebron",
+      "mentions": 10
+    },
+    {
+      "name": "Kasha",
+      "mentions": 9
+    },
+    {
+      "name": "There",
+      "mentions": 9
+    },
+    {
+      "name": "You",
+      "mentions": 9
+    },
+    {
+      "name": "Beelzebub",
+      "mentions": 8
+    },
+    {
+      "name": "One",
+      "mentions": 8
+    },
+    {
+      "name": "What",
+      "mentions": 8
+    },
+    {
+      "name": "Yet",
+      "mentions": 8
+    },
+    {
+      "name": "Zuna",
+      "mentions": 8
+    },
+    {
+      "name": "Astarte",
+      "mentions": 7
+    },
+    {
+      "name": "Baal",
+      "mentions": 7
+    },
+    {
+      "name": "Bethel",
+      "mentions": 7
+    },
+    {
+      "name": "Hermon",
+      "mentions": 7
+    },
+    {
+      "name": "Megiddo",
+      "mentions": 7
+    },
+    {
+      "name": "Sea",
+      "mentions": 7
+    },
+    {
+      "name": "Bethlehem",
+      "mentions": 6
+    },
+    {
+      "name": "Curiosity",
+      "mentions": 6
+    },
+    {
+      "name": "Daniel",
+      "mentions": 6
+    },
+    {
+      "name": "Israel",
+      "mentions": 6
+    },
+    {
+      "name": "Its",
+      "mentions": 6
+    }
+  ],
+  "available_narrative_context_map_excerpt": "the slow, persistent erosion of his forward momentum. His hand instinctively sought the small leather pouch, its cool, dense accumulated mass a familiar, tro middle=qually imposing, ancient presence of Gerizim to the south. They stood sentinel, silent judges of the valley of Shechem nestled between them, the mountains of Cursing and Blessing framing his path—a place where the covenant was once read aloud. The air grew thicker, heavy with the promise of life and the gravimetric claim of rich soil, descending now to the lowlands before the final, great climb toward the mountain his father had spoken of. The path upward, he knew, often starts by going down; one must descend into the lowest valley to gain the necessary leverage for the highest ascent. He reached Shechem just as the sun’s light had been completely devoured by the west, the twilight deepening into full night. It was a city of abundance and crossroads, a meeting place nestled in a damp, fertile basin, alive with the muffled hum of commerce and travelers. The air was a damp blanket, thick w ending=ttle fire, a clash of death against the fragile warmth of existence itself. The voice of a new god, whose form was like the bedrock of the world, broke the silence, slow and deliberate, like the grinding of millennia. \"Look!\" he said, his voice settling on the darkness where Dan stood hidden. \"A morsel from the world above. He is of the earth and of the flesh. Let him not fly too high, for the gravimetric claim of our work is great enough. We hold up the earth from beneath, for if we did not, the sky would have no weight.\" Astarte, The Worldly Attraction, leaned forward, her form an impossibly tall and slender tree, its leaves like hair the color of jade. Her voice was a seductive, rustling whisper. “The Branches of W",
+  "context_pack_excerpt": "me is a physical manifestation of his father Aviel's grief-fueled hoarding after the death of Dan's mother, Zuna. Unlike his father, Dan is a dreamwalker, a rare visionary who can consciously control his dreams. He sees the dreamscape not just as a subconscious world, but as a universal realm made of \"dust,\" the smallest unit of creativity. The dreamscape is layered, from the lowest depths of Pride and Gluttony to the highest reaches of Truth and a mysterious Light. In the dreamscape, all things are possible because all things exist within it. The novel establishes a crucial metaphysical conflict: some people believe the \"low gods,\" such as Dagon, Baal, and El, hold up the Earth from beneath, making them the most powerful. Others believe the \"high gods\" who watch from above—Yahweh, Courage, and Hope—are the true divine authorities. Dan's journey is a physical manifestation of his spiritual quest to ascend and find the highest God. One night, Dan enters the dreamscape to send a message to his sleeping father. He forms creative \"dust\" into rocks that fall around Aviel. As his father instinctively hoards them, Dan's message becomes clear: his father is being consumed by his earthly possessions. Only when the rocks threaten to suffocate him does Aviel reluctantly let go, and Dan ends the dream. Aviel, having brought the gods of Philistia with him, worships Dagon, the fish god of abundance. Angered by Dan’s interference, Dagon appears to Dan in an uncontrolled dream. Dan finds himself on a ship in an endless ocean, face-to-face with the deity. Dagon attempts to coerce him, but Dan remains steadfast, recalling Dagon’s past specific defeats: how his statue crumbled before the Ark of the Covenant and how his temple was destroyed by Samson. Dagon dismisses this, claiming the \"realm of the living cannot touch the realm of the Dead.\" Dan calls Dagon a \"deity of death,\" to which Dagon replies, \"Look at the war within you and the wars around you; death is ever upon you. I provide you a raft for it to lose its sting.\" Dan denies him, enraging the god, and the dream ends. The next morning, a heated conversation ensues. Aviel, realizing the dream was a message for his son—a rejection of Dagon—recalls a past, cynical conversation where he told Dan, \"if you're looking for a God, then pick up a rock and make it so.\" In his anger, Aviel tells Dan to leave. Dan packs his meager possessions and begins his spiritual and physical quest, traveling north from Hebron to Mount Hermon, the closest point to the spirit realm. His journey is an effort to shed \"earthly treasures\" that tie him down. Part 2: Trials and Transformations As Dan travels, he encounters people and places that reflect the very gods he has rejected. In Bethlehem, he rejects the seductions of an Edomite woman,",
+  "context_capsule_sha256": "23177119897206ce079787f6c5ab19c8a74e55a7c36091ef354dd48888299047"
+}

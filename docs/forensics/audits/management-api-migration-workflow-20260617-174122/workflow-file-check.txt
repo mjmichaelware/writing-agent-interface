@@ -1,0 +1,3 @@
+OK .github/workflows/apply-supabase-migration-management-api.yml
+OK .github/workflows/deploy-supabase.yml
+OK supabase/migrations/20260617000100_xml_grounded_semantic_rehash.sql

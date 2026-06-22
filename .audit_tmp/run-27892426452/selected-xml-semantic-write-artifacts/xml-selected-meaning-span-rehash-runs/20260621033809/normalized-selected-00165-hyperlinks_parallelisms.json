@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_5f5bc0319aff59968017a530ca3cbd28",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "d1004e68d118a3cbef7d333407481fe93ca2a1123d54988b71d1651fcbf66290",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "Aviel's rough, scraped raw voice in the source paragraph echoes the motif of emotional and physical rawness experienced by Dan throughout the narrative, reflecting internal struggle and vulnerability.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_f6188ff13bd2e6e699bf3b20c2adc75b",
+          "quote": "\"Where will you go?\" Aviel asked finally. His voice was rough, scraped raw."
+        }
+      ],
+      "target_hint": "Dan's internal war between flesh and spirit, marked by physical and emotional pain, as described in the narrative context capsule and other chapters.",
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "Aviel's rough, scraped raw voice in the source paragraph echoes the motif of emotional and physical rawness experienced by Dan throughout the narrative, reflecting internal struggle and vulnerability.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_f6188ff13bd2e6e699bf3b20c2adc75b",
+          "render_index": 72,
+          "quote": "\"Where will you go?\" Aviel asked finally. His voice was rough, scraped raw.",
+          "role": "source",
+          "start_char": 9255,
+          "end_char": 9330,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_5f5bc0319aff59968017a530ca3cbd28",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            143
+          ],
+          "evidence_sha256": "0f63d9732c28c1577b6421e7ce32cab3809a93edd150045f2f780364ab696d09"
+        }
+      ],
+      "target_hint": "Dan's internal war between flesh and spirit, marked by physical and emotional pain, as described in the narrative context capsule and other chapters.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "1c4d70368a545fedca31a9a72efd83b6bd530d31c99c9937971a01250f5fe859",
+  "normalized_output_hash": "2d9e0c52085d74a76ed3ed40eeee2ffc62d783022596f57b726e687a6c851cf7"
+}

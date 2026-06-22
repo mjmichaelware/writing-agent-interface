@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_2fb589aadc0f93aac17706a1cd779608",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "20af042c7c1f55263949ca4b662406487cc9fe59f7d0cd2d418d7f95198531c9",
+  "observations": [
+    {
+      "axis": "Divine Authority vs. Human Interpretation",
+      "polarity": "Divine Authority on Right, Human Interpretation on Left",
+      "summary": "The tension between the divine source of visions and the human act of interpreting or correcting them is highlighted by the father's initial reference to 'The Lord' and his subsequent correction to 'Lord Dagon,' indicating a shift from a general divine authority to a specific, perhaps more ominous, deity.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_3abddcf2a33464b1427e45ab27c89112",
+          "quote": "\"I had a dream,\" his father continued, his voice gaining strength. \"A vision. The Lord—\" He stopped, corrected himself."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_3abddcf2a33464b1427e45ab27c89112",
+          "quote": "\"Lord Dagon sent me a vision.\""
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "divine_authority_vs_human_interpretation",
+      "polarity": "tension",
+      "summary": "The tension between the divine source of visions and the human act of interpreting or correcting them is highlighted by the father's initial reference to 'The Lord' and his subsequent correction to 'Lord Dagon,' indicating a shift from a ge",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_3abddcf2a33464b1427e45ab27c89112",
+          "render_index": 19,
+          "quote": "\"I had a dream,\" his father continued, his voice gaining strength. \"A vision. The Lord—\" He stopped, corrected himself.",
+          "role": "left",
+          "start_char": 2397,
+          "end_char": 2516,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_2fb589aadc0f93aac17706a1cd779608",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            37
+          ],
+          "evidence_sha256": "599d8b5186c63ad790d35b917d7c6697c04903683d726e1e495b0d50f8cdca9a"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_3abddcf2a33464b1427e45ab27c89112",
+          "render_index": 19,
+          "quote": "\"Lord Dagon sent me a vision.\"",
+          "role": "right",
+          "start_char": 2517,
+          "end_char": 2547,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_2fb589aadc0f93aac17706a1cd779608",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            37
+          ],
+          "evidence_sha256": "0b91d18d335e0a140601e5e74f506a4d1e41a6650d306c13cfd1d5fbe1305b48"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "e5ecf285a465178ae127c0e242b5cd18537fd3f5ae724fc1be479f16c7c9f4dd",
+  "normalized_output_hash": "315e049f5352d5239558ef13306c7c30d8f2740551068b2df49574cd2c1cdbc2"
+}

@@ -1,0 +1,131 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_2e5d1b901ba3e70bcc51a7ddc1702097",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "52f5fc5cf16887cb1d2c6a869a2a2f7d6344fcea26e14e879741e4b815b83bfa",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The description of Zuna's sacred threads, once vibrant and extraordinary but now rotting and draped over animal bones, parallels the motif of life surrendering to death, echoing the theme of decay and the passage of time.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_2fd3f78160471d56016083e6b9583bc7",
+          "quote": "Rotting textiles—Zuna's sacred threads left mid-shuttle—had unraveled into mildew and draped over discarded animal bones, making a dry rustling sound when disturbed that was the sound of all life giving up its last argument with death."
+        }
+      ],
+      "target_hint": null,
+      "target_evidence": [],
+      "confidence": 0.95
+    },
+    {
+      "relationship_type": "motif_echo",
+      "summary": "The vivid colors of the threads (crimson, saffron, emerald, amber, violet, rose) echo the motif of vibrant life and beauty that contrasts with the surrounding decay, highlighting the tension between life and death.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_2fd3f78160471d56016083e6b9583bc7",
+          "quote": "You could still see what they had been if you looked with the right kind of attention: crimson like pomegranate seeds split open, saffron like desert flowers at dawn, emerald like new wheat pushing through soil, amber like honey held to sunlight, violet like the sky at dusk, rose like oleander petals after rain."
+        }
+      ],
+      "target_hint": null,
+      "target_evidence": [],
+      "confidence": 0.9
+    },
+    {
+      "relationship_type": "foreshadowing",
+      "summary": "The mention that Zuna never touched the colors blue, purple, and scarlet, and never explained why, foreshadows a deeper significance or secret related to these colors that may be revealed later.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_2fd3f78160471d56016083e6b9583bc7",
+          "quote": "Every color, that is, except the three she never touched—never blue, never purple, never scarlet—and she had never explained why, but Dan had understood in the wordless way children understand holy things that some colors were not for human hands."
+        }
+      ],
+      "target_hint": "The significance of the forbidden colors blue, purple, and scarlet may be revealed in later narrative developments involving sacred or forbidden knowledge.",
+      "target_evidence": [],
+      "confidence": 0.85
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The description of Zuna's sacred threads, once vibrant and extraordinary but now rotting and draped over animal bones, parallels the motif of life surrendering to death, echoing the theme of decay and the passage of time.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_2fd3f78160471d56016083e6b9583bc7",
+          "render_index": 8,
+          "quote": "Rotting textiles—Zuna's sacred threads left mid-shuttle—had unraveled into mildew and draped over discarded animal bones, making a dry rustling sound when disturbed that was the sound of all life giving up its last argument with death.",
+          "role": "source",
+          "start_char": 2615,
+          "end_char": 2850,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_2e5d1b901ba3e70bcc51a7ddc1702097",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            15
+          ],
+          "evidence_sha256": "d2521ada6b8b5c4ad6f040f9c05ff290047772454e8f61f75505dfcccef6aa9e"
+        }
+      ],
+      "target_hint": null,
+      "target_evidence": [],
+      "confidence": 0.95
+    },
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The mention that Zuna never touched the colors blue, purple, and scarlet, and never explained why, foreshadows a deeper significance or secret related to these colors that may be revealed later.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_2fd3f78160471d56016083e6b9583bc7",
+          "render_index": 8,
+          "quote": "Every color, that is, except the three she never touched—never blue, never purple, never scarlet—and she had never explained why, but Dan had understood in the wordless way children understand holy things that some colors were not for human hands.",
+          "role": "source",
+          "start_char": 3316,
+          "end_char": 3563,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_2e5d1b901ba3e70bcc51a7ddc1702097",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            15
+          ],
+          "evidence_sha256": "9e6b09657d3de265df7be779935bb6dc75bca777672197eeb723fdf37e601995"
+        }
+      ],
+      "target_hint": "The significance of the forbidden colors blue, purple, and scarlet may be revealed in later narrative developments involving sacred or forbidden knowledge.",
+      "target_evidence": [],
+      "confidence": 0.55
+    },
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "motif_echo",
+      "summary": "The vivid colors of the threads (crimson, saffron, emerald, amber, violet, rose) echo the motif of vibrant life and beauty that contrasts with the surrounding decay, highlighting the tension between life and death.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_2fd3f78160471d56016083e6b9583bc7",
+          "render_index": 8,
+          "quote": "You could still see what they had been if you looked with the right kind of attention: crimson like pomegranate seeds split open, saffron like desert flowers at dawn, emerald like new wheat pushing through soil, amber like honey held to sunlight, violet like the sky at dusk, rose like oleander petals after rain.",
+          "role": "source",
+          "start_char": 2899,
+          "end_char": 3212,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_2e5d1b901ba3e70bcc51a7ddc1702097",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            15
+          ],
+          "evidence_sha256": "c1cb54a9a7c00b809dd4f4a73e6e92e0a03462f3b52bdc4945bb7a7f4dd51554"
+        }
+      ],
+      "target_hint": null,
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "0b2c12014584b5df49dafe79260dced0b28ee4bedbf6b872e826c5a68d1a34aa",
+  "normalized_output_hash": "41d3f4d0f23fd043d8590345c9f0aa92312bb2a5029957ad472e1b1ef17d9cdc"
+}

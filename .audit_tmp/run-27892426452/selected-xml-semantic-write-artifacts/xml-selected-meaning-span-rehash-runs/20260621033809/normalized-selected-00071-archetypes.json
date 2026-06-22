@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "archetypes",
+  "scene_window_id": "scene_49a6a2073aced788c87477d163550f88",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "a378bb9bd5344cf26bc553aef615a091726b48099768a1251238a6da32f3c16c",
+  "observations": [
+    {
+      "character": "Dan",
+      "archetype": "Hero",
+      "archetype_gloss": "The protagonist confronting external and internal challenges",
+      "movement": "ordeal",
+      "summary": "Dan rejects an offered compromise symbolized by a raft of 'soft lies,' expressing a willingness to endure hardship rather than live in corruption, indicating a heroic stance against moral compromise.",
+      "evidence": [
+        {
+          "render_para_key": "rp_d3749c140baef070b993da494895882b",
+          "quote": "\"You offer me a raft for a life of soft lies?\" Dan shoved the salt water from his eyes. \"I just saw what that bought my father. I'd rather drink the sea and sink than live one more day in your filth.\""
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "archetypes",
+      "character": "Dan",
+      "archetype": "Hero",
+      "archetype_anchor_key": "jungian_hero",
+      "archetype_gloss": null,
+      "movement": "ordeal",
+      "summary": "Dan rejects an offered compromise symbolized by a raft of 'soft lies,' expressing a willingness to endure hardship rather than live in corruption, indicating a heroic stance against moral compromise.",
+      "evidence": [
+        {
+          "render_para_key": "rp_d3749c140baef070b993da494895882b",
+          "render_index": 72,
+          "quote": "\"You offer me a raft for a life of soft lies?\" Dan shoved the salt water from his eyes. \"I just saw what that bought my father. I'd rather drink the sea and sink than live one more day in your filth.\"",
+          "role": null,
+          "start_char": 17270,
+          "end_char": 17470,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_49a6a2073aced788c87477d163550f88",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            143
+          ],
+          "evidence_sha256": "eb8447b5e2eb57f60fd51aae1de9272de0ca9d30229bdc8e65aed6527550e1aa"
+        }
+      ],
+      "confidence": 0.95,
+      "unresolved_subject": false
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "f3d9deb1bb6bfaaf0dd5ab244bc20c3eef5a7e8643c7f9adf4e04ac56f0bc15d",
+  "normalized_output_hash": "a5ff8f70d7058f8d9b8ceaa78cd20ef6bd931ad659b39d27744bb7fe590a9f19"
+}

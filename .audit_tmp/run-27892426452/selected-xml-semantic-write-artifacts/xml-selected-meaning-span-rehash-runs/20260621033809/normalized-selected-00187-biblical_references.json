@@ -1,0 +1,68 @@
+{
+  "status": "ok",
+  "task_type": "biblical_references",
+  "scene_window_id": "scene_00163221229cdcd1bef808b01d4b9b6d",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "dafe4ef7fc619b417488743e9895a896418cf8277941d0b7f5da7e1df452d477",
+  "observations": [
+    {
+      "biblical_anchor_label": "Psalm 34:18",
+      "book": "Psalms",
+      "chapter": 34,
+      "verse_start": 18,
+      "verse_end": 18,
+      "motif_family": "Relief from Burden",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The text describes a lifting of a heavy, suffocating weight from the chest after a prolonged period of suffering, analogous to the Psalmist's expression of God being close to the brokenhearted and saving those crushed in spirit, symbolizing relief and comfort after enduring hardship.",
+      "summary": "The passage's depiction of a heavy weight pressing on the chest for seven years and its gradual lifting parallels the biblical motif of God comforting the brokenhearted and delivering those burdened by grief or suffering.",
+      "evidence": [
+        {
+          "render_para_key": "rp_92da0950e43e7d5d98ed6fc3bfddacf3",
+          "quote": "The weight that had been pressing on his chest for seven years—the terrible, suffocating weight of his father's slow collapse—began to lift. Not all at once. Not completely. But enough that he could take a full breath without feeling like he was stealing air from someone who needed it more."
+        }
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Psalm 34:18",
+      "book": "Psalm",
+      "chapter": 34,
+      "verse_start": 18,
+      "verse_end": 18,
+      "motif_family": "relief_from_burden",
+      "biblical_anchor_key": "bibanchor_1af2e92418ec086987230849434ab98c",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The text describes a lifting of a heavy, suffocating weight from the chest after a prolonged period of suffering, analogous to the Psalmist's expression of God being close to the brokenhearted and saving those crushed in spirit, symbolizing relief and comfort after enduring hardship.",
+      "summary": "The passage's depiction of a heavy weight pressing on the chest for seven years and its gradual lifting parallels the biblical motif of God comforting the brokenhearted and delivering those burdened by grief or suffering.",
+      "evidence": [
+        {
+          "render_para_key": "rp_92da0950e43e7d5d98ed6fc3bfddacf3",
+          "render_index": 94,
+          "quote": "The weight that had been pressing on his chest for seven years—the terrible, suffocating weight of his father's slow collapse—began to lift. Not all at once. Not completely. But enough that he could take a full breath without feeling like he was stealing air from someone who needed it more.",
+          "role": null,
+          "start_char": 11988,
+          "end_char": 12279,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_00163221229cdcd1bef808b01d4b9b6d",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            187
+          ],
+          "evidence_sha256": "42a199b48ec7b4f9aa8d643c0e880d5bcde5c61b0ac32ca7fed4c60fbef545dc"
+        }
+      ],
+      "confidence": 0.6,
+      "reference": "Psalm 34:18",
+      "motif": "relief_from_burden"
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "fb8209a2444f8abc2be9429f835e51f9f12b298dd35c7d33f123f0560bc76b0f",
+  "normalized_output_hash": "dbd1f8835ed29b6f6f3f7749cb0771e941860d1e4b352d17932b0dc7a24ae98f"
+}

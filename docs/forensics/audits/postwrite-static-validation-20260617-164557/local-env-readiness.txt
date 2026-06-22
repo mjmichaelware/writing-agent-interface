@@ -1,0 +1,4 @@
+GOOGLE_API_KEY=<set>
+
+gcloud_project=ai-job-agent-498702
+ADC_OK

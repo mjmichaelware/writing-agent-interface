@@ -1,0 +1,68 @@
+{
+  "status": "ok",
+  "task_type": "biblical_references",
+  "scene_window_id": "scene_a43353c2652e5e3d6608645a79c8df74",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "9af6e08f72a3475efe635795f12e3332937a4219439dc9e08dcf27f5d8cd4713",
+  "observations": [
+    {
+      "biblical_anchor_label": "Genesis 19:24-25",
+      "book": "Genesis",
+      "chapter": 19,
+      "verse_start": 24,
+      "verse_end": 25,
+      "motif_family": "Divine Judgment by Stones",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The vision of heavy stones raining down from the sky parallels the biblical account of God raining down burning sulfur and stones on Sodom and Gomorrah as divine judgment, symbolizing overwhelming destruction and suffocation.",
+      "summary": "Aviel's vision of heavy stones falling from the sky and piling up until he cannot breathe symbolically resonates with the biblical motif of divine judgment by stones as in the destruction of Sodom and Gomorrah.",
+      "evidence": [
+        {
+          "render_para_key": "rp_1868f832c6f92678f2823c7bdfab6d5f",
+          "quote": "Then it began to rain. Not water. Stones. They fell from the sky, and they were *heavy*, Dan. So heavy. They piled around me, on me, until I couldn't breathe."
+        }
+      ],
+      "confidence": 0.85
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Genesis 19:24-25",
+      "book": "Genesis",
+      "chapter": 19,
+      "verse_start": 24,
+      "verse_end": 25,
+      "motif_family": "divine_judgment_by_stones",
+      "biblical_anchor_key": "bibanchor_d7d2fa19e3e66cfa4afac2551a4c13be",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The vision of heavy stones raining down from the sky parallels the biblical account of God raining down burning sulfur and stones on Sodom and Gomorrah as divine judgment, symbolizing overwhelming destruction and suffocation.",
+      "summary": "Aviel's vision of heavy stones falling from the sky and piling up until he cannot breathe symbolically resonates with the biblical motif of divine judgment by stones as in the destruction of Sodom and Gomorrah.",
+      "evidence": [
+        {
+          "render_para_key": "rp_1868f832c6f92678f2823c7bdfab6d5f",
+          "render_index": 25,
+          "quote": "Then it began to rain. Not water. Stones. They fell from the sky, and they were *heavy*, Dan. So heavy. They piled around me, on me, until I couldn't breathe.",
+          "role": null,
+          "start_char": 3578,
+          "end_char": 3736,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_a43353c2652e5e3d6608645a79c8df74",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            49
+          ],
+          "evidence_sha256": "3a288456902a4fb5bcb3e288f10414fce07c6a3b922dddafe22e463347bb3780"
+        }
+      ],
+      "confidence": 0.6,
+      "reference": "Genesis 19:24-25",
+      "motif": "divine_judgment_by_stones"
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "381e19565906160f48f20fdf8eae03cc81ac7e40a3012578e79c83167a2fbd30",
+  "normalized_output_hash": "1728e816046d8aac0beb3eeddf526c0bf9003e7920b65937c39547090835028d"
+}

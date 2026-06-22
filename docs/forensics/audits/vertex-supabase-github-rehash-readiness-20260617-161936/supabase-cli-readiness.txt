@@ -1,0 +1,13 @@
+supabase_path=
+supabase CLI unavailable
+
+supabase_projects:
+supabase projects list unavailable
+
+supabase_functions:
+supabase functions list unavailable
+
+supabase_migrations:
+supabase migration list unavailable
+
+supabase_secret_names_only:

@@ -1,0 +1,60 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_e8e749037844f48cccafbf2d724cc85f",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "08fdf09ae32a761c76215916b6247091092a557d994b4396105cd937024a21f2",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The motif of 'looking back' as a fatal mistake is echoed as a lesson learned from old stories, symbolizing the danger of being trapped by the past and unable to move forward.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_20bdb65cd150f780c17e57aa1873ba31",
+          "quote": "He didn't look back. That lesson, at least, he'd learned from the old stories. Looking back turned you into salt, froze you in place, made you a monument to your own inability to move forward."
+        }
+      ],
+      "target_hint": "This motif parallels the broader narrative theme of forward momentum versus being trapped by past burdens, as seen in Dan's journey and the giant Rapha's release from his past.",
+      "target_evidence": [
+        {
+          "render_para_key": "5b7b91ab7dc53343297f6b32b4a59443e75b629c2f1484de0f093bc2ff802a37",
+          "quote": "The giant had been unable to look forward with hope for he had been so burdened and concerned with the past. With hope, and this new understanding of all things being made perfectly imperfect, Rapha sheds his burdens."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The motif of 'looking back' as a fatal mistake is echoed as a lesson learned from old stories, symbolizing the danger of being trapped by the past and unable to move forward.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_20bdb65cd150f780c17e57aa1873ba31",
+          "render_index": 90,
+          "quote": "He didn't look back. That lesson, at least, he'd learned from the old stories. Looking back turned you into salt, froze you in place, made you a monument to your own inability to move forward.",
+          "role": "source",
+          "start_char": 11309,
+          "end_char": 11501,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_e8e749037844f48cccafbf2d724cc85f",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            179
+          ],
+          "evidence_sha256": "4d9217d96ea89aa499a388aa0c83f3a133e677ec94589e89e3dd0d92a4137d4b"
+        }
+      ],
+      "target_hint": "This motif parallels the broader narrative theme of forward momentum versus being trapped by past burdens, as seen in Dan's journey and the giant Rapha's release from his past.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "55b4fe2d547b54ad384366f58806f3f98c3dfcdd75a031c4824ed82114dc2514",
+  "normalized_output_hash": "4ccc3d82e504562ceacefaf449556808a3a2c46faf0120d3b105c64ea118fb28"
+}

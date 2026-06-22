@@ -1,0 +1,131 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_96e384bf06dcb25351984741f77e4db4",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "614909f93becbeb6e8175984ef59e8dbe1c924399c2f32e0612bcc860fd8d87c",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The phrase \"Your flesh calls still, ceaselessly, seeking its appointed rest\" echoes the motif of the internal conflict between flesh and spirit, highlighting the persistent physical and spiritual struggle within the protagonist.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_f07b98a9e6d9377e9d5d19bf9e42070a",
+          "quote": "\"Your flesh calls still, ceaselessly, seeking its appointed rest.\""
+        }
+      ],
+      "target_hint": "This motif parallels the broader narrative theme of Dan's internal war between flesh and spirit as described in the visceral empathy archetype protocol and the master compendium.",
+      "target_evidence": [],
+      "confidence": 0.9
+    },
+    {
+      "relationship_type": "foreshadowing",
+      "summary": "The admonition about sinning by \"undoing my work in your father's house\" foreshadows the protagonist's future challenges related to familial legacy and spiritual rebellion.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_f07b98a9e6d9377e9d5d19bf9e42070a",
+          "quote": "\"And this night have you sinned—daring to undo my work in your father's house.\""
+        }
+      ],
+      "target_hint": "This foreshadows the ongoing conflict involving Dan's relationship with his father Aviel and the spiritual consequences of his actions, as explored in earlier chapters and the narrative context.",
+      "target_evidence": [],
+      "confidence": 0.85
+    },
+    {
+      "relationship_type": "motif_echo",
+      "summary": "The phrase \"Do not mistake your petty will for a living offering\" echoes the motif of sacrifice and the tension between personal desire and higher spiritual purpose.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_f07b98a9e6d9377e9d5d19bf9e42070a",
+          "quote": "\"Do not mistake your petty will for a living offering.\""
+        }
+      ],
+      "target_hint": "This motif resonates with the narrative's emphasis on sacrifice and judgment, particularly the protagonist's struggle to transcend ego and align with divine will as outlined in the master compendium and visceral empathy protocols.",
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The admonition about sinning by \"undoing my work in your father's house\" foreshadows the protagonist's future challenges related to familial legacy and spiritual rebellion.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_f07b98a9e6d9377e9d5d19bf9e42070a",
+          "render_index": 62,
+          "quote": "And this night have you sinned—daring to undo my work in your father's house",
+          "role": "source",
+          "start_char": 15167,
+          "end_char": 15243,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_96e384bf06dcb25351984741f77e4db4",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            123
+          ],
+          "evidence_sha256": "949709d97dcd7f62bdb5690126e02a4274d3eadd2d87539dcc2931693a530aba"
+        }
+      ],
+      "target_hint": "This foreshadows the ongoing conflict involving Dan's relationship with his father Aviel and the spiritual consequences of his actions, as explored in earlier chapters and the narrative context.",
+      "target_evidence": [],
+      "confidence": 0.55
+    },
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "motif_echo",
+      "summary": "The phrase \"Do not mistake your petty will for a living offering\" echoes the motif of sacrifice and the tension between personal desire and higher spiritual purpose.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_f07b98a9e6d9377e9d5d19bf9e42070a",
+          "render_index": 62,
+          "quote": "Do not mistake your petty will for a living offering",
+          "role": "source",
+          "start_char": 15245,
+          "end_char": 15297,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_96e384bf06dcb25351984741f77e4db4",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            123
+          ],
+          "evidence_sha256": "ef0b35f830a0ba624ac04de2fcefcb1185997978bf7e2321725c03405e9088e7"
+        }
+      ],
+      "target_hint": "This motif resonates with the narrative's emphasis on sacrifice and judgment, particularly the protagonist's struggle to transcend ego and align with divine will as outlined in the master compendium a",
+      "target_evidence": [],
+      "confidence": 0.55
+    },
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The phrase \"Your flesh calls still, ceaselessly, seeking its appointed rest\" echoes the motif of the internal conflict between flesh and spirit, highlighting the persistent physical and spiritual struggle within the protagonist.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_f07b98a9e6d9377e9d5d19bf9e42070a",
+          "render_index": 62,
+          "quote": "\"Your flesh calls still, ceaselessly, seeking its appointed rest.\"",
+          "role": "source",
+          "start_char": 15032,
+          "end_char": 15098,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_96e384bf06dcb25351984741f77e4db4",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            123
+          ],
+          "evidence_sha256": "7be795c262c49e27cb21a28fc5c718958578db8fb49bb3f549b5fb989e4b5073"
+        }
+      ],
+      "target_hint": "This motif parallels the broader narrative theme of Dan's internal war between flesh and spirit as described in the visceral empathy archetype protocol and the master compendium.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "53dd2c9fc2736da12cefd9183ac072607b36479bc3266a4b6735c0803d03248f",
+  "normalized_output_hash": "9dde80e1525549b3cfbeb7fcf425aaf37a45920cc3e6cac081c6a04b73dff6e5"
+}

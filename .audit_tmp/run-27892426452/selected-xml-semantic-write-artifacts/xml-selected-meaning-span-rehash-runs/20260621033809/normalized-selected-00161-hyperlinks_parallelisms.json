@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_9aeabc9371b4bae685c1f33d96d29f1c",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "b1089f2bcd951b39c1df1c26237c27db45314cb82e7dc7a64561e5983dcd6c07",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The tactile sensation of holding a solid, balanced object in Dan's hand parallels the emotional connection to his father, symbolizing a tangible link to a lost paternal figure.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_712f5e89a2d3cfa2905a070285d5ea75",
+          "quote": "It felt right in his hand—solid, balanced, real. A connection to the man his father had been, even if that man was lost now."
+        }
+      ],
+      "target_hint": "This motif echoes earlier narrative descriptions of Dan's internal struggle with his father's legacy and the physical environment reflecting emotional states.",
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The tactile sensation of holding a solid, balanced object in Dan's hand parallels the emotional connection to his father, symbolizing a tangible link to a lost paternal figure.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_712f5e89a2d3cfa2905a070285d5ea75",
+          "render_index": 68,
+          "quote": "It felt right in his hand—solid, balanced, real. A connection to the man his father had been, even if that man was lost now.",
+          "role": "source",
+          "start_char": 8822,
+          "end_char": 8946,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_9aeabc9371b4bae685c1f33d96d29f1c",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            135
+          ],
+          "evidence_sha256": "07f441a6ac06ba60fb41d04758afeb27849f85cf743fa8e08fc73573a312a4af"
+        }
+      ],
+      "target_hint": "This motif echoes earlier narrative descriptions of Dan's internal struggle with his father's legacy and the physical environment reflecting emotional states.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "fadb8d313d609f4fbce00050bf485cdd5a2034df34a31d97e794ecc1e2dd4d88",
+  "normalized_output_hash": "5b1d5ed950718104a2603a3ff8ec422a36158bc8e26098f08486abe91b65b047"
+}

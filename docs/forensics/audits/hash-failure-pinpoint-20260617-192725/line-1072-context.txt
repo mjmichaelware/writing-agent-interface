@@ -1,0 +1,41 @@
+  1045	  for (const c of chaptersDb) {
+  1046	    if (c.chapter_number !== null && c.chapter_number !== undefined) chapterIdByNumber.set(Number(c.chapter_number), c.id);
+  1047	    const parsed = Number(String(c.manifest_id || "").match(/\d+/)?.[0]);
+  1048	    if (Number.isFinite(parsed)) chapterIdByNumber.set(parsed, c.id);
+  1049	  }
+  1050	
+  1051	  let totalProcessed = 0;
+  1052	
+  1053	  for (const chapter of chapters) {
+  1054	    const chapterId = chapterIdByNumber.get(chapter.chapter_number);
+  1055	    let chapterParagraphs = chapterId
+  1056	      ? paragraphs.filter((p) => p.chapter_id === chapterId)
+  1057	      : paragraphs.filter((p) => String(p.content || "").length > 0).slice(0, BATCH_SIZE);
+  1058	
+  1059	    if (LIMIT) chapterParagraphs = chapterParagraphs.slice(0, Math.max(0, LIMIT - totalProcessed));
+  1060	    if (!chapterParagraphs.length) continue;
+  1061	
+  1062	    const xmlEntries = relevantXmlEntriesForChapter(manifest, chapter.chapter_number);
+  1063	    const xmlEvidence = loadXmlEvidence(xmlEntries);
+  1064	
+  1065	    for (const batch of paragraphBatches(chapterParagraphs)) {
+  1066	      if (LIMIT && totalProcessed >= LIMIT) break;
+  1067	
+  1068	      const prompt = buildPrompt({ contextPack, chapter, xmlEvidence, paragraphs: batch });
+  1069	      const promptHash = sha256Text(prompt);
+  1070	      writeFileSync(join(paths.outDir, `prompt-${chapter.chapter_number}-${totalProcessed}.sha256`), `${promptHash}\n`);
+  1071	
+  1072	      const result = await callVertex(prompt);
+  1073	      writeFileSync(
+  1074	        join(paths.outDir, `result-${chapter.chapter_number}-${totalProcessed}.json`),
+  1075	        JSON.stringify(result, null, 2)
+  1076	      );
+  1077	
+  1078	      await writeSemanticResult({ semanticRun, batch, result });
+  1079	      totalProcessed += batch.length;
+  1080	
+  1081	      console.log(JSON.stringify({
+  1082	        run_id: semanticRun.id,
+  1083	        chapter: chapter.chapter_number,
+  1084	        processed: totalProcessed,
+  1085	        write_mode: writeMode,

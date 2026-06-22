@@ -1,0 +1,1295 @@
+===== reports/ingestion-hash-references.txt =====
+src/app/api/graph/route.ts:13:    // Also fetch explicit hyperlinks/dualisms
+src/app/api/graph/route.ts:14:    const { rows: hyperlinks } = await query(
+src/app/api/graph/route.ts:16:       FROM hyperlinks`
+src/app/api/graph/route.ts:21:      hyperlinks
+src/app/api/manuscript/route.ts:26:    .select('*, biblical_references(*), chapters(part_number, chapter_number)')
+src/app/api/search/route.ts:27:    const embedModel = vertexAI.preview.getGenerativeModel({ model: 'text-embedding-004' });
+src/app/api/search/route.ts:29:    const embedding = embedResponse.embedding.values;
+src/app/api/search/route.ts:39:        1 - (embedding <=> $1::vector) AS similarity
+src/app/api/search/route.ts:41:      WHERE 1 - (embedding <=> $1::vector) > 0.5
+src/app/api/search/route.ts:44:      [JSON.stringify(embedding)]
+src/app/api/chapters/route.ts:24:    if (isNaN(parseInt(slug)) === false && !slug.startsWith('man_')) {
+src/app/api/chapters/route.ts:26:      chapterParams = [parseInt(slug), `man_${slug.padStart(2, '0')}`];
+src/app/api/analyze-document/route.ts:2:import { parseDocument } from '@/services/document-analyzer/parser';
+src/app/api/analyze-document/route.ts:20:    const extractedText = await parseDocument(fileBase64, mimeType);
+src/app/api/analyze-document/route.ts:22:    if (!extractedText) {
+src/app/api/analyze-document/route.ts:23:      throw new Error("Failed to extract text from document");
+src/app/api/analyze-document/route.ts:27:    const corpusMatches = await searchCorpus(extractedText);
+src/app/api/analyze-document/route.ts:30:    const analysis = await synthesizeAnalysis(extractedText, corpusMatches);
+src/app/api/analyze-document/route.ts:34:      extractedText: extractedText.slice(0, 1000), // Return snippet for preview
+src/app/api/biblical-references/route.ts:6:    const { rows: references } = await query(
+src/app/api/biblical-references/route.ts:7:      `SELECT * FROM biblical_references ORDER BY book ASC, chapter ASC, verse ASC`
+src/app/api/biblical-references/route.ts:9:    return NextResponse.json({ references });
+src/app/api/biblical-references/route.ts:12:    return NextResponse.json({ error: e.message, references: [] }, { status: 500 });
+src/app/globals.css:45:  text-shadow: 0 2px 60px rgba(0,0,0,0.9);
+src/app/globals.css:131:.hyperlinks-graph-container {
+src/app/globals.css:147:.hyperlinks-graph-svg {
+src/app/globals.css:288:  text-shadow: 0 2px 60px rgba(0, 0, 0, 0.9), 0 1px 20px rgba(0, 0, 0, 0.6);
+src/app/globals.css:423:  box-shadow: 0 0 0 rgba(201, 169, 110, 0);
+src/app/globals.css:442:  box-shadow: 0 0 30px rgba(201, 169, 110, 0.2), inset 0 0 10px rgba(201, 169, 110, 0.1);
+src/app/globals.css:483:  box-shadow: 0 0 8px var(--accent-gold);
+src/app/globals.css:758:  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+src/app/globals.css:884:  box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+src/app/globals.css:1205:  box-shadow: 0 30px 80px rgba(0,0,0,0.85);
+src/app/globals.css:1372:  box-shadow: 0 30px 80px rgba(0,0,0,0.85);
+src/app/globals.css.bak:45:.kinetic-token {
+src/app/globals.css.bak:52:  text-shadow:
+src/app/globals.css.bak:67:    text-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+src/app/globals.css.bak:111:  box-shadow:
+src/components/ui/editor.tsx:100:          box-shadow: 0 0 10px rgba(6,182,212,0.4);
+src/components/ui/sidebar.tsx:58:      className={`fixed top-0 left-0 h-full h-screen shadow-[20px_0_60px_rgba(0,0,0,0.95)] z-45 flex flex-col border-r border-zinc-900/50 bg-[#030305]/96 backdrop-blur-2xl -webkit-backdrop-filter: blur(2xl) transition-all duration-400 cubic-bezier(0.16, 1, 0.3, 1) ${isSidebarOpen ? "translate-x-0 w-[260px]" : "-translate-x-full w-[260px]"}`}
+src/components/ui/ScopedBackdrop.tsx:10: * * Structural Design: 100% genuine vector shading variables. Zero placeholder shortcuts.
+src/components/ui/ScopedBackdrop.tsx:51:        .backdrop-shading-mask-plate {
+src/components/ui/ScopedBackdrop.tsx:79:        className={`backdrop-shading-mask-plate ${hardwareGPUAcceleration ? "gpu-acceleration-vector-lock" : ""}`}
+src/components/ui/ScopedBackdrop.tsx:87:      {/* Embedded hidden token frame tracking configuration entries securely inside the layer */}
+src/components/ui/Tokenizer.tsx:5:  "Dan", "Aviel", "Kasha", "Dagon", "Astarte", "El", "Mot",
+src/components/ui/Tokenizer.tsx:12:  const tokens = text.split(/([\p{L}\p{M}]+(?:['’\-][\p{L}\p{M}]+)*|[^\p{L}\p{M}\s]+|\s+)/gu).filter(Boolean);
+src/components/ui/Tokenizer.tsx:18:      {tokens.map((token, idx) => {
+src/components/ui/Tokenizer.tsx:19:        // If token is just whitespace, render it directly
+src/components/ui/Tokenizer.tsx:20:        if (/^\s+$/.test(token)) {
+src/components/ui/Tokenizer.tsx:21:          return <React.Fragment key={idx}>{token}</React.Fragment>;
+src/components/ui/Tokenizer.tsx:25:        const isHebrew = HEBREW_TERMS.some(t => t.toLowerCase() === token.toLowerCase());
+src/components/ui/Tokenizer.tsx:27:        const isWord = /[\p{L}\p{M}]/u.test(token);
+src/components/ui/Tokenizer.tsx:40:          const firstChar = token.charAt(0);
+src/components/ui/Tokenizer.tsx:41:          const restOfWord = token.slice(1);
+src/components/ui/Tokenizer.tsx:59:             const bionicIndex = Math.ceil(token.length / 2);
+src/components/ui/Tokenizer.tsx:60:             const bionicPart = token.slice(0, bionicIndex);
+src/components/ui/Tokenizer.tsx:61:             const tailPart = token.slice(bionicIndex);
+src/components/ui/Tokenizer.tsx:71:              {token}
+src/components/ui/Tokenizer.tsx:76:        return <React.Fragment key={idx}>{token}</React.Fragment>;
+src/components/layers/Layer2Cinema.tsx:44:                parseInt(data.paraIndex) || 0,
+src/components/layers/Layer2Cinema.tsx:67:            const prompt = `Cinematic oil painting, deep Levantine shadows, 1003 BCE Hebron: ${content.substring(0, 100)}`;
+src/components/layers/Layer4Panel.tsx:69:      const n = parseInt(e.key);
+src/components/layers/panel/ChapterSettings.tsx:27:    try { const raw = localStorage.getItem(KEY); const init = raw ? { ...D, ...JSON.parse(raw) } : D; setS(init); apply(init); }
+src/components/layers/panel/ChapterSettings.tsx:44:        onChange={e => set(k, parseFloat(e.target.value) as any)}
+src/components/layers/panel/SystemTab.tsx:179:                  ? "bg-[#6b2c2c] shadow-[0_0_15px_rgba(107,44,44,0.8)]" 
+src/components/layers/panel/SystemTab.tsx:181:                    ? "bg-[#c9a96e] shadow-[0_0_15px_rgba(201,169,110,0.6)]" 
+src/components/layers/panel/StylesTab.tsx:95:          box-shadow: 0 0 6px #06b6d4;
+src/components/layers/panel/StylesTab.tsx:132:              onChange={(e) => handleFontScaleTrackChange(parseFloat(e.target.value))}
+src/components/layers/panel/StylesTab.tsx:148:              onChange={(e) => handleLetterSpacingTrackChange(parseFloat(e.target.value))}
+src/components/layers/panel/HyperlinksGraph.tsx:20:        const rawLinks = d.hyperlinks || [];
+src/components/layers/panel/HyperlinksGraph.tsx:37:        // Add implicit links based on shared archetypes if few explicit links exist
+src/components/layers/panel/HyperlinksGraph.tsx:39:          const keys = ["sacred","descent","shadow","persona","anima"];
+src/components/layers/panel/HyperlinksGraph.tsx:94:        if (m.shadow > 0.5) return "#2a2a2a";
+src/components/layers/panel/BiblicalReferencesDirectory.tsx:10:  reference_text: string; 
+src/components/layers/panel/BiblicalReferencesDirectory.tsx:20:    fetch("/api/biblical-references")
+src/components/layers/panel/BiblicalReferencesDirectory.tsx:23:        setRefs(d.references || []); 
+src/components/layers/panel/BiblicalReferencesDirectory.tsx:31:  if (!refs) return <div className="panel-loading">Loading references…</div>;
+src/components/layers/panel/BiblicalReferencesDirectory.tsx:32:  if (refs.length === 0) return <div className="panel-empty">No biblical references indexed yet</div>;
+src/components/layers/panel/BiblicalReferencesDirectory.tsx:71:      <p className="panel-sub">{refs.length} references across {books.length} books</p>
+src/components/layers/panel/BiblicalReferencesDirectory.tsx:87:                <span className="italic">{renderText(r.reference_text)}</span>
+src/components/layers/panel/ArchetypesDirectory.tsx:8:  self: "#c9a96e", anima: "#e8d4a0", shadow: "#2a2a2a", persona: "#8a857c", hero: "#d4a574",
+src/components/layers/panel/ArchetypesDirectory.tsx:76:                    style={{ left: `${(i / Math.max(1, by[+ch].length - 1)) * 100}%`, background: COLORS[d] || "#c9a96e", border: d === "shadow" ? "1px solid #8a857c" : "none" }} />
+src/components/layers/panel/ArchetypesDirectory.tsx:87:            <span className="legend-dot" style={{ background: c, border: n === "shadow" ? "1px solid #8a857c" : "none" }} />
+src/components/layers/panel/StatusTab.tsx:10:      <div className="p-4 bg-zinc-900/30 border border-zinc-900/80 rounded-xs text-zinc-400 space-y-2 shadow-inner">
+src/components/layers/panel/IndexTab.tsx:47:            className={`p-2.5 text-left border rounded-xs transition-all ${chapter === n ? "bg-cyan-950/20 border-cyan-800/60 text-cyan-400 shadow-md" : "bg-zinc-900/10 hover:bg-zinc-900/40 border-zinc-900 text-zinc-400 hover:text-zinc-200"}`}
+src/components/layers/controls/ReaderControlPanel.tsx:20:    <div className="absolute bottom-4 left-4 right-4 z-30 rounded-2xl border border-white/10 bg-black/70 backdrop-blur-xl p-4 text-[#e8e4dc] shadow-2xl">
+src/components/layers/cinema/ShaderEffects.tsx:12:    <div className="absolute inset-0 w-full h-full pointer-events-none select-none z-20 overflow-hidden ambient-shader-root-panel">
+src/components/layers/cinema/ShaderEffects.tsx:14:        @keyframes shaderNoiseFlicker {
+src/components/layers/cinema/ShaderEffects.tsx:21:        .radial-vignette-shading-plate {
+src/components/layers/cinema/ShaderEffects.tsx:32:          animation: shaderNoiseFlicker 0.11s infinite linear;
+src/components/layers/cinema/ShaderEffects.tsx:40:          box-shadow: inset 0 0 80px rgba(201, 169, 110, 0.03);
+src/components/layers/cinema/ShaderEffects.tsx:50:      <div className="radial-vignette-shading-plate" />
+src/components/layers/cinema/TelemetryOverlay.tsx:12: * and mobile viewports, and displays real-time tracking hashes.
+src/components/layers/cinema/TelemetryOverlay.tsx:26: * Generates deterministic mathematical noise hashes to simulate live decoding matrices.
+src/components/layers/cinema/TelemetryOverlay.tsx:93:    const parseBrowserArchitectureSignature = (): string => {
+src/components/layers/cinema/TelemetryOverlay.tsx:103:    setUserPlatformAgent(parseBrowserArchitectureSignature());
+src/components/layers/cinema/TelemetryOverlay.tsx:143:      setExecutionCycleDelta(parseFloat((currentTime % 16.666).toFixed(3)));
+src/components/layers/cinema/TelemetryOverlay.tsx:164:          0%, 100% { opacity: 0.24; text-shadow: 0 0 3px rgba(6,182,212,0.1); }
+src/components/layers/cinema/TelemetryOverlay.tsx:165:          50% { opacity: 0.65; text-shadow: 0 0 14px rgba(34,211,238,0.7); }
+src/components/layers/cinema/TelemetryOverlay.tsx:177:          box-shadow: 0 0 10px rgb(34, 211, 238);
+src/components/layers/canvas/ManuscriptCore.tsx:83:        const index = parseInt(p.dataset.index || "0");
+src/components/layers/canvas/ManuscriptCore.tsx:89:          const mass = (weights.shadow || 0) * 1.5 + (dualisms.descent || 0) * 2;
+src/components/layers/canvas/ManuscriptCore.tsx:138:              const block = blocks[parseInt(index)];
+src/components/layers/canvas/front-matter/Synopsis.tsx:18:          to find the ultimate source of reality. His path demands a brutal expenditure of tissue and will, shattering his physical voice and bringing him face-to-face with an infinite cycle of conflict written in the stars.
+src/services/orchestration-engine/orchestrator.py:7:    infrastructure_nodes = ["logic-governance", "reference-data", "initialization-metadata"]
+src/services/orchestration-engine/providers/openai.ts:38:        promptTokens: completion.usage?.prompt_tokens || 0,
+src/services/orchestration-engine/providers/openai.ts:39:        completionTokens: completion.usage?.completion_tokens || 0,
+src/services/orchestration-engine/providers/openai.ts:40:        totalTokens: completion.usage?.total_tokens || 0,
+src/services/orchestration-engine/providers/groq.ts:38:        promptTokens: completion.usage?.prompt_tokens || 0,
+src/services/orchestration-engine/providers/groq.ts:39:        completionTokens: completion.usage?.completion_tokens || 0,
+src/services/orchestration-engine/providers/groq.ts:40:        totalTokens: completion.usage?.total_tokens || 0,
+src/services/orchestration-engine/providers/anthropic.ts:20:      max_tokens: 4096,
+src/services/orchestration-engine/google-swarm.ts:80:      await bq.dataset('narrative_os').table('integrity_logs').insert([{
+src/services/orchestration-engine/google-swarm.ts:94:      await bq.dataset('narrative_os').table('chapters').insert([{
+src/services/orchestration-engine/google-swarm.ts:111:      await bq.dataset('narrative_os').table('paragraphs').insert([{
+src/services/memory-engine/corpus-loader.ts:3:import { ingestChapter } from '../ingestion/pipeline';
+src/services/memory-engine/corpus-loader.ts:16:  async ingestCorpus(): Promise<void> {
+src/services/memory-engine/corpus-loader.ts:21:    const manifest = JSON.parse(fs.readFileSync(this.manifestPath, 'utf-8'));
+src/services/memory-engine/corpus-loader.ts:34:      const chapterNumber = parseInt(chapterMatch[1], 10);
+src/services/memory-engine/corpus-loader.ts:49:    console.log(`Starting intelligent ingestion of ${toIngest.length} canonical chapters...`);
+src/services/memory-engine/corpus-loader.ts:62:        const chapterNumber = parseInt(chapterMatch![1], 10);
+src/services/memory-engine/corpus-loader.ts:69:        await ingestChapter(
+src/services/memory-engine/corpus-loader.ts:79:        console.error(`✗ Failed to ingest Ch ${node.id}:`, err);
+src/services/memory-engine/text-processor.ts:1:export const tokenize = (text: string): string[] => {
+src/services/memory-engine/embedding-processor.ts:18:    const res = await this.client.embeddings.create({
+src/services/memory-engine/embedding-processor.ts:19:      model: "text-embedding-3-small",
+src/services/memory-engine/embedding-processor.ts:23:    return res.data[0].embedding;
+src/services/memory-engine/vector-store.ts:37:        thematic_embedding vector(1536),
+src/services/memory-engine/vector-store.ts:46:        embedding vector(1536),
+src/services/memory-engine/vector-store.ts:54:      CREATE TABLE IF NOT EXISTS biblical_references (
+src/services/memory-engine/vector-store.ts:57:        reference_text TEXT,
+src/services/memory-engine/vector-store.ts:69:  async insertChapter(manifestId: string, embedding: number[]): Promise<string> {
+src/services/memory-engine/vector-store.ts:71:      `INSERT INTO chapters (manifest_id, thematic_embedding)
+src/services/memory-engine/vector-store.ts:74:       DO UPDATE SET thematic_embedding = EXCLUDED.thematic_embedding
+src/services/memory-engine/vector-store.ts:76:      [manifestId, embedding]
+src/services/memory-engine/vector-store.ts:90:  async insertParagraph(chapterId: string, chunkIndex: number, content: string) {
+src/services/memory-engine/vector-store.ts:114:  async searchTopChapter(embedding: number[]): Promise<string | null> {
+src/services/memory-engine/vector-store.ts:118:       ORDER BY thematic_embedding <=> $1
+src/services/memory-engine/vector-store.ts:120:      [embedding]
+src/services/document-analyzer/parser.ts:11:export async function parseDocument(fileBase64: string, mimeType: string) {
+src/services/document-analyzer/corpus-searcher.ts:11:// Perform semantic search across the WoS corpus via the same embeddings
+src/services/document-analyzer/corpus-searcher.ts:12:export async function searchCorpus(extractedText: string) {
+src/services/document-analyzer/corpus-searcher.ts:21:    const embedResponse = await openai.embeddings.create({
+src/services/document-analyzer/corpus-searcher.ts:22:      model: "text-embedding-3-small",
+src/services/document-analyzer/corpus-searcher.ts:23:      input: extractedText.slice(0, 8000),
+src/services/document-analyzer/corpus-searcher.ts:25:    const embedding = embedResponse.data[0].embedding;
+src/services/document-analyzer/corpus-searcher.ts:34:        1 - (embedding <=> $1::vector) AS similarity
+src/services/document-analyzer/corpus-searcher.ts:36:      WHERE 1 - (embedding <=> $1::vector) > 0.3
+src/services/document-analyzer/corpus-searcher.ts:39:      [JSON.stringify(embedding)]
+src/services/document-analyzer/synthesis-engine.ts:4:export async function synthesizeAnalysis(extractedText: string, corpusMatches: any[]) {
+src/services/document-analyzer/synthesis-engine.ts:26:    prompt: `EXTERNAL DOCUMENT:\n${extractedText.substring(0, 5000)}\n\nNARRATIVE CORPUS CONTEXT:\n${corpusContext}`,
+src/services/ingestion/pipeline.ts:12:function extractHebrewSpans(text: string) {
+src/services/ingestion/pipeline.ts:26:function extractEmaMetadata(xmlText: string) {
+src/services/ingestion/pipeline.ts:45:export async function ingestChapter(
+src/services/ingestion/pipeline.ts:55:  await GoogleSwarm.logIntegrity('ingestion_start', { manifestId, partNumber, chapterNumber });
+src/services/ingestion/pipeline.ts:68:  if (!chapter) throw new Error("Failed to upsert chapter");
+src/services/ingestion/pipeline.ts:72:  const chapterMetadata = extractEmaMetadata(rawXmlText);
+src/services/ingestion/pipeline.ts:92:          "archetypal_weights": { "shadow": 0.0, "persona": 0.0, "anima": 0.0, "self": 0.0, "hero": 0.0 },
+src/services/ingestion/pipeline.ts:94:          "biblical_references": [{ "text": "...", "book": "...", "chapter": 0, "verse": 0 }],
+src/services/ingestion/pipeline.ts:95:          "hyperlinks": [{ "theme_node_a": "...", "theme_node_b": "...", "link_type": "dualism" }]` 
+src/services/ingestion/pipeline.ts:102:    const enrichedBatch = JSON.parse(completion.choices[0].message.content || '{"results":[]}').results;
+src/services/ingestion/pipeline.ts:107:      const hebrewSpans = extractHebrewSpans(pText);
+src/services/ingestion/pipeline.ts:109:      const embedResponse = await openai.embeddings.create({
+src/services/ingestion/pipeline.ts:110:        model: "text-embedding-3-small",
+src/services/ingestion/pipeline.ts:113:      const embedding = embedResponse.data[0].embedding;
+src/services/ingestion/pipeline.ts:118:          chapter_id, content, chunk_index, embedding, 
+src/services/ingestion/pipeline.ts:123:          chapter.id, pText, i + j, JSON.stringify(embedding),
+src/services/ingestion/pipeline.ts:133:      if (paragraphData && enrichment.biblical_references?.length > 0) {
+src/services/ingestion/pipeline.ts:134:        for (const ref of enrichment.biblical_references) {
+src/services/ingestion/pipeline.ts:136:            `INSERT INTO biblical_references (paragraph_id, reference_text, book, chapter, verse)
+src/services/ingestion/pipeline.ts:138:            [paragraphData.id, ref.text || ref.reference_text, ref.book, ref.chapter, ref.verse]
+src/services/ingestion/pipeline.ts:143:      if (paragraphData && enrichment.hyperlinks?.length > 0) {
+src/services/ingestion/pipeline.ts:144:        for (const link of enrichment.hyperlinks) {
+src/services/ingestion/pipeline.ts:146:            `INSERT INTO hyperlinks (paragraph_id, theme_node_a, theme_node_b, link_type)
+src/services/ingestion/pipeline.ts:165:  await GoogleSwarm.logIntegrity('ingestion_complete', { manifestId, paragraphCount: paragraphs.length });
+src/services/ingestion/pipeline.ts:167:  return { success: true, chapterId: chapter.id, parsedCount: paragraphs.length };
+src/services/tokenize.ts:11:  "Aviel", "Dan", "Kasha", "Dagon", "Dahl", "Rafa"
+src/services/tokenize.ts:14:export function tokenize(text: string): string {
+src/services/tokenize.ts:17:    .map((token) => {
+src/services/tokenize.ts:18:      if (/\s+/.test(token)) {
+src/services/tokenize.ts:19:        return token;
+src/services/tokenize.ts:22:      const cleanToken = token.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+src/services/tokenize.ts:33:      return `<span class="${classes}">${token}</span>`;
+src/actions/ingest.action.ts:10:  await loader.ingestCorpus();
+src/data-layer/reference-data/node_manifest.json:2:  "node_uuid": "reference-data",
+src/data-layer/initialization-metadata/node_manifest.json:6:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)Chapter_8:_Sea_People.txt"
+src/data-layer/initialization-metadata/node_manifest.json:11:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter:_1_Stardust_to_Stardust.txt"
+src/data-layer/initialization-metadata/node_manifest.json:16:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1-_Stardust_to_Stardust.txt"
+src/data-layer/initialization-metadata/node_manifest.json:21:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1:_Stardust_to_Stardust.txt"
+src/data-layer/initialization-metadata/node_manifest.json:26:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1_-_Stardust_to_Stardust.txt"
+src/data-layer/initialization-metadata/node_manifest.json:31:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_2-_Living_Sacrifice.txt"
+src/data-layer/initialization-metadata/node_manifest.json:36:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_2:_Living_Sacrifice.txt"
+src/data-layer/initialization-metadata/node_manifest.json:41:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_3-_Lift_Up.txt"
+src/data-layer/initialization-metadata/node_manifest.json:46:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_3_-_Lift_Up.txt"
+src/data-layer/initialization-metadata/node_manifest.json:51:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_5_-_The_Snare.txt"
+src/data-layer/initialization-metadata/node_manifest.json:56:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_6:_Beelzebub,_Beelzebub.txt"
+src/data-layer/initialization-metadata/node_manifest.json:61:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)Chapter_8:_Sea_People.txt"
+src/data-layer/initialization-metadata/node_manifest.json:66:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter:_1_Stardust_to_Stardust.txt"
+src/data-layer/initialization-metadata/node_manifest.json:71:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1-_Stardust_to_Stardust.txt"
+src/data-layer/initialization-metadata/node_manifest.json:76:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1:_Stardust_to_Stardust.txt"
+src/data-layer/initialization-metadata/node_manifest.json:81:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1_-_Stardust_to_Stardust.txt"
+src/data-layer/initialization-metadata/node_manifest.json:86:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_2-_Living_Sacrifice.txt"
+src/data-layer/initialization-metadata/node_manifest.json:91:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_2:_Living_Sacrifice.txt"
+src/data-layer/initialization-metadata/node_manifest.json:96:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_3-_Lift_Up.txt"
+src/data-layer/initialization-metadata/node_manifest.json:101:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_3:_Lift_Up.txt"
+src/data-layer/initialization-metadata/node_manifest.json:106:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_5-_The_Snare.txt"
+src/data-layer/initialization-metadata/node_manifest.json:111:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_6_-_Beelzebub,_Beelzebub.txt"
+src/data-layer/initialization-metadata/node_manifest.json:116:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_7:_The_Pit.txt"
+src/data-layer/initialization-metadata/node_manifest.json:121:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_9:_The_Ascent.txt"
+src/data-layer/initialization-metadata/node_manifest.json:126:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(B)_Stardust_to_Stardust.txt"
+src/data-layer/initialization-metadata/node_manifest.json:131:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)Chapter_8:_Sea_People.txt"
+src/data-layer/initialization-metadata/node_manifest.json:136:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_1_-_Stardust_to_Stardust_.txt"
+src/data-layer/initialization-metadata/node_manifest.json:141:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_7_-_The_Pit.txt"
+src/data-layer/initialization-metadata/node_manifest.json:146:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_Stardust_to_Stardust.txt"
+src/data-layer/initialization-metadata/node_manifest.json:151:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_1-_Stardust_to_Stardust.txt"
+src/data-layer/initialization-metadata/node_manifest.json:156:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_1_-_Stardust_to_Stardust.txt"
+src/data-layer/initialization-metadata/node_manifest.json:161:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_2-_Living_Sacrifice.txt"
+src/data-layer/initialization-metadata/node_manifest.json:166:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_3-_Lift_Up.txt"
+src/data-layer/initialization-metadata/node_manifest.json:171:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_3_-_Lift_Up.txt"
+src/data-layer/initialization-metadata/node_manifest.json:176:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_4-_Pilgrimage.txt"
+src/data-layer/initialization-metadata/node_manifest.json:181:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_4_-_Pilgrimage.txt"
+src/data-layer/initialization-metadata/node_manifest.json:186:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_6-_Beelzebub,_Beelzebub.txt"
+src/data-layer/initialization-metadata/node_manifest.json:191:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter:_7_-_The_Pit.txt"
+src/data-layer/initialization-metadata/node_manifest.json:196:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter_1_-_Stardust_to_Stardust.txt"
+src/data-layer/initialization-metadata/node_manifest.json:201:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter_2-_Living_Sacrifice.txt"
+src/data-layer/initialization-metadata/node_manifest.json:206:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter_2_-_Living_Sacrifice.txt"
+src/data-layer/initialization-metadata/node_manifest.json:211:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_1-_Stardust_to_Stardust.txt"
+src/data-layer/initialization-metadata/node_manifest.json:216:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_1_-_Stardust_to_Stardust.txt"
+src/data-layer/initialization-metadata/node_manifest.json:221:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_2-_Living_Sacrifice.txt"
+src/data-layer/initialization-metadata/node_manifest.json:226:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_2_-_Living_Sacrifice.txt"
+src/data-layer/initialization-metadata/node_manifest.json:231:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_3-_Lift_Up.txt"
+src/data-layer/initialization-metadata/node_manifest.json:236:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter:_1_Stardust_to_Stardust_.txt"
+src/data-layer/initialization-metadata/node_manifest.json:241:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_1:_Stardust_to_Stardust_.txt"
+src/data-layer/initialization-metadata/node_manifest.json:246:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_1_-_Stardust_to_Stardust.txt"
+src/data-layer/initialization-metadata/node_manifest.json:251:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_2-_Living_Sacrifice.txt"
+src/data-layer/initialization-metadata/node_manifest.json:256:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_3-_Lift_Up.txt"
+src/data-layer/initialization-metadata/node_manifest.json:261:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_1:_Stardust_to_Stardust.txt"
+src/data-layer/initialization-metadata/node_manifest.json:266:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_1_-_Stardust_to_Stardust.txt"
+src/data-layer/initialization-metadata/node_manifest.json:271:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_2-_Living_Sacrifice.txt"
+src/data-layer/initialization-metadata/node_manifest.json:276:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_3-_Lift_Up.txt"
+src/data-layer/initialization-metadata/node_manifest.json:281:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_3:_Lift_Up.txt"
+src/data-layer/initialization-metadata/node_manifest.json:286:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_5_-_The_Snare.txt"
+src/data-layer/initialization-metadata/node_manifest.json:291:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(G)_Chapter_1:_Stardust_to_Stardust.txt"
+src/data-layer/initialization-metadata/node_manifest.json:296:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(G)_Chapter_2-_Living_Sacrifice.txt"
+src/data-layer/initialization-metadata/node_manifest.json:301:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(G)_Chapter_3-_Lift_Up.txt"
+src/data-layer/initialization-metadata/node_manifest.json:306:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(G)_Final_)_Chapter:_10_-_Forsaken.txt"
+src/data-layer/initialization-metadata/node_manifest.json:311:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(I)_(Notes)_Chapter:_1_Stardust_to_Stardust_.txt"
+src/data-layer/initialization-metadata/node_manifest.json:316:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(I)_Chapter:_1_Stardust_to_Stardust_.txt"
+src/data-layer/initialization-metadata/node_manifest.json:321:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(N)_CHAPTER_1-_STARDUST_TO_STARDUST.txt"
+src/data-layer/initialization-metadata/node_manifest.json:326:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(N)_Chapter_1_-_Stardust_to_Stardust.txt"
+src/data-layer/initialization-metadata/node_manifest.json:331:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_(P)_Chapter:_1_-_Stardust_to_Stardust.txt"
+src/data-layer/initialization-metadata/node_manifest.json:336:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_Chapter_2-_Living_Sacrifice.txt"
+src/data-layer/initialization-metadata/node_manifest.json:341:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_Chapter_2:_Living_Sacrifice.txt"
+src/data-layer/initialization-metadata/node_manifest.json:346:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(O)_Chapter_1-_Stardust_to_Stardust.txt"
+src/data-layer/initialization-metadata/node_manifest.json:351:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(P)_Chapter:_1_-_Stardust_to_Stardust.txt"
+src/data-layer/initialization-metadata/node_manifest.json:356:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Prompt_Guide_(E))_Chapter_10:_Forsaken.txt"
+src/data-layer/initialization-metadata/node_manifest.json:361:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(R) Chapter: 1 - Stardust to Stardust .txt"
+src/data-layer/initialization-metadata/node_manifest.json:366:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(R)_Chapter:_1_-_Stardust_to_Stardust_.txt"
+src/data-layer/initialization-metadata/node_manifest.json:371:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Revision_Prompt_(D))_Chapter_10:_Forsaken.txt"
+src/data-layer/initialization-metadata/node_manifest.json:376:      "file_path": "src/data-layer/ingestion-buffer/gdrive_raw/(Revision_Prompt_(N)__Chapter_1_-_Stardust_to_Stardust.txt"
+===== reports/chapter-source-references.txt =====
+src/app/api/execute/route.ts:31:      query: query || "SELECT part_number, count(*) as count FROM `the-weight-of-the-sky.narrative_os.paragraphs` GROUP BY part_number",
+src/app/api/graph/route.ts:6:    // Fetch paragraphs that have significant dualism mappings
+src/app/api/graph/route.ts:7:    const { rows: paragraphs } = await query(
+src/app/api/graph/route.ts:8:      `SELECT id, content, dualism_map, chapter_id
+src/app/api/graph/route.ts:9:       FROM paragraphs 
+src/app/api/graph/route.ts:20:      paragraphs,
+src/app/api/manuscript/route.ts:1:import { createClient } from '@supabase/supabase-js';
+src/app/api/manuscript/route.ts:5:  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+src/app/api/manuscript/route.ts:6:  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+src/app/api/manuscript/route.ts:7:  if (!supabaseUrl || !supabaseKey) return null;
+src/app/api/manuscript/route.ts:8:  return createClient(supabaseUrl, supabaseKey);
+src/app/api/manuscript/route.ts:12:  const supabase = getSupabase();
+src/app/api/manuscript/route.ts:13:  if (!supabase) {
+src/app/api/manuscript/route.ts:24:  const { data, error } = await supabase
+src/app/api/manuscript/route.ts:25:    .from('paragraphs')
+src/app/api/manuscript/route.ts:26:    .select('*, biblical_references(*), chapters(part_number, chapter_number)')
+src/app/api/manuscript/route.ts:27:    .eq('chapter_id', chapterId)
+src/app/api/search/route.ts:35:        chapter_id,
+src/app/api/search/route.ts:40:      FROM paragraphs
+src/app/api/chapters/route.ts:10:      // Return all chapters metadata for the TOC/Switcher from Supabase
+src/app/api/chapters/route.ts:11:      const { rows: chapters } = await query(
+src/app/api/chapters/route.ts:13:         FROM chapters 
+src/app/api/chapters/route.ts:16:      return NextResponse.json(chapters);
+src/app/api/chapters/route.ts:20:    let chapterQuery = `SELECT * FROM chapters WHERE manifest_id = $1`;
+src/app/api/chapters/route.ts:25:      chapterQuery = `SELECT * FROM chapters WHERE chapter_number = $1 OR manifest_id = $2 LIMIT 1`;
+src/app/api/chapters/route.ts:29:    const { rows: chapters } = await query(chapterQuery, chapterParams);
+src/app/api/chapters/route.ts:31:    if (chapters.length === 0) {
+src/app/api/chapters/route.ts:38:    const chapter = chapters[0];
+src/app/api/chapters/route.ts:40:    // Get paragraphs for this chapter
+src/app/api/chapters/route.ts:41:    const { rows: paragraphs } = await query(
+src/app/api/chapters/route.ts:43:       FROM paragraphs 
+src/app/api/chapters/route.ts:44:       WHERE chapter_id = $1 
+src/app/api/chapters/route.ts:55:      blocks: paragraphs.map(p => ({
+src/app/page.tsx:20:        const chaptersRes = await fetch(`/api/chapters`);
+src/app/page.tsx:21:        const chapters = await chaptersRes.json();
+src/app/page.tsx:23:        if (Array.isArray(chapters)) {
+src/app/page.tsx:24:          const activeChapter = chapters.find((c: any) => c.chapter_number === chapterNum);
+src/app/page.tsx:38:        const localRes = await fetch(`/data/chapters/${chapterNum}.txt`);
+src/app/page.tsx:41:          const paragraphs = text
+src/app/page.tsx:45:          setBlocks(paragraphs);
+src/app/page.tsx.bak:21:        const chaptersRes = await fetch(`/api/chapters`);
+src/app/page.tsx.bak:22:        const chapters = await chaptersRes.json();
+src/app/page.tsx.bak:25:        const activeChapter = chapters.find((c: any) => c.chapter_number === chapterNum);
+src/app/page.tsx.bak:34:            const localRes = await fetch(`/data/chapters/${chapterNum}.txt`);
+src/app/page.tsx.bak:37:                const paragraphs = text
+src/app/page.tsx.bak:41:                setBlocks(paragraphs);
+src/components/ui/front-matter/TableOfContents.tsx:13:  const [chapters, setChapters] = useState<Chapter[]>([]);
+src/components/ui/front-matter/TableOfContents.tsx:16:    fetch('/api/chapters')
+src/components/ui/front-matter/TableOfContents.tsx:36:              {chapters.filter(c => c.part_number === part).map(chapter => (
+src/components/layers/panel/SystemTab.tsx:10:  const [chapters, setChapters] = useState<any[]>([]);
+src/components/layers/panel/SystemTab.tsx:18:      fetch("/api/chapters")
+src/components/layers/panel/SystemTab.tsx:79:              {chapters.map(c => (
+src/components/layers/panel/HyperlinksGraph.tsx:6:type Node = { id: string; content: string; dualism_map: any; chapter_id?: string };
+src/components/layers/panel/HyperlinksGraph.tsx:19:        const rawNodes = d.paragraphs || [];
+src/components/layers/panel/HyperlinksGraph.tsx:26:          chapter_id: n.chapter_id
+src/components/layers/panel/BiblicalReferencesDirectory.tsx:32:  if (refs.length === 0) return <div className="panel-empty">No biblical references indexed yet</div>;
+src/components/layers/panel/BiblicalReferencesDirectory.tsx:71:      <p className="panel-sub">{refs.length} references across {books.length} books</p>
+src/components/layers/panel/ArchetypesDirectory.tsx:20:        const raw = d.paragraphs || [];
+src/components/layers/panel/ArchetypesDirectory.tsx:51:  const chapters = Object.keys(by).sort((a, b) => +a - +b);
+src/components/layers/panel/ArchetypesDirectory.tsx:64:        {chapters.map(ch => (
+src/services/orchestration-engine/google-swarm.ts:94:      await bq.dataset('narrative_os').table('chapters').insert([{
+src/services/orchestration-engine/google-swarm.ts:111:      await bq.dataset('narrative_os').table('paragraphs').insert([{
+src/services/orchestration-engine/google-swarm.ts:113:        chapter_id: para.chapter_id,
+src/services/memory-engine/corpus-loader.ts:17:    if (!fs.existsSync(this.manifestPath)) {
+src/services/memory-engine/corpus-loader.ts:21:    const manifest = JSON.parse(fs.readFileSync(this.manifestPath, 'utf-8'));
+src/services/memory-engine/corpus-loader.ts:49:    console.log(`Starting intelligent ingestion of ${toIngest.length} canonical chapters...`);
+src/services/memory-engine/corpus-loader.ts:54:        if (!fs.existsSync(fullPath)) {
+src/services/memory-engine/corpus-loader.ts:59:        const content = fs.readFileSync(fullPath, 'utf-8');
+src/services/memory-engine/vector-store.ts:31:      CREATE TABLE IF NOT EXISTS chapters (
+src/services/memory-engine/vector-store.ts:41:      CREATE TABLE IF NOT EXISTS paragraphs (
+src/services/memory-engine/vector-store.ts:43:        chapter_id UUID REFERENCES chapters(id) ON DELETE CASCADE,
+src/services/memory-engine/vector-store.ts:56:        paragraph_id UUID REFERENCES paragraphs(id) ON DELETE CASCADE,
+src/services/memory-engine/vector-store.ts:64:      CREATE INDEX IF NOT EXISTS idx_paragraphs_chapter_chunk
+src/services/memory-engine/vector-store.ts:65:      ON paragraphs(chapter_id, chunk_index);
+src/services/memory-engine/vector-store.ts:71:      `INSERT INTO chapters (manifest_id, thematic_embedding)
+src/services/memory-engine/vector-store.ts:84:      `DELETE FROM paragraphs
+src/services/memory-engine/vector-store.ts:85:       WHERE chapter_id = $1`,
+src/services/memory-engine/vector-store.ts:92:      `INSERT INTO paragraphs (
+src/services/memory-engine/vector-store.ts:93:         chapter_id,
+src/services/memory-engine/vector-store.ts:105:       FROM chapters
+src/services/memory-engine/vector-store.ts:117:       FROM chapters
+src/services/memory-engine/vector-store.ts:129:       FROM paragraphs
+src/services/memory-engine/vector-store.ts:130:       WHERE chapter_id = $1
+src/services/memory-engine/vector-store.ts:150:       FROM paragraphs p
+src/services/memory-engine/vector-store.ts:151:       JOIN chapters c
+src/services/memory-engine/vector-store.ts:152:         ON p.chapter_id = c.id
+src/services/memory-engine/vector-store.ts:175:    chapters: string;
+src/services/memory-engine/vector-store.ts:183:       FROM paragraphs p
+src/services/memory-engine/vector-store.ts:184:       JOIN chapters c
+src/services/memory-engine/vector-store.ts:185:         ON p.chapter_id = c.id
+src/services/memory-engine/vector-store.ts:198:      chapters: String(r.manifest_id || "Unknown"),
+src/services/bridge/agent.service.ts:4:export type DualismRecord = { id: string; term: string; parallel: string; note: string; chapters: string; para_index?: number; };
+src/services/image-engine/image-generator.ts:6:  public async getPromptFromContext(paragraphs: any[], capacity: number): Promise<string> {
+src/services/image-engine/image-generator.ts:8:    const activeText = paragraphs.slice(0, 3).map(p => p.words.map((w: any) => w.text).join(' ')).join(' ');
+src/services/document-analyzer/corpus-searcher.ts:35:      FROM paragraphs
+src/services/ingestion/pipeline.ts:42: * * BATCH OPTIMIZED: Processes 5 paragraphs per LLM call.
+src/services/ingestion/pipeline.ts:58:  const { rows: chapters } = await query(
+src/services/ingestion/pipeline.ts:59:    `INSERT INTO chapters (part_number, chapter_number, status, manifest_id)
+src/services/ingestion/pipeline.ts:67:  const chapter = chapters[0];
+src/services/ingestion/pipeline.ts:76:  const paragraphs = cleanText.split(/\n\s*\n/).filter((p) => p.trim().length > 0);
+src/services/ingestion/pipeline.ts:78:  console.log(`Ingesting ${paragraphs.length} paragraphs for Ch ${chapterNumber}...`);
+src/services/ingestion/pipeline.ts:81:  for (let i = 0; i < paragraphs.length; i += BATCH_SIZE) {
+src/services/ingestion/pipeline.ts:82:    const batch = paragraphs.slice(i, i + BATCH_SIZE);
+src/services/ingestion/pipeline.ts:117:        `INSERT INTO paragraphs (
+src/services/ingestion/pipeline.ts:118:          chapter_id, content, chunk_index, embedding, 
+src/services/ingestion/pipeline.ts:165:  await GoogleSwarm.logIntegrity('ingestion_complete', { manifestId, paragraphCount: paragraphs.length });
+src/services/ingestion/pipeline.ts:167:  return { success: true, chapterId: chapter.id, parsedCount: paragraphs.length };
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(SDP)_v2.txt:301:1. Extract all chapters into single corpus
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(SDP)_v2.txt:447:| Extended Exchange | 400-500 | Major thematic debate/teaching | 1 per 2-3 chapters |
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Notes)_Chapter_2-_Living_Sacrifice.txt:78:(((Remember that Dan is 16 years old and must have a consistently youthful voice completely distinct from anyone else's voice in prosody, pace, tone, diction, and inflection. Use any other chapters provided for reference)))
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Notes)_Chapter_2:_Living_Sacrifice.txt:23:He moved to his small, worn leather satchel. Into it went a small pouch of dried figs and cured olives, a precious pinch of salt—the ancient sign of covenant—and his small, sharp dagger. He carried a staff, packed flint and pyrite for fire, his mother's small, smooth carving stone, and his leather pouch containing the 8 heavy Shekels he had earned and the 3 Shekels Aviel had just provided. ((The moment where the father hands than the three shekels “for bribe, just in case” must have been deleted it needs to be reintegrated long after the arguments and dans breakfast, perhaps just before he leaves)) The silver was the final material tether. As he cinched the leather strap tight, the cold, dead weight of the coins suddenly felt unnaturally hot, the burning friction of wealth against his skin—a corrupting fire that was not the clean flame of the star. He wore the weight. (((The use of short sentences after long ones is good but that doesn't mean that every paragraph should end in a short sentence that makes for actually bad pacing and structure because I although there's variation within the paragraphs there isn't variation between the paragraphs)))
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Notes)_Chapter_2:_Living_Sacrifice.txt:24:Dan finished his sparse meal of porridge and flatbread, every bite a profound act of self-sufficiency. He stood at the threshold. His father’s heavy, strained silence was the final layer of spiritual drag. Dan turned and walked out. (Just like that he walks out? What is he feeling when you walked out what is the dread house his heart feeling do father and son at least hug before they leave let the transition of him leaving the house v something of hesitation even though it's everything he wanted is to create a more realistic truth) The massive, thick timbers of the door seemed to shift slightly behind him, a soundless, definite thud, confirming the closing door of his past. The low, steady purr of the Watcher did not follow, but settled like a heavy, humid blanket over the house, waiting. (I don't like calling the cat narrator The watcher because that makes it seem like it's one of the watchers as it pertains to the Book of Enoch I'm wondering if there's a more subtle way we can refer to her find a unique way to input I don't know if maybe something like something that cats are interested in appears in the story and then that's a an opportunity to foreshadow the cat without using the word cat or being too obvious that you get more obvious as the chapters go on until chapter 10 when she finally reveals herself)
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Prompt_Guide_(E))_Chapter_10:_Forsaken.txt:9:((I'm the writer and I still don't know that her powers aren't working because of her missing patron that that had something to do maybe with or not being able to find or watch Dan anymore I need to read the chapters to know at what point dad would be at like where he would be at geographically at the time that she stops she would be able to stop watching him and go out of the valley and end up meeting here just outside the valley if he's coming up north from Hebron along the way of the Patriarchs on foot))
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Revision_Prompt_(D))_Chapter_10:_Forsaken.txt:6:A tremor, not of the earth but of Kasha herself, vibrated through the very ropes holding the canvas taut—a frantic beat [[[I want to try to avoid talking about the air, heart or heart beats, or shadows in this chapter as you can see in the other chapters that's just used a way to redundantly and now we're looking at a different point of view of different perspective through the witch's eyes so different things should stand out now I know that you have the same narrator but the narrator is still going to try to get things in the other person's perspective. To make a duelism real the two sides must be very obvious and show but not tell/they don't even see the world the same. To the point where different things stand out]]] a heart too long denied its solace. The familiar hum of her protective charms, once a comforting presence against the encroaching silence of the world, was now a faint, high-pitched whine, barely audible to human ears; a dying breath of defiance. Outside, the valley wind tore at the worn canvas, a relentless, biting thing, a tempest of unseen forces, its harsh whisper a sharp counterpoint to the humid stillness Kasha usually cultivated within her sanctuary. This valley of gray pastures, a crucible where nations were forged and empires were buried, seemed to sigh with a thousand forgotten conflicts. The very soil beneath the tent felt cold, hardened by centuries of bloodshed and the marching of iron-shod boots, a silent witness to the cycles of triumph and despair. It was a chilling testament to the way even the greatest power could drain away, leaving behind only the cold, hard rock of oblivion.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/1.0_Revision.txt:74:Peterson's 12 Rules for Life: Ensure all 12 rules are woven into the first 12 chapters, selecting the optimal structural fit from the entire manuscript.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/1.0_Revision.txt:85:Narrative Voice Uniformity (2.0): The voice of the omniscient narrator must be utterly uniform—severe, mythic, unsentimental, and assertive—across all chapters.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/1.0_Revision.txt:166:| IV. Cross-Chapter Incoherence | L-2.2: Tier 2 Conceptual Symbol | The Shedding of Earthly Possessions: In Chapter 9, Dan is explicitly stripped bare ("No silver. No sandals. No water container."), yet in Chapter 6, he purchases sturdy new sandals, food, and is using a water container. | COHERENCE MANDATE: Resolve the discrepancy of the stripped-down state. If the ascent requires complete lack of earthly tethering, the sandals, food, and water container must be shed between chapters 6 and 9, and the act of shedding must be clearly written into the text (e.g., an offering, abandonment, or theft). |
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/1.0_Revision.txt:206:| Kasha's Tethering/Will | Kasha's Dreamscape (Ch. 10): Kasha is attempting a journey of the soul, mirroring Dan’s physical ascent, but her goal is still unclear. | DEFINE THE STAKES (Final Layer): Kasha’s goal in the Dreamscape must be explicitly to retrieve a piece of information or tool that directly opposes the Dark Companion Star. Her journey must be framed as a metaphysical retrieval mission to re-arm Dan for the elevated conflict in Chapter 10's final moments, turning her into a true co-protagonist and completing the narrative arc of the first ten chapters. |
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/11.0_Final_Revision.txt:25: * Justifying the Ascent's Hubris: The emotional foundation for Dan's eventual tragic flaw ("not the God, but a god") must be laid incrementally. Ensure his successful resistance against low gods in early and middle chapters installs a growing sense of pride, self-reliance, or singularity that justifies his final, fatal overreach.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/4.0_Emotional_&_Archetypal_Editing_Rulebook_(Visceral_Empathy_Focus).txt:32:I am ready to receive your chapters one by one and apply these deep emotional and philosophical revisions according to this new rulebook.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/7.0_Chapter_Refinery.txt:4:This document contains mandatory rules for structural, literary, and historical corrections that MUST be applied to all chapters.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/7.0_Chapter_Refinery.txt:25:I am ready to accept your chapters one by one, along with this rule set, and apply these changes for you!
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/9.0_Stones.txt:2:Here are the specific, targeted modifications I made to the chapters, categorized by the two core user requests: Dream Tracking and the Sacrifice of the Stones.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/9.0_Stones.txt:45:Which of the remaining chapters (like Chapter 1, 2, 3, 5, 10, or 11) should we review for similar minor-but-impactful edits?
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/5.0_Final_Guide.txt:3:Apply the following twenty-five mandates to the provided chapter. This template acts as the supreme literary law for your novel, governing Rhetoric, Structure, Diction, and Allegory to ensure absolute consistency and profound, accessible thematic depth across all chapters.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/5.0_Final_Guide.txt:17:The Unnamed Diction: All newly introduced objects or settings within the chapter must be used to organically derive a self-contained, unique lexicon of metaphors for that chapter, linking the physical environment to the central spiritual conflict without borrowing specific symbols from previous chapters.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/5.0_Final_Guide.txt:89:The Repetition of Weight: A specific, non-symbolic word that denotes weight, pressure, or mass must be rhythmically repeated across the chapter's key paragraphs (e.g., "mass,"
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/6.0_Supreme_Generative_Constraint.txt:24:Forbidden Accidental Redundancy: The repetition of non-thematic, descriptive words (viscous, familiar, sudden, large) that are not part of the core lexicon is STRICTLY FORBIDDEN within any single paragraph and should be avoided in adjacent paragraphs to enhance the quality of diction.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/6.0_Supreme_Generative_Constraint.txt:37:Redundancy Filter (Non-Lexicon): The recurrence of the mandatory thematic lexicon (mass, drag, friction, expenditure, cold fire, rest, viscosity) is required. However, the use of non-lexical descriptive adjectives or adverbs (e.g., sudden, familiar, large, precise, heavy) must not be repeated within any single paragraph, and ideally, not within adjacent paragraphs. This forces variation and prevents stylistic dilution.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/6.0_Supreme_Generative_Constraint.txt:52:1. ​Redundancy Filter (Non-Lexicon): The recurrence of the mandatory thematic lexicon (mass, drag, friction, expenditure, cold fire, rest, viscosity) is required. However, the use of non-lexical descriptive adjectives or adverbs (e.g., sudden, familiar, large, precise, heavy) must not be repeated within any single paragraph, and ideally, not within adjacent paragraphs. This forces variation and prevents stylistic dilution.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/6.0_Supreme_Generative_Constraint.txt:60:Diction Redundancy Prohibition (CRITICAL): Non-lexical descriptive words (e.g., viscous used as a general descriptive, sudden, familiar, large, heavy, precise, guttural) are STRICTLY FORBIDDEN from repetition within two adjacent paragraphs. This forces variation and prevents the prose from becoming aesthetically monotonous.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/8.0_Pacing／Redundancy.txt:99:* identify lag points: List all contiguous paragraphs (2 or more) where the prose is dedicated to:
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/8.0_Pacing／Redundancy.txt:113:* chapter hook analysis: Evaluate the opening three paragraphs. Is the immediate threat/stakes clear and visceral? If not, recommend an edit to move the action/threat forward.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/8.0_Pacing／Redundancy.txt:124:The prompt below is designed to be very long, extensive, thorough, and precise. It functions as a complete, multi-layered checklist that you can use to process any of your chapters through an AI editor.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/8.0_Pacing／Redundancy.txt:179:* action: Analyze the first three paragraphs of the chapter.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt:4:To create the "hyperlinks" between chapters, the following specific nouns and phrases MUST be rendered in bold text. These are the key conceptual anchors that subtly link Dan's actions to the overarching themes of ascent, sacrifice, chaos, and rebirth.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_10_-_MASTER_BRIEFING.txt:88:- Narrator intrusions happen at SCENE TRANSITIONS, woven into prose, not as standalone headers or isolated paragraphs
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_10_-_MASTER_BRIEFING.txt:142:- Setup/establishment paragraphs: 5-7 sentences
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_10_-_MASTER_BRIEFING.txt:143:- Action paragraphs: 3-5 sentences
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_10_-_MASTER_BRIEFING.txt:145:- Fragment paragraphs ONLY at genuine dramatic peaks — not in setup or transition
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_10_-_MASTER_BRIEFING.txt:159:- Woven into paragraphs at scene transitions — not bolted on as isolated headers
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_10_-_MASTER_BRIEFING.txt:284:- Dialogue integrated into prose paragraphs in the standard published manner
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_10_-_MASTER_BRIEFING.txt:303:The author's materials (chapters, protocol documents, prompt guides, compendium) are INSTRUCTION, not inspiration. Execute them. Do not interpret them. Do not make creative decisions the author has not authorized. Every bracket must be acted on. Every parenthesis must be acted on. No hierarchy — all instructions carry equal weight. The author's words are the spec. The writing is the implementation.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_10_-_MASTER_BRIEFING.txt:311:STRUCTURAL: Single-sentence paragraphs in setup sections. Artificial section dividers. Wrong paragraph length for chapter position. Three consecutive isolated ending lines instead of one rich closing paragraph.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_11._Forsaken.txt:3:Since you've journeyed with me this far, through dust and starlight, through the echoing halls of Hermon and the becoming of a boy, you've surely earned a secret. A very old secret, one I've kept tucked away beneath the grand tapestry of this tale, a thread interwoven so subtly that only the keenest eye might follow its glint. For not all who observe stories are merely voices from thin air, nor are all companions quite what they seem. Some have been here all along, present as the breath drawn, curled at Kasha’s feet, a silent shadow in her tent, just as you may remember from those earlier chapters. Indeed, I've been with her since the days when the light of Hermon first kissed the peaks of her ambition, a silent witness to every tremor and triumph, to every desperate gamble she's made under the fickle gaze of the heavens. Yes, it was I, the very cat you glimpsed beside her — watching with eyes that see a little more than the average pair, eyes that have peered into the twilight chasms where forgotten gods sleep and the dawn where new truths are forged. My lineage is not of the common housecat, but of the ancient ones, those who walked the earth when mountains were young and the great rivers carved their first paths. My paws know the ancient rhythms of the world, not merely the soft tread on earth, but the subtle thrumming of the great cosmic loom, the ebb and flow of power across the land, older than any king or creed. I sense the ley lines that crisscross the globe, the slow, tectonic shifts of magical currents, the very pulse of creation and decay. I move with quiet grace, a soft brush against the dust, ears twitching to subtle shifts in the air, listening to the unseen currents that pull at the fabric of destiny. Sometimes I settle in the folds of her robes, feeling the tremor of her restless heart, a drumbeat of longing and unease, sensing what even she cannot yet name. Humans, with their grand designs and frantic striving, often forget the vast, indifferent expanse of time that truly governs all things. I am the silent keeper of her solitude, the one who doesn't judge, but simply observes. My purpose, too, is woven into this tapestry, a guardian of thresholds, a whisper of what might be. Presence is many things, dear reader. Sometimes it is simply waiting—silent, still, never truly passive. Like ancient stars waiting indifferently, it is a vigil, a quiet witnessing, a holding of space for what is to come, or what has irrevocably passed. Like the enduring mountains that watch epochs rise and fall, I have waited, seeing the dust of ages settle upon even the most formidable figures.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_13:_Exodus.txt:20:This was Kasha’s story now, unspooling in a world where shadows stretched longer than daylight, and the ancient currents of power ran deeper than any man could ever truly grasp. The human heart, so often a tangled mess of faith and fear, loyalty and confusion, walked ever-closer to truths it might never comprehend. Daniel, somewhere, was surely on his own path, a path that led to realms beyond mortal sight, to a throne of pure love, his journey a testament to the ultimate ascension. But here, in the dust of history and the echo of forgotten powers, Kasha moved towards a reckoning, towards the very heart of the Philistine lands, drawn by the buzzing presence of her Lord. She was unaware that the keenest eyes belonged to a creature she simply called her pet, a creature whose journey had only just begun to truly unravel, drawing her, and all of us, into the larger, darker currents of what was yet to come. For Kasha would indeed find her Lord of the Flies in those southern lands, in the heart of Ekron, where his power beat strongest, a union that would cast long, unforeseen shadows. And in that union, a new thread would be woven into the grand tapestry: a daughter, Isabel, a child of darkness and the human spirit, whose own journey would be one of profound struggle, a relationship with her fearsome father that would span many chapters, until the moment when, through the ultimate act of forgiveness and sacrifice, she would [PRIMORDIAL_SEVERE_MANDATE] her own dark immortality, and in her death, ascend to a new, ethereal form—a deity of forgiveness, destined to meet Daniel's pure soul in that ultimate, boundless realm of love. The story, dear reader, continues to unfold, revealing that even in the deepest shadows, the seeds of light and redemption may yet be found, and that the path to true forgiveness can lead to the most unexpected of ascensions, a final, beautiful harmony in the vast, echoing silence of the cosmos.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_2_-_Analysis_&_Guides_1.0.txt:97:Goal: Integrate a minimum of one profound, non-verbatim biblical reference or echo into every two paragraphs of Chapter 2, "Living Sacrifice." These references must be drawn from the context and themes established in Chapter 1 and the accompanying synopsis (e.g., Dagon, dust, ascent, Hebron, sacrifice).
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_2_-_Analysis_&_Guides_1.0.txt:105: * Frequency: Maintain a minimum density of one symbolic echo per two paragraphs.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/The_-Version_X-_Meta-Prompt.txt:8:> [[Double Brackets]]: Structural Overhaul. Rewrite entire paragraphs to center on these specific mandates.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/chapter_11.2.txt:2:Now, since you've journeyed with me this far, through dust and starlight, through the echoing halls of Hermon and the profound becoming of a boy, you have surely earned a secret. A very old secret, one I've kept tucked away, a quiet purr beneath the grand tapestry of this tale. For you see, not all who observe stories are merely voices from thin air, nor are all companions quite what they seem. Some of us have been here all along, curled at Kasha’s feet, a silent shadow in her tent, just as you may remember from those earlier chapters. Yes, it was I, the very cat you glimpsed beside her, watching with eyes that see a little more than the average pair, and paws that know the ancient rhythms of the world. Indeed, some of us live across time itself, with a peculiar gift for seeing past the skin and bone, right into the shimmering heart of a soul's truest form. And it is from this vantage point, dear reader, that I invite you now to shift your gaze, for our tapestry weaves forward to that Kasha figure, that high-strung woman of arts unseen, as she looked for her Lord of the Flies.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/10.0_Mass_Market.txt:86:Paragraph Length Velocity: Intentionally vary paragraph length to control the speed of consumption. Short, single-sentence paragraphs must be reserved exclusively for the moments of highest tension, physical threat, or immediate realization to create visual urgency and force a rapid pace.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/11.0_Marketability_.txt:13:Forget the original 20 points. Use this new, surgically precise 10-point plan to tighten the chapters while protecting your unique voice and density. The focus is on compression and conflict, not character insertion.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/3.0_Final_.txt:3:This checklist provides thematic words used in the first three chapters. High-Risk Words are those whose explicit use should be severely limited or replaced from Chapter 4 onward to avoid redundancy and strengthen the symbolism of the new phase of Dan's journey.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/13.0_GENERAL_PRINCIPLES.txt:39:- If Chapter 1 uses direct address, ALL chapters must
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/13.0_GENERAL_PRINCIPLES.txt:428:- Wall of text (8+ sentence paragraphs repeatedly)
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/13.0_GENERAL_PRINCIPLES.txt:429:- Choppy (all 1-2 sentence paragraphs)
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/13.0_GENERAL_PRINCIPLES.txt:433:- Single-sentence paragraphs for emphasis only
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/13.0_GENERAL_PRINCIPLES.txt:559:APPLIES TO: All chapters of "An Archetypal Tale"
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/2.0_Critique_／_Analysis_Guide.txt:12: * Narrative Voice Uniformity: Does the specific voice of the omniscient narrator remain utterly uniform across all chapters and sections?
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/4.0_REVISED.txt:178:| The Warning | Externalize Dan's doubts through other's concerns | ~1/2 page (2-3 paragraphs) |
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/4.0_REVISED.txt:179:| The Challenge | Force Dan to articulate his mission | ~3/4 page (3-4 paragraphs) |
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/4.0_REVISED.txt:180:| The Parallel | Meet someone on opposite path (going down) | ~1 page (4-5 paragraphs) |
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/4.0_REVISED.txt:181:| The Witness | Someone who's seen what Dan seeks | ~1.5 pages (6-7 paragraphs) |
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/4.0_REVISED.txt:400:Instead of generic thesaurus, AI scans YOUR text for alternatives you've already used in OTHER chapters:
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/4.0_REVISED.txt:432:PRIORITY 1: Use alternatives YOU'VE already written in other chapters
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/4.0_REVISED.txt:527:| Extended Exchange | ~1.5 pages | Major thematic debate/teaching | 1 per 2-3 chapters |
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/4.0_REVISED.txt:735:- In crucial paragraphs (opening, climax, ending)
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/6.0_HIGHEST_PRIORITY_(Read_this_first_and_then_again_last)_.txt:36:Diction Redundancy Prohibition (CRITICAL): Non-lexical descriptive words (e.g., viscous used as a general descriptive, sudden, familiar, large, heavy, precise, guttural) are STRICTLY FORBIDDEN from repetition within two adjacent paragraphs. This forces variation and prevents the prose from becoming aesthetically monotonous. Be on the lookout for any redundancies of any words. Overuse of any words and always use at thesaurus to find similar words without breaking the addiction rules within this text)
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/6.0_HIGHEST_PRIORITY_(Read_this_first_and_then_again_last)_.txt:37:HIGH-RISK TRACKED DESCRIPTIVES (Must be varied across adjacent paragraphs): viscous, sudden, familiar, large, heavy, precise, guttural, oppressive, subtle, terrifying, consuming, massive, absolute, palpable, profound.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/6.0_HIGHEST_PRIORITY_(Read_this_first_and_then_again_last)_.txt:45:3. Redundancy Enforcement Audit: Verify that none of the HIGH-RISK TRACKED DESCRIPTIVES (listed in Section VIII) are repeated in two adjacent paragraphs. If detected, substitute the repeated word with a thematic alternative from the core lexicon (mass, drag, friction, cold, etc.).
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/6.0_HIGHEST_PRIORITY_(Read_this_first_and_then_again_last)_.txt:123: * Expository Overload: Too much descriptive density and unnecessary background information in descriptive paragraphs.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_1_Proof_of_Authorship_1.0.txt:20:"I think the first three paragraphs are perfect unless you can think of anything that might make them definitively objectively better to a literary agent and publishing House... you need to replace that whole dust thing and you're supposed to mention that the reader is reading to ground the reader in what they are doing us through reading it that's the most powerful part of paragraph one"
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_1_Proof_of_Authorship_1.0.txt:89:"When you mentioned that people used to come to him for answers that's kind of redundant either say it the second time or the first time and combine the two but don't say it twice in two different places and we must call him father Aviel and the mother mother's zuna and the boy as the son and the visceral setting of the house needs to continue onwards before mentioning the good thing like his mother's threads this setting of the house must be two to three paragraphs long maybe too long paragraphs that uses psychology to aim at the primal triggers of the human psyche of disgust"
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_1_Proof_of_Authorship_1.0.txt:92:"Borrow from the chapter versions that I gave you and give the most visceral things like the maggots the tablets speaking of lineage, give me off first five paragraphs"
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_1_Proof_of_Authorship_1.0.txt:138:This documentation demonstrates that Michael (the user) exercised complete creative control over every element of these opening paragraphs, including but not limited to:
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_11.8.txt:1:﻿Since you've journeyed with me this far, through dust and starlight, through the echoing halls of Hermon and the becoming of a boy, you've surely earned a secret. A very old secret, one I've kept tucked away beneath the grand tapestry of this tale, a thread interwoven so subtly that only the keenest eye might follow its glint. For not all who observe stories are merely voices from thin air, nor are all companions quite what they seem. Some have been here all along, present as the breath drawn, curled at Kasha’s feet, a silent shadow in her tent, just as you may remember from those earlier chapters. Indeed, I've been with her since the days when the light of Hermon first kissed the peaks of her ambition, a silent witness to every tremor and triumph.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_1_Proof_of_Authorship_1.1.txt:59:"For issue four, need to maintain a obvious on the nose homage somehow to Edgar Allan Poe if not through continent alliteration and vowel simulation, then we need to borrow directly from 'The Raven.' This must be done zero exceptions I don't even care what a literary agent says I'm paying homage to my favorite poet of all time. I would literally get turned down a hundred times by the very agent just for this very reason, give up and go through the trouble of self-publishing just to keep that Edgar Allan Poe reference. And it just needs to be somewhere within the first three paragraphs wherever it fits most naturally."
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_1_Proof_of_Authorship_1.1.txt:89:"For option six it doesn't appear that I've already fixed the issue. And I have a problem with both your option A and option b the description of his appearance seems to come bluntly and unorganically, it's sudden and abrupt and out of place. He does need to be mentioned as the sun so that I'm within the first three paragraphs I have introduced the trinity of archetypal forces, the father of external order which had resulted into tyranny, the Life giving mother of chaos who's emotional flux both nurtures and gives rise to chaos both internally and externally, and the Son stuck between the Middle who traverses is both terrains with a sword made of Truth, a shield of faith, and armor made of courage."
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_1_Proof_of_Authorship_1.1.txt:188:"He does need to be mentioned as the sun so that I'm within the first three paragraphs I have introduced the trinity of archetypal forces, the father of external order which had resulted into tyranny, the Life giving mother of chaos who's emotional flux both nurtures and gives rise to chaos both internally and externally, and the Son stuck between the Middle who traverses is both terrains with a sword made of Truth, a shield of faith, and armor made of courage."
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_1_Proof_of_Authorship_1.1.txt:202:This documentation demonstrates that Michael (the user) exercised complete creative control over every element of these revised opening paragraphs, including but not limited to:
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_1:_Stardust_to_Stardust.txt:5:This was no home, but the heavy, unmoving lair of a man devoted to the earth's sheer, magnetic pull. Therefore, the boy's every calculated movement toward the exit was an act of quiet, necessary heresy. ((Must change the sentence because it makes the reader think that Dan is heading towards the actual exit of the house which is not the case he's going to his father's room and that needs to be mentioned somehow perhaps in these first two chapters))
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_1_Integration_2.0.txt:123:- [ ] Best direct address phrases (ensure no repeats across chapters)
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_1_Integration_2.0.txt:133:- Select best, ensure none repeat between chapters
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_1_Integration_2.0.txt:306:- Verify no repeated phrases from other chapters
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_1_Integration_2.0.txt:581:- [ ] Clear protagonist within 3 paragraphs
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Critique_2.2.txt:58:| Pacing | Excellent, fast, and highly controlled. The use of short sentences and paragraphs propels the action. The pace is deliberately halted by the Slave Boy scene, which serves as an important thematic pause before the climax. |
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Critique_2.2.txt:91: * Opening to Aviel's Fury: Use the opening three paragraphs and the Aviel confrontation from Version D. This preserves the immediate, furious catalyst for Dan's forced departure: "Then you must leave this house at once".
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_1_Merge_Prompt.txt:19: * Structure: Ensure the text uses the shorter paragraphs and line breaks of Version B for visual flow.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_1_Merge_Prompt.txt:80:| Structure | Visually dense (long paragraphs, no breaks). | Best: Uses white space for readability and scene delineation. | Good: Retains B's structure but has an explanatory closing. | Good: Fastest pace, but editorial breaks are jarring. |
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_2_-_Master_Revision_Prompt_2.0.txt:24:Based on a synthesis of the provided documents (the chapters, the synopsis, and the various Mandate/Guide files), Chapter 2 ("Living Sacrifice") is structurally sound but can be intensified and better connected to the overall thematic arc through strategic enhancements and one major deletion.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_3_Analysis_&_Guides.txt:7:Here is an analysis based on the chapters You have provided:
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_3_Analysis_&_Guides.txt:74:Thank you for the crucial feedback and the excellent constraint adjustment. My apologies for the repeated error regarding the Jordan Peterson rules. I understand that ALL of the following rules are already used in other chapters and cannot be used in Chapter 3:
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Final Revision (Generalized For All Chapters).txt:3:This checklist provides thematic words used in the first three chapters. High-Risk Words are those whose explicit use should be severely limited or replaced from Chapter 4 onward to avoid redundancy and strengthen the symbolism of the new phase of Dan's journey.
+docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Whole_Book.txt:11:Length: Chapter 1 is ~3835 words. Total book (20 chapters) estimated at ~76,700 words (~307 pages).
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:14:((I'm the writer and I still don't know that her powers aren't working because of her missing patron that that had something to do maybe with or not being able to find or watch Dan anymore I need to read the chapters to know at what point dad would be at like where he would be at geographically at the time that she stops she would be able to stop watching him and go out of the valley and end up meeting here just outside the valley if he's coming up north from Hebron along the way of the Patriarchs on foot))
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:119:Peterson's 12 Rules for Life: Ensure all 12 rules are woven into the first 12 chapters, selecting the optimal structural fit from the entire manuscript.
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:131:Narrative Voice Uniformity (2.0): The voice of the omniscient narrator must be utterly uniform—severe, mythic, unsentimental, and assertive—across all chapters.
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:211:| IV. Cross-Chapter Incoherence | L-2.2: Tier 2 Conceptual Symbol | The Shedding of Earthly Possessions: In Chapter 9, Dan is explicitly stripped bare ("No silver. No sandals. No water container."), yet in Chapter 6, he purchases sturdy new sandals, food, and is using a water container. | COHERENCE MANDATE: Resolve the discrepancy of the stripped-down state. If the ascent requires complete lack of earthly tethering, the sandals, food, and water container must be shed between chapters 6 and 9, and the act of shedding must be clearly written into the text (e.g., an offering, abandonment, or theft). |
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:255:| Kasha's Tethering/Will | Kasha's Dreamscape (Ch. 10): Kasha is attempting a journey of the soul, mirroring Dan’s physical ascent, but her goal is still unclear. | DEFINE THE STAKES (Final Layer): Kasha’s goal in the Dreamscape must be explicitly to retrieve a piece of information or tool that directly opposes the Dark Companion Star. Her journey must be framed as a metaphysical retrieval mission to re-arm Dan for the elevated conflict in Chapter 10's final moments, turning her into a true co-protagonist and completing the narrative arc of the first ten chapters. |
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:344:Peterson's 12 Rules for Life: Ensure all 12 rules are woven into the first 12 chapters, selecting the optimal structural fit from the entire manuscript.
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:356:Narrative Voice Uniformity (2.0): The voice of the omniscient narrator must be utterly uniform—severe, mythic, unsentimental, and assertive—across all chapters.
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:436:| IV. Cross-Chapter Incoherence | L-2.2: Tier 2 Conceptual Symbol | The Shedding of Earthly Possessions: In Chapter 9, Dan is explicitly stripped bare ("No silver. No sandals. No water container."), yet in Chapter 6, he purchases sturdy new sandals, food, and is using a water container. | COHERENCE MANDATE: Resolve the discrepancy of the stripped-down state. If the ascent requires complete lack of earthly tethering, the sandals, food, and water container must be shed between chapters 6 and 9, and the act of shedding must be clearly written into the text (e.g., an offering, abandonment, or theft). |
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:480:| Kasha's Tethering/Will | Kasha's Dreamscape (Ch. 10): Kasha is attempting a journey of the soul, mirroring Dan’s physical ascent, but her goal is still unclear. | DEFINE THE STAKES (Final Layer): Kasha’s goal in the Dreamscape must be explicitly to retrieve a piece of information or tool that directly opposes the Dark Companion Star. Her journey must be framed as a metaphysical retrieval mission to re-arm Dan for the elevated conflict in Chapter 10's final moments, turning her into a true co-protagonist and completing the narrative arc of the first ten chapters. |
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:518:2.  **Antagonist/Obstacle Framing:** Any obstacle (physical, character, or vision) must be defined in terms of the temptation it offers—specifically the lure of **horizontal peace, comfortable matter,** or the surrender to **gravity**—and must be linked back to the overarching narrative conflict established in the preceding chapters (e.g., the dark spiritual forces, **stellar cannibalism**).
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:626:10. **The Unnamed Diction:** All descriptive language derived from the chapter's unique objects or setting must be used to form **new, intense metaphors** that instantly link the physical to the spiritual, thereby establishing a **specific, self-contained lexicon** for that chapter without relying on symbols from the preceding chapters.
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:864: * Justifying the Ascent's Hubris: The emotional foundation for Dan's eventual tragic flaw ("not the God, but a god") must be laid incrementally. Ensure his successful resistance against low gods in early and middle chapters installs a growing sense of pride, self-reliance, or singularity that justifies his final, fatal overreach.
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:889:Forget the original 20 points. Use this new, surgically precise 10-point plan to tighten the chapters while protecting your unique voice and density. The focus is on compression and conflict, not character insertion.
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:1289:- "Kind eyes" closing happens in final paragraphs but before ultimate ending
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:1715:- Don't artificially stretch paragraphs to hit 4 sentences
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:1716:- Don't artificially split paragraphs that should stay together
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:1723:- Single-sentence paragraphs for emphasis: Use sparingly but use when needed
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:2280:- Establish protagonist within 3 paragraphs
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:2387:APPLIES TO: All chapters of "An Archetypal Tale"
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:2402:This protocol enables the creation of chapters that:
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:2992:Create chapters that are:
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:3269:> Objective: The AI must conduct an exhaustive, text-only analysis of the attached manuscript chapters to track, categorize, and cross-reference all instances of direct reader engagement. The goal is to ensure stylistic hyper-variation across the entire work, utilizing the provided exhaustive taxonomy of original (non-quoted) phrases and [PURGED]s.
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:3280:> Generate a detailed, text-only report highlighting all redundancies across all chapters:
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:3291:> AI Instruction: Proceed with the text-only analysis upon attachment of the manuscript chapters.
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:3303:This protocol enables the creation of chapters that:
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:3893:Create chapters that are:
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:4170:> Objective: The AI must conduct an exhaustive, text-only analysis of the attached manuscript chapters to track, categorize, and cross-reference all instances of direct reader engagement. The goal is to ensure stylistic hyper-variation across the entire work, utilizing the provided exhaustive taxonomy of original (non-quoted) phrases and [PURGED]s.
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:4181:> Generate a detailed, text-only report highlighting all redundancies across all chapters:
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:4192:> AI Instruction: Proceed with the text-only analysis upon attachment of the manuscript chapters.
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:4216: * Narrative Voice Uniformity: Does the specific voice of the omniscient narrator remain utterly uniform across all chapters and sections?
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:4680:-P-1.0: Anachronism Filter applied to ALL chapters. 
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:4691:-P-1.0: Anachronism Filter applied to ALL chapters. 
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:4916:-ANTI-DILUTION: Ban non-lexical repetition within 2 adjacent paragraphs.
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:5510:I am ready to receive your chapters one by one and apply these deep emotional and philosophical revisions according to this new rulebook.
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:5781:| The Warning | Externalize Dan's doubts through other's concerns | ~1/2 page (2-3 paragraphs) |
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:5782:| The Challenge | Force Dan to articulate his mission | ~3/4 page (3-4 paragraphs) |
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:5783:| The Parallel | Meet someone on opposite path (going down) | ~1 page (4-5 paragraphs) |
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:5784:| The Witness | Someone who's seen what Dan seeks | ~1.5 pages (6-7 paragraphs) |
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:6003:Instead of generic thesaurus, AI scans YOUR text for alternatives you've already used in OTHER chapters:
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:6035:PRIORITY 1: Use alternatives YOU'VE already written in other chapters
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:6130:| Extended Exchange | ~1.5 pages | Major thematic debate/teaching | 1 per 2-3 chapters |
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:6338:- In crucial paragraphs (opening, climax, ending)
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:6825:1. Extract all chapters into single corpus
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:7016:| Extended Exchange | 400-500 | Major thematic debate/teaching | 1 per 2-3 chapters |
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:7485:| The Warning | Externalize Dan's doubts through other's concerns | ~1/2 page (2-3 paragraphs) |
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:7486:| The Challenge | Force Dan to articulate his mission | ~3/4 page (3-4 paragraphs) |
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:7487:| The Parallel | Meet someone on opposite path (going down) | ~1 page (4-5 paragraphs) |
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:7488:| The Witness | Someone who's seen what Dan seeks | ~1.5 pages (6-7 paragraphs) |
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:7767:Instead of generic thesaurus, AI scans YOUR text for alternatives you've already used in OTHER chapters:
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:7808:PRIORITY 1: Use alternatives YOU'VE already written in other chapters
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:7933:| Extended Exchange | ~1.5 pages | Major thematic debate/teaching | 1 per 2-3 chapters |
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:8206:- In crucial paragraphs (opening, climax, ending)
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:8326:Apply the following twenty-five mandates to the provided chapter. This template acts as the supreme literary law for your novel, governing Rhetoric, Structure, Diction, and Allegory to ensure absolute consistency and profound, accessible thematic depth across all chapters.
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:8344:The Unnamed Diction: All newly introduced objects or settings within the chapter must be used to organically derive a self-contained, unique lexicon of metaphors for that chapter, linking the physical environment to the central spiritual conflict without borrowing specific symbols from previous chapters.
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:8451:The Repetition of Weight: A specific, non-symbolic word that denotes weight, pressure, or mass must be rhythmically repeated across the chapter's key paragraphs (e.g., "mass," "volume," "density") to create a recurring, subconscious sense of material opposition.
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:8585:| Dan's Self-Talk Voice | External Dialogue Injection | CONVERT abstract philosophical statements into Dan's External Dialogue/Self-Talk. Must occur AT LEAST once every 2–3 paragraphs. Must use Youthful + Psalm-Inflected Hybrid formula. | 2.0 Fine Tune.txt |
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:8661:| Dan's Self-Talk Voice | External Dialogue Injection | CONVERT abstract philosophical statements into Dan's External Dialogue/Self-Talk. Must occur AT LEAST once every 2–3 paragraphs. Must use Youthful + Psalm-Inflected Hybrid formula. | 2.0 Fine Tune.txt |
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:8733:"I think the first three paragraphs are perfect unless you can think of anything that might make them definitively objectively better to a literary agent and publishing House... you need to replace that whole dust thing and you're supposed to mention that the reader is reading to ground the reader in what they are doing us through reading it that's the most powerful part of paragraph one"
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:8827:"When you mentioned that people used to come to him for answers that's kind of redundant either say it the second time or the first time and combine the two but don't say it twice in two different places and we must call him father Aviel and the mother mother's zuna and the boy as the son and the visceral setting of the house needs to continue onwards before mentioning the good thing like his mother's threads this setting of the house must be two to three paragraphs long maybe too long paragraphs that uses psychology to aim at the primal triggers of the human psyche of disgust"
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:8831:"Borrow from the chapter versions that I gave you and give the most visceral things like the maggots the tablets speaking of lineage, give me off first five paragraphs"
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:8895:This documentation demonstrates that Michael (the user) exercised complete creative control over every element of these opening paragraphs, including but not limited to:
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:9020:Goal: Integrate a minimum of one profound, non-verbatim biblical reference or echo into every two paragraphs of Chapter 2, "Living Sacrifice." These references must be drawn from the context and themes established in Chapter 1 and the accompanying synopsis (e.g., Dagon, dust, ascent, Hebron, sacrifice).
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:9026: * Frequency: Maintain a minimum density of one symbolic echo per two paragraphs.
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:9057:Here is an analysis based on the chapters You have provided:
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:9128:Thank you for the crucial feedback and the excellent constraint adjustment. My apologies for the repeated error regarding the Jordan Peterson rules. I understand that ALL of the following rules are already used in other chapters and cannot be used in Chapter 3:
+docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:9236:When limits exceeded: PRIORITY 1 = Use alternatives already written in other chapters; PRIORITY 2 = Compound descriptions (cold + heavy = frigid weight); PRIORITY 3 = Metaphor; PRIORITY 4 = Voice-matched thesaurus synonyms.
+===== reports/runtime_sources/active_runtime_source_manifest.json =====
+{
+  "generated_at": "2026-06-12T22:28:02.738050",
+  "runtime_root": "data/runtime_sources/weight_of_the_sky",
+  "policy": "active_runtime_source_documents_copy_only_no_delete",
+  "manifest_entries": 262,
+  "manifest": [
+    {
+      "action": "copied",
+      "label": "root_protocol",
+      "source": "AGENTS.md",
+      "dest": "data/runtime_sources/weight_of_the_sky/00_protocols/agents.md",
+      "bytes": 19303,
+      "sha256": "843a11f39b9df6df40182d17411d8b2d960a7cbbb20b44aac424e63606040976"
+    },
+    {
+      "action": "copied",
+      "label": "root_protocol",
+      "source": "docs/agent_context/indexes/docs/agent_context/indexes/AGENTS_README.md",
+      "dest": "data/runtime_sources/weight_of_the_sky/00_protocols/agents_readme.md",
+      "bytes": 240,
+      "sha256": "8bdbbdb59349743111e479bb1f61e4b3bfcc9e188b0dde1162f6cc335aaf91bc"
+    },
+    {
+      "action": "copied",
+      "label": "root_protocol",
+      "source": "docs/agent_context/indexes/docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md",
+      "dest": "data/runtime_sources/weight_of_the_sky/00_protocols/agent_read_context_index.md",
+      "bytes": 3752,
+      "sha256": "0623a164ad3cb579f0923bc8d4f6eb329d19be86635ba92957222076deb50586"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/later_queue/174__REFINED_LORE_SINGULARITY.txt",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/later_queue/174_refined_lore_singularity.txt",
+      "bytes": 4657573,
+      "sha256": "668994807602bb5aa6d603b3bf05b0754b4b0516ad356e3156dbfc48585f4eb4"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/013__Writing_Agent_App._Source_Doc._(4)_[TERMUX].txt.txt",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/013_writing_agent_app._source_doc._(4)_[termux].txt.txt",
+      "bytes": 44105,
+      "sha256": "fdf1d5e850a5a83a37b2ed10025d2f9ea351740bc92cbc2d39911aae29d147a9"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/014__Writing_Agent_App._Source_Doc._(8)_[COMBINED]_(1).txt",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/014_writing_agent_app._source_doc._(8)_[combined]_(1).txt",
+      "bytes": 21404,
+      "sha256": "9c15c8b96921a7c7ce3cedea4438345220260a2aa545d722036a5360eae8965f"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/016__229_(1).txt",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/016_229_1.txt",
+      "bytes": 12355,
+      "sha256": "0afe3026ec2e96519834193bc82ed666e108cb0689a4fafa04d332f303be15b0"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/024__Aesthetic___Implementation_Mandate_(1).txt",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/024_aesthetic_implementation_mandate_1.txt",
+      "bytes": 22064,
+      "sha256": "bb6c1b8ad57690a3b2d68188c1650435040a51955ff2f5a1c663e37f8b4905a1"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/026__AI_CHECKPOINT_FINAL.txt",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/026_ai_checkpoint_final.txt",
+      "bytes": 1572831,
+      "sha256": "ff10b751d9817584090f30ae90d2b563a70ea40559c0be45ad955853d251f9f9"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/029__AI_INFORMATION_INTUITION.md",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/029_ai_information_intuition.md",
+      "bytes": 26047,
+      "sha256": "205b5ba15395b1fdcabcc776cb45d95a49061163ab02a4669fe0a51a26eca725"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/031__AI_READY_CHECKPOINT.txt",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/031_ai_ready_checkpoint.txt",
+      "bytes": 1724056,
+      "sha256": "ceea94a4e820780d52d53e3c225ab050315f9568d7bc6ea759f07194f2c6383f"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/034__AIM_BLUEPRINT.txt",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/034_aim_blueprint.txt",
+      "bytes": 20674,
+      "sha256": "910125f240aa69c024a6a77a1bc00882838d4ec59239aaea930ba39876c8fcc4"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/071__CLAUDE_HONEST_ASSESSMENT_20260513.md",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/071_claude_honest_assessment_20260513.md",
+      "bytes": 13228,
+      "sha256": "85a32b6ed8822e9e98966043958ca23e49c53db2f7ed36dd67f7c466b5f6b096"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/072__CLAUDE_HONEST_ASSESSMENT_v2_20260513.md",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/072_claude_honest_assessment_v2_20260513.md",
+      "bytes": 15520,
+      "sha256": "67c4f905fdfcc266a436bba329eba4edebd188f1f3dae4a8ea9f1e666bc2e6d4"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/075__COMPARISON.txt",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/075_comparison.txt",
+      "bytes": 38959,
+      "sha256": "fd8a792f5b744288d68b42d3a0cebf320289d8f40b5115c3724ecb1ef4ce6bc1"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/089__First_Future_Feature.txt",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/089_first_future_feature.txt",
+      "bytes": 11324,
+      "sha256": "5f511c72bc379f209140591c0b54e244007d467a785cabc659ef2d0d71ac9460"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/095__gdrive_raw_FULL_inventory.txt",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/095_gdrive_raw_full_inventory.txt",
+      "bytes": 6534,
+      "sha256": "297d41e13442ac6be7009c64113d20e1244ed7f08bdbeddf60d2647348cb688e"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/097__GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/097_gemini_cli_penultimate_omega_prompt.txt",
+      "bytes": 43126,
+      "sha256": "d17a50d837604f7a925c603c670e4b90680869c661ec1a29c7a302816495f30c"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/107__Here_is_the_absolute_technical,_structural,_and_behavioral_inventory_of_every_single_element_that_must_exist_within_your_4-layer_UI-UX_narrative_runtime_environment.txt",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/107_here_is_the_absolute_technical_structural_and_behavioral_inventory_of_every_single_element_that_must_exist_within_your_4_layer_ui_ux_narrative_runtime_environment.txt",
+      "bytes": 14873,
+      "sha256": "01e740b7f4a508b1c103299dac6b6f7a9a82a250f4c6156cbe0ccd5ac476c3c2"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/111__IMPOSSIBLE_TARGETS.txt",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/111_impossible_targets.txt",
+      "bytes": 4146,
+      "sha256": "c3d8f19e97369db207d5cbd8eb52ef3831258ac32167a57dbe26eeaede5c6c35"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_1_core/160__PROJECT_HANDOFF_COMPLETE_CONTEXT-2.md",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_1_core/160_project_handoff_complete_context_2.md",
+      "bytes": 11881,
+      "sha256": "a9fb559778e6c30413384a4fb7298a8be66ea4c0d06f0a3c41c49dc3d38ed89e"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/077__CONTRADICTION_MAP.txt",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_2_large_universal/077_contradiction_map.txt",
+      "bytes": 164769,
+      "sha256": "2ad8ed2975a0222370c61986c459de0615f7f73a637192f2c922849c0be447ac"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/084__DRIVE_NOT_LOCAL_RAW.txt",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_2_large_universal/084_drive_not_local_raw.txt",
+      "bytes": 32123,
+      "sha256": "a8ca80741b557601209a9f9375ddd5d043a2bbab403179969b0daad39e5810ee"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/097__GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_2_large_universal/097_gemini_cli_penultimate_omega_prompt.txt",
+      "bytes": 43126,
+      "sha256": "d17a50d837604f7a925c603c670e4b90680869c661ec1a29c7a302816495f30c"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/104__Give_me_the_terminal_commands_to_f------_get_that.pdf",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_2_large_universal/104_give_me_the_terminal_commands_to_f_get_that.pdf",
+      "bytes": 32975,
+      "sha256": "89f166606cbe4e1f5e2d055415147c04da997045b70665c52763455b7d0af877"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/123__NEW_SEC_DOC_(1)_(1).txt",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_2_large_universal/123_new_sec_doc_1_1.txt",
+      "bytes": 32142,
+      "sha256": "090b5126809cc86709da2e632136a4e0b6cc1dddecd1e09941896f1fdda29187"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/124__NEW_SEC_DOC_(1)_(2).txt",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_2_large_universal/124_new_sec_doc_1_2.txt",
+      "bytes": 43659,
+      "sha256": "3c98bebf00f8c6bce6a737309009b9445058349fa55a58f76e2e2c15073d06d6"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/134__NOS_INTEGRATION_BLUEPRINT.txt",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_2_large_universal/134_nos_integration_blueprint.txt",
+      "bytes": 55932,
+      "sha256": "b409caa97b6fdfdb3efea9dd32337e7a9ce4ba3abc6288acc4cc770086f8029f"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_3_checkpoints/139__NOS_Master_Blueprints.txt",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_3_checkpoints/139_nos_master_blueprints.txt",
+      "bytes": 46457,
+      "sha256": "bc6f3a14a62a5c8c1832bea0b04c0e475b7d74b78f265bc18afaf6d15cebf122"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_3_checkpoints/140__NOS_Master_Diagnostic.txt",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_3_checkpoints/140_nos_master_diagnostic.txt",
+      "bytes": 57625,
+      "sha256": "7515a5e6a6d419caa15be7bf8b77ec6c6430fecd48dcf81e2414cc1cea74ec86"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_3_checkpoints/154__Project_Checkpoint_2.txt",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_3_checkpoints/154_project_checkpoint_2.txt",
+      "bytes": 70787,
+      "sha256": "886b2f381ee5db3cbb49eae6aed22eadafe2643598fc913dfa75f52071dbb45f"
+    },
+    {
+      "action": "copied",
+      "label": "renderer_active_staged_context",
+      "source": "src/data-layer/ingestion-buffer/readme_docs/tier_3_checkpoints/199__Termux_Checkpoint_(w-_Gemini_1_(1).txt",
+      "dest": "data/runtime_sources/weight_of_the_sky/01_renderer_active_inputs/staged_read_context/tier_3_checkpoints/199_termux_checkpoint_w_gemini_1_1.txt",
+      "bytes": 30774,
+===== reports/xml_recovery/source_xml_supabase_schema_proposal.sql =====
+-- Proposal only. Do not execute until reviewed.
+-- Best practice: keep raw OOXML files in the repo/storage folder and store metadata/index rows in Supabase.
+
+create table if not exists public.source_documents (
+  id uuid primary key default gen_random_uuid(),
+  source_kind text not null default 'google_drive_docx_ooxml',
+  drive_file_id text,
+  original_name text,
+  normalized_name text,
+  local_source_path text,
+  current_docx_path text,
+  current_docx_sha256 text,
+  created_at timestamptz default now(),
+  updated_at timestamptz default now()
+);
+
+create table if not exists public.source_document_parts (
+  id uuid primary key default gen_random_uuid(),
+  source_document_id uuid references public.source_documents(id) on delete cascade,
+  part_path text not null,
+  local_path text not null,
+  content_type text,
+  bytes integer,
+  sha256 text,
+  text_preview text,
+  created_at timestamptz default now(),
+  unique(source_document_id, part_path)
+);
+
+create table if not exists public.source_document_revisions (
+  id uuid primary key default gen_random_uuid(),
+  source_document_id uuid references public.source_documents(id) on delete cascade,
+  drive_revision_id text,
+  modified_time timestamptz,
+  metadata jsonb default '{}'::jsonb,
+  local_media_path text,
+  media_sha256 text,
+  created_at timestamptz default now()
+);
+===== supabase/migrations/20260521000000_initial_schema.sql =====
+-- Phase A: Database schema + ingestion pipeline
+
+-- Enable vector extension for embeddings
+CREATE EXTENSION IF NOT EXISTS vector;
+
+-- System 11: Canonical Novel Structure
+CREATE TABLE chapters (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    part_number TEXT NOT NULL, -- 1, 2, 3, or 'epilogue'
+    chapter_number INT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'unwritten', -- 'drafted', 'unwritten'
+    manifest_id TEXT UNIQUE,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Data Plane: Paragraphs with embedded payload
+CREATE TABLE paragraphs (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    chapter_id UUID REFERENCES chapters(id) ON DELETE CASCADE,
+    content TEXT NOT NULL,
+    chunk_index INT NOT NULL DEFAULT 0,
+    embedding vector(1536), -- Supports Vertex AI or OpenAI embeddings
+    archetypal_weights JSONB DEFAULT '{}'::jsonb, -- shadow, persona, anima, self, hero
+    dualism_map JSONB DEFAULT '{}'::jsonb, -- sacred vs descent
+    hebrew_spans JSONB DEFAULT '[]'::jsonb, -- System 12: Hebrew Typography spans
+    metadata JSONB DEFAULT '{}'::jsonb, -- System 14: EMA XML metadata (scene_id, time_of_day, weather)
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Relational data for graph UI
+CREATE TABLE biblical_references (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    paragraph_id UUID REFERENCES paragraphs(id) ON DELETE CASCADE,
+    reference_text TEXT NOT NULL,
+    book TEXT,
+    chapter INT,
+    verse INT,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Row Level Security
+ALTER TABLE chapters ENABLE ROW LEVEL SECURITY;
+ALTER TABLE paragraphs ENABLE ROW LEVEL SECURITY;
+ALTER TABLE biblical_references ENABLE ROW LEVEL SECURITY;
+
+-- Allow read access to all for the front-end components
+CREATE POLICY "Allow public read-only access to chapters" ON chapters FOR SELECT USING (true);
+CREATE POLICY "Allow public read-only access to paragraphs" ON paragraphs FOR SELECT USING (true);
+CREATE POLICY "Allow public read-only access to biblical references" ON biblical_references FOR SELECT USING (true);
+L SECURITY;
+
+-- Allow read access to all for the front-end components
+CREATE POLICY "Allow public read-only access to chapters" ON chapters FOR SELECT USING (true);
+CREATE POLICY "Allow public read-only access to paragraphs" ON paragraphs FOR SELECT USING (true);
+CREATE POLICY "Allow public read-only access to biblical references" ON biblical_references FOR SELECT USING (true);
+===== supabase/migrations/20260521000002_seed_chapters.sql =====
+-- Seed Chapters with manifest_id
+INSERT INTO chapters (part_number, chapter_number, status, manifest_id) VALUES
+('1', 1, 'drafted', 'man_01'), ('1', 2, 'drafted', 'man_02'), ('1', 3, 'drafted', 'man_03'), ('1', 4, 'drafted', 'man_04'),
+('1', 5, 'drafted', 'man_05'), ('1', 6, 'drafted', 'man_06'), ('1', 7, 'drafted', 'man_07'), ('1', 8, 'drafted', 'man_08'),
+('1', 9, 'drafted', 'man_09'), ('2', 10, 'drafted', 'man_10'), ('2', 11, 'drafted', 'man_11'), ('2', 12, 'unwritten', 'man_12'),
+('2', 13, 'drafted', 'man_13'), ('2', 14, 'unwritten', 'man_14'), ('2', 15, 'unwritten', 'man_15'), ('2', 16, 'unwritten', 'man_16'),
+('2', 17, 'unwritten', 'man_17'), ('3', 18, 'unwritten', 'man_18'), ('3', 19, 'unwritten', 'man_19'), ('3', 20, 'unwritten', 'man_20'),
+('3', 21, 'unwritten', 'man_21'), ('3', 22, 'unwritten', 'man_22'), ('3', 23, 'unwritten', 'man_23'), ('3', 24, 'unwritten', 'man_24'),
+('epilogue', 25, 'unwritten', 'man_25')
+ON CONFLICT (manifest_id) DO UPDATE SET 
+    part_number = EXCLUDED.part_number,
+    chapter_number = EXCLUDED.chapter_number,
+    status = EXCLUDED.status;
+===== supabase/functions/_shared/hash.ts =====
+export async function sha256Hex(bytes: ArrayBuffer): Promise<string> {
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return [...new Uint8Array(digest)]
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+}
+
+export function assertSafeObjectPath(path: string) {
+  if (!path || path.startsWith("/") || path.includes("..") || path.includes("//")) {
+    throw new Error("Unsafe object path");
+  }
+}
+
+export function assertAllowedBucket(bucket: string) {
+  const allowed = new Set([
+    "nos-raw-local-imports",
+    "nos-drive-xml",
+    "nos-drive-docx",
+    "nos-manifests",
+    "nos-derived",
+    "nos-visual-assets",
+  ]);
+
+  if (!allowed.has(bucket)) {
+    throw new Error(`Bucket not allowed: ${bucket}`);
+  }
+}
+===== src/services/ingestion/pipeline.ts =====
+import OpenAI from 'openai';
+import { query } from '../../lib/db';
+import { GoogleSwarm } from '../orchestration-engine/google-swarm';
+
+function getOpenAI() {
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) return null;
+  return new OpenAI({ apiKey });
+}
+
+// Extractor for Hebrew typography terms
+function extractHebrewSpans(text: string) {
+  const hebrewTerms = ['Hebron', 'Hermon', 'Mamre', 'Beelzebub', 'Megiddo', 'Sak', 'Rafa'];
+  const spans: any[] = [];
+  hebrewTerms.forEach(term => {
+    let index = text.indexOf(term);
+    while (index !== -1) {
+      spans.push({ term, start: index, length: term.length });
+      index = text.indexOf(term, index + 1);
+    }
+  });
+  return spans;
+}
+
+// Extractor for XML metadata
+function extractEmaMetadata(xmlText: string) {
+  const metadata: any = {};
+  const sceneMatch = xmlText.match(/<scene\s+id="([^"]+)"/);
+  const timeMatch = xmlText.match(/time_of_day="([^"]+)"/);
+  const weatherMatch = xmlText.match(/weather="([^"]+)"/);
+  
+  if (sceneMatch) metadata.scene_id = sceneMatch[1];
+  if (timeMatch) metadata.time_of_day = timeMatch[1];
+  if (weatherMatch) metadata.weather = weatherMatch[1];
+  
+  return metadata;
+}
+
+/**
+ * ENGINE PLANE: NARRATIVE INGESTION PIPELINE
+ * * Feature 200: Meaning-Driven Semantic Weighting
+ * * BATCH OPTIMIZED: Processes 5 paragraphs per LLM call.
+ * * DATABASE: Direct PostgreSQL via pool (lib/db.ts)
+ */
+export async function ingestChapter(
+  partNumber: string,
+  chapterNumber: number,
+  status: 'drafted' | 'unwritten',
+  manifestId: string,
+  rawXmlText: string
+) {
+  const openai = getOpenAI(); 
+  if (!openai) throw new Error("OpenAI API key not configured");
+
+  await GoogleSwarm.logIntegrity('ingestion_start', { manifestId, partNumber, chapterNumber });
+
+  // 1. UPSERT Chapter
+  const { rows: chapters } = await query(
+    `INSERT INTO chapters (part_number, chapter_number, status, manifest_id)
+     VALUES ($1, $2, $3, $4)
+     ON CONFLICT (manifest_id) 
+     DO UPDATE SET part_number = EXCLUDED.part_number, chapter_number = EXCLUDED.chapter_number, status = EXCLUDED.status, updated_at = NOW()
+     RETURNING id, part_number, chapter_number`,
+    [partNumber, chapterNumber, status, manifestId]
+  );
+
+  const chapter = chapters[0];
+  if (!chapter) throw new Error("Failed to upsert chapter");
+
+  await GoogleSwarm.mirrorChapter(chapter);
+
+  const chapterMetadata = extractEmaMetadata(rawXmlText);
+
+  // Strip XML for paragraph chunking
+  const cleanText = rawXmlText.replace(/<[^>]*>?/gm, ''); 
+  const paragraphs = cleanText.split(/\n\s*\n/).filter((p) => p.trim().length > 0);
+
+  console.log(`Ingesting ${paragraphs.length} paragraphs for Ch ${chapterNumber}...`);
+
+  const BATCH_SIZE = 5;
+  for (let i = 0; i < paragraphs.length; i += BATCH_SIZE) {
+    const batch = paragraphs.slice(i, i + BATCH_SIZE);
+    
+    // Feature 200: Semantic Enrichment Batch Pass
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [
+        { 
+          role: "system", 
+          content: `You are the NOS Orchestration Engine. Analyze the ${batch.length} texts and return valid JSON only. 
+          Return an object with a "results" array. Each item must have:
+          "archetypal_weights": { "shadow": 0.0, "persona": 0.0, "anima": 0.0, "self": 0.0, "hero": 0.0 },
+          "dualism_map": { "sacred": 0.0, "descent": 0.0 },
+          "biblical_references": [{ "text": "...", "book": "...", "chapter": 0, "verse": 0 }],
+          "hyperlinks": [{ "theme_node_a": "...", "theme_node_b": "...", "link_type": "dualism" }]` 
+        },
+        { role: "user", content: JSON.stringify(batch) }
+      ],
+      response_format: { type: "json_object" }
+    });
+
+    const enrichedBatch = JSON.parse(completion.choices[0].message.content || '{"results":[]}').results;
+
+    for (let j = 0; j < batch.length; j++) {
+      const pText = batch[j];
+      const enrichment = enrichedBatch[j] || {};
+      const hebrewSpans = extractHebrewSpans(pText);
+
+      const embedResponse = await openai.embeddings.create({
+        model: "text-embedding-3-small",
+        input: pText,
+      });
+      const embedding = embedResponse.data[0].embedding;
+
+      // 2. INSERT Paragraph
+      const { rows: paragraphRows } = await query(
+        `INSERT INTO paragraphs (
+          chapter_id, content, chunk_index, embedding, 
+          archetypal_weights, dualism_map, hebrew_spans, metadata
+        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+        RETURNING id`,
+        [
+          chapter.id, pText, i + j, JSON.stringify(embedding),
+          enrichment.archetypal_weights || {},
+          enrichment.dualism_map || {},
+          JSON.stringify(hebrewSpans),
+          { ...chapterMetadata, batch_index: i }
+        ]
+      );
+
+      const paragraphData = paragraphRows[0];
+
+      if (paragraphData && enrichment.biblical_references?.length > 0) {
+        for (const ref of enrichment.biblical_references) {
+          await query(
+            `INSERT INTO biblical_references (paragraph_id, reference_text, book, chapter, verse)
+             VALUES ($1, $2, $3, $4, $5)`,
+            [paragraphData.id, ref.text || ref.reference_text, ref.book, ref.chapter, ref.verse]
+          );
+        }
+      }
+      
+      if (paragraphData && enrichment.hyperlinks?.length > 0) {
+        for (const link of enrichment.hyperlinks) {
+          await query(
+            `INSERT INTO hyperlinks (paragraph_id, theme_node_a, theme_node_b, link_type)
+             VALUES ($1, $2, $3, $4)`,
+            [paragraphData.id, link.theme_node_a, link.theme_node_b, link.link_type || 'dualism']
+          );
+        }
+      }
+
+      await GoogleSwarm.mirrorParagraph({
+        ...paragraphData,
+        content: pText,
+        chapter_number: chapter.chapter_number,
+        part_number: chapter.part_number,
+      });
+    }
+
+    console.log(`✓ Batch ${i/BATCH_SIZE + 1} complete for Ch ${chapterNumber}`);
+    await new Promise(resolve => setTimeout(resolve, 100));
+  }
+
+  await GoogleSwarm.logIntegrity('ingestion_complete', { manifestId, paragraphCount: paragraphs.length });
+
+  return { success: true, chapterId: chapter.id, parsedCount: paragraphs.length };
+}
+===== src/services/memory-engine/vector-store.ts =====
+import { Pool } from "pg";
+
+export class VectorStore {
+  private pool: Pool | null = null;
+
+  constructor() {
+    const connectionString = process.env.DATABASE_URL;
+    if (connectionString) {
+      this.pool = new Pool({
+        connectionString,
+        ssl: { rejectUnauthorized: false },
+        max: 5,
+        idleTimeoutMillis: 30000,
+        connectionTimeoutMillis: 10000,
+      });
+    }
+  }
+
+  private async query(text: string, params?: any[]) {
+    if (!this.pool) {
+      throw new Error("Postgres connection string not configured (DATABASE_URL)");
+    }
+    return this.pool.query(text, params);
+  }
+
+  async initializeSchema() {
+    await this.query(`
+      CREATE EXTENSION IF NOT EXISTS vector;
+      CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
+      CREATE TABLE IF NOT EXISTS chapters (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        manifest_id TEXT UNIQUE,
+        part_number TEXT,
+        chapter_number INT,
+        status TEXT,
+        thematic_embedding vector(1536),
+        created_at TIMESTAMP DEFAULT NOW()
+      );
+
+      CREATE TABLE IF NOT EXISTS paragraphs (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        chapter_id UUID REFERENCES chapters(id) ON DELETE CASCADE,
+        chunk_index INT,
+        content TEXT,
+        embedding vector(1536),
+        archetypal_weights JSONB DEFAULT '{}',
+        dualism_map JSONB DEFAULT '{}',
+        hebrew_spans JSONB DEFAULT '[]',
+        metadata JSONB DEFAULT '{}',
+        created_at TIMESTAMP DEFAULT NOW()
+      );
+
+      CREATE TABLE IF NOT EXISTS biblical_references (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        paragraph_id UUID REFERENCES paragraphs(id) ON DELETE CASCADE,
+        reference_text TEXT,
+        book TEXT,
+        chapter INT,
+        verse INT,
+        created_at TIMESTAMP DEFAULT NOW()
+      );
+
+      CREATE INDEX IF NOT EXISTS idx_paragraphs_chapter_chunk
+      ON paragraphs(chapter_id, chunk_index);
+    `);
+  }
+
+  async insertChapter(manifestId: string, embedding: number[]): Promise<string> {
+    const res = await this.query(
+      `INSERT INTO chapters (manifest_id, thematic_embedding)
+       VALUES ($1, $2)
+       ON CONFLICT (manifest_id)
+       DO UPDATE SET thematic_embedding = EXCLUDED.thematic_embedding
+       RETURNING id`,
+      [manifestId, embedding]
+    );
+
+    return res.rows[0].id;
+  }
+
+  async clearParagraphs(chapterId: string) {
+    await this.query(
+      `DELETE FROM paragraphs
+       WHERE chapter_id = $1`,
+      [chapterId]
+    );
+  }
+
+  async insertParagraph(chapterId: string, chunkIndex: number, content: string) {
+    await this.query(
+      `INSERT INTO paragraphs (
+         chapter_id,
+         chunk_index,
+         content
+       )
+       VALUES ($1, $2, $3)`,
+      [chapterId, chunkIndex, content]
+    );
+  }
+
+  async getChapterByManifestId(manifestId: string): Promise<string | null> {
+    const res = await this.query(
+      `SELECT id
+       FROM chapters
+       WHERE manifest_id = $1
+       LIMIT 1`,
+      [manifestId]
+    );
+
+    return res.rows[0]?.id || null;
+  }
+
+  async searchTopChapter(embedding: number[]): Promise<string | null> {
+    const res = await this.query(
+      `SELECT id
+       FROM chapters
+       ORDER BY thematic_embedding <=> $1
+       LIMIT 1`,
+      [embedding]
+    );
+
+    return res.rows[0]?.id || null;
+  }
+
+  async getParagraphsByChapter(chapterId: string): Promise<string[]> {
+    const res = await this.query(
+      `SELECT content
+       FROM paragraphs
+       WHERE chapter_id = $1
+       ORDER BY chunk_index ASC`,
+      [chapterId]
+    );
+
+    return res.rows.map((r) => String(r.content || ""));
+  }
+
+  async searchParagraphs(query: string): Promise<{
+    ref: string;
+    title: string;
+    note: string;
+    content: string;
+    para_index: number;
+  }[]> {
+    const res = await this.query(
+      `SELECT
+         p.content,
+         p.chunk_index,
+         c.manifest_id
+       FROM paragraphs p
+       JOIN chapters c
+         ON p.chapter_id = c.id
+       WHERE p.content ILIKE $1
+       ORDER BY
+         c.manifest_id ASC,
+         p.chunk_index ASC
+       LIMIT 40`,
+      [`%${query}%`]
+    );
+
+    return res.rows.map((r) => ({
+      ref: String(r.manifest_id || "Unknown"),
+      title: String(r.content || "").slice(0, 64),
+      note: String(r.content || ""),
+      content: String(r.content || ""),
+      para_index: Number(r.chunk_index ?? 0),
+    }));
+  }
+
+  async getDualismNodes(): Promise<{
+    id: string;
+    term: string;
+    parallel: string;
+    note: string;
+    chapters: string;
+    para_index: number;
+  }[]> {
+    const res = await this.query(
+      `SELECT
+         p.chunk_index,
+         p.content,
+         c.manifest_id
+       FROM paragraphs p
+       JOIN chapters c
+         ON p.chapter_id = c.id
+       WHERE p.content IS NOT NULL
+       ORDER BY
+         c.manifest_id ASC,
+         p.chunk_index ASC
+       LIMIT 60`
+    );
+
+    return res.rows.map((r, index) => ({
+      id: `${r.manifest_id || "chapter"}-${r.chunk_index ?? index}`,
+      term: String(r.content || "").slice(0, 42),
+      parallel: "Semantic resonance pending",
+      note: String(r.content || "").slice(0, 180),
+      chapters: String(r.manifest_id || "Unknown"),
+      para_index: Number(r.chunk_index ?? 0),
+    }));
+  }
+}
+

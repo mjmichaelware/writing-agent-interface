@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_394179b515b2010504ea4f45be27fc51",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "7c08259f99853eda36196a008584ce2cbf001134309dc8c5d65ea20400bb1df5",
+  "observations": [
+    {
+      "axis": "Allegiance to Divine Powers",
+      "polarity": "Conflict between serving a fallen temple deity and a higher god",
+      "summary": "The speaker challenges the loyalty to a deity whose temple has fallen due to a 'blinded man,' questioning why service should be given to this deity rather than to El, who dwells higher.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_dda58a21c4d5f5baca9bb36543722697",
+          "quote": "Your temple fell because of a blinded man,\" he snarled, the hesitation hardening. \"You crumpled before the sacred chest."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_dda58a21c4d5f5baca9bb36543722697",
+          "quote": "Why should I serve you rather than El, who dwells higher?"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "allegiance_to_divine_powers",
+      "polarity": "tension",
+      "summary": "The speaker challenges the loyalty to a deity whose temple has fallen due to a 'blinded man,' questioning why service should be given to this deity rather than to El, who dwells higher.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_dda58a21c4d5f5baca9bb36543722697",
+          "render_index": 67,
+          "quote": "Your temple fell because of a blinded man,\" he snarled, the hesitation hardening. \"You crumpled before the sacred chest.",
+          "role": "left",
+          "start_char": 16324,
+          "end_char": 16444,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_394179b515b2010504ea4f45be27fc51",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            133
+          ],
+          "evidence_sha256": "3984df2bb49bd2fa323424132d819e875db838998f8108347430457e2b2d48fb"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_dda58a21c4d5f5baca9bb36543722697",
+          "render_index": 67,
+          "quote": "Why should I serve you rather than El, who dwells higher?",
+          "role": "right",
+          "start_char": 16445,
+          "end_char": 16502,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_394179b515b2010504ea4f45be27fc51",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            133
+          ],
+          "evidence_sha256": "d164585ce6d9ca6db0475142535e7c9852d770a4dce13dfe851243431b494104"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "dc2893c2bd459692703cc20eed9f2de54be08b0e006479dc2cbda818daf270bd",
+  "normalized_output_hash": "ecb04ea5af0c8d3d2d9a0679fc01e9ba74a84af57c984a5ea1a1d78a9853c003"
+}

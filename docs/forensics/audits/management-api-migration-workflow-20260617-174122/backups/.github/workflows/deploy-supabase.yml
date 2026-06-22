@@ -1,0 +1,50 @@
+name: Deploy Supabase Schema and Functions
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - cleanup/standard-app-tree
+      - main
+    paths:
+      - "supabase/migrations/**"
+      - "supabase/functions/**"
+      - ".github/workflows/deploy-supabase.yml"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF || vars.SUPABASE_PROJECT_REF }}
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Validate Supabase deploy environment
+        run: |
+          test -n "$SUPABASE_ACCESS_TOKEN"
+          test -n "$SUPABASE_PROJECT_REF"
+          supabase --version
+
+      - name: Push migrations when SUPABASE_DB_URL is available
+        if: env.SUPABASE_DB_URL != ''
+        run: supabase db push --db-url "$SUPABASE_DB_URL"
+
+      - name: Warn when migrations were not pushed
+        if: env.SUPABASE_DB_URL == ''
+        run: |
+          echo "SUPABASE_DB_URL secret is not set. Functions will deploy, but migrations were not pushed."
+          echo "Set SUPABASE_DB_URL before running the full semantic rehash."
+
+      - name: Deploy Edge Functions
+        run: |
+          supabase functions deploy create-upload-url --project-ref "$SUPABASE_PROJECT_REF"
+          supabase functions deploy register-uploaded-artifact --project-ref "$SUPABASE_PROJECT_REF"
+          supabase functions deploy verify-artifact-hash --project-ref "$SUPABASE_PROJECT_REF"
+          supabase functions deploy enqueue-enrichment --project-ref "$SUPABASE_PROJECT_REF"
+          supabase functions deploy process-enrichment-batch --project-ref "$SUPABASE_PROJECT_REF"

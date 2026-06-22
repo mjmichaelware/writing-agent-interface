@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_257fbcfffb26c6ab2af8b05432dac059",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "1f4f0703465ae99cf96495d212feef7d73025d4af317caa4e0296497a12d4dd4",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The motif of a place that has chosen to destroy itself echoes the theme of decay and self-destruction seen in Aviel's condemned dwelling, which is described as a physical testament to catastrophic systemic decay.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_b13bd3bacb4958904a10e9d7bea8a779",
+          "quote": "A house that had chosen to destroy itself."
+        }
+      ],
+      "target_hint": "The condemned dwelling of Aviel, representing decay and rot.",
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The motif of a place that has chosen to destroy itself echoes the theme of decay and self-destruction seen in Aviel's condemned dwelling, which is described as a physical testament to catastrophic systemic decay.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_b13bd3bacb4958904a10e9d7bea8a779",
+          "render_index": 13,
+          "quote": "A house that had chosen to destroy itself.",
+          "role": "source",
+          "start_char": 4737,
+          "end_char": 4779,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_257fbcfffb26c6ab2af8b05432dac059",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            25
+          ],
+          "evidence_sha256": "a1631dd9da6755c6407ab1c1db4fbf7c8bac6e96a9be7b50b83f304de1d36065"
+        }
+      ],
+      "target_hint": "The condemned dwelling of Aviel, representing decay and rot.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "f4c988fe9ee892189376bea970ab20c26c2b1db65e0b34d15b5c78ade71c50bd",
+  "normalized_output_hash": "ad37b12a0337b2820a14caef7fba04ecefd88fa412ca7614903bdc356e39b5d2"
+}

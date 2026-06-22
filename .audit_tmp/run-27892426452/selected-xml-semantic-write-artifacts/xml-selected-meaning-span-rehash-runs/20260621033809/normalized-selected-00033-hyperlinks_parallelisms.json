@@ -1,0 +1,64 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_152dd65dd7b5437c1789e6db50bb8d51",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "ff3fb551003c7e99e1f7f8b87bcdafbfbc55a4262dfb5734e178cc9a335b872a",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The phrase 'He had arrived. Not easily. Not gracefully. But he had arrived at the top of something.' echoes the motif of arduous ascent and costly achievement found throughout the narrative, reflecting Dan's difficult journey and the physical and emotional toll it exacts.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_e932fbbf3602aa1449ed36f25d6bec7a",
+          "quote": "He had arrived. Not easily. Not gracefully. But he had arrived at the top of something. It had cost him. But he was there."
+        }
+      ],
+      "target_hint": "This parallels Dan's climb of Hermon and his internal struggle described in chapters 9 and 2, where ascent and cost are central themes.",
+      "target_evidence": [
+        {
+          "render_para_key": "bb2740591c75d6dd0ee22abf60c25523302ff6758cfd3052f1b2c72e9ffe191b",
+          "quote": "The air, already thin and sharp at the base of Hermon, bit at Daniel’s lungs with the first step... a prelude to the climb."
+        },
+        {
+          "render_para_key": "f2a509eb8a6314cbdbc0dd9a3984fe09cb720101a4de0615dab3d6353db395d3",
+          "quote": "Dan's eyes snapped open to the room's heavy gloom... his heart was a frantic, panicked rhythm against his ribs, a chaotic tempo against the static silence of his condemnation."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The phrase 'He had arrived. Not easily. Not gracefully. But he had arrived at the top of something.' echoes the motif of arduous ascent and costly achievement found throughout the narrative, reflecting Dan's difficult journey and the physic",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_e932fbbf3602aa1449ed36f25d6bec7a",
+          "render_index": 34,
+          "quote": "He had arrived. Not easily. Not gracefully. But he had arrived at the top of something. It had cost him. But he was there.",
+          "role": "source",
+          "start_char": 8903,
+          "end_char": 9025,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_152dd65dd7b5437c1789e6db50bb8d51",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            67
+          ],
+          "evidence_sha256": "dabf5403cc99e9ba6f5cb1d94f16808681872db3efdf299cd546e6372ae98fd8"
+        }
+      ],
+      "target_hint": "This parallels Dan's climb of Hermon and his internal struggle described in chapters 9 and 2, where ascent and cost are central themes.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "a62cfacbbd78c5eeb6b475c45eecf4ca91a137dcb4ae26fd4c9bafeac415c342",
+  "normalized_output_hash": "bce8440ee15e1f97b1821a66959675ddbac7bfaee09c7d5ea3102451f427a694"
+}

@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_fd8deaf479705483f6e6c9ce894a90d1",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "9d418842877bb02b2ef072c66fbf4db403d601bc098c88a704ffa810ded7869b",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The phrase 'The journey began not with a lift but a vertical commitment' echoes the motif of ascension and deliberate effort seen throughout the narrative, emphasizing a conscious, upward movement rather than an effortless rise.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_5887adcdf89566e4263932d23746b9f2",
+          "quote": "The journey began not with a lift but a vertical commitment."
+        }
+      ],
+      "target_hint": "This parallels the broader theme of Dan's spiritual and physical ascent, marked by intentional struggle and sacrifice, as seen in his journey northward and the internal conflicts described in the narrative context.",
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The phrase 'The journey began not with a lift but a vertical commitment' echoes the motif of ascension and deliberate effort seen throughout the narrative, emphasizing a conscious, upward movement rather than an effortless rise.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_5887adcdf89566e4263932d23746b9f2",
+          "render_index": 32,
+          "quote": "The journey began not with a lift but a vertical commitment.",
+          "role": "source",
+          "start_char": 8244,
+          "end_char": 8304,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_fd8deaf479705483f6e6c9ce894a90d1",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            63
+          ],
+          "evidence_sha256": "74082dbf7b5a721d84717bcc9b9c2b52c595b6893b4411465b4d2f380308aeb2"
+        }
+      ],
+      "target_hint": "This parallels the broader theme of Dan's spiritual and physical ascent, marked by intentional struggle and sacrifice, as seen in his journey northward and the internal conflicts described in the narr",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "023117ecf5d12bceec3f64e4c4da8331c2c1498e0f871bc7a11dd21f15987e12",
+  "normalized_output_hash": "27f4a9caa1e38474138fabe718e15d6f4681b1b7058c275831bcd46dc22a08d9"
+}

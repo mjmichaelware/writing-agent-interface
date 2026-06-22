@@ -1,0 +1,101 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_55ccb9d35412d8c49cd3c6b5014f054e",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "a1f3f8349fc294b7ee29e0bffd82a3936e74b7089fedcdfba712ba54c3337af2",
+  "observations": [
+    {
+      "kind": "character_description",
+      "summary": "Aviel is described as a man of small stature due to years of hunching over his hoard, which has physically compressed him.",
+      "evidence": [
+        {
+          "render_para_key": "rp_a625b79ef512d2078a37d03398bacd63",
+          "quote": "He was not a tall man—years of hunching over his hoard had compressed him, made him smaller"
+        }
+      ],
+      "thematic_weight": 0.7,
+      "gravity": 0.5,
+      "tension": 0.3,
+      "confidence": 0.95,
+      "notes": "This highlights Aviel's physical decline linked to his obsessive behavior."
+    },
+    {
+      "kind": "momentary_presence",
+      "summary": "In a particular moment, Aviel seemed to fill the room despite his small stature.",
+      "evidence": [
+        {
+          "render_para_key": "rp_a625b79ef512d2078a37d03398bacd63",
+          "quote": "but in that moment, he seemed to fill the room"
+        }
+      ],
+      "thematic_weight": 0.6,
+      "gravity": 0.4,
+      "tension": 0.2,
+      "confidence": 0.9,
+      "notes": "Indicates a significant or commanding presence at a specific time."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "Aviel is described as a man of small stature due to years of hunching over his hoard, which has physically compressed him.",
+      "evidence": [
+        {
+          "render_para_key": "rp_a625b79ef512d2078a37d03398bacd63",
+          "render_index": 47,
+          "quote": "He was not a tall man—years of hunching over his hoard had compressed him, made him smaller",
+          "role": null,
+          "start_char": 6133,
+          "end_char": 6224,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_55ccb9d35412d8c49cd3c6b5014f054e",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            93
+          ],
+          "evidence_sha256": "1c4b3c11eb1f94014148270ce6ee6119f6a67402093e55377946927408ce342f"
+        }
+      ],
+      "thematic_weight": 0.7,
+      "gravity": 0.5,
+      "tension": 0.3,
+      "confidence": 0.95,
+      "notes": "This highlights Aviel's physical decline linked to his obsessive behavior."
+    },
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "In a particular moment, Aviel seemed to fill the room despite his small stature.",
+      "evidence": [
+        {
+          "render_para_key": "rp_a625b79ef512d2078a37d03398bacd63",
+          "render_index": 47,
+          "quote": "but in that moment, he seemed to fill the room",
+          "role": null,
+          "start_char": 6225,
+          "end_char": 6271,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_55ccb9d35412d8c49cd3c6b5014f054e",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            93
+          ],
+          "evidence_sha256": "1f2b6c6d0ce04b9009a559e1522e5342709af21ac23a107b30f7b7cf28eb66df"
+        }
+      ],
+      "thematic_weight": 0.6,
+      "gravity": 0.4,
+      "tension": 0.2,
+      "confidence": 0.9,
+      "notes": "Indicates a significant or commanding presence at a specific time."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "ca1a64ce1e94df4ba3da8a14a66d05a2db55058a3d9e5225fb34032a91699332",
+  "normalized_output_hash": "8dcaa5f6b032bbef789a70e3a97135dee31af06ab9597eab08e8605970f07e1a"
+}

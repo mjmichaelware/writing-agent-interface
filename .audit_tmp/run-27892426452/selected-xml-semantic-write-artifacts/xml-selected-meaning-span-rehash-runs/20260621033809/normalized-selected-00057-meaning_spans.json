@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_34a9af2e92b83a200362ab196c0ecde0",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "19fc8294d99704eeb6db2b50414502ec066770dd9a9cb18d72a0c40af2465461",
+  "observations": [
+    {
+      "kind": "sensory_description",
+      "summary": "The voice originates not from the mouth but from deep within Dan's skull, producing a resonant hum that physically affects him by shaking his teeth and causing his mind to ring.",
+      "evidence": [
+        {
+          "render_para_key": "rp_68dc4b047e66214a3525a7af78864726",
+          "quote": "The voice did not come from the mouth. It came from the depths of Dan's own skull—a resonant hum that shook his teeth and set the floor of his mind ringing."
+        }
+      ],
+      "thematic_weight": 0.7,
+      "gravity": 0.6,
+      "tension": 0.5,
+      "confidence": 0.95,
+      "notes": "This observation highlights an internal, possibly supernatural or psychological phenomenon experienced by Dan."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "The voice originates not from the mouth but from deep within Dan's skull, producing a resonant hum that physically affects him by shaking his teeth and causing his mind to ring.",
+      "evidence": [
+        {
+          "render_para_key": "rp_68dc4b047e66214a3525a7af78864726",
+          "render_index": 58,
+          "quote": "The voice did not come from the mouth. It came from the depths of Dan's own skull—a resonant hum that shook his teeth and set the floor of his mind ringing.",
+          "role": null,
+          "start_char": 14574,
+          "end_char": 14730,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_34a9af2e92b83a200362ab196c0ecde0",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            115
+          ],
+          "evidence_sha256": "1ec5799702a8547d13340dfe43130194ae814a9d298bf9eeb052a2e44ac140e9"
+        }
+      ],
+      "thematic_weight": 0.7,
+      "gravity": 0.6,
+      "tension": 0.5,
+      "confidence": 0.95,
+      "notes": "This observation highlights an internal, possibly supernatural or psychological phenomenon experienced by Dan."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "2ba795239f73891ea64ca8b05200f045a82bd33859a4b809a1faab5164148959",
+  "normalized_output_hash": "1049f91a5922909fb6c35d2c7924610cc64d4b78132465a4705fcb181054b48e"
+}

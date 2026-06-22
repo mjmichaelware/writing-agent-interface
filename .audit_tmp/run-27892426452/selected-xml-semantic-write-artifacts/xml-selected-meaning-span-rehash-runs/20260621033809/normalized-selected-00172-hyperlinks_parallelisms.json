@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_cafc467690d33c074b863d762f3357b4",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "8be3d07a91fbe12c242c8c32db35de7bf72c118e42b4fdeb4851657b3a0dc071",
+  "observations": [
+    {
+      "relationship_type": "parallelism",
+      "summary": "The phrase 'The words hung in the air between them, heavy with meaning Dan didn't fully understand' echoes the motif of heavy, meaningful communication that Dan struggles to grasp, paralleling earlier moments where Dan confronts profound truths that carry somatic and psychological weight.",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_711058aeda39d79eb16348b649d1cccf",
+          "quote": "The words hung in the air between them, heavy with meaning Dan didn't fully understand."
+        }
+      ],
+      "target_hint": "Dan's internal war between flesh and spirit, marked by somatic cost and heavy meaning in his choices and words, as described in the archetype_protocol and visceral_empathy sources.",
+      "target_evidence": [],
+      "confidence": 0.9
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "hyperlinks_parallelisms",
+      "relationship_type": "parallelism",
+      "summary": "The phrase 'The words hung in the air between them, heavy with meaning Dan didn't fully understand' echoes the motif of heavy, meaningful communication that Dan struggles to grasp, paralleling earlier moments where Dan confronts profound tr",
+      "source_evidence": [
+        {
+          "render_para_key": "rp_711058aeda39d79eb16348b649d1cccf",
+          "render_index": 79,
+          "quote": "The words hung in the air between them, heavy with meaning Dan didn't fully understand.",
+          "role": "source",
+          "start_char": 10257,
+          "end_char": 10344,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_cafc467690d33c074b863d762f3357b4",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            157
+          ],
+          "evidence_sha256": "f2b12829d99803ec0db646c321b5ac0fb699fd2ae060eb5cc8d053be6a4e800f"
+        }
+      ],
+      "target_hint": "Dan's internal war between flesh and spirit, marked by somatic cost and heavy meaning in his choices and words, as described in the archetype_protocol and visceral_empathy sources.",
+      "target_evidence": [],
+      "confidence": 0.55
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "8afa71e00fe14587f0d44a4b8786f2299d21186e7024dded62206d37eac8507c",
+  "normalized_output_hash": "00dc10b84682c081ed8f8c26731dc095aa3d2bcf9944beb73a7719ad02a50298"
+}

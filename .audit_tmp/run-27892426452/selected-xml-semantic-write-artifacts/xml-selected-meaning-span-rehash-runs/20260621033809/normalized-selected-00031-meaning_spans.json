@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_fd8deaf479705483f6e6c9ce894a90d1",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "9d418842877bb02b2ef072c66fbf4db403d601bc098c88a704ffa810ded7869b",
+  "observations": [
+    {
+      "kind": "thematic_claim",
+      "summary": "The journey's beginning is characterized not by a simple physical action but by a deliberate, vertical commitment, implying a purposeful ascent or spiritual elevation.",
+      "evidence": [
+        {
+          "render_para_key": "rp_5887adcdf89566e4263932d23746b9f2",
+          "quote": "The journey began not with a lift but a vertical commitment."
+        }
+      ],
+      "thematic_weight": 0.8,
+      "gravity": 0.7,
+      "tension": 0.6,
+      "confidence": 0.95,
+      "notes": "This phrase suggests a metaphorical or spiritual dimension to the journey's start, emphasizing intentionality and upward movement rather than mere physical motion."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "The journey's beginning is characterized not by a simple physical action but by a deliberate, vertical commitment, implying a purposeful ascent or spiritual elevation.",
+      "evidence": [
+        {
+          "render_para_key": "rp_5887adcdf89566e4263932d23746b9f2",
+          "render_index": 32,
+          "quote": "The journey began not with a lift but a vertical commitment.",
+          "role": null,
+          "start_char": 8244,
+          "end_char": 8304,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_fd8deaf479705483f6e6c9ce894a90d1",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            63
+          ],
+          "evidence_sha256": "74082dbf7b5a721d84717bcc9b9c2b52c595b6893b4411465b4d2f380308aeb2"
+        }
+      ],
+      "thematic_weight": 0.8,
+      "gravity": 0.7,
+      "tension": 0.6,
+      "confidence": 0.95,
+      "notes": "This phrase suggests a metaphorical or spiritual dimension to the journey's start, emphasizing intentionality and upward movement rather than mere physical motion."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "e2b286c73ab89528c5f0681a9ff5a5b3060c068a1627174fc66bef49eb4dbb7c",
+  "normalized_output_hash": "dee3974fc637960a64479324dc3729d59da0adb51e5c97b31bfaeede54747ffe"
+}

@@ -1,0 +1,119 @@
+{
+  "status": "ok",
+  "task_type": "biblical_references",
+  "scene_window_id": "scene_fd51af9e61eaff1a5b19db0b663f1cbf",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "d8feaa25d8ca438ffe813d2e971c35401363d72e3658e294e8d33800b2d48f38",
+  "observations": [
+    {
+      "biblical_anchor_label": "1 Corinthians 15:55",
+      "book": "1 Corinthians",
+      "chapter": 15,
+      "verse_start": 55,
+      "verse_end": 55,
+      "motif_family": "Death and Resurrection",
+      "relationship_type": "verbal_echo",
+      "correspondence_rationale": "The phrase 'the friction of death shall lose its sting' echoes the biblical metaphor of death losing its sting, as in 1 Corinthians 15:55, where death's sting is overcome through resurrection and victory over death.",
+      "summary": "The text's mention of death losing its sting parallels the biblical motif of death's defeat in 1 Corinthians 15:55.",
+      "evidence": [
+        {
+          "render_para_key": "rp_48805886f90e66b1ab6582bfbf55e1fe",
+          "quote": "I offer you a raft, so that the friction of death shall lose its sting."
+        }
+      ],
+      "confidence": 0.9
+    },
+    {
+      "biblical_anchor_label": "Psalm 23:4",
+      "book": "Psalms",
+      "chapter": 23,
+      "verse_start": 4,
+      "verse_end": 4,
+      "motif_family": "Comfort in Death",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The promise to restore the mother's voice in the night and provide comfort in dreams resonates symbolically with Psalm 23:4, which speaks of comfort in the valley of the shadow of death, though no direct citation is present.",
+      "summary": "The text's promise of comfort in the night and dreams symbolically resonates with Psalm 23:4's theme of divine comfort amid death's shadow.",
+      "evidence": [
+        {
+          "render_para_key": "rp_48805886f90e66b1ab6582bfbf55e1fe",
+          "quote": "I shall restore your mother's voice to you in the night—dreams in which she speaks comfort unceasing."
+        }
+      ],
+      "confidence": 0.7
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "1 Corinthians 15:55",
+      "book": "1 Corinthians",
+      "chapter": 15,
+      "verse_start": 55,
+      "verse_end": 55,
+      "motif_family": "death_and_resurrection",
+      "biblical_anchor_key": "bibanchor_31b282d0bc1f7a6b1c141666e5b61dc2",
+      "relationship_type": "verbal_echo",
+      "correspondence_rationale": "The phrase 'the friction of death shall lose its sting' echoes the biblical metaphor of death losing its sting, as in 1 Corinthians 15:55, where death's sting is overcome through resurrection and victory over death.",
+      "summary": "The text's mention of death losing its sting parallels the biblical motif of death's defeat in 1 Corinthians 15:55.",
+      "evidence": [
+        {
+          "render_para_key": "rp_48805886f90e66b1ab6582bfbf55e1fe",
+          "render_index": 65,
+          "quote": "I offer you a raft, so that the friction of death shall lose its sting.",
+          "role": null,
+          "start_char": 15553,
+          "end_char": 15624,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_fd51af9e61eaff1a5b19db0b663f1cbf",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            129
+          ],
+          "evidence_sha256": "c6e0fff631cf69ab82ab398f69295cec7cee6892c0b3120ddf92e5075c5a9360"
+        }
+      ],
+      "confidence": 0.9,
+      "reference": "1 Corinthians 15:55",
+      "motif": "death_and_resurrection"
+    },
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Psalm 23:4",
+      "book": "Psalm",
+      "chapter": 23,
+      "verse_start": 4,
+      "verse_end": 4,
+      "motif_family": "comfort_in_death",
+      "biblical_anchor_key": "bibanchor_f28a6521bd442666440489af1435ea70",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The promise to restore the mother's voice in the night and provide comfort in dreams resonates symbolically with Psalm 23:4, which speaks of comfort in the valley of the shadow of death, though no direct citation is present.",
+      "summary": "The text's promise of comfort in the night and dreams symbolically resonates with Psalm 23:4's theme of divine comfort amid death's shadow.",
+      "evidence": [
+        {
+          "render_para_key": "rp_48805886f90e66b1ab6582bfbf55e1fe",
+          "render_index": 65,
+          "quote": "I shall restore your mother's voice to you in the night—dreams in which she speaks comfort unceasing.",
+          "role": null,
+          "start_char": 15636,
+          "end_char": 15737,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_fd51af9e61eaff1a5b19db0b663f1cbf",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            129
+          ],
+          "evidence_sha256": "fc6de566b470685d29cfe9e22205e305177df2ddfb33fb461c14ddfe0256d5ca"
+        }
+      ],
+      "confidence": 0.6,
+      "reference": "Psalm 23:4",
+      "motif": "comfort_in_death"
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "b3c6933aca80d5371d13e58f3e533d9a688cf5ad781f16e0b28d1e58bd3ecec3",
+  "normalized_output_hash": "23e2f3dcddab992b1c18f91fd15227538b61ec34be519757880804434c382b29"
+}

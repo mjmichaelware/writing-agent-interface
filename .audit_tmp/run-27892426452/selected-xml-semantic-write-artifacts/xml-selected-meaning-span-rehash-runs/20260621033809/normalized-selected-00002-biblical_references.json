@@ -1,0 +1,68 @@
+{
+  "status": "ok",
+  "task_type": "biblical_references",
+  "scene_window_id": "scene_4ecbe3344e9578c9dfe3433ca17d01a8",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "61c47d3ec47e52a43611341e344bee3a2947295d5e64aebba112e1c26f009ab0",
+  "observations": [
+    {
+      "biblical_anchor_label": "Psalm 34:18",
+      "book": "Psalms",
+      "chapter": 34,
+      "verse_start": 18,
+      "verse_end": 18,
+      "motif_family": "Divided Heart and Grief",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The description of the four-room house in Hebron resembling a man's heart divided against itself symbolically resonates with the biblical motif of a broken or contrite heart, as expressed in Psalm 34:18, which speaks of God being close to the brokenhearted. The text's focus on division and treachery within the heart aligns with the biblical theme of inner conflict and grief.",
+      "summary": "The metaphor of a divided heart in a house parallels the biblical theme of a broken heart in Psalm 34:18, emphasizing inner turmoil and grief.",
+      "evidence": [
+        {
+          "render_para_key": "rp_c6fcf73cdbb00e1972de91fa460a973d",
+          "quote": "The four-room house in Hebron had become the shape of one man's heart, divided against itself."
+        }
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "biblical_references",
+      "biblical_anchor_label": "Psalm 34:18",
+      "book": "Psalm",
+      "chapter": 34,
+      "verse_start": 18,
+      "verse_end": 18,
+      "motif_family": "divided_heart_and_grief",
+      "biblical_anchor_key": "bibanchor_cc07d94fb12ee8549069447682d9162d",
+      "relationship_type": "symbolic_resonance",
+      "correspondence_rationale": "The description of the four-room house in Hebron resembling a man's heart divided against itself symbolically resonates with the biblical motif of a broken or contrite heart, as expressed in Psalm 34:18, which speaks of God being close to the brokenhearted. The text's focus on division and treachery within the heart al",
+      "summary": "The metaphor of a divided heart in a house parallels the biblical theme of a broken heart in Psalm 34:18, emphasizing inner turmoil and grief.",
+      "evidence": [
+        {
+          "render_para_key": "rp_c6fcf73cdbb00e1972de91fa460a973d",
+          "render_index": 3,
+          "quote": "The four-room house in Hebron had become the shape of one man's heart, divided against itself.",
+          "role": null,
+          "start_char": 50,
+          "end_char": 144,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_4ecbe3344e9578c9dfe3433ca17d01a8",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            5
+          ],
+          "evidence_sha256": "6d622337e8a753b97873a38618d0b05db73153eccbb2eda051f3470e563f111b"
+        }
+      ],
+      "confidence": 0.6,
+      "reference": "Psalm 34:18",
+      "motif": "divided_heart_and_grief"
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "3bf902ab348872cbe12cad5f1c42a3da5231c9dbfd4eea7d0b4175d12ad345a7",
+  "normalized_output_hash": "dd916a7da9ca2a4feb76a10cf5bf7c2769f7a855c6361b554a393884ef41f167"
+}

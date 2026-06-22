@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "meaning_spans",
+  "scene_window_id": "scene_5f5bc0319aff59968017a530ca3cbd28",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "d1004e68d118a3cbef7d333407481fe93ca2a1123d54988b71d1651fcbf66290",
+  "observations": [
+    {
+      "kind": "Dialogue",
+      "summary": "Aviel asks a question about the destination of the person he is speaking to, indicating concern or curiosity.",
+      "evidence": [
+        {
+          "render_para_key": "rp_f6188ff13bd2e6e699bf3b20c2adc75b",
+          "quote": "\"Where will you go?\" Aviel asked finally."
+        }
+      ],
+      "thematic_weight": 0.6,
+      "gravity": 0.5,
+      "tension": 0.7,
+      "confidence": 0.95,
+      "notes": "The roughness of Aviel's voice suggests emotional strain or urgency."
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "meaning_spans",
+      "kind": "claim",
+      "summary": "Aviel asks a question about the destination of the person he is speaking to, indicating concern or curiosity.",
+      "evidence": [
+        {
+          "render_para_key": "rp_f6188ff13bd2e6e699bf3b20c2adc75b",
+          "render_index": 72,
+          "quote": "\"Where will you go?\" Aviel asked finally.",
+          "role": null,
+          "start_char": 9255,
+          "end_char": 9296,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_5f5bc0319aff59968017a530ca3cbd28",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            143
+          ],
+          "evidence_sha256": "91a06152f0852f69edd576e48f9fdb33cd8659981d1f048b28cd72b973f0aaac"
+        }
+      ],
+      "thematic_weight": 0.6,
+      "gravity": 0.5,
+      "tension": 0.7,
+      "confidence": 0.95,
+      "notes": "The roughness of Aviel's voice suggests emotional strain or urgency."
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "bd69ebd834d7a5842257e3f4d12f78f75caafe86f6e7c599b08041d6b9757975",
+  "normalized_output_hash": "1c27ce3751bf00db5170aedb8b2070914cb9c79b75f5d95e4339b01983662fe1"
+}

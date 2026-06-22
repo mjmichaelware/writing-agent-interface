@@ -1,0 +1,27 @@
+{
+  "paragraphs": [
+    {
+      "paragraph_id": "008611dd-bcc9-4abe-ae67-bef5c62e014b",
+      "content_sha256": "0a24fdbdbf3d9b9a0f65766b618abeada34ceffb3c7e887cfc1b9e7f4cc399cd",
+      "archetypal_weights": {
+        "shadow": 0,
+        "self": 0
+      },
+      "dualism_map": {
+        "ascent_descent": 0
+      },
+      "metadata": {
+        "summary": "A meta-textual checklist of questions related to the book's marketability and publishing viability, such as genre, audience, and commercial appeal.",
+        "semantic_notes": [
+          "This paragraph is not part of the narrative prose but appears to be an editing or review checklist.",
+          "The questions align with publishing industry standards and market positioning concerns mentioned in the XML evidence (e.g., Protocol 16.0 'Publishing Industry Standards & Master AI Prompt')."
+        ]
+      },
+      "archetype_observations": [],
+      "biblical_references": [],
+      "derived_hyperlinks": []
+    }
+  ],
+  "dualism_relations": [],
+  "archetype_movements": []
+}

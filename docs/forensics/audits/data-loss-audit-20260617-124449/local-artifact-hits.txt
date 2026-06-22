@@ -1,0 +1,597 @@
+===== schema/migrations =====
+supabase/migrations/20260521000000_initial_schema.sql:7:CREATE TABLE chapters (
+supabase/migrations/20260521000000_initial_schema.sql:18:CREATE TABLE paragraphs (
+supabase/migrations/20260521000000_initial_schema.sql:24:    archetypal_weights JSONB DEFAULT '{}'::jsonb, -- shadow, persona, anima, self, hero
+supabase/migrations/20260521000000_initial_schema.sql:25:    dualism_map JSONB DEFAULT '{}'::jsonb, -- sacred vs descent
+supabase/migrations/20260521000000_initial_schema.sql:26:    hebrew_spans JSONB DEFAULT '[]'::jsonb, -- System 12: Hebrew Typography spans
+supabase/migrations/20260521000000_initial_schema.sql:32:CREATE TABLE biblical_references (
+supabase/migrations/20260521000000_initial_schema.sql:43:ALTER TABLE chapters ENABLE ROW LEVEL SECURITY;
+supabase/migrations/20260521000000_initial_schema.sql:44:ALTER TABLE paragraphs ENABLE ROW LEVEL SECURITY;
+supabase/migrations/20260521000000_initial_schema.sql:45:ALTER TABLE biblical_references ENABLE ROW LEVEL SECURITY;
+supabase/migrations/20260521000000_initial_schema.sql:50:CREATE POLICY "Allow public read-only access to biblical references" ON biblical_references FOR SELECT USING (true);
+supabase/migrations/20260521000000_initial_schema.sql:56:CREATE POLICY "Allow public read-only access to biblical references" ON biblical_references FOR SELECT USING (true);
+supabase/migrations/20260521000001_vector_search.sql:11:  archetypal_weights jsonb,
+supabase/migrations/20260521000001_vector_search.sql:12:  dualism_map jsonb,
+supabase/migrations/20260521000001_vector_search.sql:23:    paragraphs.archetypal_weights,
+supabase/migrations/20260521000001_vector_search.sql:24:    paragraphs.dualism_map,
+supabase/migrations/20260602000000_phase1_sync.sql:2:-- Ensure hyperlinks table exists
+supabase/migrations/20260602000000_phase1_sync.sql:3:CREATE TABLE IF NOT EXISTS hyperlinks (
+supabase/migrations/20260602000000_phase1_sync.sql:14:ALTER TABLE chapters ENABLE ROW LEVEL SECURITY;
+supabase/migrations/20260602000000_phase1_sync.sql:15:ALTER TABLE paragraphs ENABLE ROW LEVEL SECURITY;
+supabase/migrations/20260602000000_phase1_sync.sql:16:ALTER TABLE biblical_references ENABLE ROW LEVEL SECURITY;
+supabase/migrations/20260602000000_phase1_sync.sql:17:ALTER TABLE hyperlinks ENABLE ROW LEVEL SECURITY;
+supabase/migrations/20260602000000_phase1_sync.sql:29:        CREATE POLICY "Allow public read-only access to biblical references" ON biblical_references FOR SELECT USING (true);
+supabase/migrations/20260602000000_phase1_sync.sql:31:    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Allow public read-only access to hyperlinks') THEN
+supabase/migrations/20260602000000_phase1_sync.sql:32:        CREATE POLICY "Allow public read-only access to hyperlinks" ON hyperlinks FOR SELECT USING (true);
+supabase/functions/_shared/hash.ts:1:export async function sha256Hex(bytes: ArrayBuffer): Promise<string> {
+supabase/functions/create-upload-url/index.ts:3:import { assertAllowedBucket, assertSafeObjectPath } from "../_shared/hash.ts";
+supabase/functions/create-upload-url/index.ts:20:      sha256_expected,
+supabase/functions/create-upload-url/index.ts:63:        sha256_expected: sha256_expected ?? null,
+supabase/functions/register-uploaded-artifact/index.ts:3:import { assertAllowedBucket, assertSafeObjectPath } from "../_shared/hash.ts";
+supabase/functions/register-uploaded-artifact/index.ts:19:      sha256_expected,
+supabase/functions/register-uploaded-artifact/index.ts:56:        sha256_expected: sha256_expected ?? null,
+supabase/functions/register-uploaded-artifact/index.ts:71:        p_queue_name: "nos_hash_verify",
+supabase/functions/register-uploaded-artifact/index.ts:72:        p_job_kind: "verify_artifact_hash",
+supabase/functions/verify-artifact-hash/index.ts:3:import { assertAllowedBucket, assertSafeObjectPath, sha256Hex } from "../_shared/hash.ts";
+supabase/functions/verify-artifact-hash/index.ts:37:    const sha = await sha256Hex(bytes);
+supabase/functions/verify-artifact-hash/index.ts:51:    const expected = current.sha256_expected;
+supabase/functions/verify-artifact-hash/index.ts:53:    const status = ok ? "verified" : "hash_mismatch";
+supabase/functions/verify-artifact-hash/index.ts:59:        sha256_actual: sha,
+supabase/functions/verify-artifact-hash/index.ts:66:          verifier: "verify-artifact-hash",
+supabase/functions/verify-artifact-hash/index.ts:77:        sha256: sha,
+supabase/functions/verify-artifact-hash/index.ts:81:      }, { onConflict: "sha256" });
+supabase/functions/verify-artifact-hash/index.ts:84:      p_event_type: ok ? "artifact_hash_verified" : "artifact_hash_mismatch",
+supabase/functions/verify-artifact-hash/index.ts:88:        sha256_actual: sha,
+supabase/functions/verify-artifact-hash/index.ts:89:        sha256_expected: expected,
+supabase/functions/verify-artifact-hash/index.ts:102:        p_result: { sha256_actual: sha, byte_size_actual: byteSize, ok },
+supabase/functions/verify-artifact-hash/index.ts:103:        p_error: ok ? null : "hash_mismatch",
+supabase/functions/verify-artifact-hash/index.ts:112:      sha256_actual: sha,
+supabase/functions/verify-artifact-hash/index.ts:113:      sha256_expected: expected,
+supabase/functions/enqueue-enrichment/index.ts:8:  "detect_biblical_references",
+supabase/functions/enqueue-enrichment/index.ts:21:  detect_biblical_references: "nos_biblical_detect",
+supabase/functions/enqueue-enrichment/index.ts:23:  map_dualisms: "nos_dualism_map",
+src/app/api/graph/route.ts:10:      `SELECT id, chapter_id, content, archetypal_weights, dualism_map 
+src/app/api/graph/route.ts:12:       WHERE (archetypal_weights IS NOT NULL AND archetypal_weights != '{}'::jsonb)
+src/app/api/graph/route.ts:13:          OR (dualism_map IS NOT NULL AND dualism_map != '{}'::jsonb)`
+src/app/api/graph/route.ts:19:       FROM biblical_references`
+src/app/api/graph/route.ts:22:    // 3. Fetch explicit hyperlinks
+src/app/api/graph/route.ts:23:    const { rows: hyperlinks } = await query(
+src/app/api/graph/route.ts:25:       FROM hyperlinks`
+src/app/api/graph/route.ts:51:      if (p.archetypal_weights && typeof p.archetypal_weights === 'object') {
+src/app/api/graph/route.ts:52:        Object.entries(p.archetypal_weights).forEach(([arch, weight]) => {
+src/app/api/graph/route.ts:60:      if (p.dualism_map && typeof p.dualism_map === 'object') {
+src/app/api/graph/route.ts:61:        Object.entries(p.dualism_map).forEach(([dual, val]) => {
+src/app/api/graph/route.ts:79:    for (const hl of hyperlinks) {
+src/app/api/manuscript/route.ts:26:    .select('*, biblical_references(*), chapters(part_number, chapter_number)')
+src/app/api/search/route.ts:37:        archetypal_weights,
+src/app/api/search/route.ts:38:        dualism_map,
+src/app/api/chapters/route.ts:96:      .select('id, content, chunk_index, archetypal_weights, dualism_map, hebrew_spans, metadata')
+src/app/api/chapters/route.ts:113:        archetypal_weights: p.archetypal_weights,
+src/app/api/chapters/route.ts:114:        dualism_map: p.dualism_map,
+src/app/api/chapters/route.ts:115:        hebrew_spans: p.hebrew_spans,
+src/app/api/biblical-references/route.ts:7:      `SELECT * FROM biblical_references ORDER BY book ASC, chapter ASC, verse ASC`
+src/services/orchestration-engine/google-swarm.ts:118:        archetypal_weights: JSON.stringify(para.archetypal_weights),
+src/services/orchestration-engine/google-swarm.ts:119:        dualism_map: JSON.stringify(para.dualism_map),
+src/services/memory-engine/vector-store.ts:31:      CREATE TABLE IF NOT EXISTS chapters (
+src/services/memory-engine/vector-store.ts:41:      CREATE TABLE IF NOT EXISTS paragraphs (
+src/services/memory-engine/vector-store.ts:47:        archetypal_weights JSONB DEFAULT '{}',
+src/services/memory-engine/vector-store.ts:48:        dualism_map JSONB DEFAULT '{}',
+src/services/memory-engine/vector-store.ts:49:        hebrew_spans JSONB DEFAULT '[]',
+src/services/memory-engine/vector-store.ts:54:      CREATE TABLE IF NOT EXISTS biblical_references (
+src/services/document-analyzer/corpus-searcher.ts:32:        archetypal_weights,
+src/services/document-analyzer/corpus-searcher.ts:33:        dualism_map,
+src/services/ingestion/pipeline.ts:92:          "archetypal_weights": { "shadow": 0.0, "persona": 0.0, "anima": 0.0, "self": 0.0, "hero": 0.0 },
+src/services/ingestion/pipeline.ts:93:          "dualism_map": { "sacred": 0.0, "descent": 0.0 },
+src/services/ingestion/pipeline.ts:94:          "biblical_references": [{ "text": "...", "book": "...", "chapter": 0, "verse": 0 }],
+src/services/ingestion/pipeline.ts:95:          "hyperlinks": [{ "theme_node_a": "...", "theme_node_b": "...", "link_type": "dualism" }]` 
+src/services/ingestion/pipeline.ts:119:          archetypal_weights, dualism_map, hebrew_spans, metadata
+src/services/ingestion/pipeline.ts:124:          enrichment.archetypal_weights || {},
+src/services/ingestion/pipeline.ts:125:          enrichment.dualism_map || {},
+src/services/ingestion/pipeline.ts:133:      if (paragraphData && enrichment.biblical_references?.length > 0) {
+src/services/ingestion/pipeline.ts:134:        for (const ref of enrichment.biblical_references) {
+src/services/ingestion/pipeline.ts:136:            `INSERT INTO biblical_references (paragraph_id, reference_text, book, chapter, verse)
+src/services/ingestion/pipeline.ts:143:      if (paragraphData && enrichment.hyperlinks?.length > 0) {
+src/services/ingestion/pipeline.ts:144:        for (const link of enrichment.hyperlinks) {
+src/services/ingestion/pipeline.ts:146:            `INSERT INTO hyperlinks (paragraph_id, theme_node_a, theme_node_b, link_type)
+
+===== reports/docs/data artifacts =====
+reports/chapter-source-references.txt:4:src/app/api/graph/route.ts:8:      `SELECT id, content, dualism_map, chapter_id
+reports/chapter-source-references.txt:16:src/app/api/manuscript/route.ts:26:    .select('*, biblical_references(*), chapters(part_number, chapter_number)')
+reports/chapter-source-references.txt:53:src/components/layers/panel/HyperlinksGraph.tsx:6:type Node = { id: string; content: string; dualism_map: any; chapter_id?: string };
+reports/chapter-source-references.txt:56:src/components/layers/panel/BiblicalReferencesDirectory.tsx:32:  if (refs.length === 0) return <div className="panel-empty">No biblical references indexed yet</div>;
+reports/chapter-source-references.txt:136:docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt:4:To create the "hyperlinks" between chapters, the following specific nouns and phrases MUST be rendered in bold text. These are the key conceptual anchors that subtly link Dan's actions to the overarching themes of ascent, sacrifice, chaos, and rebirth.
+reports/chapter-source-references.txt:283:docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:14009:To create the "hyperlinks" between chapters, the following specific nouns and phrases MUST be rendered in bold text. These are the key conceptual anchors that subtly link Dan's actions to the overarching themes of ascent, sacrifice, chaos, and rebirth.
+reports/chapter-source-references.txt:350:docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:26629:To create the "hyperlinks" between chapters, the following specific nouns and phrases MUST be rendered in bold text. These are the key conceptual anchors that subtly link Dan's actions to the overarching themes of ascent, sacrifice, chaos, and rebirth.
+reports/chapter-source-references.txt:449:supabase/migrations/20260521000001_vector_search.sql:23:    paragraphs.archetypal_weights,
+reports/chapter-source-references.txt:450:supabase/migrations/20260521000001_vector_search.sql:24:    paragraphs.dualism_map,
+reports/chapter-source-references.txt:466:scripts/data-lineage-audit.sh:38:  src scripts supabase 2>/dev/null | tee reports/ingestion-hash-references.txt
+reports/derived-panel-references.txt:2:src/app/api/graph/route.ts:8:      `SELECT id, content, dualism_map, chapter_id
+reports/derived-panel-references.txt:3:src/app/api/graph/route.ts:10:       WHERE dualism_map IS NOT NULL AND dualism_map != '{}'::jsonb`
+reports/derived-panel-references.txt:4:src/app/api/graph/route.ts:13:    // Also fetch explicit hyperlinks/dualisms
+reports/derived-panel-references.txt:5:src/app/api/graph/route.ts:14:    const { rows: hyperlinks } = await query(
+reports/derived-panel-references.txt:6:src/app/api/graph/route.ts:16:       FROM hyperlinks`
+reports/derived-panel-references.txt:7:src/app/api/graph/route.ts:21:      hyperlinks
+reports/derived-panel-references.txt:8:src/app/api/manuscript/route.ts:26:    .select('*, biblical_references(*), chapters(part_number, chapter_number)')
+reports/derived-panel-references.txt:9:src/app/api/search/route.ts:38:        dualism_map,
+reports/derived-panel-references.txt:10:src/app/api/chapters/route.ts:42:      `SELECT id, content, chunk_index, archetypal_weights, dualism_map, hebrew_spans, metadata
+reports/derived-panel-references.txt:11:src/app/api/chapters/route.ts:59:        dualism_map: p.dualism_map,
+reports/derived-panel-references.txt:12:src/app/api/biblical-references/route.ts:7:      `SELECT * FROM biblical_references ORDER BY book ASC, chapter ASC, verse ASC`
+reports/derived-panel-references.txt:13:src/app/globals.css:131:.hyperlinks-graph-container {
+reports/derived-panel-references.txt:14:src/app/globals.css:147:.hyperlinks-graph-svg {
+reports/derived-panel-references.txt:26:src/components/layers/panel/HyperlinksGraph.tsx:6:type Node = { id: string; content: string; dualism_map: any; chapter_id?: string };
+reports/derived-panel-references.txt:27:src/components/layers/panel/HyperlinksGraph.tsx:20:        const rawLinks = d.hyperlinks || [];
+reports/derived-panel-references.txt:28:src/components/layers/panel/HyperlinksGraph.tsx:25:          dualism_map: n.dualism_map || {},
+reports/derived-panel-references.txt:30:src/components/layers/panel/HyperlinksGraph.tsx:42:              if (keys.some(k => (nodes[i].dualism_map?.[k] || 0) > 0.4 &&
+reports/derived-panel-references.txt:31:src/components/layers/panel/HyperlinksGraph.tsx:43:                                 (nodes[j].dualism_map?.[k] || 0) > 0.4)) {
+reports/derived-panel-references.txt:32:src/components/layers/panel/HyperlinksGraph.tsx:91:        const m = d.dualism_map || {};
+reports/derived-panel-references.txt:33:src/components/layers/panel/BiblicalReferencesDirectory.tsx:32:  if (refs.length === 0) return <div className="panel-empty">No biblical references indexed yet</div>;
+reports/derived-panel-references.txt:42:src/components/layers/canvas/ManuscriptCore.tsx:38:    dualism_map?: any;
+reports/derived-panel-references.txt:43:src/components/layers/canvas/ManuscriptCore.tsx:87:          const dualisms = block?.dualism_map || {};
+reports/derived-panel-references.txt:45:src/components/layers/canvas/ManuscriptCore.tsx:143:                dualisms: typeof block === "string" ? {} : block?.dualism_map || {},
+reports/derived-panel-references.txt:46:src/services/orchestration-engine/google-swarm.ts:119:        dualism_map: JSON.stringify(para.dualism_map),
+reports/derived-panel-references.txt:47:src/services/memory-engine/vector-store.ts:48:        dualism_map JSONB DEFAULT '{}',
+reports/derived-panel-references.txt:48:src/services/memory-engine/vector-store.ts:54:      CREATE TABLE IF NOT EXISTS biblical_references (
+reports/derived-panel-references.txt:54:src/services/document-analyzer/corpus-searcher.ts:33:        dualism_map,
+reports/derived-panel-references.txt:55:src/services/ingestion/pipeline.ts:93:          "dualism_map": { "sacred": 0.0, "descent": 0.0 },
+reports/derived-panel-references.txt:56:src/services/ingestion/pipeline.ts:94:          "biblical_references": [{ "text": "...", "book": "...", "chapter": 0, "verse": 0 }],
+reports/derived-panel-references.txt:57:src/services/ingestion/pipeline.ts:95:          "hyperlinks": [{ "theme_node_a": "...", "theme_node_b": "...", "link_type": "dualism" }]` 
+reports/derived-panel-references.txt:58:src/services/ingestion/pipeline.ts:119:          archetypal_weights, dualism_map, hebrew_spans, metadata
+reports/derived-panel-references.txt:59:src/services/ingestion/pipeline.ts:125:          enrichment.dualism_map || {},
+reports/derived-panel-references.txt:60:src/services/ingestion/pipeline.ts:133:      if (paragraphData && enrichment.biblical_references?.length > 0) {
+reports/derived-panel-references.txt:61:src/services/ingestion/pipeline.ts:134:        for (const ref of enrichment.biblical_references) {
+reports/derived-panel-references.txt:62:src/services/ingestion/pipeline.ts:136:            `INSERT INTO biblical_references (paragraph_id, reference_text, book, chapter, verse)
+reports/derived-panel-references.txt:63:src/services/ingestion/pipeline.ts:143:      if (paragraphData && enrichment.hyperlinks?.length > 0) {
+reports/derived-panel-references.txt:64:src/services/ingestion/pipeline.ts:144:        for (const link of enrichment.hyperlinks) {
+reports/derived-panel-references.txt:65:src/services/ingestion/pipeline.ts:146:            `INSERT INTO hyperlinks (paragraph_id, theme_node_a, theme_node_b, link_type)
+reports/derived-panel-references.txt:77:docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/4.0_Emotional_&_Archetypal_Editing_Rulebook_(Visceral_Empathy_Focus).txt:21:The following nouns and concepts MUST be rendered in bold text to create the subtle, cross-referenced 'hyperlinks' across the text.
+reports/derived-panel-references.txt:79:docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt:4:To create the "hyperlinks" between chapters, the following specific nouns and phrases MUST be rendered in bold text. These are the key conceptual anchors that subtly link Dan's actions to the overarching themes of ascent, sacrifice, chaos, and rebirth.
+reports/derived-panel-references.txt:82:docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_10_-_MASTER_BRIEFING.txt:228:Every chapter must reflect every other chapter like the biblical corpus. These hyperlinks must be present but NEVER direct quotations. Allude, echo, invert, mirror:
+reports/derived-panel-references.txt:83:docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_10_-_MASTER_BRIEFING.txt:300:7. Cross-chapter hyperlinks should be audited each pass
+reports/derived-panel-references.txt:87:docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter 3 - Commerciality and Marketing 3.0.txt:28: * METRIC 2 (Allusion): Integrate five-to-seven subtle mythic/biblical references (chosen by the AI based on the archetype defined in P3) adhering to the constraints of no proper names and max three consecutive verbatim words.
+reports/derived-panel-references.txt:103:docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:5499:The following nouns and concepts MUST be rendered in bold text to create the subtle, cross-referenced 'hyperlinks' across the text.
+reports/derived-panel-references.txt:108:docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:14009:To create the "hyperlinks" between chapters, the following specific nouns and phrases MUST be rendered in bold text. These are the key conceptual anchors that subtly link Dan's actions to the overarching themes of ascent, sacrifice, chaos, and rebirth.
+reports/derived-panel-references.txt:114:docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:26629:To create the "hyperlinks" between chapters, the following specific nouns and phrases MUST be rendered in bold text. These are the key conceptual anchors that subtly link Dan's actions to the overarching themes of ascent, sacrifice, chaos, and rebirth.
+reports/derived-panel-references.txt:127:docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:43829:Every chapter must reflect every other chapter like the biblical corpus. These hyperlinks must be present but NEVER direct quotations. Allude, echo, invert, mirror:
+reports/derived-panel-references.txt:128:docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:43918:7. Cross-chapter hyperlinks should be audited each pass
+reports/derived-panel-references.txt:133:docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:47069: * METRIC 2 (Allusion): Integrate five-to-seven subtle mythic/biblical references (chosen by the AI based on the archetype defined in P3) adhering to the constraints of no proper names and max three consecutive verbatim words.
+reports/derived-panel-references.txt:151:supabase/migrations/20260521000000_initial_schema.sql:25:    dualism_map JSONB DEFAULT '{}'::jsonb, -- sacred vs descent
+reports/derived-panel-references.txt:152:supabase/migrations/20260521000000_initial_schema.sql:32:CREATE TABLE biblical_references (
+reports/derived-panel-references.txt:153:supabase/migrations/20260521000000_initial_schema.sql:45:ALTER TABLE biblical_references ENABLE ROW LEVEL SECURITY;
+reports/derived-panel-references.txt:154:supabase/migrations/20260521000000_initial_schema.sql:50:CREATE POLICY "Allow public read-only access to biblical references" ON biblical_references FOR SELECT USING (true);
+reports/derived-panel-references.txt:155:supabase/migrations/20260521000000_initial_schema.sql:56:CREATE POLICY "Allow public read-only access to biblical references" ON biblical_references FOR SELECT USING (true);
+reports/derived-panel-references.txt:156:supabase/migrations/20260521000001_vector_search.sql:12:  dualism_map jsonb,
+reports/derived-panel-references.txt:157:supabase/migrations/20260521000001_vector_search.sql:24:    paragraphs.dualism_map,
+reports/derived-panel-references.txt:158:supabase/migrations/20260602000000_phase1_sync.sql:2:-- Ensure hyperlinks table exists
+reports/derived-panel-references.txt:159:supabase/migrations/20260602000000_phase1_sync.sql:3:CREATE TABLE IF NOT EXISTS hyperlinks (
+reports/derived-panel-references.txt:161:supabase/migrations/20260602000000_phase1_sync.sql:16:ALTER TABLE biblical_references ENABLE ROW LEVEL SECURITY;
+reports/derived-panel-references.txt:162:supabase/migrations/20260602000000_phase1_sync.sql:17:ALTER TABLE hyperlinks ENABLE ROW LEVEL SECURITY;
+reports/derived-panel-references.txt:163:supabase/migrations/20260602000000_phase1_sync.sql:29:        CREATE POLICY "Allow public read-only access to biblical references" ON biblical_references FOR SELECT USING (true);
+reports/derived-panel-references.txt:164:supabase/migrations/20260602000000_phase1_sync.sql:31:    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Allow public read-only access to hyperlinks') THEN
+reports/derived-panel-references.txt:165:supabase/migrations/20260602000000_phase1_sync.sql:32:        CREATE POLICY "Allow public read-only access to hyperlinks" ON hyperlinks FOR SELECT USING (true);
+reports/derived-panel-references.txt:166:scripts/data-lineage-audit.sh:28:  -E "biblical_references|hyperlinks|archetype|parallelism|dualism|No biblical references|No archetype|0 nodes|0 connections" \
+reports/ingestion-hash-references.txt:1:src/app/api/graph/route.ts:13:    // Also fetch explicit hyperlinks/dualisms
+reports/ingestion-hash-references.txt:2:src/app/api/graph/route.ts:14:    const { rows: hyperlinks } = await query(
+reports/ingestion-hash-references.txt:3:src/app/api/graph/route.ts:16:       FROM hyperlinks`
+reports/ingestion-hash-references.txt:4:src/app/api/graph/route.ts:21:      hyperlinks
+reports/ingestion-hash-references.txt:5:src/app/api/manuscript/route.ts:26:    .select('*, biblical_references(*), chapters(part_number, chapter_number)')
+reports/ingestion-hash-references.txt:21:src/app/api/biblical-references/route.ts:7:      `SELECT * FROM biblical_references ORDER BY book ASC, chapter ASC, verse ASC`
+reports/ingestion-hash-references.txt:25:src/app/globals.css:131:.hyperlinks-graph-container {
+reports/ingestion-hash-references.txt:26:src/app/globals.css:147:.hyperlinks-graph-svg {
+reports/ingestion-hash-references.txt:70:src/components/layers/panel/HyperlinksGraph.tsx:20:        const rawLinks = d.hyperlinks || [];
+reports/ingestion-hash-references.txt:78:src/components/layers/panel/BiblicalReferencesDirectory.tsx:32:  if (refs.length === 0) return <div className="panel-empty">No biblical references indexed yet</div>;
+reports/ingestion-hash-references.txt:93:src/components/layers/cinema/TelemetryOverlay.tsx:12: * and mobile viewports, and displays real-time tracking hashes.
+reports/ingestion-hash-references.txt:94:src/components/layers/cinema/TelemetryOverlay.tsx:26: * Generates deterministic mathematical noise hashes to simulate live decoding matrices.
+reports/ingestion-hash-references.txt:130:src/services/memory-engine/vector-store.ts:54:      CREATE TABLE IF NOT EXISTS biblical_references (
+reports/ingestion-hash-references.txt:158:src/services/ingestion/pipeline.ts:92:          "archetypal_weights": { "shadow": 0.0, "persona": 0.0, "anima": 0.0, "self": 0.0, "hero": 0.0 },
+reports/ingestion-hash-references.txt:159:src/services/ingestion/pipeline.ts:94:          "biblical_references": [{ "text": "...", "book": "...", "chapter": 0, "verse": 0 }],
+reports/ingestion-hash-references.txt:160:src/services/ingestion/pipeline.ts:95:          "hyperlinks": [{ "theme_node_a": "...", "theme_node_b": "...", "link_type": "dualism" }]` 
+reports/ingestion-hash-references.txt:168:src/services/ingestion/pipeline.ts:133:      if (paragraphData && enrichment.biblical_references?.length > 0) {
+reports/ingestion-hash-references.txt:169:src/services/ingestion/pipeline.ts:134:        for (const ref of enrichment.biblical_references) {
+reports/ingestion-hash-references.txt:170:src/services/ingestion/pipeline.ts:136:            `INSERT INTO biblical_references (paragraph_id, reference_text, book, chapter, verse)
+reports/ingestion-hash-references.txt:172:src/services/ingestion/pipeline.ts:143:      if (paragraphData && enrichment.hyperlinks?.length > 0) {
+reports/ingestion-hash-references.txt:173:src/services/ingestion/pipeline.ts:144:        for (const link of enrichment.hyperlinks) {
+reports/ingestion-hash-references.txt:174:src/services/ingestion/pipeline.ts:146:            `INSERT INTO hyperlinks (paragraph_id, theme_node_a, theme_node_b, link_type)
+reports/ingestion-hash-references.txt:1296:src/data-layer/ingestion-buffer/gdrive_raw/(Prompt_Guide_(E))_Chapter_10:_Forsaken.txt:3:[[[Add 1,000 to 2,000 words primarily through hyperlinking and foreshadowing in that order respectively, then branching out to sensory detail, dialogue (especially between kasha and the cat who I've just decided need to have some way to communicate with each other and I want the cat to be one of those very verbose ones, but that only happens after the hex!) But do not add things by adding ideas I have not talked about. You can also add with the biblical references if any are missing or new opportunities arise]]] 
+reports/ingestion-hash-references.txt:1497:src/data-layer/ingestion-buffer/gdrive_raw/4.0_Emotional_&_Archetypal_Editing_Rulebook_(Visceral_Empathy_Focus).txt:21:The following nouns and concepts MUST be rendered in bold text to create the subtle, cross-referenced 'hyperlinks' across the text.
+reports/ingestion-hash-references.txt:1513:src/data-layer/ingestion-buffer/gdrive_raw/3.0_Literary_&_Archetypal_Fusion_Rulebook_(The_Cat_God_&_The_Primal_Self).txt:39:* Hyperlink Vocabulary: The following concepts MUST be in bold text to create the cross-referenced 'Biblical Corpus' effect: The Unmanifest, The Snare, Living Sacrifice, The Chaos/Aviel's Rot, The Pit, The Lord of the Flies, The Two Hundred Holes, The New Name, Internal War/Flesh and Spirit, 5 heavy Shekels, Gerah, Curiosity, Truth, Love.
+reports/ingestion-hash-references.txt:1528:src/data-layer/ingestion-buffer/gdrive_raw/6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt:4:To create the "hyperlinks" between chapters, the following specific nouns and phrases MUST be rendered in bold text. These are the key conceptual anchors that subtly link Dan's actions to the overarching themes of ascent, sacrifice, chaos, and rebirth.
+reports/ingestion-hash-references.txt:1602:src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_10_-_MASTER_BRIEFING.txt:228:Every chapter must reflect every other chapter like the biblical corpus. These hyperlinks must be present but NEVER direct quotations. Allude, echo, invert, mirror:
+reports/ingestion-hash-references.txt:1617:src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_10_-_MASTER_BRIEFING.txt:300:7. Cross-chapter hyperlinks should be audited each pass
+reports/ingestion-hash-references.txt:1963:src/data-layer/ingestion-buffer/gdrive_raw/Chapter 3 - Commerciality and Marketing 3.0.txt:28: * METRIC 2 (Allusion): Integrate five-to-seven subtle mythic/biblical references (chosen by the AI based on the archetype defined in P3) adhering to the constraints of no proper names and max three consecutive verbatim words.
+reports/ingestion-hash-references.txt:1985:src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_1_Proof_of_Authorship_1.0.txt:42:"Can you say dusty treasures or some version of saying treasures of the Earth instead of just saying earthly things to make it more sophisticated and also I wanted to be called the god of inexhaustible dust and the plenty of things made in dusts image. Or some variation of that you can see all the biblical references I'm trying to weave in making them all more subtle"
+reports/ingestion-hash-references.txt:2054:src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_1_Proof_of_Authorship_1.1.txt:206:3. All thematic elements (naming power, house as antagonist, biblical references)
+reports/ingestion-hash-references.txt:2076:src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1:_Stardust_to_Stardust.txt:10:Dan had to leave this place of reckoning before the material decay claimed him, too. Turning back was not an option—it was a history of failure written in the first book of all beginnings. He knew this house was a place consumed, a silent monument to what was lost in the fires of Sodom. ((Try to find a way to more subtly mention Sodom without actually naming Sodom, in fact find opportunities to add more biblical references throughout the text but do so subtly without naming names or quoting verbatim))
+reports/ingestion-hash-references.txt:2148:src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3_Analysis_&_Guides.txt:89:The AI must execute this task via a three-stage nested process to ensure maximum subtlety in the integration of archetypal and biblical references.
+reports/ingestion-hash-references.txt:2292:src/data-layer/singularity/REFINED_LORE_SINGULARITY.txt:7:[[[Add 1,000 to 2,000 words primarily through hyperlinking and foreshadowing in that order respectively, then branching out to sensory detail, dialogue (especially between kasha and the cat who I've just decided need to have some way to communicate with each other and I want the cat to be one of those very verbose ones, but that only happens after the hex!) But do not add things by adding ideas  I have not talked about. You can also add with the biblical references if any are missing or new opportunities arise]]] 
+reports/ingestion-hash-references.txt:2433:src/data-layer/singularity/REFINED_LORE_SINGULARITY.txt:5499:The following nouns and concepts MUST be rendered in bold text to create the subtle, cross-referenced 'hyperlinks' across the text.
+reports/ingestion-hash-references.txt:2470:src/data-layer/singularity/REFINED_LORE_SINGULARITY.txt:8763:"Can you say dusty treasures or some version of saying treasures of the Earth instead of just saying earthly things to make it more sophisticated and also I wanted to be called the god of inexhaustible dust and the plenty of things made in dusts image. Or some variation of that you can see all the biblical references I'm trying to weave in making them all more subtle"
+reports/ingestion-hash-references.txt:2491:src/data-layer/singularity/REFINED_LORE_SINGULARITY.txt:9145:The AI must execute this task via a three-stage nested process to ensure maximum subtlety in the integration of archetypal and biblical references.
+reports/ingestion-hash-references.txt:2508:src/data-layer/singularity/REFINED_LORE_SINGULARITY.txt:9686:[ ] All 16+ chapter files cross-referenced for lexical frequency?
+reports/ingestion-hash-references.txt:2592:src/data-layer/singularity/REFINED_LORE_SINGULARITY.txt:13995:* Hyperlink Vocabulary: The following concepts MUST be in bold text to create the cross-referenced 'Biblical Corpus' effect: The Unmanifest, The Snare, Living Sacrifice, The Chaos/Aviel's Rot, The Pit, The Lord of the Flies, The Two Hundred Holes, The New Name, Internal War/Flesh and Spirit, 5 heavy Shekels, Gerah, Curiosity, Truth, Love.
+reports/ingestion-hash-references.txt:2594:src/data-layer/singularity/REFINED_LORE_SINGULARITY.txt:14009:To create the "hyperlinks" between chapters, the following specific nouns and phrases MUST be rendered in bold text. These are the key conceptual anchors that subtly link Dan's actions to the overarching themes of ascent, sacrifice, chaos, and rebirth.
+reports/ingestion-hash-references.txt:2631:src/data-layer/singularity/REFINED_LORE_SINGULARITY.txt:15901:Requirement: Minimum five additional biblical references so subtle that only scholarly theologians with deep textual knowledge would recognize them.
+reports/ingestion-hash-references.txt:3040:src/data-layer/singularity/REFINED_LORE_SINGULARITY.txt:26620:* Hyperlink Vocabulary: The following concepts MUST be in bold text to create the cross-referenced 'Biblical Corpus' effect: The Unmanifest, The Snare, Living Sacrifice, The Chaos/Aviel's Rot, The Pit, The Lord of the Flies, The Two Hundred Holes, The New Name, Internal War/Flesh and Spirit, 5 heavy Shekels, Gerah, Curiosity, Truth, Love.
+reports/ingestion-hash-references.txt:3042:src/data-layer/singularity/REFINED_LORE_SINGULARITY.txt:26629:To create the "hyperlinks" between chapters, the following specific nouns and phrases MUST be rendered in bold text. These are the key conceptual anchors that subtly link Dan's actions to the overarching themes of ascent, sacrifice, chaos, and rebirth.
+reports/ingestion-hash-references.txt:3079:src/data-layer/singularity/REFINED_LORE_SINGULARITY.txt:28481:Requirement: Minimum five additional biblical references so subtle that only scholarly theologians with deep textual knowledge would recognize them.
+reports/ingestion-hash-references.txt:4527:src/data-layer/singularity/REFINED_LORE_SINGULARITY.txt:43829:Every chapter must reflect every other chapter like the biblical corpus. These hyperlinks must be present but NEVER direct quotations. Allude, echo, invert, mirror:
+reports/ingestion-hash-references.txt:4542:src/data-layer/singularity/REFINED_LORE_SINGULARITY.txt:43918:7. Cross-chapter hyperlinks should be audited each pass
+reports/ingestion-hash-references.txt:4576:src/data-layer/singularity/REFINED_LORE_SINGULARITY.txt:44281:3. All thematic elements (naming power, house as antagonist, biblical references)
+reports/ingestion-hash-references.txt:4702:src/data-layer/singularity/REFINED_LORE_SINGULARITY.txt:45047:Dan had to leave this place of reckoning before the material decay claimed him, too. Turning back was not an option—it was a history of failure written in the first book of all beginnings. He knew this house was a place consumed, a silent monument to what was lost in the fires of Sodom. ((Try to find a way to more subtly mention Sodom without actually naming Sodom, in fact find opportunities to add more biblical references throughout the text but do so subtly without naming names or quoting verbatim))
+reports/ingestion-hash-references.txt:4806:src/data-layer/singularity/REFINED_LORE_SINGULARITY.txt:47069: * METRIC 2 (Allusion): Integrate five-to-seven subtle mythic/biblical references (chosen by the AI based on the archetype defined in P3) adhering to the constraints of no proper names and max three consecutive verbatim words.
+reports/ingestion-hash-references.txt:4962:scripts/data-lineage-audit.sh:28:  -E "biblical_references|hyperlinks|archetype|parallelism|dualism|No biblical references|No archetype|0 nodes|0 connections" \
+reports/ingestion-hash-references.txt:4964:scripts/data-lineage-audit.sh:37:  -E "hash|sha|digest|embedding|token|tokenize|ingest|upsert|insert|parse|extract|reference|hyperlink" \
+reports/ingestion-hash-references.txt:4965:scripts/data-lineage-audit.sh:38:  src scripts supabase 2>/dev/null | tee reports/ingestion-hash-references.txt
+reports/ingestion-hash-references.txt:4970:supabase/migrations/20260521000000_initial_schema.sql:24:    archetypal_weights JSONB DEFAULT '{}'::jsonb, -- shadow, persona, anima, self, hero
+reports/ingestion-hash-references.txt:4971:supabase/migrations/20260521000000_initial_schema.sql:32:CREATE TABLE biblical_references (
+reports/ingestion-hash-references.txt:4973:supabase/migrations/20260521000000_initial_schema.sql:45:ALTER TABLE biblical_references ENABLE ROW LEVEL SECURITY;
+reports/ingestion-hash-references.txt:4974:supabase/migrations/20260521000000_initial_schema.sql:50:CREATE POLICY "Allow public read-only access to biblical references" ON biblical_references FOR SELECT USING (true);
+reports/ingestion-hash-references.txt:4975:supabase/migrations/20260521000000_initial_schema.sql:56:CREATE POLICY "Allow public read-only access to biblical references" ON biblical_references FOR SELECT USING (true);
+reports/ingestion-hash-references.txt:4979:supabase/migrations/20260602000000_phase1_sync.sql:2:-- Ensure hyperlinks table exists
+reports/ingestion-hash-references.txt:4980:supabase/migrations/20260602000000_phase1_sync.sql:3:CREATE TABLE IF NOT EXISTS hyperlinks (
+reports/ingestion-hash-references.txt:4982:supabase/migrations/20260602000000_phase1_sync.sql:16:ALTER TABLE biblical_references ENABLE ROW LEVEL SECURITY;
+reports/ingestion-hash-references.txt:4983:supabase/migrations/20260602000000_phase1_sync.sql:17:ALTER TABLE hyperlinks ENABLE ROW LEVEL SECURITY;
+reports/ingestion-hash-references.txt:4984:supabase/migrations/20260602000000_phase1_sync.sql:28:    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Allow public read-only access to biblical references') THEN
+reports/ingestion-hash-references.txt:4985:supabase/migrations/20260602000000_phase1_sync.sql:29:        CREATE POLICY "Allow public read-only access to biblical references" ON biblical_references FOR SELECT USING (true);
+reports/ingestion-hash-references.txt:4986:supabase/migrations/20260602000000_phase1_sync.sql:31:    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Allow public read-only access to hyperlinks') THEN
+reports/ingestion-hash-references.txt:4987:supabase/migrations/20260602000000_phase1_sync.sql:32:        CREATE POLICY "Allow public read-only access to hyperlinks" ON hyperlinks FOR SELECT USING (true);
+reports/db-lineage-report.txt:11:| biblical_references |     0 |
+reports/db-lineage-report.txt:12:| hyperlinks          |     0 |
+reports/db-lineage-report.txt:55:| hash rows      |           12 |           1206 |
+reports/db-lineage-report.txt:63:| total_paragraphs | has_archetypal_weights | has_dualism_map | has_hebrew_spans | has_metadata |
+reports/db-lineage-report.txt:74:| biblical_references |     0 |
+reports/db-lineage-report.txt:75:| hyperlinks          |     0 |
+reports/db-lineage-report.txt:89:| hash rows      | 72377df9ad2575fc0a97523937ff9e451cadef7811fae2a443aa5daa3a2a351b |              1 |           0 | ﻿CHAPTER 1: STARDUST TO STARDUST                                                                                                                                                                                                                                                                              |
+reports/db-lineage-report.txt:90:| hash rows      | 72377df9ad2575fc0a97523937ff9e451cadef7811fae2a443aa5daa3a2a351b |              1 |           0 | ﻿CHAPTER 1: STARDUST TO STARDUST                                                                                                                                                                                                                                                                              |
+reports/db-lineage-report.txt:91:| hash rows      | 72377df9ad2575fc0a97523937ff9e451cadef7811fae2a443aa5daa3a2a351b |              1 |           0 | ﻿CHAPTER 1: STARDUST TO STARDUST                                                                                                                                                                                                                                                                              |
+reports/db-lineage-report.txt:92:| hash rows      | 72377df9ad2575fc0a97523937ff9e451cadef7811fae2a443aa5daa3a2a351b |              1 |           1 | Let me tell you about a boy named Dan, and the night he decided to save his father by breaking into his dreams.                                                                                                                                                                                              |
+reports/db-lineage-report.txt:93:| hash rows      | 72377df9ad2575fc0a97523937ff9e451cadef7811fae2a443aa5daa3a2a351b |              1 |           1 | Let me tell you about a boy named Dan, and the night he decided to save his father by breaking into his dreams.                                                                                                                                                                                              |
+reports/app-data-source-report.txt:7:src/components/layers/panel/BiblicalReferencesDirectory.tsx:32:  if (refs.length === 0) return <div className="panel-empty">No biblical references indexed yet</div>;
+reports/json-payload-shapes.txt:3:=== dualism_map JSON shapes ===
+reports/json-payload-shapes.txt:12:=== archetypal_weights JSON shapes ===
+reports/json-payload-shapes.txt:21:=== hebrew_spans JSON shapes ===
+reports/json-payload-shapes.txt:30:=== top dualism_map keys ===
+reports/json-payload-shapes.txt:40:=== top archetypal_weights keys ===
+reports/json-payload-shapes.txt:53:=== sample dualism_map payloads ===
+reports/json-payload-shapes.txt:55:| manifest_id | chapter_number | chunk_index |           dualism_map           |
+reports/json-payload-shapes.txt:71:=== sample archetypal_weights payloads ===
+reports/json-payload-shapes.txt:73:| manifest_id | chapter_number | chunk_index |                           archetypal_weights                            |
+reports/json-payload-shapes.txt:89:=== sample hebrew_spans payloads ===
+reports/json-payload-shapes.txt:91:| manifest_id | chapter_number | chunk_index |   hebrew_spans    |
+reports/api-route-source-report.txt:57:      `SELECT id, content, chunk_index, archetypal_weights, dualism_map, hebrew_spans, metadata
+reports/api-route-source-report.txt:73:        archetypal_weights: p.archetypal_weights,
+reports/api-route-source-report.txt:74:        dualism_map: p.dualism_map,
+reports/api-route-source-report.txt:75:        hebrew_spans: p.hebrew_spans,
+reports/api-route-source-report.txt:114:    .select('*, biblical_references(*), chapters(part_number, chapter_number)')
+reports/api-route-source-report.txt:125:src/app/api/graph/route.ts:8:      `SELECT id, content, dualism_map, chapter_id
+reports/api-route-source-report.txt:126:src/app/api/graph/route.ts:10:       WHERE dualism_map IS NOT NULL AND dualism_map != '{}'::jsonb`
+reports/api-route-source-report.txt:127:src/app/api/graph/route.ts:13:    // Also fetch explicit hyperlinks/dualisms
+reports/api-route-source-report.txt:128:src/app/api/graph/route.ts:14:    const { rows: hyperlinks } = await query(
+reports/api-route-source-report.txt:129:src/app/api/graph/route.ts:16:       FROM hyperlinks`
+reports/api-route-source-report.txt:130:src/app/api/graph/route.ts:21:      hyperlinks
+reports/api-route-source-report.txt:131:src/app/api/manuscript/route.ts:26:    .select('*, biblical_references(*), chapters(part_number, chapter_number)')
+reports/api-route-source-report.txt:132:src/app/api/search/route.ts:37:        archetypal_weights,
+reports/api-route-source-report.txt:133:src/app/api/search/route.ts:38:        dualism_map,
+reports/api-route-source-report.txt:134:src/app/api/chapters/route.ts:42:      `SELECT id, content, chunk_index, archetypal_weights, dualism_map, hebrew_spans, metadata
+reports/api-route-source-report.txt:135:src/app/api/chapters/route.ts:58:        archetypal_weights: p.archetypal_weights,
+reports/api-route-source-report.txt:136:src/app/api/chapters/route.ts:59:        dualism_map: p.dualism_map,
+reports/api-route-source-report.txt:137:src/app/api/chapters/route.ts:60:        hebrew_spans: p.hebrew_spans,
+reports/api-route-source-report.txt:138:src/app/api/biblical-references/route.ts:7:      `SELECT * FROM biblical_references ORDER BY book ASC, chapter ASC, verse ASC`
+reports/api-route-source-report.txt:139:src/app/globals.css:131:.hyperlinks-graph-container {
+reports/api-route-source-report.txt:140:src/app/globals.css:147:.hyperlinks-graph-svg {
+reports/api-route-source-report.txt:141:src/components/layers/panel/HyperlinksGraph.tsx:6:type Node = { id: string; content: string; dualism_map: any; chapter_id?: string };
+reports/api-route-source-report.txt:142:src/components/layers/panel/HyperlinksGraph.tsx:20:        const rawLinks = d.hyperlinks || [];
+reports/api-route-source-report.txt:143:src/components/layers/panel/HyperlinksGraph.tsx:25:          dualism_map: n.dualism_map || {},
+reports/api-route-source-report.txt:144:src/components/layers/panel/HyperlinksGraph.tsx:42:              if (keys.some(k => (nodes[i].dualism_map?.[k] || 0) > 0.4 &&
+reports/api-route-source-report.txt:145:src/components/layers/panel/HyperlinksGraph.tsx:43:                                 (nodes[j].dualism_map?.[k] || 0) > 0.4)) {
+reports/api-route-source-report.txt:146:src/components/layers/panel/HyperlinksGraph.tsx:91:        const m = d.dualism_map || {};
+reports/api-route-source-report.txt:147:src/components/layers/panel/ArchetypesDirectory.tsx:5:type P = { id: string; content: string; chapter_number?: number; archetypal_weights?: any };
+reports/api-route-source-report.txt:148:src/components/layers/panel/ArchetypesDirectory.tsx:21:        setPs(raw.filter((p: any) => p && p.archetypal_weights && Object.keys(p.archetypal_weights).length > 0));
+reports/api-route-source-report.txt:149:src/components/layers/panel/ArchetypesDirectory.tsx:71:                const d = dom(p.archetypal_weights);
+reports/api-route-source-report.txt:150:src/components/layers/canvas/ManuscriptCore.tsx:37:    archetypal_weights?: any; 
+reports/api-route-source-report.txt:151:src/components/layers/canvas/ManuscriptCore.tsx:38:    dualism_map?: any;
+reports/api-route-source-report.txt:152:src/components/layers/canvas/ManuscriptCore.tsx:39:    hebrew_spans?: any[];
+reports/api-route-source-report.txt:153:src/components/layers/canvas/ManuscriptCore.tsx:86:          const weights = block?.archetypal_weights || {};
+reports/api-route-source-report.txt:154:src/components/layers/canvas/ManuscriptCore.tsx:87:          const dualisms = block?.dualism_map || {};
+reports/api-route-source-report.txt:155:src/components/layers/canvas/ManuscriptCore.tsx:142:                weights: typeof block === "string" ? {} : block?.archetypal_weights || {},
+reports/api-route-source-report.txt:156:src/components/layers/canvas/ManuscriptCore.tsx:143:                dualisms: typeof block === "string" ? {} : block?.dualism_map || {},
+reports/api-route-source-report.txt:157:src/services/orchestration-engine/google-swarm.ts:118:        archetypal_weights: JSON.stringify(para.archetypal_weights),
+reports/api-route-source-report.txt:158:src/services/orchestration-engine/google-swarm.ts:119:        dualism_map: JSON.stringify(para.dualism_map),
+reports/api-route-source-report.txt:159:src/services/memory-engine/vector-store.ts:47:        archetypal_weights JSONB DEFAULT '{}',
+reports/api-route-source-report.txt:160:src/services/memory-engine/vector-store.ts:48:        dualism_map JSONB DEFAULT '{}',
+reports/api-route-source-report.txt:161:src/services/memory-engine/vector-store.ts:49:        hebrew_spans JSONB DEFAULT '[]',
+reports/api-route-source-report.txt:162:src/services/memory-engine/vector-store.ts:54:      CREATE TABLE IF NOT EXISTS biblical_references (
+reports/api-route-source-report.txt:163:src/services/document-analyzer/corpus-searcher.ts:32:        archetypal_weights,
+reports/api-route-source-report.txt:164:src/services/document-analyzer/corpus-searcher.ts:33:        dualism_map,
+reports/api-route-source-report.txt:165:src/services/ingestion/pipeline.ts:92:          "archetypal_weights": { "shadow": 0.0, "persona": 0.0, "anima": 0.0, "self": 0.0, "hero": 0.0 },
+reports/api-route-source-report.txt:166:src/services/ingestion/pipeline.ts:93:          "dualism_map": { "sacred": 0.0, "descent": 0.0 },
+reports/api-route-source-report.txt:167:src/services/ingestion/pipeline.ts:94:          "biblical_references": [{ "text": "...", "book": "...", "chapter": 0, "verse": 0 }],
+reports/api-route-source-report.txt:168:src/services/ingestion/pipeline.ts:95:          "hyperlinks": [{ "theme_node_a": "...", "theme_node_b": "...", "link_type": "dualism" }]` 
+reports/api-route-source-report.txt:169:src/services/ingestion/pipeline.ts:119:          archetypal_weights, dualism_map, hebrew_spans, metadata
+reports/api-route-source-report.txt:170:src/services/ingestion/pipeline.ts:124:          enrichment.archetypal_weights || {},
+reports/api-route-source-report.txt:171:src/services/ingestion/pipeline.ts:125:          enrichment.dualism_map || {},
+reports/api-route-source-report.txt:172:src/services/ingestion/pipeline.ts:133:      if (paragraphData && enrichment.biblical_references?.length > 0) {
+reports/api-route-source-report.txt:173:src/services/ingestion/pipeline.ts:134:        for (const ref of enrichment.biblical_references) {
+reports/api-route-source-report.txt:174:src/services/ingestion/pipeline.ts:136:            `INSERT INTO biblical_references (paragraph_id, reference_text, book, chapter, verse)
+reports/api-route-source-report.txt:175:src/services/ingestion/pipeline.ts:143:      if (paragraphData && enrichment.hyperlinks?.length > 0) {
+reports/api-route-source-report.txt:176:src/services/ingestion/pipeline.ts:144:        for (const link of enrichment.hyperlinks) {
+reports/api-route-source-report.txt:177:src/services/ingestion/pipeline.ts:146:            `INSERT INTO hyperlinks (paragraph_id, theme_node_a, theme_node_b, link_type)
+reports/readme_docs_stage_manifest.json:9:    "sha256": "fdf1d5e850a5a83a37b2ed10025d2f9ea351740bc92cbc2d39911aae29d147a9"
+reports/readme_docs_stage_manifest.json:18:    "sha256": "0afe3026ec2e96519834193bc82ed666e108cb0689a4fafa04d332f303be15b0"
+reports/readme_docs_stage_manifest.json:27:    "sha256": "bb6c1b8ad57690a3b2d68188c1650435040a51955ff2f5a1c663e37f8b4905a1"
+reports/readme_docs_stage_manifest.json:36:    "sha256": "ff10b751d9817584090f30ae90d2b563a70ea40559c0be45ad955853d251f9f9"
+reports/readme_docs_stage_manifest.json:45:    "sha256": "205b5ba15395b1fdcabcc776cb45d95a49061163ab02a4669fe0a51a26eca725"
+reports/readme_docs_stage_manifest.json:54:    "sha256": "ceea94a4e820780d52d53e3c225ab050315f9568d7bc6ea759f07194f2c6383f"
+reports/readme_docs_stage_manifest.json:63:    "sha256": "910125f240aa69c024a6a77a1bc00882838d4ec59239aaea930ba39876c8fcc4"
+reports/readme_docs_stage_manifest.json:72:    "sha256": "85a32b6ed8822e9e98966043958ca23e49c53db2f7ed36dd67f7c466b5f6b096"
+reports/readme_docs_stage_manifest.json:81:    "sha256": "67c4f905fdfcc266a436bba329eba4edebd188f1f3dae4a8ea9f1e666bc2e6d4"
+reports/readme_docs_stage_manifest.json:90:    "sha256": "fd8a792f5b744288d68b42d3a0cebf320289d8f40b5115c3724ecb1ef4ce6bc1"
+reports/readme_docs_stage_manifest.json:99:    "sha256": "297d41e13442ac6be7009c64113d20e1244ed7f08bdbeddf60d2647348cb688e"
+reports/readme_docs_stage_manifest.json:108:    "sha256": "d17a50d837604f7a925c603c670e4b90680869c661ec1a29c7a302816495f30c"
+reports/readme_docs_stage_manifest.json:117:    "sha256": "5f511c72bc379f209140591c0b54e244007d467a785cabc659ef2d0d71ac9460"
+reports/readme_docs_stage_manifest.json:126:    "sha256": "01e740b7f4a508b1c103299dac6b6f7a9a82a250f4c6156cbe0ccd5ac476c3c2"
+reports/readme_docs_stage_manifest.json:135:    "sha256": "c3d8f19e97369db207d5cbd8eb52ef3831258ac32167a57dbe26eeaede5c6c35"
+reports/readme_docs_stage_manifest.json:144:    "sha256": "a9fb559778e6c30413384a4fb7298a8be66ea4c0d06f0a3c41c49dc3d38ed89e"
+reports/readme_docs_stage_manifest.json:153:    "sha256": "9c15c8b96921a7c7ce3cedea4438345220260a2aa545d722036a5360eae8965f"
+reports/readme_docs_stage_manifest.json:162:    "sha256": "2ad8ed2975a0222370c61986c459de0615f7f73a637192f2c922849c0be447ac"
+reports/readme_docs_stage_manifest.json:171:    "sha256": "a8ca80741b557601209a9f9375ddd5d043a2bbab403179969b0daad39e5810ee"
+reports/readme_docs_stage_manifest.json:180:    "sha256": "d17a50d837604f7a925c603c670e4b90680869c661ec1a29c7a302816495f30c"
+reports/readme_docs_stage_manifest.json:189:    "sha256": "89f166606cbe4e1f5e2d055415147c04da997045b70665c52763455b7d0af877"
+reports/readme_docs_stage_manifest.json:198:    "sha256": "090b5126809cc86709da2e632136a4e0b6cc1dddecd1e09941896f1fdda29187"
+reports/readme_docs_stage_manifest.json:207:    "sha256": "3c98bebf00f8c6bce6a737309009b9445058349fa55a58f76e2e2c15073d06d6"
+reports/readme_docs_stage_manifest.json:216:    "sha256": "b409caa97b6fdfdb3efea9dd32337e7a9ce4ba3abc6288acc4cc770086f8029f"
+reports/readme_docs_stage_manifest.json:225:    "sha256": "bc6f3a14a62a5c8c1832bea0b04c0e475b7d74b78f265bc18afaf6d15cebf122"
+reports/readme_docs_stage_manifest.json:234:    "sha256": "7515a5e6a6d419caa15be7bf8b77ec6c6430fecd48dcf81e2414cc1cea74ec86"
+reports/readme_docs_stage_manifest.json:243:    "sha256": "886b2f381ee5db3cbb49eae6aed22eadafe2643598fc913dfa75f52071dbb45f"
+reports/readme_docs_stage_manifest.json:252:    "sha256": "3271f06e9db200531304df6b80a4c45645182deb707d4a2445b9cef6e34374c6"
+reports/readme_docs_stage_manifest.json:261:    "sha256": "668994807602bb5aa6d603b3bf05b0754b4b0516ad356e3156dbfc48585f4eb4"
+reports/perfect_weight/01_repo_inventory.md:78:./reports/ingestion-hash-references.txt
+reports/perfect_weight/01_file_manifest.tsv:135:./reports/ingestion-hash-references.txt	3044626
+reports/perfect_weight/03_code_data_map.md:75:src/app/api/graph/route.ts:8:      `SELECT id, content, dualism_map, chapter_id
+reports/perfect_weight/03_code_data_map.md:77:src/app/api/graph/route.ts:10:       WHERE dualism_map IS NOT NULL AND dualism_map != '{}'::jsonb`
+reports/perfect_weight/03_code_data_map.md:78:src/app/api/graph/route.ts:13:    // Also fetch explicit hyperlinks/dualisms
+reports/perfect_weight/03_code_data_map.md:79:src/app/api/graph/route.ts:14:    const { rows: hyperlinks } = await query(
+reports/perfect_weight/03_code_data_map.md:80:src/app/api/graph/route.ts:16:       FROM hyperlinks`
+reports/perfect_weight/03_code_data_map.md:82:src/app/api/graph/route.ts:21:      hyperlinks
+reports/perfect_weight/03_code_data_map.md:84:src/app/api/manuscript/route.ts:26:    .select('*, biblical_references(*), chapters(part_number, chapter_number)')
+reports/perfect_weight/03_code_data_map.md:85:src/app/api/search/route.ts:37:        archetypal_weights,
+reports/perfect_weight/03_code_data_map.md:86:src/app/api/search/route.ts:38:        dualism_map,
+reports/perfect_weight/03_code_data_map.md:99:src/app/api/chapters/route.ts:42:      `SELECT id, content, chunk_index, archetypal_weights, dualism_map, hebrew_spans, metadata
+reports/perfect_weight/03_code_data_map.md:102:src/app/api/chapters/route.ts:58:        archetypal_weights: p.archetypal_weights,
+reports/perfect_weight/03_code_data_map.md:103:src/app/api/chapters/route.ts:59:        dualism_map: p.dualism_map,
+reports/perfect_weight/03_code_data_map.md:104:src/app/api/chapters/route.ts:60:        hebrew_spans: p.hebrew_spans,
+reports/perfect_weight/03_code_data_map.md:105:src/app/api/biblical-references/route.ts:7:      `SELECT * FROM biblical_references ORDER BY book ASC, chapter ASC, verse ASC`
+reports/perfect_weight/03_code_data_map.md:106:src/app/globals.css:131:.hyperlinks-graph-container {
+reports/perfect_weight/03_code_data_map.md:107:src/app/globals.css:147:.hyperlinks-graph-svg {
+reports/perfect_weight/03_code_data_map.md:127:src/components/layers/panel/HyperlinksGraph.tsx:6:type Node = { id: string; content: string; dualism_map: any; chapter_id?: string };
+reports/perfect_weight/03_code_data_map.md:129:src/components/layers/panel/HyperlinksGraph.tsx:20:        const rawLinks = d.hyperlinks || [];
+reports/perfect_weight/03_code_data_map.md:130:src/components/layers/panel/HyperlinksGraph.tsx:25:          dualism_map: n.dualism_map || {},
+reports/perfect_weight/03_code_data_map.md:131:src/components/layers/panel/HyperlinksGraph.tsx:42:              if (keys.some(k => (nodes[i].dualism_map?.[k] || 0) > 0.4 &&
+reports/perfect_weight/03_code_data_map.md:132:src/components/layers/panel/HyperlinksGraph.tsx:43:                                 (nodes[j].dualism_map?.[k] || 0) > 0.4)) {
+reports/perfect_weight/03_code_data_map.md:133:src/components/layers/panel/HyperlinksGraph.tsx:91:        const m = d.dualism_map || {};
+reports/perfect_weight/03_code_data_map.md:134:src/components/layers/panel/ArchetypesDirectory.tsx:5:type P = { id: string; content: string; chapter_number?: number; archetypal_weights?: any };
+reports/perfect_weight/03_code_data_map.md:136:src/components/layers/panel/ArchetypesDirectory.tsx:21:        setPs(raw.filter((p: any) => p && p.archetypal_weights && Object.keys(p.archetypal_weights).length > 0));
+reports/perfect_weight/03_code_data_map.md:139:src/components/layers/panel/ArchetypesDirectory.tsx:71:                const d = dom(p.archetypal_weights);
+reports/perfect_weight/03_code_data_map.md:140:src/components/layers/canvas/ManuscriptCore.tsx:37:    archetypal_weights?: any; 
+reports/perfect_weight/03_code_data_map.md:141:src/components/layers/canvas/ManuscriptCore.tsx:38:    dualism_map?: any;
+reports/perfect_weight/03_code_data_map.md:142:src/components/layers/canvas/ManuscriptCore.tsx:39:    hebrew_spans?: any[];
+reports/perfect_weight/03_code_data_map.md:143:src/components/layers/canvas/ManuscriptCore.tsx:86:          const weights = block?.archetypal_weights || {};
+reports/perfect_weight/03_code_data_map.md:144:src/components/layers/canvas/ManuscriptCore.tsx:87:          const dualisms = block?.dualism_map || {};
+reports/perfect_weight/03_code_data_map.md:145:src/components/layers/canvas/ManuscriptCore.tsx:142:                weights: typeof block === "string" ? {} : block?.archetypal_weights || {},
+reports/perfect_weight/03_code_data_map.md:146:src/components/layers/canvas/ManuscriptCore.tsx:143:                dualisms: typeof block === "string" ? {} : block?.dualism_map || {},
+reports/perfect_weight/03_code_data_map.md:149:src/services/orchestration-engine/google-swarm.ts:118:        archetypal_weights: JSON.stringify(para.archetypal_weights),
+reports/perfect_weight/03_code_data_map.md:150:src/services/orchestration-engine/google-swarm.ts:119:        dualism_map: JSON.stringify(para.dualism_map),
+reports/perfect_weight/03_code_data_map.md:155:src/services/memory-engine/vector-store.ts:47:        archetypal_weights JSONB DEFAULT '{}',
+reports/perfect_weight/03_code_data_map.md:156:src/services/memory-engine/vector-store.ts:48:        dualism_map JSONB DEFAULT '{}',
+reports/perfect_weight/03_code_data_map.md:157:src/services/memory-engine/vector-store.ts:49:        hebrew_spans JSONB DEFAULT '[]',
+reports/perfect_weight/03_code_data_map.md:158:src/services/memory-engine/vector-store.ts:54:      CREATE TABLE IF NOT EXISTS biblical_references (
+reports/perfect_weight/03_code_data_map.md:177:src/services/document-analyzer/corpus-searcher.ts:32:        archetypal_weights,
+reports/perfect_weight/03_code_data_map.md:178:src/services/document-analyzer/corpus-searcher.ts:33:        dualism_map,
+reports/perfect_weight/03_code_data_map.md:188:src/services/ingestion/pipeline.ts:92:          "archetypal_weights": { "shadow": 0.0, "persona": 0.0, "anima": 0.0, "self": 0.0, "hero": 0.0 },
+reports/perfect_weight/03_code_data_map.md:189:src/services/ingestion/pipeline.ts:93:          "dualism_map": { "sacred": 0.0, "descent": 0.0 },
+reports/perfect_weight/03_code_data_map.md:190:src/services/ingestion/pipeline.ts:94:          "biblical_references": [{ "text": "...", "book": "...", "chapter": 0, "verse": 0 }],
+reports/perfect_weight/03_code_data_map.md:191:src/services/ingestion/pipeline.ts:95:          "hyperlinks": [{ "theme_node_a": "...", "theme_node_b": "...", "link_type": "dualism" }]` 
+reports/perfect_weight/03_code_data_map.md:193:src/services/ingestion/pipeline.ts:119:          archetypal_weights, dualism_map, hebrew_spans, metadata
+reports/perfect_weight/03_code_data_map.md:194:src/services/ingestion/pipeline.ts:124:          enrichment.archetypal_weights || {},
+reports/perfect_weight/03_code_data_map.md:195:src/services/ingestion/pipeline.ts:125:          enrichment.dualism_map || {},
+reports/perfect_weight/03_code_data_map.md:196:src/services/ingestion/pipeline.ts:133:      if (paragraphData && enrichment.biblical_references?.length > 0) {
+reports/perfect_weight/03_code_data_map.md:197:src/services/ingestion/pipeline.ts:134:        for (const ref of enrichment.biblical_references) {
+reports/perfect_weight/03_code_data_map.md:198:src/services/ingestion/pipeline.ts:136:            `INSERT INTO biblical_references (paragraph_id, reference_text, book, chapter, verse)
+reports/perfect_weight/03_code_data_map.md:199:src/services/ingestion/pipeline.ts:143:      if (paragraphData && enrichment.hyperlinks?.length > 0) {
+reports/perfect_weight/03_code_data_map.md:200:src/services/ingestion/pipeline.ts:144:        for (const link of enrichment.hyperlinks) {
+reports/perfect_weight/03_code_data_map.md:201:src/services/ingestion/pipeline.ts:146:            `INSERT INTO hyperlinks (paragraph_id, theme_node_a, theme_node_b, link_type)
+reports/perfect_weight/03_code_data_map.md:216:docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/4.0_Emotional_&_Archetypal_Editing_Rulebook_(Visceral_Empathy_Focus).txt:21:The following nouns and concepts MUST be rendered in bold text to create the subtle, cross-referenced 'hyperlinks' across the text.
+reports/perfect_weight/03_code_data_map.md:233:docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt:4:To create the "hyperlinks" between chapters, the following specific nouns and phrases MUST be rendered in bold text. These are the key conceptual anchors that subtly link Dan's actions to the overarching themes of ascent, sacrifice, chaos, and rebirth.
+reports/perfect_weight/03_code_data_map.md:239:docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_10_-_MASTER_BRIEFING.txt:228:Every chapter must reflect every other chapter like the biblical corpus. These hyperlinks must be present but NEVER direct quotations. Allude, echo, invert, mirror:
+reports/perfect_weight/03_code_data_map.md:241:docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_10_-_MASTER_BRIEFING.txt:300:7. Cross-chapter hyperlinks should be audited each pass
+reports/perfect_weight/03_code_data_map.md:322:src/data-layer/ingestion-buffer/readme_docs/tier_1_core/026__AI_CHECKPOINT_FINAL.txt:2722:      "text": "**Refining Project Consistency**\n\nOkay, I\u0027m diving deep into identifying those pesky, conflicting rules across the Lore Vault, Protocols, and Guides. It\u0027s a meticulous process, aiming for a comprehensive and exhaustive review. Currently, I\u0027m leveraging terminal commands (bash, sed, and word) to streamline the search and identify all potential contradictions.\n\n\n**Clarifying the Core Principles**\n\nI\u0027m now zeroing in on fundamental stylistic discrepancies. I\u0027ve pinpointed contradictions across sentence length (complex vs. simple vs. Fibonacci), deity pronoun usage (strict \"thee/thou\" prohibition versus inclusion), and narrator catchphrases (permitted versus forbidden). My next step is organizing these into a hierarchy of importance to prioritize their resolution, so that the voice comes through. My main focus is the 1010 BCE setting and avoiding modern jargon.\n\n\n**Categorizing Conflict Archetypes**\n\nI\u0027m now cataloging the specific types of contradictions surfacing. I\u0027ve categorized them into Structural, Lexical, Theological, and Voice conflicts. I\u0027m focusing on discrepancies such as lowercase universal forces versus bold capitalization for hyperlinks, and varied word count ranges and narrator reveal timing. Then, I\u0027ll build a resolution hierarchy to define what overrides what, like math over general advice. I will be working on those terminal commands and testing solutions for phrases like \"Now you must understand\".\n\n\n",
+reports/perfect_weight/03_code_data_map.md:323:src/data-layer/ingestion-buffer/readme_docs/tier_1_core/026__AI_CHECKPOINT_FINAL.txt:2733:        "text": "**Categorizing Conflict Archetypes**\n\nI\u0027m now cataloging the specific types of contradictions surfacing. I\u0027ve categorized them into Structural, Lexical, Theological, and Voice conflicts. I\u0027m focusing on discrepancies such as lowercase universal forces versus bold capitalization for hyperlinks, and varied word count ranges and narrator reveal timing. Then, I\u0027ll build a resolution hierarchy to define what overrides what, like math over general advice. I will be working on those terminal commands and testing solutions for phrases like \"Now you must understand\".\n\n\n",
+reports/perfect_weight/03_code_data_map.md:328:src/data-layer/ingestion-buffer/readme_docs/tier_1_core/026__AI_CHECKPOINT_FINAL.txt:3339:      "text": "TERMINUS ALIGNMENT STRIKE V9\nSTATE BITE LEVEL MODIFICATION\nSYSTEM SUPREME TEXT COMPILER\n\nMichael, I have mapped the final conflicts and the points where the math of the protocols would create stiff or unnatural prose. Below are the terminal commands to alter those specific bytes of information. I have used wildcards to identify your files and sanitized the output to contain zero brackets and zero parentheses to ensure your application can process the data.\n\nCOMMAND 1 FIX DEITY VOICE\nTargets the protocol requiring archaic pronouns and replaces it with the final prohibition.\nsed -i s/Use consistently: thee, thou, thy, thine/FORBID: thee, thou, thy, thine/g 01_Protocols/16.0*Editing_Protocol.txt\n\nCOMMAND 2 FIX SENTENCE RHYTHM\nTargets the long sentence mandate and integrates Fibonacci with flow variability to prevent mechanical prose.\nsed -i s/rhythmic sentences as the primary mode/Fibonacci sentence clustering with variability for flow as the primary mode/g 01_Protocols/1.0_Writing_Style_Guide.txt\n\nCOMMAND 3 FIX NARRATOR ADDRESS\nGlobal purge of the forbidden Lewis phrase across the whole repository to ensure voice uniqueness.\ngrep -rl \"Now you must understand\" . | xargs sed -i s/Now you must understand/Consider this, for/g\n\nCOMMAND 4 FIX WORD COUNT\nSynchronizes the manuscripts to the Neutron Star Density standard of 3000 to 4200 words.\nsed -i s/4,000 to 6,000 words/3,000 to 4,200 words/g 01_Protocols/Chapter_2_Analysis*Guides*1.0.txt\n\nCOMMAND 5 FIX THEMATIC CASING\nConverts capitalized hyperlinks to the bold lowercase force law globally.\ngrep -rl \"The Unmanifest\" . | xargs sed -i s/The Unmanifest/**the unmanifest**/g\ngrep -rl \"The Snare\" . | xargs sed -i s/The Snare/**the snare**/g\ngrep -rl \"The Source\" . | xargs sed -i s/The Source/**the source**/g\n\nCOMMAND 6 FIX STIFF PROSE MATH\nSoftens the rigid three aphorism rule to allow for natural storytelling and reader discovery.\nsed -i s/yield precisely three distinct/yield organic/g 01_Protocols/20.0*Override_Prompt.txt\n\nCOMMAND 7 FIX ANACHRONISM ERRORS\nPurges modern scientific terms from the revision protocols and substitutes 1010 BCE grounded terms.\nsed -i s/REQUIRE: thermodynamic/REQUIRE: heat/g 00_LORE_VAULT/6.0_SYNTHESIS_MANDATE.txt\nsed -i s/zero-point/stillness/g 00_LORE_VAULT/6.0_SYNTHESIS_MANDATE.txt\nsed -i s/volition/will/g 00_LORE_VAULT/6.0_SYNTHESIS_MANDATE.txt\n\nMichael, the following is the Master Protocol Addendum. It contains the scavenged data bits to be added to your system document for absolute coherence. These rules prevent the machine from producing unweighted or decorative prose.\n\nITEM 1 THE SOMATIC REDEMPTION\nAll psychological state changes must be mirrored by a physical deficit.\nIf a character gains Clarity, they must lose Heat.\nIf a character gains Truth, they must lose Breath.\nThe exchange rate of suffering for insight is absolute.\n\nITEM 2 THE DUALISM REGISTRY\nThe narrator must audit every sensory detail for perspective purity.\nPasture color for Dan is Green.\nPasture color for Kasha is Gray.\nShadows for Dan are Threats.\nShadows for Kasha are Warmth.\nIf a character sees the world through the wrong lens, the prose is a failure.\n\nITEM 3 THE WITNESS GAP RATIO\nSpoken dialogue should only represent 10 percent of the internal thought process.\nThe remaining 90 percent is expressed through the percussion against the ribs and the weight of the silence.\nThis ensures the subtext is as heavy as the iron of the Peleset.\n\nITEM 4 THE TERMINAL INFLECTION POINT\nChapter endings must not provide relief.\nThe end of a chapter is the beginning of a higher debt.\nThe final sentence must transfer the burden of the question from the protagonist to the reader and an indifferent external force.\n\nMichael, the bits are aligned. The commands are ready. The math now serves the melody of the story.\n\nI HAVE FINISHED. THE SINGULARITY IS ACHIEVED. STANDING BY.",
+reports/perfect_weight/03_code_data_map.md:329:src/data-layer/ingestion-buffer/readme_docs/tier_1_core/026__AI_CHECKPOINT_FINAL.txt:3374:        "text": "5 FIX THEMATIC CASING\nConverts capitalized hyperlinks to the bold lowercase force law globally.\ngrep -rl \"The Un"
+reports/perfect_weight/03_code_data_map.md:344:src/data-layer/ingestion-buffer/readme_docs/tier_1_core/026__AI_CHECKPOINT_FINAL.txt:7401:To create the "hyperlinks" between chapters, the following specific nouns and phrases MUST be rendered in bold text. These are the key conceptual anchors that subtly link Dan's actions to the overarching themes of ascent, sacrifice, chaos, and rebirth.
+reports/perfect_weight/03_code_data_map.md:416:src/data-layer/ingestion-buffer/readme_docs/tier_1_core/097__GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt:24:- Ingestion writes to Supabase tables: chapters, paragraphs (with embedding vector, archetypal_weights jsonb, dualism_map jsonb), biblical_references, hyperlinks/dualisms.
+reports/perfect_weight/03_code_data_map.md:417:src/data-layer/ingestion-buffer/readme_docs/tier_1_core/097__GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt:29:- An ingestion action that reads Drive files, strips XML, splits into paragraphs, generates embeddings (OpenAI or Vertex), enriches paragraphs with archetypal_weights and dualism_map via LLM analysis, extracts biblical references, and writes everything to Supabase.
+reports/perfect_weight/03_code_data_map.md:418:src/data-layer/ingestion-buffer/readme_docs/tier_1_core/097__GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt:30:- A semantic enrichment pass that calls OpenAI to score every paragraph for: shadow/persona/anima/self/hero weights, sacred vs descent tone, biblical references mentioned, hyperlinks (dualisms) discovered.
+reports/perfect_weight/03_code_data_map.md:419:src/data-layer/ingestion-buffer/readme_docs/tier_1_core/097__GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt:36:- HyperlinksGraph reads from /api/graph (which queries dualism_map jsonb in Supabase).
+reports/perfect_weight/03_code_data_map.md:420:src/data-layer/ingestion-buffer/readme_docs/tier_1_core/097__GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt:38:- ArchetypesDirectory reads from /api/search with archetype filter, AND tracks the live active paragraph's archetypal_weights from scroll:focus.
+reports/perfect_weight/03_code_data_map.md:421:src/data-layer/ingestion-buffer/readme_docs/tier_1_core/097__GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt:40:- Layer2Cinema asset selection driven by archetypal_weights on the active paragraph from Supabase, not keyword matching.
+reports/perfect_weight/03_code_data_map.md:422:src/data-layer/ingestion-buffer/readme_docs/tier_1_core/097__GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt:58:- Phase D: Semantic enrichment populating archetypal_weights and dualism_map
+reports/perfect_weight/03_code_data_map.md:426:src/data-layer/ingestion-buffer/readme_docs/tier_1_core/097__GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt:102:- Inline detection happens at ingestion time and writes a `hebrew_spans` jsonb to the paragraphs table.
+reports/perfect_weight/03_code_data_map.md:429:src/data-layer/ingestion-buffer/readme_docs/tier_1_core/097__GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt:125:- Near-term: per-chapter static asset registry already in src/data/cinema.ts, but assets selected from archetypal_weights on the active paragraph (not keyword matching).
+reports/perfect_weight/03_code_data_map.md:447:src/data-layer/ingestion-buffer/readme_docs/tier_1_core/107__Here_is_the_absolute_technical,_structural,_and_behavioral_inventory_of_every_single_element_that_must_exist_within_your_4-layer_UI-UX_narrative_runtime_environment.txt:98: 90. **Hyperlink Toggle Switch State Tracker:** Monitors switch positions using component boolean states like hyperlinksEnabled.
+reports/perfect_weight/03_code_data_map.md:470:src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/077__CONTRADICTION_MAP.txt:767:  > To create the "hyperlinks" between chapters, the following specific nouns and phrases MUST be rendered in bold text. These are the key conceptual anchors that subtly link Dan's actions to the overarching themes of ascent, sacrifice, chaos, and rebirth.
+reports/perfect_weight/03_code_data_map.md:475:src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/097__GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt:24:- Ingestion writes to Supabase tables: chapters, paragraphs (with embedding vector, archetypal_weights jsonb, dualism_map jsonb), biblical_references, hyperlinks/dualisms.
+reports/perfect_weight/03_code_data_map.md:476:src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/097__GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt:29:- An ingestion action that reads Drive files, strips XML, splits into paragraphs, generates embeddings (OpenAI or Vertex), enriches paragraphs with archetypal_weights and dualism_map via LLM analysis, extracts biblical references, and writes everything to Supabase.
+reports/perfect_weight/03_code_data_map.md:477:src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/097__GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt:30:- A semantic enrichment pass that calls OpenAI to score every paragraph for: shadow/persona/anima/self/hero weights, sacred vs descent tone, biblical references mentioned, hyperlinks (dualisms) discovered.
+reports/perfect_weight/03_code_data_map.md:478:src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/097__GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt:36:- HyperlinksGraph reads from /api/graph (which queries dualism_map jsonb in Supabase).
+reports/perfect_weight/03_code_data_map.md:479:src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/097__GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt:38:- ArchetypesDirectory reads from /api/search with archetype filter, AND tracks the live active paragraph's archetypal_weights from scroll:focus.
+reports/perfect_weight/03_code_data_map.md:480:src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/097__GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt:40:- Layer2Cinema asset selection driven by archetypal_weights on the active paragraph from Supabase, not keyword matching.
+reports/perfect_weight/03_code_data_map.md:481:src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/097__GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt:58:- Phase D: Semantic enrichment populating archetypal_weights and dualism_map
+reports/perfect_weight/03_code_data_map.md:485:src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/097__GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt:102:- Inline detection happens at ingestion time and writes a `hebrew_spans` jsonb to the paragraphs table.
+reports/perfect_weight/03_code_data_map.md:488:src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/097__GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt:125:- Near-term: per-chapter static asset registry already in src/data/cinema.ts, but assets selected from archetypal_weights on the active paragraph (not keyword matching).
+reports/perfect_weight/03_code_data_map.md:530:src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/134__NOS_INTEGRATION_BLUEPRINT.txt:55:    pgvector, archetypal_weights jsonb, dualism_map jsonb, embedding columns
+reports/perfect_weight/03_code_data_map.md:531:src/data-layer/ingestion-buffer/readme_docs/tier_2_large_universal/134__NOS_INTEGRATION_BLUEPRINT.txt:60:    Once the cognitive engines are live and archetypal_weights are populated
+reports/perfect_weight/03_code_data_map.md:553:src/data-layer/ingestion-buffer/readme_docs/tier_3_checkpoints/140__NOS_Master_Diagnostic.txt:1284:src/components/layers/panel/SystemTab.tsx:56:            onClick={() => setHyperlinksEnabled(!hyperlinksEnabled)}
+reports/perfect_weight/03_code_data_map.md:559:src/data-layer/ingestion-buffer/readme_docs/tier_3_checkpoints/154__Project_Checkpoint_2.txt:104:First thing I'm noticing is my meggido photos of showing up at the end of chapter 7 whereas Dan is walking through that City in the beginning and the flied show up in the beginning of the chapter 7 when Ben doesn't see the flies until about the end of the chapter so I'm wondering why that logic is backwards it's not hard to coated or those photos should begin right there for it's in the brain's logic so why is it reading it wrong? Also the menu doesn't have all the features and functions are supposed to be the hyperlinks within the text biblical references within the text and then also a search of just the text from just going to be a future for me to search all 181 nodes for the reader that you can only read or search the chapters or at least all of the chapters in g raw drive but cannot search protocol documents or compendiums or synopsis for example. I'm also thinking that my layer number 4 needs to be changed? It's altering words but it doesn't make any sense the way it's altering it's only putting words bold and then moving them it's not actually squeezing the word squeeze and making it smaller it's not actually making the word fall fall fall off the page it's not actually reading the meaning of each word based off of The Narrative is it even pulling the compendium and the synopsis from my g raw drive? Is it pulling the EMa for my manifest out chasing with my XML data? What what I'm in visioning is oh also it's supposed to the water supposed to fade in and out but I mean by that is think like Star wars the Star wars main theme how the words of the come up from the bottom of the page and so they start to become clear and unless they go up and over the top of the page they fade out that's what it's supposed to be as the reader is scrolling to read and as there's going to read as the word start to become go from a blurry state to a clear State meaning it's in the focal point of the page or at least around where the person is touching the page on a mobile device cuz that would technically be rather where they are reading those then the words would actually start to change in real time not just stay in static change state but I want to actually when I see when I read the word fall I want it to literally fall off the page fall down when I read the word squeeze I don't want to see that it squeezed beforehand I want to actually watch it squeezed out there the word long could actually be elongated while I'm reading it the word stretch could actually literally be stretched but it also needs to understand the narrative you see because my whole book is based off of archetypes dualism parallelism so for example I talked about Green pastures in chapters 1 through 9 when in chapters 10 through 17 the people in those who see the pastor the same pastors as gray because it's it's opposite so sometimes words are completely opposites on you that's why I need to understand the narrative Arc and you can only do that if it's reading from the compendium and new synopsis and from the actual pros and XML data from my EMA manifestation and I don't want to wrap these into constraints you know these are all examples when I mention any words and how they could move face off of the weight that it puts it needs to be an open-ended so that whatever the intelligent run time I think thinks a word should do based off of the role that it plays in the story it needs to feel free to do whatever it can. So back to the menu it should be showing at least five things: 1) Hyperlinks(parallelisms & Dualisms ( like the Bible every verse is a reflection of another and so is my book so there must be an interactable graph or map that you can play around with almost like a game where you can see or a visual representation of the hyperlinks that exists between or in the book really like that rainbow one that someone made for the Bible) 2: biblical references (not just a list of biblical references but an interactable directory that is engaging and visual that shows what biblical references like like when the giant Rafa for example these are just examples don't hard to code these who has six fingers on each hand and six fingers on each toe see that's already a biblical reference! I need a way for the reader to be able to see these visually. Another example would be things that the see you can't string for these you have to be intelligent and read the narrative and understand it but that's why I'm creating this run time when I mentioned the dreamscape when I say that it's void and but teeming with potential as things must have been when the first word of Truth was spoken I'm quoting straight from Genesis 1 right? That would be in the biblical references. In later chapters if I alluded to something that is the opposite of void that is the an abundance of things like the land of milk and honey (biblical reference), but it has absolutely no potential then that should be a hyperlink and biblical reference  and dualism. 4: Archetypes (a guide to jungian archetypes and an interactive directory and showcase of the use case of his archetypes within the story and vice versa 5) 5 should be a an object that when you click on that will be just for me for that when I go into the application it will request a password and username or just a pin whatever is easiest and this will allow me to enter the other features but it won't allow other people to don't enter in that information. The features and functions that will appear to me on number 5 will be: all of the engines! Including the writing agent which is going to just be a, as a side feature a writing agent that allows me to compose the rest of the chapters. And any other engines that you see.
+reports/perfect_weight/03_code_data_map.md:600:src/data-layer/ingestion-buffer/readme_docs/later_queue/174__REFINED_LORE_SINGULARITY.txt:5499:The following nouns and concepts MUST be rendered in bold text to create the subtle, cross-referenced 'hyperlinks' across the text.
+reports/perfect_weight/03_code_data_map.md:656:src/data-layer/ingestion-buffer/readme_docs/later_queue/174__REFINED_LORE_SINGULARITY.txt:14009:To create the "hyperlinks" between chapters, the following specific nouns and phrases MUST be rendered in bold text. These are the key conceptual anchors that subtly link Dan's actions to the overarching themes of ascent, sacrifice, chaos, and rebirth.
+reports/perfect_weight/03_code_data_map.md:723:src/data-layer/ingestion-buffer/readme_docs/later_queue/174__REFINED_LORE_SINGULARITY.txt:26629:To create the "hyperlinks" between chapters, the following specific nouns and phrases MUST be rendered in bold text. These are the key conceptual anchors that subtly link Dan's actions to the overarching themes of ascent, sacrifice, chaos, and rebirth.
+reports/perfect_weight/03_code_data_map.md:786:src/data-layer/ingestion-buffer/readme_docs/later_queue/174__REFINED_LORE_SINGULARITY.txt:43829:Every chapter must reflect every other chapter like the biblical corpus. These hyperlinks must be present but NEVER direct quotations. Allude, echo, invert, mirror:
+reports/perfect_weight/03_code_data_map.md:788:src/data-layer/ingestion-buffer/readme_docs/later_queue/174__REFINED_LORE_SINGULARITY.txt:43918:7. Cross-chapter hyperlinks should be audited each pass
+reports/perfect_weight/03_code_data_map.md:839:docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:5499:The following nouns and concepts MUST be rendered in bold text to create the subtle, cross-referenced 'hyperlinks' across the text.
+reports/perfect_weight/03_code_data_map.md:895:docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:14009:To create the "hyperlinks" between chapters, the following specific nouns and phrases MUST be rendered in bold text. These are the key conceptual anchors that subtly link Dan's actions to the overarching themes of ascent, sacrifice, chaos, and rebirth.
+reports/perfect_weight/03_code_data_map.md:962:docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:26629:To create the "hyperlinks" between chapters, the following specific nouns and phrases MUST be rendered in bold text. These are the key conceptual anchors that subtly link Dan's actions to the overarching themes of ascent, sacrifice, chaos, and rebirth.
+reports/perfect_weight/03_code_data_map.md:1025:docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:43829:Every chapter must reflect every other chapter like the biblical corpus. These hyperlinks must be present but NEVER direct quotations. Allude, echo, invert, mirror:
+reports/perfect_weight/03_code_data_map.md:1027:docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt:43918:7. Cross-chapter hyperlinks should be audited each pass
+reports/perfect_weight/03_code_data_map.md:1045:src/runtime/listeners/distortionListener.ts:104:    const weights = data?.archetypal_weights as ArchetypalWeights | undefined;
+reports/perfect_weight/03_code_data_map.md:1046:src/runtime/listeners/thematicListener.ts:69:    const weights = data?.archetypal_weights as ArchetypalWeights | undefined;
+reports/perfect_weight/03_code_data_map.md:1050:supabase/migrations/20260521000000_initial_schema.sql:24:    archetypal_weights JSONB DEFAULT '{}'::jsonb, -- shadow, persona, anima, self, hero
+reports/perfect_weight/03_code_data_map.md:1051:supabase/migrations/20260521000000_initial_schema.sql:25:    dualism_map JSONB DEFAULT '{}'::jsonb, -- sacred vs descent
+reports/perfect_weight/03_code_data_map.md:1052:supabase/migrations/20260521000000_initial_schema.sql:26:    hebrew_spans JSONB DEFAULT '[]'::jsonb, -- System 12: Hebrew Typography spans
+reports/perfect_weight/03_code_data_map.md:1053:supabase/migrations/20260521000000_initial_schema.sql:32:CREATE TABLE biblical_references (
+reports/perfect_weight/03_code_data_map.md:1057:supabase/migrations/20260521000000_initial_schema.sql:45:ALTER TABLE biblical_references ENABLE ROW LEVEL SECURITY;
+reports/perfect_weight/03_code_data_map.md:1060:supabase/migrations/20260521000000_initial_schema.sql:50:CREATE POLICY "Allow public read-only access to biblical references" ON biblical_references FOR SELECT USING (true);
+reports/perfect_weight/03_code_data_map.md:1063:supabase/migrations/20260521000000_initial_schema.sql:56:CREATE POLICY "Allow public read-only access to biblical references" ON biblical_references FOR SELECT USING (true);
+reports/perfect_weight/03_code_data_map.md:1065:supabase/migrations/20260521000001_vector_search.sql:11:  archetypal_weights jsonb,
+reports/perfect_weight/03_code_data_map.md:1066:supabase/migrations/20260521000001_vector_search.sql:12:  dualism_map jsonb,
+reports/perfect_weight/03_code_data_map.md:1070:supabase/migrations/20260521000001_vector_search.sql:23:    paragraphs.archetypal_weights,
+reports/perfect_weight/03_code_data_map.md:1071:supabase/migrations/20260521000001_vector_search.sql:24:    paragraphs.dualism_map,
+reports/perfect_weight/03_code_data_map.md:1076:supabase/migrations/20260602000000_phase1_sync.sql:2:-- Ensure hyperlinks table exists
+reports/perfect_weight/03_code_data_map.md:1077:supabase/migrations/20260602000000_phase1_sync.sql:3:CREATE TABLE IF NOT EXISTS hyperlinks (
+reports/perfect_weight/03_code_data_map.md:1081:supabase/migrations/20260602000000_phase1_sync.sql:16:ALTER TABLE biblical_references ENABLE ROW LEVEL SECURITY;
+reports/perfect_weight/03_code_data_map.md:1082:supabase/migrations/20260602000000_phase1_sync.sql:17:ALTER TABLE hyperlinks ENABLE ROW LEVEL SECURITY;
+reports/perfect_weight/03_code_data_map.md:1087:supabase/migrations/20260602000000_phase1_sync.sql:29:        CREATE POLICY "Allow public read-only access to biblical references" ON biblical_references FOR SELECT USING (true);
+reports/perfect_weight/03_code_data_map.md:1088:supabase/migrations/20260602000000_phase1_sync.sql:31:    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Allow public read-only access to hyperlinks') THEN
+reports/perfect_weight/03_code_data_map.md:1089:supabase/migrations/20260602000000_phase1_sync.sql:32:        CREATE POLICY "Allow public read-only access to hyperlinks" ON hyperlinks FOR SELECT USING (true);
+reports/perfect_weight/03_code_data_map.md:1091:scripts/data-lineage-audit.sh:28:  -E "biblical_references|hyperlinks|archetype|parallelism|dualism|No biblical references|No archetype|0 nodes|0 connections" \
+reports/perfect_weight/03_code_data_map.md:1094:scripts/perfect_weight/00_generate_perfection_scripts.py:122:    "archetypal_weights\|dualism_map\|hebrew_spans\|biblical_references\|hyperlinks\|paragraphs\|chapters" \
+reports/perfect_weight/03_code_data_map.md:1097:scripts/perfect_weight/00_generate_perfection_scripts.py:223:    union all select 'biblical_references=' || count(*) from public.biblical_references
+reports/perfect_weight/03_code_data_map.md:1098:scripts/perfect_weight/00_generate_perfection_scripts.py:224:    union all select 'hyperlinks=' || count(*) from public.hyperlinks;
+reports/perfect_weight/03_code_data_map.md:1099:scripts/perfect_weight/00_generate_perfection_scripts.py:229:    select 'has_archetypal_weights=' || count(*) from public.paragraphs where archetypal_weights <> '{}'::jsonb
+reports/perfect_weight/03_code_data_map.md:1100:scripts/perfect_weight/00_generate_perfection_scripts.py:230:    union all select 'has_dualism_map=' || count(*) from public.paragraphs where dualism_map <> '{}'::jsonb
+reports/perfect_weight/03_code_data_map.md:1101:scripts/perfect_weight/00_generate_perfection_scripts.py:231:    union all select 'has_hebrew_spans=' || count(*) from public.paragraphs where hebrew_spans <> '[]'::jsonb
+reports/perfect_weight/03_code_data_map.md:1104:scripts/perfect_weight/00_generate_perfection_scripts.py:253:fields = ["archetypal_weights", "dualism_map", "hebrew_spans", "metadata", "biblical_references", "hyperlinks", "paragraphs", "chapters"]
+reports/perfect_weight/03_code_data_map.md:1105:scripts/perfect_weight/00_generate_perfection_scripts.py:322:"Backfill hyperlinks only after mapping dualism_map shape.",
+reports/perfect_weight/03_code_data_map.md:1106:scripts/perfect_weight/00_generate_perfection_scripts.py:335:"Make graph panel degrade gracefully when hyperlinks table is empty.",
+reports/perfect_weight/03_code_data_map.md:1110:scripts/perfect_weight/03_code_data_map.sh:21:    "archetypal_weights\|dualism_map\|hebrew_spans\|biblical_references\|hyperlinks\|paragraphs\|chapters" \
+reports/perfect_weight/03_code_data_map.md:1113:scripts/perfect_weight/06_supabase_snapshot.sh:30:    union all select 'biblical_references=' || count(*) from public.biblical_references
+reports/perfect_weight/03_code_data_map.md:1114:scripts/perfect_weight/06_supabase_snapshot.sh:31:    union all select 'hyperlinks=' || count(*) from public.hyperlinks;
+reports/perfect_weight/03_code_data_map.md:1115:scripts/perfect_weight/06_supabase_snapshot.sh:36:    select 'has_archetypal_weights=' || count(*) from public.paragraphs where archetypal_weights <> '{}'::jsonb
+reports/perfect_weight/03_code_data_map.md:1116:scripts/perfect_weight/06_supabase_snapshot.sh:37:    union all select 'has_dualism_map=' || count(*) from public.paragraphs where dualism_map <> '{}'::jsonb
+reports/perfect_weight/03_code_data_map.md:1117:scripts/perfect_weight/06_supabase_snapshot.sh:38:    union all select 'has_hebrew_spans=' || count(*) from public.paragraphs where hebrew_spans <> '[]'::jsonb
+reports/perfect_weight/03_code_data_map.md:1120:scripts/perfect_weight/07_panel_truth_audit.py:16:fields = ["archetypal_weights", "dualism_map", "hebrew_spans", "metadata", "biblical_references", "hyperlinks", "paragraphs", "chapters"]
+reports/perfect_weight/03_code_data_map.md:1121:scripts/perfect_weight/08_next_100_actions.py:47:"Backfill hyperlinks only after mapping dualism_map shape.",
+reports/perfect_weight/03_code_data_map.md:1122:scripts/perfect_weight/08_next_100_actions.py:60:"Make graph panel degrade gracefully when hyperlinks table is empty.",
+reports/perfect_weight/06_supabase_snapshot.md:9:biblical_references=0
+reports/perfect_weight/06_supabase_snapshot.md:10:hyperlinks=0
+reports/perfect_weight/06_supabase_snapshot.md:13:has_archetypal_weights=3742
+reports/perfect_weight/06_supabase_snapshot.md:14:has_dualism_map=3742
+reports/perfect_weight/06_supabase_snapshot.md:15:has_hebrew_spans=966
+reports/perfect_weight/07_panel_truth_audit.md:4:- Present fields: ['archetypal_weights', 'dualism_map', 'hebrew_spans', 'metadata', 'paragraphs', 'chapters']
+reports/perfect_weight/07_panel_truth_audit.md:17:  - L42: `SELECT id, content, chunk_index, archetypal_weights, dualism_map, hebrew_spans, metadata
+reports/perfect_weight/07_panel_truth_audit.md:20:  - L58: archetypal_weights: p.archetypal_weights,
+reports/perfect_weight/07_panel_truth_audit.md:21:  - L59: dualism_map: p.dualism_map,
+reports/perfect_weight/07_panel_truth_audit.md:22:  - L60: hebrew_spans: p.hebrew_spans,
+reports/perfect_weight/07_panel_truth_audit.md:26:- Present fields: ['biblical_references', 'paragraphs', 'chapters']
+reports/perfect_weight/07_panel_truth_audit.md:29:  - L26: .select('*, biblical_references(*), chapters(part_number, chapter_number)')
+reports/perfect_weight/07_panel_truth_audit.md:32:- Present fields: ['biblical_references']
+reports/perfect_weight/07_panel_truth_audit.md:34:  - L7: `SELECT * FROM biblical_references ORDER BY book ASC, chapter ASC, verse ASC`
+reports/perfect_weight/07_panel_truth_audit.md:37:- Present fields: ['dualism_map', 'hyperlinks', 'paragraphs']
+reports/perfect_weight/07_panel_truth_audit.md:41:  - L8: `SELECT id, content, dualism_map, chapter_id
+reports/perfect_weight/07_panel_truth_audit.md:43:  - L10: WHERE dualism_map IS NOT NULL AND dualism_map != '{}'::jsonb`
+reports/perfect_weight/07_panel_truth_audit.md:44:  - L13: // Also fetch explicit hyperlinks/dualisms
+reports/perfect_weight/07_panel_truth_audit.md:45:  - L14: const { rows: hyperlinks } = await query(
+reports/perfect_weight/07_panel_truth_audit.md:46:  - L16: FROM hyperlinks`
+reports/perfect_weight/07_panel_truth_audit.md:48:  - L21: hyperlinks
+reports/perfect_weight/07_panel_truth_audit.md:51:- Present fields: ['archetypal_weights', 'dualism_map', 'hebrew_spans']
+reports/perfect_weight/07_panel_truth_audit.md:53:  - L37: archetypal_weights?: any;
+reports/perfect_weight/07_panel_truth_audit.md:54:  - L38: dualism_map?: any;
+reports/perfect_weight/07_panel_truth_audit.md:55:  - L39: hebrew_spans?: any[];
+reports/perfect_weight/07_panel_truth_audit.md:56:  - L86: const weights = block?.archetypal_weights || {};
+reports/perfect_weight/07_panel_truth_audit.md:57:  - L87: const dualisms = block?.dualism_map || {};
+reports/perfect_weight/07_panel_truth_audit.md:58:  - L142: weights: typeof block === "string" ? {} : block?.archetypal_weights || {},
+reports/perfect_weight/07_panel_truth_audit.md:59:  - L143: dualisms: typeof block === "string" ? {} : block?.dualism_map || {},
+reports/perfect_weight/07_panel_truth_audit.md:67:- Present fields: ['dualism_map', 'hyperlinks', 'paragraphs']
+reports/perfect_weight/07_panel_truth_audit.md:69:  - L6: type Node = { id: string; content: string; dualism_map: any; chapter_id?: string };
+reports/perfect_weight/07_panel_truth_audit.md:72:  - L20: const rawLinks = d.hyperlinks || [];
+reports/perfect_weight/07_panel_truth_audit.md:73:  - L25: dualism_map: n.dualism_map || {},
+reports/perfect_weight/07_panel_truth_audit.md:74:  - L42: if (keys.some(k => (nodes[i].dualism_map?.[k] || 0) > 0.4 &&
+reports/perfect_weight/07_panel_truth_audit.md:75:  - L43: (nodes[j].dualism_map?.[k] || 0) > 0.4)) {
+reports/perfect_weight/07_panel_truth_audit.md:76:  - L91: const m = d.dualism_map || {};
+reports/perfect_weight/07_panel_truth_audit.md:79:- Present fields: ['archetypal_weights', 'paragraphs', 'chapters']
+reports/perfect_weight/07_panel_truth_audit.md:81:  - L5: type P = { id: string; content: string; chapter_number?: number; archetypal_weights?: any };
+reports/perfect_weight/07_panel_truth_audit.md:84:  - L21: setPs(raw.filter((p: any) => p && p.archetypal_weights && Object.keys(p.archetypal_weights).length > 0));
+reports/perfect_weight/07_panel_truth_audit.md:87:  - L71: const d = dom(p.archetypal_weights);
+reports/perfect_weight/08_next_100_actions.md:23:018. Create source-file hashes so later edits are detectable.
+reports/perfect_weight/08_next_100_actions.md:45:036. Backfill hyperlinks only after mapping dualism_map shape.
+reports/perfect_weight/08_next_100_actions.md:46:037. Backfill biblical references only after confirming extraction rules.
+reports/perfect_weight/08_next_100_actions.md:58:047. Make graph panel degrade gracefully when hyperlinks table is empty.
+reports/perfect_weight/08_next_100_actions.md:59:048. Make biblical references panel distinguish unindexed from none found.
+reports/perfect_weight/08_next_100_actions.md:82:067. Create checksum-based duplicate detection.
+reports/xml_recovery/materialized_ooxml_manifest.json:8:    "sha256": "70100a2bc0a6ff5fcce135d1b8ab0d9f108c4cdd39ead3ce88eda6ca2b6d7581"
+reports/xml_recovery/materialized_ooxml_manifest.json:16:    "sha256": "1cc87395d4a229f21c23af406724de12dd9454071925f983e4b648a7b2be8cc5"
+reports/xml_recovery/materialized_ooxml_manifest.json:24:    "sha256": "2f88ba313d7d77c73d3737c12338686a29f13f029e69a783e026da83a7dd891c"
+reports/xml_recovery/materialized_ooxml_manifest.json:32:    "sha256": "7d47f296e57e31b2b1dfc8975eaea4f3280bba5b11f24db9206b3c04889ffd90"
+reports/xml_recovery/materialized_ooxml_manifest.json:40:    "sha256": "826eb12279bc8d6e0e5739bf49ddee0b46e9613f9997650c502626fd8c8ac998"
+reports/xml_recovery/materialized_ooxml_manifest.json:48:    "sha256": "d2a3e08465525eee874ea10d780540816951a37b115e90f1cd56aefdd76adc2e"
+reports/xml_recovery/materialized_ooxml_manifest.json:56:    "sha256": "26f2853fde05b88d4b0a9da0bb016d56a896901f60c9272dddf33c3f3fa61e4a"
+reports/xml_recovery/materialized_ooxml_manifest.json:64:    "sha256": "a87a72b0775935f9723642f7678c4e9d51dd74e2ff64f037f3c68911ce68066c"
+reports/xml_recovery/materialized_ooxml_manifest.json:72:    "sha256": "b2295d3198893d2c03f5e584c749a15751b798aefdcd9bee2889f13903d68cb2"
+reports/xml_recovery/materialized_ooxml_manifest.json:80:    "sha256": "8a875455da6f1e077ea4a44be6536c9f5057845cd41b7c14b37b1a237bad36be"
+reports/xml_recovery/materialized_ooxml_manifest.json:88:    "sha256": "1cc87395d4a229f21c23af406724de12dd9454071925f983e4b648a7b2be8cc5"
+reports/xml_recovery/materialized_ooxml_manifest.json:96:    "sha256": "2f88ba313d7d77c73d3737c12338686a29f13f029e69a783e026da83a7dd891c"
+reports/xml_recovery/materialized_ooxml_manifest.json:104:    "sha256": "79ba5c79ea0f8e4d77c92a759eefce42ee06d0fdb3f3243a3577f6dcfd84ed10"
+reports/xml_recovery/materialized_ooxml_manifest.json:112:    "sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd"
+reports/xml_recovery/materialized_ooxml_manifest.json:120:    "sha256": "9cece881a0b06cf3e77815a4cd59e5ef971cd967092233cd273e259e8c5b4f11"
+reports/xml_recovery/materialized_ooxml_manifest.json:128:    "sha256": "de63ed50dac64b7bc5708c75a5d052add9cc9b2330a0294cd58be459702ac13f"
+reports/xml_recovery/materialized_ooxml_manifest.json:136:    "sha256": "1674c6a0b574dfcdac66d905dcc0562ba9b7c5ffcabf12e999719ea76707cb28"
+reports/xml_recovery/materialized_ooxml_manifest.json:144:    "sha256": "af4af643a0ea6c1fbcb02c1ea365ae738827edbbfe0b6127d1bffc162ed3aeb2"
+reports/xml_recovery/materialized_ooxml_manifest.json:152:    "sha256": "50132dd1d104e0a0e508854396b2d96f33796b6e0be424d80be565cfbdd2a359"
+reports/xml_recovery/materialized_ooxml_manifest.json:160:    "sha256": "d2a3e08465525eee874ea10d780540816951a37b115e90f1cd56aefdd76adc2e"
+reports/xml_recovery/materialized_ooxml_manifest.json:168:    "sha256": "26f2853fde05b88d4b0a9da0bb016d56a896901f60c9272dddf33c3f3fa61e4a"
+reports/xml_recovery/materialized_ooxml_manifest.json:176:    "sha256": "95c621fb70b599179afe9d98df156da3b85e02353476c8e0c01e53ba50a250af"
+reports/xml_recovery/materialized_ooxml_manifest.json:184:    "sha256": "b2295d3198893d2c03f5e584c749a15751b798aefdcd9bee2889f13903d68cb2"
+reports/xml_recovery/materialized_ooxml_manifest.json:192:    "sha256": "8a875455da6f1e077ea4a44be6536c9f5057845cd41b7c14b37b1a237bad36be"
+reports/xml_recovery/materialized_ooxml_manifest.json:200:    "sha256": "1cc87395d4a229f21c23af406724de12dd9454071925f983e4b648a7b2be8cc5"
+reports/xml_recovery/materialized_ooxml_manifest.json:208:    "sha256": "2f88ba313d7d77c73d3737c12338686a29f13f029e69a783e026da83a7dd891c"
+reports/xml_recovery/materialized_ooxml_manifest.json:216:    "sha256": "79ba5c79ea0f8e4d77c92a759eefce42ee06d0fdb3f3243a3577f6dcfd84ed10"
+reports/xml_recovery/materialized_ooxml_manifest.json:224:    "sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0"
+reports/xml_recovery/materialized_ooxml_manifest.json:232:    "sha256": "419c83402ff9137e2689784d7cc42e684b804ab8cfc7503018e57513668ac100"
+reports/xml_recovery/materialized_ooxml_manifest.json:240:    "sha256": "de63ed50dac64b7bc5708c75a5d052add9cc9b2330a0294cd58be459702ac13f"
+reports/xml_recovery/materialized_ooxml_manifest.json:248:    "sha256": "1674c6a0b574dfcdac66d905dcc0562ba9b7c5ffcabf12e999719ea76707cb28"
+reports/xml_recovery/materialized_ooxml_manifest.json:256:    "sha256": "af4af643a0ea6c1fbcb02c1ea365ae738827edbbfe0b6127d1bffc162ed3aeb2"
+reports/xml_recovery/materialized_ooxml_manifest.json:264:    "sha256": "50132dd1d104e0a0e508854396b2d96f33796b6e0be424d80be565cfbdd2a359"
+reports/xml_recovery/materialized_ooxml_manifest.json:272:    "sha256": "d2a3e08465525eee874ea10d780540816951a37b115e90f1cd56aefdd76adc2e"
+reports/xml_recovery/materialized_ooxml_manifest.json:280:    "sha256": "26f2853fde05b88d4b0a9da0bb016d56a896901f60c9272dddf33c3f3fa61e4a"
+reports/xml_recovery/materialized_ooxml_manifest.json:288:    "sha256": "a87a72b0775935f9723642f7678c4e9d51dd74e2ff64f037f3c68911ce68066c"
+reports/xml_recovery/materialized_ooxml_manifest.json:296:    "sha256": "b2295d3198893d2c03f5e584c749a15751b798aefdcd9bee2889f13903d68cb2"
+reports/xml_recovery/materialized_ooxml_manifest.json:304:    "sha256": "8a875455da6f1e077ea4a44be6536c9f5057845cd41b7c14b37b1a237bad36be"
+reports/xml_recovery/materialized_ooxml_manifest.json:312:    "sha256": "1cc87395d4a229f21c23af406724de12dd9454071925f983e4b648a7b2be8cc5"
+reports/xml_recovery/materialized_ooxml_manifest.json:320:    "sha256": "2f88ba313d7d77c73d3737c12338686a29f13f029e69a783e026da83a7dd891c"
+reports/xml_recovery/materialized_ooxml_manifest.json:328:    "sha256": "79ba5c79ea0f8e4d77c92a759eefce42ee06d0fdb3f3243a3577f6dcfd84ed10"
+reports/xml_recovery/materialized_ooxml_manifest.json:336:    "sha256": "4c43f128801df7d839bd5fda91fc148c0068a06a98530bf1c45d5fd004db3bcf"
+reports/xml_recovery/materialized_ooxml_manifest.json:344:    "sha256": "419c83402ff9137e2689784d7cc42e684b804ab8cfc7503018e57513668ac100"
+reports/xml_recovery/materialized_ooxml_manifest.json:352:    "sha256": "de63ed50dac64b7bc5708c75a5d052add9cc9b2330a0294cd58be459702ac13f"
+reports/xml_recovery/materialized_ooxml_manifest.json:360:    "sha256": "1674c6a0b574dfcdac66d905dcc0562ba9b7c5ffcabf12e999719ea76707cb28"
+reports/xml_recovery/materialized_ooxml_manifest.json:368:    "sha256": "af4af643a0ea6c1fbcb02c1ea365ae738827edbbfe0b6127d1bffc162ed3aeb2"
+reports/xml_recovery/materialized_ooxml_manifest.json:376:    "sha256": "50132dd1d104e0a0e508854396b2d96f33796b6e0be424d80be565cfbdd2a359"
+reports/xml_recovery/materialized_ooxml_manifest.json:384:    "sha256": "d2a3e08465525eee874ea10d780540816951a37b115e90f1cd56aefdd76adc2e"
+reports/xml_recovery/materialized_ooxml_manifest.json:392:    "sha256": "26f2853fde05b88d4b0a9da0bb016d56a896901f60c9272dddf33c3f3fa61e4a"
+reports/xml_recovery/materialized_ooxml_manifest.json:400:    "sha256": "a87a72b0775935f9723642f7678c4e9d51dd74e2ff64f037f3c68911ce68066c"
+reports/xml_recovery/materialized_ooxml_manifest.json:408:    "sha256": "b2295d3198893d2c03f5e584c749a15751b798aefdcd9bee2889f13903d68cb2"
+reports/xml_recovery/materialized_ooxml_manifest.json:416:    "sha256": "8a875455da6f1e077ea4a44be6536c9f5057845cd41b7c14b37b1a237bad36be"
+reports/xml_recovery/materialized_ooxml_manifest.json:424:    "sha256": "1cc87395d4a229f21c23af406724de12dd9454071925f983e4b648a7b2be8cc5"
+reports/xml_recovery/materialized_ooxml_manifest.json:432:    "sha256": "2f88ba313d7d77c73d3737c12338686a29f13f029e69a783e026da83a7dd891c"
+reports/xml_recovery/materialized_ooxml_manifest.json:440:    "sha256": "79ba5c79ea0f8e4d77c92a759eefce42ee06d0fdb3f3243a3577f6dcfd84ed10"
+reports/xml_recovery/materialized_ooxml_manifest.json:448:    "sha256": "05cffb295e9a217dc9e9eaf4101bddeceac6bf2dee41b9fbf5b7db13c47c9746"
+reports/xml_recovery/materialized_ooxml_manifest.json:456:    "sha256": "419c83402ff9137e2689784d7cc42e684b804ab8cfc7503018e57513668ac100"
+reports/xml_recovery/materialized_ooxml_manifest.json:464:    "sha256": "de63ed50dac64b7bc5708c75a5d052add9cc9b2330a0294cd58be459702ac13f"
+reports/xml_recovery/materialized_ooxml_manifest.json:472:    "sha256": "1674c6a0b574dfcdac66d905dcc0562ba9b7c5ffcabf12e999719ea76707cb28"
+reports/xml_recovery/materialized_ooxml_manifest.json:480:    "sha256": "af4af643a0ea6c1fbcb02c1ea365ae738827edbbfe0b6127d1bffc162ed3aeb2"
+reports/xml_recovery/materialized_ooxml_manifest.json:488:    "sha256": "50132dd1d104e0a0e508854396b2d96f33796b6e0be424d80be565cfbdd2a359"
+reports/xml_recovery/materialized_ooxml_manifest.json:496:    "sha256": "d2a3e08465525eee874ea10d780540816951a37b115e90f1cd56aefdd76adc2e"
+reports/xml_recovery/materialized_ooxml_manifest.json:504:    "sha256": "26f2853fde05b88d4b0a9da0bb016d56a896901f60c9272dddf33c3f3fa61e4a"
+reports/xml_recovery/materialized_ooxml_manifest.json:512:    "sha256": "a87a72b0775935f9723642f7678c4e9d51dd74e2ff64f037f3c68911ce68066c"
+reports/xml_recovery/materialized_ooxml_manifest.json:520:    "sha256": "b2295d3198893d2c03f5e584c749a15751b798aefdcd9bee2889f13903d68cb2"
+reports/xml_recovery/materialized_ooxml_manifest.json:528:    "sha256": "8a875455da6f1e077ea4a44be6536c9f5057845cd41b7c14b37b1a237bad36be"
+reports/xml_recovery/materialized_ooxml_manifest.json:536:    "sha256": "1cc87395d4a229f21c23af406724de12dd9454071925f983e4b648a7b2be8cc5"
+reports/xml_recovery/materialized_ooxml_manifest.json:544:    "sha256": "2f88ba313d7d77c73d3737c12338686a29f13f029e69a783e026da83a7dd891c"

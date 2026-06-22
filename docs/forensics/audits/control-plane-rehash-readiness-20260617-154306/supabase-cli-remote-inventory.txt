@@ -1,0 +1,14 @@
+## supabase projects
+supabase projects list unavailable
+
+## linked project
+supabase status unavailable
+
+## deployed functions
+supabase functions list unavailable
+
+## migration status
+supabase migration list unavailable
+
+## function secret names only
+supabase secrets list unavailable

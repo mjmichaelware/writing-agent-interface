@@ -1,0 +1,59 @@
+{
+  "status": "ok",
+  "task_type": "archetypes",
+  "scene_window_id": "scene_9548c4ef666797a074b5fa4ba76ddd6e",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "0cfb418a2ce2bc157201391694e1ecbe6f929d3d4ade5f3238383e10ca253078",
+  "observations": [
+    {
+      "character": "Dagon",
+      "archetype": "Shadow",
+      "archetype_gloss": "The Shadow represents the unconscious, primal, and often destructive forces within the psyche, embodying regression and chaos.",
+      "movement": "descent",
+      "summary": "Dagon embodies the Shadow archetype as an ancient, crushing presence settling beneath the house, symbolizing the primal, unconscious forces pressing upon the conscious self.",
+      "evidence": [
+        {
+          "render_para_key": "rp_9153a95fc1d13b36a9ee8e6fd77631fd",
+          "quote": "Below his room, the bedrock groaned—a low, grinding claim. Dagon, settling into the earth beneath the house, making his weight known."
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "archetypes",
+      "character": "Dagon",
+      "archetype": "Shadow",
+      "archetype_anchor_key": "jungian_shadow",
+      "archetype_gloss": null,
+      "movement": "descent",
+      "summary": "Dagon embodies the Shadow archetype as an ancient, crushing presence settling beneath the house, symbolizing the primal, unconscious forces pressing upon the conscious self.",
+      "evidence": [
+        {
+          "render_para_key": "rp_9153a95fc1d13b36a9ee8e6fd77631fd",
+          "render_index": 91,
+          "quote": "Below his room, the bedrock groaned—a low, grinding claim. Dagon, settling into the earth beneath the house, making his weight known.",
+          "role": null,
+          "start_char": 20613,
+          "end_char": 20746,
+          "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+          "scene_window_id": "scene_9548c4ef666797a074b5fa4ba76ddd6e",
+          "source_document_xml_sha256": "a3d94dd098c851050edebc3337929bdc24fbd0c617bac52cdecfb426cb691dcd",
+          "source_xml_paragraph_indexes": [
+            181
+          ],
+          "evidence_sha256": "6acd80669110aa1231edbdb2b38c0090e9aed869f6887adc6c19301bba3dd108"
+        }
+      ],
+      "confidence": 0.95,
+      "unresolved_subject": false
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "380f75f31f4365808b016b475760666e8d068c80befbea4de03be229ebaa5387",
+  "normalized_output_hash": "96d91ec5640700b461564d35811502e43ee74a29ee7bc366edc673a4804ac065"
+}

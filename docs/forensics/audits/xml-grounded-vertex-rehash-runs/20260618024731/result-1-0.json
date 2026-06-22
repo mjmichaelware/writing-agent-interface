@@ -1,0 +1,26 @@
+{
+  "paragraphs": [
+    {
+      "paragraph_id": "007fdf90-65e2-46e6-82ca-5e774e5e2614",
+      "content_sha256": "52172c9486316d12d8a536865583dbbad274c942ee357132afc852cf32e8d68f",
+      "archetypal_weights": {
+        "shadow": 0,
+        "self": 0
+      },
+      "dualism_map": {
+        "ascent_descent": 0
+      },
+      "metadata": {
+        "summary": "A structural heading from a meta-document about the book's construction.",
+        "semantic_notes": [
+          "This paragraph is a category heading from a document outlining revision prompts or rules, not narrative prose from the story. It has no direct semantic content related to the plot, characters, or themes of 'The Weight of the Sky'."
+        ]
+      },
+      "archetype_observations": [],
+      "biblical_references": [],
+      "derived_hyperlinks": []
+    }
+  ],
+  "dualism_relations": [],
+  "archetype_movements": []
+}

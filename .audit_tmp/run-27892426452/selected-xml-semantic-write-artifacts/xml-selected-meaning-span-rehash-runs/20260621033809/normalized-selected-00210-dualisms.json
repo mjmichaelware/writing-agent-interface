@@ -1,0 +1,99 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_47267c8168fc8bc34c556b2ca3d3fec9",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "01a2f921b2b04ff9a3d9e018db5fd10129a5c226cb79b12fc84582ee3737cbad",
+  "observations": [
+    {
+      "axis": "Temperature and Time of Day",
+      "polarity": "Cool dawn vs. Pressing midmorning heat",
+      "summary": "The passage contrasts the coolness of dawn with the intense heat of midmorning, highlighting a shift in environmental conditions that affects the character physically.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_431b9c97d2966d5a08fd2a77ec170fa7",
+          "quote": "By midmorning, the cool of dawn was a distant memory"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_431b9c97d2966d5a08fd2a77ec170fa7",
+          "quote": "replaced by the thick, pressing heat that made the air shimmer and dance above the road"
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_431b9c97d2966d5a08fd2a77ec170fa7",
+          "quote": "The sun rose higher, and with it came the heat"
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "temperature_and_time_of_day",
+      "polarity": "tension",
+      "summary": "The passage contrasts the coolness of dawn with the intense heat of midmorning, highlighting a shift in environmental conditions that affects the character physically.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_431b9c97d2966d5a08fd2a77ec170fa7",
+          "render_index": 117,
+          "quote": "By midmorning, the cool of dawn was a distant memory",
+          "role": "left",
+          "start_char": 14466,
+          "end_char": 14518,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_47267c8168fc8bc34c556b2ca3d3fec9",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            233
+          ],
+          "evidence_sha256": "6aa5fb6eb72e6d300f314e32ada241e217a1bc2f2f1c4b0986adbdf751fbfffd"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_431b9c97d2966d5a08fd2a77ec170fa7",
+          "render_index": 117,
+          "quote": "replaced by the thick, pressing heat that made the air shimmer and dance above the road",
+          "role": "right",
+          "start_char": 14520,
+          "end_char": 14607,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_47267c8168fc8bc34c556b2ca3d3fec9",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            233
+          ],
+          "evidence_sha256": "f164feff3963f05059baf870eab4487b0da0083a84dddd5b9bfa39bd40b45c83"
+        }
+      ],
+      "bridge_evidence": [
+        {
+          "render_para_key": "rp_431b9c97d2966d5a08fd2a77ec170fa7",
+          "render_index": 117,
+          "quote": "The sun rose higher, and with it came the heat",
+          "role": "bridge",
+          "start_char": 14418,
+          "end_char": 14464,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_47267c8168fc8bc34c556b2ca3d3fec9",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            233
+          ],
+          "evidence_sha256": "8cbe4d760b4696b116416f282d11d61913c22c3c7034b4a80fb883a1a42f83a8"
+        }
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "7f28c0cde304c08650faa6527ffa2eed85d82ea859e815a646924935c7430399",
+  "normalized_output_hash": "8f62dc2a130ef16a14dd2a460b4a58de53b009dea155d755a8cf544964705ffc"
+}

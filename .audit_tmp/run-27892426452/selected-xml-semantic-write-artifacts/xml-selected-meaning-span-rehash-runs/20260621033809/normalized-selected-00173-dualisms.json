@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "task_type": "dualisms",
+  "scene_window_id": "scene_19c4b383d4f6bd5f748e3393142c26b3",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "8ffe32833e205fa9bf3a28bee8bc132d857c1188e027233ab428f6992b927260",
+  "observations": [
+    {
+      "axis": "Wealth and Burden",
+      "polarity": "Aviel's heavy shekels as burden vs. Dan's acceptance",
+      "summary": "Aviel's act of pulling out three heavy shekels with a shaking hand contrasts with Dan's reception of this offering, symbolizing the tension between the weight of paternal provision and the son's acceptance of responsibility.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_6d0d7795f5c25f1c866710923dd68e96",
+          "quote": "Aviel reached into his belt and pulled out three heavy shekels. He held them out to Dan, his hand shaking slightly."
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_6d0d7795f5c25f1c866710923dd68e96",
+          "quote": "He held them out to Dan, his hand shaking slightly."
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.8
+    }
+  ],
+  "accepted_observations": [
+    {
+      "task": "dualisms",
+      "axis": "wealth_and_burden",
+      "polarity": "tension",
+      "summary": "Aviel's act of pulling out three heavy shekels with a shaking hand contrasts with Dan's reception of this offering, symbolizing the tension between the weight of paternal provision and the son's acceptance of responsibility.",
+      "left_evidence": [
+        {
+          "render_para_key": "rp_6d0d7795f5c25f1c866710923dd68e96",
+          "render_index": 80,
+          "quote": "Aviel reached into his belt and pulled out three heavy shekels. He held them out to Dan, his hand shaking slightly.",
+          "role": "left",
+          "start_char": 10348,
+          "end_char": 10463,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_19c4b383d4f6bd5f748e3393142c26b3",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            159
+          ],
+          "evidence_sha256": "3919b7a497d00b24c3091f154d033763851640e742bb4c989f2d2b89fd314646"
+        }
+      ],
+      "right_evidence": [
+        {
+          "render_para_key": "rp_6d0d7795f5c25f1c866710923dd68e96",
+          "render_index": 80,
+          "quote": "He held them out to Dan, his hand shaking slightly.",
+          "role": "right",
+          "start_char": 10412,
+          "end_char": 10463,
+          "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+          "scene_window_id": "scene_19c4b383d4f6bd5f748e3393142c26b3",
+          "source_document_xml_sha256": "62d6fa1da11510d5acf29c4ef539697ecab3f51dbc9ab8e4f70349650a6b8eb0",
+          "source_xml_paragraph_indexes": [
+            159
+          ],
+          "evidence_sha256": "b4e7ad81261576c95425fdae60dc1d3351a1abe26e531705f4e208a9751fcd2a"
+        }
+      ],
+      "bridge_evidence": [],
+      "confidence": 0.8
+    }
+  ],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "2c92baf213435c027c1b6c5991e66cb49f42587ac480cd5df6eda715d70370a6",
+  "normalized_output_hash": "ebcc4c962e1d76c340528a55d2511c041fdd9a8883a3a9c8293d31d7a246c251"
+}

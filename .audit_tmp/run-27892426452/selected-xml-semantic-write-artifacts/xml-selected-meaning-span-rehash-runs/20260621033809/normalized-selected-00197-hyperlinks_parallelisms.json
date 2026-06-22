@@ -1,0 +1,15 @@
+{
+  "status": "skipped",
+  "task_type": "hyperlinks_parallelisms",
+  "scene_window_id": "scene_120ea3006de33203dcd6126a1a365d36",
+  "source_doc_id": "srcdoc_37668440e99bb9a2916a71ffc19b1c4c",
+  "context_capsule_sha256": "85f20b2ca66188e053220ea776965981cff8d5079d0f7fdf3700d27cf14873b0",
+  "observations": [],
+  "accepted_observations": [],
+  "rejected_observations": [],
+  "failure_reason": "below_min_chars",
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "225e762caa8cb172d84527d9dafc91d35fa66926b5536689e683325e81945c89",
+  "normalized_output_hash": "a5437416e17d59c127ab391ed5d41f94a4a8a9bad1892be50ae584ba9e3d8c30"
+}

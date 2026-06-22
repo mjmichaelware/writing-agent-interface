@@ -2162,6 +2162,9 @@ async function saveBadAiJson(raw, phase, extra = {}) {
 
 async function callOllamaSync(prompt) {
   const url = `${OLLAMA_BASE_URL}/api/generate`;
+  const timeoutMs = Number(process.env.OLLAMA_TIMEOUT_MS || 600000);
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
   let res;
   try {
     res = await fetch(url, {
@@ -2174,9 +2177,17 @@ async function callOllamaSync(prompt) {
         stream: false,
         options: { temperature: 0 },
       }),
+      signal: controller.signal,
     });
   } catch (err) {
-    throw new Error(`ollama not running at ${OLLAMA_BASE_URL}: ${err.message}`);
+    const isTimeout = err.name === "AbortError";
+    throw new Error(
+      isTimeout
+        ? `ollama not running at ${OLLAMA_BASE_URL}: request timed out after ${timeoutMs}ms`
+        : `ollama not running at ${OLLAMA_BASE_URL}: ${err.message}`
+    );
+  } finally {
+    clearTimeout(timeoutId);
   }
   const rawText = await res.text();
   if (!res.ok) throw new Error(`ollama error (${res.status}): ${rawText.slice(0, 800)}`);

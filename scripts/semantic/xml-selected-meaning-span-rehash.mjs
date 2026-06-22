@@ -153,6 +153,8 @@ const SUPABASE_ACCESS_TOKEN = env("SUPABASE_ACCESS_TOKEN", env("SUPABASE_MANAGEM
 const SUPABASE_PROJECT_REF = env("SUPABASE_PROJECT_REF", "yegricugzqbmoziycfnt");
 const OLLAMA_BASE_URL = env("OLLAMA_BASE_URL", "http://localhost:11434");
 const OLLAMA_MODEL = env("OLLAMA_MODEL", env("SEMANTIC_MODEL", "llama3.2:1b"));
+const OLLAMA_CACHE_PATH = env("OLLAMA_CACHE_PATH", join(ROOT, "docs/forensics/audits/ollama-result-cache.json"));
+const OLLAMA_CONTEXT_CHARS = Number(process.env.OLLAMA_CONTEXT_CHARS || 2400);
 const PROVIDER_MODEL = OLLAMA_MODEL;
 
 function validateSources() {
@@ -2040,13 +2042,46 @@ function buildSourcePacket(window) {
   };
 }
 
+function buildCompactNarrativeContext(contextCapsule) {
+  const parts = [];
+
+  if (contextCapsule.context_pack_excerpt) {
+    parts.push("NARRATIVE OVERVIEW:\n" + clip(contextCapsule.context_pack_excerpt, 500));
+  }
+
+  const topChapters = (contextCapsule.public_chapter_corpus || []).slice(0, 2);
+  if (topChapters.length) {
+    parts.push("RELEVANT CHAPTERS:\n" + topChapters
+      .map((ch) => `Ch.${ch.chapter_number}: ${clip(ch.excerpt, 220)}`)
+      .join("\n"));
+  }
+
+  const sources = (contextCapsule.narrative_protocol_sources || []).slice(0, 2);
+  if (sources.length) {
+    parts.push("NARRATIVE PROTOCOLS:\n" + sources
+      .map((s) => `[${s.role}]: ${clip(s.excerpt, 220)}`)
+      .join("\n"));
+  }
+
+  const subjects = (contextCapsule.subject_resolution_candidates || []).slice(0, 12);
+  if (subjects.length) {
+    parts.push("KNOWN SUBJECTS: " + subjects.map((s) => s.name).join(", "));
+  }
+
+  return clip(parts.join("\n\n"), OLLAMA_CONTEXT_CHARS);
+}
+
 function buildSemanticTaskPrompt({ task, window, contextCapsule }) {
+  const narrativeContext = PROVIDER === "ollama"
+    ? buildCompactNarrativeContext(contextCapsule)
+    : JSON.stringify(contextCapsule, null, 2);
+
   return [
     "You are a semantic analyst, not a JSON/DB row generator.",
     "Return only valid JSON matching the requested schema.",
     "No markdown. No explanation. No extra keys.",
     "Selected XML render paragraphs are source truth.",
-    "Narrative context capsule is interpretive context only, never source truth, but must be used for narrative consistency and subject resolution.",
+    "Narrative context is interpretive context only, never source truth.",
     "",
     `TASK: ${task}`,
     "",
@@ -2059,13 +2094,12 @@ function buildSemanticTaskPrompt({ task, window, contextCapsule }) {
     "- Empty observations are valid.",
     '- Valid empty response is: {"observations":[]}',
     "- Do not force a claim.",
-    "- Use the full narrative cognition capsule for consistency across the local corpus, but never treat context as source evidence.",
     "",
     "SOURCE PACKET:",
     JSON.stringify(buildSourcePacket(window), null, 2),
     "",
-    "NARRATIVE CONTEXT CAPSULE:",
-    JSON.stringify(contextCapsule, null, 2),
+    "NARRATIVE CONTEXT:",
+    narrativeContext,
     "",
     "OUTPUT CONTRACT:",
     JSON.stringify(taskResponseSchema(task), null, 2),
@@ -2160,6 +2194,29 @@ async function saveBadAiJson(raw, phase, extra = {}) {
   return file;
 }
 
+const ollamaResultCache = new Map();
+
+function loadOllamaResultCache() {
+  if (!existsSync(OLLAMA_CACHE_PATH)) return;
+  try {
+    const data = JSON.parse(readFileSync(OLLAMA_CACHE_PATH, "utf8"));
+    for (const [key, val] of Object.entries(data || {})) ollamaResultCache.set(key, val);
+    console.warn(JSON.stringify({ event: "ollama_cache_loaded", entries: ollamaResultCache.size, path: OLLAMA_CACHE_PATH }));
+  } catch {}
+}
+
+function checkOllamaCache(key) {
+  return ollamaResultCache.get(key) ?? null;
+}
+
+function setOllamaCache(key, rawText) {
+  ollamaResultCache.set(key, rawText);
+  try {
+    mkdirSync(join(ROOT, "docs/forensics/audits"), { recursive: true });
+    writeFileSync(OLLAMA_CACHE_PATH, JSON.stringify(Object.fromEntries(ollamaResultCache), null, 2));
+  } catch {}
+}
+
 async function callOllamaSync(prompt) {
   const url = `${OLLAMA_BASE_URL}/api/generate`;
   const timeoutMs = Number(process.env.OLLAMA_TIMEOUT_MS || 600000);
@@ -2201,12 +2258,21 @@ async function callOllamaSync(prompt) {
 }
 
 async function callSemanticProviderSync({ task, prompt, schema }) {
+  const cacheKey = sha256Text(`ollama:${OLLAMA_MODEL}:${prompt}`);
+  const cached = checkOllamaCache(cacheKey);
+  if (cached !== null) {
+    console.warn(JSON.stringify({ event: "ollama_cache_hit", task, key: cacheKey.slice(0, 16) }));
+    return cached;
+  }
+
   const maxRetries = Number(process.env.PROVIDER_RETRY_MAX || 5);
   let lastError = null;
 
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
     try {
-      return await callOllamaSync(prompt);
+      const result = await callOllamaSync(prompt);
+      setOllamaCache(cacheKey, result);
+      return result;
     } catch (error) {
       lastError = error;
       if (!isRetryableProviderError(error) || attempt >= maxRetries) throw error;
@@ -4094,6 +4160,8 @@ async function main() {
   if (importedBatch?.manifest?.provider && importedBatch.manifest.provider !== PROVIDER) {
     throw new Error(`Imported batch manifest provider mismatch: expected ${PROVIDER}, got ${importedBatch.manifest.provider}`);
   }
+
+  loadOllamaResultCache();
 
   const semanticRun = await createSemanticRun(sourceSummary);
 

@@ -2232,6 +2232,7 @@ async function callOllamaSync(prompt) {
         prompt,
         format: "json",
         stream: false,
+        keep_alive: process.env.OLLAMA_KEEP_ALIVE ?? 0,
         options: { temperature: 0 },
       }),
       signal: controller.signal,

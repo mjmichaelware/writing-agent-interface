@@ -80,6 +80,10 @@ jobs:
     env:
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
       SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF || vars.SUPABASE_PROJECT_REF }}
+      # Data-plane: PostgREST REST API for runtime writes (replaces Management API in hot path).
+      # SUPABASE_URL defaults to https://<PROJECT_REF>.supabase.co if not explicitly set.
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
       GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -241,33 +245,50 @@ jobs:
           echo "Model response: $RESPONSE"
           echo "$RESPONSE" | grep -qi "ok" || echo "Warning: smoke test response did not contain OK — model may be slow but continuing"
 
-      - name: Verify Supabase connectivity
+      - name: Verify Supabase data-plane connectivity
         if: ${{ inputs.batch_action == 'sync_write' || inputs.batch_action == 'poll_import' || inputs.batch_action == 'import_results' }}
         shell: bash
         run: |
           set -euo pipefail
 
+          # Resolve data-plane URL (matches script logic)
+          SUPA_URL="${SUPABASE_URL:-}"
+          if [ -z "$SUPA_URL" ] && [ -n "${SUPABASE_PROJECT_REF:-}" ]; then
+            SUPA_URL="https://${SUPABASE_PROJECT_REF}.supabase.co"
+          fi
+          if [ -z "$SUPA_URL" ]; then
+            echo "::error::SUPABASE_URL not set and SUPABASE_PROJECT_REF not set. Cannot verify Supabase data plane."
+            exit 1
+          fi
+
+          SERVICE_KEY="${SUPABASE_SERVICE_ROLE_KEY:-}"
+          if [ -z "$SERVICE_KEY" ]; then
+            echo "::error::SUPABASE_SERVICE_ROLE_KEY not set. Set this secret to enable runtime data-plane writes."
+            exit 1
+          fi
+
+          echo "Checking Supabase data plane: $SUPA_URL/rest/v1/semantic_runs"
           http_code="$(
             curl -sS \
               -o /tmp/supabase_check.json \
               -w "%{http_code}" \
-              -X POST \
-              "https://api.supabase.com/v1/projects/${SUPABASE_PROJECT_REF}/database/query" \
-              --header "Authorization: Bearer ${SUPABASE_ACCESS_TOKEN}" \
-              --header "Content-Type: application/json" \
-              --data '{"query":"select now() as ts, count(*) as run_count from public.semantic_runs"}'
+              -X GET \
+              "${SUPA_URL}/rest/v1/semantic_runs?limit=1&select=id,status,started_at" \
+              --header "apikey: ${SERVICE_KEY}" \
+              --header "Authorization: Bearer ${SERVICE_KEY}" \
+              --header "Accept: application/json"
           )"
 
-          echo "Supabase response:"
-          cat /tmp/supabase_check.json
+          echo "Supabase data-plane response (http_code=$http_code):"
+          cat /tmp/supabase_check.json | head -c 2000
           echo
-          echo "http_code=$http_code"
 
           case "$http_code" in
-            200|201) echo "Supabase Management API reachable" ;;
-            401) echo "::error::SUPABASE_ACCESS_TOKEN rejected (401). Generate a new PAT at supabase.com/dashboard/account/tokens and update the SUPABASE_ACCESS_TOKEN secret."; exit 1 ;;
-            403) echo "::error::SUPABASE_ACCESS_TOKEN lacks permission for project $SUPABASE_PROJECT_REF (403)."; exit 1 ;;
-            *) echo "::error::Supabase returned unexpected http_code=$http_code"; exit 1 ;;
+            200|206) echo "Supabase data plane reachable (PostgREST)" ;;
+            401) echo "::error::SUPABASE_SERVICE_ROLE_KEY rejected (401). Check the SUPABASE_SERVICE_ROLE_KEY secret matches your project."; exit 1 ;;
+            403) echo "::error::SUPABASE_SERVICE_ROLE_KEY lacks permission (403). Ensure it is the service_role key, not an anon key."; exit 1 ;;
+            404) echo "::warning::semantic_runs table not found (404) — migration may be needed. Proceeding." ;;
+            *) echo "::error::Supabase data plane returned unexpected http_code=$http_code. Check SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY."; exit 1 ;;
           esac
 
       - name: Apply selected XML meaning-span migration

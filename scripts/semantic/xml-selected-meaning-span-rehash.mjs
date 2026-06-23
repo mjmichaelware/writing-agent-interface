@@ -434,7 +434,13 @@ async function dataPlaneRequest(path, { method = "GET", body = null, prefer = nu
       }
 
       if (!res.ok) {
-        throw new Error(`supabase_data_plane_error: ${method} /rest/v1/${path} → ${res.status}: ${rawText.slice(0, 600)}`);
+        const error = new Error(`supabase_data_plane_error: ${method} /rest/v1/${path} → ${res.status}: ${rawText.slice(0, 600)}`);
+        error.db_status = res.status;
+        error.db_method = method;
+        error.db_path = path;
+        error.db_url = url;
+        error.db_response_body = rawText;
+        throw error;
       }
 
       if (!rawText || rawText === "null") return [];
@@ -734,6 +740,85 @@ function coerceForSql(value, type) {
   return value ?? null;
 }
 
+function cleanInsertRowForPostgrest(row, schema) {
+  const clean = {};
+  for (const [col, type] of Object.entries(schema)) {
+    if (!Object.prototype.hasOwnProperty.call(row, col)) continue;
+    const rawValue = row[col];
+    if (rawValue === undefined) continue;
+    if (rawValue === null) {
+      clean[col] = null;
+      continue;
+    }
+    const coerced = coerceForSql(rawValue, type);
+    if (coerced !== undefined) clean[col] = coerced;
+  }
+  return clean;
+}
+
+function rowKeySignature(row) {
+  return Object.keys(row).sort().join(",");
+}
+
+function groupRowsByKeySignature(rows) {
+  const groups = new Map();
+  for (const row of rows) {
+    const signature = rowKeySignature(row);
+    if (!groups.has(signature)) groups.set(signature, []);
+    groups.get(signature).push(row);
+  }
+  return [...groups.entries()].map(([signature, groupedRows]) => ({
+    signature,
+    rows: groupedRows,
+    keys: signature ? signature.split(",") : [],
+  }));
+}
+
+function dbDiagnosticsForGroups(tableName, originalRowCount, cleanedRows, groups) {
+  return {
+    table: tableName,
+    original_row_count: originalRowCount,
+    cleaned_row_count: cleanedRows.length,
+    key_signature_group_count: groups.length,
+    key_signature_groups: groups.map((group) => ({
+      key_signature: group.signature,
+      group_row_count: group.rows.length,
+      keys: group.keys,
+    })),
+  };
+}
+
+function saveDbErrorArtifact({
+  tableName,
+  path,
+  error,
+  diagnostics,
+  sampleGroup = null,
+}) {
+  const dir = ensureDir(join(ROOT, "docs", "forensics", "audits", "db-errors"));
+  const stamp = nowArtifactStamp();
+  const artifactPath = join(dir, `${stamp}-${tableName}.json`);
+  const payload = {
+    table: tableName,
+    url: error?.db_url || `${SUPABASE_URL}/rest/v1/${path}`,
+    path,
+    method: error?.db_method || "POST",
+    status: error?.db_status || null,
+    response_body: String(error?.db_response_body || error?.message || error || "").slice(0, 4000),
+    original_row_count: diagnostics.original_row_count,
+    cleaned_row_count: diagnostics.cleaned_row_count,
+    key_signature_group_count: diagnostics.key_signature_group_count,
+    key_signatures: diagnostics.key_signature_groups,
+    first_safe_sample_row_keys: sampleGroup?.rows?.[0] ? Object.keys(sampleGroup.rows[0]).sort() : [],
+    error_message: String(error?.message || error || ""),
+    db_adapter: "supabase_data_plane",
+    management_api_hot_path: false,
+    timestamp: new Date().toISOString(),
+  };
+  writeFileSync(artifactPath, JSON.stringify(payload, null, 2));
+  return artifactPath;
+}
+
 function jsonRecordsetType(cols, schema) {
   return cols.map((col) => `${quoteIdent(col)} ${schema[col]}`).join(", ");
 }
@@ -874,6 +959,7 @@ function normalizeRowsForLiveSchema(tableArg, rows) {
 // Uses TABLE_SCHEMAS allowlist; unknown columns are dropped to metadata.
 // Returns inserted rows only for tables that need the generated id (semantic_runs).
 async function insertRows(tableArg, rows, _chunkSize = 100) {
+  const originalRowCount = rows?.length || 0;
   rows = normalizeRowsForLiveSchema(tableArg, rows); // now sync
 
   if (tableArg === "archetype_observations") {
@@ -886,7 +972,6 @@ async function insertRows(tableArg, rows, _chunkSize = 100) {
   const schema = TABLE_SCHEMAS[tableName];
   if (!schema) throw new Error(`insertRows table not allowed: ${tableName}`);
 
-  const allCols = Object.keys(schema);
   // Only semantic_runs needs return=representation to get the auto-generated id.
   const needsReturn = tableName === "semantic_runs";
   const returnPref = needsReturn ? "return=representation" : "return=minimal";
@@ -895,19 +980,52 @@ async function insertRows(tableArg, rows, _chunkSize = 100) {
   const path = onConflict ? `${tableName}?on_conflict=${encodeURIComponent(onConflict)}` : tableName;
   const chunkSize = 100;
   const out = [];
+  const cleanedRows = rows.map((row) => cleanInsertRowForPostgrest(row, schema));
+  const groups = groupRowsByKeySignature(cleanedRows);
+  const diagnostics = dbDiagnosticsForGroups(tableName, originalRowCount, cleanedRows, groups);
 
-  for (let i = 0; i < rows.length; i += chunkSize) {
-    const chunk = rows.slice(i, i + chunkSize).map((row) => {
-      const clean = {};
-      for (const col of allCols) {
-        const v = coerceForSql(row[col], schema[col]);
-        if (v !== null && v !== undefined) clean[col] = v;
+  console.log(JSON.stringify({
+    event: "db_insert_grouped",
+    db_adapter: "supabase_data_plane",
+    ...diagnostics,
+  }));
+
+  for (const group of groups) {
+    console.log(JSON.stringify({
+      event: "db_insert_group",
+      db_adapter: "supabase_data_plane",
+      table: tableName,
+      key_signature: group.signature,
+      group_row_count: group.rows.length,
+      keys: group.keys,
+    }));
+
+    for (let i = 0; i < group.rows.length; i += chunkSize) {
+      const chunk = group.rows.slice(i, i + chunkSize);
+      try {
+        const inserted = await dataPlaneRequest(path, { method: "POST", body: chunk, prefer });
+        if (needsReturn && Array.isArray(inserted)) out.push(...inserted);
+      } catch (error) {
+        const artifactPath = saveDbErrorArtifact({
+          tableName,
+          path,
+          error,
+          diagnostics,
+          sampleGroup: group,
+        });
+        console.error(JSON.stringify({
+          event: "db_insert_failed",
+          db_adapter: "supabase_data_plane",
+          table: tableName,
+          key_signature: group.signature,
+          group_row_count: group.rows.length,
+          artifact_path: artifactPath,
+          status: error?.db_status || null,
+          error: String(error?.message || error),
+        }));
+        throw error;
       }
-      return clean;
-    });
-
-    const inserted = await dataPlaneRequest(path, { method: "POST", body: chunk, prefer });
-    if (needsReturn && Array.isArray(inserted)) out.push(...inserted);
+    }
   }
 
   return out;

@@ -151,11 +151,16 @@ function env(name, fallback = "") {
 
 const SUPABASE_ACCESS_TOKEN = env("SUPABASE_ACCESS_TOKEN", env("SUPABASE_MANAGEMENT_TOKEN", ""));
 const SUPABASE_PROJECT_REF = env("SUPABASE_PROJECT_REF", "yegricugzqbmoziycfnt");
+// Data-plane: PostgREST REST API (runtime writes). Falls back to constructing from PROJECT_REF.
+const SUPABASE_URL = env("SUPABASE_URL", SUPABASE_PROJECT_REF ? `https://${SUPABASE_PROJECT_REF}.supabase.co` : "");
+// Service role key for data-plane writes (not the Management PAT).
+const SUPABASE_SERVICE_KEY = env("SUPABASE_SERVICE_ROLE_KEY", env("SUPABASE_SECRET_KEY", ""));
 const OLLAMA_BASE_URL = env("OLLAMA_BASE_URL", "http://localhost:11434");
 const OLLAMA_MODEL = env("OLLAMA_MODEL", env("SEMANTIC_MODEL", "llama3.2:1b"));
 const OLLAMA_CACHE_PATH = env("OLLAMA_CACHE_PATH", join(ROOT, "docs/forensics/audits/ollama-result-cache.json"));
 const OLLAMA_CONTEXT_CHARS = Number(process.env.OLLAMA_CONTEXT_CHARS || 2400);
-const PROVIDER_MODEL = OLLAMA_MODEL;
+const GEMINI_MODEL = env("SEMANTIC_MODEL", env("VERTEX_MODEL", "gemini-2.5-flash-lite"));
+const PROVIDER_MODEL = PROVIDER === "gemini_sync" ? GEMINI_MODEL : OLLAMA_MODEL;
 
 function validateSources() {
   must(existsSync(paths.contextPack), `Missing context pack: ${paths.contextPack}`);
@@ -231,6 +236,65 @@ function providerRetryDelayMs(attempt) {
   return Math.min(max, base * Math.pow(2, Math.max(0, attempt - 1)) + jitter);
 }
 
+function dbRetryDelayMs(attempt) {
+  const jitter = Math.floor(Math.random() * 1000);
+  return Math.min(30000, 2000 * Math.pow(2, Math.max(0, attempt - 1)) + jitter);
+}
+
+// Validates the Supabase service_role key format and returns PostgREST auth headers.
+// Throws with explicit guidance if the key is missing or is the wrong credential type.
+function classifyServiceKey(key) {
+  if (!key) {
+    throw new Error(
+      "SUPABASE_SERVICE_ROLE_KEY not set. " +
+      "Open Supabase Dashboard → Settings → API Keys → Legacy API Keys → service_role. " +
+      "Do NOT use Settings → JWT Keys → Legacy JWT Secret."
+    );
+  }
+  if (key.startsWith("sbp_")) {
+    throw new Error(
+      "SUPABASE_SERVICE_ROLE_KEY looks like a Management API personal access token (starts with sbp_). " +
+      "Open Supabase Dashboard → Settings → API Keys → Legacy API Keys → service_role. " +
+      "Do NOT use Settings → JWT Keys → Legacy JWT Secret."
+    );
+  }
+  if (key.startsWith("sb_publishable_")) {
+    throw new Error(
+      "SUPABASE_SERVICE_ROLE_KEY looks like an anon/publishable key (starts with sb_publishable_). " +
+      "Open Supabase Dashboard → Settings → API Keys → Legacy API Keys → service_role. " +
+      "Do NOT use Settings → JWT Keys → Legacy JWT Secret."
+    );
+  }
+  // Expect a JWT: 3 base64url dot-separated parts
+  const parts = key.split(".");
+  if (parts.length !== 3) {
+    throw new Error(
+      "SUPABASE_SERVICE_ROLE_KEY does not look like a JWT (expected header.payload.signature). " +
+      "Open Supabase Dashboard → Settings → API Keys → Legacy API Keys → service_role. " +
+      "Do NOT use Settings → JWT Keys → Legacy JWT Secret — that is the HMAC signing secret, not a JWT."
+    );
+  }
+  // Decode payload and verify role without logging the key value
+  try {
+    const padded = parts[1].replace(/-/g, "+").replace(/_/g, "/");
+    const payload = JSON.parse(Buffer.from(padded, "base64").toString("utf8"));
+    if (payload.role && payload.role !== "service_role") {
+      throw new Error(
+        `SUPABASE_SERVICE_ROLE_KEY JWT has role="${payload.role}", expected "service_role". ` +
+        "Open Supabase Dashboard → Settings → API Keys → Legacy API Keys → service_role. " +
+        "Do NOT use Settings → JWT Keys → Legacy JWT Secret."
+      );
+    }
+  } catch (err) {
+    if (err.message.includes("service_role") || err.message.includes("role=")) throw err;
+    // Malformed payload — let it through; PostgREST will 401 with the server's own message
+  }
+  return {
+    "apikey": key,
+    "Authorization": `Bearer ${key}`,
+  };
+}
+
 async function jsonFetch(url, { method = "POST", headers = {}, body = null } = {}) {
   const res = await fetch(url, {
     method,
@@ -252,7 +316,75 @@ async function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+// PostgREST data-plane adapter. Never logs auth header values.
+// Retries transient HTTP and network errors with exponential backoff (up to 6 attempts).
+// Cloudflare/proxy HTML bodies are detected and classified as transient_gateway_error.
+async function dataPlaneRequest(path, { method = "GET", body = null, prefer = null } = {}) {
+  must(SUPABASE_URL, "SUPABASE_URL not set and SUPABASE_PROJECT_REF not set — cannot connect to Supabase data plane. Set SUPABASE_URL or SUPABASE_PROJECT_REF secret/var.");
+  const authHeaders = classifyServiceKey(SUPABASE_SERVICE_KEY);
 
+  const url = `${SUPABASE_URL}/rest/v1/${path}`;
+  const headers = {
+    ...authHeaders,
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+  };
+  if (prefer) headers["Prefer"] = prefer;
+
+  const MAX_ATTEMPTS = 6;
+  let lastError = null;
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    const t0 = Date.now();
+    try {
+      const res = await fetch(url, {
+        method,
+        headers,
+        body: body !== null ? JSON.stringify(body) : null,
+        signal: AbortSignal.timeout(30000),
+      });
+      const rawText = await res.text();
+      const elapsed = Date.now() - t0;
+      const looksLikeHtml = rawText.trimStart().startsWith("<");
+      const isTransientStatus = [429, 500, 502, 503, 504].includes(res.status);
+
+      if (looksLikeHtml || isTransientStatus) {
+        const reason = looksLikeHtml ? "transient_gateway_error_html" : `http_${res.status}`;
+        lastError = new Error(`supabase_data_plane_${reason}: ${method} ${path} status=${res.status}`);
+        if (attempt < MAX_ATTEMPTS) {
+          console.warn(JSON.stringify({ event: "db_retry", path, operation: method, attempt, elapsed_ms: elapsed, status: res.status, reason, db_adapter: "supabase_data_plane" }));
+          await sleep(dbRetryDelayMs(attempt));
+          continue;
+        }
+        throw lastError;
+      }
+
+      if (!res.ok) {
+        throw new Error(`supabase_data_plane_error: ${method} /rest/v1/${path} → ${res.status}: ${rawText.slice(0, 600)}`);
+      }
+
+      if (!rawText || rawText === "null") return [];
+      try {
+        const json = JSON.parse(rawText);
+        return Array.isArray(json) ? json : (json ? [json] : []);
+      } catch {
+        return [];
+      }
+    } catch (err) {
+      if (err === lastError) throw err;
+      const isNet = /ECONNRESET|ETIMEDOUT|fetch failed|network|AbortError|TimeoutError/i.test(String(err.message) + String(err.name || ""));
+      if (isNet && attempt < MAX_ATTEMPTS) {
+        console.warn(JSON.stringify({ event: "db_retry", path, operation: method, attempt, reason: String(err.message).slice(0, 200), db_adapter: "supabase_data_plane" }));
+        await sleep(dbRetryDelayMs(attempt));
+        continue;
+      }
+      throw err;
+    }
+  }
+}
+
+// managementQuery: Supabase Management API SQL endpoint.
+// MIGRATION/CONTROL-PLANE ONLY. Must NOT be called in sync_write hot path.
+// Runtime data writes use dataPlaneRequest (PostgREST) instead.
 async function managementQuery(sql) {
   must(SUPABASE_ACCESS_TOKEN, "Missing SUPABASE_ACCESS_TOKEN. Use a Supabase Management PAT/access token.");
   must(SUPABASE_PROJECT_REF, "Missing SUPABASE_PROJECT_REF.");
@@ -563,31 +695,18 @@ async function fetchAll(table, select, order = "id.asc") {
 }
 
 
-const LIVE_TABLE_COLUMN_CACHE = new Map();
-
-function schemaSqlLiteral(value) {
-  return `'${String(value).replaceAll("'", "''")}'`;
+// Returns the allowed insert columns for a table from the static schema manifest.
+// This eliminates Management API information_schema queries from the hot path.
+function getStaticTableColumns(tableName) {
+  const schema = TABLE_SCHEMAS[tableName];
+  return schema ? new Set(Object.keys(schema)) : new Set();
 }
 
-async function getLiveTableColumnsForInsert(tableName) {
-  if (LIVE_TABLE_COLUMN_CACHE.has(tableName)) return LIVE_TABLE_COLUMN_CACHE.get(tableName);
-
-  const rows = await managementQuery(`
-    select column_name
-    from information_schema.columns
-    where table_schema = 'public'
-      and table_name = ${schemaSqlLiteral(tableName)}
-  `);
-
-  const cols = new Set((Array.isArray(rows) ? rows : []).map((row) => row.column_name).filter(Boolean));
-  LIVE_TABLE_COLUMN_CACHE.set(tableName, cols);
-  return cols;
-}
-
-async function normalizeRowsForLiveSchema(tableName, rows) {
+// Synchronous — no longer calls Management API. Uses TABLE_SCHEMAS allowlist.
+function normalizeRowsForLiveSchema(tableArg, rows) {
   if (!rows?.length) return rows;
-
-  const liveColumns = await getLiveTableColumnsForInsert(tableName);
+  const { tableName } = parseTableArg(tableArg);
+  const liveColumns = getStaticTableColumns(tableName);
   if (!liveColumns.size) return rows;
 
   const dropped = new Set();
@@ -676,17 +795,15 @@ async function normalizeRowsForLiveSchema(tableName, rows) {
   return normalized;
 }
 
-async function insertRows(tableArg, rows, chunkSize = 100) {
-  rows = await normalizeRowsForLiveSchema(tableArg, rows);
-
+// Runtime insert via PostgREST data plane (NOT Management API).
+// Uses TABLE_SCHEMAS allowlist; unknown columns are dropped to metadata.
+// Returns inserted rows only for tables that need the generated id (semantic_runs).
+async function insertRows(tableArg, rows, _chunkSize = 100) {
+  rows = normalizeRowsForLiveSchema(tableArg, rows); // now sync
 
   if (tableArg === "archetype_observations") {
-    rows = rows.map((row) => ({
-      ...row,
-      active: row.active ?? true,
-    }));
+    rows = rows.map((row) => ({ ...row, active: row.active ?? true }));
   }
-
 
   if (!rows.length) return [];
 
@@ -694,51 +811,34 @@ async function insertRows(tableArg, rows, chunkSize = 100) {
   const schema = TABLE_SCHEMAS[tableName];
   if (!schema) throw new Error(`insertRows table not allowed: ${tableName}`);
 
-  const out = [];
   const allCols = Object.keys(schema);
+  // Only semantic_runs needs return=representation to get the auto-generated id.
+  const needsReturn = tableName === "semantic_runs";
+  const returnPref = needsReturn ? "return=representation" : "return=minimal";
+  const prefer = onConflict ? `resolution=merge-duplicates,${returnPref}` : returnPref;
+
+  const path = onConflict ? `${tableName}?on_conflict=${encodeURIComponent(onConflict)}` : tableName;
+  const chunkSize = 100;
+  const out = [];
 
   for (let i = 0; i < rows.length; i += chunkSize) {
-    const rawChunk = rows.slice(i, i + chunkSize);
-    const chunk = rawChunk.map((row) => {
+    const chunk = rows.slice(i, i + chunkSize).map((row) => {
       const clean = {};
-      for (const col of allCols) clean[col] = coerceForSql(row[col], schema[col]);
+      for (const col of allCols) {
+        const v = coerceForSql(row[col], schema[col]);
+        if (v !== null && v !== undefined) clean[col] = v;
+      }
       return clean;
     });
 
-    const json = sqlJson(chunk);
-    const colList = allCols.map(quoteIdent).join(", ");
-    const selectList = allCols.map(quoteIdent).join(", ");
-    const recordsetType = jsonRecordsetType(allCols, schema);
-
-    let conflictSql = "";
-    if (onConflict) {
-      if (!schema[onConflict]) throw new Error(`Invalid on_conflict column for ${tableName}: ${onConflict}`);
-      const updateCols = allCols.filter((col) => col !== onConflict);
-      conflictSql = `
-        on conflict (${quoteIdent(onConflict)}) do update set
-        ${updateCols.map((col) => `${quoteIdent(col)} = excluded.${quoteIdent(col)}`).join(",\n        ")}
-      `;
-    }
-
-    const sql = `
-      with input as (
-        select *
-        from jsonb_to_recordset(${json}) as x(${recordsetType})
-      )
-      insert into public.${quoteIdent(tableName)} (${colList})
-      select ${selectList}
-      from input
-      ${conflictSql}
-      returning *;
-    `;
-
-    const inserted = await managementQuery(sql);
-    out.push(...inserted);
+    const inserted = await dataPlaneRequest(path, { method: "POST", body: chunk, prefer });
+    if (needsReturn && Array.isArray(inserted)) out.push(...inserted);
   }
 
   return out;
 }
 
+// Runtime row update via PostgREST data plane (NOT Management API).
 async function patchRow(tableName, id, body) {
   if (!/^[a-zA-Z_][a-zA-Z0-9_]*$/.test(tableName)) throw new Error(`Unsafe table name: ${tableName}`);
   const schema = PATCH_SCHEMAS[tableName];
@@ -751,22 +851,8 @@ async function patchRow(tableName, id, body) {
   const clean = {};
   for (const col of cols) clean[col] = coerceForSql(body[col], schema[col]);
 
-  const recordType = cols.map((col) => `${quoteIdent(col)} ${schema[col]}`).join(", ");
-  const assignments = cols.map((col) => `${quoteIdent(col)} = input.${quoteIdent(col)}`).join(",\n        ");
-
-  const sql = `
-    with input as (
-      select *
-      from jsonb_to_record(${sqlJson(clean)}) as x(${recordType})
-    )
-    update public.${quoteIdent(tableName)} as target
-    set ${assignments}
-    from input
-    where target.id = ${sqlUuid(id)}
-    returning target.*;
-  `;
-
-  return managementQuery(sql);
+  const path = `${tableName}?id=eq.${encodeURIComponent(id)}`;
+  return dataPlaneRequest(path, { method: "PATCH", body: clean, prefer: "return=minimal" });
 }
 
 async function createSemanticRun(sourceSummary) {
@@ -793,7 +879,7 @@ async function createSemanticRun(sourceSummary) {
     xml_manifest_count: XML_MANIFEST_COUNT,
     source_summary: sourceSummary,
     reset_policy: "supersede_by_semantic_run_id",
-    metadata: { run_id: RUN_ID, script: "scripts/semantic/xml-selected-meaning-span-rehash.mjs", derived_from: "xml-grounded-vertex-rehash.mjs", db_write_mode: "supabase_management_api", selected_xml_driver: true, primary_hash_lane: "semantic_meaning_spans", old_semantic_table_writes: "blocked_on_first_run", semantic_provider: PROVIDER },
+    metadata: { run_id: RUN_ID, script: "scripts/semantic/xml-selected-meaning-span-rehash.mjs", derived_from: "xml-grounded-vertex-rehash.mjs", db_write_mode: "supabase_data_plane", db_adapter: "supabase_data_plane", management_api_hot_path: false, selected_xml_driver: true, primary_hash_lane: "semantic_meaning_spans", old_semantic_table_writes: "blocked_on_first_run", semantic_provider: ORIGINAL_PROVIDER, canonical_provider: CANONICAL_PROVIDER },
   }]);
   return rows[0];
 }
@@ -1113,24 +1199,29 @@ const TASK_ORDER = [
 ];
 
 const ALLOW_FAILURE_CONTINUE = args.has("--allow-failure-continue");
-const MIN_SEMANTIC_WINDOW_WORDS = Number(process.env.MIN_SEMANTIC_WINDOW_WORDS || 8);
-const MIN_SEMANTIC_WINDOW_CHARS = Number(process.env.MIN_SEMANTIC_WINDOW_CHARS || 60);
+const MIN_SEMANTIC_WINDOW_WORDS = Number(process.env.MIN_SEMANTIC_WINDOW_WORDS || 4);
+const MIN_SEMANTIC_WINDOW_CHARS = Number(process.env.MIN_SEMANTIC_WINDOW_CHARS || 20);
 const FAIL_FAST_INITIAL_SEMANTIC_WINDOWS = 10;
 const FAIL_FAST_INITIAL_FAILED_TASKS = 20;
 const FAIL_FAST_CONSECUTIVE_FAILED_WINDOWS = 5;
 const FAIL_FAST_TASK_SAMPLE = 20;
 const FAIL_FAST_TASK_FAILURE_RATE = 0.5;
-const PROVIDER_CHOICES = new Set(["ollama"]);
+const PROVIDER_CHOICES = new Set(["ollama", "ollama_actions", "local_actions_ollama", "free_local", "free_local_ollama", "gemini_sync", "openai_batch", "openai_sync", "anthropic_batch", "anthropic_sync"]);
 const BATCH_COMPLETION_WINDOW = env("SEMANTIC_BATCH_COMPLETION_WINDOW", "24h");
 
-must(PROVIDER_CHOICES.has(PROVIDER), `Unsupported provider: ${PROVIDER}`);
+must(PROVIDER_CHOICES.has(PROVIDER), `Unsupported provider: ${PROVIDER}. Supported: ${[...PROVIDER_CHOICES].join(", ")}`);
 
 function isBatchProvider(provider = PROVIDER) {
   return provider.endsWith("_batch");
 }
 
+const OLLAMA_PROVIDERS = new Set(["ollama", "ollama_actions", "local_actions_ollama", "free_local", "free_local_ollama"]);
+// Canonical model runner (routing); preserve original for metadata/display.
+const ORIGINAL_PROVIDER = PROVIDER;
+const CANONICAL_PROVIDER = OLLAMA_PROVIDERS.has(PROVIDER) ? "ollama" : PROVIDER;
+
 function isSyncProvider(provider = PROVIDER) {
-  return provider === "ollama" || provider.endsWith("_sync");
+  return OLLAMA_PROVIDERS.has(provider) || provider.endsWith("_sync");
 }
 
 function batchOperationMode() {
@@ -2232,7 +2323,8 @@ async function callOllamaSync(prompt) {
         prompt,
         format: "json",
         stream: false,
-        options: { temperature: 0 },
+        keep_alive: process.env.OLLAMA_KEEP_ALIVE ?? 0,
+        options: { temperature: 0, num_ctx: Number(process.env.OLLAMA_NUM_CTX || 512) },
       }),
       signal: controller.signal,
     });
@@ -2257,40 +2349,87 @@ async function callOllamaSync(prompt) {
   return json.response || "";
 }
 
+async function callGeminiSync(prompt) {
+  const apiKey = env("GOOGLE_API_KEY", "");
+  if (!apiKey) throw new Error("GOOGLE_API_KEY is required for gemini_sync provider");
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`;
+  const timeoutMs = Number(process.env.GEMINI_TIMEOUT_MS || process.env.OLLAMA_TIMEOUT_MS || 120000);
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+  let res;
+  try {
+    res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [{ role: "user", parts: [{ text: prompt }] }],
+        generationConfig: { temperature: 0, responseMimeType: "application/json" },
+      }),
+      signal: controller.signal,
+    });
+  } catch (err) {
+    const isTimeout = err.name === "AbortError";
+    throw new Error(
+      isTimeout
+        ? `gemini_sync timed out after ${timeoutMs}ms`
+        : `gemini_sync fetch error: ${err.message}`
+    );
+  } finally {
+    clearTimeout(timeoutId);
+  }
+  const rawText = await res.text();
+  if (!res.ok) throw new Error(`gemini_sync error (${res.status}): ${rawText.slice(0, 800)}`);
+  let envelope;
+  try {
+    envelope = JSON.parse(rawText);
+  } catch {
+    throw new Error(`gemini_sync non-JSON envelope: ${rawText.slice(0, 400)}`);
+  }
+  return envelope?.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
+}
+
 async function callSemanticProviderSync({ task, prompt, schema }) {
-  const cacheKey = sha256Text(`ollama:${OLLAMA_MODEL}:${prompt}`);
-  const cached = checkOllamaCache(cacheKey);
-  if (cached !== null) {
-    console.warn(JSON.stringify({ event: "ollama_cache_hit", task, key: cacheKey.slice(0, 16) }));
-    return cached;
+  if (OLLAMA_PROVIDERS.has(PROVIDER)) {
+    const cacheKey = sha256Text(`${OLLAMA_MODEL}:${prompt}`);
+    const cached = checkOllamaCache(cacheKey);
+    if (cached !== null) {
+      console.warn(JSON.stringify({ event: "ollama_cache_hit", task, key: cacheKey.slice(0, 16) }));
+      return cached;
+    }
+    const maxRetries = Number(process.env.PROVIDER_RETRY_MAX || 5);
+    let lastError = null;
+    for (let attempt = 0; attempt <= maxRetries; attempt++) {
+      try {
+        const result = await callOllamaSync(prompt);
+        setOllamaCache(cacheKey, result);
+        return result;
+      } catch (error) {
+        lastError = error;
+        if (!isRetryableProviderError(error) || attempt >= maxRetries) throw error;
+        const delay = providerRetryDelayMs(attempt + 1);
+        console.warn(JSON.stringify({ event: "provider_retry", provider: PROVIDER, task, attempt: attempt + 1, max_retries: maxRetries, delay_ms: delay, error: String(error?.message || error).slice(0, 1200) }));
+        await sleep(delay);
+      }
+    }
+    throw lastError || new Error(`${PROVIDER} retry loop failed without captured error`);
   }
 
+  const callFn = PROVIDER === "gemini_sync" ? callGeminiSync : null;
+  if (!callFn) throw new Error(`No sync call function for provider: ${PROVIDER} — supported: ${[...PROVIDER_CHOICES].join(", ")}`);
   const maxRetries = Number(process.env.PROVIDER_RETRY_MAX || 5);
   let lastError = null;
-
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
     try {
-      const result = await callOllamaSync(prompt);
-      setOllamaCache(cacheKey, result);
-      return result;
+      return await callFn(prompt);
     } catch (error) {
       lastError = error;
       if (!isRetryableProviderError(error) || attempt >= maxRetries) throw error;
       const delay = providerRetryDelayMs(attempt + 1);
-      console.warn(JSON.stringify({
-        event: "provider_retry",
-        provider: PROVIDER,
-        task,
-        attempt: attempt + 1,
-        max_retries: maxRetries,
-        delay_ms: delay,
-        error: String(error?.message || error).slice(0, 1200),
-      }));
+      console.warn(JSON.stringify({ event: "provider_retry", provider: PROVIDER, task, attempt: attempt + 1, max_retries: maxRetries, delay_ms: delay, error: String(error?.message || error).slice(0, 1200) }));
       await sleep(delay);
     }
   }
-
-  throw lastError || new Error("ollama retry loop failed without captured error");
+  throw lastError || new Error(`${PROVIDER} retry loop failed without captured error`);
 }
 
 function batchRequestsFileExtension(provider = PROVIDER) {
@@ -2784,6 +2923,26 @@ async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt,
   }
 
   const status = classifyTaskPacketStatus(repairedValidated);
+
+  if (status === "empty") {
+    saveBadAiJson(rawText, "task-empty", {
+      task,
+      scene_window_id: window.scene_window_id,
+      provider: PROVIDER,
+      model: PROVIDER_MODEL,
+      prompt_chars: prompt.length,
+    }).catch(() => {});
+    console.warn(JSON.stringify({
+      event: "task_empty",
+      task,
+      provider: PROVIDER,
+      model: PROVIDER_MODEL,
+      prompt_chars: prompt.length,
+      raw_chars: String(rawText).length,
+      raw_preview: String(rawText).slice(0, 600),
+    }));
+  }
+
   return buildTaskPacket({
     task,
     window,
@@ -4037,6 +4196,13 @@ async function main() {
     throw new Error("Full selected XML semantic runs require --full-run-confirm.");
   }
 
+  // Fail early if data-plane credentials are missing or wrong type in write mode.
+  if (writeMode) {
+    must(SUPABASE_URL, "SUPABASE_URL not set (and SUPABASE_PROJECT_REF not set). Cannot write to Supabase data plane. Set SUPABASE_URL or SUPABASE_PROJECT_REF secret/var.");
+    classifyServiceKey(SUPABASE_SERVICE_KEY); // throws with explicit guidance on wrong key type
+    console.log(JSON.stringify({ event: "db_adapter_init", db_adapter: "supabase_data_plane", management_api_hot_path: false, supabase_url_set: true, service_key_set: true }));
+  }
+
   const sourceSummary = {
     context_pack_sha256: NARRATIVE_CONTEXT_SHA256,
     xml_manifest_sha256: XML_MANIFEST_SHA256,
@@ -4077,8 +4243,11 @@ async function main() {
   console.log(JSON.stringify({
     event: "startup_config",
     selected_xml_driver: true,
-    provider: PROVIDER,
+    provider: ORIGINAL_PROVIDER,
+    canonical_provider: CANONICAL_PROVIDER,
     provider_model: noAi ? "no-ai" : PROVIDER_MODEL,
+    db_adapter: "supabase_data_plane",
+    management_api_hot_path: false,
     batch_mode: batchMode,
     submit_batch: submitBatch,
     poll_batch_id: POLL_BATCH_ID || null,
@@ -4207,6 +4376,18 @@ async function main() {
     const taskPackets = [];
     if (semanticPlan.status === "skipped") {
       skippedWindows += 1;
+      console.warn(JSON.stringify({
+        event: "window_skipped",
+        window_index: windowIndex,
+        scene_window_id: window.scene_window_id,
+        folder: window.folder,
+        skip_reason: semanticPlan.reason,
+        word_count: semanticPlan.wordCount,
+        char_count: semanticPlan.charCount,
+        text_preview: String(window.text || "").slice(0, 200),
+        min_words: MIN_SEMANTIC_WINDOW_WORDS,
+        min_chars: MIN_SEMANTIC_WINDOW_CHARS,
+      }));
       for (const task of TASK_ORDER) {
         taskPackets.push(createSkippedTaskPacket({ task, window, contextCapsule, reason: semanticPlan.reason }));
       }
@@ -4392,6 +4573,81 @@ async function main() {
     skippedPackets.map((record) => JSON.stringify(record)).join("\n") + (skippedPackets.length ? "\n" : "")
   );
 
+  // Fail loudly: write mode skipped ALL windows — nothing reached the AI.
+  // This means every window failed classifySemanticWindow. Check window_skipped events in the log
+  // for the exact skip_reason + text_preview. Likely cause: batch_size=1 with short paragraphs,
+  // or MIN_SEMANTIC_WINDOW_CHARS/MIN_SEMANTIC_WINDOW_WORDS too high relative to paragraph length.
+  if (writeMode && !noAi && windows.length > 0 && semanticWindows === 0) {
+    const allSkippedMsg = [
+      `All ${skippedWindows} window(s) were classified as non-semantic and skipped — no AI tasks ran.`,
+      `min_chars=${MIN_SEMANTIC_WINDOW_CHARS} min_words=${MIN_SEMANTIC_WINDOW_WORDS} batch_size=${BATCH_SIZE}`,
+      `Check the window_skipped log events above for skip_reason and text_preview.`,
+      `Fix: lower MIN_SEMANTIC_WINDOW_CHARS/MIN_SEMANTIC_WINDOW_WORDS env vars, or increase batch_size`,
+      `so windows contain more prose per packet.`,
+    ].join(" ");
+    console.error(JSON.stringify({
+      event: "run_failed_all_windows_skipped",
+      provider: PROVIDER,
+      model: PROVIDER_MODEL,
+      windows: windows.length,
+      skipped_windows: skippedWindows,
+      semantic_windows: 0,
+      min_chars: MIN_SEMANTIC_WINDOW_CHARS,
+      min_words: MIN_SEMANTIC_WINDOW_WORDS,
+      batch_size: BATCH_SIZE,
+      error: allSkippedMsg,
+    }));
+    await patchRow("semantic_runs", semanticRun.id, {
+      status: "failed",
+      error: allSkippedMsg,
+      completed_at: new Date().toISOString(),
+    }).catch(() => {});
+    writeFileSync(join(paths.outDir, "run-summary.json"), JSON.stringify({
+      run_id: semanticRun.id, write_mode: writeMode, no_ai: noAi,
+      provider: PROVIDER, model: PROVIDER_MODEL,
+      windows: windows.length, skipped_windows: skippedWindows, semantic_windows: 0,
+      total_meaning_spans: 0, task_skipped: taskSkipped,
+      min_chars: MIN_SEMANTIC_WINDOW_CHARS, min_words: MIN_SEMANTIC_WINDOW_WORDS,
+      batch_size: BATCH_SIZE, error: allSkippedMsg, failed: true, sourceSummary,
+    }, null, 2));
+    process.exit(1);
+  }
+
+  // Fail loudly: write mode with AI ran semantic windows but produced zero meaning_spans.
+  // This indicates the model is too small, prompts are truncated, or the model returned empty JSON.
+  // Raw model responses are saved in docs/forensics/audits/ai-bad-json/ for inspection.
+  if (writeMode && !noAi && semanticWindows > 0 && totalMeaningSpans === 0) {
+    const emptyRunMsg = [
+      `Zero meaning_spans written after processing ${semanticWindows} semantic window(s).`,
+      `task_empty=${taskEmpty} task_failed=${taskFailed} task_ok=${taskOk}`,
+      `Provider=${PROVIDER} model=${PROVIDER_MODEL}`,
+      `Check docs/forensics/audits/ai-bad-json/ for raw model output.`,
+      `If model is too small, set a larger model (e.g. llama3.2:3b) or increase OLLAMA_NUM_CTX.`,
+    ].join(" ");
+    console.error(JSON.stringify({ event: "run_failed_zero_spans", provider: PROVIDER, model: PROVIDER_MODEL, semantic_windows: semanticWindows, task_empty: taskEmpty, task_failed: taskFailed, error: emptyRunMsg }));
+    await patchRow("semantic_runs", semanticRun.id, {
+      status: "failed",
+      error: emptyRunMsg,
+      completed_at: new Date().toISOString(),
+    }).catch(() => {});
+    writeFileSync(join(paths.outDir, "run-summary.json"), JSON.stringify({
+      run_id: semanticRun.id,
+      write_mode: writeMode,
+      no_ai: noAi,
+      provider: PROVIDER,
+      model: PROVIDER_MODEL,
+      total_meaning_spans: 0,
+      semantic_windows: semanticWindows,
+      task_empty: taskEmpty,
+      task_failed: taskFailed,
+      task_ok: taskOk,
+      error: emptyRunMsg,
+      failed: true,
+      sourceSummary,
+    }, null, 2));
+    process.exit(1);
+  }
+
   if (writeMode) {
     await patchRow("semantic_runs", semanticRun.id, {
       status: "completed",
@@ -4428,6 +4684,8 @@ async function main() {
     selected_xml_driver: true,
     primary_hash_lane: "semantic_meaning_spans",
     old_semantic_table_writes: "blocked_on_first_run",
+    db_adapter: "supabase_data_plane",
+    management_api_hot_path: false,
     total_processed_windows: totalProcessed,
     total_meaning_spans: totalMeaningSpans,
     total_task_failures: totalTaskFailures,
@@ -4437,13 +4695,15 @@ async function main() {
     task_empty: taskEmpty,
     task_skipped: taskSkipped,
     task_failed: taskFailed,
+    task_counts: Object.fromEntries(TASK_ORDER.map((t) => [t, { ok: 0, empty: 0, failed: 0, skipped: 0 }])),
     observations_accepted: observationsAccepted,
     observations_rejected: observationsRejected,
     per_task_failures: perTaskFailures,
     run_hash: runHash,
     narrative_context_sha256: NARRATIVE_CONTEXT_SHA256,
     xml_manifest_sha256: XML_MANIFEST_SHA256,
-    provider: noAi ? "none" : PROVIDER,
+    provider: ORIGINAL_PROVIDER,
+    canonical_provider: CANONICAL_PROVIDER,
     model: noAi ? "no-ai" : PROVIDER_MODEL,
     batch_mode: batchMode,
     sourceSummary,

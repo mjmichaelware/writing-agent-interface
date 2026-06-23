@@ -2835,6 +2835,26 @@ async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt,
   }
 
   const status = classifyTaskPacketStatus(repairedValidated);
+
+  if (status === "empty") {
+    saveBadAiJson(rawText, "task-empty", {
+      task,
+      scene_window_id: window.scene_window_id,
+      provider: PROVIDER,
+      model: PROVIDER_MODEL,
+      prompt_chars: prompt.length,
+    }).catch(() => {});
+    console.warn(JSON.stringify({
+      event: "task_empty",
+      task,
+      provider: PROVIDER,
+      model: PROVIDER_MODEL,
+      prompt_chars: prompt.length,
+      raw_chars: String(rawText).length,
+      raw_preview: String(rawText).slice(0, 600),
+    }));
+  }
+
   return buildTaskPacket({
     task,
     window,
@@ -4442,6 +4462,41 @@ async function main() {
     join(paths.outDir, "skipped-packets.jsonl"),
     skippedPackets.map((record) => JSON.stringify(record)).join("\n") + (skippedPackets.length ? "\n" : "")
   );
+
+  // Fail loudly: write mode with AI ran semantic windows but produced zero meaning_spans.
+  // This indicates the model is too small, prompts are truncated, or the model returned empty JSON.
+  // Raw model responses are saved in docs/forensics/audits/ai-bad-json/ for inspection.
+  if (writeMode && !noAi && semanticWindows > 0 && totalMeaningSpans === 0) {
+    const emptyRunMsg = [
+      `Zero meaning_spans written after processing ${semanticWindows} semantic window(s).`,
+      `task_empty=${taskEmpty} task_failed=${taskFailed} task_ok=${taskOk}`,
+      `Provider=${PROVIDER} model=${PROVIDER_MODEL}`,
+      `Check docs/forensics/audits/ai-bad-json/ for raw model output.`,
+      `If model is too small, set a larger model (e.g. llama3.2:3b) or increase OLLAMA_NUM_CTX.`,
+    ].join(" ");
+    console.error(JSON.stringify({ event: "run_failed_zero_spans", provider: PROVIDER, model: PROVIDER_MODEL, semantic_windows: semanticWindows, task_empty: taskEmpty, task_failed: taskFailed, error: emptyRunMsg }));
+    await patchRow("semantic_runs", semanticRun.id, {
+      status: "failed",
+      error: emptyRunMsg,
+      completed_at: new Date().toISOString(),
+    }).catch(() => {});
+    writeFileSync(join(paths.outDir, "run-summary.json"), JSON.stringify({
+      run_id: semanticRun.id,
+      write_mode: writeMode,
+      no_ai: noAi,
+      provider: PROVIDER,
+      model: PROVIDER_MODEL,
+      total_meaning_spans: 0,
+      semantic_windows: semanticWindows,
+      task_empty: taskEmpty,
+      task_failed: taskFailed,
+      task_ok: taskOk,
+      error: emptyRunMsg,
+      failed: true,
+      sourceSummary,
+    }, null, 2));
+    process.exit(1);
+  }
 
   if (writeMode) {
     await patchRow("semantic_runs", semanticRun.id, {

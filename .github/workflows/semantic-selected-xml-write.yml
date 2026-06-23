@@ -293,17 +293,7 @@ jobs:
           echo "$RESPONSE" | grep -qi "ok" && SMOKE_OK=true || true
 
           mkdir -p docs/forensics/audits
-          python3 -c "
-import json, sys
-data = {
-  'model': '$MODEL',
-  'cache_hit': '$CACHE_HIT' == 'true',
-  'smoke_response': sys.argv[1],
-  'smoke_ok': '$SMOKE_OK' == 'true',
-  'smoke_elapsed_ms': $SMOKE_MS,
-}
-print(json.dumps(data, indent=2))
-" "$RESPONSE" > docs/forensics/audits/ollama-smoke.json
+          python3 -c "import json,sys; print(json.dumps({'model':sys.argv[1],'cache_hit':sys.argv[2]=='true','smoke_response':sys.argv[3],'smoke_ok':sys.argv[4]=='true','smoke_elapsed_ms':int(sys.argv[5])},indent=2))" "$MODEL" "$CACHE_HIT" "$RESPONSE" "$SMOKE_OK" "$SMOKE_MS" > docs/forensics/audits/ollama-smoke.json
 
           if [ "$SMOKE_OK" != "true" ]; then
             echo "Warning: smoke test response did not contain OK — model may be slow but continuing"

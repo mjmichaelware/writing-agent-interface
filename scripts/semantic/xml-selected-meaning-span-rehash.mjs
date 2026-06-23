@@ -855,6 +855,66 @@ function groupRowsByKeySignature(rows) {
   }));
 }
 
+function chunkRows(rows, chunkSize) {
+  const batches = [];
+  for (let i = 0; i < rows.length; i += chunkSize) {
+    batches.push(rows.slice(i, i + chunkSize));
+  }
+  return batches;
+}
+
+function buildConflictSafeBatches(rows, conflictColumn, chunkSize) {
+  if (!conflictColumn) return {
+    batches: chunkRows(rows, chunkSize),
+    duplicate_conflict_key_count: 0,
+    duplicate_conflict_keys: [],
+  };
+
+  const valueCounts = new Map();
+  for (const row of rows) {
+    if (!Object.prototype.hasOwnProperty.call(row, conflictColumn)) continue;
+    const value = row[conflictColumn];
+    if (value === undefined || value === null) continue;
+    const key = String(value);
+    valueCounts.set(key, (valueCounts.get(key) || 0) + 1);
+  }
+  const duplicateKeys = [...valueCounts.entries()]
+    .filter(([, count]) => count > 1)
+    .map(([key]) => key)
+    .sort();
+
+  const batches = [];
+  let current = [];
+  let seen = new Set();
+
+  for (let index = 0; index < rows.length; index += 1) {
+    const row = rows[index];
+    const hasConflictKey = Object.prototype.hasOwnProperty.call(row, conflictColumn)
+      && row[conflictColumn] !== undefined
+      && row[conflictColumn] !== null;
+    const conflictValue = hasConflictKey ? String(row[conflictColumn]) : `__missing__:${index}`;
+    const wouldDuplicate = seen.has(conflictValue);
+    const wouldOverflow = current.length >= chunkSize;
+
+    if (current.length && (wouldDuplicate || wouldOverflow)) {
+      batches.push(current);
+      current = [];
+      seen = new Set();
+    }
+
+    current.push(row);
+    seen.add(conflictValue);
+  }
+
+  if (current.length) batches.push(current);
+
+  return {
+    batches,
+    duplicate_conflict_key_count: duplicateKeys.length,
+    duplicate_conflict_keys: duplicateKeys,
+  };
+}
+
 function dbDiagnosticsForGroups(tableName, originalRowCount, cleanedRows, groups) {
   return {
     table: tableName,
@@ -1113,6 +1173,7 @@ async function insertRows(tableArg, rows, _chunkSize = 100) {
   }));
 
   for (const group of groups) {
+    const conflictBatches = buildConflictSafeBatches(group.rows, onConflict, chunkSize);
     console.log(JSON.stringify({
       event: "db_insert_group",
       db_adapter: "supabase_data_plane",
@@ -1120,10 +1181,13 @@ async function insertRows(tableArg, rows, _chunkSize = 100) {
       key_signature: group.signature,
       group_row_count: group.rows.length,
       keys: group.keys,
+      on_conflict: onConflict,
+      duplicate_conflict_key_count: conflictBatches.duplicate_conflict_key_count,
+      duplicate_conflict_keys: conflictBatches.duplicate_conflict_keys,
+      post_batches: conflictBatches.batches.length,
     }));
 
-    for (let i = 0; i < group.rows.length; i += chunkSize) {
-      const chunk = group.rows.slice(i, i + chunkSize);
+    for (const chunk of conflictBatches.batches) {
       try {
         const inserted = await dataPlaneRequest(path, { method: "POST", body: chunk, prefer });
         if (needsReturn && Array.isArray(inserted)) out.push(...inserted);

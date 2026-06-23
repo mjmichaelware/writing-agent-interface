@@ -391,6 +391,64 @@ async function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function tryParseJson(text) {
+  if (!text) return null;
+  try {
+    return JSON.parse(text);
+  } catch {
+    return null;
+  }
+}
+
+function safeResponseHeaders(headers) {
+  if (!headers || typeof headers.entries !== "function") return {};
+  const out = {};
+  for (const [key, value] of headers.entries()) {
+    if (/^(authorization|cookie|set-cookie|x-api-key)$/i.test(key)) continue;
+    out[key] = value;
+  }
+  return out;
+}
+
+function enrichDbError(error, {
+  method,
+  path,
+  url,
+  status = null,
+  statusText = "",
+  rawText = "",
+  parsedBody = null,
+  headers = null,
+  reason = null,
+} = {}) {
+  error.db_method = method;
+  error.db_path = path;
+  error.db_url = url;
+  error.db_status = status;
+  error.db_status_text = statusText;
+  error.db_response_body = rawText;
+  error.db_response_json = parsedBody;
+  error.db_response_headers = headers;
+  error.db_reason = reason;
+  if (parsedBody && typeof parsedBody === "object" && !Array.isArray(parsedBody)) {
+    error.db_postgrest_code = parsedBody.code ?? null;
+    error.db_postgrest_message = parsedBody.message ?? null;
+    error.db_postgrest_details = parsedBody.details ?? null;
+    error.db_postgrest_hint = parsedBody.hint ?? null;
+  }
+  return error;
+}
+
+function sampleRowValueTypes(row) {
+  if (!row || typeof row !== "object" || Array.isArray(row)) return {};
+  return Object.fromEntries(Object.entries(row).map(([key, value]) => {
+    let type = typeof value;
+    if (value === null) type = "null";
+    else if (Array.isArray(value)) type = "array";
+    return [key, type];
+  }));
+}
+
 // PostgREST data-plane adapter. Never logs auth header values.
 // Retries transient HTTP and network errors with exponential backoff (up to 6 attempts).
 // Cloudflare/proxy HTML bodies are detected and classified as transient_gateway_error.
@@ -418,13 +476,28 @@ async function dataPlaneRequest(path, { method = "GET", body = null, prefer = nu
         signal: AbortSignal.timeout(30000),
       });
       const rawText = await res.text();
+      const parsedBody = tryParseJson(rawText);
+      const responseHeaders = safeResponseHeaders(res.headers);
       const elapsed = Date.now() - t0;
       const looksLikeHtml = rawText.trimStart().startsWith("<");
       const isTransientStatus = [429, 500, 502, 503, 504].includes(res.status);
 
       if (looksLikeHtml || isTransientStatus) {
         const reason = looksLikeHtml ? "transient_gateway_error_html" : `http_${res.status}`;
-        lastError = new Error(`supabase_data_plane_${reason}: ${method} ${path} status=${res.status}`);
+        lastError = enrichDbError(
+          new Error(`supabase_data_plane_${reason}: ${method} ${path} status=${res.status}${rawText ? ` body=${rawText.slice(0, 600)}` : ""}`),
+          {
+            method,
+            path,
+            url,
+            status: res.status,
+            statusText: res.statusText,
+            rawText,
+            parsedBody,
+            headers: responseHeaders,
+            reason,
+          }
+        );
         if (attempt < MAX_ATTEMPTS) {
           console.warn(JSON.stringify({ event: "db_retry", path, operation: method, attempt, elapsed_ms: elapsed, status: res.status, reason, db_adapter: "supabase_data_plane" }));
           await sleep(dbRetryDelayMs(attempt));
@@ -434,12 +507,20 @@ async function dataPlaneRequest(path, { method = "GET", body = null, prefer = nu
       }
 
       if (!res.ok) {
-        const error = new Error(`supabase_data_plane_error: ${method} /rest/v1/${path} → ${res.status}: ${rawText.slice(0, 600)}`);
-        error.db_status = res.status;
-        error.db_method = method;
-        error.db_path = path;
-        error.db_url = url;
-        error.db_response_body = rawText;
+        const error = enrichDbError(
+          new Error(`supabase_data_plane_error: ${method} /rest/v1/${path} → ${res.status}${rawText ? `: ${rawText.slice(0, 600)}` : ""}`),
+          {
+            method,
+            path,
+            url,
+            status: res.status,
+            statusText: res.statusText,
+            rawText,
+            parsedBody,
+            headers: responseHeaders,
+            reason: "http_error",
+          }
+        );
         throw error;
       }
 
@@ -788,12 +869,42 @@ function dbDiagnosticsForGroups(tableName, originalRowCount, cleanedRows, groups
   };
 }
 
+async function probeSingleRowFailure(path, prefer, row) {
+  try {
+    await dataPlaneRequest(path, { method: "POST", body: [row], prefer });
+    return {
+      attempted: true,
+      succeeded: true,
+      row_keys: Object.keys(row).sort(),
+      row_value_types: sampleRowValueTypes(row),
+    };
+  } catch (error) {
+    return {
+      attempted: true,
+      succeeded: false,
+      row_keys: Object.keys(row).sort(),
+      row_value_types: sampleRowValueTypes(row),
+      status: error?.db_status || null,
+      statusText: error?.db_status_text || "",
+      response_headers: error?.db_response_headers || {},
+      raw_response_body: String(error?.db_response_body || error?.message || error || "").slice(0, 4000),
+      parsed_response_body: error?.db_response_json || null,
+      postgrest_code: error?.db_postgrest_code || null,
+      postgrest_message: error?.db_postgrest_message || null,
+      postgrest_details: error?.db_postgrest_details || null,
+      postgrest_hint: error?.db_postgrest_hint || null,
+      error_message: String(error?.message || error || ""),
+    };
+  }
+}
+
 function saveDbErrorArtifact({
   tableName,
   path,
   error,
   diagnostics,
   sampleGroup = null,
+  singleRowProbe = null,
 }) {
   const dir = ensureDir(join(ROOT, "docs", "forensics", "audits", "db-errors"));
   const stamp = nowArtifactStamp();
@@ -804,12 +915,23 @@ function saveDbErrorArtifact({
     path,
     method: error?.db_method || "POST",
     status: error?.db_status || null,
+    statusText: error?.db_status_text || "",
+    response_headers: error?.db_response_headers || {},
     response_body: String(error?.db_response_body || error?.message || error || "").slice(0, 4000),
+    raw_response_body: String(error?.db_response_body || error?.message || error || "").slice(0, 4000),
+    parsed_response_body: error?.db_response_json || null,
+    postgrest_code: error?.db_postgrest_code || null,
+    postgrest_message: error?.db_postgrest_message || null,
+    postgrest_details: error?.db_postgrest_details || null,
+    postgrest_hint: error?.db_postgrest_hint || null,
     original_row_count: diagnostics.original_row_count,
     cleaned_row_count: diagnostics.cleaned_row_count,
     key_signature_group_count: diagnostics.key_signature_group_count,
     key_signatures: diagnostics.key_signature_groups,
+    group_row_count: sampleGroup?.rows?.length ?? null,
     first_safe_sample_row_keys: sampleGroup?.rows?.[0] ? Object.keys(sampleGroup.rows[0]).sort() : [],
+    first_safe_sample_row_value_types: sampleGroup?.rows?.[0] ? sampleRowValueTypes(sampleGroup.rows[0]) : {},
+    single_row_probe: singleRowProbe,
     error_message: String(error?.message || error || ""),
     db_adapter: "supabase_data_plane",
     management_api_hot_path: false,
@@ -1006,12 +1128,21 @@ async function insertRows(tableArg, rows, _chunkSize = 100) {
         const inserted = await dataPlaneRequest(path, { method: "POST", body: chunk, prefer });
         if (needsReturn && Array.isArray(inserted)) out.push(...inserted);
       } catch (error) {
+        const singleRowProbe = chunk.length > 1
+          ? await probeSingleRowFailure(path, prefer, chunk[0])
+          : {
+              attempted: false,
+              reason: "single_row_probe_skipped_for_single_row_chunk",
+              row_keys: chunk[0] ? Object.keys(chunk[0]).sort() : [],
+              row_value_types: chunk[0] ? sampleRowValueTypes(chunk[0]) : {},
+            };
         const artifactPath = saveDbErrorArtifact({
           tableName,
           path,
           error,
           diagnostics,
           sampleGroup: group,
+          singleRowProbe,
         });
         console.error(JSON.stringify({
           event: "db_insert_failed",

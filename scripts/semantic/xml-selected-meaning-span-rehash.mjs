@@ -3921,14 +3921,16 @@ function loadSelectedXmlDocuments() {
 }
 
 function selectedXmlWindows(docs) {
-  const windows = docs.flatMap((doc) =>
+  // Returns ALL windows across loaded docs.
+  // LIMIT is enforced at the semantic-window level inside the main processing loop,
+  // so heading/byline/junk windows do not consume the semantic budget.
+  return docs.flatMap((doc) =>
     doc.scene_windows.map((w) => ({
       ...w,
       folder: doc.folder,
       document_xml_sha256: doc.document_xml_sha256,
     }))
   );
-  return LIMIT ? windows.slice(0, LIMIT) : windows;
 }
 
 function renderParagraphRowsForDb(semanticRun, docs) {
@@ -4351,10 +4353,15 @@ async function main() {
   }));
 
   let totalProcessed = 0;
+  let rawWindowsSeen = 0;
   let totalMeaningSpans = 0;
   let totalTaskFailures = 0;
   let skippedWindows = 0;
   let semanticWindows = 0;
+  let totalBiblical = 0;
+  let totalArchetypes = 0;
+  let totalDualisms = 0;
+  let totalHyperlinks = 0;
   let taskOk = 0;
   let taskEmpty = 0;
   let taskSkipped = 0;
@@ -4363,19 +4370,18 @@ async function main() {
   let observationsRejected = 0;
   let consecutiveFailedWindows = 0;
   const skippedPackets = [];
+  const skipReasonCounts = {};
   const perTaskFailures = Object.fromEntries(TASK_ORDER.map((task) => [task, 0]));
+  const taskCounts = Object.fromEntries(TASK_ORDER.map((task) => [task, { ok: 0, empty: 0, failed: 0, skipped: 0 }]));
 
   for (const [windowIndex, windowPlan] of windowPlans.entries()) {
     const { window, semanticPlan } = windowPlan;
-    const contextCapsule = buildNarrativeContextCapsule({ contextPack, chapters, narrativeSources, availableNarrativeContextMap, window });
-    writeFileSync(
-      join(paths.outDir, `context-capsule-selected-${String(windowIndex).padStart(5, "0")}.json`),
-      JSON.stringify(contextCapsule, null, 2)
-    );
+    rawWindowsSeen += 1;
 
-    const taskPackets = [];
+    // Pre-AI skip gate: heading/byline/junk windows do not consume the semantic LIMIT budget.
     if (semanticPlan.status === "skipped") {
       skippedWindows += 1;
+      skipReasonCounts[semanticPlan.reason] = (skipReasonCounts[semanticPlan.reason] || 0) + 1;
       console.warn(JSON.stringify({
         event: "window_skipped",
         window_index: windowIndex,
@@ -4387,13 +4393,23 @@ async function main() {
         text_preview: String(window.text || "").slice(0, 200),
         min_words: MIN_SEMANTIC_WINDOW_WORDS,
         min_chars: MIN_SEMANTIC_WINDOW_CHARS,
+        raw_windows_seen: rawWindowsSeen,
+        semantic_windows_so_far: semanticWindows,
+        semantic_windows_target: LIMIT || null,
       }));
-      for (const task of TASK_ORDER) {
-        taskPackets.push(createSkippedTaskPacket({ task, window, contextCapsule, reason: semanticPlan.reason }));
-      }
-    } else {
-      semanticWindows += 1;
-      for (const task of TASK_ORDER) {
+      continue; // skip all AI and artifact I/O for pre-classified junk windows
+    }
+
+    // Semantic window: build context, run tasks, write artifacts
+    semanticWindows += 1;
+    const contextCapsule = buildNarrativeContextCapsule({ contextPack, chapters, narrativeSources, availableNarrativeContextMap, window });
+    writeFileSync(
+      join(paths.outDir, `context-capsule-selected-${String(windowIndex).padStart(5, "0")}.json`),
+      JSON.stringify(contextCapsule, null, 2)
+    );
+
+    const taskPackets = [];
+    for (const task of TASK_ORDER) {
         if (importedBatch) {
           const prompt = buildSemanticTaskPrompt({ task, window, contextCapsule });
           const promptHash = sha256Text(prompt);
@@ -4429,7 +4445,6 @@ async function main() {
           taskPackets.push(await runSemanticTaskPacket({ task, window, contextCapsule, noAi }));
         }
       }
-    }
 
     for (const packet of taskPackets) {
       if (packet.status === "ok") taskOk += 1;
@@ -4440,8 +4455,14 @@ async function main() {
         totalTaskFailures += 1;
         perTaskFailures[packet.task] += 1;
       }
-      observationsAccepted += packet.accepted_observations.length;
+      taskCounts[packet.task][packet.status] = (taskCounts[packet.task][packet.status] || 0) + 1;
+      const acceptedCount = packet.accepted_observations.length;
+      observationsAccepted += acceptedCount;
       observationsRejected += packet.rejected_observations.length;
+      if (packet.task === "biblical_references") totalBiblical += acceptedCount;
+      else if (packet.task === "archetypes") totalArchetypes += acceptedCount;
+      else if (packet.task === "dualisms") totalDualisms += acceptedCount;
+      else if (packet.task === "hyperlinks_parallelisms") totalHyperlinks += acceptedCount;
 
       const stem = `${String(windowIndex).padStart(5, "0")}-${packet.task}`;
       writeFileSync(join(paths.outDir, `prompt-selected-${stem}.txt`), packet.prompt);
@@ -4495,22 +4516,26 @@ async function main() {
     totalProcessed += 1;
     const windowAccepted = taskPackets.reduce((sum, packet) => sum + packet.accepted_observations.length, 0);
     const windowFailedTasks = taskPackets.filter((packet) => packet.status === "failed").length;
-    consecutiveFailedWindows = semanticPlan.status === "skipped"
-      ? 0
-      : (windowAccepted === 0 && windowFailedTasks > 0 ? consecutiveFailedWindows + 1 : 0);
+    consecutiveFailedWindows = windowAccepted === 0 && windowFailedTasks > 0
+      ? consecutiveFailedWindows + 1
+      : 0;
 
     console.log(JSON.stringify({
       run_id: semanticRun.id,
       selected_xml_driver: true,
-      old_semantic_table_writes: "blocked",
       primary_lane: "semantic_meaning_spans",
-      provider: PROVIDER,
+      db_adapter: "supabase_data_plane",
+      provider: ORIGINAL_PROVIDER,
+      canonical_provider: CANONICAL_PROVIDER,
       provider_model: noAi ? "no-ai" : PROVIDER_MODEL,
       window: window.scene_window_id,
       folder: window.folder,
+      raw_windows_seen: rawWindowsSeen,
       processed_windows: totalProcessed,
       total_windows: windows.length,
       skipped_windows: skippedWindows,
+      semantic_windows_target: LIMIT || null,
+      semantic_windows_attempted: semanticWindows,
       semantic_windows: semanticWindows,
       meaning_spans: totalMeaningSpans,
       task_failures: totalTaskFailures,
@@ -4547,10 +4572,15 @@ async function main() {
               : consecutiveWindowFailure
                 ? "consecutive_failed_windows_threshold"
                 : "task_failure_rate_threshold",
-            provider: PROVIDER,
+            provider: ORIGINAL_PROVIDER,
+            canonical_provider: CANONICAL_PROVIDER,
             processed_windows: totalProcessed,
+            raw_windows_seen: rawWindowsSeen,
             total_windows: windows.length,
             skipped_windows: skippedWindows,
+            skip_reason_counts: skipReasonCounts,
+            semantic_windows_target: LIMIT || null,
+            semantic_windows_attempted: semanticWindows,
             semantic_windows: semanticWindows,
             task_ok: taskOk,
             task_empty: taskEmpty,
@@ -4566,20 +4596,25 @@ async function main() {
         });
       }
     }
+
+    // Semantic LIMIT reached — stop scanning further windows
+    if (LIMIT && semanticWindows >= LIMIT) break;
   }
+
+  const sourceExhaustedBeforeSemanticLimit = LIMIT ? semanticWindows < LIMIT : false;
 
   writeFileSync(
     join(paths.outDir, "skipped-packets.jsonl"),
     skippedPackets.map((record) => JSON.stringify(record)).join("\n") + (skippedPackets.length ? "\n" : "")
   );
 
-  // Fail loudly: write mode skipped ALL windows — nothing reached the AI.
-  // This means every window failed classifySemanticWindow. Check window_skipped events in the log
-  // for the exact skip_reason + text_preview. Likely cause: batch_size=1 with short paragraphs,
-  // or MIN_SEMANTIC_WINDOW_CHARS/MIN_SEMANTIC_WINDOW_WORDS too high relative to paragraph length.
+  // Fail loudly: write mode exhausted all loaded source windows without finding any semantic content.
+  // Check window_skipped events in the log for skip_reason + text_preview.
+  // Likely cause: batch_size=1 with short paragraphs, or selected doc has only front matter.
   if (writeMode && !noAi && windows.length > 0 && semanticWindows === 0) {
     const allSkippedMsg = [
-      `All ${skippedWindows} window(s) were classified as non-semantic and skipped — no AI tasks ran.`,
+      `All ${rawWindowsSeen} window(s) were classified as non-semantic and skipped — no AI tasks ran.`,
+      `raw_windows_seen=${rawWindowsSeen} skip_reason_counts=${JSON.stringify(skipReasonCounts)}`,
       `min_chars=${MIN_SEMANTIC_WINDOW_CHARS} min_words=${MIN_SEMANTIC_WINDOW_WORDS} batch_size=${BATCH_SIZE}`,
       `Check the window_skipped log events above for skip_reason and text_preview.`,
       `Fix: lower MIN_SEMANTIC_WINDOW_CHARS/MIN_SEMANTIC_WINDOW_WORDS env vars, or increase batch_size`,
@@ -4587,11 +4622,16 @@ async function main() {
     ].join(" ");
     console.error(JSON.stringify({
       event: "run_failed_all_windows_skipped",
-      provider: PROVIDER,
+      provider: ORIGINAL_PROVIDER,
+      canonical_provider: CANONICAL_PROVIDER,
       model: PROVIDER_MODEL,
-      windows: windows.length,
+      raw_windows_seen: rawWindowsSeen,
+      total_windows: windows.length,
       skipped_windows: skippedWindows,
+      skip_reason_counts: skipReasonCounts,
       semantic_windows: 0,
+      semantic_windows_target: LIMIT || null,
+      source_exhausted_before_semantic_limit: true,
       min_chars: MIN_SEMANTIC_WINDOW_CHARS,
       min_words: MIN_SEMANTIC_WINDOW_WORDS,
       batch_size: BATCH_SIZE,
@@ -4604,8 +4644,10 @@ async function main() {
     }).catch(() => {});
     writeFileSync(join(paths.outDir, "run-summary.json"), JSON.stringify({
       run_id: semanticRun.id, write_mode: writeMode, no_ai: noAi,
-      provider: PROVIDER, model: PROVIDER_MODEL,
-      windows: windows.length, skipped_windows: skippedWindows, semantic_windows: 0,
+      provider: ORIGINAL_PROVIDER, canonical_provider: CANONICAL_PROVIDER, model: PROVIDER_MODEL,
+      raw_windows_seen: rawWindowsSeen, total_windows: windows.length,
+      skipped_windows: skippedWindows, skip_reason_counts: skipReasonCounts, semantic_windows: 0,
+      semantic_windows_target: LIMIT || null, source_exhausted_before_semantic_limit: true,
       total_meaning_spans: 0, task_skipped: taskSkipped,
       min_chars: MIN_SEMANTIC_WINDOW_CHARS, min_words: MIN_SEMANTIC_WINDOW_WORDS,
       batch_size: BATCH_SIZE, error: allSkippedMsg, failed: true, sourceSummary,
@@ -4620,11 +4662,16 @@ async function main() {
     const emptyRunMsg = [
       `Zero meaning_spans written after processing ${semanticWindows} semantic window(s).`,
       `task_empty=${taskEmpty} task_failed=${taskFailed} task_ok=${taskOk}`,
-      `Provider=${PROVIDER} model=${PROVIDER_MODEL}`,
+      `Provider=${ORIGINAL_PROVIDER} canonical=${CANONICAL_PROVIDER} model=${PROVIDER_MODEL}`,
       `Check docs/forensics/audits/ai-bad-json/ for raw model output.`,
       `If model is too small, set a larger model (e.g. llama3.2:3b) or increase OLLAMA_NUM_CTX.`,
     ].join(" ");
-    console.error(JSON.stringify({ event: "run_failed_zero_spans", provider: PROVIDER, model: PROVIDER_MODEL, semantic_windows: semanticWindows, task_empty: taskEmpty, task_failed: taskFailed, error: emptyRunMsg }));
+    console.error(JSON.stringify({
+      event: "run_failed_zero_spans",
+      provider: ORIGINAL_PROVIDER, canonical_provider: CANONICAL_PROVIDER, model: PROVIDER_MODEL,
+      raw_windows_seen: rawWindowsSeen, semantic_windows: semanticWindows,
+      task_empty: taskEmpty, task_failed: taskFailed, error: emptyRunMsg,
+    }));
     await patchRow("semantic_runs", semanticRun.id, {
       status: "failed",
       error: emptyRunMsg,
@@ -4634,10 +4681,16 @@ async function main() {
       run_id: semanticRun.id,
       write_mode: writeMode,
       no_ai: noAi,
-      provider: PROVIDER,
+      provider: ORIGINAL_PROVIDER,
+      canonical_provider: CANONICAL_PROVIDER,
       model: PROVIDER_MODEL,
+      raw_windows_seen: rawWindowsSeen,
       total_meaning_spans: 0,
+      meaning_spans: 0,
       semantic_windows: semanticWindows,
+      semantic_windows_attempted: semanticWindows,
+      semantic_windows_target: LIMIT || null,
+      source_exhausted_before_semantic_limit: sourceExhaustedBeforeSemanticLimit,
       task_empty: taskEmpty,
       task_failed: taskFailed,
       task_ok: taskOk,
@@ -4654,11 +4707,16 @@ async function main() {
       completed_at: new Date().toISOString(),
       metadata: {
         ...(semanticRun.metadata || {}),
+        raw_windows_seen: rawWindowsSeen,
         total_processed_windows: totalProcessed,
         total_meaning_spans: totalMeaningSpans,
         total_task_failures: totalTaskFailures,
         skipped_windows: skippedWindows,
+        skip_reason_counts: skipReasonCounts,
+        semantic_windows_target: LIMIT || null,
+        semantic_windows_attempted: semanticWindows,
         semantic_windows: semanticWindows,
+        source_exhausted_before_semantic_limit: sourceExhaustedBeforeSemanticLimit,
         task_ok: taskOk,
         task_empty: taskEmpty,
         task_skipped: taskSkipped,
@@ -4670,8 +4728,10 @@ async function main() {
         ai_task_order: TASK_ORDER,
         selected_xml_driver: true,
         primary_hash_lane: "semantic_meaning_spans",
-        old_semantic_table_writes: "blocked_on_first_run",
-        semantic_provider: PROVIDER,
+        db_adapter: "supabase_data_plane",
+        management_api_hot_path: false,
+        provider: ORIGINAL_PROVIDER,
+        canonical_provider: CANONICAL_PROVIDER,
         semantic_model: PROVIDER_MODEL,
       },
     });
@@ -4683,28 +4743,39 @@ async function main() {
     no_ai: noAi,
     selected_xml_driver: true,
     primary_hash_lane: "semantic_meaning_spans",
-    old_semantic_table_writes: "blocked_on_first_run",
     db_adapter: "supabase_data_plane",
     management_api_hot_path: false,
+    provider: ORIGINAL_PROVIDER,
+    canonical_provider: CANONICAL_PROVIDER,
+    original_provider: ORIGINAL_PROVIDER,
+    model: noAi ? "no-ai" : PROVIDER_MODEL,
+    raw_windows_seen: rawWindowsSeen,
+    processed_windows: totalProcessed,
     total_processed_windows: totalProcessed,
-    total_meaning_spans: totalMeaningSpans,
-    total_task_failures: totalTaskFailures,
     skipped_windows: skippedWindows,
+    skip_reason_counts: skipReasonCounts,
+    semantic_windows_target: LIMIT || null,
+    semantic_windows_attempted: semanticWindows,
     semantic_windows: semanticWindows,
+    source_exhausted_before_semantic_limit: sourceExhaustedBeforeSemanticLimit,
+    meaning_spans: totalMeaningSpans,
+    total_meaning_spans: totalMeaningSpans,
+    biblical_references: totalBiblical,
+    archetypes: totalArchetypes,
+    dualisms: totalDualisms,
+    hyperlinks_parallelisms: totalHyperlinks,
+    total_task_failures: totalTaskFailures,
     task_ok: taskOk,
     task_empty: taskEmpty,
     task_skipped: taskSkipped,
     task_failed: taskFailed,
-    task_counts: Object.fromEntries(TASK_ORDER.map((t) => [t, { ok: 0, empty: 0, failed: 0, skipped: 0 }])),
+    task_counts: taskCounts,
     observations_accepted: observationsAccepted,
     observations_rejected: observationsRejected,
     per_task_failures: perTaskFailures,
     run_hash: runHash,
     narrative_context_sha256: NARRATIVE_CONTEXT_SHA256,
     xml_manifest_sha256: XML_MANIFEST_SHA256,
-    provider: ORIGINAL_PROVIDER,
-    canonical_provider: CANONICAL_PROVIDER,
-    model: noAi ? "no-ai" : PROVIDER_MODEL,
     batch_mode: batchMode,
     sourceSummary,
   }, null, 2));

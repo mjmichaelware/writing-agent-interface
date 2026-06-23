@@ -159,6 +159,8 @@ const OLLAMA_BASE_URL = env("OLLAMA_BASE_URL", "http://localhost:11434");
 const OLLAMA_MODEL = env("OLLAMA_MODEL", env("SEMANTIC_MODEL", "llama3.2:1b"));
 const OLLAMA_CACHE_PATH = env("OLLAMA_CACHE_PATH", join(ROOT, "docs/forensics/audits/ollama-result-cache.json"));
 const OLLAMA_CONTEXT_CHARS = Number(process.env.OLLAMA_CONTEXT_CHARS || 2400);
+const OLLAMA_ACTIONS_CONTEXT_CHARS = Number(process.env.OLLAMA_ACTIONS_CONTEXT_CHARS || (/llama3\.2:1b/i.test(OLLAMA_MODEL) ? 1800 : 2400));
+const OLLAMA_HEALTHCHECK_TIMEOUT_MS = Number(process.env.OLLAMA_HEALTHCHECK_TIMEOUT_MS || 10000);
 const GEMINI_MODEL = env("SEMANTIC_MODEL", env("VERTEX_MODEL", "gemini-2.5-flash-lite"));
 const PROVIDER_MODEL = PROVIDER === "gemini_sync" ? GEMINI_MODEL : OLLAMA_MODEL;
 
@@ -225,6 +227,15 @@ function normalizeManagementRows(json) {
 
 
 function isRetryableProviderError(error) {
+  const type = providerErrorType(error);
+  if (type === "ollama_connection_failed") return true;
+  if (type === "ollama_http_error") {
+    const status = Number(error?.http_status || 0);
+    return [408, 409, 429, 500, 502, 503, 504].includes(status);
+  }
+  if (type === "ollama_generation_timeout" || type === "ollama_bad_json" || type === "ollama_empty_response") {
+    return false;
+  }
   const text = String(error?.message || error || "");
   return /(?:\b408\b|\b409\b|\b429\b|\b500\b|\b502\b|\b503\b|\b504\b|rate limit|overloaded|temporar|timeout|ECONNRESET|ETIMEDOUT|fetch failed|network|ollama not running)/i.test(text);
 }
@@ -239,6 +250,70 @@ function providerRetryDelayMs(attempt) {
 function dbRetryDelayMs(attempt) {
   const jitter = Math.floor(Math.random() * 1000);
   return Math.min(30000, 2000 * Math.pow(2, Math.max(0, attempt - 1)) + jitter);
+}
+
+function providerRetryLimit(error) {
+  const type = providerErrorType(error);
+  if (type === "ollama_connection_failed") return Number(process.env.OLLAMA_CONNECTION_RETRY_MAX || 2);
+  if (type === "ollama_http_error") return Number(process.env.OLLAMA_HTTP_RETRY_MAX || 1);
+  if (type === "ollama_generation_timeout") return Number(process.env.OLLAMA_GENERATION_TIMEOUT_RETRY_MAX || 0);
+  return Number(process.env.PROVIDER_RETRY_MAX || 5);
+}
+
+async function checkOllamaHealth({ expectedModel = OLLAMA_MODEL } = {}) {
+  const url = `${OLLAMA_BASE_URL}/api/tags`;
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), OLLAMA_HEALTHCHECK_TIMEOUT_MS);
+  let response;
+  try {
+    response = await fetch(url, { signal: controller.signal });
+  } catch (error) {
+    const isTimeout = error?.name === "AbortError";
+    throw createProviderError(
+      "ollama_connection_failed",
+      isTimeout
+        ? `ollama health check timed out after ${OLLAMA_HEALTHCHECK_TIMEOUT_MS}ms at ${url}`
+        : `ollama health check failed at ${url}: ${error?.message || error}`,
+      { health_url: url, tags_ok: false, expected_model: expectedModel }
+    );
+  } finally {
+    clearTimeout(timeoutId);
+  }
+
+  const rawText = await response.text();
+  if (!response.ok) {
+    throw createProviderError(
+      "ollama_connection_failed",
+      `ollama health check returned HTTP ${response.status} from ${url}`,
+      { health_url: url, tags_ok: false, expected_model: expectedModel, http_status: response.status, raw_text: rawText.slice(0, 800) }
+    );
+  }
+
+  let envelope = null;
+  try {
+    envelope = JSON.parse(rawText);
+  } catch {}
+
+  const availableModels = safeArray(envelope?.models)
+    .map((model) => String(model?.name || ""))
+    .filter(Boolean);
+  const modelFound = availableModels.length ? availableModels.includes(expectedModel) : null;
+
+  if (modelFound === false) {
+    throw createProviderError(
+      "ollama_connection_failed",
+      `ollama health check passed but model ${expectedModel} is not listed by /api/tags`,
+      { health_url: url, tags_ok: true, expected_model: expectedModel, model_found: false, available_models: availableModels.slice(0, 20) }
+    );
+  }
+
+  return {
+    health_url: url,
+    tags_ok: true,
+    expected_model: expectedModel,
+    model_found: modelFound,
+    available_models: availableModels.slice(0, 20),
+  };
 }
 
 // Validates the Supabase service_role key format and returns PostgREST auth headers.
@@ -1219,9 +1294,147 @@ const OLLAMA_PROVIDERS = new Set(["ollama", "ollama_actions", "local_actions_oll
 // Canonical model runner (routing); preserve original for metadata/display.
 const ORIGINAL_PROVIDER = PROVIDER;
 const CANONICAL_PROVIDER = OLLAMA_PROVIDERS.has(PROVIDER) ? "ollama" : PROVIDER;
+const SUMMARY_TASKS = ["meaning_spans", "dualisms", "archetypes", "biblical_references", "hyperlinks_parallelisms"];
+const DEFAULT_TASK_STATUS_COUNTS = () => Object.fromEntries(SUMMARY_TASKS.map((task) => [task, {
+  ok: 0,
+  empty: 0,
+  failed: 0,
+  skipped: 0,
+}]));
+const RUN_SUMMARY_BASE = {
+  run_id: null,
+  provider: ORIGINAL_PROVIDER,
+  canonical_provider: CANONICAL_PROVIDER,
+  provider_model: noAi ? "no-ai" : PROVIDER_MODEL,
+  write_mode: writeMode,
+  no_ai: noAi,
+  raw_windows_seen: 0,
+  processed_windows: 0,
+  skipped_windows: 0,
+  skip_reason_counts: {},
+  semantic_windows_target: 0,
+  semantic_windows_attempted: 0,
+  semantic_windows: 0,
+  meaning_spans: 0,
+  total_meaning_spans: 0,
+  task_ok: 0,
+  task_empty: 0,
+  task_skipped: 0,
+  task_failed: 0,
+  task_counts: DEFAULT_TASK_STATUS_COUNTS(),
+  per_task_failures: Object.fromEntries(SUMMARY_TASKS.map((task) => [task, 0])),
+  last_error_type: null,
+  last_error_message: null,
+  db_adapter: "supabase_data_plane",
+  management_api_hot_path: false,
+  failed: false,
+  sourceSummary: null,
+  pathsOutDir: paths.outDir,
+};
+const ACTIVE_RUN_STATE = { ...RUN_SUMMARY_BASE };
 
 function isSyncProvider(provider = PROVIDER) {
   return OLLAMA_PROVIDERS.has(provider) || provider.endsWith("_sync");
+}
+
+function nowArtifactStamp() {
+  return new Date().toISOString().replace(/[:.]/g, "-");
+}
+
+function ensureDir(path) {
+  mkdirSync(path, { recursive: true });
+  return path;
+}
+
+function taskArtifactStem({ windowIndex, task, promptMode = "default" }) {
+  const index = Number.isInteger(windowIndex) ? String(windowIndex).padStart(5, "0") : "unknown";
+  return `${index}-${task}${promptMode !== "default" ? `-${promptMode}` : ""}`;
+}
+
+function promptProfileForMode(promptMode = "default") {
+  if (promptMode === "reduced") return "reduced";
+  if (PROVIDER === "ollama_actions") return "actions";
+  return "default";
+}
+
+function createProviderError(type, message, extra = {}) {
+  const error = new Error(message);
+  error.name = "ProviderError";
+  error.provider_error_type = type;
+  Object.assign(error, extra);
+  return error;
+}
+
+function providerErrorType(error) {
+  return error?.provider_error_type || "provider_error";
+}
+
+function providerErrorMessage(error) {
+  return String(error?.message || error || "Unknown provider error");
+}
+
+function writeRunSummarySnapshot(overrides = {}) {
+  if (!ACTIVE_RUN_STATE.pathsOutDir) return null;
+  const summary = {
+    run_id: ACTIVE_RUN_STATE.run_id,
+    provider: ACTIVE_RUN_STATE.provider,
+    canonical_provider: ACTIVE_RUN_STATE.canonical_provider,
+    provider_model: ACTIVE_RUN_STATE.provider_model,
+    write_mode: ACTIVE_RUN_STATE.write_mode,
+    no_ai: ACTIVE_RUN_STATE.no_ai,
+    raw_windows_seen: ACTIVE_RUN_STATE.raw_windows_seen,
+    processed_windows: ACTIVE_RUN_STATE.processed_windows,
+    skipped_windows: ACTIVE_RUN_STATE.skipped_windows,
+    skip_reason_counts: ACTIVE_RUN_STATE.skip_reason_counts,
+    semantic_windows_target: ACTIVE_RUN_STATE.semantic_windows_target,
+    semantic_windows_attempted: ACTIVE_RUN_STATE.semantic_windows_attempted,
+    semantic_windows: ACTIVE_RUN_STATE.semantic_windows,
+    meaning_spans: ACTIVE_RUN_STATE.meaning_spans,
+    total_meaning_spans: ACTIVE_RUN_STATE.total_meaning_spans,
+    task_ok: ACTIVE_RUN_STATE.task_ok,
+    task_empty: ACTIVE_RUN_STATE.task_empty,
+    task_skipped: ACTIVE_RUN_STATE.task_skipped,
+    task_failed: ACTIVE_RUN_STATE.task_failed,
+    task_counts: ACTIVE_RUN_STATE.task_counts,
+    per_task_failures: ACTIVE_RUN_STATE.per_task_failures,
+    last_error_type: ACTIVE_RUN_STATE.last_error_type,
+    last_error_message: ACTIVE_RUN_STATE.last_error_message,
+    db_adapter: ACTIVE_RUN_STATE.db_adapter,
+    management_api_hot_path: ACTIVE_RUN_STATE.management_api_hot_path,
+    failed: ACTIVE_RUN_STATE.failed,
+    sourceSummary: ACTIVE_RUN_STATE.sourceSummary,
+    ...overrides,
+  };
+  writeFileSync(join(ACTIVE_RUN_STATE.pathsOutDir, "run-summary.json"), JSON.stringify(summary, null, 2));
+  return summary;
+}
+
+function recordRunError(error, extra = {}) {
+  ACTIVE_RUN_STATE.last_error_type = providerErrorType(error);
+  ACTIVE_RUN_STATE.last_error_message = providerErrorMessage(error);
+  if (extra.failed !== undefined) ACTIVE_RUN_STATE.failed = extra.failed;
+}
+
+function incrementSkipReason(reason) {
+  ACTIVE_RUN_STATE.skip_reason_counts[reason] = (ACTIVE_RUN_STATE.skip_reason_counts[reason] || 0) + 1;
+}
+
+function recordTaskPacketForSummary(packet) {
+  if (!ACTIVE_RUN_STATE.task_counts[packet.task]) {
+    ACTIVE_RUN_STATE.task_counts[packet.task] = { ok: 0, empty: 0, failed: 0, skipped: 0 };
+  }
+  ACTIVE_RUN_STATE.task_counts[packet.task][packet.status] += 1;
+  if (packet.status === "ok") ACTIVE_RUN_STATE.task_ok += 1;
+  if (packet.status === "empty") ACTIVE_RUN_STATE.task_empty += 1;
+  if (packet.status === "skipped") ACTIVE_RUN_STATE.task_skipped += 1;
+  if (packet.status === "failed") {
+    ACTIVE_RUN_STATE.task_failed += 1;
+    ACTIVE_RUN_STATE.per_task_failures[packet.task] += 1;
+    if (packet.error_type || packet.failure_reason) {
+      ACTIVE_RUN_STATE.last_error_type = packet.error_type || packet.failure_reason;
+      ACTIVE_RUN_STATE.last_error_message = packet.validation_errors?.[0] || packet.failure_reason || ACTIVE_RUN_STATE.last_error_message;
+    }
+  }
 }
 
 function batchOperationMode() {
@@ -2133,41 +2346,49 @@ function buildSourcePacket(window) {
   };
 }
 
-function buildCompactNarrativeContext(contextCapsule) {
+function buildCompactNarrativeContext(contextCapsule, promptMode = "default") {
+  const profile = promptProfileForMode(promptMode);
+  const isActionsProfile = profile === "actions";
+  const isReducedProfile = profile === "reduced";
+  const contextCharCap = isReducedProfile
+    ? Math.min(OLLAMA_ACTIONS_CONTEXT_CHARS, 1400)
+    : isActionsProfile
+      ? Math.min(OLLAMA_CONTEXT_CHARS, OLLAMA_ACTIONS_CONTEXT_CHARS)
+      : OLLAMA_CONTEXT_CHARS;
   const parts = [];
 
   if (contextCapsule.context_pack_excerpt) {
-    parts.push("NARRATIVE OVERVIEW:\n" + clip(contextCapsule.context_pack_excerpt, 500));
+    parts.push("NARRATIVE OVERVIEW:\n" + clip(contextCapsule.context_pack_excerpt, isReducedProfile ? 320 : isActionsProfile ? 420 : 500));
   }
 
-  const topChapters = (contextCapsule.public_chapter_corpus || []).slice(0, 2);
+  const topChapters = (contextCapsule.public_chapter_corpus || []).slice(0, isReducedProfile ? 1 : isActionsProfile ? 1 : 2);
   if (topChapters.length) {
     parts.push("RELEVANT CHAPTERS:\n" + topChapters
-      .map((ch) => `Ch.${ch.chapter_number}: ${clip(ch.excerpt, 220)}`)
+      .map((ch) => `Ch.${ch.chapter_number}: ${clip(ch.excerpt, isReducedProfile ? 140 : isActionsProfile ? 180 : 220)}`)
       .join("\n"));
   }
 
-  const sources = (contextCapsule.narrative_protocol_sources || []).slice(0, 2);
+  const sources = (contextCapsule.narrative_protocol_sources || []).slice(0, isReducedProfile ? 1 : isActionsProfile ? 1 : 2);
   if (sources.length) {
     parts.push("NARRATIVE PROTOCOLS:\n" + sources
-      .map((s) => `[${s.role}]: ${clip(s.excerpt, 220)}`)
+      .map((s) => `[${s.role}]: ${clip(s.excerpt, isReducedProfile ? 140 : isActionsProfile ? 180 : 220)}`)
       .join("\n"));
   }
 
-  const subjects = (contextCapsule.subject_resolution_candidates || []).slice(0, 12);
+  const subjects = (contextCapsule.subject_resolution_candidates || []).slice(0, isReducedProfile ? 6 : isActionsProfile ? 8 : 12);
   if (subjects.length) {
     parts.push("KNOWN SUBJECTS: " + subjects.map((s) => s.name).join(", "));
   }
 
-  return clip(parts.join("\n\n"), OLLAMA_CONTEXT_CHARS);
+  return clip(parts.join("\n\n"), contextCharCap);
 }
 
-function buildSemanticTaskPrompt({ task, window, contextCapsule }) {
-  const narrativeContext = PROVIDER === "ollama"
-    ? buildCompactNarrativeContext(contextCapsule)
+function buildSemanticTaskPromptBundle({ task, window, contextCapsule, promptMode = "default" }) {
+  const narrativeContext = CANONICAL_PROVIDER === "ollama"
+    ? buildCompactNarrativeContext(contextCapsule, promptMode)
     : JSON.stringify(contextCapsule, null, 2);
 
-  return [
+  const prompt = [
     "You are a semantic analyst, not a JSON/DB row generator.",
     "Return only valid JSON matching the requested schema.",
     "No markdown. No explanation. No extra keys.",
@@ -2195,6 +2416,17 @@ function buildSemanticTaskPrompt({ task, window, contextCapsule }) {
     "OUTPUT CONTRACT:",
     JSON.stringify(taskResponseSchema(task), null, 2),
   ].join("\n");
+
+  return {
+    prompt,
+    narrativeContext,
+    promptMode,
+    promptProfile: promptProfileForMode(promptMode),
+  };
+}
+
+function buildSemanticTaskPrompt({ task, window, contextCapsule, promptMode = "default" }) {
+  return buildSemanticTaskPromptBundle({ task, window, contextCapsule, promptMode }).prompt;
 }
 
 function stripFence(raw) {
@@ -2265,6 +2497,81 @@ function parseJsonish(raw) {
   return { ok: false, error: "Unable to parse JSON payload." };
 }
 
+function writePromptArtifact({ task, window, contextCapsule, prompt, promptMode = "default", windowIndex = null, narrativeContext = "" }) {
+  const dir = ensureDir(join(paths.outDir, "prompts"));
+  const stem = taskArtifactStem({ windowIndex, task, promptMode });
+  const promptPath = join(dir, `prompt-selected-${stem}.txt`);
+  const metadataPath = join(dir, `prompt-selected-${stem}.json`);
+  const paragraphIndexes = uniqueBy(window.render_paragraphs.flatMap((paragraph) => safeArray(paragraph.source_xml_paragraph_indexes)), (value) => String(value));
+
+  writeFileSync(promptPath, prompt);
+  writeFileSync(metadataPath, JSON.stringify({
+    run_id: RUN_ID,
+    task,
+    provider: ORIGINAL_PROVIDER,
+    canonical_provider: CANONICAL_PROVIDER,
+    model: PROVIDER_MODEL,
+    prompt_mode: promptMode,
+    prompt_profile: promptProfileForMode(promptMode),
+    window_index: windowIndex,
+    scene_window_id: window.scene_window_id,
+    source_doc_id: window.source_doc_id,
+    folder: window.folder,
+    document_xml_sha256: window.document_xml_sha256,
+    render_para_keys: window.render_paragraphs.map((paragraph) => paragraph.render_para_key),
+    source_xml_paragraph_indexes: paragraphIndexes,
+    prompt_chars: prompt.length,
+    context_chars: narrativeContext.length,
+    text_chars: String(window.text || "").length,
+    ollama_num_ctx: Number(process.env.OLLAMA_NUM_CTX || 512),
+    ollama_context_chars: OLLAMA_CONTEXT_CHARS,
+    ollama_actions_context_chars: OLLAMA_ACTIONS_CONTEXT_CHARS,
+    prompt_head_excerpt: prompt.slice(0, 1200),
+    prompt_tail_excerpt: prompt.slice(-1200),
+    context_capsule_sha256: contextCapsule.context_capsule_sha256,
+  }, null, 2));
+
+  return { stem, promptPath, metadataPath };
+}
+
+function saveProviderFailureArtifact({ lane, errorType, errorMessage, artifactContext = {}, health = null, timeoutMs = null, rawText = null, httpStatus = null }) {
+  const globalDir = ensureDir(join(ROOT, "docs", "forensics", "audits", lane));
+  const runDir = ensureDir(join(paths.outDir, "provider-errors"));
+  const stamp = nowArtifactStamp();
+  const baseName = `${stamp}-${artifactContext.stem || taskArtifactStem({ windowIndex: artifactContext.windowIndex, task: artifactContext.task, promptMode: artifactContext.promptMode })}-${errorType}`;
+  const payload = {
+    run_id: RUN_ID,
+    task: artifactContext.task || null,
+    provider: ORIGINAL_PROVIDER,
+    canonical_provider: CANONICAL_PROVIDER,
+    model: PROVIDER_MODEL,
+    error_type: errorType,
+    error_message: errorMessage,
+    timeout_ms: timeoutMs,
+    http_status: httpStatus,
+    scene_window_id: artifactContext.window?.scene_window_id || null,
+    source_doc_id: artifactContext.window?.source_doc_id || null,
+    folder: artifactContext.window?.folder || null,
+    window_index: artifactContext.windowIndex ?? null,
+    prompt_mode: artifactContext.promptMode || "default",
+    prompt_path: artifactContext.promptArtifactPath || null,
+    prompt_metadata_path: artifactContext.promptArtifactMetadataPath || null,
+    prompt_chars: artifactContext.prompt?.length ?? null,
+    context_chars: artifactContext.narrativeContext?.length ?? null,
+    ollama_num_ctx: Number(process.env.OLLAMA_NUM_CTX || 512),
+    ollama_context_chars: OLLAMA_CONTEXT_CHARS,
+    ollama_actions_context_chars: OLLAMA_ACTIONS_CONTEXT_CHARS,
+    health,
+    timestamp: new Date().toISOString(),
+    raw_response_preview: rawText ? String(rawText).slice(0, 2000) : null,
+  };
+  const globalPath = join(globalDir, `${baseName}.json`);
+  const runPath = join(runDir, `${baseName}.json`);
+  writeFileSync(globalPath, JSON.stringify(payload, null, 2));
+  writeFileSync(runPath, JSON.stringify(payload, null, 2));
+  return { globalPath, runPath };
+}
+
 async function saveBadAiJson(raw, phase, extra = {}) {
   const fs = await import("node:fs/promises");
   const path = await import("node:path");
@@ -2308,9 +2615,27 @@ function setOllamaCache(key, rawText) {
   } catch {}
 }
 
-async function callOllamaSync(prompt) {
+async function callOllamaSync(prompt, artifactContext = {}) {
   const url = `${OLLAMA_BASE_URL}/api/generate`;
   const timeoutMs = Number(process.env.OLLAMA_TIMEOUT_MS || 600000);
+  let health;
+  try {
+    health = await checkOllamaHealth({ expectedModel: OLLAMA_MODEL });
+  } catch (error) {
+    error.artifact_paths = saveProviderFailureArtifact({
+      lane: "ai-connection",
+      errorType: providerErrorType(error),
+      errorMessage: providerErrorMessage(error),
+      artifactContext: { ...artifactContext, prompt },
+      health: {
+        health_url: `${OLLAMA_BASE_URL}/api/tags`,
+        tags_ok: false,
+        expected_model: OLLAMA_MODEL,
+      },
+      timeoutMs,
+    });
+    throw error;
+  }
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
   let res;
@@ -2330,23 +2655,85 @@ async function callOllamaSync(prompt) {
     });
   } catch (err) {
     const isTimeout = err.name === "AbortError";
-    throw new Error(
+    const error = createProviderError(
       isTimeout
-        ? `ollama not running at ${OLLAMA_BASE_URL}: request timed out after ${timeoutMs}ms`
-        : `ollama not running at ${OLLAMA_BASE_URL}: ${err.message}`
+        ? "ollama_generation_timeout"
+        : "ollama_connection_failed",
+      isTimeout
+        ? `ollama generation timed out after ${timeoutMs}ms at ${url}`
+        : `ollama connection failed at ${url}: ${err.message}`,
+      { timeout_ms: timeoutMs, health, health_url: health.health_url }
     );
+    error.artifact_paths = saveProviderFailureArtifact({
+      lane: isTimeout ? "ai-timeout" : "ai-connection",
+      errorType: providerErrorType(error),
+      errorMessage: providerErrorMessage(error),
+      artifactContext: { ...artifactContext, prompt },
+      health,
+      timeoutMs,
+    });
+    throw error;
   } finally {
     clearTimeout(timeoutId);
   }
   const rawText = await res.text();
-  if (!res.ok) throw new Error(`ollama error (${res.status}): ${rawText.slice(0, 800)}`);
+  if (!res.ok) {
+    const error = createProviderError(
+      "ollama_http_error",
+      `ollama generate returned HTTP ${res.status}`,
+      { timeout_ms: timeoutMs, health, http_status: res.status }
+    );
+    error.artifact_paths = saveProviderFailureArtifact({
+      lane: "ai-http-error",
+      errorType: providerErrorType(error),
+      errorMessage: `${providerErrorMessage(error)}: ${rawText.slice(0, 800)}`,
+      artifactContext: { ...artifactContext, prompt },
+      health,
+      timeoutMs,
+      rawText,
+      httpStatus: res.status,
+    });
+    throw error;
+  }
   let json;
   try {
     json = JSON.parse(rawText);
   } catch {
-    throw new Error(`ollama returned non-JSON response: ${rawText.slice(0, 400)}`);
+    const error = createProviderError(
+      "ollama_bad_json",
+      `ollama returned non-JSON response from ${url}`,
+      { timeout_ms: timeoutMs, health }
+    );
+    error.artifact_paths = saveProviderFailureArtifact({
+      lane: "ai-bad-json",
+      errorType: providerErrorType(error),
+      errorMessage: `${providerErrorMessage(error)}: ${rawText.slice(0, 400)}`,
+      artifactContext: { ...artifactContext, prompt },
+      health,
+      timeoutMs,
+      rawText,
+    });
+    throw error;
   }
-  return json.response || "";
+  const responseText = typeof json?.response === "string" ? json.response : "";
+  if (!responseText.trim()) {
+    const error = createProviderError(
+      "ollama_empty_response",
+      `ollama returned an empty response from ${url}`,
+      { timeout_ms: timeoutMs, health }
+    );
+    error.artifact_paths = saveProviderFailureArtifact({
+      lane: "ai-empty",
+      errorType: providerErrorType(error),
+      errorMessage: providerErrorMessage(error),
+      artifactContext: { ...artifactContext, prompt },
+      health,
+      timeoutMs,
+      rawText,
+    });
+    throw error;
+  }
+  return responseText;
 }
 
 async function callGeminiSync(prompt) {
@@ -2388,7 +2775,7 @@ async function callGeminiSync(prompt) {
   return envelope?.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
 }
 
-async function callSemanticProviderSync({ task, prompt, schema }) {
+async function callSemanticProviderSync({ task, prompt, schema, artifactContext = {} }) {
   if (OLLAMA_PROVIDERS.has(PROVIDER)) {
     const cacheKey = sha256Text(`${OLLAMA_MODEL}:${prompt}`);
     const cached = checkOllamaCache(cacheKey);
@@ -2396,18 +2783,28 @@ async function callSemanticProviderSync({ task, prompt, schema }) {
       console.warn(JSON.stringify({ event: "ollama_cache_hit", task, key: cacheKey.slice(0, 16) }));
       return cached;
     }
-    const maxRetries = Number(process.env.PROVIDER_RETRY_MAX || 5);
+    const configuredMaxRetries = Number(process.env.PROVIDER_RETRY_MAX || 5);
     let lastError = null;
-    for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    for (let attempt = 0; attempt <= configuredMaxRetries; attempt++) {
       try {
-        const result = await callOllamaSync(prompt);
+        const result = await callOllamaSync(prompt, artifactContext);
         setOllamaCache(cacheKey, result);
         return result;
       } catch (error) {
         lastError = error;
+        const maxRetries = Math.min(configuredMaxRetries, providerRetryLimit(error));
         if (!isRetryableProviderError(error) || attempt >= maxRetries) throw error;
         const delay = providerRetryDelayMs(attempt + 1);
-        console.warn(JSON.stringify({ event: "provider_retry", provider: PROVIDER, task, attempt: attempt + 1, max_retries: maxRetries, delay_ms: delay, error: String(error?.message || error).slice(0, 1200) }));
+        console.warn(JSON.stringify({
+          event: "provider_retry",
+          provider: PROVIDER,
+          task,
+          attempt: attempt + 1,
+          max_retries: maxRetries,
+          delay_ms: delay,
+          error_type: providerErrorType(error),
+          error: providerErrorMessage(error).slice(0, 1200),
+        }));
         await sleep(delay);
       }
     }
@@ -2746,6 +3143,11 @@ function buildTaskPacket({
   evidenceErrors = [],
   status,
   failureReason = null,
+  errorType = null,
+  promptArtifactPath = null,
+  promptArtifactMetadataPath = null,
+  promptMode = "default",
+  windowIndex = null,
 }) {
   const rawOutputHash = sha256Text(String(outputText || ""));
   const normalizedOutputHash = sha256Text(canonicalJson({
@@ -2766,12 +3168,17 @@ function buildTaskPacket({
     accepted_observations: acceptedObservations,
     rejected_observations: rejectedObservations,
     failure_reason: failureReason,
+    error_type: errorType,
     validation_errors: validationErrors,
     evidence_errors: evidenceErrors,
     raw_output_hash: rawOutputHash,
     normalized_output_hash: normalizedOutputHash,
     prompt,
     promptHash,
+    prompt_mode: promptMode,
+    prompt_artifact_path: promptArtifactPath,
+    prompt_artifact_metadata_path: promptArtifactMetadataPath,
+    window_index: windowIndex,
     outputText,
     outputHash: rawOutputHash,
     contextCapsuleHash: contextCapsule.context_capsule_sha256,
@@ -2785,7 +3192,19 @@ function classifyTaskPacketStatus(normalized) {
   return "empty";
 }
 
-async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt, promptHash, rawText, allowRepair = true }) {
+async function finalizeTaskPacketFromRaw({
+  task,
+  window,
+  contextCapsule,
+  prompt,
+  promptHash,
+  rawText,
+  allowRepair = true,
+  promptArtifactPath = null,
+  promptArtifactMetadataPath = null,
+  promptMode = "default",
+  windowIndex = null,
+}) {
   const schema = taskResponseSchema(task);
   const parsed = parseJsonish(rawText);
 
@@ -2806,6 +3225,11 @@ async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt,
         evidenceErrors: [],
         status: "failed",
         failureReason: "parse_failed",
+        errorType: "ollama_bad_json",
+        promptArtifactPath,
+        promptArtifactMetadataPath,
+        promptMode,
+        windowIndex,
       });
     }
 
@@ -2829,6 +3253,10 @@ async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt,
           validationErrors: validated.validationErrors,
           evidenceErrors: validated.evidenceErrors,
           status,
+          promptArtifactPath,
+          promptArtifactMetadataPath,
+          promptMode,
+          windowIndex,
         });
       }
 
@@ -2847,6 +3275,11 @@ async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt,
           evidenceErrors: validated.evidenceErrors,
           status: "failed",
           failureReason: "all_observations_rejected",
+          errorType: "all_observations_rejected",
+          promptArtifactPath,
+          promptArtifactMetadataPath,
+          promptMode,
+          windowIndex,
         });
       }
 
@@ -2900,6 +3333,11 @@ async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt,
       evidenceErrors: [],
       status: "failed",
       failureReason: "parse_failed_after_repair",
+      errorType: "ollama_bad_json",
+      promptArtifactPath,
+      promptArtifactMetadataPath,
+      promptMode,
+      windowIndex,
     });
   }
 
@@ -2919,6 +3357,11 @@ async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt,
       evidenceErrors: [],
       status: "failed",
       failureReason: "schema_invalid_after_repair",
+      errorType: "schema_invalid_after_repair",
+      promptArtifactPath,
+      promptArtifactMetadataPath,
+      promptMode,
+      windowIndex,
     });
   }
 
@@ -2957,13 +3400,39 @@ async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt,
     evidenceErrors: repairedValidated.evidenceErrors,
     status,
     failureReason: status === "failed" ? "all_observations_rejected_after_repair" : null,
+    errorType: status === "failed" ? "all_observations_rejected_after_repair" : null,
+    promptArtifactPath,
+    promptArtifactMetadataPath,
+    promptMode,
+    windowIndex,
   });
 }
 
-async function runSemanticTaskPacket({ task, window, contextCapsule, noAi, allowDecompose = true, importedRawText = null, allowRepair = true }) {
+async function runSemanticTaskPacket({
+  task,
+  window,
+  contextCapsule,
+  noAi,
+  allowDecompose = true,
+  importedRawText = null,
+  allowRepair = true,
+  promptMode = "default",
+  allowTimeoutRetry = true,
+  windowIndex = null,
+}) {
   const schema = taskResponseSchema(task);
-  const prompt = buildSemanticTaskPrompt({ task, window, contextCapsule });
+  const promptBundle = buildSemanticTaskPromptBundle({ task, window, contextCapsule, promptMode });
+  const prompt = promptBundle.prompt;
   const promptHash = sha256Text(prompt);
+  const promptArtifact = writePromptArtifact({
+    task,
+    window,
+    contextCapsule,
+    prompt,
+    promptMode,
+    windowIndex,
+    narrativeContext: promptBundle.narrativeContext,
+  });
 
   if (noAi) {
     const rawText = JSON.stringify({ observations: [] }, null, 2);
@@ -2980,13 +3449,32 @@ async function runSemanticTaskPacket({ task, window, contextCapsule, noAi, allow
       validationErrors: [],
       evidenceErrors: [],
       status: "empty",
+      promptArtifactPath: promptArtifact.promptPath,
+      promptArtifactMetadataPath: promptArtifact.metadataPath,
+      promptMode,
+      windowIndex,
     });
   }
 
   try {
     const rawText = importedRawText !== null
       ? importedRawText
-      : await callSemanticProviderSync({ task, prompt, schema });
+      : await callSemanticProviderSync({
+          task,
+          prompt,
+          schema,
+          artifactContext: {
+            task,
+            prompt,
+            promptMode,
+            promptArtifactPath: promptArtifact.promptPath,
+            promptArtifactMetadataPath: promptArtifact.metadataPath,
+            narrativeContext: promptBundle.narrativeContext,
+            window,
+            windowIndex,
+            stem: promptArtifact.stem,
+          },
+        });
 
     return await finalizeTaskPacketFromRaw({
       task,
@@ -2996,9 +3484,38 @@ async function runSemanticTaskPacket({ task, window, contextCapsule, noAi, allow
       promptHash,
       rawText,
       allowRepair,
+      promptArtifactPath: promptArtifact.promptPath,
+      promptArtifactMetadataPath: promptArtifact.metadataPath,
+      promptMode,
+      windowIndex,
     });
   } catch (error) {
-    const failureReason = String(error?.message || error);
+    const failureReason = providerErrorMessage(error);
+    const errorType = providerErrorType(error);
+
+    if (errorType === "ollama_generation_timeout" && allowTimeoutRetry && CANONICAL_PROVIDER === "ollama") {
+      console.warn(JSON.stringify({
+        event: "provider_retry_compact_prompt",
+        provider: PROVIDER,
+        task,
+        attempt: 1,
+        retry_mode: "reduced_prompt",
+        error_type: errorType,
+        prompt_chars: prompt.length,
+      }));
+      return await runSemanticTaskPacket({
+        task,
+        window,
+        contextCapsule,
+        noAi,
+        allowDecompose,
+        importedRawText,
+        allowRepair,
+        promptMode: "reduced",
+        allowTimeoutRetry: false,
+        windowIndex,
+      });
+    }
 
     if (allowDecompose && window.render_paragraphs.length > 1) {
       const accepted = [];
@@ -3014,6 +3531,9 @@ async function runSemanticTaskPacket({ task, window, contextCapsule, noAi, allow
           allowDecompose: false,
           importedRawText: null,
           allowRepair,
+          promptMode,
+          allowTimeoutRetry: false,
+          windowIndex,
         });
         accepted.push(...fragment.accepted_observations);
         rejected.push(...fragment.rejected_observations);
@@ -3035,10 +3555,17 @@ async function runSemanticTaskPacket({ task, window, contextCapsule, noAi, allow
         evidenceErrors,
         status: accepted.length > 0 ? "ok" : "failed",
         failureReason: accepted.length > 0 ? "decomposed_after_packet_failure" : failureReason,
+        errorType: accepted.length > 0 ? null : errorType,
+        promptArtifactPath: promptArtifact.promptPath,
+        promptArtifactMetadataPath: promptArtifact.metadataPath,
+        promptMode,
+        windowIndex,
       });
     }
 
     await saveBadAiJson("", "task-failed", { task, scene_window_id: window.scene_window_id, error: failureReason, provider: PROVIDER });
+    recordRunError(error);
+    writeRunSummarySnapshot();
     return buildTaskPacket({
       task,
       window,
@@ -3053,6 +3580,11 @@ async function runSemanticTaskPacket({ task, window, contextCapsule, noAi, allow
       evidenceErrors: /render_para_key|Quote not found|Missing evidence anchors/i.test(failureReason) ? [failureReason] : [],
       status: "failed",
       failureReason,
+      errorType,
+      promptArtifactPath: promptArtifact.promptPath,
+      promptArtifactMetadataPath: promptArtifact.metadataPath,
+      promptMode,
+      windowIndex,
     });
   }
 }
@@ -3430,6 +3962,11 @@ function buildSemanticBatchEntries({ windowPlans, contextPack, chapters, narrati
 
 async function failFastRun({ semanticRun, pathsOutDir, summary }) {
   writeFileSync(join(pathsOutDir, "fail-fast-summary.json"), JSON.stringify(summary, null, 2));
+  recordRunError(createProviderError("fail_fast", `Fail-fast: ${summary.reason}`), { failed: true });
+  writeRunSummarySnapshot({
+    failed: true,
+    fail_fast_summary: summary,
+  });
 
   if (writeMode) {
     await patchRow("semantic_runs", semanticRun.id, {
@@ -4333,6 +4870,19 @@ async function main() {
   loadOllamaResultCache();
 
   const semanticRun = await createSemanticRun(sourceSummary);
+  Object.assign(ACTIVE_RUN_STATE, {
+    ...RUN_SUMMARY_BASE,
+    run_id: semanticRun.id,
+    provider: ORIGINAL_PROVIDER,
+    canonical_provider: CANONICAL_PROVIDER,
+    provider_model: noAi ? "no-ai" : PROVIDER_MODEL,
+    write_mode: writeMode,
+    no_ai: noAi,
+    semantic_windows_target: plannedSemanticWindows,
+    sourceSummary,
+    pathsOutDir: paths.outDir,
+  });
+  writeRunSummarySnapshot();
 
   if (writeMode) {
     await insertRows("render_paragraphs?on_conflict=render_para_key", renderParagraphRowsForDb(semanticRun, docs));
@@ -4367,6 +4917,7 @@ async function main() {
 
   for (const [windowIndex, windowPlan] of windowPlans.entries()) {
     const { window, semanticPlan } = windowPlan;
+    ACTIVE_RUN_STATE.raw_windows_seen = windowIndex + 1;
     const contextCapsule = buildNarrativeContextCapsule({ contextPack, chapters, narrativeSources, availableNarrativeContextMap, window });
     writeFileSync(
       join(paths.outDir, `context-capsule-selected-${String(windowIndex).padStart(5, "0")}.json`),
@@ -4376,6 +4927,8 @@ async function main() {
     const taskPackets = [];
     if (semanticPlan.status === "skipped") {
       skippedWindows += 1;
+      ACTIVE_RUN_STATE.skipped_windows = skippedWindows;
+      incrementSkipReason(semanticPlan.reason);
       console.warn(JSON.stringify({
         event: "window_skipped",
         window_index: windowIndex,
@@ -4393,6 +4946,8 @@ async function main() {
       }
     } else {
       semanticWindows += 1;
+      ACTIVE_RUN_STATE.semantic_windows_attempted = semanticWindows;
+      ACTIVE_RUN_STATE.semantic_windows = semanticWindows;
       for (const task of TASK_ORDER) {
         if (importedBatch) {
           const prompt = buildSemanticTaskPrompt({ task, window, contextCapsule });
@@ -4414,6 +4969,8 @@ async function main() {
               evidenceErrors: [],
               status: "failed",
               failureReason: imported?.error ? "batch_result_error" : "missing_batch_result",
+              errorType: imported?.error ? "batch_result_error" : "missing_batch_result",
+              windowIndex,
             }));
           } else {
             taskPackets.push(await runSemanticTaskPacket({
@@ -4423,10 +4980,11 @@ async function main() {
               noAi,
               importedRawText: imported.rawText,
               allowRepair: false,
+              windowIndex,
             }));
           }
         } else {
-          taskPackets.push(await runSemanticTaskPacket({ task, window, contextCapsule, noAi }));
+          taskPackets.push(await runSemanticTaskPacket({ task, window, contextCapsule, noAi, windowIndex }));
         }
       }
     }
@@ -4442,6 +5000,7 @@ async function main() {
       }
       observationsAccepted += packet.accepted_observations.length;
       observationsRejected += packet.rejected_observations.length;
+      recordTaskPacketForSummary(packet);
 
       const stem = `${String(windowIndex).padStart(5, "0")}-${packet.task}`;
       writeFileSync(join(paths.outDir, `prompt-selected-${stem}.txt`), packet.prompt);
@@ -4455,9 +5014,13 @@ async function main() {
         JSON.stringify({
           status: packet.status,
           task_type: packet.task_type,
+          error_type: packet.error_type,
           scene_window_id: window.scene_window_id,
           source_doc_id: window.source_doc_id,
           context_capsule_sha256: packet.contextCapsuleHash,
+          prompt_mode: packet.prompt_mode,
+          prompt_artifact_path: packet.prompt_artifact_path,
+          prompt_artifact_metadata_path: packet.prompt_artifact_metadata_path,
           observations: packet.observations,
           accepted_observations: packet.accepted_observations,
           rejected_observations: packet.rejected_observations,
@@ -4474,6 +5037,7 @@ async function main() {
           task_type: packet.task_type,
           status: packet.status,
           failure_reason: packet.failure_reason,
+          error_type: packet.error_type,
           validation_errors: packet.validation_errors,
           evidence_errors: packet.evidence_errors,
           window_index: windowIndex,
@@ -4486,6 +5050,8 @@ async function main() {
     const spanRows = buildMeaningSpanRowsFromTaskPackets({ semanticRun, window, taskPackets, runHash });
     await writeSelectedSemanticRows({ semanticRun, window, spanRows, taskPackets });
     totalMeaningSpans += spanRows.length;
+    ACTIVE_RUN_STATE.meaning_spans = totalMeaningSpans;
+    ACTIVE_RUN_STATE.total_meaning_spans = totalMeaningSpans;
 
     writeFileSync(
       join(paths.outDir, `meaning-spans-selected-${String(windowIndex).padStart(5, "0")}.jsonl`),
@@ -4493,11 +5059,13 @@ async function main() {
     );
 
     totalProcessed += 1;
+    ACTIVE_RUN_STATE.processed_windows = totalProcessed;
     const windowAccepted = taskPackets.reduce((sum, packet) => sum + packet.accepted_observations.length, 0);
     const windowFailedTasks = taskPackets.filter((packet) => packet.status === "failed").length;
     consecutiveFailedWindows = semanticPlan.status === "skipped"
       ? 0
       : (windowAccepted === 0 && windowFailedTasks > 0 ? consecutiveFailedWindows + 1 : 0);
+    writeRunSummarySnapshot();
 
     console.log(JSON.stringify({
       run_id: semanticRun.id,
@@ -4602,14 +5170,19 @@ async function main() {
       error: allSkippedMsg,
       completed_at: new Date().toISOString(),
     }).catch(() => {});
-    writeFileSync(join(paths.outDir, "run-summary.json"), JSON.stringify({
-      run_id: semanticRun.id, write_mode: writeMode, no_ai: noAi,
-      provider: PROVIDER, model: PROVIDER_MODEL,
-      windows: windows.length, skipped_windows: skippedWindows, semantic_windows: 0,
-      total_meaning_spans: 0, task_skipped: taskSkipped,
-      min_chars: MIN_SEMANTIC_WINDOW_CHARS, min_words: MIN_SEMANTIC_WINDOW_WORDS,
-      batch_size: BATCH_SIZE, error: allSkippedMsg, failed: true, sourceSummary,
-    }, null, 2));
+    recordRunError(createProviderError("all_windows_skipped", allSkippedMsg), { failed: true });
+    writeRunSummarySnapshot({
+      windows: windows.length,
+      skipped_windows: skippedWindows,
+      semantic_windows: 0,
+      total_meaning_spans: 0,
+      task_skipped: taskSkipped,
+      min_chars: MIN_SEMANTIC_WINDOW_CHARS,
+      min_words: MIN_SEMANTIC_WINDOW_WORDS,
+      batch_size: BATCH_SIZE,
+      error: allSkippedMsg,
+      failed: true,
+    });
     process.exit(1);
   }
 
@@ -4630,12 +5203,8 @@ async function main() {
       error: emptyRunMsg,
       completed_at: new Date().toISOString(),
     }).catch(() => {});
-    writeFileSync(join(paths.outDir, "run-summary.json"), JSON.stringify({
-      run_id: semanticRun.id,
-      write_mode: writeMode,
-      no_ai: noAi,
-      provider: PROVIDER,
-      model: PROVIDER_MODEL,
+    recordRunError(createProviderError("zero_meaning_spans", emptyRunMsg), { failed: true });
+    writeRunSummarySnapshot({
       total_meaning_spans: 0,
       semantic_windows: semanticWindows,
       task_empty: taskEmpty,
@@ -4643,8 +5212,7 @@ async function main() {
       task_ok: taskOk,
       error: emptyRunMsg,
       failed: true,
-      sourceSummary,
-    }, null, 2));
+    });
     process.exit(1);
   }
 
@@ -4677,37 +5245,21 @@ async function main() {
     });
   }
 
-  writeFileSync(join(paths.outDir, "run-summary.json"), JSON.stringify({
-    run_id: semanticRun.id,
-    write_mode: writeMode,
-    no_ai: noAi,
+  ACTIVE_RUN_STATE.meaning_spans = totalMeaningSpans;
+  ACTIVE_RUN_STATE.total_meaning_spans = totalMeaningSpans;
+  writeRunSummarySnapshot({
     selected_xml_driver: true,
     primary_hash_lane: "semantic_meaning_spans",
     old_semantic_table_writes: "blocked_on_first_run",
-    db_adapter: "supabase_data_plane",
-    management_api_hot_path: false,
     total_processed_windows: totalProcessed,
-    total_meaning_spans: totalMeaningSpans,
     total_task_failures: totalTaskFailures,
-    skipped_windows: skippedWindows,
-    semantic_windows: semanticWindows,
-    task_ok: taskOk,
-    task_empty: taskEmpty,
-    task_skipped: taskSkipped,
-    task_failed: taskFailed,
-    task_counts: Object.fromEntries(TASK_ORDER.map((t) => [t, { ok: 0, empty: 0, failed: 0, skipped: 0 }])),
     observations_accepted: observationsAccepted,
     observations_rejected: observationsRejected,
-    per_task_failures: perTaskFailures,
     run_hash: runHash,
     narrative_context_sha256: NARRATIVE_CONTEXT_SHA256,
     xml_manifest_sha256: XML_MANIFEST_SHA256,
-    provider: ORIGINAL_PROVIDER,
-    canonical_provider: CANONICAL_PROVIDER,
-    model: noAi ? "no-ai" : PROVIDER_MODEL,
     batch_mode: batchMode,
-    sourceSummary,
-  }, null, 2));
+  });
 
   if (writeMode) {
     const runArtifactRows = buildSemanticRunArtifactRows({ semanticRun, pathsOutDir: paths.outDir, importedBatch });
@@ -4717,7 +5269,18 @@ async function main() {
   }
 }
 
-main().catch((error) => {
+main().catch(async (error) => {
+  recordRunError(error, { failed: true });
+  if (ACTIVE_RUN_STATE.run_id) {
+    writeRunSummarySnapshot({ failed: true });
+    if (writeMode) {
+      await patchRow("semantic_runs", ACTIVE_RUN_STATE.run_id, {
+        status: "failed",
+        error: providerErrorMessage(error),
+        completed_at: new Date().toISOString(),
+      }).catch(() => {});
+    }
+  }
   console.error(error);
   process.exit(1);
 });

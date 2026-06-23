@@ -93,7 +93,8 @@ jobs:
       OLLAMA_BASE_URL: "http://localhost:11434"
       OLLAMA_MODEL: ${{ inputs.model }}
       OLLAMA_NUM_CTX: "2048"
-      OLLAMA_CONTEXT_CHARS: "4000"
+      OLLAMA_CONTEXT_CHARS: "2400"
+      OLLAMA_ACTIONS_CONTEXT_CHARS: "1800"
       OLLAMA_TIMEOUT_MS: "300000"
       OLLAMA_KEEP_ALIVE: "5m"
       SELECTED_XML_MIGRATION_FILE: supabase/migrations/20260620010000_expand_selected_xml_semantic_runtime.sql
@@ -505,6 +506,9 @@ jobs:
             docs/forensics/audits/xml-selected-meaning-span-rehash-runs/**
             docs/forensics/audits/ai-bad-json/**
             docs/forensics/audits/ai-empty/**
+            docs/forensics/audits/ai-timeout/**
+            docs/forensics/audits/ai-http-error/**
+            docs/forensics/audits/ai-connection/**
             docs/forensics/audits/db-errors/**
             docs/forensics/audits/ollama-smoke.json
             docs/forensics/audits/ollama-result-cache.json

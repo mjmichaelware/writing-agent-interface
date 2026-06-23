@@ -1121,7 +1121,7 @@ const FAIL_FAST_INITIAL_FAILED_TASKS = 20;
 const FAIL_FAST_CONSECUTIVE_FAILED_WINDOWS = 5;
 const FAIL_FAST_TASK_SAMPLE = 20;
 const FAIL_FAST_TASK_FAILURE_RATE = 0.5;
-const PROVIDER_CHOICES = new Set(["ollama", "gemini_sync"]);
+const PROVIDER_CHOICES = new Set(["ollama", "ollama_actions", "free_local", "gemini_sync"]);
 const BATCH_COMPLETION_WINDOW = env("SEMANTIC_BATCH_COMPLETION_WINDOW", "24h");
 
 must(PROVIDER_CHOICES.has(PROVIDER), `Unsupported provider: ${PROVIDER}`);
@@ -1130,8 +1130,10 @@ function isBatchProvider(provider = PROVIDER) {
   return provider.endsWith("_batch");
 }
 
+const OLLAMA_PROVIDERS = new Set(["ollama", "ollama_actions", "free_local"]);
+
 function isSyncProvider(provider = PROVIDER) {
-  return provider === "ollama" || provider.endsWith("_sync");
+  return OLLAMA_PROVIDERS.has(provider) || provider.endsWith("_sync");
 }
 
 function batchOperationMode() {
@@ -2299,8 +2301,8 @@ async function callGeminiSync(prompt) {
 }
 
 async function callSemanticProviderSync({ task, prompt, schema }) {
-  if (PROVIDER === "ollama") {
-    const cacheKey = sha256Text(`ollama:${OLLAMA_MODEL}:${prompt}`);
+  if (OLLAMA_PROVIDERS.has(PROVIDER)) {
+    const cacheKey = sha256Text(`${OLLAMA_MODEL}:${prompt}`);
     const cached = checkOllamaCache(cacheKey);
     if (cached !== null) {
       console.warn(JSON.stringify({ event: "ollama_cache_hit", task, key: cacheKey.slice(0, 16) }));
@@ -2321,11 +2323,11 @@ async function callSemanticProviderSync({ task, prompt, schema }) {
         await sleep(delay);
       }
     }
-    throw lastError || new Error("ollama retry loop failed without captured error");
+    throw lastError || new Error(`${PROVIDER} retry loop failed without captured error`);
   }
 
   const callFn = PROVIDER === "gemini_sync" ? callGeminiSync : null;
-  if (!callFn) throw new Error(`No sync call function for provider: ${PROVIDER}`);
+  if (!callFn) throw new Error(`No sync call function for provider: ${PROVIDER} — supported: ${[...PROVIDER_CHOICES].join(", ")}`);
   const maxRetries = Number(process.env.PROVIDER_RETRY_MAX || 5);
   let lastError = null;
   for (let attempt = 0; attempt <= maxRetries; attempt++) {

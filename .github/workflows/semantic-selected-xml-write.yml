@@ -145,15 +145,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-
           if [ -f package-lock.json ]; then
             npm ci
           elif [ -f pnpm-lock.yaml ]; then
-            corepack enable
-            pnpm install --frozen-lockfile
+            corepack enable && pnpm install --frozen-lockfile
           elif [ -f yarn.lock ]; then
-            corepack enable
-            yarn install --frozen-lockfile
+            corepack enable && yarn install --frozen-lockfile
           else
             npm install
           fi

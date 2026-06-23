@@ -51,7 +51,7 @@ on:
       model:
         description: "Model name. For ollama_actions: llama3.2:1b or llama3.2:3b."
         required: false
-        default: "llama3.2:1b"
+        default: "llama3.2:3b"
       full_run_confirm:
         description: "Required true for full selected XML runs with no limits."
         required: false

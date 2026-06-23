@@ -69,7 +69,7 @@ on:
           - "true"
           - "false"
       resume_existing:
-        description: "Use durable Supabase checkpoint/resume state and skip completed task/window units."
+        description: "Resume from durable Supabase checkpoints for the same selected XML run."
         required: false
         default: "false"
         type: choice
@@ -77,11 +77,11 @@ on:
           - "false"
           - "true"
       soft_stop_minutes:
-        description: "Soft stop before GitHub's 6-hour job cutoff so artifacts and checkpoint summary can upload."
+        description: "Soft stop before the GitHub Actions job timeout."
         required: false
         default: "330"
       max_task_retries:
-        description: "Maximum retries for failed checkpointed task/window units."
+        description: "Maximum retries for a failed semantic task/window checkpoint."
         required: false
         default: "2"
 
@@ -163,13 +163,17 @@ jobs:
         run: |
           set -euo pipefail
 
-          mkdir -p docs/forensics/audits
-          mkdir -p docs/forensics/audits/ai-timeout
-          mkdir -p docs/forensics/audits/ai-empty
-          mkdir -p docs/forensics/audits/ai-bad-json
-          mkdir -p docs/forensics/audits/ai-connection
-          mkdir -p docs/forensics/audits/db-errors
-          mkdir -p docs/forensics/audits/xml-selected-meaning-span-rehash-runs
+          echo "===== INPUT SUMMARY ====="
+          echo "provider=${{ inputs.provider }}"
+          echo "model=${{ inputs.model }}"
+          echo "batch_action=${{ inputs.batch_action }}"
+          echo "full_run_confirm=${{ inputs.full_run_confirm }}"
+          echo "limit_docs=${{ inputs.limit_docs || '(none)' }}"
+          echo "limit=${{ inputs.limit || '(none)' }}"
+          echo "batch_size=${{ inputs.batch_size }}"
+          echo "resume_existing=${{ inputs.resume_existing }}"
+          echo "soft_stop_minutes=${{ inputs.soft_stop_minutes }}"
+          echo "max_task_retries=${{ inputs.max_task_retries }}"
 
       - name: Validate selected XML script syntax
         shell: bash
@@ -189,9 +193,11 @@ jobs:
             exit 1
           fi
 
-          if [ -z "${SUPABASE_URL:-}" ]; then
-            echo "SUPABASE_URL was not set; runtime may derive it from project ref."
-          fi
+          # Validate script and migration file exist
+          [ -f "$SELECTED_XML_SCRIPT" ] || { echo "::error::Script not found: $SELECTED_XML_SCRIPT"; exit 1; }
+          node --check "$SELECTED_XML_SCRIPT" || { echo "::error::Script has syntax errors: $SELECTED_XML_SCRIPT"; exit 1; }
+          [ -f "$SELECTED_XML_MIGRATION_FILE" ] || { echo "::error::Migration file not found: $SELECTED_XML_MIGRATION_FILE"; exit 1; }
+          [ -f "$SELECTED_XML_CHECKPOINT_MIGRATION_FILE" ] || { echo "::error::Migration file not found: $SELECTED_XML_CHECKPOINT_MIGRATION_FILE"; exit 1; }
 
           if [ -z "${SUPABASE_SERVICE_ROLE_KEY:-}" ]; then
             echo "::error::SUPABASE_SERVICE_ROLE_KEY is not set."
@@ -354,6 +360,93 @@ NODE_SMOKE
             exit 1
           fi
 
+          SERVICE_KEY="${SUPABASE_SERVICE_ROLE_KEY:-}"
+          if [ -z "$SERVICE_KEY" ]; then
+            echo "::error::SUPABASE_SERVICE_ROLE_KEY not set. Set this secret to enable runtime data-plane writes."
+            exit 1
+          fi
+
+          echo "Checking Supabase data plane: $SUPA_URL/rest/v1/semantic_runs"
+          http_code="$(
+            curl -sS \
+              -o /tmp/supabase_check.json \
+              -w "%{http_code}" \
+              -X GET \
+              "${SUPA_URL}/rest/v1/semantic_runs?limit=1&select=id,status,started_at" \
+              --header "apikey: ${SERVICE_KEY}" \
+              --header "Authorization: Bearer ${SERVICE_KEY}" \
+              --header "Accept: application/json"
+          )"
+
+          echo "Supabase data-plane response (http_code=$http_code):"
+          cat /tmp/supabase_check.json | head -c 2000
+          echo
+
+          case "$http_code" in
+            200|206) echo "Supabase data plane reachable (PostgREST)" ;;
+            401)
+              echo "::error::SUPABASE_SERVICE_ROLE_KEY rejected (401 Unauthorized). Open Supabase Dashboard → Settings → API Keys → Legacy API Keys → service_role and copy that value. Do NOT use Settings → JWT Keys → Legacy JWT Secret — that is the HMAC signing secret for generating JWTs, not a JWT itself."
+              exit 1 ;;
+            403)
+              echo "::error::SUPABASE_SERVICE_ROLE_KEY lacks permission (403). Ensure it is the service_role key from Settings → API Keys → Legacy API Keys → service_role, not an anon key."
+              exit 1 ;;
+            404) echo "::warning::semantic_runs table not found (404) — migration may be needed. Proceeding." ;;
+            *) echo "::error::Supabase data plane returned unexpected http_code=$http_code. Check SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY."; exit 1 ;;
+          esac
+
+      - name: Apply selected XML meaning-span migration
+        if: ${{ inputs.apply_migration_first == 'true' && (inputs.batch_action == 'sync_write' || inputs.batch_action == 'poll_import' || inputs.batch_action == 'import_results') }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          for migration_file in \
+            "$SELECTED_XML_MIGRATION_FILE" \
+            "$SELECTED_XML_CHECKPOINT_MIGRATION_FILE"
+          do
+            [ -f "$migration_file" ] || { echo "::error::Migration file not found: $migration_file"; exit 1; }
+
+            python3 - "$migration_file" <<'PY' > /tmp/migration_payload.json
+import json
+import sys
+from pathlib import Path
+sql = Path(sys.argv[1]).read_text(encoding="utf-8")
+print(json.dumps({"query": sql}))
+PY
+
+            http_code="$(
+              curl -sS \
+                -o /tmp/migration_response.json \
+                -w "%{http_code}" \
+                -X POST \
+                "https://api.supabase.com/v1/projects/${SUPABASE_PROJECT_REF}/database/query" \
+                --header "Authorization: Bearer ${SUPABASE_ACCESS_TOKEN}" \
+                --header "Content-Type: application/json" \
+                --data-binary @/tmp/migration_payload.json
+            )"
+
+            echo "===== ${migration_file} ====="
+            cat /tmp/migration_response.json
+            echo
+            echo "http_code=$http_code"
+
+            case "$http_code" in
+              200|201|202) echo "Migration applied: ${migration_file}" ;;
+              *) echo "::error::Migration failed for ${migration_file} with http_code=$http_code"; exit 1 ;;
+            esac
+          done
+
+      - name: No-AI canary (source driver validation)
+        if: ${{ (inputs.batch_action == 'sync_write' || inputs.batch_action == 'prepare_batch' || inputs.batch_action == 'submit_batch') && inputs.provider != 'ollama_actions' && inputs.provider != 'free_local' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          CANARY_PROVIDER="${{ inputs.provider }}"
+          # Map batch providers to their sync equivalent for canary
+          CANARY_PROVIDER="${CANARY_PROVIDER/%_batch/_sync}"
+          echo "Canary provider: $CANARY_PROVIDER"
+          node "$SELECTED_XML_SCRIPT" --no-ai --limit-docs=1 --limit=1 --batch-size=1 "--provider=$CANARY_PROVIDER"
+
       - name: Run selected XML semantic write
         shell: bash
         run: |
@@ -386,20 +479,12 @@ NODE_SMOKE
             fi
           fi
 
-          SELECTED_XML_LIMIT_DOCS="${SELECTED_XML_LIMIT_DOCS}" \
-          SELECTED_XML_LIMIT="${SELECTED_XML_LIMIT}" \
-          SELECTED_XML_BATCH_SIZE="${SELECTED_XML_BATCH_SIZE}" \
-          SELECTED_XML_BATCH_ACTION="${SELECTED_XML_BATCH_ACTION}" \
-          SELECTED_XML_BATCH_ID="${SELECTED_XML_BATCH_ID}" \
-          SELECTED_XML_IMPORT_BATCH_RESULTS_PATH="${SELECTED_XML_IMPORT_BATCH_RESULTS_PATH}" \
-          SELECTED_XML_FULL_RUN_CONFIRM="${SELECTED_XML_FULL_RUN_CONFIRM}" \
-          SELECTED_XML_RESUME_EXISTING="${SELECTED_XML_RESUME_EXISTING}" \
-          RESUME_EXISTING="${RESUME_EXISTING}" \
-          SELECTED_XML_SOFT_STOP_MINUTES="${SELECTED_XML_SOFT_STOP_MINUTES}" \
-          SOFT_STOP_MINUTES="${SOFT_STOP_MINUTES}" \
-          SELECTED_XML_MAX_TASK_RETRIES="${SELECTED_XML_MAX_TASK_RETRIES}" \
-          MAX_TASK_RETRIES="${MAX_TASK_RETRIES}" \
-          node "$SELECTED_XML_SCRIPT"
+          [ -n "${{ inputs.limit_docs }}" ] && BASE_ARGS+=("--limit-docs=${{ inputs.limit_docs }}")
+          [ -n "${{ inputs.limit }}" ] && BASE_ARGS+=("--limit=${{ inputs.limit }}")
+          [ "${{ inputs.full_run_confirm }}" = "true" ] && BASE_ARGS+=("--full-run-confirm")
+          [ "${{ inputs.resume_existing }}" = "true" ] && BASE_ARGS+=("--resume-existing")
+          [ -n "${{ inputs.soft_stop_minutes }}" ] && BASE_ARGS+=("--soft-stop-minutes=${{ inputs.soft_stop_minutes }}")
+          [ -n "${{ inputs.max_task_retries }}" ] && BASE_ARGS+=("--max-task-retries=${{ inputs.max_task_retries }}")
 
       - name: Print compact run summary
         if: always()

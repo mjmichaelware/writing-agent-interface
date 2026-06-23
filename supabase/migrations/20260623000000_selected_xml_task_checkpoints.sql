@@ -27,19 +27,3 @@ CREATE INDEX IF NOT EXISTS idx_semantic_window_task_checkpoints_status
 
 CREATE INDEX IF NOT EXISTS idx_semantic_window_task_checkpoints_semantic_run
   ON semantic_window_task_checkpoints (semantic_run_id);
-
-CREATE OR REPLACE FUNCTION update_semantic_window_task_checkpoints_updated_at_column()
-RETURNS TRIGGER AS $$
-BEGIN
-  NEW.updated_at = NOW();
-  RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-DROP TRIGGER IF EXISTS update_semantic_window_task_checkpoints_updated_at
-  ON semantic_window_task_checkpoints;
-
-CREATE TRIGGER update_semantic_window_task_checkpoints_updated_at
-  BEFORE UPDATE ON semantic_window_task_checkpoints
-  FOR EACH ROW
-  EXECUTE FUNCTION update_semantic_window_task_checkpoints_updated_at_column();

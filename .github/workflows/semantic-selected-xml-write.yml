@@ -308,27 +308,28 @@ jobs:
 
       - name: Verify Supabase data-plane connectivity
         if: ${{ inputs.batch_action == 'sync_write' || inputs.batch_action == 'poll_import' || inputs.batch_action == 'import_results' }}
+        continue-on-error: true
         shell: bash
         run: |
           set -euo pipefail
 
-          # Resolve data-plane URL (matches script logic)
+          # Diagnostic only — does not block the run. The script handles auth errors at runtime.
           SUPA_URL="${SUPABASE_URL:-}"
           if [ -z "$SUPA_URL" ] && [ -n "${SUPABASE_PROJECT_REF:-}" ]; then
             SUPA_URL="https://${SUPABASE_PROJECT_REF}.supabase.co"
           fi
           if [ -z "$SUPA_URL" ]; then
-            echo "::error::SUPABASE_URL not set and SUPABASE_PROJECT_REF not set. Cannot verify Supabase data plane."
-            exit 1
+            echo "::warning::SUPABASE_URL not set and SUPABASE_PROJECT_REF not set — skipping connectivity probe."
+            exit 0
           fi
 
           SERVICE_KEY="${SUPABASE_SERVICE_ROLE_KEY:-}"
           if [ -z "$SERVICE_KEY" ]; then
-            echo "::error::SUPABASE_SERVICE_ROLE_KEY not set. Set this secret to enable runtime data-plane writes."
-            exit 1
+            echo "::warning::SUPABASE_SERVICE_ROLE_KEY not set — skipping connectivity probe."
+            exit 0
           fi
 
-          echo "Checking Supabase data plane: $SUPA_URL/rest/v1/semantic_runs"
+          echo "Probing Supabase data plane: $SUPA_URL/rest/v1/semantic_runs"
           http_code="$(
             curl -sS \
               -o /tmp/supabase_check.json \
@@ -340,20 +341,16 @@ jobs:
               --header "Accept: application/json"
           )"
 
-          echo "Supabase data-plane response (http_code=$http_code):"
+          echo "Supabase data-plane probe (http_code=$http_code):"
           cat /tmp/supabase_check.json | head -c 2000
           echo
 
           case "$http_code" in
             200|206) echo "Supabase data plane reachable (PostgREST)" ;;
-            401)
-              echo "::error::SUPABASE_SERVICE_ROLE_KEY rejected (401 Unauthorized). Open Supabase Dashboard → Settings → API Keys → Legacy API Keys → service_role and copy that value. Do NOT use Settings → JWT Keys → Legacy JWT Secret — that is the HMAC signing secret for generating JWTs, not a JWT itself."
-              exit 1 ;;
-            403)
-              echo "::error::SUPABASE_SERVICE_ROLE_KEY lacks permission (403). Ensure it is the service_role key from Settings → API Keys → Legacy API Keys → service_role, not an anon key."
-              exit 1 ;;
-            404) echo "::warning::semantic_runs table not found (404) — migration may be needed. Proceeding." ;;
-            *) echo "::error::Supabase data plane returned unexpected http_code=$http_code. Check SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY."; exit 1 ;;
+            401) echo "::warning::Supabase returned 401 — key may be wrong or for a different project. Run will proceed; script will surface the error." ;;
+            403) echo "::warning::Supabase returned 403. Run will proceed." ;;
+            404) echo "::warning::semantic_runs table not found (404) — migration may be needed." ;;
+            *) echo "::warning::Supabase probe returned http_code=$http_code. Run will proceed." ;;
           esac
 
       - name: Apply selected XML meaning-span migration

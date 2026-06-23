@@ -1,0 +1,135 @@
+src/app/api/execute/route.ts:export async function POST() { return NextResponse.json({ status: "online" }); }
+src/app/api/agent/route.ts:export async function POST(request: Request) {
+src/app/api/corpus/route.ts:export async function GET() { return NextResponse.json({ status: "online" }); }
+src/app/api/graph/route.ts:export async function GET() {
+src/app/api/manuscript/route.ts:export async function POST(request: Request) {
+src/app/api/search/route.ts:export async function POST(request: Request) {
+src/app/api/search/route.ts:export async function GET(request: Request) {
+src/app/api/chapters/route.ts:export const dynamic = "force-dynamic";
+src/app/api/chapters/route.ts:export async function GET(req: NextRequest) {
+src/app/api/visualize/route.ts:export async function GET(request: NextRequest) {
+src/app/api/analyze-document/route.ts:export async function POST() { return NextResponse.json({ status: "online" }); }
+src/app/page.tsx:export const dynamic = "force-dynamic";
+src/app/page.tsx:export default async function Page() {
+src/app/layout.tsx:export const metadata: Metadata = {
+src/app/layout.tsx:export const viewport: Viewport = {
+src/app/layout.tsx:export default function RootLayout({ children }: { children: React.ReactNode }) {
+src/app/dashboard/page.tsx:export default function DashboardPage() {
+src/app/memory/page.tsx:export default function MemoryPage() {
+src/app/graph/page.tsx:export default function GraphPage() {
+src/app/timeline/page.tsx:export default function TimelinePage() {
+src/app/search/page.tsx:export default function SearchPage() {
+src/app/characters/page.tsx:export default function CharactersPage() {
+src/app/head.tsx:export default function Head() {
+src/components/ui/editor.tsx:export default function Editor({
+src/components/ui/sidebar.tsx:export default function Sidebar({
+src/components/ui/timeline.tsx:export default function TimelineView() { return <div>Temporal Timeline View</div>; }
+src/components/ui/graph-view.tsx:export default function GraphView() { return <div>Narrative Matrix Graph</div>; }
+src/components/ui/memory-panel.tsx:export default function MemoryPanel() { return <div>Memory Node Subsystem</div>; }
+src/components/ui/character-view.tsx:export default function CharacterView() { return <div>Character View Node</div>; }
+src/components/ui/OmniText.tsx:export default function OmniTextUi({
+src/components/ui/ScopedBackdrop.tsx:export default function ScopedBackdrop({
+src/components/ReaderLayout.tsx:export default function ReaderLayout({
+src/components/layers/Layer1Void.tsx:export default function Layer1Void() {
+src/components/layers/Layer2Cinema.tsx:export default function Layer2Cinema({
+src/components/layers/Layer3Canvas.tsx:export default function Layer3Canvas({ chapterData }: { chapterData: any }) {
+src/components/layers/Layer4Panel.tsx:export default function Layer4Panel() {
+src/components/layers/panel/StatusTab.tsx:export default function StatusTab() {
+src/components/layers/panel/StylesTab.tsx:export default function StylesTab() {
+src/components/layers/panel/IndexTab.tsx:export default function IndexTab() {
+src/components/layers/panel/SystemTab.tsx:export default function SystemTab() {
+src/components/layers/panel/HyperlinksGraph.tsx:export default function HyperlinksGraph() {
+src/components/layers/panel/BiblicalReferencesDirectory.tsx:export default function BiblicalReferencesDirectory() {
+src/components/layers/panel/ArchetypesDirectory.tsx:export default function ArchetypesDirectory() {
+src/components/layers/panel/WritingAgentConsole.tsx:export default function WritingAgentConsole() {
+src/components/layers/controls/ReaderControlPanel.tsx:export default function ReaderControlPanel({ controls, setControls }: Props) {
+src/components/layers/cinema/AssetProjector.tsx:export default function AssetProjector({ currentSrc, scale, mixBlend }: AssetProjectorProps) {
+src/components/layers/cinema/AssetProjector.tsx:export const ASSET_PROJECTOR_SYSTEM_MANIFEST = {
+src/components/layers/cinema/ShaderEffects.tsx:export default function ShaderEffects({ grainOpacity, chromaticAberration }: ShaderEffectsProps) {
+src/components/layers/cinema/ShaderEffects.tsx:export const SHADER_EFFECTS_CAPACITY_SHIELD = {
+src/components/layers/cinema/TelemetryOverlay.tsx:export default function TelemetryOverlay({
+src/components/layers/canvas/ManuscriptCore.tsx:export default function ManuscriptCore({
+src/components/layers/canvas/front-matter/TitleCover.tsx:export default function TitleCover({ onJump, onBeginReading }: TitleCoverProps) {
+src/components/layers/canvas/front-matter/AboutAuthor.tsx:export default function AboutAuthor() {
+src/components/layers/canvas/front-matter/Dedication.tsx:export default function Dedication() {
+src/components/layers/canvas/front-matter/Synopsis.tsx:export default function Synopsis() {
+src/components/layers/canvas/front-matter/TableOfContents.tsx:export default function TableOfContents({ TITLES, onLoadChapter }: Props) {
+src/services/memory-engine/corpus-loader.ts:export class CorpusLoader {
+src/services/memory-engine/text-processor.ts:export const tokenize = (text: string): string[] => {
+src/services/memory-engine/embedding-processor.ts:export class EmbeddingProcessor {
+src/services/memory-engine/vector-store.ts:export class VectorStore {
+src/services/memory-engine/VectorStore.ts:export class VectorStore {
+src/services/bridge/agent.service.ts:export type AgentResponse = {
+src/services/bridge/agent.service.ts:export type ConcordanceRecord = {
+src/services/bridge/agent.service.ts:export type DualismRecord = {
+src/services/bridge/agent.service.ts:export type ArchetypeRecord = {
+src/services/bridge/agent.service.ts:export const AgentService = {
+src/services/narrative-graph-engine/narrative-graph-engine.ts:export class NarrativeGraphEngine implements INarrativeGraphEngine {
+src/services/writing-agent/writing-agent.ts:export class WritingAgent implements IWritingAgent {
+src/services/image-engine/image-generator.ts:export class ImageGenerator {
+src/hooks/useMemory.ts:export function useMemory() { return { activeStore: null }; }
+src/hooks/useRetrieval.ts:export function useRetrieval() { return { searching: false }; }
+src/hooks/useGraph.ts:export function useGraph() { return { nodes: [] }; }
+src/hooks/useAgent.ts:export function useAgent() { return { status: "idle" }; }
+src/store/app.store.ts:export const appStore = { state: "initialized" };
+src/store/memory.store.ts:export const memoryStore = { blocks: [] };
+src/store/graph.store.ts:export const graphStore = { network: [] };
+src/store/session.store.ts:export const sessionStore = { active: true };
+src/actions/write.action.ts:export async function writeChapterDraft() { "use server"; return { draft: "" }; }
+src/actions/retrieve.action.ts:export async function retrieveContext() { "use server"; return { context: [] }; }
+src/actions/update-memory.action.ts:export async function updateMemoryStore() { "use server"; return { synchronized: true }; }
+src/core/IMemoryEngine.ts:export type ArchetypePhase = "Pre-Descent" | "Zero-Point Descent" | "The Void" | "The Ascent";
+src/core/IMemoryEngine.ts:export interface PsychologicalState {
+src/core/IMemoryEngine.ts:export interface IMemoryEngine {
+src/core/IRetrievalEngine.ts:export interface TheologicalMetric {
+src/core/IRetrievalEngine.ts:export interface RetrievalSchema {
+src/core/IRetrievalEngine.ts:export interface IRetrievalEngine {
+src/core/INarrativeGraphEngine.ts:export type MetaphysicalPole = "Ascent" | "Descent" | "Void";
+src/core/INarrativeGraphEngine.ts:export interface StructuralEcho {
+src/core/INarrativeGraphEngine.ts:export interface GraphNode {
+src/core/INarrativeGraphEngine.ts:export interface AdjacencyMatrix {
+src/core/INarrativeGraphEngine.ts:export interface INarrativeGraphEngine {
+src/core/IWritingAgent.ts:export interface CompositionConstraints {
+src/core/IWritingAgent.ts:export interface DraftSchema {
+src/core/IWritingAgent.ts:export interface IWritingAgent {
+src/core/narrative-types.ts:export type NarrativeState = { chapter: number; };
+src/core/document-types.ts:export type DocumentType = "lore" | "protocol" | "manuscript";
+src/core/system-utils.ts:export interface ViewportCoordinateRatio {
+src/core/system-utils.ts:export function calculateFocalScrollCurve(
+src/core/system-utils.ts:export function mapArcVectors(intersectionRatio: number, thematicWeight: number) {
+src/core/system-utils.ts:export function logSystemState(msg: string): void {
+src/core/engine-constants.ts:export const ENGINE_CONSTANTS = { SPINE_LOCKED: true };
+src/core/runtimeEngine.ts:export type ArchetypalWeights = {
+src/core/runtimeEngine.ts:export type RuntimeEvents = {
+src/core/runtimeEngine.ts:export const bus = EventBus.getInstance();
+src/core/runtimeEngine.ts:export { EventBus };
+src/core/runtimeEngine.ts:export default bus;
+src/core/types.ts:export interface EMAWord {
+src/core/types.ts:export interface CompendiumEntry {
+src/core/types.ts:export interface AuthorData {
+src/context/SidebarContext.tsx:export const SidebarProvider = ({ children }: { children: React.ReactNode }) => {
+src/context/SidebarContext.tsx:export const useSidebarState = () => { const c = useContext(StateCtx); if (!c) throw new Error('Err'); return c; };
+src/context/SidebarContext.tsx:export const useSidebarDispatch = () => { const c = useContext(DispatchCtx); if (!c) throw new Error('Err'); return c; };
+src/data/cinema.ts:export const CINEMA_ASSETS: Record<string, string[]> = {
+src/data/cinema.ts:export const CINEMA_PARAGRAPHS_PER_IMAGE = 6;
+src/runtime/controlPanel.ts:export type CharacterStyle = {
+src/runtime/controlPanel.ts:export type ControlPanelState = {
+src/runtime/controlPanel.ts:export function useControlPanel() {
+src/runtime/controlPanel.ts:export function classifyWord(raw: string, state: ControlPanelState): CharacterStyle {
+src/runtime/runtimeContext.tsx:export const runtime = {
+src/runtime/runtimeContext.tsx:export function getRuntime() {
+src/runtime/runtimeContext.tsx:export function RuntimeProvider({ children }: { children: ReactNode }) {
+src/runtime/runtimeContext.tsx:export function useRuntime() {
+src/runtime/readerControls.ts:export type ReaderFont = "serif" | "sans" | "mono";
+src/runtime/readerControls.ts:export type ReaderControls = {
+src/runtime/readerControls.ts:export const DEFAULT_READER_CONTROLS: ReaderControls = {
+src/runtime/readerControls.ts:export function readerFontStack(font: ReaderFont) {
+src/runtime/listeners/audioListener.ts:export function initAudioListener() {
+src/runtime/listeners/distortionListener.ts:export function initDistortionListener() {
+src/runtime/listeners/thematicListener.ts:export function initThematicListener() {
+src/utils/tokenize.ts:export const tokenize = (text: string): string[] => {
+src/utils/tokenize.ts:export const isWordToken = (token: string): boolean => /[\p{L}\p{M}]/u.test(token);
+src/lib/narrative/indexStore.ts:export class IndexStore {
+src/lib/narrative/fileService.ts:export async function getFile(name: string) {
+src/lib/narrative/fileService.ts:export async function getAll() {
+src/lib/narrative/fileService.ts:export function split(t: string) {

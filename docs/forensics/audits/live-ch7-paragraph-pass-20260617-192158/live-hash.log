@@ -1,0 +1,7 @@
+nohup: ignoring input
+registered source_documents: 579
+SyntaxError: Expected double-quoted property name in JSON at position 11287 (line 175 column 44)
+    at JSON.parse (<anonymous>)
+    at callVertex (file:///data/data/com.termux/files/home/Workspaces/Hybrid/writing-agent-interface/scripts/semantic/xml-grounded-vertex-rehash.mjs:729:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (file:///data/data/com.termux/files/home/Workspaces/Hybrid/writing-agent-interface/scripts/semantic/xml-grounded-vertex-rehash.mjs:1004:22)

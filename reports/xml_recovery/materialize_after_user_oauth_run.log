@@ -1,0 +1,6 @@
+{
+  "archives_found": 57,
+  "ooxml_files_copied": 579,
+  "destination": "src/data-layer/ingestion-buffer/gdrive_ooxml_raw",
+  "manifest": "reports/xml_recovery/materialized_ooxml_manifest.json"
+}

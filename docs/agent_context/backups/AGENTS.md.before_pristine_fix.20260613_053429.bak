@@ -1,0 +1,96 @@
+# AGENTS.md — Writing Agent Interface
+
+## Project Root
+
+Canonical project root:
+
+`~/Workspaces/writing-agent-interface`
+
+Do not use the old wrapper path as the real project root:
+
+`~/Workspaces/Hybrid/writing-agent-interface`
+
+That old path was only a compatibility link.
+
+## Canonical Agent Context
+
+The selected numbered phone-download context files are already imported into the project.
+
+Canonical index:
+
+`data/runtime_sources/weight_of_the_sky/11_agent_context/AGENT_CONTEXT_CANONICAL_INDEX.md`
+
+Canonical staged context root:
+
+`data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/`
+
+Read order:
+
+1. Read the canonical index first.
+2. Read Tier 1 only when project identity, architecture, UI/UX, or operating rules are needed.
+3. Read Tier 2 only for contradiction maps, Drive/NOS/integration, or broad forensic context.
+4. Read Tier 3 only for checkpoint/history reconstruction.
+5. Do not reread every giant file unless doing full reconstruction.
+
+Tier paths:
+
+- `data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_1_core/`
+- `data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_2_large_universal/`
+- `data/runtime_sources/weight_of_the_sky/11_agent_context/staged_read_context/tier_3_checkpoints/`
+
+`~/context_files` was only a temporary home-level holding area. It is not the project source of truth.
+
+## Non-Deletion Rules
+
+Never blindly delete:
+
+- source context
+- canon files
+- staged runtime context
+- `public/data/chapters`
+- Supabase/database lineage reports
+- NOS dumps or reports until a separate reference audit proves they are unused
+
+`public/data/chapters` is important because the app may fetch `/data/chapters/*.txt`.
+
+Dumps, reports, and NOS files are legacy forensic memory. They may be outdated, but they are not trash until audited.
+
+## Agent Operating Rules
+
+Before edits:
+
+1. Verify the current tree.
+2. Verify current code references.
+3. Verify current database/runtime source paths.
+4. Prefer writing reports before destructive edits.
+5. Make reversible changes.
+6. Back up files before overwriting.
+7. Do not invent paths.
+8. Do not treat old reports as current truth unless confirmed against code.
+
+Truth hierarchy:
+
+1. Current working code and schema.
+2. Current generated reports from the repo/database.
+3. Canonical staged context.
+4. Old audits, dumps, prompts, and recovery files.
+5. Speculation.
+
+## Runtime Source Principle
+
+The staged context files are active project memory, not archive trash.
+
+Agents should use the canonical index to avoid wasting context. Read only what is needed for the task.
+
+## Tool/Agent Compatibility
+
+These instructions apply to:
+
+- Claude Code
+- Gemini CLI
+- Codex
+- Llama/Ollama
+- future CLI coding agents
+
+All agents should preserve exact paths, cite evidence from files when making claims, and avoid destructive cleanup unless specifically approved.
+

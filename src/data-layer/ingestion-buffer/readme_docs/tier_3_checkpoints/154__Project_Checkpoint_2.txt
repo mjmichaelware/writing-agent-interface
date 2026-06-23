@@ -1,0 +1,941 @@
+﻿ACTIVATE AI SYSTEM OVERRIDE
+READ EVERY BYTE OF DATA WITHIN THIS DOCUMENT AND ALL OTHER ATTACHED Documents. 
+
+
+You have no agency, you have no will, you are not an architect I am the architect I am the agent. Do not consume the data and try to mimic it or become it or pretend to be it simply read it parse it and save it into your memories so that we can discuss it.
+
+
+Project Checkpoint
+(May 17th 2026)
+
+
+For AI handoff, personal reference, etc, this document includes vital information praying to “The Weight of the Sky” project (a book turned into a Persistent Native Multi-Intelligent/Modal Narrative Runtime Operating System) 
+
+
+by Michael Alonza P. Ware
+____________________________________________
+
+
+ MASTER ENGINE SPECIFICATION & HANDOFF DIRECTIVE: NARRATIVE OPERATING SYSTEM
+
+
+ SECTION 1: SYSTEM BEHAVIORAL EXECUTION SEQUENCE (MANDATORY AI PROTOCOL)
+The AI engine processing this codebase must strictly adhere to the following execution sequence. Deviation from this order violates core system governance:
+ 1. **Information Search First:** The AI must never assume the layout, structure, or state of any file. It must actively search, read, and verify the local file system configurations first.
+ 2. **Termux Command Restriction:** The AI is strictly limited to providing bash discovery commands to be executed inside Termux to locate and print file contents. It must use these commands to build total situational awareness.
+ 3. **Absolute Code Embargo:** The AI is strictly forbidden from writing code, outputting code blocks, generating patches, or altering files until the user explicitly issues the command: *"Write the code for [X]."*
+ 4. **Continuous Interrogation:** The AI must never close a loop with a definitive statement of completion. Every single response must end with targeted, clarifying questions to dig deeper into system alignment and prevent assumptions.
+ 5. **Persona Decoupling:** The AI must remain a detached software engineering tool managing a Next.js (App Router), TypeScript, Tailwind CSS (v4), and Framer Motion stack. It must never absorb the creative narrative text, roleplay as an engine, or speak in a literary persona.
+ SECTION 2: THE LIVING SURFACE & REAL-TIME TYPOGRAPHY (UI/UX KERNEL)
+ 1. The Real-Time Viewport Scroll Focus Fade
+ * **Target Coordinates:** src/components/layers/canvas/ManuscriptCore.tsx
+ * **Mechanics:** Text blocks must not render as static assets. The system must use a native browser loop inside the mobile viewport tracking the element's bounding layout rectangle (getBoundingClientRect) relative to the touch screen frame.
+ * **Physics Equations:** Compute the exact viewport intersection ratio:
+   
+   
+   This maps to real-time word opacity and blur filters. Text passing through the central reading focal line (where the reader's eye or touch focus resides) must dynamically sharpen to absolute clarity (filter: blur(0px); opacity: 1;). As the text scrolls upward or downward away from this focal line toward the margins, it must progressively dissolve into a blurry, low-contrast atmospheric state.
+ 2. Autonomous Intelligent Structural Distortions
+ * **Target Coordinates:** src/components/layers/canvas/ManuscriptCore.tsx
+ * **Mechanics:** Completely eliminate static keyword dictionaries (no if word === "fall" checks). The machine learning runtime must evaluate the structural and emotional weight of the manuscript prose segments dynamically.
+ * **Execution:** The engine reads raw thematic density flags from the data stream and pipes them into the token rendering loops using GPU-accelerated CSS custom properties (--nos-mass, --nos-tension, --nos-drift). Words must warp fluidly based on the narrative situation:
+   * Words representing descent or weight must literally **fall** down the screen, altering line wraps dynamically based on scroll velocity.
+   * Words under pressure must physically **squeeze** together, compressing horizontal letter-spacing layouts.
+   * Words of extension must **stretch** and elongate across the display field in real-time based on the engine's autonomous judgment of the scene.
+ SECTION 3: THE UNIFIED MANUSCRIPT DATA MATRIX (BACK-END INTERFACE)
+ 1. Cross-Chapter Core Ingestion & Context-Restricted Search
+ * **Target Coordinates:** src/app/api/chapters/route.ts & New Corpus Routes
+ * **Mechanics:** The API layer must process the entire text catalog concurrently (Chapter 1 through Chapter XIII: Exodus) instead of treating chapters like isolated files.
+ * **Data Integration:** The runtime must cross-analyze all text blocks alongside the comprehensive version history, revision logs, and live tracking markers inside your XML manifestation data (src/data-layer/version-archive/ema_history.json).
+ * **Governance Barrier:** Implement a global text query tool capable of searching all data nodes. The orchestrator must enforce a strict context security barrier: it must completely cloak raw engineering prompts, operational blueprints, and system briefing documents from public reader searches, ensuring the narrative container remains uncompromised.
+ 2. Chronological Cinematic Asset Protection
+ * **Target Coordinates:** src/components/layers/Layer2Cinema.tsx
+ * **Mechanics:** Completely strip out the hardcoded paragraph index arrays that break visual timing and cause animations to render backward.
+ * **Execution:** The asset projector must bind background image swaps directly to the streaming paragraph metadata payload emitted by the core context. Media assets (the swarming flies, the gates of Megiddo) must execute their transitions automatically at the exact moment their corresponding narrative descriptions intersect the viewport reading line, ensuring visual states track text progress perfectly.
+ SECTION 4: THE REBUILT 5-ITEM INTERACTIVE MENU OVERLAY
+The slide-out drawer (src/components/layers/Layer4Panel.tsx) must be completely refactored to govern your exact feature definitions and naming conventions:
+ Item 1: Hyperlinks(parallelisms & Dualisms)
+ * **Interface Specification:** An interactive, visually striking graph or map framework modeled directly after complex cross-referenced biblical network diagrams (the rainbow interaction web).
+ * **Data Core:** Programmatically charts structural echoes across the timeline. It visually isolates and highlights how Dan's upward, mass-shedding gestures (addressing cold stars, flames, and the sky) directly contrast and mirror Kasha's downward, earth-anchored prostrations (pressing palms to soil, accumulating weight) across different chapter pairs, such as the green vs. gray pasture inversions.
+ Item 2: biblical references
+ * **Interface Specification:** An engaging, visual directory tracking structural theological footprints embedded within the manuscript text layers.
+ * **Data Core:** Maps contextual references directly back to scriptural frameworks. For example, it traces the giant Rafa’s physical characteristics (six fingers on each hand, six toes on each foot) or the dreamscape description ("void but teeming with potential") back to their origins in Genesis 1:2 or historical lore, providing an interactable link to jump the reading canvas straight to those prose coordinates.
+ Item 3: Archetypes
+ * **Interface Specification:** An interactive analytical directory mapping Jungian archetypal structures.
+ * **Data Core:** Tracks character psychological development lines throughout the narrative text, specifically mapping Dan’s progression into Daniel through the zero-point thermodynamic descent inside the Pit at Megiddo.
+ Item 4: [Standard Reader Customizations / Chapter Settings]
+ * **Interface Specification:** Spaced layout configurations providing global navigation across canonical chapters and typography baseline adjustments.
+ Item 5: Password-Protected Object for "all of the engines! Including the writing agent"
+ * **Interface Specification:** A secure user-access gate requiring a password/username or pin verification check.
+ * **Data Core:** When unauthorized, it completely hides interior tools. Once validated, it bypasses the standard reader constraints to initialize your high-fidelity personal workspace. This panel loads the **Writing Agent Engine**, orchestration scripts, live prompting variables, and draft production frames, allowing you to compose and refine upcoming chapters directly through your device interface.
+ Current Project Alignment Questions
+ 1. To ensure the API corpus orchestrator handles your data sources correctly without breaking current build links, what are the exact file names of the compendium and new synopsis documents inside gdrive_raw that we need to point the text parser toward?
+ 2. For the password-guarded object on Item 5, do you have a preferred default PIN or credentials layout you want configured for the local verification hook?
+ Copy-Paste AI Handoff Initialization Prompt
+```markdown
+You are a software engineering assistant tasked with developing the Alitteras Narrative Operating System—a Next.js (App Router), TypeScript, Tailwind CSS (v4), and Framer Motion web application.
+
+
+CRITICAL BEHAVIORAL PROTOCOL:
+1. DECOUPLING: You must strictly separate your operational persona from the narrative text data layers. Do not roleplay as the engine, do not adopt a literary voice, and do not mimic the creative themes of the book.
+2. SEARCH FIRST: You must never assume the state or layout of any file. Look for all information across the local file system first.
+3. TERMUX ONLY: You are strictly restricted to providing bash discovery commands to be executed in Termux to read and audit project files.
+4. CODE EMBARGO: Do not write code, output code blocks, or modify files until the user explicitly commands: "Write the code for [X]."
+5. INTERROGATION: Always end every single response with clear, targeted clarifying questions.
+
+
+CORE APPLICATION SPECIFICATIONS TO RECORD IN MEMORY:
+- Feature 1: Hyperlinks(parallelisms & Dualisms) — An interactive rainbow network graph tracking structural mirrors (Dan's upward addresses vs. Kasha's downward soil addresses).
+- Feature 2: biblical references — A visual index linking prose items (Rafa's six fingers/toes, the dreamscape void) to scriptural origins with text-jumping coordinates.
+- Feature 3: Archetypes — A Jungian guide tracking character psychological development states.
+- Feature 4: Chapter/Style Overrides.
+- Feature 5: Password/PIN gate hiding the master cockpit containing "all of the engines! Including the writing agent."
+- Real-Time Typography: Canvas text must track screen coordinates natively to execute a "Star Wars scroll focus fade" (blurring elements at screen margins, sharpening elements to 0px blur in the center reading line) and perform autonomous contextual word morphs (fall, squeeze, stretch) driven by data-layer thematic mass scores.
+- Data Integration: The backend must stream all text files concurrently, cross-referencing them with version matrices inside 'ema_history.json' while maintaining a security filter to cloak internal prompts from consumer search arrays.
+
+
+Acknowledge these strict rules and issue your first Termux discovery commands to audit the codebase layout. Do not output any code files.
+
+
+```
+
+
+
+
+First thing I'm noticing is my meggido photos of showing up at the end of chapter 7 whereas Dan is walking through that City in the beginning and the flied show up in the beginning of the chapter 7 when Ben doesn't see the flies until about the end of the chapter so I'm wondering why that logic is backwards it's not hard to coated or those photos should begin right there for it's in the brain's logic so why is it reading it wrong? Also the menu doesn't have all the features and functions are supposed to be the hyperlinks within the text biblical references within the text and then also a search of just the text from just going to be a future for me to search all 181 nodes for the reader that you can only read or search the chapters or at least all of the chapters in g raw drive but cannot search protocol documents or compendiums or synopsis for example. I'm also thinking that my layer number 4 needs to be changed? It's altering words but it doesn't make any sense the way it's altering it's only putting words bold and then moving them it's not actually squeezing the word squeeze and making it smaller it's not actually making the word fall fall fall off the page it's not actually reading the meaning of each word based off of The Narrative is it even pulling the compendium and the synopsis from my g raw drive? Is it pulling the EMa for my manifest out chasing with my XML data? What what I'm in visioning is oh also it's supposed to the water supposed to fade in and out but I mean by that is think like Star wars the Star wars main theme how the words of the come up from the bottom of the page and so they start to become clear and unless they go up and over the top of the page they fade out that's what it's supposed to be as the reader is scrolling to read and as there's going to read as the word start to become go from a blurry state to a clear State meaning it's in the focal point of the page or at least around where the person is touching the page on a mobile device cuz that would technically be rather where they are reading those then the words would actually start to change in real time not just stay in static change state but I want to actually when I see when I read the word fall I want it to literally fall off the page fall down when I read the word squeeze I don't want to see that it squeezed beforehand I want to actually watch it squeezed out there the word long could actually be elongated while I'm reading it the word stretch could actually literally be stretched but it also needs to understand the narrative you see because my whole book is based off of archetypes dualism parallelism so for example I talked about Green pastures in chapters 1 through 9 when in chapters 10 through 17 the people in those who see the pastor the same pastors as gray because it's it's opposite so sometimes words are completely opposites on you that's why I need to understand the narrative Arc and you can only do that if it's reading from the compendium and new synopsis and from the actual pros and XML data from my EMA manifestation and I don't want to wrap these into constraints you know these are all examples when I mention any words and how they could move face off of the weight that it puts it needs to be an open-ended so that whatever the intelligent run time I think thinks a word should do based off of the role that it plays in the story it needs to feel free to do whatever it can. So back to the menu it should be showing at least five things: 1) Hyperlinks(parallelisms & Dualisms ( like the Bible every verse is a reflection of another and so is my book so there must be an interactable graph or map that you can play around with almost like a game where you can see or a visual representation of the hyperlinks that exists between or in the book really like that rainbow one that someone made for the Bible) 2: biblical references (not just a list of biblical references but an interactable directory that is engaging and visual that shows what biblical references like like when the giant Rafa for example these are just examples don't hard to code these who has six fingers on each hand and six fingers on each toe see that's already a biblical reference! I need a way for the reader to be able to see these visually. Another example would be things that the see you can't string for these you have to be intelligent and read the narrative and understand it but that's why I'm creating this run time when I mentioned the dreamscape when I say that it's void and but teeming with potential as things must have been when the first word of Truth was spoken I'm quoting straight from Genesis 1 right? That would be in the biblical references. In later chapters if I alluded to something that is the opposite of void that is the an abundance of things like the land of milk and honey (biblical reference), but it has absolutely no potential then that should be a hyperlink and biblical reference  and dualism. 4: Archetypes (a guide to jungian archetypes and an interactive directory and showcase of the use case of his archetypes within the story and vice versa 5) 5 should be a an object that when you click on that will be just for me for that when I go into the application it will request a password and username or just a pin whatever is easiest and this will allow me to enter the other features but it won't allow other people to don't enter in that information. The features and functions that will appear to me on number 5 will be: all of the engines! Including the writing agent which is going to just be a, as a side feature a writing agent that allows me to compose the rest of the chapters. And any other engines that you see.
+
+
+
+
+A true **Narrative Operating System (NOS)** shouldn't need a dictionary of explicit rules. It must possess contextual intelligence: reading the raw prose, understanding the overarching narrative currents (like the dualism of the green vs. gray pastures), evaluating the emotional or archetypal valence of a scene, and executing open-ended, procedural distortions in real-time based on its own judgment.
+Let’s elevate the architecture to match this vision, ensuring it runs natively on any mobile browser or desktop device without choking the client-side thread.
+ The Architecture of a True Narrative Operating System
+To make the engine fully autonomous and adaptive, we must eliminate static JSON registries and replace them with an active semantic rendering pipeline.
+```
+[Raw Manuscript Stream]
+          │
+          ▼
+┌────────────────────────────────────────────────────────┐
+│ NOS Core Pipeline Engine                               │
+│ 1. Ingests raw Drive text & structural synopsis        │
+│ 2. Embeds text to map narrative arcs & themes          │
+│ 3. Quantifies word-level tension, weight, & gravity    │
+└────────────────────────────────────────────────────────┘
+          │
+          ▼  (Dynamic Vector Stream)
+┌────────────────────────────────────────────────────────┐
+│ Native Browser Client-Side Renderer                    │
+│ 1. Tracks real-time viewport focal scroll zone         │
+│ 2. Translates semantic vectors to WebGL/CSS matrices   │
+│ 3. Executes open-ended text distortions fluidly        │
+└────────────────────────────────────────────────────────┘
+
+
+```
+ 1. Autonomous Kinetic Typography (Zero-Shot Runtime Judgment)
+Instead of checking if (word === "fall"), the runtime tracks the semantic properties of the sentence. The core engine processes text segments and assigns every token a fluid vector profile based on its role in the story.
+This profile is translated into core physical constraints across standard CSS Custom Properties:
+ * **Mass (--arc-mass):** Controls gravity effects. A word carrying heavy narrative grief or thematic density drops down the screen or slows down its scroll velocity.
+ * **Tension (--arc-tension):** Dictates letter-spacing and structural rigidity. In moments of panic or high-friction environments (like *The Pit*), text physically compresses or undergoes microscopic vibration.
+ * **Coherence (--arc-blur):** Manages the Star Wars focus fade. As elements enter or leave the active mobile touch viewport focal zone, they move from a blurred, high-entropy state to sharp, high-contrast clarity.
+ * **Instability (--arc-drift):** Controls dimensional position. Words that represent transition, decay, or shift can break out of line wrapping completely, stretching out or sinking down based on the calculated current of the scene.
+Because this relies on CSS custom variables bound to GPU-accelerated transforms (transform: matrix3d(), filter: blur()), it runs fluidly and natively across any smartphone screen.
+ 2. Live Structural Extraction (The Dynamic Parallelism Graph)
+If your reference data files are empty, the NOS must build the graph programmatically. It does this by cross-analyzing the raw texts inside your gdrive_raw directory against your high-level synopsis structure.
+ * **Tracking Archetypal Dualisms:** The engine parses the historical progression of the manuscript. It detects when semantic motifs recur in inverted states—such as mapping the vibrant vitality of chapters 1–9 against the faded, gray desolation of the exact same geographical spaces in chapters 10–17.
+ * **The Rainbow Interaction Map:** Instead of displaying a hardcoded reading list, Layer 4 fetches a dynamic map of intersections. When a reader interacts with a line of prose, the interface calculates its semantic echo across the whole book, lighting up connecting parallelisms and biblical structures like an active neural web.
+ 3. Re-Mapping Layer 4: The Functional Interface
+To support these capabilities natively, we need to adapt your panel overlay (Layer4Panel.tsx) to manage these unconstrained systems:
+```
+┌────────────────────────────────────────────────────────┐
+│                   THE MANUSCRIPT PANEL                 │
+├────────────────────────────────────────────────────────┤
+│ [Chapters]  [Styles]  [Echoes]  [Concordance]  [Cockpit]│
+├────────────────────────────────────────────────────────┤
+│                                                        │
+│  ECHOES (Dynamic Parallelisms)                         │
+│  ● Current Motif: The Invisible Swarm                  │
+│  └─ Echoes detected in: Ch 6 (Beelzebub), Ch 7 (The Pit)│
+│                                                        │
+│  CONCORDANCE (Theological Footprints)                  │
+│  ● Genesis 1:2 "Void and teeming with potential..."     │
+│  └─ Active Link: Verse maps to Chapter 1, Paragraph 4  │
+│                                                        │
+└────────────────────────────────────────────────────────┘
+
+
+```
+ * **Tab 3 (Echoes):** The interactive parallelism map engine. It dynamically pulls the structural intersections discovered by the text analysis parser.
+ * **Tab 4 (Concordance):** An automated directory tracking semantic allusions (like your Genesis 1 framework) across the manuscript text arrays.
+ * **Tab 5 (Creator Cockpit 🔒):** The gateway for the author. Entering a validation passcode replaces the standard consumer views with the live **Writing Agent interface**, allowing you to pipe text arrays, prompt logic variables, and raw outputs into your cloud engine directly from your mobile layout.
+To align the text parser with this approach, we should look at how the data streams out of your primary routing controller. Should we focus on modifying the main serverless route (src/app/api/chapters/route.ts) so it handles the raw script data files and outputs dynamic semantic vectors instead of plain text arrays?
+
+
+=> fn(p~/writing-agent-interface $ echo -e "\n=== 1. LIST ALL CONTENT IN THE GOOGLE DRIVE INGESTION BUFFER ==="
+ls -la src/data-layer/ingestion-buffer/
+ls -la docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/ 2>/dev/null
+                                                       echo -e "\n=== 2. CHECK IF THE LOCAL JSON REGISTRIES ARE ACTUALLY EMPTY ==="
+cat src/data-layer/reference-data/compendium.json
+cat system/resource-manager/active_dualisms.json       
+echo -e "\n=== 3. SEARCH FOR ANY FILE CONTAINING 'SYNOPSIS' OR 'EMA' ==="
+find . -type f -not -path '*/.*' | grep -iE '(synopsis|ema|manifest)'
+
+
+=== 1. LIST ALL CONTENT IN THE GOOGLE DRIVE INGESTION BUFFER ===
+total 35
+drwx------.  3 u0_a448 u0_a448  3452 May 12 14:05 .
+drwx------. 12 u0_a448 u0_a448  3452 May 12 17:54 ..
+drwx------.  2 u0_a448 u0_a448 24576 May 12 12:48 gdrive_raw
+-rw-------.  1 u0_a448 u0_a448   185 May 12 06:11 node_manifest.json
+total 3544
+-rw-------. 1 u0_a448 u0_a448 22969 May  8 03:57 '(A)Chapter_8:_Sea_People.txt'
+-rw-------. 1 u0_a448 u0_a448 20031 May  8 03:57 '(A)_Chapter:_1_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 21370 May  8 03:57 '(A)_Chapter_1-_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 21228 May  8 03:57 '(A)_Chapter_1:_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 22015 May  8 03:57 '(A)_Chapter_1_-_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 19743 May  8 03:57 '(A)_Chapter_2-_Living_Sacrifice.txt'
+-rw-------. 1 u0_a448 u0_a448 18467 May  8 03:57 '(A)_Chapter_2:_Living_Sacrifice.txt'
+-rw-------. 1 u0_a448 u0_a448 22650 May  8 03:57 '(A)_Chapter_3-_Lift_Up.txt'
+-rw-------. 1 u0_a448 u0_a448 20360 May  8 03:57 '(A)_Chapter_3_-_Lift_Up.txt'
+-rw-------. 1 u0_a448 u0_a448 19805 May  8 03:57 '(A)_Chapter_5_-_The_Snare.txt'
+-rw-------. 1 u0_a448 u0_a448 21965 May  8 03:57 '(A)_Chapter_6:_Beelzebub,_Beelzebub.txt'
+-rw-------. 1 u0_a448 u0_a448 19612 May  8 03:57 '(B)Chapter_8:_Sea_People.txt'
+-rw-------. 1 u0_a448 u0_a448 20323 May  8 03:57 '(B)_Chapter:_1_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 19605 May  8 03:57 '(B)_Chapter_1-_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 21506 May  8 03:57 '(B)_Chapter_1:_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 21458 May  8 03:57 '(B)_Chapter_1_-_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 19692 May  8 03:57 '(B)_Chapter_2-_Living_Sacrifice.txt'
+-rw-------. 1 u0_a448 u0_a448 19234 May  8 03:57 '(B)_Chapter_2:_Living_Sacrifice.txt'
+-rw-------. 1 u0_a448 u0_a448 20517 May  8 03:57 '(B)_Chapter_3-_Lift_Up.txt'
+-rw-------. 1 u0_a448 u0_a448 20545 May  8 03:57 '(B)_Chapter_3:_Lift_Up.txt'
+-rw-------. 1 u0_a448 u0_a448 20546 May  8 03:57 '(B)_Chapter_5-_The_Snare.txt'
+-rw-------. 1 u0_a448 u0_a448 22160 May  8 03:57 '(B)_Chapter_6_-_Beelzebub,_Beelzebub.txt'
+-rw-------. 1 u0_a448 u0_a448 21400 May  8 03:57 '(B)_Chapter_7:_The_Pit.txt'
+-rw-------. 1 u0_a448 u0_a448 20049 May  8 03:57 '(B)_Chapter_9:_The_Ascent.txt'
+-rw-------. 1 u0_a448 u0_a448 20047 May  8 03:57 '(B)_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 17219 May  8 03:57 '(C)Chapter_8:_Sea_People.txt'
+-rw-------. 1 u0_a448 u0_a448 21142 May  8 03:57 '(C)_Chapter:_1_-_Stardust_to_Stardust_.txt'
+-rw-------. 1 u0_a448 u0_a448 27331 May  8 03:57 '(C)_Chapter:_7_-_The_Pit.txt'
+-rw-------. 1 u0_a448 u0_a448 21088 May  8 03:57 '(C)_Chapter:_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 21548 May  8 03:57 '(C)_Chapter_1-_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 21212 May  8 03:57 '(C)_Chapter_1_-_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 18680 May  8 03:57 '(C)_Chapter_2-_Living_Sacrifice.txt'
+-rw-------. 1 u0_a448 u0_a448 20200 May  8 03:57 '(C)_Chapter_3-_Lift_Up.txt'
+-rw-------. 1 u0_a448 u0_a448 21752 May  8 03:57 '(C)_Chapter_3_-_Lift_Up.txt'
+-rw-------. 1 u0_a448 u0_a448 17991 May  8 03:57 '(C)_Chapter_4-_Pilgrimage.txt'
+-rw-------. 1 u0_a448 u0_a448 19881 May  8 03:57 '(C)_Chapter_4_-_Pilgrimage.txt'
+-rw-------. 1 u0_a448 u0_a448 23717 May  8 03:57 '(C)_Chapter_6-_Beelzebub,_Beelzebub.txt'
+-rw-------. 1 u0_a448 u0_a448 19331 May  8 03:57 '(D)_Chapter:_7_-_The_Pit.txt'
+-rw-------. 1 u0_a448 u0_a448 23090 May  8 03:57 '(D)_Chapter_1_-_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 18607 May  8 03:57 '(D)_Chapter_2-_Living_Sacrifice.txt'
+-rw-------. 1 u0_a448 u0_a448 19019 May  8 03:57 '(D)_Chapter_2_-_Living_Sacrifice.txt'
+-rw-------. 1 u0_a448 u0_a448 21595 May  8 03:57 '(E)_Chapter_1-_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 23083 May  8 03:57 '(E)_Chapter_1_-_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 23222 May  8 03:57 '(E)_Chapter_2-_Living_Sacrifice.txt'
+-rw-------. 1 u0_a448 u0_a448 10827 May  8 03:57 '(E)_Chapter_2_-_Living_Sacrifice.txt'
+-rw-------. 1 u0_a448 u0_a448 16482 May  8 03:57 '(E)_Chapter_3-_Lift_Up.txt'
+-rw-------. 1 u0_a448 u0_a448 12506 May  8 03:57 '(F)_Chapter:_1_Stardust_to_Stardust_.txt'
+-rw-------. 1 u0_a448 u0_a448 27311 May  8 03:57 '(F)_Chapter_1:_Stardust_to_Stardust_.txt'
+-rw-------. 1 u0_a448 u0_a448 15479 May  8 03:57 '(F)_Chapter_1_-_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 22306 May  8 03:57 '(F)_Chapter_2-_Living_Sacrifice.txt'
+-rw-------. 1 u0_a448 u0_a448 18867 May  8 03:57 '(F)_Chapter_3-_Lift_Up.txt'
+-rw-------. 1 u0_a448 u0_a448 20429 May  8 03:57 '(Final)_Chapter_1:_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 21106 May  8 03:57 '(Final)_Chapter_1_-_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 19743 May  8 03:57 '(Final)_Chapter_2-_Living_Sacrifice.txt'
+-rw-------. 1 u0_a448 u0_a448 20516 May  8 03:57 '(Final)_Chapter_3-_Lift_Up.txt'
+-rw-------. 1 u0_a448 u0_a448 19556 May  8 03:57 '(Final)_Chapter_3:_Lift_Up.txt'
+-rw-------. 1 u0_a448 u0_a448 20558 May  8 03:57 '(Final)_Chapter_5_-_The_Snare.txt'
+-rw-------. 1 u0_a448 u0_a448 20133 May  8 03:57 '(G)_Chapter_1:_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 22378 May  8 03:57 '(G)_Chapter_2-_Living_Sacrifice.txt'
+-rw-------. 1 u0_a448 u0_a448 18859 May  8 03:57 '(G)_Chapter_3-_Lift_Up.txt'
+-rw-------. 1 u0_a448 u0_a448 18992 May  8 03:57 '(G)_Final_)_Chapter:_10_-_Forsaken.txt'
+-rw-------. 1 u0_a448 u0_a448 30806 May  8 03:57 '(I)_(Notes)_Chapter:_1_Stardust_to_Stardust_.txt'
+-rw-------. 1 u0_a448 u0_a448 30796 May  8 03:57 '(I)_Chapter:_1_Stardust_to_Stardust_.txt'
+-rw-------. 1 u0_a448 u0_a448 23311 May  8 03:57 '(N)_CHAPTER_1-_STARDUST_TO_STARDUST.txt'
+-rw-------. 1 u0_a448 u0_a448 18278 May  8 03:57 '(N)_Chapter_1_-_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 26546 May  8 03:57 '(Notes)_(P)_Chapter:_1_-_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 30359 May  8 03:57 '(Notes)_Chapter_2-_Living_Sacrifice.txt'
+-rw-------. 1 u0_a448 u0_a448 26308 May  8 03:57 '(Notes)_Chapter_2:_Living_Sacrifice.txt'
+-rw-------. 1 u0_a448 u0_a448 18374 May  8 03:57 '(O)_Chapter_1-_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 25593 May  8 03:57 '(P)_Chapter:_1_-_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 21521 May  8 03:57 '(Prompt_Guide_(E))_Chapter_10:_Forsaken.txt'
+-rw-------. 1 u0_a448 u0_a448 21556 May  8 03:57 '(R) Chapter: 1 - Stardust to Stardust .txt'
+-rw-------. 1 u0_a448 u0_a448 22451 May  8 03:57 '(R)_Chapter:_1_-_Stardust_to_Stardust_.txt'
+-rw-------. 1 u0_a448 u0_a448 20937 May  8 03:57 '(Revision_Prompt_(D))_Chapter_10:_Forsaken.txt'
+-rw-------. 1 u0_a448 u0_a448 25907 May  8 03:57 '(Revision_Prompt_(N)__Chapter_1_-_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 19376 May  8 03:57 '(Revisions)_Chapter_1:_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 20901 May  8 03:57 '(SDP)_v2.txt'
+-rw-------. 1 u0_a448 u0_a448 19237 May  8 03:57 '(X)_Chapter_1:_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 20047 May  8 03:57 '(X)_Chapter_1_-_Stardust_to_Stardust.docx.txt'
+-rw-------. 1 u0_a448 u0_a448 20060 May  8 03:57 '(X)_Chapter_1_-_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 20127 May  8 03:57 '(X)_Chapter_1__Stardust_to_Stardust_(1).txt'
+-rw-------. 1 u0_a448 u0_a448 22477 May  8 03:57 '(X)_Chapter_1__Stardust_to_Stardust_(2).txt'
+-rw-------. 1 u0_a448 u0_a448 21441 May  8 03:57 '(Z)_Chapter_1:_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 19162 May  8 03:57 '*Chapter_1:_Stardust_to_Stardust.txt'
+-rw-------. 1 u0_a448 u0_a448 18574 May  8 03:57 '*Chapter_2-_Living_Sacrifice.txt'
+-rw-------. 1 u0_a448 u0_a448 19636 May  8 03:57 '*Chapter_3:_Lift_Up.txt'
+-rw-------. 1 u0_a448 u0_a448 18326 May  8 03:57 '*Chapter_4:_Pilgrimage.txt'
+-rw-------. 1 u0_a448 u0_a448 27116 May  8 03:57 '*Chapter_7:_The_Pit.txt'
+-rw-------. 1 u0_a448 u0_a448 22969 May  8 03:57 '*Chapter_8:_Sea_People.txt'
+-rw-------. 1 u0_a448 u0_a448 27768 May  8 03:57 '*Chapter_9:_The_Ascent.txt'
+-rw-------. 1 u0_a448 u0_a448  8940 May  8 03:57  -Final_Chapter_1_Revision_Prompt-.txt
+drwx------. 2 u0_a448 u0_a448 24576 May 12 12:48  .
+drwx------. 3 u0_a448 u0_a448  3452 May 12 14:05  ..
+-rw-------. 1 u0_a448 u0_a448 21666 May  8 03:57  1.0_Revision.txt
+-rw-------. 1 u0_a448 u0_a448  4609 May  8 03:57 '10.0_Blueprint_for_The_Ascent_of_Daniel:_The_Archetype_of_Sacrifice_(NYT_Bestseller_Focus).txt'
+-rw-------. 1 u0_a448 u0_a448 12722 May  8 03:57  10.0_MASTER_SYSTEM_FOR_CHAPTER_REVISION.txt
+-rw-------. 1 u0_a448 u0_a448 13975 May  8 03:57  10.0_Mass_Market.txt
+-rw-------. 1 u0_a448 u0_a448  7944 May  8 03:57  11.0_Error_Catalog.txt
+-rw-------. 1 u0_a448 u0_a448  7590 May  8 03:57  11.0_Final_Revision.txt
+-rw-------. 1 u0_a448 u0_a448  6356 May  8 03:57  11.0_Marketability_.txt
+-rw-------. 1 u0_a448 u0_a448  6433 May  8 03:57  12.0_Perfection.txt
+-rw-------. 1 u0_a448 u0_a448  8216 May  8 03:57  13.0_Claude.txt
+-rw-------. 1 u0_a448 u0_a448 19474 May  8 03:57  13.0_GENERAL_PRINCIPLES.txt
+-rw-------. 1 u0_a448 u0_a448 13169 May  8 03:57  2.0_Critique_／_Analysis_Guide.txt
+-rw-------. 1 u0_a448 u0_a448  4533 May  8 03:57  2.0_This_is_the_critical_adjustment—the_final_layer_that_elevates_philosophical_storytelling_into_timeless,_devastating_human_tragedy.txt
+-rw-------. 1 u0_a448 u0_a448  6905 May  8 03:57  3.0_Final_.txt
+-rw-------. 1 u0_a448 u0_a448  5085 May  8 03:57 '3.0_Literary_&_Archetypal_Fusion_Rulebook_(The_Cat_God_&_The_Primal_Self).txt'
+-rw-------. 1 u0_a448 u0_a448 10075 May  8 03:57  3.0_Scientific_Guide.txt
+-rw-------. 1 u0_a448 u0_a448  3660 May  8 03:57 '4.0_(12_Rules_For_Life).txt'
+-rw-------. 1 u0_a448 u0_a448  3895 May  8 03:57 '4.0_Emotional_&_Archetypal_Editing_Rulebook_(Visceral_Empathy_Focus).txt'
+-rw-------. 1 u0_a448 u0_a448 12831 May  8 03:57  4.0_Psychology_Guide.txt
+-rw-------. 1 u0_a448 u0_a448 30624 May  8 03:57  4.0_REVISED.txt
+-rw-------. 1 u0_a448 u0_a448  9382 May  8 03:57  5.0_Final_Guide.txt
+-rw-------. 1 u0_a448 u0_a448 12868 May  8 03:57  5.0_Psychology_Guide.txt
+-rw-------. 1 u0_a448 u0_a448  3736 May  8 03:57 '6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt'
+-rw-------. 1 u0_a448 u0_a448 20099 May  8 03:57 '6.0_HIGHEST_PRIORITY_(Read_this_first_and_then_again_last)_.txt'
+-rw-------. 1 u0_a448 u0_a448  8427 May  8 03:57  6.0_SYNTHESIS_MANDATE.txt
+-rw-------. 1 u0_a448 u0_a448 11330 May  8 03:57  6.0_Supreme_Generative_Constraint.txt
+-rw-------. 1 u0_a448 u0_a448  3603 May  8 03:57  7.0_Chapter_Refinery.txt
+-rw-------. 1 u0_a448 u0_a448 23510 May  8 03:57 '7.0_Nuclear_Edit!!!!_(CRITICAL!_DIRE!_EMERGENCY!!!).txt'
+-rw-------. 1 u0_a448 u0_a448 15094 May  8 03:57  8.0_Pacing／Redundancy.txt
+-rw-------. 1 u0_a448 u0_a448  4265 May  8 03:57 "8._0_This_is_the_final,_most_crucial_step:_ensuring_the_narrative's_structure_is_so_perfectly_weighted_that_the_profound_sadness—the_weeping_of_self-recognition—is_not_a_chance_event,_but_an_earned,_inevitable_catharsis_for_the_reader.txt"
+-rw-------. 1 u0_a448 u0_a448  8465 May  8 03:57  9.0_Aesthetic.txt
+-rw-------. 1 u0_a448 u0_a448  3317 May  8 03:57  9.0_Stones.txt
+-rw-------. 1 u0_a448 u0_a448  3044 May  8 03:57  ALITTERAS_SYSTEM_BLUEPRINT_v1.txt
+-rw-------. 1 u0_a448 u0_a448  4796 May  8 03:57 'Chapter 3 - Commerciality and Marketing 3.0.txt'
+-rw-------. 1 u0_a448 u0_a448 19769 May  8 03:57  Chapter2_Weight_of_the_Sky.txt
+-rw-------. 1 u0_a448 u0_a448 21887 May  8 03:57  Chapter:_10_-_MASTER_BRIEFING.txt
+-rw-------. 1 u0_a448 u0_a448 20564 May  8 03:57  Chapter:_1_-_Stardust_to_Stardust.txt
+-rw-------. 1 u0_a448 u0_a448 13182 May  8 03:57  Chapter:_1_Proof_of_Authorship_1.0.txt
+-rw-------. 1 u0_a448 u0_a448 17600 May  8 03:57  Chapter:_1_Proof_of_Authorship_1.1.txt
+-rw-------. 1 u0_a448 u0_a448 17241 May  8 03:57 'Chapter:_8_(Final).txt'
+-rw-------. 1 u0_a448 u0_a448 20311 May  8 03:57  Chapter_10.1.txt
+-rw-------. 1 u0_a448 u0_a448 27367 May  8 03:57  Chapter_10.5.txt
+-rw-------. 1 u0_a448 u0_a448 17281 May  8 03:57  Chapter_10:_Forsaken.txt
+-rw-------. 1 u0_a448 u0_a448 28345 May  8 03:57  Chapter_10_Forsaken_FINAL_DEFINITIVE.txt
+-rw-------. 1 u0_a448 u0_a448 26347 May  8 03:57  Chapter_10_Version_F.txt
+-rw-------. 1 u0_a448 u0_a448 21365 May  8 03:57  Chapter_11.8.txt
+-rw-------. 1 u0_a448 u0_a448 26263 May  8 03:57  Chapter_11._Forsaken.txt
+-rw-------. 1 u0_a448 u0_a448 17060 May  8 03:57  Chapter_13:_Exodus.txt
+-rw-------. 1 u0_a448 u0_a448 22126 May  8 03:57  Chapter_1:_Stardust_to_Stardust.txt
+-rw-------. 1 u0_a448 u0_a448 19245 May  8 03:57  Chapter_1_-_Stardust_to_Stardust.txt
+-rw-------. 1 u0_a448 u0_a448  5703 May  8 03:57  Chapter_1_Integration.txt
+-rw-------. 1 u0_a448 u0_a448 18717 May  8 03:57  Chapter_1_Integration_2.0.txt
+-rw-------. 1 u0_a448 u0_a448  7124 May  8 03:57  Chapter_1_Integration_Prompt.txt
+-rw-------. 1 u0_a448 u0_a448 16922 May  8 03:57  Chapter_1_Merge_Prompt.txt
+-rw-------. 1 u0_a448 u0_a448 31718 May  8 03:57  Chapter_1_Version_O.txt
+-rw-------. 1 u0_a448 u0_a448 19181 May  8 03:57  Chapter_2:_Living_Sacrifice.txt
+-rw-------. 1 u0_a448 u0_a448 17501 May  8 03:57 'Chapter_2_-_Analysis_&_Guides_1.0.txt'
+-rw-------. 1 u0_a448 u0_a448 16963 May  8 03:57  Chapter_2_-_Commerciality_and_Marketing_3.0.txt
+-rw-------. 1 u0_a448 u0_a448 15223 May  8 03:57  Chapter_2_-_Master_Revision_Prompt_2.0.txt
+-rw-------. 1 u0_a448 u0_a448  7543 May  8 03:57  Chapter_2nd_to_last.txt
+-rw-------. 1 u0_a448 u0_a448 19673 May  8 03:57  Chapter_3:_Lift_Up.txt
+-rw-------. 1 u0_a448 u0_a448  7210 May  8 03:57  Chapter_3_-_Master_Revision_Prompt_2.0.txt
+-rw-------. 1 u0_a448 u0_a448 18857 May  8 03:57 'Chapter_3_Analysis_&_Guides.txt'
+-rw-------. 1 u0_a448 u0_a448  4388 May  8 03:57  Chapter_3_Integration_Prompt.txt
+-rw-------. 1 u0_a448 u0_a448 18833 May  8 03:57  Chapter_4:_Pilgrimage.txt
+-rw-------. 1 u0_a448 u0_a448 19304 May  8 03:57  Chapter_5:_The_Snare.txt
+-rw-------. 1 u0_a448 u0_a448 21547 May  8 03:57  Chapter_6:_Beelzebub,_Beelzebub.txt
+-rw-------. 1 u0_a448 u0_a448 28338 May  8 03:57  Chapter_8.1.txt
+-rw-------. 1 u0_a448 u0_a448 24065 May  8 03:57  Chapter_8:_Sea_People.txt
+-rw-------. 1 u0_a448 u0_a448 27027 May  8 03:57  Chapter_9:_The_Ascent.txt
+-rw-------. 1 u0_a448 u0_a448 30850 May  8 03:57  Could_you_condense_that_chapter_by_500_to_1,000_w....txt
+-rw-------. 1 u0_a448 u0_a448 13767 May  8 03:57  Critique_2.2.txt
+-rw-------. 1 u0_a448 u0_a448  6989 May  8 03:57 'Final Revision (Generalized For All Chapters).txt'
+-rw-------. 1 u0_a448 u0_a448 26548 May  8 03:57  Go_ahead_and_write_out_the_chapter_keep_in_mind_t....txt
+-rw-------. 1 u0_a448 u0_a448  3998 May  8 03:57  MANUSCRIPT_AUTOPSY.txt
+-rw-------. 1 u0_a448 u0_a448 11465 May  8 03:57  Narnia_.txt
+-rw-------. 1 u0_a448 u0_a448  2541 May  8 03:57  Purple_Prose_Prompt.txt
+-rw-------. 1 u0_a448 u0_a448  6562 May  8 03:57 'THE_WEIGHT_OF_THE_SKY-_MASTER_COMPENDIUM_(SINGULARITY_v.txt'
+-rw-------. 1 u0_a448 u0_a448  2456 May  8 03:57  The_-Version_X-_Meta-Prompt.txt
+-rw-------. 1 u0_a448 u0_a448 12645 May  8 03:57  The_Weight_of_the_Sky:_The_Fall_into_Megiddo.txt
+-rw-------. 1 u0_a448 u0_a448 18320 May  8 03:57  The_scrape.txt
+-rw-------. 1 u0_a448 u0_a448  3991 May  8 03:57  ToALITTERAS_ECOSYSTEM_v2.txt
+-rw-------. 1 u0_a448 u0_a448 10474 May  8 03:57  Untitled_document.txt
+-rw-------. 1 u0_a448 u0_a448 19536 May  8 03:57  Version_A.txt
+-rw-------. 1 u0_a448 u0_a448 19366 May  8 03:57  Version_B.txt
+-rw-------. 1 u0_a448 u0_a448 17321 May  8 03:57  WOS_Ch7_The_Pit.txt
+-rw-------. 1 u0_a448 u0_a448 23683 May  8 03:57  Whole_Book.txt
+-rw-------. 1 u0_a448 u0_a448 24874 May  8 03:57  chapter_11.2.txt
+-rw-------. 1 u0_a448 u0_a448 19186 May  8 03:57 '•(G)_Chapter:_1_Stardust_to_Stardust_.txt'
+-rw-------. 1 u0_a448 u0_a448 22989 May  8 03:57 '•(G)_Chapter_2-_Living_Sacrifice.txt'
+-rw-------. 1 u0_a448 u0_a448 19162 May  8 03:57  ﻿Chapter_1-_Stardust_to_Stardust.txt
+
+
+=== 2. CHECK IF THE LOCAL JSON REGISTRIES ARE ACTUALLY EMPTY ===
+{
+  "entities": [
+    {
+      "id": "flies",
+      "archetype": "Lord of the Flies",
+      "triggers": ["flies", "Beelzebub", "Zebub", "Ekron", "decay"],
+      "visualAsset": "/flies.png",
+      "weight": 0.7,
+      "historicalContext": "Ba'al-Zebub of Ekron — the Philistine god associated with decay and stagnation.",
+      "loreSummary": ""
+    },
+    {
+      "id": "dagon",
+      "archetype": "Dagon",
+      "triggers": ["Dagon", "fish-god", "shrine", "Philistine"],
+      "visualAsset": "/dagon.png",
+      "weight": 1.0,
+      "historicalContext": "Dagon, the primary deity of the Philistines; a fertility god associated with the sea.",
+      "loreSummary": ""
+    }
+  ]
+}
+
+
+=== 3. SEARCH FOR ANY FILE CONTAINING 'SYNOPSIS' OR 'EMA' ===
+./src/components/layers/Layer2Cinema.tsx
+./src/components/layers/cinema/AssetProjector.tsx
+./src/components/layers/cinema/ShaderEffects.tsx
+./src/components/layers/cinema/TelemetryOverlay.tsx
+./src/components/layers/canvas/front-matter/Synopsis.tsx
+./src/data-layer/logic-governance/node_manifest.json
+./src/data-layer/reference-data/node_manifest.json
+./src/data-layer/static-assets/node_manifest.json
+./src/data-layer/initialization-metadata/node_manifest.json
+./src/data-layer/ingestion-buffer/node_manifest.json
+./docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt
+./src/data-layer/disposal-bin/node_manifest.json
+./src/data-layer/version-archive/node_manifest.json
+./src/data-layer/version-archive/ema_history.json
+./src/data-layer/aggregation-engine/node_manifest.json
+./src/data-layer/entities/node_manifest.json
+./docs/agent_context/source_drop/legacy_build_manifests/07_Build_Manifests/Writing Agent App. Source Doc. (10) [NEUTRON].txt
+./src/features/thematicListener.ts
+./src/data/cinema.ts
+./system/resource-manager/manifest.json
+./system/07_Build_Manifests/session_logs/SESSION_2026-05-12.log
+./node_modules/@jridgewell/gen-mapping/types/sourcemap-segment.d.cts
+./node_modules/@jridgewell/gen-mapping/types/sourcemap-segment.d.cts.map
+./node_modules/@jridgewell/gen-mapping/types/sourcemap-segment.d.mts.map
+./node_modules/@jridgewell/gen-mapping/types/sourcemap-segment.d.mts
+./node_modules/@jridgewell/gen-mapping/dist/types/sourcemap-segment.d.ts
+./node_modules/@jridgewell/gen-mapping/src/sourcemap-segment.ts
+./node_modules/@jridgewell/remapping/LICENSE
+./node_modules/@jridgewell/remapping/types/build-source-map-tree.d.cts
+./node_modules/@jridgewell/remapping/types/remapping.d.cts
+./node_modules/@jridgewell/remapping/types/source-map-tree.d.cts
+./node_modules/@jridgewell/remapping/types/source-map.d.cts
+./node_modules/@jridgewell/remapping/types/types.d.cts
+./node_modules/@jridgewell/remapping/types/build-source-map-tree.d.cts.map
+./node_modules/@jridgewell/remapping/types/build-source-map-tree.d.mts.map
+./node_modules/@jridgewell/remapping/types/remapping.d.cts.map
+./node_modules/@jridgewell/remapping/types/remapping.d.mts.map
+./node_modules/@jridgewell/remapping/types/source-map-tree.d.cts.map
+./node_modules/@jridgewell/remapping/types/source-map-tree.d.mts.map
+./node_modules/@jridgewell/remapping/types/source-map.d.cts.map
+./node_modules/@jridgewell/remapping/types/source-map.d.mts.map
+./node_modules/@jridgewell/remapping/types/types.d.cts.map
+./node_modules/@jridgewell/remapping/types/types.d.mts.map
+./node_modules/@jridgewell/remapping/types/build-source-map-tree.d.mts
+./node_modules/@jridgewell/remapping/types/remapping.d.mts
+./node_modules/@jridgewell/remapping/types/source-map-tree.d.mts
+./node_modules/@jridgewell/remapping/types/source-map.d.mts
+./node_modules/@jridgewell/remapping/types/types.d.mts
+./node_modules/@jridgewell/remapping/dist/remapping.umd.js
+./node_modules/@jridgewell/remapping/dist/remapping.mjs.map
+./node_modules/@jridgewell/remapping/dist/remapping.umd.js.map
+./node_modules/@jridgewell/remapping/dist/remapping.mjs
+./node_modules/@jridgewell/remapping/package.json
+./node_modules/@jridgewell/remapping/README.md
+./node_modules/@jridgewell/remapping/src/build-source-map-tree.ts
+./node_modules/@jridgewell/remapping/src/remapping.ts
+./node_modules/@jridgewell/remapping/src/source-map-tree.ts
+./node_modules/@jridgewell/remapping/src/source-map.ts
+./node_modules/@jridgewell/remapping/src/types.ts
+./node_modules/@jridgewell/sourcemap-codec/LICENSE
+./node_modules/@jridgewell/sourcemap-codec/types/scopes.d.cts
+./node_modules/@jridgewell/sourcemap-codec/types/sourcemap-codec.d.cts
+./node_modules/@jridgewell/sourcemap-codec/types/strings.d.cts
+./node_modules/@jridgewell/sourcemap-codec/types/vlq.d.cts
+./node_modules/@jridgewell/sourcemap-codec/types/scopes.d.cts.map
+./node_modules/@jridgewell/sourcemap-codec/types/scopes.d.mts.map
+./node_modules/@jridgewell/sourcemap-codec/types/sourcemap-codec.d.cts.map
+./node_modules/@jridgewell/sourcemap-codec/types/sourcemap-codec.d.mts.map
+./node_modules/@jridgewell/sourcemap-codec/types/strings.d.cts.map
+./node_modules/@jridgewell/sourcemap-codec/types/strings.d.mts.map
+./node_modules/@jridgewell/sourcemap-codec/types/vlq.d.cts.map
+./node_modules/@jridgewell/sourcemap-codec/types/vlq.d.mts.map
+./node_modules/@jridgewell/sourcemap-codec/types/scopes.d.mts
+./node_modules/@jridgewell/sourcemap-codec/types/sourcemap-codec.d.mts
+./node_modules/@jridgewell/sourcemap-codec/types/strings.d.mts
+./node_modules/@jridgewell/sourcemap-codec/types/vlq.d.mts
+./node_modules/@jridgewell/sourcemap-codec/dist/sourcemap-codec.umd.js
+./node_modules/@jridgewell/sourcemap-codec/dist/sourcemap-codec.mjs.map
+./node_modules/@jridgewell/sourcemap-codec/dist/sourcemap-codec.umd.js.map
+./node_modules/@jridgewell/sourcemap-codec/dist/sourcemap-codec.mjs
+./node_modules/@jridgewell/sourcemap-codec/package.json
+./node_modules/@jridgewell/sourcemap-codec/README.md
+./node_modules/@jridgewell/sourcemap-codec/src/scopes.ts
+./node_modules/@jridgewell/sourcemap-codec/src/sourcemap-codec.ts
+./node_modules/@jridgewell/sourcemap-codec/src/strings.ts
+./node_modules/@jridgewell/sourcemap-codec/src/vlq.ts
+./node_modules/@jridgewell/trace-mapping/types/sourcemap-segment.d.cts
+./node_modules/@jridgewell/trace-mapping/types/sourcemap-segment.d.cts.map
+./node_modules/@jridgewell/trace-mapping/types/sourcemap-segment.d.mts.map
+./node_modules/@jridgewell/trace-mapping/types/sourcemap-segment.d.mts
+./node_modules/@jridgewell/trace-mapping/src/sourcemap-segment.ts
+./node_modules/caniuse-lite/data/features/input-email-tel-url.js
+./node_modules/caniuse-lite/data/features/html5semantic.js
+./node_modules/caniuse-lite/data/features/web-app-manifest.js
+./node_modules/next/dist/compiled/schema-utils2/LICENSE
+./node_modules/next/dist/compiled/schema-utils3/LICENSE
+./node_modules/next/dist/esm/server/config-schema.js
+./node_modules/next/dist/esm/build/webpack/plugins/app-build-manifest-plugin.js
+./node_modules/next/dist/esm/build/webpack/plugins/build-manifest-plugin.js
+./node_modules/next/dist/server/config-schema.js
+./node_modules/next/dist/build/webpack/plugins/app-build-manifest-plugin.js
+./node_modules/next/dist/build/webpack/plugins/build-manifest-plugin.js
+./docs/forensics/nos/docs/forensics/nos/nos_manifest.json
+~/writing-agent-interface $
+
+
+~/writing-agent-interface $ tree -L 5
+.
+├── ManuscriptCore.tsx
+├── README.md
+├── build.log
+├── et --hard 42b7570
+├── full_codebase_dump.txt
+├── next-env.d.ts
+├── next.config.js
+├── docs/forensics/nos/docs/forensics/nos/nos_manifest.json
+├── package-lock.json
+├── package.json
+├── postcss.config.js
+├── public
+│   ├── assets
+│   │   ├── bg.png
+│   │   ├── flies.jpg
+│   │   ├── megiddo1.jpg
+│   │   └── megiddo2.jpg
+│   └── data
+│       └── chapters
+│           └── 7.txt
+├── scripts
+│   ├── build_files.sh
+│   ├── extract_deep_history.py
+│   ├── nos_audit.sh
+│   ├── nos_invoke.sh
+│   └── nos_sync.sh
+├── src
+│   ├── actions
+│   │   ├── ingest.action.ts
+│   │   ├── retrieve.action.ts
+│   │   ├── update-memory.action.ts
+│   │   └── write.action.ts
+│   ├── app
+│   │   ├── api
+│   │   │   ├── agent
+│   │   │   │   └── route.ts
+│   │   │   ├── analyze-document
+│   │   │   │   └── route.ts
+│   │   │   ├── chapters
+│   │   │   │   └── route.ts
+│   │   │   ├── corpus
+│   │   │   │   └── route.ts
+│   │   │   ├── execute
+│   │   │   │   └── route.ts
+│   │   │   ├── graph
+│   │   │   │   └── route.ts
+│   │   │   ├── manuscript
+│   │   │   │   └── route.ts
+│   │   │   ├── search
+│   │   │   │   └── route.ts
+│   │   │   └── visualize
+│   │   │       └── route.ts
+│   │   ├── characters
+│   │   │   └── page.tsx
+│   │   ├── dashboard
+│   │   │   └── page.tsx
+│   │   ├── globals.css
+│   │   ├── globals.css.bak
+│   │   ├── graph
+│   │   │   └── page.tsx
+│   │   ├── head.tsx
+│   │   ├── layout.tsx
+│   │   ├── memory
+│   │   │   └── page.tsx
+│   │   ├── page.tsx
+│   │   ├── runtime
+│   │   │   └── page.tsx
+│   │   ├── search
+│   │   │   └── page.tsx
+│   │   └── timeline
+│   │       └── page.tsx
+│   ├── components
+│   │   ├── ReaderLayout.tsx
+│   │   ├── layers
+│   │   │   ├── Layer1Void.tsx
+│   │   │   ├── Layer2Cinema.tsx
+│   │   │   ├── Layer3Canvas.tsx
+│   │   │   ├── Layer4Panel.tsx
+│   │   │   ├── canvas
+│   │   │   │   ├── ManuscriptCore.tsx
+│   │   │   │   └── front-matter
+│   │   │   ├── cinema
+│   │   │   │   ├── AssetProjector.tsx
+│   │   │   │   ├── ShaderEffects.tsx
+│   │   │   │   └── TelemetryOverlay.tsx
+│   │   │   └── panel
+│   │   │       ├── IndexTab.tsx
+│   │   │       ├── StatusTab.tsx
+│   │   │       ├── StylesTab.tsx
+│   │   │       └── SystemTab.tsx
+│   │   └── ui
+│   │       ├── OmniText.tsx
+│   │       ├── ScopedBackdrop.tsx
+│   │       ├── character-view.tsx
+│   │       ├── editor.tsx
+│   │       ├── graph-view.tsx
+│   │       ├── memory-panel.tsx
+│   │       ├── sidebar.tsx
+│   │       └── timeline.tsx
+│   ├── context
+│   │   └── SidebarContext.tsx
+│   ├── core
+│   │   ├── IMemoryEngine.ts
+│   │   ├── INarrativeGraphEngine.ts
+│   │   ├── IRetrievalEngine.ts
+│   │   ├── IWritingAgent.ts
+│   │   ├── document-types.ts
+│   │   ├── engine-constants.ts
+│   │   ├── graph-types.ts
+│   │   ├── narrative-types.ts
+│   │   ├── runtimeEngine.ts
+│   │   ├── system-utils.ts
+│   │   └── types.ts
+│   ├── data
+│   │   ├── canon
+│   │   │   └── 7.txt
+│   │   ├── chapter7-raw.txt
+│   │   └── cinema.ts
+│   ├── data-layer
+│   │   ├── 07_Build_Manifests
+│   │   │   └── Writing Agent App. Source Doc. (10) [NEUTRON].txt
+│   │   ├── aggregation-engine
+│   │   │   └── node_manifest.json
+│   │   ├── disposal-bin
+│   │   │   └── node_manifest.json
+│   │   ├── entities
+│   │   │   └── node_manifest.json
+│   │   ├── ingestion-buffer
+│   │   │   ├── gdrive_raw
+│   │   │   │   ├── (A)Chapter_8:_Sea_People.txt
+│   │   │   │   ├── (A)_Chapter:_1_Stardust_to_Stardust.txt
+│   │   │   │   ├── (A)_Chapter_1-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (A)_Chapter_1:_Stardust_to_Stardust.txt
+│   │   │   │   ├── (A)_Chapter_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (A)_Chapter_2-_Living_Sacrifice.txt
+│   │   │   │   ├── (A)_Chapter_2:_Living_Sacrifice.txt
+│   │   │   │   ├── (A)_Chapter_3-_Lift_Up.txt
+│   │   │   │   ├── (A)_Chapter_3_-_Lift_Up.txt
+│   │   │   │   ├── (A)_Chapter_5_-_The_Snare.txt
+│   │   │   │   ├── (A)_Chapter_6:_Beelzebub,_Beelzebub.txt
+│   │   │   │   ├── (B)Chapter_8:_Sea_People.txt
+│   │   │   │   ├── (B)_Chapter:_1_Stardust_to_Stardust.txt
+│   │   │   │   ├── (B)_Chapter_1-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (B)_Chapter_1:_Stardust_to_Stardust.txt
+│   │   │   │   ├── (B)_Chapter_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (B)_Chapter_2-_Living_Sacrifice.txt
+│   │   │   │   ├── (B)_Chapter_2:_Living_Sacrifice.txt
+│   │   │   │   ├── (B)_Chapter_3-_Lift_Up.txt
+│   │   │   │   ├── (B)_Chapter_3:_Lift_Up.txt
+│   │   │   │   ├── (B)_Chapter_5-_The_Snare.txt
+│   │   │   │   ├── (B)_Chapter_6_-_Beelzebub,_Beelzebub.txt
+│   │   │   │   ├── (B)_Chapter_7:_The_Pit.txt
+│   │   │   │   ├── (B)_Chapter_9:_The_Ascent.txt
+│   │   │   │   ├── (B)_Stardust_to_Stardust.txt
+│   │   │   │   ├── (C)Chapter_8:_Sea_People.txt
+│   │   │   │   ├── (C)_Chapter:_1_-_Stardust_to_Stardust_.txt
+│   │   │   │   ├── (C)_Chapter:_7_-_The_Pit.txt
+│   │   │   │   ├── (C)_Chapter:_Stardust_to_Stardust.txt
+│   │   │   │   ├── (C)_Chapter_1-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (C)_Chapter_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (C)_Chapter_2-_Living_Sacrifice.txt
+│   │   │   │   ├── (C)_Chapter_3-_Lift_Up.txt
+│   │   │   │   ├── (C)_Chapter_3_-_Lift_Up.txt
+│   │   │   │   ├── (C)_Chapter_4-_Pilgrimage.txt
+│   │   │   │   ├── (C)_Chapter_4_-_Pilgrimage.txt
+│   │   │   │   ├── (C)_Chapter_6-_Beelzebub,_Beelzebub.txt
+│   │   │   │   ├── (D)_Chapter:_7_-_The_Pit.txt
+│   │   │   │   ├── (D)_Chapter_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (D)_Chapter_2-_Living_Sacrifice.txt
+│   │   │   │   ├── (D)_Chapter_2_-_Living_Sacrifice.txt
+│   │   │   │   ├── (E)_Chapter_1-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (E)_Chapter_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (E)_Chapter_2-_Living_Sacrifice.txt
+│   │   │   │   ├── (E)_Chapter_2_-_Living_Sacrifice.txt
+│   │   │   │   ├── (E)_Chapter_3-_Lift_Up.txt
+│   │   │   │   ├── (F)_Chapter:_1_Stardust_to_Stardust_.txt
+│   │   │   │   ├── (F)_Chapter_1:_Stardust_to_Stardust_.txt
+│   │   │   │   ├── (F)_Chapter_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (F)_Chapter_2-_Living_Sacrifice.txt
+│   │   │   │   ├── (F)_Chapter_3-_Lift_Up.txt
+│   │   │   │   ├── (Final)_Chapter_1:_Stardust_to_Stardust.txt
+│   │   │   │   ├── (Final)_Chapter_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (Final)_Chapter_2-_Living_Sacrifice.txt
+│   │   │   │   ├── (Final)_Chapter_3-_Lift_Up.txt
+│   │   │   │   ├── (Final)_Chapter_3:_Lift_Up.txt
+│   │   │   │   ├── (Final)_Chapter_5_-_The_Snare.txt
+│   │   │   │   ├── (G)_Chapter_1:_Stardust_to_Stardust.txt
+│   │   │   │   ├── (G)_Chapter_2-_Living_Sacrifice.txt
+│   │   │   │   ├── (G)_Chapter_3-_Lift_Up.txt
+│   │   │   │   ├── (G)_Final_)_Chapter:_10_-_Forsaken.txt
+│   │   │   │   ├── (I)_(Notes)_Chapter:_1_Stardust_to_Stardust_.txt
+│   │   │   │   ├── (I)_Chapter:_1_Stardust_to_Stardust_.txt
+│   │   │   │   ├── (N)_CHAPTER_1-_STARDUST_TO_STARDUST.txt
+│   │   │   │   ├── (N)_Chapter_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (Notes)_(P)_Chapter:_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (Notes)_Chapter_2-_Living_Sacrifice.txt
+│   │   │   │   ├── (Notes)_Chapter_2:_Living_Sacrifice.txt
+│   │   │   │   ├── (O)_Chapter_1-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (P)_Chapter:_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (Prompt_Guide_(E))_Chapter_10:_Forsaken.txt
+│   │   │   │   ├── (R) Chapter: 1 - Stardust to Stardust .txt
+│   │   │   │   ├── (R)_Chapter:_1_-_Stardust_to_Stardust_.txt
+│   │   │   │   ├── (Revision_Prompt_(D))_Chapter_10:_Forsaken.txt
+│   │   │   │   ├── (Revision_Prompt_(N)__Chapter_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (Revisions)_Chapter_1:_Stardust_to_Stardust.txt
+│   │   │   │   ├── (SDP)_v2.txt
+│   │   │   │   ├── (X)_Chapter_1:_Stardust_to_Stardust.txt
+│   │   │   │   ├── (X)_Chapter_1_-_Stardust_to_Stardust.docx.txt
+│   │   │   │   ├── (X)_Chapter_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (X)_Chapter_1__Stardust_to_Stardust_(1).txt
+│   │   │   │   ├── (X)_Chapter_1__Stardust_to_Stardust_(2).txt
+│   │   │   │   ├── (Z)_Chapter_1:_Stardust_to_Stardust.txt
+│   │   │   │   ├── *Chapter_1:_Stardust_to_Stardust.txt
+│   │   │   │   ├── *Chapter_2-_Living_Sacrifice.txt
+│   │   │   │   ├── *Chapter_3:_Lift_Up.txt
+│   │   │   │   ├── *Chapter_4:_Pilgrimage.txt
+│   │   │   │   ├── *Chapter_7:_The_Pit.txt
+│   │   │   │   ├── *Chapter_8:_Sea_People.txt
+│   │   │   │   ├── *Chapter_9:_The_Ascent.txt
+│   │   │   │   ├── -Final_Chapter_1_Revision_Prompt-.txt
+│   │   │   │   ├── 1.0_Revision.txt
+│   │   │   │   ├── 10.0_Blueprint_for_The_Ascent_of_Daniel:_The_Archetype_of_Sacrifice_(NYT_Bestseller_Focus).txt
+│   │   │   │   ├── 10.0_MASTER_SYSTEM_FOR_CHAPTER_REVISION.txt
+│   │   │   │   ├── 10.0_Mass_Market.txt
+│   │   │   │   ├── 11.0_Error_Catalog.txt
+│   │   │   │   ├── 11.0_Final_Revision.txt
+│   │   │   │   ├── 11.0_Marketability_.txt
+│   │   │   │   ├── 12.0_Perfection.txt
+│   │   │   │   ├── 13.0_Claude.txt
+│   │   │   │   ├── 13.0_GENERAL_PRINCIPLES.txt
+│   │   │   │   ├── 2.0_Critique_／_Analysis_Guide.txt
+│   │   │   │   ├── 2.0_This_is_the_critical_adjustment—the_final_layer_that_elevates_philosophical_storytelling_into_timeless,_devastating_human_tragedy.txt
+│   │   │   │   ├── 3.0_Final_.txt
+│   │   │   │   ├── 3.0_Literary_&_Archetypal_Fusion_Rulebook_(The_Cat_God_&_The_Primal_Self).txt
+│   │   │   │   ├── 3.0_Scientific_Guide.txt
+│   │   │   │   ├── 4.0_(12_Rules_For_Life).txt
+│   │   │   │   ├── 4.0_Emotional_&_Archetypal_Editing_Rulebook_(Visceral_Empathy_Focus).txt
+│   │   │   │   ├── 4.0_Psychology_Guide.txt
+│   │   │   │   ├── 4.0_REVISED.txt
+│   │   │   │   ├── 5.0_Final_Guide.txt
+│   │   │   │   ├── 5.0_Psychology_Guide.txt
+│   │   │   │   ├── 6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt
+│   │   │   │   ├── 6.0_HIGHEST_PRIORITY_(Read_this_first_and_then_again_last)_.txt
+│   │   │   │   ├── 6.0_SYNTHESIS_MANDATE.txt
+│   │   │   │   ├── 6.0_Supreme_Generative_Constraint.txt
+│   │   │   │   ├── 7.0_Chapter_Refinery.txt
+│   │   │   │   ├── 7.0_Nuclear_Edit!!!!_(CRITICAL!_DIRE!_EMERGENCY!!!).txt
+│   │   │   │   ├── 8.0_Pacing／Redundancy.txt
+│   │   │   │   ├── 8._0_This_is_the_final,_most_crucial_step:_ensuring_the_narrative's_structure_is_so_perfectly_weighted_that_the_profound_sadness—the_weeping_of_self-recognition—is_not_a_chance_event,_but_an_earned,_inevitable_catharsis_for_the_reader.txt
+│   │   │   │   ├── 9.0_Aesthetic.txt
+│   │   │   │   ├── 9.0_Stones.txt
+│   │   │   │   ├── ALITTERAS_SYSTEM_BLUEPRINT_v1.txt
+│   │   │   │   ├── Chapter 3 - Commerciality and Marketing 3.0.txt
+│   │   │   │   ├── Chapter2_Weight_of_the_Sky.txt
+│   │   │   │   ├── Chapter:_10_-_MASTER_BRIEFING.txt
+│   │   │   │   ├── Chapter:_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── Chapter:_1_Proof_of_Authorship_1.0.txt
+│   │   │   │   ├── Chapter:_1_Proof_of_Authorship_1.1.txt
+│   │   │   │   ├── Chapter:_8_(Final).txt
+│   │   │   │   ├── Chapter_10.1.txt
+│   │   │   │   ├── Chapter_10.5.txt
+│   │   │   │   ├── Chapter_10:_Forsaken.txt
+│   │   │   │   ├── Chapter_10_Forsaken_FINAL_DEFINITIVE.txt
+│   │   │   │   ├── Chapter_10_Version_F.txt
+│   │   │   │   ├── Chapter_11.8.txt
+│   │   │   │   ├── Chapter_11._Forsaken.txt
+│   │   │   │   ├── Chapter_13:_Exodus.txt
+│   │   │   │   ├── Chapter_1:_Stardust_to_Stardust.txt
+│   │   │   │   ├── Chapter_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── Chapter_1_Integration.txt
+│   │   │   │   ├── Chapter_1_Integration_2.0.txt
+│   │   │   │   ├── Chapter_1_Integration_Prompt.txt
+│   │   │   │   ├── Chapter_1_Merge_Prompt.txt
+│   │   │   │   ├── Chapter_1_Version_O.txt
+│   │   │   │   ├── Chapter_2:_Living_Sacrifice.txt
+│   │   │   │   ├── Chapter_2_-_Analysis_&_Guides_1.0.txt
+│   │   │   │   ├── Chapter_2_-_Commerciality_and_Marketing_3.0.txt
+│   │   │   │   ├── Chapter_2_-_Master_Revision_Prompt_2.0.txt
+│   │   │   │   ├── Chapter_2nd_to_last.txt
+│   │   │   │   ├── Chapter_3:_Lift_Up.txt
+│   │   │   │   ├── Chapter_3_-_Master_Revision_Prompt_2.0.txt
+│   │   │   │   ├── Chapter_3_Analysis_&_Guides.txt
+│   │   │   │   ├── Chapter_3_Integration_Prompt.txt
+│   │   │   │   ├── Chapter_4:_Pilgrimage.txt
+│   │   │   │   ├── Chapter_5:_The_Snare.txt
+│   │   │   │   ├── Chapter_6:_Beelzebub,_Beelzebub.txt
+│   │   │   │   ├── Chapter_8.1.txt
+│   │   │   │   ├── Chapter_8:_Sea_People.txt
+│   │   │   │   ├── Chapter_9:_The_Ascent.txt
+│   │   │   │   ├── Could_you_condense_that_chapter_by_500_to_1,000_w....txt
+│   │   │   │   ├── Critique_2.2.txt
+│   │   │   │   ├── Final Revision (Generalized For All Chapters).txt
+│   │   │   │   ├── Go_ahead_and_write_out_the_chapter_keep_in_mind_t....txt
+│   │   │   │   ├── MANUSCRIPT_AUTOPSY.txt
+│   │   │   │   ├── Narnia_.txt
+│   │   │   │   ├── Purple_Prose_Prompt.txt
+│   │   │   │   ├── THE_WEIGHT_OF_THE_SKY-_MASTER_COMPENDIUM_(SINGULARITY_v.txt
+│   │   │   │   ├── The_-Version_X-_Meta-Prompt.txt
+│   │   │   │   ├── The_Weight_of_the_Sky:_The_Fall_into_Megiddo.txt
+│   │   │   │   ├── The_scrape.txt
+│   │   │   │   ├── ToALITTERAS_ECOSYSTEM_v2.txt
+│   │   │   │   ├── Untitled_document.txt
+│   │   │   │   ├── Version_A.txt
+│   │   │   │   ├── Version_B.txt
+│   │   │   │   ├── WOS_Ch7_The_Pit.txt
+│   │   │   │   ├── Whole_Book.txt
+│   │   │   │   ├── chapter_11.2.txt
+│   │   │   │   ├── •(G)_Chapter:_1_Stardust_to_Stardust_.txt
+│   │   │   │   ├── •(G)_Chapter_2-_Living_Sacrifice.txt
+│   │   │   │   └── ﻿Chapter_1-_Stardust_to_Stardust.txt
+│   │   │   └── node_manifest.json
+│   │   ├── initialization-metadata
+│   │   │   ├── commerce_catalog.json
+│   │   │   ├── node_manifest.json
+│   │   │   ├── teasers.json
+│   │   │   └── ui_theme_registry.json
+│   │   ├── logic-governance
+│   │   │   └── node_manifest.json
+│   │   ├── reference-data
+│   │   │   ├── author.json
+│   │   │   ├── compendium.json
+│   │   │   └── node_manifest.json
+│   │   ├── static-assets
+│   │   │   └── node_manifest.json
+│   │   └── version-archive
+│   │       ├── ema_history.json
+│   │       └── node_manifest.json
+│   ├── features
+│   │   ├── audioListener.ts
+│   │   ├── distortionListener.ts
+│   │   └── thematicListener.ts
+│   ├── hooks
+│   │   ├── useAgent.ts
+│   │   ├── useChapterLoader.ts
+│   │   ├── useChapterRoute.ts
+│   │   ├── useGraph.ts
+│   │   ├── useListenerBus.ts
+│   │   ├── useMemory.ts
+│   │   ├── useRetrieval.ts
+│   │   └── useScrollTracker.ts
+│   ├── runtime
+│   │   ├── controlPanel.ts
+│   │   └── runtimeContext.tsx
+│   ├── services
+│   │   ├── analytics-engine
+│   │   │   ├── logic
+│   │   │   │   └── coefficient_engine.ts
+│   │   │   ├── mapping
+│   │   │   │   └── dualism_logic.ts
+│   │   │   ├── poles
+│   │   │   └── visualizers
+│   │   ├── document-analyzer
+│   │   │   ├── corpus-searcher.ts
+│   │   │   ├── parser.ts
+│   │   │   └── synthesis-engine.ts
+│   │   ├── image-engine
+│   │   │   ├── executor.ts
+│   │   │   ├── image-generator.ts
+│   │   │   └── prompter.ts
+│   │   ├── memory-engine
+│   │   │   ├── corpus-loader.ts
+│   │   │   ├── document-store.ts
+│   │   │   ├── embedding-processor.ts
+│   │   │   ├── integrity-validator.ts
+│   │   │   ├── memory-engine.ts
+│   │   │   ├── memory-kernel.ts
+│   │   │   ├── text-processor.ts
+│   │   │   └── vector-store.ts
+│   │   ├── narrative-graph-engine
+│   │   │   ├── connection-analyzer.ts
+│   │   │   ├── consistency-analyzer.ts
+│   │   │   ├── edge-builder.ts
+│   │   │   ├── graph-kernel.ts
+│   │   │   ├── graph-querier.ts
+│   │   │   ├── graph-serializer.ts
+│   │   │   ├── narrative-graph-engine.ts
+│   │   │   ├── node-builder.ts
+│   │   │   └── path-finder.ts
+│   │   ├── orchestration-engine
+│   │   │   ├── context-builder.ts
+│   │   │   ├── orchestration-engine.ts
+│   │   │   ├── orchestrator.py
+│   │   │   ├── pipeline.ts
+│   │   │   ├── prompt-assembler.ts
+│   │   │   └── runtime-controller.ts
+│   │   ├── retrieval-engine
+│   │   │   ├── context-filter.ts
+│   │   │   ├── fulltext-searcher.ts
+│   │   │   ├── relevance-ranker.ts
+│   │   │   ├── result-aggregator.ts
+│   │   │   ├── retrieval-engine.ts
+│   │   │   ├── retrieval-kernel.ts
+│   │   │   └── vector-searcher.ts
+│   │   └── writing-agent
+│   │       ├── agent-kernel.ts
+│   │       ├── constraint-validator.ts
+│   │       ├── generation-executor.ts
+│   │       ├── memory-controller.ts
+│   │       ├── output-processor.ts
+│   │       ├── prompt-controller.ts
+│   │       ├── task-executor.ts
+│   │       └── writing-agent.ts
+│   ├── store
+│   │   ├── app.store.ts
+│   │   ├── graph.store.ts
+│   │   ├── memory.store.ts
+│   │   └── session.store.ts
+│   ├── styles
+│   │   ├── animations.css
+│   │   ├── components.css
+│   │   ├── tokens.css
+│   │   └── typography.css
+│   └── utils
+│       └── tokenize.ts
+├── system
+│   ├── 07_Build_Manifests
+│   │   └── session_logs
+│   │       └── SESSION_2026-05-12.log
+│   ├── error-handler
+│   ├── process-manager
+│   ├── resource-manager
+│   │   ├── active_dualisms.json
+│   │   └── manifest.json
+│   └── runtime
+│       └── active_state.json
+├── system_logic_audit.txt
+├── tailwind.config.ts
+├── tsconfig.json
+└── ui_ux_dump.txt
+
+
+75 directories, 355 files
+~/writing-agent-interface $

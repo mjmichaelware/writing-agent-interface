@@ -1,0 +1,97 @@
+# dependencies
+node_modules/
+
+# next
+.next/
+out/
+
+# production
+build/
+dist/
+Build/
+
+# env
+.env
+.env.*
+!.env.example
+
+# logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# typescript
+*.tsbuildinfo
+
+# backups / editor junk
+*.bak
+*.tmp
+*.swp
+*.swo
+.DS_Store
+
+# local diagnostics / generated audits
+.nos/
+NOS_*_Dump.txt
+*_audit.txt
+full_codebase_dump.txt
+ui_ux_dump.txt
+system_logic_audit.txt
+parse-by-meaning.js.draft
+
+# runtime state
+system/runtime/active_state.json
+system/resource-manager/active_dualisms.json
+system/07_Build_Manifests/session_logs/
+
+# vercel
+.vercel/
+.vercel
+.env*
+data/source_archive/
+secrets/
+*.json.key
+
+# Local raw ingestion/staging artifacts; preserve locally, do not commit raw OOXML/fonts or bulky runtime dumps.
+data/
+src/data-layer/ingestion-buffer/gdrive_ooxml_raw/
+src/data-layer/ingestion-buffer/readme_docs/
+
+# Senior cleanup local/generated surfaces
+.next/
+node_modules/
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+.env.local
+.vercel/
+Build
+parse-by-meaning.js.draft
+
+# Local-only raw and secret material
+data/
+secrets/
+
+# Android/Termux local export artifacts
+writing-agent-interface_senior_inventory_*.txt
+
+# Senior cleanup local/private/generated surfaces
+.env.local
+.vercel/
+.next/
+node_modules/
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+Build
+parse-by-meaning.js.draft
+
+# Local private material
+secrets/
+data/source_archive/
+
+# Local private/heavy surfaces externalized from repo tree
+secrets/
+data/source_archive/
+
+.termux-fix-tmp/

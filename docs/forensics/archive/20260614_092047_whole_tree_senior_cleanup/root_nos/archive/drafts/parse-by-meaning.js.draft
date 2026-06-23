@@ -1,0 +1,269 @@
+require('dotenv').config({ path: '.env.local' });
+const fs = require('fs').promises;
+const path = require('path');
+const { Pool } = require('pg');
+const crypto = require('crypto');
+
+const SINGULARITY_FILE = path.join(process.cwd(), 'src/data-layer/singularity/REFINED_LORE_SINGULARITY.txt');
+const GROQ_API_KEY = process.env.GROQ_API_KEY;
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }
+});
+
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+async function callGroq(prompt, maxRetries = 3) {
+  for (let i = 0; i < maxRetries; i++) {
+    try {
+      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${GROQ_API_KEY}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          model: 'llama-3.3-70b-versatile',
+          messages: [{ role: 'user', content: prompt }],
+          response_format: { type: "json_object" },
+          temperature: 0.1
+        })
+      });
+
+      if (response.status === 429) {
+        const backoff = Math.pow(2, i) * 2000;
+        console.log(`[Rate Limit] 429 received. Retrying in ${backoff}ms...`);
+        await delay(backoff);
+        continue;
+      }
+
+      if (!response.ok) {
+        throw new Error(`Groq API error: ${response.status} ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      await delay(1200); // Enforce 1200ms rate limit between successful calls
+      return JSON.parse(data.choices[0].message.content);
+    } catch (error) {
+      if (i === maxRetries - 1) throw error;
+      console.log(`[Error] Call failed, retrying... (${error.message})`);
+      await delay(2000);
+    }
+  }
+}
+
+async function setupTables() {
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS public.meaning_units (
+      id bigserial primary key,
+      canonical_claim text not null,
+      claim_type text not null,
+      topic text not null,
+      content_hash varchar(64) unique not null,
+      sources text[] not null default '{}'
+    );
+    CREATE TABLE IF NOT EXISTS public.topic_status (
+      id bigserial primary key,
+      topic text unique not null,
+      num_variants integer not null,
+      coherent boolean not null,
+      contradictions jsonb,
+      evolution_pattern text,
+      recommended_canonical_hash varchar(64),
+      reasoning text,
+      resolved boolean default false,
+      created_at timestamp default now()
+    );
+  `);
+}
+
+function normalizeHash(text) {
+  const normalized = text.toLowerCase().replace(/\s+/g, ' ').trim();
+  return crypto.createHash('sha256').update(normalized).digest('hex');
+}
+
+async function pass1_LocalExtraction(chunks) {
+  console.log("\n=== PASS 1: LOCAL EXTRACTION ===");
+  let processedBlocks = 0;
+
+  for (let i = 1; i < chunks.length; i += 2) {
+    const filename = chunks[i].trim();
+    let content = chunks[i+1].replace(/\[END_OF_FILE:\s*.*?\]/g, '').trim();
+    if (content.length < 50) continue;
+
+    console.log(`Processing Block ${Math.ceil(i/2)}/${Math.floor(chunks.length/2)}: ${filename}`);
+
+    const prompt = `
+      Extract every distinct claim, rule, term, error, or fact from this text. 
+      For each, output JSON with keys: 
+      "canonical_claim" (the normalized meaning stripped of style and filler), 
+      "claim_type" (LAW | LEXICON | ERROR | CONTEXT | MANUSCRIPT | FACT), 
+      "topic" (short concept tag). 
+      Return an object with a single key "extracted" containing an array of all extracted units.
+      
+      Text to analyze:
+      ${content.substring(0, 15000)} 
+    `;
+
+    try {
+      const result = await callGroq(prompt);
+      const units = result.extracted || [];
+
+      for (const unit of units) {
+        if (!unit.canonical_claim || !unit.topic || !unit.claim_type) continue;
+        
+        const hash = normalizeHash(unit.canonical_claim);
+        
+        await pool.query(`
+          INSERT INTO meaning_units (canonical_claim, claim_type, topic, content_hash, sources)
+          VALUES ($1, $2, $3, $4, ARRAY[$5])
+          ON CONFLICT (content_hash) 
+          DO UPDATE SET sources = array_append(meaning_units.sources, $5) 
+          WHERE NOT ($5 = ANY(meaning_units.sources));
+        `, [unit.canonical_claim, unit.claim_type, unit.topic, hash, filename]);
+      }
+      processedBlocks++;
+    } catch (e) {
+      console.error(`Failed to process block ${filename}:`, e.message);
+    }
+  }
+  console.log(`Pass 1 Complete. Processed ${processedBlocks} blocks.`);
+}
+
+async function pass2_GlobalReconciliation() {
+  console.log("\n=== PASS 2: GLOBAL RECONCILIATION ===");
+  
+  const topicsRes = await pool.query('SELECT DISTINCT topic FROM meaning_units');
+  const topics = topicsRes.rows.map(r => r.topic);
+  
+  console.log(`Found ${topics.length} unique topics to reconcile.`);
+
+  for (let t = 0; t < topics.length; t++) {
+    const topic = topics[t];
+    console.log(`Reconciling topic [${t+1}/${topics.length}]: ${topic}`);
+
+    const variantsRes = await pool.query(`
+      SELECT canonical_claim, claim_type, sources, content_hash 
+      FROM meaning_units WHERE topic = $1
+    `, [topic]);
+    
+    const variants = variantsRes.rows;
+
+    if (variants.length === 1) {
+      await pool.query(`
+        INSERT INTO topic_status (topic, num_variants, coherent)
+        VALUES ($1, 1, true)
+        ON CONFLICT (topic) DO NOTHING;
+      `, [topic]);
+      continue;
+    }
+
+    const batchVariants = variants.slice(0, 30); 
+
+    const prompt = `
+      These are every claim about [${topic}] gathered from the entire corpus of 92 documents. 
+      Across all of them, identify: every contradiction, every inconsistency, every semantic drift across time, 
+      every superseded version, every reconcilable difference versus irreconcilable conflict. 
+      
+      Variants:
+      ${JSON.stringify(batchVariants, null, 2)}
+      
+      Output JSON: { 
+        "coherent": bool, 
+        "contradictions": [{ "between_hashes": ["hash1", "hash2"], "nature": "string", "severity": "LOW|MED|HIGH" }], 
+        "evolution_pattern": "string or null", 
+        "recommended_canonical_hash": "hash or null", 
+        "reasoning": "string" 
+      }
+    `;
+
+    try {
+      const result = await callGroq(prompt);
+      
+      await pool.query(`
+        INSERT INTO topic_status (topic, num_variants, coherent, contradictions, evolution_pattern, recommended_canonical_hash, reasoning)
+        VALUES ($1, $2, $3, $4, $5, $6, $7)
+        ON CONFLICT (topic) DO UPDATE SET
+          num_variants = EXCLUDED.num_variants,
+          coherent = EXCLUDED.coherent,
+          contradictions = EXCLUDED.contradictions,
+          evolution_pattern = EXCLUDED.evolution_pattern,
+          recommended_canonical_hash = EXCLUDED.recommended_canonical_hash,
+          reasoning = EXCLUDED.reasoning;
+      `, [
+        topic, 
+        variants.length, 
+        result.coherent || false, 
+        JSON.stringify(result.contradictions || []), 
+        result.evolution_pattern || null, 
+        result.recommended_canonical_hash || null, 
+        result.reasoning || "None provided"
+      ]);
+    } catch (e) {
+      console.error(`Failed to reconcile topic ${topic}:`, e.message);
+    }
+  }
+}
+
+async function pass3_Report() {
+  console.log("\n=== PASS 3: REPORT ===");
+  
+  const conflictsRes = await pool.query(`
+    SELECT topic, num_variants, recommended_canonical_hash, reasoning, contradictions
+    FROM topic_status 
+    WHERE coherent = false 
+    ORDER BY jsonb_array_length(contradictions) DESC
+  `);
+
+  console.log(`\n--- CONFLICTING TOPICS (${conflictsRes.rows.length}) ---`);
+  for (const row of conflictsRes.rows) {
+    console.log(`\nTopic: ${row.topic} (${row.num_variants} variants)`);
+    console.log(`Recommended Canonical Hash: ${row.recommended_canonical_hash}`);
+    console.log(`Reasoning: ${row.reasoning}`);
+    console.log(`Contradictions:`);
+    const contradictions = typeof row.contradictions === 'string' ? JSON.parse(row.contradictions) : row.contradictions;
+    if (Array.isArray(contradictions)) {
+      contradictions.forEach(c => {
+         console.log(`  - [${c.severity}] ${c.nature} (Hashes: ${c.between_hashes ? c.between_hashes.join(', ') : 'N/A'})`);
+      });
+    }
+  }
+
+  const statsRes = await pool.query(`
+    SELECT 
+      (SELECT COUNT(*) FROM meaning_units) as total_units,
+      (SELECT COUNT(*) FROM topic_status) as total_topics,
+      (SELECT COUNT(*) FROM topic_status WHERE coherent = true) as coherent_topics,
+      (SELECT COUNT(*) FROM topic_status WHERE coherent = false) as conflicting_topics
+  `);
+  
+  const stats = statsRes.rows[0];
+  console.log("\n=== FINAL SUMMARY ===");
+  console.log(`Total Meaning Units Extracted: ${stats.total_units}`);
+  console.log(`Total Unique Topics: ${stats.total_topics}`);
+  console.log(`Coherent Topics: ${stats.coherent_topics}`);
+  console.log(`Conflicting Topics: ${stats.conflicting_topics}`);
+}
+
+async function main() {
+  try {
+    if (!GROQ_API_KEY) throw new Error("GROQ_API_KEY is missing from .env.local");
+    
+    await setupTables();
+    
+    const rawContent = await fs.readFile(SINGULARITY_FILE, 'utf-8');
+    const chunks = rawContent.split(/\[START_OF_FILE:\s*(.*?)\]/g);
+    
+    await pass1_LocalExtraction(chunks);
+    await pass2_GlobalReconciliation();
+    await pass3_Report();
+    
+  } catch (e) {
+    console.error("Script Failed:", e);
+  } finally {
+    await pool.end();
+  }
+}
+
+main();

@@ -1,0 +1,21 @@
+{
+  "run_id": "20260617-131556",
+  "mode": "ai_runtime_semantic_rebuild_existing_paragraphs_only",
+  "model": "gpt-4o-mini",
+  "batch_size": 12,
+  "paragraph_count": 4112,
+  "before": {
+    "chapters": 50,
+    "paragraphs": 4112,
+    "biblical_references": 0,
+    "hyperlinks": 0
+  }
+}
+processed 12/4112
+processed 24/4112
+processed 36/4112
+processed 48/4112
+processed 60/4112
+processed 72/4112
+processed 84/4112
+processed 96/4112

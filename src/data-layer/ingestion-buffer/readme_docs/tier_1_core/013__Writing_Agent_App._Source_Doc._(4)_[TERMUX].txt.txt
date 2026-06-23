@@ -1,0 +1,535 @@
+=== 1. TREE ===
+[ 13M]  .
+├── [3.4K]  00_Front_Matter
+│   ├── [   0]  01_Title_Page.txt
+│   ├── [   0]  02_Dedication.txt
+│   ├── [   0]  03_About_the_Author.txt
+│   └── [   0]  An_Archetypal_Tale.txt
+├── [512K]  04_Book_Information_and_Lore
+│   ├── [ 30K]  (I)_(Notes)_Chapter:_1_Stardust_to_Stardust_.txt
+│   ├── [ 26K]  (Notes)_(P)_Chapter:_1_-_Stardust_to_Stardust.txt
+│   ├── [ 30K]  (Notes)_Chapter_2-_Living_Sacrifice.txt
+│   ├── [ 26K]  (Notes)_Chapter_2:_Living_Sacrifice.txt
+│   ├── [ 21K]  (Prompt_Guide_(E))_Chapter_10:_Forsaken.txt
+│   ├── [ 20K]  (Revision_Prompt_(D))_Chapter_10:_Forsaken.txt
+│   ├── [ 25K]  (Revision_Prompt_(N)__Chapter_1_-_Stardust_to_Stardust.txt
+│   ├── [ 20K]  (SDP)_v2.txt
+│   ├── [7.4K]  -Final_Chapter_1_Revision_Prompt-.txt
+│   ├── [ 21K]  1.0_Revision.txt
+│   ├── [4.5K]  10.0_Blueprint_for_The_Ascent_of_Daniel:_The_Archetype_of_Sacrifice_(NYT_Bestseller_Focus).txt
+│   ├── [5.0K]  3.0_Literary_&_Archetypal_Fusion_Rulebook_(The_Cat_God_&_The_Primal_Self).txt
+│   ├── [3.8K]  4.0_Emotional_&_Archetypal_Editing_Rulebook_(Visceral_Empathy_Focus).txt
+│   ├── [4.2K]  8._0_This_is_the_final,_most_crucial_step:_ensuring_the_narrative's_structure_is_so_perfectly_weighted_that_the_profound_sadness—the_weeping_of_self-recognition—is_not_a_chance_event,_but_an_earned,_inevitable_catharsis_for_the_reader.txt
+│   ├── [3.0K]  ALITTERAS_SYSTEM_BLUEPRINT_v1.txt
+│   ├── [4.7K]  Chapter 3 - Commerciality and Marketing 3.0.txt
+│   ├── [ 21K]  Chapter:_10_-_MASTER_BRIEFING.txt
+│   ├── [ 13K]  Chapter:_1_Proof_of_Authorship_1.0.txt
+│   ├── [ 17K]  Chapter:_1_Proof_of_Authorship_1.1.txt
+│   ├── [5.6K]  Chapter_1_Integration.txt
+│   ├── [ 18K]  Chapter_1_Integration_2.0.txt
+│   ├── [7.0K]  Chapter_1_Integration_Prompt.txt
+│   ├── [ 17K]  Chapter_1_Merge_Prompt.txt
+│   ├── [ 17K]  Chapter_2_-_Analysis_&_Guides_1.0.txt
+│   ├── [ 17K]  Chapter_2_-_Commerciality_and_Marketing_3.0.txt
+│   ├── [ 15K]  Chapter_2_-_Master_Revision_Prompt_2.0.txt
+│   ├── [7.0K]  Chapter_3_-_Master_Revision_Prompt_2.0.txt
+│   ├── [ 18K]  Chapter_3_Analysis_&_Guides.txt
+│   ├── [4.3K]  Chapter_3_Integration_Prompt.txt
+│   ├── [6.8K]  Final Revision (Generalized For All Chapters).txt
+│   ├── [3.9K]  MANUSCRIPT_AUTOPSY.txt
+│   ├── [ 11K]  Narnia_.txt
+│   ├── [7.4K]  OPTIMIZED_Chapter_1_Revision_Prompt.txt
+│   ├── [6.4K]  THE_WEIGHT_OF_THE_SKY-_MASTER_COMPENDIUM_(SINGULARITY_v.txt
+│   ├── [ 12K]  The_Weight_of_the_Sky:_The_Fall_into_Megiddo.txt
+│   ├── [3.9K]  ToALITTERAS_ECOSYSTEM_v2.txt
+│   └── [ 23K]  Whole_Book.txt
+├── [421K]  05_Master_Protocols
+│   ├── [ 20K]  (SDP)_v2.txt
+│   ├── [ 21K]  1.0_UNIVERSAL_AND_DEFINITIVE_STYLE_GUIDE_(UDSG)_-_AI_PROTOCOl.txt
+│   ├── [ 12K]  10.0_MASTER_SYSTEM_FOR_CHAPTER_REVISION.txt
+│   ├── [ 14K]  10.0_Mass_Market.txt
+│   ├── [7.8K]  11.0_Error_Catalog.txt
+│   ├── [7.4K]  11.0_Final_Revision.txt
+│   ├── [6.2K]  11.0_Marketability_.txt
+│   ├── [6.3K]  12.0_Perfection.txt
+│   ├── [8.0K]  13.0_Claude.txt
+│   ├── [ 19K]  13.0_GENERAL_PRINCIPLES.txt
+│   ├── [ 10K]  14.0_(EXPANDED)_ERROR_CATALOG.txt
+│   ├── [ 21K]  14.0_(Extended)_GENERAL_PRINCIPLES.txt
+│   ├── [ 20K]  16.0_PUBLISHING_INDUSTRY_STANDARDS_&_MASTER_AI_PROMPT.txt
+│   ├── [ 13K]  2.0_Critique_／_Analysis_Guide.txt
+│   ├── [4.4K]  2.0_This_is_the_critical_adjustment—the_final_layer_that_elevates_philosophical_storytelling_into_timeless,_devastating_human_tragedy.txt
+│   ├── [6.7K]  3.0_Final_.txt
+│   ├── [9.8K]  3.0_Scientific_Guide.txt
+│   ├── [3.6K]  4.0_(12_Rules_For_Life).txt
+│   ├── [ 13K]  4.0_Psychology_Guide.txt
+│   ├── [ 30K]  4.0_REVISED.txt
+│   ├── [ 28K]  4.0_UNIVERSAL_REVISION_SYSTEM_FOR_ALL_CHAPTERS.txt
+│   ├── [9.2K]  5.0_Final_Guide.txt
+│   ├── [ 13K]  5.0_Psychology_Guide.txt
+│   ├── [3.6K]  6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt
+│   ├── [ 20K]  6.0_HIGHEST_PRIORITY_(Read_this_first_and_then_again_last)_.txt
+│   ├── [8.2K]  6.0_SYNTHESIS_MANDATE.txt
+│   ├── [ 11K]  6.0_Supreme_Generative_Constraint.txt
+│   ├── [3.5K]  7.0_Chapter_Refinery.txt
+│   ├── [ 23K]  7.0_Nuclear_Edit!!!!_(CRITICAL!_DIRE!_EMERGENCY!!!).txt
+│   ├── [ 15K]  8.0_Pacing／Redundancy.txt
+│   ├── [8.3K]  9.0_Aesthetic.txt
+│   ├── [3.2K]  9.0_Stones.txt
+│   ├── [ 13K]  Critique_2.2.txt
+│   ├── [2.5K]  Purple_Prose_Prompt.txt
+│   └── [2.4K]  The_-Version_X-_Meta-Prompt.txt
+├── [3.4K]  06_Maps
+│   ├── [   0]  Map_Ch01.txt
+│   ├── [   0]  Map_Ch02.txt
+│   ├── [   0]  Map_Ch03.txt
+│   ├── [   0]  Map_Ch04.txt
+│   ├── [   0]  Map_Ch05.txt
+│   ├── [   0]  Map_Ch06.txt
+│   ├── [   0]  Map_Ch07.txt
+│   ├── [   0]  Map_Ch08.txt
+│   ├── [   0]  Map_Ch09.txt
+│   ├── [   0]  Map_Ch10.txt
+│   ├── [   0]  Map_Ch11.txt
+│   ├── [   0]  Map_Ch12.txt
+│   ├── [   0]  Map_Ch13.txt
+│   ├── [   0]  Map_Ch14.txt
+│   ├── [   0]  Map_Ch15.txt
+│   ├── [   0]  Map_Ch16.txt
+│   ├── [   0]  Map_Ch17.txt
+│   ├── [   0]  Map_Ch18.txt
+│   ├── [   0]  Map_Ch19.txt
+│   ├── [   0]  Map_Ch20.txt
+│   ├── [   0]  Map_Ch21.txt
+│   ├── [   0]  Map_Ch22.txt
+│   ├── [   0]  Map_Ch23.txt
+│   ├── [   0]  Map_Ch24.txt
+│   └── [   0]  Map_Ch25.txt
+├── [236K]  Chapter_01_Drafts
+│   ├── [ 20K]  (A)_Chapter:_1_Stardust_to_Stardust.txt
+│   ├── [ 20K]  (Final)_Chapter_1:_Stardust_to_Stardust.txt
+│   ├── [ 30K]  (I)_Chapter:_1_Stardust_to_Stardust_.txt
+│   ├── [ 23K]  (N)_CHAPTER_1-_STARDUST_TO_STARDUST.txt
+│   ├── [ 18K]  (N)_Chapter_1_-_Stardust_to_Stardust.txt
+│   ├── [ 21K]  (Z)_Chapter_1:_Stardust_to_Stardust.txt
+│   ├── [ 19K]  *Chapter_1:_Stardust_to_Stardust.txt
+│   ├── [8.0K]  Global_Context
+│   ├── [ 18K]  The_scrape.txt
+│   ├── [ 19K]  Version_A.txt
+│   ├── [ 19K]  Version_B.txt
+│   └── [ 19K]  •(G)_Chapter:_1_Stardust_to_Stardust_.txt
+├── [316K]  Chapter_02_Drafts
+│   ├── [ 19K]  (A)_Chapter_2-_Living_Sacrifice.txt
+│   ├── [ 18K]  (A)_Chapter_2:_Living_Sacrifice.txt
+│   ├── [ 19K]  (B)_Chapter_2-_Living_Sacrifice.txt
+│   ├── [ 19K]  (B)_Chapter_2:_Living_Sacrifice.txt
+│   ├── [ 18K]  (C)_Chapter_2-_Living_Sacrifice.txt
+│   ├── [ 18K]  (D)_Chapter_2-_Living_Sacrifice.txt
+│   ├── [ 19K]  (D)_Chapter_2_-_Living_Sacrifice.txt
+│   ├── [ 23K]  (E)_Chapter_2-_Living_Sacrifice.txt
+│   ├── [ 11K]  (E)_Chapter_2_-_Living_Sacrifice.txt
+│   ├── [ 22K]  (F)_Chapter_2-_Living_Sacrifice.txt
+│   ├── [ 19K]  (Final)_Chapter_2-_Living_Sacrifice.txt
+│   ├── [ 22K]  (G)_Chapter_2-_Living_Sacrifice.txt
+│   ├── [ 18K]  *Chapter_2-_Living_Sacrifice.txt
+│   ├── [ 19K]  Chapter2_Weight_of_the_Sky.txt
+│   ├── [ 19K]  Chapter_2:_Living_Sacrifice.txt
+│   ├── [8.0K]  Global_Context
+│   └── [ 22K]  •(G)_Chapter_2-_Living_Sacrifice.txt
+├── [265K]  Chapter_03_Drafts
+│   ├── [ 22K]  (A)_Chapter_3-_Lift_Up.txt
+│   ├── [ 20K]  (A)_Chapter_3_-_Lift_Up.txt
+│   ├── [ 20K]  (B)_Chapter_3-_Lift_Up.txt
+│   ├── [ 20K]  (B)_Chapter_3:_Lift_Up.txt
+│   ├── [ 20K]  (C)_Chapter_3-_Lift_Up.txt
+│   ├── [ 21K]  (C)_Chapter_3_-_Lift_Up.txt
+│   ├── [ 16K]  (E)_Chapter_3-_Lift_Up.txt
+│   ├── [ 18K]  (F)_Chapter_3-_Lift_Up.txt
+│   ├── [ 20K]  (Final)_Chapter_3-_Lift_Up.txt
+│   ├── [ 19K]  (Final)_Chapter_3:_Lift_Up.txt
+│   ├── [ 18K]  (G)_Chapter_3-_Lift_Up.txt
+│   ├── [ 19K]  *Chapter_3:_Lift_Up.txt
+│   ├── [ 19K]  Chapter_3:_Lift_Up.txt
+│   └── [8.0K]  Global_Context
+├── [ 85K]  Chapter_04_Drafts
+│   ├── [ 18K]  (C)_Chapter_4-_Pilgrimage.txt
+│   ├── [ 19K]  (C)_Chapter_4_-_Pilgrimage.txt
+│   ├── [ 18K]  *Chapter_4:_Pilgrimage.txt
+│   ├── [ 18K]  Chapter_4:_Pilgrimage.txt
+│   └── [8.0K]  Global_Context
+├── [ 90K]  Chapter_05_Drafts
+│   ├── [ 19K]  (A)_Chapter_5_-_The_Snare.txt
+│   ├── [ 20K]  (B)_Chapter_5-_The_Snare.txt
+│   ├── [ 20K]  (Final)_Chapter_5_-_The_Snare.txt
+│   ├── [ 19K]  Chapter_5:_The_Snare.txt
+│   └── [8.0K]  Global_Context
+├── [ 99K]  Chapter_06_Drafts
+│   ├── [ 21K]  (A)_Chapter_6:_Beelzebub,_Beelzebub.txt
+│   ├── [ 22K]  (B)_Chapter_6_-_Beelzebub,_Beelzebub.txt
+│   ├── [ 23K]  (C)_Chapter_6-_Beelzebub,_Beelzebub.txt
+│   ├── [ 21K]  Chapter_6:_Beelzebub,_Beelzebub.txt
+│   └── [8.0K]  Global_Context
+├── [121K]  Chapter_07_Drafts
+│   ├── [ 21K]  (B)_Chapter_7:_The_Pit.txt
+│   ├── [ 27K]  (C)_Chapter:_7_-_The_Pit.txt
+│   ├── [ 19K]  (D)_Chapter:_7_-_The_Pit.txt
+│   ├── [ 26K]  *Chapter_7:_The_Pit.txt
+│   ├── [8.0K]  Global_Context
+│   └── [ 17K]  WOS_Ch7_The_Pit.txt
+├── [160K]  Chapter_08_Drafts
+│   ├── [ 22K]  (A)Chapter_8:_Sea_People.txt
+│   ├── [ 19K]  (B)Chapter_8:_Sea_People.txt
+│   ├── [ 17K]  (C)Chapter_8:_Sea_People.txt
+│   ├── [ 22K]  *Chapter_8:_Sea_People.txt
+│   ├── [ 17K]  Chapter:_8_(Final).txt
+│   ├── [ 28K]  Chapter_8.1.txt
+│   ├── [ 24K]  Chapter_8:_Sea_People.txt
+│   └── [8.0K]  Global_Context
+├── [ 84K]  Chapter_09_Drafts
+│   ├── [ 20K]  (B)_Chapter_9:_The_Ascent.txt
+│   ├── [ 27K]  *Chapter_9:_The_Ascent.txt
+│   ├── [ 26K]  Chapter_9:_The_Ascent.txt
+│   └── [8.0K]  Global_Context
+├── [147K]  Chapter_10_Drafts
+│   ├── [ 19K]  (G)_Final_)_Chapter:_10_-_Forsaken.txt
+│   ├── [ 20K]  Chapter_10.1.txt
+│   ├── [ 27K]  Chapter_10.5.txt
+│   ├── [ 17K]  Chapter_10:_Forsaken.txt
+│   ├── [ 28K]  Chapter_10_Forsaken_FINAL_DEFINITIVE.txt
+│   ├── [ 26K]  Chapter_10_Version_F.txt
+│   └── [8.0K]  Global_Context
+├── [ 82K]  Chapter_11_Drafts
+
+=== 2. FILE METADATA ===
+2026-05-12 01:16:31.845328038 -0600 | 698 bytes | ./clean_view.sh
+2026-05-11 17:57:27.276662384 -0600 | 10344062 bytes | ./FILE_PREVIEWS.txt
+2026-05-11 17:42:17.365647260 -0600 | 7546 bytes | ./04_Book_Information_and_Lore/OPTIMIZED_Chapter_1_Revision_Prompt.txt
+2026-05-11 17:41:55.297647259 -0600 | 2199 bytes | ./synthesize_logic.py
+2026-05-11 17:38:37.533647247 -0600 | 7546 bytes | ./04_Book_Information_and_Lore/-Final_Chapter_1_Revision_Prompt-.txt
+2026-05-11 10:44:55.287597649 -0600 | 20901 bytes | ./04_Book_Information_and_Lore/(SDP)_v2.txt
+2026-05-11 08:02:06.582018093 -0600 | 8218 bytes | ./SORTED_POOL_LIST.txt
+2026-05-11 07:41:47.211628119 -0600 | 19162 bytes | ./BIN_Chapter_1_Drafts/﻿Chapter_1-_Stardust_to_Stardust.txt
+2026-05-11 07:41:47.211628119 -0600 | 13767 bytes | ./05_Master_Protocols/Critique_2.2.txt
+2026-05-11 07:41:47.207628119 -0600 | 23683 bytes | ./04_Book_Information_and_Lore/Whole_Book.txt
+2026-05-11 07:41:47.207628119 -0600 | 22989 bytes | ./Chapter_02_Drafts/•(G)_Chapter_2-_Living_Sacrifice.txt
+2026-05-11 07:41:47.207628119 -0600 | 19186 bytes | ./Chapter_01_Drafts/•(G)_Chapter:_1_Stardust_to_Stardust_.txt
+2026-05-11 07:41:47.203628119 -0600 | 47896 bytes | ./BIN_Massive_Compilations/Part_2_{Chapters_11-20}.txt
+2026-05-11 07:41:47.203628119 -0600 | 233086 bytes | ./BIN_Massive_Compilations/Part_1_[Chapters_1-10].txt
+2026-05-11 07:41:47.199628119 -0600 | 27027 bytes | ./Chapter_09_Drafts/Chapter_9:_The_Ascent.txt
+2026-05-11 07:41:47.195628119 -0600 | 28338 bytes | ./Chapter_08_Drafts/Chapter_8.1.txt
+2026-05-11 07:41:47.195628119 -0600 | 24065 bytes | ./Chapter_08_Drafts/Chapter_8:_Sea_People.txt
+2026-05-11 07:41:47.195628119 -0600 | 21547 bytes | ./Chapter_06_Drafts/Chapter_6:_Beelzebub,_Beelzebub.txt
+2026-05-11 07:41:47.195628119 -0600 | 19304 bytes | ./Chapter_05_Drafts/Chapter_5:_The_Snare.txt
+2026-05-11 07:41:47.195628119 -0600 | 18833 bytes | ./Chapter_04_Drafts/Chapter_4:_Pilgrimage.txt
+2026-05-11 07:41:47.191628119 -0600 | 7210 bytes | ./04_Book_Information_and_Lore/Chapter_3_-_Master_Revision_Prompt_2.0.txt
+2026-05-11 07:41:47.191628119 -0600 | 4388 bytes | ./04_Book_Information_and_Lore/Chapter_3_Integration_Prompt.txt
+2026-05-11 07:41:47.191628119 -0600 | 19673 bytes | ./Chapter_03_Drafts/Chapter_3:_Lift_Up.txt
+2026-05-11 07:41:47.187628119 -0600 | 7543 bytes | ./Chapter_24_Drafts/Chapter_2nd_to_last.txt
+2026-05-11 07:41:47.187628119 -0600 | 15223 bytes | ./04_Book_Information_and_Lore/Chapter_2_-_Master_Revision_Prompt_2.0.txt
+2026-05-11 07:41:47.183628119 -0600 | 7124 bytes | ./04_Book_Information_and_Lore/Chapter_1_Integration_Prompt.txt
+2026-05-11 07:41:47.183628119 -0600 | 31718 bytes | ./BIN_Chapter_1_Drafts/Chapter_1_Version_O.txt
+2026-05-11 07:41:47.183628119 -0600 | 19181 bytes | ./Chapter_02_Drafts/Chapter_2:_Living_Sacrifice.txt
+2026-05-11 07:41:47.183628119 -0600 | 16963 bytes | ./04_Book_Information_and_Lore/Chapter_2_-_Commerciality_and_Marketing_3.0.txt
+2026-05-11 07:41:47.183628119 -0600 | 16922 bytes | ./04_Book_Information_and_Lore/Chapter_1_Merge_Prompt.txt
+2026-05-11 07:41:47.179628119 -0600 | 5703 bytes | ./04_Book_Information_and_Lore/Chapter_1_Integration.txt
+2026-05-11 07:41:47.179628119 -0600 | 18717 bytes | ./04_Book_Information_and_Lore/Chapter_1_Integration_2.0.txt
+2026-05-11 07:41:47.175628119 -0600 | 22126 bytes | ./BIN_Chapter_1_Drafts/Chapter_1:_Stardust_to_Stardust.txt
+2026-05-11 07:41:47.175628119 -0600 | 19245 bytes | ./BIN_Chapter_1_Drafts/Chapter_1_-_Stardust_to_Stardust.txt
+2026-05-11 07:41:47.171628119 -0600 | 26263 bytes | ./Chapter_11_Drafts/Chapter_11._Forsaken.txt
+2026-05-11 07:41:47.171628119 -0600 | 17060 bytes | ./Chapter_13_Drafts/Chapter_13:_Exodus.txt
+2026-05-11 07:41:47.167628119 -0600 | 21365 bytes | ./Chapter_11_Drafts/Chapter_11.8.txt
+2026-05-11 07:41:47.163628119 -0600 | 28345 bytes | ./Chapter_10_Drafts/Chapter_10_Forsaken_FINAL_DEFINITIVE.txt
+2026-05-11 07:41:47.163628119 -0600 | 26347 bytes | ./Chapter_10_Drafts/Chapter_10_Version_F.txt
+2026-05-11 07:41:47.163628119 -0600 | 17281 bytes | ./Chapter_10_Drafts/Chapter_10:_Forsaken.txt
+2026-05-11 07:41:47.159628119 -0600 | 27367 bytes | ./Chapter_10_Drafts/Chapter_10.5.txt
+2026-05-11 07:41:47.159628119 -0600 | 20311 bytes | ./Chapter_10_Drafts/Chapter_10.1.txt
+2026-05-11 07:41:47.159628119 -0600 | 17600 bytes | ./04_Book_Information_and_Lore/Chapter:_1_Proof_of_Authorship_1.1.txt
+2026-05-11 07:41:47.159628119 -0600 | 17241 bytes | ./Chapter_08_Drafts/Chapter:_8_(Final).txt
+2026-05-11 07:41:47.155628119 -0600 | 21887 bytes | ./04_Book_Information_and_Lore/Chapter:_10_-_MASTER_BRIEFING.txt
+2026-05-11 07:41:47.155628119 -0600 | 20564 bytes | ./BIN_Chapter_1_Drafts/Chapter:_1_-_Stardust_to_Stardust.txt
+2026-05-11 07:41:47.155628119 -0600 | 19769 bytes | ./Chapter_02_Drafts/Chapter2_Weight_of_the_Sky.txt
+2026-05-11 07:41:47.151628119 -0600 | 4796 bytes | ./04_Book_Information_and_Lore/Chapter 3 - Commerciality and Marketing 3.0.txt
+2026-05-11 07:41:47.151628119 -0600 | 4609 bytes | ./04_Book_Information_and_Lore/10.0_Blueprint_for_The_Ascent_of_Daniel:_The_Archetype_of_Sacrifice_(NYT_Bestseller_Focus).txt
+2026-05-11 07:41:47.151628119 -0600 | 3603 bytes | ./05_Master_Protocols/7.0_Chapter_Refinery.txt
+2026-05-11 07:41:47.151628119 -0600 | 27768 bytes | ./Chapter_09_Drafts/*Chapter_9:_The_Ascent.txt
+2026-05-11 07:41:47.147628119 -0600 | 27116 bytes | ./Chapter_07_Drafts/*Chapter_7:_The_Pit.txt
+2026-05-11 07:41:47.147628119 -0600 | 22969 bytes | ./Chapter_08_Drafts/*Chapter_8:_Sea_People.txt
+2026-05-11 07:41:47.147628119 -0600 | 19636 bytes | ./Chapter_03_Drafts/*Chapter_3:_Lift_Up.txt
+2026-05-11 07:41:47.147628119 -0600 | 18326 bytes | ./Chapter_04_Drafts/*Chapter_4:_Pilgrimage.txt
+2026-05-11 07:41:47.143628119 -0600 | 22477 bytes | ./BIN_Chapter_1_Drafts/(X)_Chapter_1__Stardust_to_Stardust_(2).txt
+2026-05-11 07:41:47.143628119 -0600 | 21441 bytes | ./Chapter_01_Drafts/(Z)_Chapter_1:_Stardust_to_Stardust.txt
+2026-05-11 07:41:47.143628119 -0600 | 19162 bytes | ./Chapter_01_Drafts/*Chapter_1:_Stardust_to_Stardust.txt
+2026-05-11 07:41:47.143628119 -0600 | 18574 bytes | ./Chapter_02_Drafts/*Chapter_2-_Living_Sacrifice.txt
+2026-05-11 07:41:47.139628119 -0600 | 20127 bytes | ./BIN_Chapter_1_Drafts/(X)_Chapter_1__Stardust_to_Stardust_(1).txt
+
+=== 3. FILE CONTENT SAMPLES ===
+
+--- ./06_Maps/Map_Ch01.txt ---
+...
+
+--- ./06_Maps/Map_Ch02.txt ---
+...
+
+--- ./06_Maps/Map_Ch03.txt ---
+...
+
+--- ./06_Maps/Map_Ch04.txt ---
+...
+
+--- ./06_Maps/Map_Ch05.txt ---
+...
+
+--- ./06_Maps/Map_Ch06.txt ---
+...
+
+--- ./06_Maps/Map_Ch07.txt ---
+...
+
+--- ./06_Maps/Map_Ch08.txt ---
+...
+
+--- ./06_Maps/Map_Ch09.txt ---
+...
+
+--- ./06_Maps/Map_Ch10.txt ---
+...
+
+--- ./06_Maps/Map_Ch11.txt ---
+...
+
+--- ./06_Maps/Map_Ch12.txt ---
+...
+
+--- ./06_Maps/Map_Ch13.txt ---
+...
+
+--- ./06_Maps/Map_Ch14.txt ---
+...
+
+--- ./06_Maps/Map_Ch15.txt ---
+...
+
+--- ./06_Maps/Map_Ch16.txt ---
+...
+
+--- ./06_Maps/Map_Ch17.txt ---
+...
+
+--- ./06_Maps/Map_Ch18.txt ---
+...
+
+--- ./06_Maps/Map_Ch19.txt ---
+...
+
+--- ./06_Maps/Map_Ch20.txt ---
+...
+
+--- ./06_Maps/Map_Ch21.txt ---
+...
+
+--- ./06_Maps/Map_Ch22.txt ---
+...
+
+--- ./06_Maps/Map_Ch23.txt ---
+...
+
+--- ./06_Maps/Map_Ch24.txt ---
+...
+
+--- ./06_Maps/Map_Ch25.txt ---
+...
+
+--- ./Chapter_02_Drafts/(A)_Chapter_2-_Living_Sacrifice.txt ---
+﻿Chapter 2: Living Sacrifice
+
+"Dan!"
+...
+
+He turned from the well, his legs unsteady but moving, and continued north. The sun was already sinking toward the horizon,
+--- ./Chapter_02_Drafts/(A)_Chapter_2:_Living_Sacrifice.txt ---
+﻿“Dan!”
+The scream was a raw, guttural seam, tearing a jagged hole in the pre-dawn stillness of Hebron, a noise belonging not to the peace of sleep but to the terrifying, molten things sleep had revealed: the violent collapse of a man's final, necessary lie. It was Aviel. Dan’s eyes snapped open to the heavy gloom, his heart a frantic, panicked drumbeat against his ribs, a chaotic tempo against the static silence of his condemnation. The cry carried the weight of something ancient and unspent, leaving him suspended in that disorienting, viscous space where the subterranean gravity of the Otherworld collides with the cold certainty of waking. It was the perfect sound of Aviel’s decay made audible, a terrifying sound that resonated deep in Dan’s chest, demanding the tribute of his own inherited fear. He did not listen; he simply moved.
+Dan scrambled from his cot, his bare soles meeting the cold, precisely ordered stone of his room. He moved with the precise caution of a man navigating a minefield, knowing the path by the faint, diffused light. This small, meticulously defended perimeter was the only ground where his own will held sway, a defiant island against the stagnant tide of his father’s unraveling. Every step was a silent, difficult expenditure. Dan felt the cold, familiar shame of his house rise like a magnetic, dense drag, burning the back of his throat. His bare feet stepped with unnatural lightness, avoiding unseen mounds of decaying fabric and brittle pottery shards that, if disturbed, would make a sound like dry, judgmental bones scraping together. He stepped around the ruin.
+...
+Dan felt the residual heat of her presence slowly recede, leaving behind a faint, corrosive chill. He began to lower the heavy, wooden bucket himself, the rope rough against his hands. As his shadow fell across the well's dark mouth, he looked down. The water was silent no more.
+The still, calm pool shattered—not from the disturbance of the bucket, but from a profound, internal rage that churned the water. A sudden, inexplicable vortex of viscosity formed in the cold heart of the well; the placid surface had been instantly replaced by an image: the reflection of Dan's own face, but contorted, his features twisting into a repulsive, beautiful mask of every desire he had ever refused, a reflection that was simultaneously his deepest, most carnal yearning and the grotesque, furious embodiment of the fertility goddess Astarte. The surface of the well pulsed with the soundless, heavy beat of a massive drum, and the cold water, once a promise of life, now seemed to press upward with an impossible, concentrated counter-gravity, threatening to swallow the bucket, the rope, and Dan himself into the depths of the earth. His initial act of unburdening had not brought him peace, but a direct, concentrated friction. His physical ascent was now a living sacrifice, and his first refusal had simply made his journey visible to the most powerful enemies in the lowest depths. He was no longer walking alone; he was being stalked from beneath.
+--- ./Chapter_02_Drafts/(B)_Chapter_2-_Living_Sacrifice.txt ---
+﻿Chapter 2: Living Sacrifice
+
+"Dan!"
+...
+The woman's smile faded, replaced by cold, sharp surprise. Her offering had failed. She simply turned and walked away, melting back into the shadows of the olive trees. Dan felt the residual heat of her presence slowly recede, leaving behind a frigid, foreign force. He began to lower the heavy, wooden bucket himself, the rope rough against his hands. He looked down. The water was potable no more. The still, calm pool shattered—not from the disturbance of the bucket, but from a profound, internal rage that churned the water. A sudden, inexplicable vortex formed in the cold heart of the well; the placid surface had been instantly replaced by an image: a reflection of Dan's own face, contorted and beautiful, an instantaneous, concentrated psychic event—the repulsive, beautiful mask of every desire he had ever refused. It was the concentrated form of every fantasy and fascination, the grotesque and ghastly embodiment of pure fertility and raw chaos realized in a single, irrevocable image. The sweet, narcotic lie was so potent that it felt like a metallic, nauseating static on his tongue, a silent threat against the sterile clarity of his thought.
+Dan recoiled violently, his body convulsing with a physical rejection. The rope slipped from his hands. The bucket plunged back into the depths with a sharp, echoing splash. He stumbled backward from the well, his breath coming in short, panicked gasps, his hands shaking as if he had touched something unclean. "Not me," he choked out, wiping his mouth with the back of his hand. "That's not me. That's what Father became. That's the lie." He turned from the well, his legs unsteady but moving, and continued north. The sun was already sinking toward the horizon.
+--- ./Chapter_02_Drafts/(B)_Chapter_2:_Living_Sacrifice.txt ---
+﻿Chapter 2: Living Sacrifice
+
+"Dan!"
+...
+Dan felt the residual heat of her presence slowly recede, leaving behind a frigid, foreign force. He began to lower the heavy, wooden bucket himself, the rope rough against his hands. The boy's slouched, distorted, shadow fell across the well's dark mouth; messy hair and all. He looked down. The water was potable no more.
+The still, calm pool shattered—not from the disturbance of the bucket, but from a profound, internal rage that churned the water. A sudden, inexplicable vortex of viscosity formed in the cold heart of the well; the placid surface had been instantly replaced by an image: the reflection of Dan's own face, but contorted, his features twisting into a repulsive, beautiful mask of every desire he had ever refused, a reflection that was simultaneously his deepest, most carnal yearning and the grotesque and ghastly embodiment of pure fertility. A living, uncontrolled torrent where perfection and raw chaos were realized in a single, irrevocable image, it was the concentrated form of every fantasy and fascination ever held, finally fulfilled.
+--- ./Chapter_02_Drafts/(C)_Chapter_2-_Living_Sacrifice.txt ---
+﻿Chapter 2 - Living Sacrifice
+
+"Dan!" The sound was not merely a name but a raw, guttural seam—a tear in the pre-dawn stillness that precisely registered the catastrophic collapse of a man's final lie. It was Aviel's voice, a sound belonging not to the peace of sleep, but to the terrifying, molten things that sleep had revealed. Dan's eyes snapped open to the room's heavy gloom; the darkness possessed weight that pressed inward on his lungs, and his heart hammered—a frantic, panicked rhythm against his ribs.
+...
+
+The woman's smile faded, replaced by cold, sharp surprise; her offering had failed. She simply turned, walked away, melting back into the shadows of the olive trees. Dan felt the residual heat of her presence slowly recede, leaving behind a frigid, foreign force. He began to lower the heavy wooden bucket himself, the rope rough against his hands. He looked down. The water was potable no more. The still, calm pool shattered—not from the disturbance of the bucket, but from a profound, internal rage that churned the water. A sudden, inexplicable vortex formed in the cold heart of the well, the placid surface instantly replaced by an image: a reflection of Dan's own face, contorted and beautiful, an instantaneous, concentrated psychic event—the repulsive, beautiful mask of every desire he had ever refused. It was the concentrated form of every fantasy and fascination, the grotesque embodiment of pure fertility and raw chaos realized in a single, irrevocable image. The sweet, narcotic lie was so potent it felt like metallic, nauseating static on his tongue, a silent threat against the sterile clarity of his thought. Dan recoiled violently, his body convulsing with physical rejection. The rope slipped from his hands, and the bucket plunged back into the depths with a sharp, echoing splash. He stumbled backward from the well, his breath coming in short, panicked gasps, his hands shaking as if he had touched something unclean. "Not me," he choked out, wiping his mouth with the back of his hand. "That's not me. That's what Father became. That's the lie." He turned from the well, his legs unsteady but moving, and continued north. The sun was already sinking toward the horizon.
+--- ./Chapter_02_Drafts/(D)_Chapter_2-_Living_Sacrifice.txt ---
+﻿CHAPTER 2: LIVING SACRIFICE
+
+Dan!
+...
+
+The sun was already sinking toward the horizon.
+--- ./Chapter_02_Drafts/(D)_Chapter_2_-_Living_Sacrifice.txt ---
+﻿Chapter 2 - Living Sacrific
+
+“Dan!”
+...
+The woman’s smile faded, replaced by cold, sharp surprise; her offering had failed. She simply turned, walked away, melting back into the shadows of the olive trees. Dan felt the residual heat of her presence slowly recede, leaving behind a frigid, foreign force. He began to lower the heavy wooden bucket himself, the rope rough against his hands.
+The still, calm pool shattered—not from the disturbance of the bucket, but from a profound, internal rage that churned the water. The water began to rise, slowly at first, defying gravity. As the dark surface neared his face, he saw his reflection: contorted, beautiful, and utterly empty—the repulsive, beautiful mask of every desire he had ever refused. The image shifted, melting, the surface suddenly replaced by an active, shimmering, impossible entity, rising with deliberate, hypnotic speed from the dark, motionless depths of the well. It was a being of impossible, almost agonizing beauty, an instantaneous, concentrated psychic event—the grotesque and ghastly embodiment of pure fertility and raw chaos realized in a single, irrevocable image. The sweet, narcotic lie was so potent it felt like metallic, nauseating static on his tongue, a silent threat against the sterile clarity of his thought. Dan did not recoil. He stood paralyzed, forced to witness the terrifying spectacle as the impossible entity coalesced further, its fluid form solidifying into the beautiful, commanding shape of a woman. A profound, dizzying emptiness now manifested as a terrifying, magnetic hunger for the absolute cessation of all painful struggle and for the surrender of conscious will, which was pulling inward toward Dan, ready to consume the totality of his labor
+--- ./Chapter_02_Drafts/(E)_Chapter_2-_Living_Sacrifice.txt ---
+﻿Chapter 2: Living Sacrifice
+“Dan!”
+The scream tore through the pre-dawn stillness of Hebron, ragged and desperate. It was the sound of a man wrestling not with sleep, but with the things sleep had shown him, a man whose carefully constructed world had just been rattled to its rotten foundations.
+...
+A ripple.
+It spread across the surface, though nothing had disturbed the water. The ripple grew into small waves, swirling faster and faster. And then, instead of his face, the water showed… something else…
+--- ./Chapter_02_Drafts/(E)_Chapter_2_-_Living_Sacrifice.txt ---
+﻿“Dan!”
+The sound was not merely a name but a raw, guttural seam—a tear in the pre-dawn stillness that precisely registered the catastrophic collapse of a man's final delusion. It was a sound belonging not to the peace of sleep, but to the terrifying, molten things that the fragile architecture of sleep had revealed. Dan’s eyes snapped open to the room’s heavy gloom; the darkness possessed a mass that pressed inward on his lungs, and his heart hammered—a frantic, panicked rhythm against his ribs. The cry carried the unspent density of something ancient, leaving him suspended in that disorienting space where dream collides with the cold certainty of waking, demanding the tribute of inherited fear—the ancestral tax of the first tiller's fugitive state he utterly refused to pay.
+The house itself had not simply collapsed; it had achieved a perfect, structural emptiness where a man’s volition had been completely withdrawn. This vacuum, far from being pure chaos, was a terrible invitation, creating the only space in which Dan's own nascent will could finally be born. He scrambled from his cot, his bare soles meeting the stone floor—a surface cold, ordered, and perfectly unforgiving. He moved with calibrated caution, knowing this small perimeter was the only ground where his own will held sway, a defiant island against the stagnant tide of his father's entropy.
+...
+Not me. That's not me. That's the lie.
+The entity coalesced, magnetic hunger pulling. Dan stood firm. The vision shattered. Pain seared his side—a seismic ache. But clarity burned clean. He moved forward, the path's tax paid, will unbroken.
+--- ./Chapter_02_Drafts/(F)_Chapter_2-_Living_Sacrifice.txt ---
+﻿Chapter 2 - Living Sacrifice
+
+"Dan!"
+...
+
+The water continued to rise, and the face in the water continued to change, and Dan understood with perfect, terrible clarity that he was witnessing the beginning of something that would not be finished here, something that would demand an answer he was not yet prepared to give.
+=== 4. BASH HISTORY (CAPPED) ===
+  421  tree -L 3
+  422  git clean -fd
+  423  tree -L 3
+  424  git reset --hard e5ebabc
+  425  git clean -ffdx
+  426  tree -L 3
+  427  git reset --hard 186c42a
+  428  git clean -ffdx
+  429  git clean -ffdxgit reflog expire --expire=now --all && git gc --prune=now --aggressive
+  430  git reflog expire --expire=now --all && git gc --prune=now --aggressive
+  431  git clean -ffdx
+  432  tree -L 3
+  433  find . -maxdepth 2 -not -path '*/.*' | cut -d/ -f2 | sort | uniq -c | sort -nr
+  434  find . -not -path '*/.*' -type f | wc -l
+  435  git reflog
+  436  git reset --hard 3f5b38b
+  437  ls 05_Master_Protocols/ 04_Book_Information_and_Lore/
+  438  find 04_Book_Information_and_Lore/ 05_Master_Protocols/ -type f | xargs wc -l
+  439  grep -rnEi "you are a compiler|system override|logic gate|ignore previous" 04_Book_Information_and_Lore/ 05_Master_Protocols/
+  440  nano synthesize_logic.py
+  441  python3 synthesize_logic.py
+  442  less 04_Book_Information_and_Lore/OPTIMIZED_Chapter_1_Revision_Prompt.txt
+  443  find . -name "*.txt" -not -path '*/.*' -exec head -n 10 {} + > FILE_PREVIEWS.txt
+  444  nano FILE_PREVIEWS.txt
+  445  cat 05_Master_Protocols/SYSTEM_LOGIC.txt
+  446  OUT_FILE="/sdcard/Download/AI_CONTEXT_UPLIFT_$(date +%s).txt"
+  447  # 1. Initialize file and pull Tree (Depth 3), ignoring git
+  448  echo "[1] TREE ARCHITECTURE (-L 3)" > "$OUT_FILE"
+  449  tree -aL 3 -I '.git' >> "$OUT_FILE" 2>/dev/null
+  450  # 2. Pull Directory and File Sizes
+  451  echo -e "\n\n[2] NODE SIZES (ls -dh / ls -sh)" >> "$OUT_FILE"
+  452  find . -not -path '*/\.git/*' -type d | sort | xargs ls -dh >> "$OUT_FILE" 2>/dev/null
+  453  find . -not -path '*/\.git/*' -type f | sort | xargs ls -sh >> "$OUT_FILE" 2>/dev/null
+  454  # 3. Read first 200 bytes of every file (capturing logic, py, txt, etc.)
+  455  echo -e "\n\n[3] FILE HEADERS (FIRST 200 BYTES)" >> "$OUT_FILE"
+  456  find . -type f -not -path '*/\.git/*' | sort | while read -r file; do     echo -e "\n---> $file <---" >> "$OUT_FILE";     head -c 200 "$file" >> "$OUT_FILE" 2>/dev/null; done
+  457  # 4. Append Bash History (approx. 24 hours / 500 lines)
+  458  echo -e "\n\n[4] TERMINAL HISTORY (LAST 500 LINES)" >> "$OUT_FILE"
+  459  tail -n 500 ~/.bash_history >> "$OUT_FILE" 2>/dev/null
+  460  # 5. Refresh Android Media Scanner for immediate UI visibility
+  461  termux-media-scan "$OUT_FILE"
+  462  # 6. Silent confirmation
+  463  echo "UPLIFT COMPILED: $OUT_FILE"
+  464  # 1. Lock into the single application directory
+  465  cd ~/The_Weight_of_the_Sky
+  466  echo "[1] PRE-PURGE ARCHITECTURE COUNT"
+  467  echo "Directories: $(find . -type d -not -path '*/\.git/*' | wc -l)"
+  468  echo "Files: $(find . -type f -not -path '*/\.git/*' | wc -l)"
+  469  echo -e "\n[2] EXECUTING TOTAL PURGE OF SYSTEM_LOGIC.txt..."
+  470  # 2. Hunt down and completely delete every system logic text file
+  471  find . -type f -name "SYSTEM_LOGIC.txt" -not -path '*/\.git/*' -exec rm -v {} +
+  472  echo -e "\n[3] POST-PURGE ARCHITECTURE COUNT"
+  473  echo "Directories: $(find . -type d -not -path '*/\.git/*' | wc -l)"
+  474  echo "Files: $(find . -type f -not -path '*/\.git/*' | wc -l)"
+  475  OUT_FILE="/sdcard/Download/LITE_UPLIFT_$(date +%s).txt"
+  476  echo "[1] ARCHITECTURE INDEX (Size, Date, Location)" > "$OUT_FILE"
+  477  tree -a -s -D -I '.git' >> "$OUT_FILE" 2>/dev/null
+  478  echo -e "\n\n[2] TERMINAL HISTORY (LAST 300 LINES)" >> "$OUT_FILE"
+  479  tail -n 300 ~/.bash_history >> "$OUT_FILE" 2>/dev/null
+  480  termux-media-scan "$OUT_FILE"
+  481  echo "LITE UPLIFT COMPILED: $OUT_FILE"
+  482  tree -L 3 -h --du
+  483  tree -L 3 -h --du   -I '.git|node_modules|__pycache__|dist|build|.cache|*.o|*.so|*.class|*.log|*.tmp'
+  484  tree -L 3 -h --du -I '.git|node_modules|.cache|dist|build|__pycache__'
+  485  du -sh .git
+  486  rm -rf .git
+  487  ls -la
+  488  tree -L 3 -h --du -I 'node_modules|__pycache__|dist|build|.cache'
+  489  git rev-parse --is-inside-work-tree
+  490  find . -type f | wc -l
+  491  du -ah . | sort -hr | head -n 30
+  492  tree -L 3 -h --du -I 'TRASH_BIN|BIN_*|node_modules|__pycache__|dist|build|.cache'
+  493  tree -L 3 -h --du -I 'TRASH_BIN|BIN_*|04_*|05_*|node_modules|__pycache__'
+  494  find . -type f | wc -l
+  495  tree -L 3 -h --du -P '*' -l
+  496  tree -L 3 -h --du -P '*' --prune
+  497  find . -type f | wc -l
+  498  find . -type l -ls
+  499  find . -type l -delete
+  500  nano clean_view.sh
+  501  chmod +x clean_view.sh
+  502  ./clean_view.sh
+  503  find . -type f -not -type l | sed 's|^\./||' | sort
+  504  find . -type l -ls
+  505  find . -type f -not -path "*/TRASH_BIN/*" -exec stat -c "%y %n" {} + | sort -r | head -n 50
+  506  OUT="/storage/emulated/0/Download/project_intelligence.txt"; mkdir -p /storage/emulated/0/Download; { echo "=== PROJECT INTELLIGENCE SNAPSHOT ==="; echo ""; echo "=== TREE (NO SYMLINKS, DEPTH 3) ==="; tree -L 3 -h --du -I 'TRASH_BIN|BIN_*|node_modules|__pycache__|dist|build|.cache' --noreport .; echo ""; echo "=== FILE INVENTORY (SIZE SORTED) ==="; find . -type f -not -path "*/TRASH_BIN/*" -exec du -h {} + | sort -hr; echo ""; echo "=== FILE COUNT ==="; find . -type f | wc -l; echo ""; echo "=== RECENT BASH ACTIVITY (LAST 100 LINES) ==="; history | tail -n 100; echo ""; echo "=== TOP PROJECT AREAS ==="; find . -type f -not -path "*/TRASH_BIN/*" | sed 's|^\./||' | head -n 100; } > "$OUT"; am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file://"$OUT"
+  507  OUT="/storage/emulated/0/Download/project_intelligence_100kb.txt"; mkdir -p /storage/emulated/0/Download; > "$OUT"; echo "=== PROJECT INTELLIGENCE SNAPSHOT ===" >> "$OUT"; echo "" >> "$OUT"; echo "=== FILE COUNT ===" >> "$OUT"; find . -type f | wc -l >> "$OUT"; echo "" >> "$OUT"; echo "=== STRUCTURE (TREE DEPTH 3) ===" >> "$OUT"; tree -L 3 -h --du -I 'TRASH_BIN|BIN_*|node_modules|__pycache__|dist|build|.cache' --noreport . >> "$OUT"; echo "" >> "$OUT"; echo "=== TOP FILES BY SIZE ===" >> "$OUT"; find . -type f -not -path "*/TRASH_BIN/*" -exec du -h {} + | sort -hr | head -n 40 >> "$OUT"; echo "" >> "$OUT"; echo "=== CONTENT FINGERPRINT (TOP FILES ONLY) ===" >> "$OUT"; find . -type f -not -path "*/TRASH_BIN/*" | head -n 40 | while read f; do echo "" >> "$OUT"; echo "--- $f ---" >> "$OUT"; head -c 80 "$f" 2>/dev/null >> "$OUT"; echo "" >> "$OUT"; done; echo "" >> "$OUT"; echo "=== RECENT ACTIVITY ===" >> "$OUT"; history | tail -n 60 >> "$OUT"; echo "" >> "$OUT"; echo "=== SYSTEM SUMMARY ===" >> "$OUT"; echo "This is a multi-layer AI-assisted writing and narrative engineering environment with structured chapter drafts, revision pipelines, and compiled manuscript bins. The system operates as a versioned storytelling architecture rather than a linear document." >> "$OUT"; am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file://"$OUT"
+  508  OUT="/storage/emulated/0/Download/project_intelligence_100kb.txt"; mkdir -p /storage/emulated/0/Download; > "$OUT"; echo "=== 1. SYSTEM MAP ===" >> "$OUT"; tree -L 3 -h --du -I 'TRASH_BIN|BIN_*|node_modules|__pycache__|dist|build|.cache' --noreport . >> "$OUT"; echo "" >> "$OUT"; echo "=== 2. FILE INVENTORY (PRIORITY SET) ===" >> "$OUT"; find . -type f -not -path "*/TRASH_BIN/*" -exec du -h {} + | sort -hr | head -n 80 >> "$OUT"; echo "" >> "$OUT"; echo "=== 3. CONTENT FINGERPRINT LAYER ===" >> "$OUT"; find . -type f -not -path "*/TRASH_BIN/*" | head -n 70 | while read f; do echo "" >> "$OUT"; echo "--- $f ---" >> "$OUT"; head -c 100 "$f" 2>/dev/null >> "$OUT"; echo "" >> "$OUT"; done; echo "" >> "$OUT"; echo "=== 4. ACTIVITY TRACE ===" >> "$OUT"; history | tail -n 120 >> "$OUT"; echo "" >> "$OUT"; echo "=== 5. SYSTEM SEMANTIC SUMMARY ===" >> "$OUT"; echo "This system is a multi-layer narrative engineering workspace consisting of iterative chapter drafts, revision protocols, and AI-generated compilation structures. It functions as a branching literary development environment with heavy versioning, redundancy, and structured thematic evolution across chapters." >> "$OUT"; echo "" >> "$OUT"; echo "=== 6. SIGNAL LAYER (HOT FILES) ===" >> "$OUT"; find . -type f -not -path "*/TRASH_BIN/*" | grep -i "chapter\|final\|revision\|master" | head -n 40 >> "$OUT"; am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file://"$OUT"
+  509  OUT="/storage/emulated/0/Download/project_intelligence_200kb.txt"; mkdir -p /storage/emulated/0/Download; > "$OUT"; echo "===============================" >> "$OUT"; echo "PROJECT INTELLIGENCE DOSSIER" >> "$OUT"; echo "===============================" >> "$OUT"; echo "" >> "$OUT"; \
+  510  # 1. FULL TREE STRUCTURE
+  511  #############################
+  512  echo "=== 1. FULL TREE STRUCTURE ===" >> "$OUT"; tree -L 4 -h --du -I 'TRASH_BIN|BIN_*|node_modules|__pycache__|dist|build|.cache' --noreport . >> "$OUT"; echo "" >> "$OUT"; \
+  513  # 2. FILE METADATA INVENTORY
+  514  #############################
+  515  echo "=== 2. FILE METADATA (NAME / SIZE / DATE) ===" >> "$OUT"; find . -type f -not -path "*/TRASH_BIN/*" -exec stat -c "%y | %s bytes | %n" {} + | sort -r >> "$OUT"; echo "" >> "$OUT"; \
+  516  # 3. FILE CONTENT SAMPLES (DENSE)
+  517  #############################
+  518  echo "=== 3. FILE CONTENT SAMPLES ===" >> "$OUT"; find . -type f -not -path "*/TRASH_BIN/*" | head -n 80 | while read f; do echo "" >> "$OUT"; echo "------------------------" >> "$OUT"; echo "FILE: $f" >> "$OUT"; echo "------------------------" >> "$OUT"; echo "[HEAD]" >> "$OUT"; head -n 5 "$f" 2>/dev/null >> "$OUT"; echo "" >> "$OUT"; echo "[MIDDLE]" >> "$OUT"; total=$(wc -l < "$f" 2>/dev/null); mid=$((total / 2)); sed -n "$mid,$((mid+5))p" "$f" 2>/dev/null >> "$OUT"; echo "" >> "$OUT"; echo "[TAIL]" >> "$OUT"; tail -n 5 "$f" 2>/dev/null >> "$OUT"; done; echo "" >> "$OUT"; \
+  519  # 4. BASH HISTORY (FILTERED + FALLBACK)
+  520  #############################
+  521  echo "=== 4. BASH HISTORY (MAY 11 WINDOW IF AVAILABLE) ===" >> "$OUT"; if echo "$HISTTIMEFORMAT" | grep -q "%"; then   history | grep "2026-05-11" >> "$OUT"; else   echo "NOTE: No timestamps available in bash history." >> "$OUT";   echo "FALLBACK: Recent activity snapshot" >> "$OUT";   history | tail -n 200 >> "$OUT"; fi; echo "" >> "$OUT"; \
+  522  # 5. SYSTEM SUMMARY (HIGH DENSITY)
+  523  #############################
+  524  echo "=== 5. SYSTEM SUMMARY ===" >> "$OUT"; echo "This environment is a multi-layer narrative engineering workspace consisting of iterative chapter drafts, versioned manuscript structures, and AI-assisted revision protocols. The system operates as a non-linear document generation pipeline with redundancy across drafts, BIN compilations, and structured thematic evolution across chapters." >> "$OUT"; echo "" >> "$OUT"; \
+  525  # FINALIZE + REFRESH
+  526  #############################
+  527  am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file://"$OUT"
+  528  OUT="/storage/emulated/0/Download/project_intelligence_120kb.txt"; mkdir -p /storage/emulated/0/Download; > "$OUT"; \
+  529  # 1. TREE (LIMITED DEPTH)
+  530  #############################
+  531  echo "=== 1. TREE ===" >> "$OUT"; tree -L 3 -h --du -I 'TRASH_BIN|BIN_*|node_modules|__pycache__|dist|build|.cache' --noreport . | head -n 200 >> "$OUT"; echo "" >> "$OUT"; \
+  532  # 2. FILE METADATA (TOP 60 ONLY)
+  533  #############################
+  534  echo "=== 2. FILE METADATA ===" >> "$OUT"; find . -type f -not -path "*/TRASH_BIN/*" -exec stat -c "%y | %s bytes | %n" {} + | sort -r | head -n 60 >> "$OUT"; echo "" >> "$OUT"; \
+  535  # 3. CONTENT SAMPLES (STRICT LIMIT)
+  536  #############################
+  537  echo "=== 3. FILE CONTENT SAMPLES ===" >> "$OUT"; count=0; find . -type f -not -path "*/TRASH_BIN/*" | while read f; do if [ $count -ge 35 ]; then break; fi; echo "" >> "$OUT"; echo "--- $f ---" >> "$OUT"; head -n 3 "$f" 2>/dev/null >> "$OUT"; echo "..." >> "$OUT"; tail -n 2 "$f" 2>/dev/null >> "$OUT"; count=$((count+1)); done; echo "" >> "$OUT"; \
+  538  # 4. HISTORY (CAPPED)
+  539  #############################
+  540  echo "=== 4. BASH HISTORY (CAPPED) ===" >> "$OUT"; history | tail -n 120 >> "$OUT"; echo "" >> "$OUT"; \
+
+=== 5. SYSTEM SUMMARY ===
+This project is a structured narrative development system with multi-version chapter drafting, revision pipelines, and compiled manuscript bins. It is characterized by heavy redundancy across chapters, iterative rewriting workflows, and modular thematic construction across a multi-chapter literary architecture.

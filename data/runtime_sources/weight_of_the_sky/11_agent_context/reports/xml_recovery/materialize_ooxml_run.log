@@ -1,0 +1,8 @@
+{
+  "archives_found": 0,
+  "ooxml_files_copied": 0,
+  "destination": "src/data-layer/ingestion-buffer/gdrive_ooxml_raw",
+  "manifest": "reports/xml_recovery/materialized_ooxml_manifest.json"
+}
+
+NO OOXML COPIED: Google export/extraction has not produced ooxml_current folders yet.

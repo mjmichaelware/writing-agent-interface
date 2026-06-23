@@ -200,6 +200,34 @@ jobs:
           echo "===== script selected source references ====="
           grep -n "xml_starred_hash_truth\|materialized_ooxml\|selected_xml\|document.xml" "$SELECTED_XML_SCRIPT" | sed -n '1,160p'
 
+      - name: Verify Supabase connectivity
+        if: ${{ inputs.batch_action == 'sync_write' || inputs.batch_action == 'poll_import' || inputs.batch_action == 'import_results' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          http_code="$(
+            curl -sS \
+              -o /tmp/supabase_now.json \
+              -w "%{http_code}" \
+              -X POST \
+              "https://api.supabase.com/v1/projects/${SUPABASE_PROJECT_REF}/database/query" \
+              --header "Authorization: Bearer ${SUPABASE_ACCESS_TOKEN}" \
+              --header "Content-Type: application/json" \
+              --data '{"query":"select now() as ts, count(*) as run_count from public.semantic_runs"}'
+          )"
+
+          cat /tmp/supabase_now.json
+          echo
+          echo "http_code=$http_code"
+
+          case "$http_code" in
+            200|201) echo "Supabase Management API reachable" ;;
+            401) echo "::error::SUPABASE_ACCESS_TOKEN rejected — generate a new PAT at supabase.com/dashboard/account/tokens"; exit 1 ;;
+            403) echo "::error::SUPABASE_ACCESS_TOKEN lacks permission for this project"; exit 1 ;;
+            *) echo "::error::Supabase returned unexpected http_code=$http_code"; exit 1 ;;
+          esac
+
       - name: Apply selected XML meaning-span migration
         if: ${{ inputs.apply_migration_first == 'true' && (inputs.batch_action == 'sync_write' || inputs.batch_action == 'poll_import' || inputs.batch_action == 'import_results') }}
         shell: bash
@@ -335,6 +363,29 @@ jobs:
               exit 1
               ;;
           esac
+
+      - name: Write job summary
+        if: always()
+        shell: bash
+        run: |
+          echo "## Selected XML Semantic Write" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Branch:** \`${{ github.ref_name }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Provider:** \`${{ inputs.provider }}\`  **Model:** \`${{ inputs.model }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Action:** \`${{ inputs.batch_action }}\`  **full_run_confirm:** \`${{ inputs.full_run_confirm }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **limit_docs:** \`${{ inputs.limit_docs || 'all' }}\`  **limit:** \`${{ inputs.limit || 'all' }}\`  **batch_size:** \`${{ inputs.batch_size }}\`" >> "$GITHUB_STEP_SUMMARY"
+          if curl -sS \
+            -X POST \
+            "https://api.supabase.com/v1/projects/${SUPABASE_PROJECT_REF}/database/query" \
+            --header "Authorization: Bearer ${SUPABASE_ACCESS_TOKEN}" \
+            --header "Content-Type: application/json" \
+            --data '{"query":"select id, status, provider, model, started_at, completed_at, error from public.semantic_runs order by started_at desc limit 5"}' \
+            -o /tmp/runs_summary.json -w "" 2>/dev/null; then
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "### Recent semantic_runs" >> "$GITHUB_STEP_SUMMARY"
+            echo '```json' >> "$GITHUB_STEP_SUMMARY"
+            cat /tmp/runs_summary.json >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          fi
 
       - name: Upload selected XML semantic run artifacts
         if: always()

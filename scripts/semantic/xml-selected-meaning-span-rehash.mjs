@@ -155,7 +155,8 @@ const OLLAMA_BASE_URL = env("OLLAMA_BASE_URL", "http://localhost:11434");
 const OLLAMA_MODEL = env("OLLAMA_MODEL", env("SEMANTIC_MODEL", "llama3.2:1b"));
 const OLLAMA_CACHE_PATH = env("OLLAMA_CACHE_PATH", join(ROOT, "docs/forensics/audits/ollama-result-cache.json"));
 const OLLAMA_CONTEXT_CHARS = Number(process.env.OLLAMA_CONTEXT_CHARS || 2400);
-const PROVIDER_MODEL = OLLAMA_MODEL;
+const GEMINI_MODEL = env("SEMANTIC_MODEL", env("VERTEX_MODEL", "gemini-2.5-flash-lite"));
+const PROVIDER_MODEL = PROVIDER === "gemini_sync" ? GEMINI_MODEL : OLLAMA_MODEL;
 
 function validateSources() {
   must(existsSync(paths.contextPack), `Missing context pack: ${paths.contextPack}`);
@@ -1120,7 +1121,7 @@ const FAIL_FAST_INITIAL_FAILED_TASKS = 20;
 const FAIL_FAST_CONSECUTIVE_FAILED_WINDOWS = 5;
 const FAIL_FAST_TASK_SAMPLE = 20;
 const FAIL_FAST_TASK_FAILURE_RATE = 0.5;
-const PROVIDER_CHOICES = new Set(["ollama"]);
+const PROVIDER_CHOICES = new Set(["ollama", "gemini_sync"]);
 const BATCH_COMPLETION_WINDOW = env("SEMANTIC_BATCH_COMPLETION_WINDOW", "24h");
 
 must(PROVIDER_CHOICES.has(PROVIDER), `Unsupported provider: ${PROVIDER}`);
@@ -2258,40 +2259,87 @@ async function callOllamaSync(prompt) {
   return json.response || "";
 }
 
+async function callGeminiSync(prompt) {
+  const apiKey = env("GOOGLE_API_KEY", "");
+  if (!apiKey) throw new Error("GOOGLE_API_KEY is required for gemini_sync provider");
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`;
+  const timeoutMs = Number(process.env.GEMINI_TIMEOUT_MS || process.env.OLLAMA_TIMEOUT_MS || 120000);
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+  let res;
+  try {
+    res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [{ role: "user", parts: [{ text: prompt }] }],
+        generationConfig: { temperature: 0, responseMimeType: "application/json" },
+      }),
+      signal: controller.signal,
+    });
+  } catch (err) {
+    const isTimeout = err.name === "AbortError";
+    throw new Error(
+      isTimeout
+        ? `gemini_sync timed out after ${timeoutMs}ms`
+        : `gemini_sync fetch error: ${err.message}`
+    );
+  } finally {
+    clearTimeout(timeoutId);
+  }
+  const rawText = await res.text();
+  if (!res.ok) throw new Error(`gemini_sync error (${res.status}): ${rawText.slice(0, 800)}`);
+  let envelope;
+  try {
+    envelope = JSON.parse(rawText);
+  } catch {
+    throw new Error(`gemini_sync non-JSON envelope: ${rawText.slice(0, 400)}`);
+  }
+  return envelope?.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
+}
+
 async function callSemanticProviderSync({ task, prompt, schema }) {
-  const cacheKey = sha256Text(`ollama:${OLLAMA_MODEL}:${prompt}`);
-  const cached = checkOllamaCache(cacheKey);
-  if (cached !== null) {
-    console.warn(JSON.stringify({ event: "ollama_cache_hit", task, key: cacheKey.slice(0, 16) }));
-    return cached;
+  if (PROVIDER === "ollama") {
+    const cacheKey = sha256Text(`ollama:${OLLAMA_MODEL}:${prompt}`);
+    const cached = checkOllamaCache(cacheKey);
+    if (cached !== null) {
+      console.warn(JSON.stringify({ event: "ollama_cache_hit", task, key: cacheKey.slice(0, 16) }));
+      return cached;
+    }
+    const maxRetries = Number(process.env.PROVIDER_RETRY_MAX || 5);
+    let lastError = null;
+    for (let attempt = 0; attempt <= maxRetries; attempt++) {
+      try {
+        const result = await callOllamaSync(prompt);
+        setOllamaCache(cacheKey, result);
+        return result;
+      } catch (error) {
+        lastError = error;
+        if (!isRetryableProviderError(error) || attempt >= maxRetries) throw error;
+        const delay = providerRetryDelayMs(attempt + 1);
+        console.warn(JSON.stringify({ event: "provider_retry", provider: PROVIDER, task, attempt: attempt + 1, max_retries: maxRetries, delay_ms: delay, error: String(error?.message || error).slice(0, 1200) }));
+        await sleep(delay);
+      }
+    }
+    throw lastError || new Error("ollama retry loop failed without captured error");
   }
 
+  const callFn = PROVIDER === "gemini_sync" ? callGeminiSync : null;
+  if (!callFn) throw new Error(`No sync call function for provider: ${PROVIDER}`);
   const maxRetries = Number(process.env.PROVIDER_RETRY_MAX || 5);
   let lastError = null;
-
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
     try {
-      const result = await callOllamaSync(prompt);
-      setOllamaCache(cacheKey, result);
-      return result;
+      return await callFn(prompt);
     } catch (error) {
       lastError = error;
       if (!isRetryableProviderError(error) || attempt >= maxRetries) throw error;
       const delay = providerRetryDelayMs(attempt + 1);
-      console.warn(JSON.stringify({
-        event: "provider_retry",
-        provider: PROVIDER,
-        task,
-        attempt: attempt + 1,
-        max_retries: maxRetries,
-        delay_ms: delay,
-        error: String(error?.message || error).slice(0, 1200),
-      }));
+      console.warn(JSON.stringify({ event: "provider_retry", provider: PROVIDER, task, attempt: attempt + 1, max_retries: maxRetries, delay_ms: delay, error: String(error?.message || error).slice(0, 1200) }));
       await sleep(delay);
     }
   }
-
-  throw lastError || new Error("ollama retry loop failed without captured error");
+  throw lastError || new Error(`${PROVIDER} retry loop failed without captured error`);
 }
 
 function batchRequestsFileExtension(provider = PROVIDER) {

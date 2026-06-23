@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       confirm:
-        description: "Type REHASH to run full write-mode rehash"
+        description: "Type FULL_REHASH to run full write-mode rehash (uses xml-grounded-vertex-rehash.mjs)"
         required: true
       limit:
         description: "Optional paragraph limit. Leave blank for full corpus."
@@ -12,7 +12,6 @@ on:
 
 jobs:
   full-rehash:
-    if: github.event.inputs.confirm == 'REHASH'
     runs-on: ubuntu-latest
     timeout-minutes: 360
     env:
@@ -26,11 +25,27 @@ jobs:
       GEMINI_RETRY_MAX_MS: 180000
 
     steps:
+      - name: Validate confirm input
+        run: |
+          if [ "${{ github.event.inputs.confirm }}" != "FULL_REHASH" ]; then
+            echo "::error::confirm must be exactly 'FULL_REHASH' to run. Got: '${{ github.event.inputs.confirm }}'"
+            echo "This workflow runs xml-grounded-vertex-rehash.mjs (Vertex/Gemini). For selected XML hashing use workflow 'Selected XML semantic write' instead."
+            exit 1
+          fi
+          echo "Confirmed FULL_REHASH — proceeding with xml-grounded-vertex-rehash.mjs"
+
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then npm ci
+          elif [ -f pnpm-lock.yaml ]; then corepack enable && pnpm install --frozen-lockfile
+          else npm install
+          fi
 
       - name: Verify fixed source hashes
         run: node scripts/semantic/verify-context-and-xml-hashes.mjs
@@ -43,9 +58,19 @@ jobs:
           fi
           node scripts/semantic/xml-grounded-vertex-rehash.mjs $ARGS
 
+      - name: Write job summary
+        if: always()
+        run: |
+          echo "## Semantic Rehash Full" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Branch:** \`${{ github.ref_name }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Script:** xml-grounded-vertex-rehash.mjs" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Model:** \`${{ env.VERTEX_MODEL }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Limit:** \`${{ github.event.inputs.limit || 'none (full corpus)' }}\`" >> "$GITHUB_STEP_SUMMARY"
+
       - name: Upload full-run forensic output
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: semantic-rehash-full
           path: docs/forensics/audits/xml-grounded-vertex-rehash-runs/
+          if-no-files-found: warn

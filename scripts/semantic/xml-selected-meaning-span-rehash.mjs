@@ -241,6 +241,60 @@ function dbRetryDelayMs(attempt) {
   return Math.min(30000, 2000 * Math.pow(2, Math.max(0, attempt - 1)) + jitter);
 }
 
+// Validates the Supabase service_role key format and returns PostgREST auth headers.
+// Throws with explicit guidance if the key is missing or is the wrong credential type.
+function classifyServiceKey(key) {
+  if (!key) {
+    throw new Error(
+      "SUPABASE_SERVICE_ROLE_KEY not set. " +
+      "Open Supabase Dashboard → Settings → API Keys → Legacy API Keys → service_role. " +
+      "Do NOT use Settings → JWT Keys → Legacy JWT Secret."
+    );
+  }
+  if (key.startsWith("sbp_")) {
+    throw new Error(
+      "SUPABASE_SERVICE_ROLE_KEY looks like a Management API personal access token (starts with sbp_). " +
+      "Open Supabase Dashboard → Settings → API Keys → Legacy API Keys → service_role. " +
+      "Do NOT use Settings → JWT Keys → Legacy JWT Secret."
+    );
+  }
+  if (key.startsWith("sb_publishable_")) {
+    throw new Error(
+      "SUPABASE_SERVICE_ROLE_KEY looks like an anon/publishable key (starts with sb_publishable_). " +
+      "Open Supabase Dashboard → Settings → API Keys → Legacy API Keys → service_role. " +
+      "Do NOT use Settings → JWT Keys → Legacy JWT Secret."
+    );
+  }
+  // Expect a JWT: 3 base64url dot-separated parts
+  const parts = key.split(".");
+  if (parts.length !== 3) {
+    throw new Error(
+      "SUPABASE_SERVICE_ROLE_KEY does not look like a JWT (expected header.payload.signature). " +
+      "Open Supabase Dashboard → Settings → API Keys → Legacy API Keys → service_role. " +
+      "Do NOT use Settings → JWT Keys → Legacy JWT Secret — that is the HMAC signing secret, not a JWT."
+    );
+  }
+  // Decode payload and verify role without logging the key value
+  try {
+    const padded = parts[1].replace(/-/g, "+").replace(/_/g, "/");
+    const payload = JSON.parse(Buffer.from(padded, "base64").toString("utf8"));
+    if (payload.role && payload.role !== "service_role") {
+      throw new Error(
+        `SUPABASE_SERVICE_ROLE_KEY JWT has role="${payload.role}", expected "service_role". ` +
+        "Open Supabase Dashboard → Settings → API Keys → Legacy API Keys → service_role. " +
+        "Do NOT use Settings → JWT Keys → Legacy JWT Secret."
+      );
+    }
+  } catch (err) {
+    if (err.message.includes("service_role") || err.message.includes("role=")) throw err;
+    // Malformed payload — let it through; PostgREST will 401 with the server's own message
+  }
+  return {
+    "apikey": key,
+    "Authorization": `Bearer ${key}`,
+  };
+}
+
 async function jsonFetch(url, { method = "POST", headers = {}, body = null } = {}) {
   const res = await fetch(url, {
     method,
@@ -267,12 +321,11 @@ async function sleep(ms) {
 // Cloudflare/proxy HTML bodies are detected and classified as transient_gateway_error.
 async function dataPlaneRequest(path, { method = "GET", body = null, prefer = null } = {}) {
   must(SUPABASE_URL, "SUPABASE_URL not set and SUPABASE_PROJECT_REF not set — cannot connect to Supabase data plane. Set SUPABASE_URL or SUPABASE_PROJECT_REF secret/var.");
-  must(SUPABASE_SERVICE_KEY, "SUPABASE_SERVICE_ROLE_KEY (or SUPABASE_SECRET_KEY) not set — cannot write to Supabase data plane. Set the SUPABASE_SERVICE_ROLE_KEY secret.");
+  const authHeaders = classifyServiceKey(SUPABASE_SERVICE_KEY);
 
   const url = `${SUPABASE_URL}/rest/v1/${path}`;
   const headers = {
-    "apikey": SUPABASE_SERVICE_KEY,
-    "Authorization": `Bearer ${SUPABASE_SERVICE_KEY}`,
+    ...authHeaders,
     "Content-Type": "application/json",
     "Accept": "application/json",
   };
@@ -4143,10 +4196,10 @@ async function main() {
     throw new Error("Full selected XML semantic runs require --full-run-confirm.");
   }
 
-  // Fail early if data-plane credentials are missing in write mode.
+  // Fail early if data-plane credentials are missing or wrong type in write mode.
   if (writeMode) {
     must(SUPABASE_URL, "SUPABASE_URL not set (and SUPABASE_PROJECT_REF not set). Cannot write to Supabase data plane. Set SUPABASE_URL or SUPABASE_PROJECT_REF secret/var.");
-    must(SUPABASE_SERVICE_KEY, "SUPABASE_SERVICE_ROLE_KEY (or SUPABASE_SECRET_KEY) not set. Cannot write to Supabase data plane. Set the SUPABASE_SERVICE_ROLE_KEY secret.");
+    classifyServiceKey(SUPABASE_SERVICE_KEY); // throws with explicit guidance on wrong key type
     console.log(JSON.stringify({ event: "db_adapter_init", db_adapter: "supabase_data_plane", management_api_hot_path: false, supabase_url_set: true, service_key_set: true }));
   }
 

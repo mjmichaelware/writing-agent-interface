@@ -172,8 +172,26 @@ jobs:
           # Validate Supabase credentials for write paths
           case "$BATCH_ACTION" in
             sync_write|poll_import|import_results)
-              [ -n "${SUPABASE_ACCESS_TOKEN:-}" ] || { echo "::error::SUPABASE_ACCESS_TOKEN secret not set"; exit 1; }
-              [ -n "${SUPABASE_PROJECT_REF:-}" ] || { echo "::error::SUPABASE_PROJECT_REF not set"; exit 1; }
+              [ -n "${SUPABASE_SERVICE_ROLE_KEY:-}" ] || {
+                echo "::error::SUPABASE_SERVICE_ROLE_KEY secret not set. Open Supabase Dashboard → Settings → API Keys → Legacy API Keys → service_role. Do NOT use Settings → JWT Keys → Legacy JWT Secret."
+                exit 1
+              }
+              [ -n "${SUPABASE_PROJECT_REF:-}" ] || { echo "::error::SUPABASE_PROJECT_REF not set (used to construct data-plane URL when SUPABASE_URL is absent)"; exit 1; }
+              # Reject management PAT (sbp_) and publishable keys
+              case "${SUPABASE_SERVICE_ROLE_KEY:-}" in
+                sbp_*)
+                  echo "::error::SUPABASE_SERVICE_ROLE_KEY looks like a Management API PAT (sbp_...). Open Supabase Dashboard → Settings → API Keys → Legacy API Keys → service_role. Do NOT use Settings → JWT Keys → Legacy JWT Secret."
+                  exit 1 ;;
+                sb_publishable_*)
+                  echo "::error::SUPABASE_SERVICE_ROLE_KEY looks like an anon/publishable key. Open Supabase Dashboard → Settings → API Keys → Legacy API Keys → service_role."
+                  exit 1 ;;
+              esac
+              # JWT must have 3 dot-separated parts
+              KEY_PARTS=$(echo "${SUPABASE_SERVICE_ROLE_KEY:-}" | tr -cd '.' | wc -c)
+              if [ "$KEY_PARTS" -ne 2 ]; then
+                echo "::error::SUPABASE_SERVICE_ROLE_KEY does not look like a JWT (needs 3 base64url parts). Open Supabase Dashboard → Settings → API Keys → Legacy API Keys → service_role. Do NOT use Settings → JWT Keys → Legacy JWT Secret — that is the HMAC signing secret, not a JWT."
+                exit 1
+              fi
               ;;
           esac
 
@@ -202,6 +220,14 @@ jobs:
             \( -name 'xml_starred_hash_truth.txt' -o -name 'materialized_ooxml_manifest.json' -o -name 'document.xml' \) \
             -print 2>/dev/null | sort | head -80
 
+      - name: Restore Ollama model cache
+        if: ${{ inputs.provider == 'ollama_actions' || inputs.provider == 'free_local' }}
+        id: ollama-cache-restore
+        uses: actions/cache/restore@v4
+        with:
+          path: ~/.ollama/models
+          key: ollama-models-${{ runner.os }}-${{ inputs.model }}-v1
+
       - name: Install Ollama and pull model (free local compute)
         if: ${{ inputs.provider == 'ollama_actions' || inputs.provider == 'free_local' }}
         shell: bash
@@ -229,21 +255,66 @@ jobs:
             sleep 1
           done
 
-          echo "===== Pulling model: ${{ inputs.model }} ====="
-          ollama pull "${{ inputs.model }}" || {
-            echo "::error::Failed to pull model: ${{ inputs.model }}"
-            echo "Available models at pull time:"
-            ollama list || true
-            exit 1
-          }
+          CACHE_HIT="${{ steps.ollama-cache-restore.outputs.cache-hit }}"
+          MODEL="${{ inputs.model }}"
+
+          if [ "$CACHE_HIT" = "true" ]; then
+            echo "===== Cache hit — checking if model is already loaded ====="
+            if ollama list 2>/dev/null | grep -qF "$MODEL"; then
+              echo "Model $MODEL found in cache, skipping pull"
+            else
+              echo "Cache present but model not listed — pulling anyway"
+              ollama pull "$MODEL" || {
+                echo "::error::Failed to pull model: $MODEL"
+                ollama list || true
+                exit 1
+              }
+            fi
+          else
+            echo "===== No cache hit — pulling model: $MODEL ====="
+            ollama pull "$MODEL" || {
+              echo "::error::Failed to pull model: $MODEL"
+              echo "Available models at pull time:"
+              ollama list || true
+              exit 1
+            }
+          fi
 
           echo "===== Loaded models ====="
           ollama list
 
           echo "===== Quick model smoke test ====="
-          RESPONSE=$(ollama run "${{ inputs.model }}" "Reply with only the word OK" 2>&1)
+          SMOKE_START=$(date +%s%3N)
+          RESPONSE=$(ollama run "$MODEL" "Reply with only the word OK" 2>&1)
+          SMOKE_END=$(date +%s%3N)
+          SMOKE_MS=$(( SMOKE_END - SMOKE_START ))
           echo "Model response: $RESPONSE"
-          echo "$RESPONSE" | grep -qi "ok" || echo "Warning: smoke test response did not contain OK — model may be slow but continuing"
+          SMOKE_OK=false
+          echo "$RESPONSE" | grep -qi "ok" && SMOKE_OK=true || true
+
+          mkdir -p docs/forensics/audits
+          python3 -c "
+import json, sys
+data = {
+  'model': '$MODEL',
+  'cache_hit': '$CACHE_HIT' == 'true',
+  'smoke_response': sys.argv[1],
+  'smoke_ok': '$SMOKE_OK' == 'true',
+  'smoke_elapsed_ms': $SMOKE_MS,
+}
+print(json.dumps(data, indent=2))
+" "$RESPONSE" > docs/forensics/audits/ollama-smoke.json
+
+          if [ "$SMOKE_OK" != "true" ]; then
+            echo "Warning: smoke test response did not contain OK — model may be slow but continuing"
+          fi
+
+      - name: Save Ollama model cache
+        if: ${{ (inputs.provider == 'ollama_actions' || inputs.provider == 'free_local') && steps.ollama-cache-restore.outputs.cache-hit != 'true' }}
+        uses: actions/cache/save@v4
+        with:
+          path: ~/.ollama/models
+          key: ollama-models-${{ runner.os }}-${{ inputs.model }}-v1
 
       - name: Verify Supabase data-plane connectivity
         if: ${{ inputs.batch_action == 'sync_write' || inputs.batch_action == 'poll_import' || inputs.batch_action == 'import_results' }}
@@ -285,8 +356,12 @@ jobs:
 
           case "$http_code" in
             200|206) echo "Supabase data plane reachable (PostgREST)" ;;
-            401) echo "::error::SUPABASE_SERVICE_ROLE_KEY rejected (401). Check the SUPABASE_SERVICE_ROLE_KEY secret matches your project."; exit 1 ;;
-            403) echo "::error::SUPABASE_SERVICE_ROLE_KEY lacks permission (403). Ensure it is the service_role key, not an anon key."; exit 1 ;;
+            401)
+              echo "::error::SUPABASE_SERVICE_ROLE_KEY rejected (401 Unauthorized). Open Supabase Dashboard → Settings → API Keys → Legacy API Keys → service_role and copy that value. Do NOT use Settings → JWT Keys → Legacy JWT Secret — that is the HMAC signing secret for generating JWTs, not a JWT itself."
+              exit 1 ;;
+            403)
+              echo "::error::SUPABASE_SERVICE_ROLE_KEY lacks permission (403). Ensure it is the service_role key from Settings → API Keys → Legacy API Keys → service_role, not an anon key."
+              exit 1 ;;
             404) echo "::warning::semantic_runs table not found (404) — migration may be needed. Proceeding." ;;
             *) echo "::error::Supabase data plane returned unexpected http_code=$http_code. Check SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY."; exit 1 ;;
           esac
@@ -425,5 +500,8 @@ jobs:
           path: |
             docs/forensics/audits/xml-selected-meaning-span-rehash-runs/**
             docs/forensics/audits/ai-bad-json/**
+            docs/forensics/audits/ai-empty/**
+            docs/forensics/audits/db-errors/**
+            docs/forensics/audits/ollama-smoke.json
             docs/forensics/audits/ollama-result-cache.json
           if-no-files-found: warn

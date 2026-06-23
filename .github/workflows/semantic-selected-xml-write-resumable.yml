@@ -1,6 +1,9 @@
 name: Selected XML semantic write resumable
 
 on:
+  repository_dispatch:
+    types:
+      - selected_xml_resumable
   workflow_dispatch:
     inputs:
       limit_docs:
@@ -102,12 +105,12 @@ jobs:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
-      SEMANTIC_PROVIDER: ${{ inputs.provider }}
-      SEMANTIC_MODEL: ${{ inputs.model }}
-      VERTEX_MODEL: ${{ inputs.model }}
+      SEMANTIC_PROVIDER: ${{ inputs.provider || github.event.client_payload.provider || 'ollama_actions' }}
+      SEMANTIC_MODEL: ${{ inputs.model || github.event.client_payload.model || 'llama3.2:1b' }}
+      VERTEX_MODEL: ${{ inputs.model || github.event.client_payload.model || 'llama3.2:1b' }}
 
       OLLAMA_BASE_URL: "http://localhost:11434"
-      OLLAMA_MODEL: ${{ inputs.model }}
+      OLLAMA_MODEL: ${{ inputs.model || github.event.client_payload.model || 'llama3.2:1b' }}
       OLLAMA_NUM_CTX: "2048"
       OLLAMA_CONTEXT_CHARS: "4000"
       OLLAMA_TIMEOUT_MS: "300000"
@@ -117,20 +120,20 @@ jobs:
       SELECTED_XML_CHECKPOINT_MIGRATION_FILE: supabase/migrations/20260623000000_selected_xml_task_checkpoints.sql
       SELECTED_XML_SCRIPT: scripts/semantic/xml-selected-meaning-span-rehash.mjs
 
-      SELECTED_XML_LIMIT_DOCS: ${{ inputs.limit_docs }}
-      SELECTED_XML_LIMIT: ${{ inputs.limit }}
-      SELECTED_XML_BATCH_SIZE: ${{ inputs.batch_size }}
-      SELECTED_XML_BATCH_ACTION: ${{ inputs.batch_action }}
-      SELECTED_XML_BATCH_ID: ${{ inputs.batch_id }}
-      SELECTED_XML_IMPORT_BATCH_RESULTS_PATH: ${{ inputs.import_batch_results_path }}
-      SELECTED_XML_FULL_RUN_CONFIRM: ${{ inputs.full_run_confirm }}
+      SELECTED_XML_LIMIT_DOCS: ${{ inputs.limit_docs || github.event.client_payload.limit_docs || '' }}
+      SELECTED_XML_LIMIT: ${{ inputs.limit || github.event.client_payload.limit || '' }}
+      SELECTED_XML_BATCH_SIZE: ${{ inputs.batch_size || github.event.client_payload.batch_size || '1' }}
+      SELECTED_XML_BATCH_ACTION: ${{ inputs.batch_action || github.event.client_payload.batch_action || 'sync_write' }}
+      SELECTED_XML_BATCH_ID: ${{ inputs.batch_id || github.event.client_payload.batch_id || '' }}
+      SELECTED_XML_IMPORT_BATCH_RESULTS_PATH: ${{ inputs.import_batch_results_path || github.event.client_payload.import_batch_results_path || '' }}
+      SELECTED_XML_FULL_RUN_CONFIRM: ${{ inputs.full_run_confirm || github.event.client_payload.full_run_confirm || 'false' }}
 
-      SELECTED_XML_RESUME_EXISTING: ${{ inputs.resume_existing }}
-      RESUME_EXISTING: ${{ inputs.resume_existing }}
-      SELECTED_XML_SOFT_STOP_MINUTES: ${{ inputs.soft_stop_minutes }}
-      SOFT_STOP_MINUTES: ${{ inputs.soft_stop_minutes }}
-      SELECTED_XML_MAX_TASK_RETRIES: ${{ inputs.max_task_retries }}
-      MAX_TASK_RETRIES: ${{ inputs.max_task_retries }}
+      SELECTED_XML_RESUME_EXISTING: ${{ inputs.resume_existing || github.event.client_payload.resume_existing || 'false' }}
+      RESUME_EXISTING: ${{ inputs.resume_existing || github.event.client_payload.resume_existing || 'false' }}
+      SELECTED_XML_SOFT_STOP_MINUTES: ${{ inputs.soft_stop_minutes || github.event.client_payload.soft_stop_minutes || '330' }}
+      SOFT_STOP_MINUTES: ${{ inputs.soft_stop_minutes || github.event.client_payload.soft_stop_minutes || '330' }}
+      SELECTED_XML_MAX_TASK_RETRIES: ${{ inputs.max_task_retries || github.event.client_payload.max_task_retries || '2' }}
+      MAX_TASK_RETRIES: ${{ inputs.max_task_retries || github.event.client_payload.max_task_retries || '2' }}
 
     steps:
       - name: Checkout

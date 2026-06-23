@@ -1,0 +1,15 @@
+{
+  "status": "empty",
+  "task_type": "archetypes",
+  "scene_window_id": "scene_1af1a1d28a6652a7731b6c7780605e7a",
+  "source_doc_id": "srcdoc_7282bfdcab21a93f6249736046eceb91",
+  "context_capsule_sha256": "9ec12386c375df7b9ad4f311a5c9a015f40710b0904ed93f0719bd18407dd2a2",
+  "observations": [],
+  "accepted_observations": [],
+  "rejected_observations": [],
+  "failure_reason": null,
+  "validation_errors": [],
+  "evidence_errors": [],
+  "raw_output_hash": "90453d225db292af4965bc609bef3590b4a835df48d2c84118ec2f8e8c63f1b5",
+  "normalized_output_hash": "4f2d2fad09750bf04f9f0445dcd2b503d2df59f1e00cfdcbc5720c5bbb0c4b3f"
+}

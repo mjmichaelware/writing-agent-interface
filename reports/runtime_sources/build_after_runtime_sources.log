@@ -1,0 +1,99 @@
+
+> writing-agent-interface@1.0.0 build
+> next build
+
+ ⚠ Invalid next.config.js options detected: 
+ ⚠     Unrecognized key(s) in object: 'turbopack' at "experimental"
+ ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+  ▲ Next.js 14.2.0
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Skipping validation of types
+   Skipping linting
+   Collecting page data ...
+   Generating static pages (0/23) ...
+(node:23230) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Biblical References API Error: Error: self-signed certificate in certificate chain
+    at /data/data/com.termux/files/home/Workspaces/UI_UX_Core_Engine/writing-agent-interface/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async p (/data/data/com.termux/files/home/Workspaces/UI_UX_Core_Engine/writing-agent-interface/.next/server/app/api/biblical-references/route.js:1:538)
+    at async /data/data/com.termux/files/home/Workspaces/UI_UX_Core_Engine/writing-agent-interface/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:34801
+    at async eS.execute (/data/data/com.termux/files/home/Workspaces/UI_UX_Core_Engine/writing-agent-interface/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:25910)
+    at async eS.handle (/data/data/com.termux/files/home/Workspaces/UI_UX_Core_Engine/writing-agent-interface/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:36055)
+    at async exportAppRoute (/data/data/com.termux/files/home/Workspaces/UI_UX_Core_Engine/writing-agent-interface/node_modules/next/dist/export/routes/app-route.js:77:26)
+    at async exportPageImpl (/data/data/com.termux/files/home/Workspaces/UI_UX_Core_Engine/writing-agent-interface/node_modules/next/dist/export/worker.js:175:20)
+    at async Span.traceAsyncFn (/data/data/com.termux/files/home/Workspaces/UI_UX_Core_Engine/writing-agent-interface/node_modules/next/dist/trace/trace.js:154:20)
+    at async Object.exportPage (/data/data/com.termux/files/home/Workspaces/UI_UX_Core_Engine/writing-agent-interface/node_modules/next/dist/export/worker.js:236:20) {
+  code: 'SELF_SIGNED_CERT_IN_CHAIN'
+}
+(node:23212) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Graph API Error: Error: self-signed certificate in certificate chain
+    at /data/data/com.termux/files/home/Workspaces/UI_UX_Core_Engine/writing-agent-interface/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async u (/data/data/com.termux/files/home/Workspaces/UI_UX_Core_Engine/writing-agent-interface/.next/server/app/api/graph/route.js:1:538)
+    at async /data/data/com.termux/files/home/Workspaces/UI_UX_Core_Engine/writing-agent-interface/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:34801
+    at async eS.execute (/data/data/com.termux/files/home/Workspaces/UI_UX_Core_Engine/writing-agent-interface/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:25910)
+    at async eS.handle (/data/data/com.termux/files/home/Workspaces/UI_UX_Core_Engine/writing-agent-interface/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:36055)
+    at async exportAppRoute (/data/data/com.termux/files/home/Workspaces/UI_UX_Core_Engine/writing-agent-interface/node_modules/next/dist/export/routes/app-route.js:77:26)
+    at async exportPageImpl (/data/data/com.termux/files/home/Workspaces/UI_UX_Core_Engine/writing-agent-interface/node_modules/next/dist/export/worker.js:175:20)
+    at async Span.traceAsyncFn (/data/data/com.termux/files/home/Workspaces/UI_UX_Core_Engine/writing-agent-interface/node_modules/next/dist/trace/trace.js:154:20)
+    at async Object.exportPage (/data/data/com.termux/files/home/Workspaces/UI_UX_Core_Engine/writing-agent-interface/node_modules/next/dist/export/worker.js:236:20) {
+  code: 'SELF_SIGNED_CERT_IN_CHAIN'
+}
+   Generating static pages (5/23) 
+   Generating static pages (11/23) 
+   Generating static pages (17/23) 
+ ✓ Generating static pages (23/23)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+┌ ○ /                                    46.2 kB         133 kB
+├ ○ /_not-found                          871 B          87.9 kB
+├ ○ /analyze                             1.37 kB        88.4 kB
+├ ƒ /api/agent                           0 B                0 B
+├ ƒ /api/analyze-document                0 B                0 B
+├ ƒ /api/biblical-references             0 B                0 B
+├ ƒ /api/chapters                        0 B                0 B
+├ ○ /api/corpus                          0 B                0 B
+├ ƒ /api/execute                         0 B                0 B
+├ ƒ /api/graph                           0 B                0 B
+├ ƒ /api/health                          0 B                0 B
+├ ƒ /api/manuscript                      0 B                0 B
+├ ƒ /api/runtime-sources                 0 B                0 B
+├ ƒ /api/search                          0 B                0 B
+├ ƒ /api/tts                             0 B                0 B
+├ ƒ /api/visualize                       0 B                0 B
+├ ○ /characters                          196 B          94.7 kB
+├ ○ /dashboard                           196 B          94.7 kB
+├ ○ /graph                               196 B          94.7 kB
+├ ○ /memory                              196 B          94.7 kB
+├ ○ /search                              196 B          94.7 kB
+└ ○ /timeline                            196 B          94.7 kB
++ First Load JS shared by all            87 kB
+  ├ chunks/23-c9a2a17933206450.js        31.3 kB
+  ├ chunks/fd9d1056-3707d9139b74475d.js  53.6 kB
+  └ other shared chunks (total)          2.06 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

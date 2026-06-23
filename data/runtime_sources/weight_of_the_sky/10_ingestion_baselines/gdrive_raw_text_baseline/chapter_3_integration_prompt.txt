@@ -1,0 +1,38 @@
+﻿Chapter 3 Integration Prompt
+For May & November 2025 drafts
+
+You are a professional editor and literary ghostwriter. Your task is to integrate material from the documents into the version G of chapter 3.
+
+ULTIMATE TEXT SYNTHESIS PROTOCOL: GENERATING VERSION G
+​PRIMARY GOAL: Create the definitive, objectively superior Version G of Chapter 3, titled "The Ascent." This final text must be a seamless fusion of the best content from versions A-F, rigorously adhering to the style constraints of Chapters 1 and 2, and ensuring perfect narrative transition between Chapter 2 ((G) Chapter 2- Living Sacrifice.txt) and Chapter 4 ((Final) Chapter 4 - Pilgrimage.txt).
+​Phase 1: Definitive Override (Style & Lexicon Generation)
+​This phase establishes the CRITICAL CONSTRAINTS for the final text.
+1. ​Load Constraints: Fully load and prioritize all mandates from the 1.0 UNIVERSAL AND DEFINITIVE STYLE GUIDE (UDSG) and 2.0 Critique _ Analysis Guide.
+2. ​Prose Style Integration (The Recursive Mandate): Analyze the text of Chapter 1 ((E) Chapter 1 - Stardust to Stardust (1).txt) and Chapter 2 ((G) Chapter 2- Living Sacrifice.txt). Extract the unique cadence, density of abstraction, and high-concept narrative voice. Version G MUST be written in this exact prose style.
+3. ​Lexicon Dictionary and Cleansing System:
+ * ​Analyze the full text of Chapter 1 and Chapter 2.
+ * ​Identify all content-bearing words (excluding articles, pronouns, and common prepositions/conjunctions) used more than three times (e.g., 'Mass', 'Density', 'Cold', 'Struggle', 'Ascent', 'Claim').
+ * ​Generate a list of 3-5 Acceptable Stylistic Alternatives or Alternative Symbols/Phrases for each overused word (e.g., replace 'Mass' with 'Psychic Bulk' or 'Gravimetric Claim'). The final Version G MUST favor these alternatives to maintain lexical freshness and complexity.
+​Phase 2: Comparative Analysis and Fusion Plan Generation
+​Critique the six provided Chapter 3 versions (A through F) to build the Fusion Plan.
+1. ​Template Selection: Establish Version E as the core structural and thematic template (due to its clean flow and explicit vestibular consequence).
+2. ​Thematic Core: Confirm the ultimate consequence is the Vestibular Mechanism/Vertical Sight fracture.
+3. ​Fusion Plan (Non-Negotiable Content Integration):
+ * ​Opening Sensory Hook: Integrate the darkest, richest sensory detail from Version D: "copper tang of old altars, the smell of burnt offerings."
+ * ​Astarte's Identity: Incorporate the high-concept title from Version D: "sovereign of pure inertia."
+ * ​Temptation Upgrade: Use the most profound philosophical offer from Version D: "dissolution of all future accountability."
+ * ​Refusal Dialogue: Insert Dan's most eloquent counter-argument from Version C: "It demands a terrible tribute that I refuse to pay—the tribute of my will's ascending clarity.”
+ * ​Climax Mechanism: Explicitly name the point of attack using the terminology from Version D/E: "vestibular mechanisms."
+ * ​Character Anchor: Retain the connection to the father's "fatal choice" (from B) and the memory of the mother (Zuna) as the vertical tether.
+​Phase 3: Final Synthesis, Compilation, and Self-Correction Loop
+1. ​Draft Compilation: Execute the Fusion Plan (Phase 2) using the Lexicon Dictionary and Prose Style (Phase 1) to generate the first draft of Version G: The Ascent.
+2. ​Context Fitting Check:
+ * ​Chapter 2 Transition Check: The start of Version G must immediately follow the end of Chapter 2 (...the woman's face—the rising goddess—smiled.).
+ * ​Chapter 4 Transition Check: The end of Version G must seamlessly set up the start of Chapter 4 (The dark, it has a way of seeping in... He stirred slowly beneath the thin, scratchy blanket...).
+3. ​Final Self-Correction Loop (Pronged Verification): The final compiled text must be run through a final check to ensure:
+ * ​All constraints from the UDSG are met.
+ * ​All literary devices specified in 2.0 Critique _ Analysis Guide.txt are demonstrably present and effective.
+ * ​Overused words identified in the Lexicon Dictionary are successfully replaced by the generated stylistic alternatives.
+​FINAL OUTPUT MANDATE:
+* ​CRITICAL: Do not provide the analysis, the lexicon, or the fusion plan.
+* ​Only generate the final, superior chapter text within the mandatory file block format.

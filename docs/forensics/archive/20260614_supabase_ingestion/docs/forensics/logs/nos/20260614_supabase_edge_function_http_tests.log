@@ -1,0 +1,135 @@
+
+===== FUNCTION create-upload-url =====
+HTTP/2 400 
+date: Sun, 14 Jun 2026 14:25:46 GMT
+content-type: application/json
+cf-ray: a0ba019b9edeb188-DEN
+cf-cache-status: DYNAMIC
+access-control-allow-origin: *
+set-cookie: __cf_bm=xM16r5ZYU25WqUy.ksXNEemTARViQZrNa5qgHm7ZShM-1781447146.8161788-1.0.1.1-IWTnjH2fdXVmKXcd8mGsMgm85fgOa1pEgwxnxCU0Gagmz7G1SfMbaRFvXNHSUAFl8mFqfx7cbisTQflT2pr1eEUSGSDiEpEyoGVjgXA6PZkdaGOpUKIwjRf.dV3pqJ0K; HttpOnly; SameSite=None; Secure; Path=/; Domain=supabase.co; Expires=Sun, 14 Jun 2026 14:55:46 GMT
+server: cloudflare
+vary: Accept-Encoding
+access-control-allow-headers: authorization, x-client-info, apikey, content-type
+access-control-allow-methods: POST, OPTIONS
+endpoint-load-metrics: application_utilization:22,named_metrics.queue_depth:22
+sb-gateway-version: 1
+sb-project-ref: yegricugzqbmoziycfnt
+sb-request-id: 019ec686-3d43-7bf4-a0a4-9b319dbc70e9
+x-deno-execution-id: 001c9ff3-80d0-4bd9-a5a2-edd35540d270
+x-sb-edge-region: us-west-1
+x-served-by: supabase-edge-runtime
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+alt-svc: h3=":443"; ma=86400
+
+{
+  "ok": false,
+  "error": "Bucket not allowed: undefined"
+}
+
+===== FUNCTION register-uploaded-artifact =====
+HTTP/2 400 
+date: Sun, 14 Jun 2026 14:25:47 GMT
+content-type: application/json
+cf-ray: a0ba019d29585599-DEN
+cf-cache-status: DYNAMIC
+access-control-allow-origin: *
+set-cookie: __cf_bm=YESloYn5EFAUbwla3oHmjBOk5FfFh1D06PkY41dgSiM-1781447147.0663874-1.0.1.1-Bv4wAVhHYpo7kim52dsEG91kuAr2li5XEsnLQoccbJCE5TBxa12Y_Fic0iEMjBFxLSxF.vHW4z89Oo5FRQrt7OBcHTaEm93q2HToYxuvOND1fivrzXuZ7dZYF6.M3fkt; HttpOnly; SameSite=None; Secure; Path=/; Domain=supabase.co; Expires=Sun, 14 Jun 2026 14:55:47 GMT
+server: cloudflare
+vary: Accept-Encoding
+access-control-allow-headers: authorization, x-client-info, apikey, content-type
+access-control-allow-methods: POST, OPTIONS
+endpoint-load-metrics: application_utilization:23,named_metrics.queue_depth:23
+sb-gateway-version: 1
+sb-project-ref: yegricugzqbmoziycfnt
+sb-request-id: 019ec686-3e3d-7abb-8602-a78e61b4ad0e
+x-deno-execution-id: 3714f231-d853-4224-b6c6-46f80bf93805
+x-sb-edge-region: us-west-1
+x-served-by: supabase-edge-runtime
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+alt-svc: h3=":443"; ma=86400
+
+{
+  "ok": false,
+  "error": "Bucket not allowed: undefined"
+}
+
+===== FUNCTION verify-artifact-hash =====
+HTTP/2 400 
+date: Sun, 14 Jun 2026 14:25:47 GMT
+content-type: application/json
+cf-ray: a0ba019f0bbb06e5-DEN
+cf-cache-status: DYNAMIC
+access-control-allow-origin: *
+set-cookie: __cf_bm=emhCaamN73BLqGdB.NpY3hKL1GgCL3zy9VfPVTiAVPo-1781447147.3619044-1.0.1.1-OnbdUDXUnirrHstsxEHswM79JPZJel.6DIhz5CZYCXqc0VPeYzgxK.RonEmnejx3dk7t.3Bzxtvwn6Tylh2IMBxRJbeJN9tCbmL.9jb1mUx3tW4hbJFWw8gWKl9Vl6cH; HttpOnly; SameSite=None; Secure; Path=/; Domain=supabase.co; Expires=Sun, 14 Jun 2026 14:55:47 GMT
+server: cloudflare
+vary: Accept-Encoding
+access-control-allow-headers: authorization, x-client-info, apikey, content-type
+access-control-allow-methods: POST, OPTIONS
+endpoint-load-metrics: application_utilization:23,named_metrics.queue_depth:23
+sb-gateway-version: 1
+sb-project-ref: yegricugzqbmoziycfnt
+sb-request-id: 019ec686-3f69-7e0a-b12b-3c9f79e8c59f
+x-deno-execution-id: 42bd9315-9ea6-4d48-a0fa-bbc3e8fc98ab
+x-sb-edge-region: us-west-1
+x-served-by: supabase-edge-runtime
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+alt-svc: h3=":443"; ma=86400
+
+{
+  "ok": false,
+  "error": "Bucket not allowed: undefined"
+}
+
+===== FUNCTION enqueue-enrichment =====
+HTTP/2 400 
+date: Sun, 14 Jun 2026 14:25:47 GMT
+content-type: application/json
+cf-ray: a0ba01a0b8867987-DEN
+cf-cache-status: DYNAMIC
+access-control-allow-origin: *
+set-cookie: __cf_bm=Mfy8jY8y57hQPxC4rP6jOJeQPhNNjS83T2k1E7juUxU-1781447147.6313329-1.0.1.1-GgDNylofwyLYKbs6zE8dmODU.mJOsA4cB80QwhP.pOjeHPIGwD0SjYBme31KwPZKs4lNttGMWR_GFRxrDR2xOjzamde_tPjilGEag8mEeBsLjIgq31Ejsrp86CG22TYZ; HttpOnly; SameSite=None; Secure; Path=/; Domain=supabase.co; Expires=Sun, 14 Jun 2026 14:55:47 GMT
+server: cloudflare
+vary: Accept-Encoding
+access-control-allow-headers: authorization, x-client-info, apikey, content-type
+access-control-allow-methods: POST, OPTIONS
+endpoint-load-metrics: application_utilization:23,named_metrics.queue_depth:23
+sb-gateway-version: 1
+sb-project-ref: yegricugzqbmoziycfnt
+sb-request-id: 019ec686-4076-702e-b704-090113acf84e
+x-deno-execution-id: 44b45c6a-8db3-4c73-afb9-3a74a139e1c1
+x-sb-edge-region: us-west-1
+x-served-by: supabase-edge-runtime
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+alt-svc: h3=":443"; ma=86400
+
+{
+  "ok": false,
+  "error": "Unsupported job_kind: undefined"
+}
+
+===== FUNCTION process-enrichment-batch =====
+HTTP/2 400 
+date: Sun, 14 Jun 2026 14:25:48 GMT
+content-type: application/json
+cf-ray: a0ba01a27ab8ea6c-DEN
+cf-cache-status: DYNAMIC
+access-control-allow-origin: *
+set-cookie: __cf_bm=q3abdTX_9d6GL.xXLEoKhIBwBPSd2piqZ2PRPdmttbk-1781447147.910779-1.0.1.1-_SSYrxgpn1PeP_WhsZYZb5KUfGaQj72vqmBaTnAazC3l27a7wD.WWzbLqNkUKVmkhhn4RCSFR47pBJJQpsVkNe_k2QXaXJNd3Q.r6XN690pP1vZ4WbMgMRKeCKkzG.Ob; HttpOnly; SameSite=None; Secure; Path=/; Domain=supabase.co; Expires=Sun, 14 Jun 2026 14:55:48 GMT
+server: cloudflare
+vary: Accept-Encoding
+access-control-allow-headers: authorization, x-client-info, apikey, content-type
+access-control-allow-methods: POST, OPTIONS
+endpoint-load-metrics: application_utilization:23,named_metrics.queue_depth:23
+sb-gateway-version: 1
+sb-project-ref: yegricugzqbmoziycfnt
+sb-request-id: 019ec686-418b-76c1-a088-393de93ad20e
+x-deno-execution-id: 3685f8bc-bb2a-4d06-9e34-9f9764c89bb3
+x-sb-edge-region: us-west-1
+x-served-by: supabase-edge-runtime
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+alt-svc: h3=":443"; ma=86400
+
+{
+  "ok": false,
+  "error": "Invalid schema: nos"
+}

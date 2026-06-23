@@ -1,0 +1,17 @@
+nohup: ignoring input
+registered source_documents: 579
+{"run_id":"ca3d5711-8402-4e35-a87d-a4bc0d987291","chapter":1,"processed":1,"write_mode":true,"prompt_hash":"e5d283bdde299bd41d7721eac10767c12527da8e77924dbe56a66af995d58a33"}
+{"run_id":"ca3d5711-8402-4e35-a87d-a4bc0d987291","chapter":1,"processed":2,"write_mode":true,"prompt_hash":"e6d0fcb0db8e78f4b011452c5fe6efe620b5663edf5eb73237ef35d009d7bdc3"}
+{"run_id":"ca3d5711-8402-4e35-a87d-a4bc0d987291","chapter":1,"processed":3,"write_mode":true,"prompt_hash":"8476f40021e44ca9f01f723107f16a134e29e71263634ebcef9514970aed58c3"}
+{"run_id":"ca3d5711-8402-4e35-a87d-a4bc0d987291","chapter":1,"processed":4,"write_mode":true,"prompt_hash":"6dd6d5fff53547d6fed28efd3ea8ad3c78eddddefc10fc85ee1132368c984cc9"}
+{"run_id":"ca3d5711-8402-4e35-a87d-a4bc0d987291","chapter":1,"processed":5,"write_mode":true,"prompt_hash":"0aaceb2f4aaf95e81b017f77ffdad1f1acccef4272a2c0b3ce28cf872d118f6a"}
+{"run_id":"ca3d5711-8402-4e35-a87d-a4bc0d987291","chapter":1,"processed":6,"write_mode":true,"prompt_hash":"1751fa5b885ee474729e9941f8d921bc3e79ef37e6b02009f515c7e985b11811"}
+{"run_id":"ca3d5711-8402-4e35-a87d-a4bc0d987291","chapter":1,"processed":7,"write_mode":true,"prompt_hash":"2799132aad9faf4da1347d22ac520bfe0958a051f3a336e1ae01768798110e3a"}
+{"run_id":"ca3d5711-8402-4e35-a87d-a4bc0d987291","chapter":1,"processed":8,"write_mode":true,"prompt_hash":"93f45f722a54bdb1d40de1b6f058292fd657260d56278437a5bca2fb1abcb267"}
+{"run_id":"ca3d5711-8402-4e35-a87d-a4bc0d987291","chapter":1,"processed":9,"write_mode":true,"prompt_hash":"3b79f996eb72ebb0a5db29740fee43ad7a68a9b8110fd23b9688b87895b92458"}
+Error: Supabase Management API 400: {"message":"Failed to run sql query: ERROR:  23503: insert or update on table \"dualism_relation_evidence\" violates foreign key constraint \"dualism_relation_evidence_paragraph_id_fkey\"\nDETAIL:  Key (paragraph_id)=(a3d94dd0-98c8-5105-0ede-bc3337929bdc) is not present in table \"paragraphs\".\n"}
+    at managementQuery (file:///data/data/com.termux/files/home/Workspaces/Hybrid/writing-agent-interface/scripts/semantic/xml-grounded-vertex-rehash.mjs:177:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async insertRows (file:///data/data/com.termux/files/home/Workspaces/Hybrid/writing-agent-interface/scripts/semantic/xml-grounded-vertex-rehash.mjs:527:22)
+    at async writeSemanticResult (file:///data/data/com.termux/files/home/Workspaces/Hybrid/writing-agent-interface/scripts/semantic/xml-grounded-vertex-rehash.mjs:1176:7)
+    at async main (file:///data/data/com.termux/files/home/Workspaces/Hybrid/writing-agent-interface/scripts/semantic/xml-grounded-vertex-rehash.mjs:1282:7)

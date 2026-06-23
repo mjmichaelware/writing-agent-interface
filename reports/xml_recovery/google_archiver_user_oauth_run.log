@@ -1,0 +1,82 @@
+Local name targets: 181
+Listing visible Google Docs/DOCX/DOC files...
+Drive document candidates: 319
+Matched targets: 165
+Weak review targets: 2
+Unmatched targets: 14
+[1/57] Archiving: -Final Chapter 1 Revision Prompt-
+[2/57] Archiving: (R) Chapter: 1 - Stardust to Stardust 
+[3/57] Archiving: •(G) Chapter 2- Living Sacrifice
+[4/57] Archiving: (G) Chapter 3- Lift Up
+[5/57] Archiving: (Final) Chapter 5 - The Snare
+[6/57] Archiving: (Final) Chapter 6- Beelzebub, Beelzebub
+[7/57] Archiving: Chapter: 8 (Final)
+[8/57] Archiving: (D)_Chapter__7_-_The_Pit
+[9/57] Archiving: (Final) Chapter 9: The Ascent
+[10/57] Archiving: (Final) Chapter 4 - Pilgrimage
+[11/57] Archiving: (B) Chapter: 10 - Forsaken
+[12/57] Archiving: (Notes) (P) Chapter: 1 - Stardust to Stardust
+[13/57] Archiving: (Prompt Guide (E)) Chapter 10: Forsaken
+[14/57] Archiving: Writing Agent App. Source Doc. (10) [NEUTRON]
+[15/57] Archiving: (Old) 10.0 Mass Market
+[16/57] Archiving: 10.0 MASTER SYSTEM FOR CHAPTER REVISION
+[17/57] Archiving: 11.0 Error Catalog
+[18/57] Archiving: (Old) 11.0 Final Revision
+[19/57] Archiving: 11.0 Marketability 
+[20/57] Archiving: 13.0 GENERAL PRINCIPLES
+[21/57] Archiving: 2.0 Critique / Analysis Guide
+[22/57] Archiving: 3.0 Scientific Guide
+[23/57] Archiving: (Old) 4.0 (12 Rules For Life)
+[24/57] Archiving: (Old) 5.0 Final Guide
+[25/57] Archiving: 5.0 Psychology Guide
+[26/57] Archiving: (Old) 6.0 HIGHEST PRIORITY (Read this first and then again last) 
+[27/57] Archiving: 6.0 Supreme Generative Constraint
+[28/57] Archiving: 6.0 SYNTHESIS MANDATE
+[29/57] Archiving: (Old) 7.0 Nuclear Edit!!!! (CRITICAL! DIRE! EMERGENCY!!!)
+[30/57] Archiving: 8.0 Pacing/Redundancy
+[31/57] Archiving: ALITTERAS SYSTEM BLUEPRINT v1
+[32/57] Archiving: Chapter 3 - Commerciality and Marketing 3.0
+[33/57] Archiving: Chapter 3 Integration Prompt
+[34/57] Archiving: Chapter 1 Merge Prompt
+[35/57] Archiving: Chapter1_Q_Final
+[36/57] Archiving: Chapter 10.5
+[37/57] Archiving: Chapter 13: Exodus
+[38/57] Archiving: Chapter 2 - Analysis & Guides 1.0
+[39/57] Archiving: Chapter 3 - Master Revision Prompt 2.0
+[40/57] Archiving: Chapter 2nd to last
+[41/57] Archiving: Chapter 3 Analysis & Guides
+[42/57] Archiving: Chapter: 1 Proof of Authorship 1.0
+[43/57] Archiving: Chapter: 1 Proof of Authorship 1.1
+[44/57] Archiving: Chapter: 10 - MASTER BRIEFING
+[45/57] Archiving: Chapter2_Weight_of_the_Sky
+[46/57] Archiving: Critique 2.2
+[47/57] Archiving: Final Revision (Generalized For All Chapters)
+[48/57] Archiving: MANUSCRIPT AUTOPSY
+[49/57] Archiving: Narnia_
+[50/57] Archiving: 21.0 Purple Prose Prompt Protocol
+[51/57] Archiving: Final Master Singularity Compendium: The Weight of the Sky
+[52/57] Archiving: The Weight of the Sky: The Fall into Megiddo
+[53/57] Archiving: ToALITTERAS ECOSYSTEM v2
+[54/57] Archiving: Untitled document
+[55/57] Archiving: 🎓 MASTER INDIVIDUALIZED PLAN FOR EMPLOYMENT (IPE) & ACADEMIC ROADMAP
+[56/57] Archiving: AI JOB AGENT (6)
+[57/57] Archiving: WOS_Ch7_The_Pit
+
+DONE
+{
+  "archive_root": "data/source_archive/name_matched_google_docs/2026-06-13T04-43-18-673Z",
+  "target_dirs": [
+    "src/data-layer/ingestion-buffer/gdrive_raw"
+  ],
+  "local_name_targets": 181,
+  "drive_doc_candidates": 319,
+  "matched_targets": 165,
+  "weak_match_review_targets": 2,
+  "unmatched_targets": 14,
+  "unique_drive_docs_archived": 57,
+  "current_docx_saved": 57,
+  "total_ooxml_current_entries": 579,
+  "total_revision_records": 125,
+  "total_comments": 0,
+  "documents_with_errors": 0
+}

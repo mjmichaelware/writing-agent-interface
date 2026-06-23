@@ -1,0 +1,152 @@
+﻿Error Catalog 
+(Semi-Chapter 1 Specific)
+---
+
+ STRUCTURAL/PACING ERRORS (15)
+
+17. Unclear scene goals - What does Dan specifically want to accomplish in each scene segment?
+18. Missing ticking clock - Why must this happen tonight? No urgency established.
+19. Static opening - First 500 words are all exposition, no movement
+20. False climax placement - Dagon encounter feels like climax, but chapter continues for 1000+ words after
+21. Missing scene breaks - 8000 words is one unbroken block; needs white space/section breaks
+22. Unclear spatial relationships - Where is Dan's room relative to father's room? Hearth? Layout never clear.
+23. Timeline confusion - "Three nights ago they fought" but when? What day is today?
+24. Missing transitional beats - Jumps from waking world → dreamscape too abruptly
+25. Weak chapter-ending hook - Ends on atmosphere, not question/tension
+26. Frontloaded exposition - All dreamwalking rules explained before we see it
+27. Backstory interrupts forward motion - Mother's death story stops the narrative cold
+28. Missing escalation - Each beat should raise stakes; instead they plateau
+29. Unclear what changes - Dan ends where he began (in his room, exhausted)
+30. No clear decision point - What choice does Dan make that propels him forward?
+31. Missing complication - Success/failure too clean; needs unexpected consequences
+
+---
+
+ CHARACTER/VOICE ERRORS (15)
+
+32. Dan has no distinctive speech pattern - His dialogue could be anyone's
+33. Missing internal contradiction - Dan is too unified; no competing desires
+34. Unclear motivation - "Saving himself" from what exactly? Too vague.
+35. No character-specific observations - Narration doesn't filter through Dan's unique perspective
+36. Missing emotional complexity - Love for father too simple; where's the resentment?
+37. Static character knowledge - Dan knows everything at start; no discovery
+38. Unclear character flaw - What's Dan's actual weakness beyond "overconfident"?
+39. Missing distinctive gesture/mannerism - No physical character signature
+40. Aviel has no voice - We never hear him speak; he's an object not a character
+41. Missing character judgment - Dan never evaluates his own choices critically
+42. Unclear expertise level - Is Dan skilled at dreamwalking or struggling? Inconsistent.
+43. No unique metaphor vocabulary - Dan's thoughts could belong to any character
+44. Missing personality in narration - Even close third should have character flavor
+45. Unclear agency - Does Dan choose this or is it happening to him?
+46. Missing physicality - Dan has "kind eyes" but what does he actually look like?
+
+---
+
+ PROSE/CRAFT ERRORS (20)
+
+47. Filter words excessive - "felt,"
+
+"could feel," "heard,"
+
+"saw" appear 15+ times
+48. Passive constructions - "was choked,"
+
+"was made," "were frozen" weaken action
+49. Adverb overuse - "badly,"
+
+"spectacularly," "perfectly,"
+
+"completely," "utterly"
+50. Weak verbs - "was,"
+
+"had," "came,"
+
+"went" dominate; need stronger choices
+51. Prepositional phrase stacking - "on the cold stone beside his father's door" = 3 preps in a row
+52. Unclear antecedents - "It stretched away" - what is "it" exactly?
+53. Vague qualifiers - "some people,"
+
+"very few," "something else" - be specific
+54. Generic sensory details - "cold stone,"
+
+"dark corridor" appear in every fantasy novel
+55. Cliché phrases - "heart hammered,"
+
+"breath caught," "eyes went wide"
+56. Missing sentence rhythm variation - Paragraphs 15-20 all use same cadence
+57. Buried sentence leads - Important info hidden mid-sentence instead of stressed positions
+58. Weak sentence endings - Sentences end on articles, prepositions, weak words
+59. Repetitive sentence openings - 8+ sentences start with "Dan" in succession
+60. Missing fragment usage - Could use fragments for emphasis but never does
+61. Comma splices - Several instances of improperly joined independent clauses
+62. Unclear parallel structure - Lists don't maintain grammatical consistency
+63. Missing power words in stress positions - Strongest words should end sentences
+64. Circumlocution - Takes 15 words to say what could be said in 5
+65. Academic register intrusions - "accumulated debris,"
+
+"navigate becomes a joke" feel essay-like
+66. Missing concrete nouns - Too many abstracts (grief, chaos, darkness) vs. concrete objects
+
+---
+
+ SHOWING VS. TELLING ERRORS (15)
+
+67. Telling emotions directly - "Dan felt love surge" instead of showing physical response
+68. Explaining instead of dramatizing - "Here's what you need to understand about grief" = essay mode
+69. Summarizing instead of scene - Mother's death told in summary, not shown
+70. Abstract descriptions - "profound exhaustion" instead of specific physical sensations
+71. Naming emotions - "wonder and terror and hope" - show the face, let reader infer
+72. Telling character traits - "kind eyes" tells us Dan is kind; show kind action
+73. Explaining metaphors - "like a cart with a broken axle. The part of him that moved forward simply ceased" - the second sentence explains the metaphor
+74. Telling relationships - "This was his father" instead of showing their dynamic
+75. Explaining symbols - Stardust speech explains its own symbolism
+76. Telling significance - "The contrast matters" - let reader discover significance
+77. Narrative summary of action - "Dan began to gather" instead of showing each action
+78. Telling sensory info - "The smell came in layers" then lists them; just give the smells
+79. Explaining motivation - "hoping to save him from grief's slow rot" tells us why
+80. Telling time passage - "For a moment" instead of showing the beat
+81. Emotional labeling - "His heart broke clean through" names the emotion
+
+---
+
+ THEOLOGICAL/WORLD-BUILDING ERRORS (10)
+
+82. Inconsistent deity hierarchy - Dagon claims to be foundation of high gods; unclear what this means
+83. Unclear magic cost - Dreamwalking exhausts Dan, but rules unclear (why? how much? always?)
+84. Missing cultural specificity - Hebron 1010 BCE should have specific daily life details
+85. Generic ancient setting - Could be any ancient Middle East fantasy setting
+86. Unclear Canaanite theology - Mixing actual deities (Dagon, Baal, El) with made-up cosmology
+87. Missing religious practices - No prayer, ritual, sacrifice, daily religious observance shown
+88. Anachronistic concepts - "Inner psychology" is modern Western framework
+89. Missing historical texture - No mention of David's reign, Philistine conflicts, actual 1010 BCE context
+90. Unclear pantheon rules - Can deities enter dreams? Always? Why Dagon specifically?
+91. Missing worldbuilding through detail - No food, clothing, tools, currency, social structure shown
+
+---
+
+ IMAGERY/SYMBOL ERRORS (10)
+
+92. Mixed metaphors - Water/earth/star imagery doesn't cohere
+93. Heavy-handed symbolism - Stardust = transcendence is too obvious
+94. Unclear symbolic consistency - What do stones represent? Changes meaning three times.
+95. Missing visual clarity - Can't picture what Dreamscape actually looks like
+96. Generic fantasy imagery - Torches, stone corridors, ancient temples = stock fantasy
+97. Overused metaphors - Darkness/light binary is fantasy cliché
+98. Strained comparisons - "Silence of the cosmos" doesn't match ancient worldview
+99. Missing biblical allusion subtlety - Genesis quote is too direct
+100. Unclear color symbolism - Mother's thread colors mentioned but not meaningful
+101. Missing sensory grounding in metaphor - Metaphors float free of concrete sensory detail
+
+---
+
+ USAGE INSTRUCTIONS:
+
+During revision, cross-reference each error number with the appropriate PASS in the AI Revision Protocol:
+- Errors 17-31 → PASS 1 (Structural)
+- Errors 32-46 → PASS 2 (Character)
+- Errors 47-66 → PASS 3 (Prose)
+- Errors 67-81 → PASS 4 (Show/Tell)
+- Errors 82-91 → PASS 5 (World/Theology)
+- Errors 92-101 → PASS 6 (Imagery/Symbol)
+
+Mark each error FIXED after addressing it. Do not proceed to output until all 101 are marked FIXED.

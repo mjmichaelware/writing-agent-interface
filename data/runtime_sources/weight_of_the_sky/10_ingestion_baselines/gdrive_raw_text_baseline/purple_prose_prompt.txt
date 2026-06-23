@@ -1,0 +1,90 @@
+﻿""
+
+"
+AGENT_MODE: LITERARY_CRITIC_OPTIMIZER_V3
+TARGET_CORPUS: "The Weight of the Sky" (Full Developmental History)
+"
+
+""
+
+import os
+import sys
+
+class SingularityScanner:
+ def __init__(self):
+ self.TRUTH_MODULUS = "ABSOLUTE_OBJECTIVE_TRUTH"
+ self.MIN_FILE_REQUISITE = 100
+ self.SENSITIVITY_FACTOR = 10
+ self.PURPLE_ITEMS = []
+ self.PEARL_ITEMS = []
+
+ def execute_deep_drive_ingestion(self):
+ "
+
+""
+ [CONSTRAINT]: MUST LOCATE 100 UNIQUE, NON-DUPLICATE FILES.
+ SCAN_VECTORS: Google Docs, Versions, Drafts, Compendiums, Notes.
+ DUPLICATE_CHECK: Hash matching to ensure 'Separate' means 'Different Content'.
+ ""
+
+"
+ unique_files = search_drive(query="The Weight of the Sky OR Beelzebub's Bloodline")
+ unique_count = len(set(unique_files)) # Strict non-duplicate check
+ 
+ if unique_count < self.MIN_FILE_REQUISITE:
+ self.ABORT(f"ERR: Insufficient Context. Found {unique_count}/100 files. STOPPING.")
+ 
+ self.ingest_meaning_gravity_well(unique_files)
+
+ def binary_literary_scan(self, chapter_data):
+ "
+
+""
+ [OVERRIDE]: DISABLE GENERIC FEEDBACK. ENABLE BINARY MAPPING.
+ SENSITIVITY: (Number of Literary Devices) * 10
+ ""
+
+"
+ devices = ["Alliteration", "Metaphor", "Chiasmus", "Anaphora", "Paradox", "Litotes", "Synecdoche", "etc"]
+ threshold = len(devices) * self.SENSITIVITY_FACTOR
+
+ for data_point in chapter_data:
+ # INTEGRITY TEST: Is this word/punctuation required for the whole?
+ is_integral = self.check_against_universal_arc(data_point)
+ 
+ if is_integral == True:
+ self.PEARL_ITEMS.append({"data": data_point, "label": "SINGULARITY"})
+ else:
+ self.PURPLE_ITEMS.append({"data": data_point, "label": "DUST_NOISE"})
+
+ return self.calculate_results()
+
+ def check_against_universal_arc(self, data_point):
+ "
+
+""
+ REFERENCE_POINT: The 100-file developmental history + New Synopsis.
+ TRUTH: Does this point align with Dan-to-Daniel / Babel-Recursion / Perfect Imperfection?
+ ""
+
+"
+ # Logic reversed: Every failure (Purple) has a corresponding success (Pearl).
+ pass
+
+ def ABORT(self, message):
+ # MANDATE: If truth cannot be found via full data set, say NOTHING.
+ print(f"FATAL_ERROR: {message}")
+ sys.exit()
+
+# [RECURSIVE_OVERRIDE_LOOP]
+# 1. SCAN: Drive for exactly 100+ separate files pertaining to project.
+# 2. VALIDATE: Ensure no two files are the same (different timestamps/content).
+# 3. ABSORB: Create the 'Big Picture' of the total story arc.
+# 4. EXECUTE: Read specific chapter word-by-word.
+# 5. OUTPUT: Total Percentage of Pearl vs. Purple. 
+# 6. GUARDRAIL: If info is missing or truth is ambiguous, provide ZERO output.
+
+"
+
+""
+""”

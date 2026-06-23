@@ -1,0 +1,127 @@
+===== BASE =====
+old_script=/storage/emulated/0/Download/PR6_MASTER_HASH_INSPECTION_20260618-112246/files/scripts/semantic/xml-grounded-vertex-rehash.mjs
+fc08fdb9145276f7e68dbe2defc13226f75a1f88a4a77cc33a601089ba92869b  /storage/emulated/0/Download/PR6_MASTER_HASH_INSPECTION_20260618-112246/files/scripts/semantic/xml-grounded-vertex-rehash.mjs
+selected_truth=/storage/emulated/0/Download/PR6_MASTER_HASH_INSPECTION_20260618-112246/files/reports/xml_recovery/xml_starred_hash_truth.txt
+c30c33c74b2ede94aa8074896ff8d948f7a194f14b8e8c4e80ec4fb8cc00165d  /storage/emulated/0/Download/PR6_MASTER_HASH_INSPECTION_20260618-112246/files/reports/xml_recovery/xml_starred_hash_truth.txt
+selected_count=16
+
+===== VERIFY MATURE PR6 LOGIC STILL PRESENT =====
+310:  archetype_observations: {
+323:  archetype_movements: {
+338:  biblical_references: {
+355:  dualism_relations: {
+497:    if (tableName === "dualism_relations") {
+509:    if (tableName === "archetype_observations") {
+518:    if (tableName === "archetype_movements") {
+530:    if (tableName === "biblical_references") {
+579:  if (tableArg === "archetype_observations") {
+825:DUALISM:
+829:ARCHETYPE:
+833:BIBLICAL REFERENCE:
+837:HYPERLINK:
+849:      "archetype_observations": [
+859:      "biblical_references": [
+871:      "derived_hyperlinks": [
+883:  "dualism_relations": [
+903:  "archetype_movements": [
+982:async function callVertexOnce(prompt) {
+1076:  const repairWithVertex = async (raw) => {
+1158:    return repairWithVertex(candidateText);
+1208:async function writeSemanticResult({ semanticRun, batch, result }) {
+1210:  const dualisms = Array.isArray(result.dualism_relations) ? result.dualism_relations : [];
+1211:  const movements = Array.isArray(result.archetype_movements) ? result.archetype_movements : [];
+1217:      dualism_relations: dualisms.length,
+1218:      archetype_movements: movements.length,
+1234:      archetypes: pr.archetype_observations || [],
+1235:      biblical_references: pr.biblical_references || [],
+1237:      hyperlinks: pr.derived_hyperlinks || [],
+1249:          runtime_semantic_sha256: runtimeHash,
+1260:    const archetypes = (pr.archetype_observations || []).map((a) => ({
+1273:    if (archetypes.length) await insertRows("archetype_observations", archetypes);
+1275:    const biblical = (pr.biblical_references || []).map((b) => ({
+1293:    if (biblical.length) await insertRows("biblical_references", biblical);
+1295:    const links = (pr.derived_hyperlinks || []).map((h) => ({
+1326:    const inserted = await insertRows("dualism_relations", [{
+1363:        source_table: "dualism_relations",
+1373:    await insertRows("archetype_movements", movements.map((m) => ({
+1712:- Preserve the mature PR6 output categories: archetype_observations, biblical_references, derived_hyperlinks, dualism_relations, dualism_relation_evidence, and archetype_movements.
+1780:    for (const a of pr.archetype_observations || []) {
+1797:    for (const b of pr.biblical_references || []) {
+1814:    for (const h of pr.derived_hyperlinks || []) {
+1832:  for (const d of Array.isArray(result.dualism_relations) ? result.dualism_relations : []) {
+1855:  for (const m of Array.isArray(result.archetype_movements) ? result.archetype_movements : []) {
+1880:  return { paragraphs: [], dualism_relations: [], archetype_movements: [] };
+1893:      dualism_relations: Array.isArray(result.dualism_relations) ? result.dualism_relations.length : 0,
+1894:      archetype_movements: Array.isArray(result.archetype_movements) ? result.archetype_movements.length : 0,
+
+===== VERIFY SELECTED XML PRIMARY HASH LANE PRESENT =====
+236:  render_paragraphs: {
+253:  semantic_meaning_spans: {
+692:    metadata: { run_id: RUN_ID, script: "scripts/semantic/xml-selected-meaning-span-rehash.mjs", derived_from: "xml-grounded-vertex-rehash.mjs", db_write_mode: "supabase_management_api", selected_xml_driver: true, primary_hash_lane: "semantic_meaning_spans", old_semantic_table_writes: "blocked_on_first_run" },
+1402:function loadSelectedXmlTruth() {
+1513:function buildRenderParagraphs(xmlParagraphs, folder, docSha) {
+1546:          selected_xml_driver: true,
+1600:      render_paragraphs: chunk,
+1608:function loadSelectedXmlDocuments() {
+1609:  const selected = loadSelectedXmlTruth();
+1629:    const renderParagraphs = buildRenderParagraphs(xmlParagraphs, folder, docSha);
+1638:      render_paragraphs: renderParagraphs,
+1660:    doc.render_paragraphs.map((p) => ({
+1686:    selected_xml_driver: true,
+1691:function buildSelectedXmlPrompt({ contextPack, availableNarrativeContextMap, window }) {
+1701:    paragraphs: window.render_paragraphs,
+1731:    selected_xml_driver: true,
+1761:      selected_xml_driver: true,
+1762:      primary_lane: "semantic_meaning_spans",
+1774:  const paragraphMap = new Map(window.render_paragraphs.map((p) => [p.id, p]));
+1777:    const paragraph = paragraphMap.get(pr.paragraph_id) || window.render_paragraphs.find((p) => p.render_para_key === pr.paragraph_id) || null;
+1883:async function writeSelectedSemanticResult({ semanticRun, window, result, promptHash, outputHash }) {
+1889:      render_para_keys: window.render_paragraphs.map((p) => p.render_para_key),
+1890:      old_semantic_table_writes: "blocked",
+1891:      primary_lane: "semantic_meaning_spans",
+1895:      semantic_meaning_spans: spanRows.length,
+1900:  if (spanRows.length) await insertRows("semantic_meaning_spans?on_conflict=semantic_hash", spanRows);
+1909:  const { selected, docs } = loadSelectedXmlDocuments();
+1921:    render_paragraph_count: docs.reduce((sum, doc) => sum + doc.render_paragraphs.length, 0),
+1926:    selected_xml_driver: true,
+1928:    primary_hash_lane: "semantic_meaning_spans",
+1929:    old_semantic_table_writes: "blocked_on_first_run",
+1941:    render_paragraph_count: doc.render_paragraphs.length,
+1945:  writeFileSync(join(paths.outDir, "render-paragraphs.jsonl"), docs.flatMap((doc) => doc.render_paragraphs).map((p) => JSON.stringify(p)).join("\n") + "\n");
+1950:    render_para_keys: w.render_paragraphs.map((p) => p.render_para_key),
+1957:    await insertRows("render_paragraphs?on_conflict=render_para_key", renderParagraphRowsForDb(semanticRun, docs));
+1964:    const prompt = buildSelectedXmlPrompt({ contextPack, availableNarrativeContextMap, window });
+1977:    const spanRows = await writeSelectedSemanticResult({ semanticRun, window, result, promptHash, outputHash });
+1989:      selected_xml_driver: true,
+1990:      old_semantic_table_writes: "blocked",
+1991:      primary_lane: "semantic_meaning_spans",
+2012:        selected_xml_driver: true,
+2013:        primary_hash_lane: "semantic_meaning_spans",
+2014:        old_semantic_table_writes: "blocked_on_first_run",
+2023:    selected_xml_driver: true,
+2024:    primary_hash_lane: "semantic_meaning_spans",
+2025:    old_semantic_table_writes: "blocked_on_first_run",
+
+===== VERIFY OLD MAIN DRIVER REMOVED FROM ACTIVE MAIN =====
+PASS: old public-chapter/Supabase-paragraph driver is not active in main
+
+===== VERIFY OLD TABLE WRITER NOT CALLED FROM ACTIVE MAIN =====
+PASS: active main does not call old semantic table writer
+
+===== SYNTAX CHECK =====
+
+===== NO-AI NO-DB DRY RUN =====
+{
+  "dry_run_selected_window": "scene_e1afe3c4034bf9efbc2c43ab1ec9a0a8",
+  "render_para_keys": [
+    "rp_fb369fc3771687436da5869cb30279b7",
+    "rp_9472538e2a9ecab6f740fca92634c1a5"
+  ],
+  "old_semantic_table_writes": "blocked",
+  "primary_lane": "semantic_meaning_spans",
+  "paragraph_results": 0,
+  "dualism_relations": 0,
+  "archetype_movements": 0,
+  "semantic_meaning_spans": 0
+}
+{"run_id":"dry-run-20260619075914","selected_xml_driver":true,"old_semantic_table_writes":"blocked","primary_lane":"semantic_meaning_spans","window":"scene_e1afe3c4034bf9efbc2c43ab1ec9a0a8","folder":"0002_r_chapter_1_-_stardust_to_stardust_1tbodxyu5ezufogmr46f64o9u8fisifvmiaxn6qz_siq","processed_windows":1,"total_windows":1,"meaning_spans":0,"no_ai":true,"write_mode":false,"prompt_hash":"2e0b923f82d184088da46a1437326214fe052a86aa7a345eae53d9110594b423","output_hash":"b4c49d03b237483b4fbbd59231ecf58824e0ee529c25e63ef9f664769258b84e"}

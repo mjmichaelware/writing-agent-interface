@@ -1,0 +1,11 @@
+nohup: ignoring input
+registered source_documents: 579
+{"run_id":"9da01ede-6994-497f-b041-ad24c8800ea2","chapter":1,"processed":1,"write_mode":true,"prompt_hash":"e5d283bdde299bd41d7721eac10767c12527da8e77924dbe56a66af995d58a33"}
+{"run_id":"9da01ede-6994-497f-b041-ad24c8800ea2","chapter":1,"processed":2,"write_mode":true,"prompt_hash":"e6d0fcb0db8e78f4b011452c5fe6efe620b5663edf5eb73237ef35d009d7bdc3"}
+{"run_id":"9da01ede-6994-497f-b041-ad24c8800ea2","chapter":1,"processed":3,"write_mode":true,"prompt_hash":"8476f40021e44ca9f01f723107f16a134e29e71263634ebcef9514970aed58c3"}
+Error: Supabase Management API 400: {"message":"Failed to run sql query: ERROR:  42703: column \"connection_type\" of relation \"hyperlinks\" does not exist\nLINE 6:       insert into public.\"hyperlinks\" (\"paragraph_id\", \"semantic_run_id\", \"theme_node_a\", \"theme_node_b\", \"connection_type\", \"chapter_reference\", \"strength\", \"source_table\", \"source_id\", \"edge_type\", \"confidence\", \"semantic_hash\", \"active\", \"metadata\")\n                                                                                                                  ^\n"}
+    at managementQuery (file:///data/data/com.termux/files/home/Workspaces/Hybrid/writing-agent-interface/scripts/semantic/xml-grounded-vertex-rehash.mjs:177:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async insertRows (file:///data/data/com.termux/files/home/Workspaces/Hybrid/writing-agent-interface/scripts/semantic/xml-grounded-vertex-rehash.mjs:411:22)
+    at async writeSemanticResult (file:///data/data/com.termux/files/home/Workspaces/Hybrid/writing-agent-interface/scripts/semantic/xml-grounded-vertex-rehash.mjs:1030:23)
+    at async main (file:///data/data/com.termux/files/home/Workspaces/Hybrid/writing-agent-interface/scripts/semantic/xml-grounded-vertex-rehash.mjs:1166:7)

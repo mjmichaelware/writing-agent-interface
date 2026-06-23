@@ -1,0 +1,1811 @@
+CURRENT_BRANCH=cleanup/standard-app-tree
+DEFAULT_BRANCH=master
+
+=== STATUS ===
+ M package-lock.json
+ M package.json
+ M src/app/api/graph/route.ts
+ M src/app/graph/page.tsx
+ M src/components/layers/panel/AuthorGateway.tsx
+ M src/components/layers/panel/HyperlinksGraph.tsx
+ M src/components/ui/graph-view.tsx
+ M tsconfig.json
+?? audit-where-the-data-went.sh
+?? definitive-data-loss-audit.sh
+?? docs/agent_context/source_drop/hasher_context_v1/
+?? docs/forensics/audits/
+?? docs/forensics/backups/fix-archetype-active-default-20260617-203231/
+?? docs/forensics/backups/fix-callvertex-wrapper-20260617-193156/
+?? docs/forensics/backups/full-schema-align-small-20260617-204630/
+?? docs/forensics/backups/full-semantic-schema-align-20260617-204420/
+?? docs/forensics/backups/management-api-rehash-script-write-20260617-182033/
+?? docs/forensics/backups/replace-callvertex-only-20260617-193935/
+?? docs/forensics/backups/starred-xml-google-docs-filter-20260618131049/
+?? docs/forensics/backups/starred-xml-hash-allowlist-20260618130824/
+?? docs/forensics/backups/vertex-json-repair-patch-20260617-192439/
+?? docs/forensics/backups/xml-grounded-vertex-rehash-write-20260617-163715/
+?? hash-provenance-map.sh
+?? live-supabase-schema-truth.sh
+?? reports/xml_recovery/final_xml_gap_summary.txt
+?? reports/xml_recovery/graw_127_missing_xml.tsv
+?? reports/xml_recovery/graw_127_missing_xml_paths.txt
+?? reports/xml_recovery/graw_182_files_clean.tsv
+?? reports/xml_recovery/graw_182_missing_xml.tsv
+?? reports/xml_recovery/graw_182_missing_xml_paths.txt
+?? reports/xml_recovery/graw_182_name_paired_to_xml.txt
+?? reports/xml_recovery/graw_182_paired_exactish.tsv
+?? reports/xml_recovery/graw_182_source_used.txt
+?? reports/xml_recovery/graw_missing_xml.json
+?? reports/xml_recovery/graw_missing_xml.txt
+?? reports/xml_recovery/graw_name_missing_xml.txt
+?? reports/xml_recovery/graw_to_xml_paired.json
+?? reports/xml_recovery/xml_55_name_keys.txt
+?? reports/xml_recovery/xml_backed_55_docs.txt
+?? reports/xml_recovery/xml_backed_documents.txt
+?? reports/xml_recovery/xml_paired_documents.json
+?? reports/xml_recovery/xml_rehash_current_truth.txt
+?? test-db.js
+
+=== COMMITS CURRENT NOT DEFAULT ===
+b282a50 (HEAD -> cleanup/standard-app-tree, origin/cleanup/standard-app-tree) Restrict semantic XML rehash to starred manuscript sources
+a319697 fix: align semantic writer with live Supabase schema
+873fe41 fix: use insertRows table parameter for archetype active default
+1079caa fix: default archetype observations active during semantic rehash
+25a95fe fix: replace callVertex with robust syntax-safe JSON parser
+06d6b5f fix: restore callVertex wrapper for semantic rehash
+4325d96 fix: capture and repair malformed Vertex JSON in semantic rehash
+bb7b6d8 fix: use best available Vertex Pro model for semantic rehash
+d516f37 feat: use Supabase Management API for semantic rehash writes
+52f16bc ci: apply semantic schema through Supabase Management API deploy rail
+24564e1 feat: add XML-grounded Vertex semantic rehash pipeline
+fc26bb0 fix: route chapters through Supabase and degrade health gracefully
+2b45690 feat: Address user feedback, re-implement secure PIN, enhance UI kinetics and accessibility
+289e841 feat: Refine Layer 4 panels, dualism analytics, and remove hardcoded values
+065caa4 feat: Implement core reader layers, semantic typography & image engine, and user controls
+93243ea feat: Repair NOS reader layers and semantic typography runtime
+c186b16 Directly externalize remaining local-only directories
+db3f352 Force externalize local private archive surfaces
+56e073c Record final local private externalization
+e919dbf Externalize local private and source archive surfaces
+c1997d1 Polish repository root structure and preserve local artifacts
+a1644c7 Canonicalize project tree and preserve cleanup forensics
+2f3cf09 Canonicalize project tree and preserve cleanup forensics
+0d2df75 Record build workflow dispatch limitation
+0744972 Record Termux Next build limitation
+024d4a3 Archive NOS Supabase ingestion artifacts
+537a757 Record NOS Supabase Edge deploy checkpoint
+feed0ff Allow Supabase function deploy from cleanup branch
+d27708b Deploy NOS Supabase Edge Functions
+30111b5 chore: ignore local raw ingestion artifacts
+7b748a8 chore: remove preserved root forensic clutter
+3cc13f5 chore: checkpoint writing agent interface cleanup state
+898ec45 Fix Vercel build by using Next compiler and Node 20
+aec8db4 Clean repository structure and preserve app configuration
+834a19b (origin/main, main) feat: NOS Complete - Multi-LLM Swarm, Document Analyzer, Audiobook Layer, and optimized ingestion
+3deb387 feat: NOS Phase 1 Completion - Database-driven architecture, Ultra-iOS aesthetics, and semantic ingestion engine
+4fdf0d5 feat: ensure all assets are rendering correctly, including Title Page photo (boy-and-moon.png), Megiddo, and Flies assets with intelligent layering and front-matter detection
+921c202 feat: implement intelligent dual-layer cinematic projection for Chapter 7 and add mock data fallbacks for System Tabs to ensure visual rendering
+89520de fix: restore visibility of chapters and system tabs by copying manuscript files to public/ and improving fallback logic
+7d6ade8 fix: restore EventBus unsubscribe return and add defensive Array.isArray checks to API-driven components to prevent client-side crashes
+ba3b6d3 (tag: v3-tabs-live) feat: force-mount Layer4Panel with max z-index (2147483647), inline styles bypass globals.css, Suspense + ErrorBoundary per tab, mounted in both page.tsx and layout.tsx for guaranteed presence
+e10fe70 chore: ignore typescript and eslint errors during build to unblock production
+b2e9949 fix: install openai and groq-sdk for agent routes
+a66dbb0 fix: remove --webpack from vercel.json and install missing gcloud/lucide deps
+858649b fix: downgrade React to 18 to satisfy Next 14 peer dependencies
+038d4a7 fix: add missing @tailwindcss/postcss and react dependencies to fix Vercel build
+fe81f50 chore: add NOS-V4-LIVE deploy proof marker — verifying production pipeline is functional before panel rebuild
+aee1e6e fix: dependency injection for cloud build
+1ddfc60 fix: restore missing dependencies
+1ee761a force: remove all webpack flags
+1579585 force: nuke webpack flag and lock vercel build command
+ba415df chore: nuke all webpack references
+cca070f chore: nuke local build artifacts from git index
+92001db fix: restore clean package.json, remove webpack forcing
+e752e2b chore: enforce project root and build command via vercel.json
+aeea6f0 fix: hoist Layer4Panel to root stacking context
+d93a3d4 recovery: restore working architecture and integrate system tabs/chapters correctly
+d7ee008 fix: add empty turbopack config to next.config.js
+324a1ea fix: remove vercel.json to resolve .next/lock ENOENT error
+0c969ca fix: restore standard build script
+c42b05a fix: use standard build on Vercel
+0eccb8d fix: remove invalid turbopack key from config
+044b8ca fix: resolve prerender errors by removing duplicate Layer4Panel and fixing EventBus unsubscribe
+b420775 recovery: restore cybernetic system tabs and map chapters 1-11, 13, 24
+07d6439 fix: mount missing Layer4Panel drawer container
+5bfadeb chore: force deploy marker
+ddf69ee feat: force-mount Layer4Panel with max z-index (2147483647), inline styles bypass globals.css, Suspense + ErrorBoundary per tab, mounted in both page.tsx and layout.tsx for guaranteed presence
+da825d7 chore: add NOS-V4-LIVE deploy proof marker — verifying production pipeline is functional before panel rebuild
+6f6b3db feat: force-mount Layer4Panel with 5 working tabs (HyperlinksGraph D3 constellation, BiblicalReferences distribution + grouped directory, Archetypes timeline, ChapterSettings physics, AuthorGateway PIN console), z-index 9999/10000, Suspense + ErrorBoundary per tab so one crash cannot break the panel
+
+=== COMMITS DEFAULT NOT CURRENT ===
+40a346b (origin/master, origin/HEAD) feat: add cinematic, interactive network dashboard for hyperlinks (Supabase, Nivo Network)
+9ed8c21 feat: add cinematic, interactive radar dashboard for writing agent console (Supabase, Nivo Radar)
+6de87c2 feat: add cinematic, interactive bar dashboard for biblical_references (Supabase, Nivo Bar)
+555c506 feat: add cinematic, prestige-level CSS for Layer4Panel/CinematicDashboard
+59a03ec feat: add cinematic, interactive Supabase dashboard for dualism_map to Layer4Panel
+2e98758 Merge pull request #3 from mjmichaelware/main
+
+=== DIFF STAT DEFAULT...CURRENT ===
+ .../apply-supabase-migration-management-api.yml    |    84 +
+ .../workflows/deploy-supabase-functions-only.yml   |   100 +
+ .github/workflows/deploy-supabase.yml              |    44 +
+ .github/workflows/semantic-rehash-dry-run.yml      |    47 +
+ .github/workflows/semantic-rehash-full.yml         |    49 +
+ .gitignore                                         |   113 +-
+ AGENTS.md                                          |   125 +-
+ GEMINI.md                                          |     6 +-
+ NOS_Core_Engine_Discovery_Dump.txt                 |    53 -
+ NOS_Critical_Files_Dump.txt                        |   889 -
+ NOS_Layout_Search_Discovery_Dump.txt               |   201 -
+ NOS_Panel_Runtime_EMA_Dump.txt                     |    45 -
+ NOS_Remaining_23_Matrix_Dump.txt                   |   117 -
+ NOS_Responsive_Style_Config_Dump.txt               |   241 -
+ .../013_WRITING_AGENT_APP_SOURCE_DOC_4_TERMUX.txt  |   535 +
+ ...014_WRITING_AGENT_APP_SOURCE_DOC_8_COMBINED.txt |   756 +
+ docs/agent_context/canonical/016_229_1.txt         |   230 +
+ .../024_AESTHETIC_AND_IMPLEMENTATION_MANDATE.txt   |   406 +
+ .../canonical/026_AI_CHECKPOINT_FINAL.txt          | 17508 +++++++
+ .../canonical/029_AI_INFORMATION_INTUITION.md      |   768 +
+ .../canonical/031_AI_READY_CHECKPOINT.txt          |   Bin 0 -> 1724056 bytes
+ docs/agent_context/canonical/034_AIM_BLUEPRINT.txt |   190 +
+ .../071_CLAUDE_HONEST_ASSESSMENT_20260513.md       |   212 +
+ .../072_CLAUDE_HONEST_ASSESSMENT_V2_20260513.md    |   211 +
+ docs/agent_context/canonical/075_COMPARISON.txt    |  1116 +
+ .../canonical/077_CONTRADICTION_MAP.txt            |   907 +
+ .../canonical/084_DRIVE_NOT_LOCAL_RAW.txt          |   924 +
+ .../canonical/089_FIRST_FUTURE_FEATURE.txt         |   275 +
+ .../canonical/095_GDRIVE_RAW_FULL_INVENTORY.txt    |   182 +
+ .../097_GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt    |   469 +
+ ...4_GIVE_ME_THE_TERMINAL_COMMANDS_TO_GET_THAT.pdf |   Bin 0 -> 32975 bytes
+ ...4_LAYER_UI_UX_RUNTIME_ENVIRONMENT_INVENTORY.txt |   108 +
+ .../canonical/111_IMPOSSIBLE_TARGETS.txt           |    88 +
+ .../canonical/123_NEW_SEC_DOC_1_1.txt              |   717 +
+ .../canonical/124_NEW_SEC_DOC_1_2.txt              |   818 +
+ .../canonical/134_NOS_INTEGRATION_BLUEPRINT.txt    |  1441 +
+ .../canonical/139_NOS_MASTER_BLUEPRINTS.txt        |   794 +
+ .../canonical/140_NOS_MASTER_DIAGNOSTIC.txt        |  1312 +
+ .../canonical/154_PROJECT_CHECKPOINT_2.txt         |   941 +
+ .../160_PROJECT_HANDOFF_COMPLETE_CONTEXT_2.md      |   304 +
+ .../canonical/174_REFINED_LORE_SINGULARITY.txt     |     0
+ .../199_TERMUX_CHECKPOINT_W_GEMINI_1_1.txt         |   582 +
+ docs/agent_context/indexes/AGENTS_README.md        |    13 +
+ .../indexes/AGENT_CONTEXT_CANONICAL_INDEX.md       |    19 +
+ .../indexes/AGENT_READ_CONTEXT_INDEX.md            |    39 +
+ .../ANDROID_DOWNLOADS_HANDPICK_ACCESSION_INDEX.md  |    20 +
+ docs/agent_context/indexes/CLEANUP_POLICY_INDEX.md |    17 +
+ ...LE_CLI_AND_TERMUX_TERMINAL_README_DOCUMENTS.txt |   320 +
+ .../indexes/PROJECT_STRUCTURE_STANDARD.md          |    38 +
+ .../gdrive_raw/(A)Chapter_8:_Sea_People.txt        |     0
+ .../(A)_Chapter:_1_Stardust_to_Stardust.txt        |     0
+ .../(A)_Chapter_1-_Stardust_to_Stardust.txt        |     0
+ .../(A)_Chapter_1:_Stardust_to_Stardust.txt        |     0
+ .../(A)_Chapter_1_-_Stardust_to_Stardust.txt       |     0
+ .../gdrive_raw/(A)_Chapter_2-_Living_Sacrifice.txt |     0
+ .../gdrive_raw/(A)_Chapter_2:_Living_Sacrifice.txt |     0
+ .../gdrive_raw/(A)_Chapter_3-_Lift_Up.txt          |     0
+ .../gdrive_raw/(A)_Chapter_3_-_Lift_Up.txt         |     0
+ .../gdrive_raw/(A)_Chapter_5_-_The_Snare.txt       |     0
+ .../(A)_Chapter_6:_Beelzebub,_Beelzebub.txt        |     0
+ .../gdrive_raw/(B)Chapter_8:_Sea_People.txt        |     0
+ .../(B)_Chapter:_1_Stardust_to_Stardust.txt        |     0
+ .../(B)_Chapter_1-_Stardust_to_Stardust.txt        |     0
+ .../(B)_Chapter_1:_Stardust_to_Stardust.txt        |     0
+ .../(B)_Chapter_1_-_Stardust_to_Stardust.txt       |     0
+ .../gdrive_raw/(B)_Chapter_2-_Living_Sacrifice.txt |     0
+ .../gdrive_raw/(B)_Chapter_2:_Living_Sacrifice.txt |     0
+ .../gdrive_raw/(B)_Chapter_3-_Lift_Up.txt          |     0
+ .../gdrive_raw/(B)_Chapter_3:_Lift_Up.txt          |     0
+ .../gdrive_raw/(B)_Chapter_5-_The_Snare.txt        |     0
+ .../(B)_Chapter_6_-_Beelzebub,_Beelzebub.txt       |     0
+ .../gdrive_raw/(B)_Chapter_7:_The_Pit.txt          |     0
+ .../gdrive_raw/(B)_Chapter_9:_The_Ascent.txt       |     0
+ .../gdrive_raw/(B)_Stardust_to_Stardust.txt        |     0
+ .../gdrive_raw/(C)Chapter_8:_Sea_People.txt        |     0
+ .../(C)_Chapter:_1_-_Stardust_to_Stardust_.txt     |     0
+ .../gdrive_raw/(C)_Chapter:_7_-_The_Pit.txt        |     0
+ .../(C)_Chapter:_Stardust_to_Stardust.txt          |     0
+ .../(C)_Chapter_1-_Stardust_to_Stardust.txt        |     0
+ .../(C)_Chapter_1_-_Stardust_to_Stardust.txt       |     0
+ .../gdrive_raw/(C)_Chapter_2-_Living_Sacrifice.txt |     0
+ .../gdrive_raw/(C)_Chapter_3-_Lift_Up.txt          |     0
+ .../gdrive_raw/(C)_Chapter_3_-_Lift_Up.txt         |     0
+ .../gdrive_raw/(C)_Chapter_4-_Pilgrimage.txt       |     0
+ .../gdrive_raw/(C)_Chapter_4_-_Pilgrimage.txt      |     0
+ .../(C)_Chapter_6-_Beelzebub,_Beelzebub.txt        |     0
+ .../gdrive_raw/(D)_Chapter:_7_-_The_Pit.txt        |     0
+ .../(D)_Chapter_1_-_Stardust_to_Stardust.txt       |     0
+ .../gdrive_raw/(D)_Chapter_2-_Living_Sacrifice.txt |     0
+ .../(D)_Chapter_2_-_Living_Sacrifice.txt           |     0
+ .../(E)_Chapter_1-_Stardust_to_Stardust.txt        |     0
+ .../(E)_Chapter_1_-_Stardust_to_Stardust.txt       |     0
+ .../gdrive_raw/(E)_Chapter_2-_Living_Sacrifice.txt |     0
+ .../(E)_Chapter_2_-_Living_Sacrifice.txt           |     0
+ .../gdrive_raw/(E)_Chapter_3-_Lift_Up.txt          |     0
+ .../(F)_Chapter:_1_Stardust_to_Stardust_.txt       |     0
+ .../(F)_Chapter_1:_Stardust_to_Stardust_.txt       |     0
+ .../(F)_Chapter_1_-_Stardust_to_Stardust.txt       |     0
+ .../gdrive_raw/(F)_Chapter_2-_Living_Sacrifice.txt |     0
+ .../gdrive_raw/(F)_Chapter_3-_Lift_Up.txt          |     0
+ .../gdrive_raw/(Final) Chapter: 7 - The Pit.txt    |     0
+ .../(Final)_Chapter_1:_Stardust_to_Stardust.txt    |     0
+ .../(Final)_Chapter_1_-_Stardust_to_Stardust.txt   |     0
+ .../(Final)_Chapter_2-_Living_Sacrifice.txt        |     0
+ .../gdrive_raw/(Final)_Chapter_3-_Lift_Up.txt      |     0
+ .../gdrive_raw/(Final)_Chapter_3:_Lift_Up.txt      |     0
+ .../gdrive_raw/(Final)_Chapter_5_-_The_Snare.txt   |     0
+ .../(G)_Chapter_1:_Stardust_to_Stardust.txt        |     0
+ .../gdrive_raw/(G)_Chapter_2-_Living_Sacrifice.txt |     0
+ .../gdrive_raw/(G)_Chapter_3-_Lift_Up.txt          |     0
+ .../(G)_Final_)_Chapter:_10_-_Forsaken.txt         |     0
+ ...I)_(Notes)_Chapter:_1_Stardust_to_Stardust_.txt |     0
+ .../(I)_Chapter:_1_Stardust_to_Stardust_.txt       |     0
+ .../(N)_CHAPTER_1-_STARDUST_TO_STARDUST.txt        |     0
+ .../(N)_Chapter_1_-_Stardust_to_Stardust.txt       |     0
+ ...otes)_(P)_Chapter:_1_-_Stardust_to_Stardust.txt |     0
+ .../(Notes)_Chapter_2-_Living_Sacrifice.txt        |     0
+ .../(Notes)_Chapter_2:_Living_Sacrifice.txt        |     0
+ .../(O)_Chapter_1-_Stardust_to_Stardust.txt        |     0
+ .../(P)_Chapter:_1_-_Stardust_to_Stardust.txt      |     0
+ .../(Prompt_Guide_(E))_Chapter_10:_Forsaken.txt    |     0
+ .../(R) Chapter: 1 - Stardust to Stardust .txt     |     0
+ .../(R)_Chapter:_1_-_Stardust_to_Stardust_.txt     |     0
+ .../(Revision_Prompt_(D))_Chapter_10:_Forsaken.txt |     0
+ ...rompt_(N)__Chapter_1_-_Stardust_to_Stardust.txt |     0
+ ...(Revisions)_Chapter_1:_Stardust_to_Stardust.txt |     0
+ .../gdrive_raw/(SDP)_v2.txt                        |     0
+ .../(X)_Chapter_1:_Stardust_to_Stardust.txt        |     0
+ .../(X)_Chapter_1_-_Stardust_to_Stardust.docx.txt  |     0
+ .../(X)_Chapter_1_-_Stardust_to_Stardust.txt       |     0
+ .../(X)_Chapter_1__Stardust_to_Stardust_(1).txt    |     0
+ .../(X)_Chapter_1__Stardust_to_Stardust_(2).txt    |     0
+ .../(Z)_Chapter_1:_Stardust_to_Stardust.txt        |     0
+ .../*Chapter_1:_Stardust_to_Stardust.txt           |     0
+ .../gdrive_raw/*Chapter_2-_Living_Sacrifice.txt    |     0
+ .../gdrive_raw/*Chapter_3:_Lift_Up.txt             |     0
+ .../gdrive_raw/*Chapter_4:_Pilgrimage.txt          |     0
+ .../gdrive_raw/*Chapter_7:_The_Pit.txt             |     0
+ .../gdrive_raw/*Chapter_8:_Sea_People.txt          |     0
+ .../gdrive_raw/*Chapter_9:_The_Ascent.txt          |     0
+ .../-Final_Chapter_1_Revision_Prompt-.txt          |     0
+ .../gdrive_raw/1.0_Revision.txt                    |     0
+ ...chetype_of_Sacrifice_(NYT_Bestseller_Focus).txt |     0
+ .../10.0_MASTER_SYSTEM_FOR_CHAPTER_REVISION.txt    |     0
+ .../gdrive_raw/10.0_Mass_Market.txt                |     0
+ .../gdrive_raw/11.0_Error_Catalog.txt              |     0
+ .../gdrive_raw/11.0_Final_Revision.txt             |     0
+ .../gdrive_raw/11.0_Marketability_.txt             |     0
+ .../gdrive_raw/12.0_Perfection.txt                 |     0
+ .../gdrive_raw/13.0_Claude.txt                     |     0
+ .../gdrive_raw/13.0_GENERAL_PRINCIPLES.txt         |     0
+ .../2.0_Critique_\357\274\217_Analysis_Guide.txt"  |     0
+ ...g_into_timeless,_devastating_human_tragedy.txt" |     0
+ .../gdrive_raw/3.0_Final_.txt                      |     0
+ ...on_Rulebook_(The_Cat_God_&_The_Primal_Self).txt |     0
+ .../gdrive_raw/3.0_Scientific_Guide.txt            |     0
+ .../gdrive_raw/4.0_(12_Rules_For_Life).txt         |     0
+ ...l_Editing_Rulebook_(Visceral_Empathy_Focus).txt |     0
+ .../gdrive_raw/4.0_Psychology_Guide.txt            |     0
+ .../gdrive_raw/4.0_REVISED.txt                     |     0
+ .../gdrive_raw/5.0_Final_Guide.txt                 |     0
+ .../gdrive_raw/5.0_Psychology_Guide.txt            |     0
+ ...ules_for_Thematic_&_Archetypal_Hyperlinking.txt |     0
+ ...RITY_(Read_this_first_and_then_again_last)_.txt |     0
+ .../gdrive_raw/6.0_SYNTHESIS_MANDATE.txt           |     0
+ .../6.0_Supreme_Generative_Constraint.txt          |     0
+ .../gdrive_raw/7.0_Chapter_Refinery.txt            |     0
+ ...ear_Edit!!!!_(CRITICAL!_DIRE!_EMERGENCY!!!).txt |     0
+ .../8.0_Pacing\357\274\217Redundancy.txt"          |     0
+ ...arned,_inevitable_catharsis_for_the_reader.txt" |     0
+ .../gdrive_raw/9.0_Aesthetic.txt                   |     0
+ .../gdrive_raw/9.0_Stones.txt                      |     0
+ .../gdrive_raw/ALITTERAS_SYSTEM_BLUEPRINT_v1.txt   |     0
+ ...Chapter 3 - Commerciality and Marketing 3.0.txt |     0
+ .../gdrive_raw/Chapter2_Weight_of_the_Sky.txt      |     0
+ .../gdrive_raw/Chapter:_10_-_MASTER_BRIEFING.txt   |     0
+ .../Chapter:_1_-_Stardust_to_Stardust.txt          |     0
+ .../Chapter:_1_Proof_of_Authorship_1.0.txt         |     0
+ .../Chapter:_1_Proof_of_Authorship_1.1.txt         |     0
+ .../gdrive_raw/Chapter:_8_(Final).txt              |     0
+ .../gdrive_raw/Chapter_10.1.txt                    |     0
+ .../gdrive_raw/Chapter_10.5.txt                    |     0
+ .../gdrive_raw/Chapter_10:_Forsaken.txt            |     0
+ .../Chapter_10_Forsaken_FINAL_DEFINITIVE.txt       |     0
+ .../gdrive_raw/Chapter_10_Version_F.txt            |     0
+ .../gdrive_raw/Chapter_11.8.txt                    |     0
+ .../gdrive_raw/Chapter_11._Forsaken.txt            |     0
+ .../gdrive_raw/Chapter_13:_Exodus.txt              |     0
+ .../gdrive_raw/Chapter_1:_Stardust_to_Stardust.txt |     0
+ .../Chapter_1_-_Stardust_to_Stardust.txt           |     0
+ .../gdrive_raw/Chapter_1_Integration.txt           |     0
+ .../gdrive_raw/Chapter_1_Integration_2.0.txt       |     0
+ .../gdrive_raw/Chapter_1_Integration_Prompt.txt    |     0
+ .../gdrive_raw/Chapter_1_Merge_Prompt.txt          |     0
+ .../gdrive_raw/Chapter_1_Version_O.txt             |     0
+ .../gdrive_raw/Chapter_2:_Living_Sacrifice.txt     |     0
+ .../Chapter_2_-_Analysis_&_Guides_1.0.txt          |     0
+ ...Chapter_2_-_Commerciality_and_Marketing_3.0.txt |     0
+ .../Chapter_2_-_Master_Revision_Prompt_2.0.txt     |     0
+ .../gdrive_raw/Chapter_2nd_to_last.txt             |     0
+ .../gdrive_raw/Chapter_3:_Lift_Up.txt              |     0
+ .../Chapter_3_-_Master_Revision_Prompt_2.0.txt     |     0
+ .../gdrive_raw/Chapter_3_Analysis_&_Guides.txt     |     0
+ .../gdrive_raw/Chapter_3_Integration_Prompt.txt    |     0
+ .../gdrive_raw/Chapter_4:_Pilgrimage.txt           |     0
+ .../gdrive_raw/Chapter_5:_The_Snare.txt            |     0
+ .../gdrive_raw/Chapter_6:_Beelzebub,_Beelzebub.txt |     0
+ .../gdrive_raw/Chapter_8.1.txt                     |     0
+ .../gdrive_raw/Chapter_8:_Sea_People.txt           |     0
+ .../gdrive_raw/Chapter_9:_The_Ascent.txt           |     0
+ ..._condense_that_chapter_by_500_to_1,000_w....txt |     0
+ .../gdrive_raw/Critique_2.2.txt                    |     0
+ ...nal Revision (Generalized For All Chapters).txt |     0
+ ...and_write_out_the_chapter_keep_in_mind_t....txt |     0
+ .../gdrive_raw/MANUSCRIPT_AUTOPSY.txt              |     0
+ .../gdrive_raw/Narnia_.txt                         |     0
+ .../gdrive_raw/Purple_Prose_Prompt.txt             |     0
+ ...F_THE_SKY-_MASTER_COMPENDIUM_(SINGULARITY_v.txt |     0
+ .../gdrive_raw/The_-Version_X-_Meta-Prompt.txt     |     0
+ ...he_Weight_of_the_Sky:_The_Fall_into_Megiddo.txt |     0
+ .../gdrive_raw/The_scrape.txt                      |     0
+ .../gdrive_raw/ToALITTERAS_ECOSYSTEM_v2.txt        |     0
+ .../gdrive_raw/Untitled_document.txt               |     0
+ .../gdrive_raw/Version_A.txt                       |     0
+ .../gdrive_raw/Version_B.txt                       |     0
+ .../gdrive_raw/WOS_Ch7_The_Pit.txt                 |     0
+ .../gdrive_raw/Whole_Book.txt                      |     0
+ .../gdrive_raw/chapter_11.2.txt                    |     0
+ ...00\242(G)_Chapter:_1_Stardust_to_Stardust_.txt" |     0
+ ...342\200\242(G)_Chapter_2-_Living_Sacrifice.txt" |     0
+ ...357\273\277Chapter_1-_Stardust_to_Stardust.txt" |     0
+ .../large_compendiums/REFINED_LORE_SINGULARITY.txt | 48566 +++++++++++++++++++
+ .../tier1-critical/01_SRC_DOC_4_TERMUX.txt         |  2595 +
+ .../.agent-context/tier1-critical/02_doc_229.txt   |   230 +
+ .../tier1-critical/03_Aesthetic_Mandate.txt        |   406 +
+ .../tier1-critical/04_AI_CHECKPOINT_FINAL.txt      | 17508 +++++++
+ .../tier1-critical/05_AI_INFORMATION_INTUITION.md  |   768 +
+ .../tier1-critical/06_AI_READY_CHECKPOINT.txt      |   Bin 0 -> 1724056 bytes
+ .../tier1-critical/07_AIM_BLUEPRINT.txt            |   190 +
+ .../tier1-critical/08_CLAUDE_ASSESSMENT_v1.md      |   212 +
+ .../tier1-critical/09_CLAUDE_ASSESSMENT_v2.md      |   211 +
+ .../tier1-critical/10_COMPARISON.txt               |  1116 +
+ .../tier1-critical/11_First_Future_Feature.txt     |   275 +
+ .../12_gdrive_raw_FULL_inventory.txt               |   182 +
+ .../tier1-critical/13_GEMINI_CLI_OMEGA_PROMPT.txt  |   469 +
+ .../tier1-critical/14_4_LAYER_UI_UX_INVENTORY.txt  |   108 +
+ .../tier1-critical/15_IMPOSSIBLE_TARGETS.txt       |    88 +
+ .../tier1-critical/16_PROJECT_HANDOFF_CONTEXT.md   |   304 +
+ .../tier1-critical/17_SRC_DOC_8_COMBINED.txt       |   629 +
+ .../tier2-large/01_CONTRADICTION_MAP.txt           |   907 +
+ .../tier2-large/02_DRIVE_NOT_LOCAL_RAW.txt         |   924 +
+ .../tier2-large/03_TERMINAL_COMMANDS_RECOVERY.pdf  |   Bin 0 -> 32975 bytes
+ .../tier2-large/04_NEW_SEC_DOC_v1.txt              |   717 +
+ .../tier2-large/05_NEW_SEC_DOC_v2.txt              |   818 +
+ .../tier2-large/06_NOS_INTEGRATION_BLUEPRINT.txt   |  1441 +
+ .../tier3-checkpoints/01_NOS_Master_Blueprints.txt |   794 +
+ .../tier3-checkpoints/02_NOS_Master_Diagnostic.txt |  1312 +
+ .../tier3-checkpoints/03_Project_Checkpoint_2.txt  |   941 +
+ .../04_Termux_Checkpoint_Gemini.txt                |   582 +
+ .../docs_ai_context}/CONTEXT_PRIORITY.md           |     0
+ .../docs_ai_context}/CURRENT_PROJECT_STATE.md      |     0
+ .../DO_NOT_USE_OLD_FILES_BLINDLY.md                |     0
+ ...iting Agent App. Source Doc. (10) [NEUTRON].txt |     0
+ .../ULTIMATE_OMEGA_DIRECTIVE.md                    |     0
+ .../absolute_move_manifest.tsv                     |    26 +
+ .../absolute_old_path_reference_scan.tsv           |    72 +
+ .../absolute_post_root_surface.txt                 |    25 +
+ .../absolute_post_symlinks.txt                     |     0
+ .../absolute_reference_rewrites.tsv                |   164 +
+ .../absolute_rollback_moves.sh                     |    28 +
+ .../absolute_skip_manifest.tsv                     |    28 +
+ .../absolute_summary.json                          |    12 +
+ .../accession_manifest_status.txt                  |     1 +
+ .../active_reference_audit.tsv                     |   143 +
+ .../continue_absolute_cleanup.py                   |   378 +
+ .../generated/tsconfig.tsbuildinfo                 |     1 +
+ .../session_logs/SESSION_2026-05-12.log            |     0
+ .../resource-manager/active_dualisms.json          |     0
+ .../resource-manager/manifest.json                 |   181 +
+ .../legacy_system_root/runtime/active_state.json   |     1 +
+ .../move_manifest.tsv                              |     2 +
+ .../post_move_old_path_reference_scan.tsv          |     1 +
+ .../post_root_entries.json                         |   207 +
+ .../post_root_surface.txt                          |    38 +
+ .../post_symlinks.txt                              |    40 +
+ .../pre_git_log.txt                                |    30 +
+ .../pre_git_status.txt                             |     1 +
+ .../pre_tree_maxdepth4.txt                         |   584 +
+ .../rollback_moves.sh                              |     4 +
+ .../root_drafts/parse-by-meaning.js.draft          |     0
+ .../root_misc/Build                                |     0
+ .../root_nos/archive/logs/build_debug.txt          |     6 +-
+ .../React_Component_Dumps/Layer2Cinema.tsx.dump    |   221 +
+ .../React_Component_Dumps/Layer3Canvas.tsx.dump    |   189 +
+ .../React_Component_Dumps/Layer4Panel.tsx.dump     |   298 +
+ .../React_Component_Dumps/ManuscriptCore.tsx.dump  |   292 +
+ .../React_Component_Dumps/chapters_route.ts.dump   |    61 +
+ .../system/React_Component_Dumps/page.tsx.dump     |   144 +
+ .../root_nos/runtime/active_dualisms.json          |     0
+ .../root_nos/runtime/active_state.json             |     1 +
+ .../root_policy_after_absolute_cleanup.json        |   164 +
+ .../root_sandbox/drive_updated.json                |  1598 +
+ .../root_sandbox/emotion_audit.txt                 |   736 +
+ .../root_sandbox/file_list.txt                     |   181 +
+ .../root_sandbox/final_ch7_metadata.json           |   151 +
+ .../root_sandbox/full_audit_list.txt               |   181 +
+ .../root_sandbox/nos_connection_test.txt           |    10 +
+ .../root_sandbox/nos_full_audit.txt                |  1456 +
+ .../root_sandbox/nos_full_handshake_report.txt     |     9 +
+ .../root_sandbox/nos_identity_audit.txt            |    22 +
+ .../root_sandbox/nos_logic_dump.txt                |     6 +
+ .../root_sandbox/nos_nervous_system_audit.txt      |    19 +
+ .../root_sandbox/nos_omni_handshake.txt            |    28 +
+ .../root_sandbox/nos_repair_report.txt             |     6 +
+ .../root_sandbox/project_dump.txt                  |  1311 +
+ .../skip_manifest.tsv                              |    25 +
+ .../summary.json                                   |    10 +
+ .../final_root_surface.txt                         |    25 +
+ .../final_senior_polish.py                         |   304 +
+ .../final_symlinks.txt                             |     0
+ .../polish_move_manifest.tsv                       |     5 +
+ .../polish_reference_hits.tsv                      |     9 +
+ .../polish_rollback.sh                             |     7 +
+ .../polish_skip_manifest.tsv                       |     3 +
+ .../polish_summary.json                            |    11 +
+ .../active_reference_hits.tsv                      |    22 +
+ .../externalize_manifest.tsv                       |     1 +
+ .../externalize_skip.tsv                           |     3 +
+ .../rollback_externalize.sh                        |     2 +
+ .../summary.json                                   |    11 +
+ .../force_externalize_manifest.tsv                 |     1 +
+ .../force_externalize_skip.tsv                     |     3 +
+ .../rollback_force_externalize.sh                  |     3 +
+ .../summary.json                                   |    10 +
+ .../tracked_files_under_externalized_paths.txt     |     0
+ .../direct_externalization_summary.json            |    41 +
+ .../rollback_direct_externalization.sh             |     7 +
+ .../.github/workflows/deploy-supabase-edge.yml     |    44 +
+ .../ARCHIVE_MANIFEST.tsv                           |    18 +
+ .../archive/20260614_supabase_ingestion/README.md  |    40 +
+ .../agent_context/canonical/WAI_IDA_HANDOFF.md     |     1 +
+ ...0260614_043152_nos_ingestion_archive_schema.sql |   612 +
+ ...56_nos_supabase_cloud_ingestion_integration.sql |   523 +
+ ...260614_055606_supabase_env_discovery_MASKED.txt |    43 +
+ ...60614_060835_database_url_candidates_MASKED.txt |    47 +
+ ...60614_061553_database_url_candidates_MASKED.txt |    47 +
+ .../feature_ingestion_search.txt                   | 43291 +++++++++++++++++
+ .../chapter_candidate_collision.json               |  2576 +
+ .../chapter_candidate_collision.tsv                |    73 +
+ .../chapter_doc_ids.tsv                            |    50 +
+ .../chapter_docs.json                              |   254 +
+ ...PvrZoScqJoZGy7C-WMQ3e-OO6Eoo2lBPfd95GCzWno.json |     9 +
+ ...ZvNHyusHhEqvq7IP-IMKiIEQ1Lmn0Hz0CodkMJhGqE.json |     9 +
+ ...rHvLEMPfHUncZwbcgbwS9Wuim6HLSoZLRDddY8obn8.json |    39 +
+ ...Actl4QkJKQG6tyNvGO0XKEgg7W8FqGqFh6LTsBYdn8.json |     9 +
+ ...VkfasTxEDmov92ZfAJO2oMrfjvbR81iiupgRitAuvk.json |     9 +
+ ...qgZCEllPXo97cvz7UiwoXYzdEcFv7CYPIWeuXl4K14.json |    14 +
+ ...6hUVgHi3f_aJwxnYkevHVYxWJVbphh9cCkcZc85HEo.json |     9 +
+ ...3hxjxAN2RYYFEQ2LSS4Bs3VUrDezNsS7lOz_29XnAM.json |    19 +
+ ...LOQdhB-5C8W4hJ32jLGWakyv3cFshxBMGxtZTCUysY.json |    29 +
+ ...OwFTTV3qXEgLehumyXCikug0EFVPVl-dlEI-AHMURs.json |    14 +
+ ...gITZ_aQyru0299o0N46Bd_y_Mrj7p33mnT_hxuBBTo.json |    14 +
+ ...qyMGoK8NUyaFx1yZwU_B9tcxtFbd7a_ITzZX1IZXpI.json |    19 +
+ ..._kgc1nQhcDdho0MgY1Niam7DVBsou3PgH8d4Vcct34.json |     9 +
+ ...jcYtmx2wSTHcFVsHz0wdclkh-ieo6GA72aSSowoFPo.json |     9 +
+ ...6GIpNPj3kHgPzocyyWUSo8V1IG6SjkXA7tGZ-SjH5c.json |    14 +
+ ...757uRApIaK0uHbVHyNCM2Au8lmGHA6cH-c56KT6Xms.json |    14 +
+ ...c5a8Cwy91Hg-xdfROvUtr8OjDCGRlw7lz7CBC_l5kI.json |    19 +
+ ...sSCXKukOBpvFWhdPN1zezpZns4goyxma4LpCeh65gY.json |     9 +
+ ...1cTFXD8ZdXyN0r6tfuIfCmMPS6E-Pcw4DrMau8eb9E.json |    29 +
+ ...3f6XFlTodANFVbNr2ebSM5Mx4UnPWdre7NCwhopKgE.json |    19 +
+ ...2Y1Z5vpxbGFienlix_MBycUzjsEioARy3iEtyh6iwI.json |    14 +
+ ...AX0RnxE_BjKSt8o00HV4O0RQINFTlmTjaf5jIVBB4o.json |    14 +
+ ...WHeMSYXvpYEhu_qRTXHMyigv39ePsT2IQ7UG1X7vQ8.json |    14 +
+ ...WL07cVRtm1up97NeN3gXiB3S1KmQVgVKW7ax-D8sts.json |    14 +
+ ...9RyFYG8o7ieepXZ6CbzAjd-7W-qHWfj5ZZrEilAXJU.json |    19 +
+ ...gPgpkfYlsdGwnb0XDq34Kd8TZmH18u6ICS7jPT7qVM.json |    29 +
+ ...sdttLL1kbujxLyedbUOcmMheKspK9E26RM975_clwc.json |    14 +
+ ...-HNtUCT4u2qmzQVDgpgtE_oJhX4cO9DGnAQc5IRxTQ.json |     9 +
+ ...olOPCW-Y6wjlvOetbttqrtmG9Z15F4iUrIKXCFQ0ns.json |    14 +
+ ...AfaG-Jc-4YVf30Q5to9u4BeWk9Tl7gK-RR8yrKb5rE.json |    14 +
+ ...B-LtvTW3wt57XkM8EO7Au6R7cHTYXb8TvmTugJNtc0.json |    14 +
+ ...7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs.json |    14 +
+ ...0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0.json |    19 +
+ ...AVOiCaa3g6lx3r7lLQZ6sxqVOYV5ZsgnfMpxgNJuyk.json |     9 +
+ ...BjRsoqexbBVZUYJTbZlybhH8cMGE1twD9kDtXh1kX8.json |     9 +
+ ...EillHIiOZLGJ4vj0Bm_9zjn3KjvxSHb291Rn7qsT9o.json |    14 +
+ ..._IyJmKgu-KesisMhiWPsTAcJWIO09ksqLwgemdrI3Y.json |    19 +
+ ...4Syw9MCUWgtJuij2SsgslfYGzTRU4SHz3vX94R_Khs.json |     9 +
+ ...kwgdCRoY1Km41PxPust4Umo0_nNKNM5MOrEXNr22LY.json |     9 +
+ ...uwV0FUwT3Dc2EU3CK9ojEWTlN3R8GNo8u8Sc8Zmj5E.json |    84 +
+ ...MmVYvwHmYuExByWEwlh-rGpUbirDPG7uPeR4gFh37g.json |    19 +
+ ...Ydywl1XkOqB95PfGcw3LM9x_NOIuQPSvcq_K8v5GGs.json |     9 +
+ ...CMa99yPFqsZdjG3SXRWYnMfeUf6q9YZJRJewx2TRQ4.json |     9 +
+ ...BodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ.json |    29 +
+ ...Q2WZiIV4UDA3Al2aYgIHpVviwcEmqLDqjOQHs_dzxg.json |     9 +
+ ...d4nU1hUkJblTtaTt2Se4e2QUBV8TQZ6NdaSZOe6DcQ.json |    14 +
+ ...AivwO_8k5la6qbpd61lqxz2R23CCKF6hrYMNuQB6XM.json |    19 +
+ ...M4PJisjiArISTWalEW6oiGAgPG7ldg9kDmFFWDgi4A.json |    14 +
+ ...SPYKb-liIuWucG5iCAV8GGzWCCWRKDKp9DDBnat0OI.json |    14 +
+ ...rznzy9RhY5h6jAkSSWCT3FMVCfpxvGfXFJMJwjq0qc.json |    19 +
+ .../revision_counts.tsv                            |    50 +
+ ...-reextract.before_182_units_20260614_015043.mjs |   715 +
+ .../api_callsite_files.txt                         |   842 +
+ .../archive_google_docs_inspection.txt             |   124 +
+ .../archive_one_lines_404_520.txt                  |   117 +
+ .../candidate_code_files.txt                       |     2 +
+ .../gap_candidates_from_existing_drive_cache.txt   |    52 +
+ .../gap_targets_16.json                            |   130 +
+ .../gap_targets_16.tsv                             |    17 +
+ .../gap_title_queries.txt                          |    16 +
+ .../gdrive_raw_manifest.tsv                        |   183 +
+ .../duplicate_mapped_targets.json                  |   703 +
+ .../matcher_docs_full.json                         |  2132 +
+ .../matching_artifact_shapes.json                  |    34 +
+ .../suspicious_matches.json                        |   111 +
+ .../uncovered_by_strict_leaf_match.json            |    82 +
+ .../candidate_oauth_client_files.txt               |    11 +
+ .../oauth_callsite_files.txt                       |    13 +
+ .../oauth_related_files.txt                        |     8 +
+ .../oauth_old_flow_preview.txt                     |    25 +
+ .../old_drive_auth_inspection_20260614_003511.txt  |   155 +
+ .../raw_files_182.txt                              |   182 +
+ .../raw_sha256.tsv                                 |    51 +
+ .../raw_files_182.null                             |   Bin 0 -> 14360 bytes
+ .../raw_files_182.txt                              |   182 +
+ .../raw_sha256.tsv                                 |   182 +
+ .../drive_docs_sample.json                         |    64 +
+ .../first_doc_revisions.json                       |    39 +
+ .../probe.env                                      |     3 +
+ .../doc.json                                       |     0
+ .../revisions.json                                 |    15 +
+ .../doc.json                                       |     8 +
+ .../revisions.json                                 |     9 +
+ .../current.docx                                   |   Bin 0 -> 9760876 bytes
+ .../current_ooxml/[Content_Types].xml              |     1 +
+ .../current_ooxml/_rels/.rels                      |     1 +
+ .../current_ooxml/word/_rels/document.xml.rels     |     1 +
+ .../current_ooxml/word/document.xml                |     1 +
+ .../current_ooxml/word/fontTable.xml               |     1 +
+ .../current_ooxml/word/media/image1.png            |   Bin 0 -> 619147 bytes
+ .../current_ooxml/word/media/image10.png           |   Bin 0 -> 2073534 bytes
+ .../current_ooxml/word/media/image2.png            |   Bin 0 -> 666285 bytes
+ .../current_ooxml/word/media/image3.png            |   Bin 0 -> 645555 bytes
+ .../current_ooxml/word/media/image4.png            |   Bin 0 -> 678691 bytes
+ .../current_ooxml/word/media/image5.png            |   Bin 0 -> 516443 bytes
+ .../current_ooxml/word/media/image6.png            |   Bin 0 -> 666929 bytes
+ .../current_ooxml/word/media/image7.png            |   Bin 0 -> 545790 bytes
+ .../current_ooxml/word/media/image8.png            |   Bin 0 -> 1051543 bytes
+ .../current_ooxml/word/media/image9.png            |   Bin 0 -> 2191789 bytes
+ .../current_ooxml/word/numbering.xml               |     1 +
+ .../current_ooxml/word/settings.xml                |     1 +
+ .../current_ooxml/word/styles.xml                  |     1 +
+ .../current_ooxml/word/theme/theme1.xml            |     2 +
+ .../revision_1.bin                                 |    15 +
+ .../revision_175.bin                               |    15 +
+ .../revision_227.bin                               |    15 +
+ .../revision_286.bin                               |    15 +
+ .../revision_345.bin                               |    15 +
+ .../revision_355.bin                               |    15 +
+ .../revision_408.bin                               |    15 +
+ .../revision_430.bin                               |    15 +
+ .../revision_436.bin                               |    15 +
+ .../revision_450.bin                               |    15 +
+ .../revision_452.bin                               |    15 +
+ .../revision_470.bin                               |    15 +
+ .../revision_491.bin                               |    15 +
+ .../revision_495.bin                               |    15 +
+ .../revision_596.bin                               |    15 +
+ .../revision_599.bin                               |    15 +
+ .../revision_ids.txt                               |    16 +
+ .../revision_media_results.tsv                     |    16 +
+ .../revisions.json                                 |    84 +
+ .../v2_docx_export_links.tsv                       |    16 +
+ .../v2_export_results.tsv                          |    16 +
+ .../v2_revision_1.docx                             |   Bin 0 -> 2994941 bytes
+ .../v2_revision_175.docx                           |   Bin 0 -> 5607992 bytes
+ .../v2_revision_175_ooxml/[Content_Types].xml      |     1 +
+ .../v2_revision_175_ooxml/_rels/.rels              |     1 +
+ .../word/_rels/document.xml.rels                   |     1 +
+ .../word/_rels/fontTable.xml.rels                  |     1 +
+ .../v2_revision_175_ooxml/word/document.xml        |     1 +
+ .../v2_revision_175_ooxml/word/fontTable.xml       |     1 +
+ .../word/fonts/GoogleSans-bold.ttf                 |   Bin 0 -> 1879700 bytes
+ .../word/fonts/GoogleSans-boldItalic.ttf           |   Bin 0 -> 1938788 bytes
+ .../word/fonts/GoogleSans-italic.ttf               |   Bin 0 -> 1937036 bytes
+ .../word/fonts/GoogleSans-regular.ttf              |   Bin 0 -> 1877452 bytes
+ .../v2_revision_175_ooxml/word/media/image1.png    |   Bin 0 -> 2637228 bytes
+ .../v2_revision_175_ooxml/word/numbering.xml       |     1 +
+ .../v2_revision_175_ooxml/word/settings.xml        |     1 +
+ .../v2_revision_175_ooxml/word/styles.xml          |     1 +
+ .../v2_revision_175_ooxml/word/theme/theme1.xml    |     2 +
+ .../v2_revision_1_ooxml/[Content_Types].xml        |     1 +
+ .../v2_revision_1_ooxml/_rels/.rels                |     1 +
+ .../word/_rels/document.xml.rels                   |     1 +
+ .../word/_rels/fontTable.xml.rels                  |     1 +
+ .../v2_revision_1_ooxml/word/document.xml          |     1 +
+ .../v2_revision_1_ooxml/word/fontTable.xml         |     1 +
+ .../word/fonts/GoogleSans-bold.ttf                 |   Bin 0 -> 1879700 bytes
+ .../word/fonts/GoogleSans-boldItalic.ttf           |   Bin 0 -> 1938788 bytes
+ .../word/fonts/GoogleSans-italic.ttf               |   Bin 0 -> 1937036 bytes
+ .../word/fonts/GoogleSans-regular.ttf              |   Bin 0 -> 1877452 bytes
+ .../v2_revision_1_ooxml/word/numbering.xml         |     1 +
+ .../v2_revision_1_ooxml/word/settings.xml          |     1 +
+ .../v2_revision_1_ooxml/word/styles.xml            |     1 +
+ .../v2_revision_1_ooxml/word/theme/theme1.xml      |     2 +
+ .../v2_revision_227.docx                           |   Bin 0 -> 2663079 bytes
+ .../v2_revision_227_ooxml/[Content_Types].xml      |     1 +
+ .../v2_revision_227_ooxml/_rels/.rels              |     1 +
+ .../word/_rels/document.xml.rels                   |     1 +
+ .../v2_revision_227_ooxml/word/document.xml        |     1 +
+ .../v2_revision_227_ooxml/word/fontTable.xml       |     1 +
+ .../v2_revision_227_ooxml/word/media/image1.png    |   Bin 0 -> 2637228 bytes
+ .../v2_revision_227_ooxml/word/numbering.xml       |     1 +
+ .../v2_revision_227_ooxml/word/settings.xml        |     1 +
+ .../v2_revision_227_ooxml/word/styles.xml          |     1 +
+ .../v2_revision_227_ooxml/word/theme/theme1.xml    |     2 +
+ .../v2_revision_286.docx                           |   Bin 0 -> 2663325 bytes
+ .../v2_revision_286_ooxml/[Content_Types].xml      |     1 +
+ .../v2_revision_286_ooxml/_rels/.rels              |     1 +
+ .../word/_rels/document.xml.rels                   |     1 +
+ .../v2_revision_286_ooxml/word/document.xml        |     1 +
+ .../v2_revision_286_ooxml/word/fontTable.xml       |     1 +
+ .../v2_revision_286_ooxml/word/media/image1.png    |   Bin 0 -> 2637228 bytes
+ .../v2_revision_286_ooxml/word/numbering.xml       |     1 +
+ .../v2_revision_286_ooxml/word/settings.xml        |     1 +
+ .../v2_revision_286_ooxml/word/styles.xml          |     1 +
+ .../v2_revision_286_ooxml/word/theme/theme1.xml    |     2 +
+ .../v2_revision_345.docx                           |   Bin 0 -> 2676115 bytes
+ .../v2_revision_345_ooxml/[Content_Types].xml      |     1 +
+ .../v2_revision_345_ooxml/_rels/.rels              |     1 +
+ .../word/_rels/document.xml.rels                   |     1 +
+ .../v2_revision_345_ooxml/word/document.xml        |     1 +
+ .../v2_revision_345_ooxml/word/fontTable.xml       |     1 +
+ .../v2_revision_345_ooxml/word/media/image1.png    |   Bin 0 -> 2637228 bytes
+ .../v2_revision_345_ooxml/word/numbering.xml       |     1 +
+ .../v2_revision_345_ooxml/word/settings.xml        |     1 +
+ .../v2_revision_345_ooxml/word/styles.xml          |     1 +
+ .../v2_revision_345_ooxml/word/theme/theme1.xml    |     2 +
+ .../v2_revision_355.docx                           |   Bin 0 -> 2685039 bytes
+ .../v2_revision_355_ooxml/[Content_Types].xml      |     1 +
+ .../v2_revision_355_ooxml/_rels/.rels              |     1 +
+ .../word/_rels/document.xml.rels                   |     1 +
+ .../v2_revision_355_ooxml/word/document.xml        |     1 +
+ .../v2_revision_355_ooxml/word/fontTable.xml       |     1 +
+ .../v2_revision_355_ooxml/word/media/image1.png    |   Bin 0 -> 2637228 bytes
+ .../v2_revision_355_ooxml/word/numbering.xml       |     1 +
+ .../v2_revision_355_ooxml/word/settings.xml        |     1 +
+ .../v2_revision_355_ooxml/word/styles.xml          |     1 +
+ .../v2_revision_355_ooxml/word/theme/theme1.xml    |     2 +
+ .../v2_revision_408.docx                           |    10 +
+ .../v2_revision_430.docx                           |    10 +
+ .../v2_revision_436.docx                           |    10 +
+ .../v2_revision_450.docx                           |    10 +
+ .../v2_revision_452.docx                           |   Bin 0 -> 9749122 bytes
+ .../v2_revision_452_ooxml/[Content_Types].xml      |     1 +
+ .../v2_revision_452_ooxml/_rels/.rels              |     1 +
+ .../word/_rels/document.xml.rels                   |     1 +
+ .../v2_revision_452_ooxml/word/document.xml        |     1 +
+ .../v2_revision_452_ooxml/word/fontTable.xml       |     1 +
+ .../v2_revision_452_ooxml/word/media/image1.png    |   Bin 0 -> 516443 bytes
+ .../v2_revision_452_ooxml/word/media/image10.png   |   Bin 0 -> 2191789 bytes
+ .../v2_revision_452_ooxml/word/media/image2.png    |   Bin 0 -> 666285 bytes
+ .../v2_revision_452_ooxml/word/media/image3.png    |   Bin 0 -> 678691 bytes
+ .../v2_revision_452_ooxml/word/media/image4.png    |   Bin 0 -> 645555 bytes
+ .../v2_revision_452_ooxml/word/media/image5.png    |   Bin 0 -> 666929 bytes
+ .../v2_revision_452_ooxml/word/media/image6.png    |   Bin 0 -> 619147 bytes
+ .../v2_revision_452_ooxml/word/media/image7.png    |   Bin 0 -> 545790 bytes
+ .../v2_revision_452_ooxml/word/media/image8.png    |   Bin 0 -> 1051543 bytes
+ .../v2_revision_452_ooxml/word/media/image9.png    |   Bin 0 -> 2073534 bytes
+ .../v2_revision_452_ooxml/word/numbering.xml       |     1 +
+ .../v2_revision_452_ooxml/word/settings.xml        |     1 +
+ .../v2_revision_452_ooxml/word/styles.xml          |     1 +
+ .../v2_revision_452_ooxml/word/theme/theme1.xml    |     2 +
+ .../v2_revision_470.docx                           |    10 +
+ .../v2_revision_491.docx                           |    10 +
+ .../v2_revision_495.docx                           |    10 +
+ .../v2_revision_596.docx                           |    10 +
+ .../v2_revision_599.docx                           |    10 +
+ .../v2_revisions.json                              |   276 +
+ .../needs_review.json                              |  1600 +
+ .../needs_review.tsv                               |   125 +
+ .../strict_mapping.tsv                             |   183 +
+ .../strict_mapping_full.json                       |  3034 ++
+ ...base_cloud_ingestion_deploy_20260614_053756.txt |    22 +
+ .../local_supabase_state.txt                       |    47 +
+ .../remote_public_schema.sql                       |     0
+ .../public_schema.sql                              |     0
+ .../covered_raw_targets.json                       |  1784 +
+ .../matched_57_xml_manifest.json                   |   515 +
+ .../raw_182_manifest.json                          |  1276 +
+ .../summary.txt                                    |     8 +
+ .../uncovered_raw_targets.json                     |   114 +
+ .../20260614_supabase_edge_deploy_checkpoint.md    |    56 +
+ .../nos/20260614_supabase_ingestion_checkpoint.md  |    38 +
+ .../github_build_workflow/README.md                |    13 +
+ .../build-and-deploy.yml.snapshot                  |    26 +
+ .../post_cleanup_git_status.txt                    |    24 +
+ .../pre_cleanup_context.tsv                        |     4 +
+ .../pre_cleanup_git_status.txt                     |    19 +
+ .../scripts/apply-supabase-sql-via-psql.sh         |    23 +
+ .../build-supabase-archive-manifest-stream.mjs     |   264 +
+ .../scripts/build-supabase-archive-manifest.mjs    |   557 +
+ .../scripts/drive-temporal-xml-reextract.mjs       |   780 +
+ .../scripts/paired-drive-xml-reextract.mjs         |   471 +
+ .../scripts/register-shards-via-psql.sh            |   147 +
+ .../scripts/shard-supabase-manifests.sh            |    54 +
+ .../scripts/supabase-cloud-verify.sh               |    21 +
+ .../upload-supabase-shards-storage-only-safe.py    |   170 +
+ .../scripts/upload-supabase-shards-storage-only.sh |    46 +
+ .../scripts/upload-supabase-shards.sh              |    67 +
+ ...0260614_043152_nos_ingestion_archive_schema.sql |   612 +
+ ...56_nos_supabase_cloud_ingestion_integration.sql |   523 +
+ .../termux_build_failure/README.md                 |    17 +
+ ..._indexes_AGENT_CONTEXT_CANONICAL_INDEX_md.patch |    17 +
+ .../scripts_extract_deep_history_py.patch          |    13 +
+ .../tracked_patch_actions.tsv                      |     4 +
+ ...gle-docs-by-local-names.mjs.bak.20260612_223804 |   566 +
+ .../src/src}/app/globals.css.bak                   |     0
+ .../src/src/app/layout.tsx.bak                     |    50 +
+ .../src/src/app/page.tsx.bak                       |    81 +
+ .../backups/AGENTS.md.backup_20260613_044544       |   632 +
+ .../chapters.route.ts.before                       |    71 +
+ .../health.route.ts.before                         |    31 +
+ docs/forensics/logs/build_debug.txt                |    22 +
+ docs/forensics/nos/nos_manifest.json               |   909 +
+ export_audit.txt                                   |   135 -
+ full_codebase_dump.txt                             |  6572 ---
+ import_audit.txt                                   |   154 -
+ next-env.d.ts                                      |     3 +-
+ next.config.js                                     |    21 +-
+ nos_manifest.json                                  |   909 -
+ package-lock.json                                  |  3710 +-
+ package.json                                       |    49 +-
+ public/assets/boy-and-moon.png                     |   Bin 0 -> 2637228 bytes
+ public/data/chapters/1.txt                         |    80 +
+ public/data/chapters/10.txt                        |   101 +
+ public/data/chapters/11.txt                        |    33 +
+ public/data/chapters/13.txt                        |    24 +
+ public/data/chapters/2.txt                         |   103 +
+ public/data/chapters/24.txt                        |    13 +
+ public/data/chapters/3.txt                         |    33 +
+ public/data/chapters/4.txt                         |    33 +
+ public/data/chapters/5.txt                         |    59 +
+ public/data/chapters/6.txt                         |    48 +
+ public/data/chapters/8.txt                         |    66 +
+ public/data/chapters/9.txt                         |    34 +
+ .../llama_agents_merge_draft_20260613_034544.md    |     0
+ .../llama_agents_merge_draft_20260613_034722.md    |     0
+ ...ents_merge_draft_20260613_035251_singularity.md |    50 +
+ .../llama_agents_merge_prompt_20260613_034544.md   |   637 +
+ reports/api-route-source-report.txt                |   177 +
+ reports/app-data-source-report.txt                 |    15 +
+ reports/chapter-source-references.txt              |   467 +
+ .../selected_context_import_check.txt              |   207 +
+ reports/data-lineage-audit.txt                     |   263 +
+ reports/db-lineage-report.txt                      |   101 +
+ reports/derived-panel-references.txt               |   166 +
+ reports/gdrive_ooxml_raw_files.txt                 |   579 +
+ reports/ingestion-hash-references.txt              |  4987 ++
+ reports/json-payload-shapes.txt                    |   123 +
+ reports/local-docx-xml-files.txt                   |     1 +
+ .../name-matched-google-docs-archive-latest.json   |    17 +
+ reports/perfect_weight/01_file_manifest.tsv        |   567 +
+ reports/perfect_weight/01_repo_inventory.md        |   129 +
+ .../perfect_weight/02_context_classification.json  |   515 +
+ .../perfect_weight/02_context_classification.md    |   Bin 0 -> 13715 bytes
+ reports/perfect_weight/03_code_data_map.md         |  1124 +
+ reports/perfect_weight/04_uiux_extract.md          |  1558 +
+ .../perfect_weight/05_contradiction_fork_map.md    |   470 +
+ reports/perfect_weight/06_supabase_snapshot.md     |    16 +
+ reports/perfect_weight/07_panel_truth_audit.md     |    87 +
+ reports/perfect_weight/08_next_100_actions.md      |   121 +
+ .../09_WEIGHT_OF_THE_SKY_PERFECTION_README.md      |  3696 ++
+ reports/readme_docs_missing.json                   |     1 +
+ reports/readme_docs_stage_manifest.json            |   263 +
+ reports/readme_docs_staged_files.txt               |    27 +
+ .../active_runtime_source_counts.json              |    77 +
+ .../active_runtime_source_manifest.json            |  2100 +
+ .../active_runtime_source_registry.json            |  2000 +
+ .../active_runtime_source_registry.md              |   304 +
+ .../runtime_sources/clean_runtime_import_audit.md  |   513 +
+ .../code_only_runtime_path_audit.md                |  1708 +
+ .../document_mentions_legacy_paths_audit.md        |   401 +
+ .../runtime_sources/manual_sort_suggestions.json   |  3577 ++
+ reports/runtime_sources/manual_sort_suggestions.md |   292 +
+ reports/runtime_sources/not_archive_policy.md      |    18 +
+ .../renderer_document_read_report.json             |  8655 ++++
+ .../renderer_document_read_report.md               |  1115 +
+ .../runtime_sources/runtime_import_path_audit.md   |  6707 +++
+ .../runtime_source_cutover_status.md               |    21 +
+ .../runtime_source_decoupling_decision.md          |    23 +
+ .../strict_code_runtime_path_audit.json            |   386 +
+ .../strict_code_runtime_path_audit.md              |    85 +
+ .../xml_recovery/google_xml_extraction_audit.md    |    20 +
+ .../materialized_ooxml_manifest.STARRED_ONLY.json  |  1562 +
+ .../xml_recovery/materialized_ooxml_manifest.json  |  1562 +
+ .../share_google_docs_with_service_account.md      |    18 +
+ .../source_xml_supabase_schema_proposal.sql        |    39 +
+ .../xml_55_name_keys.STARRED_FROM_GOOGLE_DOCS.txt  |    52 +
+ .../xml_starred_allowlist_unmatched_keys.txt       |     0
+ .../xml_starred_hash_allowlist_keys.txt            |    16 +
+ .../xml_recovery/xml_starred_hash_doc_folders.txt  |    16 +
+ reports/xml_recovery/xml_starred_hash_truth.txt    |    28 +
+ reports/xml_recovery/xml_starred_match_map.json    |    51 +
+ .../build_files.sh                                 |     0
+ .../export_blueprints.sh                           |     4 +-
+ scripts/diagnostics/data-lineage-audit.sh          |    50 +
+ scripts/{ => diagnostics}/nos_audit.sh             |     2 +-
+ .../diagnostics/run_nos_diagnostics.sh             |     2 +-
+ test-db.js => scripts/diagnostics/test-db.js       |     0
+ .../standardize_context_filenames.py               |   193 +
+ .../context/stage-numbered-download-readme-docs.py |   141 +
+ .../archive-google-docs-by-local-names.mjs         |   572 +
+ .../google_drive}/extract_deep_history.py          |     0
+ scripts/{ => nos}/nos_invoke.sh                    |     2 +-
+ scripts/{ => nos}/nos_sync.sh                      |     8 +-
+ .../00_generate_perfection_scripts.py              |   474 +
+ scripts/perfect_weight/01_inventory.sh             |    30 +
+ scripts/perfect_weight/02_context_classifier.py    |    51 +
+ scripts/perfect_weight/03_code_data_map.sh         |    24 +
+ scripts/perfect_weight/04_uiux_extract.py          |    29 +
+ .../perfect_weight/05_contradiction_fork_map.py    |    33 +
+ scripts/perfect_weight/06_supabase_snapshot.sh     |    42 +
+ scripts/perfect_weight/07_panel_truth_audit.py     |    36 +
+ scripts/perfect_weight/08_next_100_actions.py      |   137 +
+ scripts/perfect_weight/09_master_readme_builder.py |    35 +
+ scripts/perfect_weight/10_runner.sh                |    21 +
+ .../runtime_sources/audit_runtime_import_paths.sh  |    40 +
+ .../classify_runtime_documents_for_manual_sort.py  |    70 +
+ .../runtime_sources/clean_runtime_import_audit.sh  |    26 +
+ .../code_only_runtime_path_audit.sh                |    49 +
+ .../create_active_runtime_source_layout.py         |   225 +
+ scripts/runtime_sources/read_renderer_documents.py |    68 +
+ .../strict_code_runtime_path_audit.py              |   113 +
+ .../write_runtime_source_constants.py              |    43 +
+ .../write_runtime_source_registry.py               |    93 +
+ scripts/semantic/verify-context-and-xml-hashes.mjs |    52 +
+ scripts/semantic/xml-grounded-vertex-rehash.mjs    |  1317 +
+ .../xml_recovery/audit_google_xml_extraction.sh    |    42 +
+ scripts/xml_recovery/materialize_ooxml_raw.py      |    64 +
+ src/app/api/auth-pin/route.ts                      |    24 +
+ src/app/api/biblical-references/route.ts           |    29 +-
+ src/app/api/chapters/route.ts                      |   134 +-
+ src/app/api/graph/route.ts                         |    46 +-
+ src/app/api/health/route.ts                        |    80 +-
+ src/app/api/runtime-sources/route.ts               |    40 +
+ src/app/api/search/route.ts                        |    64 +-
+ src/app/globals.css                                |   481 +-
+ src/app/layout.tsx                                 |     4 +
+ src/app/page.tsx                                   |    49 +-
+ src/components/ReaderLayout.tsx                    |    11 +-
+ src/components/RuntimeInitializer.tsx              |    28 +
+ src/components/layers/Layer1Void.tsx               |     2 +-
+ src/components/layers/Layer2Cinema.tsx             |   100 +-
+ src/components/layers/Layer4Panel.tsx              |   142 +-
+ src/components/layers/canvas/ManuscriptCore.tsx    |   153 +-
+ .../layers/canvas/front-matter/TableOfContents.tsx |     5 +-
+ src/components/layers/cinema/TelemetryOverlay.tsx  |   215 +
+ .../layers/panel/ArchetypesDirectory.tsx           |   147 +-
+ src/components/layers/panel/AuthorGateway.tsx      |   143 +-
+ .../layers/panel/BiblicalReferencesDirectory.tsx   |    90 +-
+ src/components/layers/panel/ChapterSettings.tsx    |   125 +-
+ src/components/layers/panel/HyperlinksGraph.tsx    |   216 +-
+ src/components/layers/panel/IndexTab.tsx           |    57 +
+ src/components/layers/panel/StatusTab.tsx          |    21 +
+ .../components/layers/panel/StylesTab.tsx          |   106 +-
+ src/components/layers/panel/SystemTab.tsx          |   205 +
+ src/core/narrative-types.ts                        |     4 +
+ src/core/runtimeEngine.ts                          |    37 +-
+ .../initialization-metadata/node_manifest.json     |   362 +-
+ src/data/cinema.ts                                 |    29 +-
+ src/hooks/useScrollFocus.ts                        |    42 +-
+ src/hooks/useScrollTracker.ts                      |    17 +
+ src/lib/db.ts                                      |    12 +
+ src/lib/runtime-source-paths.ts                    |    34 +
+ src/lib/runtime-source-reader.ts                   |   185 +
+ src/runtime/controlPanel.ts                        |    95 +-
+ src/runtime/listeners/audioPlaybackListener.ts     |    54 +
+ src/runtime/readerControls.ts                      |    37 -
+ src/runtime/runtimeContext.tsx                     |    29 -
+ .../analytics-engine/logic/coefficient_engine.ts   |    28 +
+ .../analytics-engine/mapping/dualism_logic.ts      |    37 +
+ src/services/document-analyzer/corpus-searcher.ts  |    58 +-
+ src/services/document-analyzer/synthesis-engine.ts |    28 +-
+ src/services/image-engine/executor.ts              |    35 +
+ src/services/image-engine/prompter.ts              |    28 +
+ src/services/ingestion/pipeline.ts                 |   132 +-
+ src/services/memory-engine/corpus-loader.ts        |    55 +-
+ src/services/memory-engine/document-store.ts       |     6 +
+ src/services/memory-engine/integrity-validator.ts  |     6 +
+ src/services/memory-engine/memory-engine.ts        |     6 +
+ src/services/memory-engine/memory-kernel.ts        |     6 +
+ .../narrative-graph-engine/connection-analyzer.ts  |     6 +
+ .../narrative-graph-engine/consistency-analyzer.ts |     6 +
+ .../narrative-graph-engine/edge-builder.ts         |     6 +
+ .../narrative-graph-engine/graph-kernel.ts         |     6 +
+ .../narrative-graph-engine/graph-querier.ts        |     6 +
+ .../narrative-graph-engine/graph-serializer.ts     |     6 +
+ .../narrative-graph-engine/node-builder.ts         |     6 +
+ src/services/narrative-graph-engine/path-finder.ts |     6 +
+ .../orchestration-engine/context-builder.ts        |     6 +
+ src/services/orchestration-engine/google-swarm.ts  |    43 +-
+ .../orchestration-engine/orchestration-engine.ts   |     6 +
+ src/services/orchestration-engine/pipeline.ts      |     6 +
+ .../orchestration-engine/prompt-assembler.ts       |     6 +
+ .../orchestration-engine/providers/anthropic.ts    |    41 +
+ src/services/orchestration-engine/router.ts        |    21 +-
+ .../orchestration-engine/runtime-controller.ts     |     6 +
+ src/services/writing-agent/agent-kernel.ts         |     6 +
+ src/services/writing-agent/generation-executor.ts  |     6 +
+ src/services/writing-agent/task-executor.ts        |     6 +
+ src/styles/animations.css                          |     2 +
+ src/styles/components.css                          |     2 +
+ src/styles/tokens.css                              |     7 +
+ src/styles/typography.css                          |     2 +
+ supabase/functions/_shared/cors.ts                 |    22 +
+ supabase/functions/_shared/hash.ts                 |    27 +
+ supabase/functions/_shared/semantic.ts             |    37 +
+ supabase/functions/_shared/supabase.ts             |    14 +
+ supabase/functions/create-upload-url/index.ts      |    94 +
+ supabase/functions/enqueue-enrichment/index.ts     |    73 +
+ .../functions/process-enrichment-batch/index.ts    |    43 +
+ .../functions/register-uploaded-artifact/index.ts  |    50 +
+ supabase/functions/verify-artifact-hash/index.ts   |    29 +
+ .../migrations/20260521000000_initial_schema.sql   |     9 +-
+ supabase/migrations/20260602000000_phase1_sync.sql |    34 +
+ ...20260617000100_xml_grounded_semantic_rehash.sql |   295 +
+ system_logic_audit.txt                             |   183 -
+ tsc.log                                            |    14 -
+ tsconfig.json                                      |     2 +-
+ ui_ux_dump.txt                                     |  4668 --
+ vercel.json                                        |     2 +-
+ 833 files changed, 253051 insertions(+), 17616 deletions(-)
+
+=== DIFF NAME STATUS DEFAULT...CURRENT ===
+A	.github/workflows/apply-supabase-migration-management-api.yml
+A	.github/workflows/deploy-supabase-functions-only.yml
+A	.github/workflows/deploy-supabase.yml
+A	.github/workflows/semantic-rehash-dry-run.yml
+A	.github/workflows/semantic-rehash-full.yml
+M	.gitignore
+M	AGENTS.md
+M	GEMINI.md
+D	NOS_Core_Engine_Discovery_Dump.txt
+D	NOS_Critical_Files_Dump.txt
+D	NOS_Layout_Search_Discovery_Dump.txt
+D	NOS_Panel_Runtime_EMA_Dump.txt
+D	NOS_Remaining_23_Matrix_Dump.txt
+D	NOS_Responsive_Style_Config_Dump.txt
+A	docs/agent_context/canonical/013_WRITING_AGENT_APP_SOURCE_DOC_4_TERMUX.txt
+A	docs/agent_context/canonical/014_WRITING_AGENT_APP_SOURCE_DOC_8_COMBINED.txt
+A	docs/agent_context/canonical/016_229_1.txt
+A	docs/agent_context/canonical/024_AESTHETIC_AND_IMPLEMENTATION_MANDATE.txt
+A	docs/agent_context/canonical/026_AI_CHECKPOINT_FINAL.txt
+A	docs/agent_context/canonical/029_AI_INFORMATION_INTUITION.md
+A	docs/agent_context/canonical/031_AI_READY_CHECKPOINT.txt
+A	docs/agent_context/canonical/034_AIM_BLUEPRINT.txt
+A	docs/agent_context/canonical/071_CLAUDE_HONEST_ASSESSMENT_20260513.md
+A	docs/agent_context/canonical/072_CLAUDE_HONEST_ASSESSMENT_V2_20260513.md
+A	docs/agent_context/canonical/075_COMPARISON.txt
+A	docs/agent_context/canonical/077_CONTRADICTION_MAP.txt
+A	docs/agent_context/canonical/084_DRIVE_NOT_LOCAL_RAW.txt
+A	docs/agent_context/canonical/089_FIRST_FUTURE_FEATURE.txt
+A	docs/agent_context/canonical/095_GDRIVE_RAW_FULL_INVENTORY.txt
+A	docs/agent_context/canonical/097_GEMINI_CLI_PENULTIMATE_OMEGA_PROMPT.txt
+A	docs/agent_context/canonical/104_GIVE_ME_THE_TERMINAL_COMMANDS_TO_GET_THAT.pdf
+A	docs/agent_context/canonical/107_4_LAYER_UI_UX_RUNTIME_ENVIRONMENT_INVENTORY.txt
+A	docs/agent_context/canonical/111_IMPOSSIBLE_TARGETS.txt
+A	docs/agent_context/canonical/123_NEW_SEC_DOC_1_1.txt
+A	docs/agent_context/canonical/124_NEW_SEC_DOC_1_2.txt
+A	docs/agent_context/canonical/134_NOS_INTEGRATION_BLUEPRINT.txt
+A	docs/agent_context/canonical/139_NOS_MASTER_BLUEPRINTS.txt
+A	docs/agent_context/canonical/140_NOS_MASTER_DIAGNOSTIC.txt
+A	docs/agent_context/canonical/154_PROJECT_CHECKPOINT_2.txt
+A	docs/agent_context/canonical/160_PROJECT_HANDOFF_COMPLETE_CONTEXT_2.md
+R100	src/data-layer/singularity/REFINED_LORE_SINGULARITY.txt	docs/agent_context/canonical/174_REFINED_LORE_SINGULARITY.txt
+A	docs/agent_context/canonical/199_TERMUX_CHECKPOINT_W_GEMINI_1_1.txt
+A	docs/agent_context/indexes/AGENTS_README.md
+A	docs/agent_context/indexes/AGENT_CONTEXT_CANONICAL_INDEX.md
+A	docs/agent_context/indexes/AGENT_READ_CONTEXT_INDEX.md
+A	docs/agent_context/indexes/ANDROID_DOWNLOADS_HANDPICK_ACCESSION_INDEX.md
+A	docs/agent_context/indexes/CLEANUP_POLICY_INDEX.md
+A	docs/agent_context/indexes/GOOGLE_CLI_AND_TERMUX_TERMINAL_README_DOCUMENTS.txt
+A	docs/agent_context/indexes/PROJECT_STRUCTURE_STANDARD.md
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(A)Chapter_8:_Sea_People.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)Chapter_8:_Sea_People.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter:_1_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter:_1_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1-_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_1-_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1:_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_1:_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1_-_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_1_-_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_2-_Living_Sacrifice.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_2-_Living_Sacrifice.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_2:_Living_Sacrifice.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_2:_Living_Sacrifice.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_3-_Lift_Up.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_3-_Lift_Up.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_3_-_Lift_Up.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_3_-_Lift_Up.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_5_-_The_Snare.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_5_-_The_Snare.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_6:_Beelzebub,_Beelzebub.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(A)_Chapter_6:_Beelzebub,_Beelzebub.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(B)Chapter_8:_Sea_People.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)Chapter_8:_Sea_People.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter:_1_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter:_1_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1-_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_1-_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1:_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_1:_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1_-_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_1_-_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_2-_Living_Sacrifice.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_2-_Living_Sacrifice.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_2:_Living_Sacrifice.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_2:_Living_Sacrifice.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_3-_Lift_Up.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_3-_Lift_Up.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_3:_Lift_Up.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_3:_Lift_Up.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_5-_The_Snare.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_5-_The_Snare.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_6_-_Beelzebub,_Beelzebub.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_6_-_Beelzebub,_Beelzebub.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_7:_The_Pit.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_7:_The_Pit.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_9:_The_Ascent.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Chapter_9:_The_Ascent.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(B)_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(B)_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(C)Chapter_8:_Sea_People.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)Chapter_8:_Sea_People.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_1_-_Stardust_to_Stardust_.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter:_1_-_Stardust_to_Stardust_.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_7_-_The_Pit.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter:_7_-_The_Pit.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter:_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_1-_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_1-_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_1_-_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_1_-_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_2-_Living_Sacrifice.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_2-_Living_Sacrifice.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_3-_Lift_Up.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_3-_Lift_Up.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_3_-_Lift_Up.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_3_-_Lift_Up.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_4-_Pilgrimage.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_4-_Pilgrimage.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_4_-_Pilgrimage.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_4_-_Pilgrimage.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_6-_Beelzebub,_Beelzebub.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(C)_Chapter_6-_Beelzebub,_Beelzebub.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter:_7_-_The_Pit.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(D)_Chapter:_7_-_The_Pit.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter_1_-_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(D)_Chapter_1_-_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter_2-_Living_Sacrifice.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(D)_Chapter_2-_Living_Sacrifice.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter_2_-_Living_Sacrifice.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(D)_Chapter_2_-_Living_Sacrifice.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_1-_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(E)_Chapter_1-_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_1_-_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(E)_Chapter_1_-_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_2-_Living_Sacrifice.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(E)_Chapter_2-_Living_Sacrifice.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_2_-_Living_Sacrifice.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(E)_Chapter_2_-_Living_Sacrifice.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_3-_Lift_Up.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(E)_Chapter_3-_Lift_Up.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter:_1_Stardust_to_Stardust_.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(F)_Chapter:_1_Stardust_to_Stardust_.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_1:_Stardust_to_Stardust_.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(F)_Chapter_1:_Stardust_to_Stardust_.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_1_-_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(F)_Chapter_1_-_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_2-_Living_Sacrifice.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(F)_Chapter_2-_Living_Sacrifice.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_3-_Lift_Up.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(F)_Chapter_3-_Lift_Up.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(Final) Chapter: 7 - The Pit.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Final) Chapter: 7 - The Pit.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_1:_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Final)_Chapter_1:_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_1_-_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Final)_Chapter_1_-_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_2-_Living_Sacrifice.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Final)_Chapter_2-_Living_Sacrifice.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_3-_Lift_Up.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Final)_Chapter_3-_Lift_Up.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_3:_Lift_Up.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Final)_Chapter_3:_Lift_Up.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_5_-_The_Snare.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Final)_Chapter_5_-_The_Snare.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(G)_Chapter_1:_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(G)_Chapter_1:_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(G)_Chapter_2-_Living_Sacrifice.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(G)_Chapter_2-_Living_Sacrifice.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(G)_Chapter_3-_Lift_Up.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(G)_Chapter_3-_Lift_Up.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(G)_Final_)_Chapter:_10_-_Forsaken.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(G)_Final_)_Chapter:_10_-_Forsaken.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(I)_(Notes)_Chapter:_1_Stardust_to_Stardust_.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(I)_(Notes)_Chapter:_1_Stardust_to_Stardust_.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(I)_Chapter:_1_Stardust_to_Stardust_.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(I)_Chapter:_1_Stardust_to_Stardust_.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(N)_CHAPTER_1-_STARDUST_TO_STARDUST.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(N)_CHAPTER_1-_STARDUST_TO_STARDUST.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(N)_Chapter_1_-_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(N)_Chapter_1_-_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_(P)_Chapter:_1_-_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Notes)_(P)_Chapter:_1_-_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_Chapter_2-_Living_Sacrifice.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Notes)_Chapter_2-_Living_Sacrifice.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_Chapter_2:_Living_Sacrifice.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Notes)_Chapter_2:_Living_Sacrifice.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(O)_Chapter_1-_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(O)_Chapter_1-_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(P)_Chapter:_1_-_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(P)_Chapter:_1_-_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(Prompt_Guide_(E))_Chapter_10:_Forsaken.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Prompt_Guide_(E))_Chapter_10:_Forsaken.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(R) Chapter: 1 - Stardust to Stardust .txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(R) Chapter: 1 - Stardust to Stardust .txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(R)_Chapter:_1_-_Stardust_to_Stardust_.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(R)_Chapter:_1_-_Stardust_to_Stardust_.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(Revision_Prompt_(D))_Chapter_10:_Forsaken.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Revision_Prompt_(D))_Chapter_10:_Forsaken.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(Revision_Prompt_(N)__Chapter_1_-_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Revision_Prompt_(N)__Chapter_1_-_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(Revisions)_Chapter_1:_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Revisions)_Chapter_1:_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(SDP)_v2.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(SDP)_v2.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1:_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(X)_Chapter_1:_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1_-_Stardust_to_Stardust.docx.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(X)_Chapter_1_-_Stardust_to_Stardust.docx.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1_-_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(X)_Chapter_1_-_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1__Stardust_to_Stardust_(1).txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(X)_Chapter_1__Stardust_to_Stardust_(1).txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1__Stardust_to_Stardust_(2).txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(X)_Chapter_1__Stardust_to_Stardust_(2).txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/(Z)_Chapter_1:_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/(Z)_Chapter_1:_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_1:_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/*Chapter_1:_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_2-_Living_Sacrifice.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/*Chapter_2-_Living_Sacrifice.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_3:_Lift_Up.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/*Chapter_3:_Lift_Up.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_4:_Pilgrimage.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/*Chapter_4:_Pilgrimage.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_7:_The_Pit.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/*Chapter_7:_The_Pit.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_8:_Sea_People.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/*Chapter_8:_Sea_People.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_9:_The_Ascent.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/*Chapter_9:_The_Ascent.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/-Final_Chapter_1_Revision_Prompt-.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/-Final_Chapter_1_Revision_Prompt-.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/1.0_Revision.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/1.0_Revision.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/10.0_Blueprint_for_The_Ascent_of_Daniel:_The_Archetype_of_Sacrifice_(NYT_Bestseller_Focus).txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/10.0_Blueprint_for_The_Ascent_of_Daniel:_The_Archetype_of_Sacrifice_(NYT_Bestseller_Focus).txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/10.0_MASTER_SYSTEM_FOR_CHAPTER_REVISION.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/10.0_MASTER_SYSTEM_FOR_CHAPTER_REVISION.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/10.0_Mass_Market.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/10.0_Mass_Market.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/11.0_Error_Catalog.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/11.0_Error_Catalog.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/11.0_Final_Revision.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/11.0_Final_Revision.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/11.0_Marketability_.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/11.0_Marketability_.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/12.0_Perfection.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/12.0_Perfection.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/13.0_Claude.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/13.0_Claude.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/13.0_GENERAL_PRINCIPLES.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/13.0_GENERAL_PRINCIPLES.txt
+R100	"src/data-layer/ingestion-buffer/gdrive_raw/2.0_Critique_\357\274\217_Analysis_Guide.txt"	"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/2.0_Critique_\357\274\217_Analysis_Guide.txt"
+R100	"src/data-layer/ingestion-buffer/gdrive_raw/2.0_This_is_the_critical_adjustment\342\200\224the_final_layer_that_elevates_philosophical_storytelling_into_timeless,_devastating_human_tragedy.txt"	"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/2.0_This_is_the_critical_adjustment\342\200\224the_final_layer_that_elevates_philosophical_storytelling_into_timeless,_devastating_human_tragedy.txt"
+R100	src/data-layer/ingestion-buffer/gdrive_raw/3.0_Final_.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/3.0_Final_.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/3.0_Literary_&_Archetypal_Fusion_Rulebook_(The_Cat_God_&_The_Primal_Self).txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/3.0_Literary_&_Archetypal_Fusion_Rulebook_(The_Cat_God_&_The_Primal_Self).txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/3.0_Scientific_Guide.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/3.0_Scientific_Guide.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/4.0_(12_Rules_For_Life).txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/4.0_(12_Rules_For_Life).txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/4.0_Emotional_&_Archetypal_Editing_Rulebook_(Visceral_Empathy_Focus).txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/4.0_Emotional_&_Archetypal_Editing_Rulebook_(Visceral_Empathy_Focus).txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/4.0_Psychology_Guide.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/4.0_Psychology_Guide.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/4.0_REVISED.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/4.0_REVISED.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/5.0_Final_Guide.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/5.0_Final_Guide.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/5.0_Psychology_Guide.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/5.0_Psychology_Guide.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/6.0_HIGHEST_PRIORITY_(Read_this_first_and_then_again_last)_.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/6.0_HIGHEST_PRIORITY_(Read_this_first_and_then_again_last)_.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/6.0_SYNTHESIS_MANDATE.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/6.0_SYNTHESIS_MANDATE.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/6.0_Supreme_Generative_Constraint.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/6.0_Supreme_Generative_Constraint.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/7.0_Chapter_Refinery.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/7.0_Chapter_Refinery.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/7.0_Nuclear_Edit!!!!_(CRITICAL!_DIRE!_EMERGENCY!!!).txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/7.0_Nuclear_Edit!!!!_(CRITICAL!_DIRE!_EMERGENCY!!!).txt
+R100	"src/data-layer/ingestion-buffer/gdrive_raw/8.0_Pacing\357\274\217Redundancy.txt"	"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/8.0_Pacing\357\274\217Redundancy.txt"
+R100	"src/data-layer/ingestion-buffer/gdrive_raw/8._0_This_is_the_final,_most_crucial_step:_ensuring_the_narrative's_structure_is_so_perfectly_weighted_that_the_profound_sadness\342\200\224the_weeping_of_self-recognition\342\200\224is_not_a_chance_event,_but_an_earned,_inevitable_catharsis_for_the_reader.txt"	"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/8._0_This_is_the_final,_most_crucial_step:_ensuring_the_narrative's_structure_is_so_perfectly_weighted_that_the_profound_sadness\342\200\224the_weeping_of_self-recognition\342\200\224is_not_a_chance_event,_but_an_earned,_inevitable_catharsis_for_the_reader.txt"
+R100	src/data-layer/ingestion-buffer/gdrive_raw/9.0_Aesthetic.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/9.0_Aesthetic.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/9.0_Stones.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/9.0_Stones.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/ALITTERAS_SYSTEM_BLUEPRINT_v1.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/ALITTERAS_SYSTEM_BLUEPRINT_v1.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter 3 - Commerciality and Marketing 3.0.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter 3 - Commerciality and Marketing 3.0.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter2_Weight_of_the_Sky.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter2_Weight_of_the_Sky.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_10_-_MASTER_BRIEFING.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_10_-_MASTER_BRIEFING.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_1_-_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_1_-_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_1_Proof_of_Authorship_1.0.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_1_Proof_of_Authorship_1.0.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_1_Proof_of_Authorship_1.1.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_1_Proof_of_Authorship_1.1.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_8_(Final).txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter:_8_(Final).txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10.1.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_10.1.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10.5.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_10.5.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10:_Forsaken.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_10:_Forsaken.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10_Forsaken_FINAL_DEFINITIVE.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_10_Forsaken_FINAL_DEFINITIVE.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10_Version_F.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_10_Version_F.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_11.8.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_11.8.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_11._Forsaken.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_11._Forsaken.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_13:_Exodus.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_13:_Exodus.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1:_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_1:_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_-_Stardust_to_Stardust.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_1_-_Stardust_to_Stardust.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Integration.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_1_Integration.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Integration_2.0.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_1_Integration_2.0.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Integration_Prompt.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_1_Integration_Prompt.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Merge_Prompt.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_1_Merge_Prompt.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Version_O.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_1_Version_O.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2:_Living_Sacrifice.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_2:_Living_Sacrifice.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2_-_Analysis_&_Guides_1.0.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_2_-_Analysis_&_Guides_1.0.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2_-_Commerciality_and_Marketing_3.0.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_2_-_Commerciality_and_Marketing_3.0.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2_-_Master_Revision_Prompt_2.0.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_2_-_Master_Revision_Prompt_2.0.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2nd_to_last.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_2nd_to_last.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3:_Lift_Up.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_3:_Lift_Up.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3_-_Master_Revision_Prompt_2.0.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_3_-_Master_Revision_Prompt_2.0.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3_Analysis_&_Guides.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_3_Analysis_&_Guides.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3_Integration_Prompt.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_3_Integration_Prompt.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_4:_Pilgrimage.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_4:_Pilgrimage.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_5:_The_Snare.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_5:_The_Snare.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_6:_Beelzebub,_Beelzebub.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_6:_Beelzebub,_Beelzebub.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_8.1.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_8.1.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_8:_Sea_People.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_8:_Sea_People.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Chapter_9:_The_Ascent.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Chapter_9:_The_Ascent.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Could_you_condense_that_chapter_by_500_to_1,000_w....txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Could_you_condense_that_chapter_by_500_to_1,000_w....txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Critique_2.2.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Critique_2.2.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Final Revision (Generalized For All Chapters).txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Final Revision (Generalized For All Chapters).txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Go_ahead_and_write_out_the_chapter_keep_in_mind_t....txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Go_ahead_and_write_out_the_chapter_keep_in_mind_t....txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/MANUSCRIPT_AUTOPSY.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/MANUSCRIPT_AUTOPSY.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Narnia_.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Narnia_.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Purple_Prose_Prompt.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Purple_Prose_Prompt.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/THE_WEIGHT_OF_THE_SKY-_MASTER_COMPENDIUM_(SINGULARITY_v.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/THE_WEIGHT_OF_THE_SKY-_MASTER_COMPENDIUM_(SINGULARITY_v.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/The_-Version_X-_Meta-Prompt.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/The_-Version_X-_Meta-Prompt.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/The_Weight_of_the_Sky:_The_Fall_into_Megiddo.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/The_Weight_of_the_Sky:_The_Fall_into_Megiddo.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/The_scrape.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/The_scrape.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/ToALITTERAS_ECOSYSTEM_v2.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/ToALITTERAS_ECOSYSTEM_v2.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Untitled_document.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Untitled_document.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Version_A.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Version_A.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Version_B.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Version_B.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/WOS_Ch7_The_Pit.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/WOS_Ch7_The_Pit.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/Whole_Book.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/Whole_Book.txt
+R100	src/data-layer/ingestion-buffer/gdrive_raw/chapter_11.2.txt	docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/chapter_11.2.txt
+R100	"src/data-layer/ingestion-buffer/gdrive_raw/\342\200\242(G)_Chapter:_1_Stardust_to_Stardust_.txt"	"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/\342\200\242(G)_Chapter:_1_Stardust_to_Stardust_.txt"
+R100	"src/data-layer/ingestion-buffer/gdrive_raw/\342\200\242(G)_Chapter_2-_Living_Sacrifice.txt"	"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/\342\200\242(G)_Chapter_2-_Living_Sacrifice.txt"
+R100	"src/data-layer/ingestion-buffer/gdrive_raw/\357\273\277Chapter_1-_Stardust_to_Stardust.txt"	"docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/\357\273\277Chapter_1-_Stardust_to_Stardust.txt"
+A	docs/agent_context/source_drop/large_compendiums/REFINED_LORE_SINGULARITY.txt
+A	docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier1-critical/01_SRC_DOC_4_TERMUX.txt
+A	docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier1-critical/02_doc_229.txt
+A	docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier1-critical/03_Aesthetic_Mandate.txt
+A	docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier1-critical/04_AI_CHECKPOINT_FINAL.txt
+A	docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier1-critical/05_AI_INFORMATION_INTUITION.md
+A	docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier1-critical/06_AI_READY_CHECKPOINT.txt
+A	docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier1-critical/07_AIM_BLUEPRINT.txt
+A	docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier1-critical/08_CLAUDE_ASSESSMENT_v1.md
+A	docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier1-critical/09_CLAUDE_ASSESSMENT_v2.md
+A	docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier1-critical/10_COMPARISON.txt
+A	docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier1-critical/11_First_Future_Feature.txt
+A	docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier1-critical/12_gdrive_raw_FULL_inventory.txt
+A	docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier1-critical/13_GEMINI_CLI_OMEGA_PROMPT.txt
+A	docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier1-critical/14_4_LAYER_UI_UX_INVENTORY.txt
+A	docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier1-critical/15_IMPOSSIBLE_TARGETS.txt
+A	docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier1-critical/16_PROJECT_HANDOFF_CONTEXT.md
+A	docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier1-critical/17_SRC_DOC_8_COMBINED.txt
+A	docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier2-large/01_CONTRADICTION_MAP.txt
+A	docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier2-large/02_DRIVE_NOT_LOCAL_RAW.txt
+A	docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier2-large/03_TERMINAL_COMMANDS_RECOVERY.pdf
+A	docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier2-large/04_NEW_SEC_DOC_v1.txt
+A	docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier2-large/05_NEW_SEC_DOC_v2.txt
+A	docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier2-large/06_NOS_INTEGRATION_BLUEPRINT.txt
+A	docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier3-checkpoints/01_NOS_Master_Blueprints.txt
+A	docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier3-checkpoints/02_NOS_Master_Diagnostic.txt
+A	docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier3-checkpoints/03_Project_Checkpoint_2.txt
+A	docs/agent_context/source_drop/legacy_agent_context/.agent-context/tier3-checkpoints/04_Termux_Checkpoint_Gemini.txt
+R100	docs/ai-context/CONTEXT_PRIORITY.md	docs/agent_context/source_drop/legacy_ai_context/docs_ai_context/CONTEXT_PRIORITY.md
+R100	docs/ai-context/CURRENT_PROJECT_STATE.md	docs/agent_context/source_drop/legacy_ai_context/docs_ai_context/CURRENT_PROJECT_STATE.md
+R100	docs/ai-context/DO_NOT_USE_OLD_FILES_BLINDLY.md	docs/agent_context/source_drop/legacy_ai_context/docs_ai_context/DO_NOT_USE_OLD_FILES_BLINDLY.md
+R100	src/data-layer/07_Build_Manifests/Writing Agent App. Source Doc. (10) [NEUTRON].txt	docs/agent_context/source_drop/legacy_build_manifests/07_Build_Manifests/Writing Agent App. Source Doc. (10) [NEUTRON].txt
+R100	ULTIMATE_OMEGA_DIRECTIVE.md	docs/agent_context/source_drop/legacy_root_directives/ULTIMATE_OMEGA_DIRECTIVE.md
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/absolute_move_manifest.tsv
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/absolute_old_path_reference_scan.tsv
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/absolute_post_root_surface.txt
+R100	Build	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/absolute_post_symlinks.txt
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/absolute_reference_rewrites.tsv
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/absolute_rollback_moves.sh
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/absolute_skip_manifest.tsv
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/absolute_summary.json
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/accession_manifest_status.txt
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/active_reference_audit.tsv
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/continue_absolute_cleanup.py
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/generated/tsconfig.tsbuildinfo
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/legacy_system_root/07_Build_Manifests/session_logs/SESSION_2026-05-12.log
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/legacy_system_root/resource-manager/active_dualisms.json
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/legacy_system_root/resource-manager/manifest.json
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/legacy_system_root/runtime/active_state.json
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/move_manifest.tsv
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/post_move_old_path_reference_scan.tsv
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/post_root_entries.json
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/post_root_surface.txt
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/post_symlinks.txt
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/pre_git_log.txt
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/pre_git_status.txt
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/pre_tree_maxdepth4.txt
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/rollback_moves.sh
+R100	parse-by-meaning.js.draft	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_drafts/parse-by-meaning.js.draft
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_misc/Build
+R073	build.log	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_nos/archive/logs/build_debug.txt
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_nos/archive/system/React_Component_Dumps/Layer2Cinema.tsx.dump
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_nos/archive/system/React_Component_Dumps/Layer3Canvas.tsx.dump
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_nos/archive/system/React_Component_Dumps/Layer4Panel.tsx.dump
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_nos/archive/system/React_Component_Dumps/ManuscriptCore.tsx.dump
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_nos/archive/system/React_Component_Dumps/chapters_route.ts.dump
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_nos/archive/system/React_Component_Dumps/page.tsx.dump
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_nos/runtime/active_dualisms.json
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_nos/runtime/active_state.json
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_policy_after_absolute_cleanup.json
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_sandbox/drive_updated.json
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_sandbox/emotion_audit.txt
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_sandbox/file_list.txt
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_sandbox/final_ch7_metadata.json
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_sandbox/full_audit_list.txt
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_sandbox/nos_connection_test.txt
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_sandbox/nos_full_audit.txt
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_sandbox/nos_full_handshake_report.txt
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_sandbox/nos_identity_audit.txt
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_sandbox/nos_logic_dump.txt
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_sandbox/nos_nervous_system_audit.txt
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_sandbox/nos_omni_handshake.txt
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_sandbox/nos_repair_report.txt
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/root_sandbox/project_dump.txt
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/skip_manifest.tsv
+A	docs/forensics/archive/20260614_092047_whole_tree_senior_cleanup/summary.json
+A	docs/forensics/archive/20260614_143918_final_senior_polish/final_root_surface.txt
+A	docs/forensics/archive/20260614_143918_final_senior_polish/final_senior_polish.py
+A	docs/forensics/archive/20260614_143918_final_senior_polish/final_symlinks.txt
+A	docs/forensics/archive/20260614_143918_final_senior_polish/polish_move_manifest.tsv
+A	docs/forensics/archive/20260614_143918_final_senior_polish/polish_reference_hits.tsv
+A	docs/forensics/archive/20260614_143918_final_senior_polish/polish_rollback.sh
+A	docs/forensics/archive/20260614_143918_final_senior_polish/polish_skip_manifest.tsv
+A	docs/forensics/archive/20260614_143918_final_senior_polish/polish_summary.json
+A	docs/forensics/archive/20260614_152330_externalize_local_private_surfaces/active_reference_hits.tsv
+A	docs/forensics/archive/20260614_152330_externalize_local_private_surfaces/externalize_manifest.tsv
+A	docs/forensics/archive/20260614_152330_externalize_local_private_surfaces/externalize_skip.tsv
+A	docs/forensics/archive/20260614_152330_externalize_local_private_surfaces/rollback_externalize.sh
+A	docs/forensics/archive/20260614_152330_externalize_local_private_surfaces/summary.json
+A	docs/forensics/archive/20260614_152618_force_externalize_local_private/force_externalize_manifest.tsv
+A	docs/forensics/archive/20260614_152618_force_externalize_local_private/force_externalize_skip.tsv
+A	docs/forensics/archive/20260614_152618_force_externalize_local_private/rollback_force_externalize.sh
+A	docs/forensics/archive/20260614_152618_force_externalize_local_private/summary.json
+A	docs/forensics/archive/20260614_154704_force_private_externalization_verified/tracked_files_under_externalized_paths.txt
+A	docs/forensics/archive/20260614_155153_direct_externalize_remaining_local_dirs/direct_externalization_summary.json
+A	docs/forensics/archive/20260614_155153_direct_externalize_remaining_local_dirs/rollback_direct_externalization.sh
+A	docs/forensics/archive/20260614_supabase_ingestion/.github/workflows/deploy-supabase-edge.yml
+A	docs/forensics/archive/20260614_supabase_ingestion/ARCHIVE_MANIFEST.tsv
+A	docs/forensics/archive/20260614_supabase_ingestion/README.md
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/agent_context/canonical/WAI_IDA_HANDOFF.md
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/20260614_043152_nos_ingestion_archive_schema.sql
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/20260614_053756_nos_supabase_cloud_ingestion_integration.sql
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/20260614_055606_supabase_env_discovery_MASKED.txt
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/20260614_060835_database_url_candidates_MASKED.txt
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/20260614_061553_database_url_candidates_MASKED.txt
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/app_feature_ingestion_20260613_232307/feature_ingestion_search.txt
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_candidate_collision_20260613_235628/chapter_candidate_collision.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_candidate_collision_20260613_235628/chapter_candidate_collision.tsv
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/chapter_doc_ids.tsv
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/chapter_docs.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_13PvrZoScqJoZGy7C-WMQ3e-OO6Eoo2lBPfd95GCzWno.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_14ZvNHyusHhEqvq7IP-IMKiIEQ1Lmn0Hz0CodkMJhGqE.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_16rHvLEMPfHUncZwbcgbwS9Wuim6HLSoZLRDddY8obn8.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_19Actl4QkJKQG6tyNvGO0XKEgg7W8FqGqFh6LTsBYdn8.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1AVkfasTxEDmov92ZfAJO2oMrfjvbR81iiupgRitAuvk.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1BqgZCEllPXo97cvz7UiwoXYzdEcFv7CYPIWeuXl4K14.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1D6hUVgHi3f_aJwxnYkevHVYxWJVbphh9cCkcZc85HEo.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1G3hxjxAN2RYYFEQ2LSS4Bs3VUrDezNsS7lOz_29XnAM.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1GLOQdhB-5C8W4hJ32jLGWakyv3cFshxBMGxtZTCUysY.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1HOwFTTV3qXEgLehumyXCikug0EFVPVl-dlEI-AHMURs.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1HgITZ_aQyru0299o0N46Bd_y_Mrj7p33mnT_hxuBBTo.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1HqyMGoK8NUyaFx1yZwU_B9tcxtFbd7a_ITzZX1IZXpI.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1N_kgc1nQhcDdho0MgY1Niam7DVBsou3PgH8d4Vcct34.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1NjcYtmx2wSTHcFVsHz0wdclkh-ieo6GA72aSSowoFPo.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1O6GIpNPj3kHgPzocyyWUSo8V1IG6SjkXA7tGZ-SjH5c.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1O757uRApIaK0uHbVHyNCM2Au8lmGHA6cH-c56KT6Xms.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1Oc5a8Cwy91Hg-xdfROvUtr8OjDCGRlw7lz7CBC_l5kI.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1OsSCXKukOBpvFWhdPN1zezpZns4goyxma4LpCeh65gY.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1P1cTFXD8ZdXyN0r6tfuIfCmMPS6E-Pcw4DrMau8eb9E.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1Q3f6XFlTodANFVbNr2ebSM5Mx4UnPWdre7NCwhopKgE.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1R2Y1Z5vpxbGFienlix_MBycUzjsEioARy3iEtyh6iwI.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1RAX0RnxE_BjKSt8o00HV4O0RQINFTlmTjaf5jIVBB4o.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1SWHeMSYXvpYEhu_qRTXHMyigv39ePsT2IQ7UG1X7vQ8.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1TWL07cVRtm1up97NeN3gXiB3S1KmQVgVKW7ax-D8sts.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1V9RyFYG8o7ieepXZ6CbzAjd-7W-qHWfj5ZZrEilAXJU.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1WgPgpkfYlsdGwnb0XDq34Kd8TZmH18u6ICS7jPT7qVM.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1WsdttLL1kbujxLyedbUOcmMheKspK9E26RM975_clwc.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1Y-HNtUCT4u2qmzQVDgpgtE_oJhX4cO9DGnAQc5IRxTQ.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1YolOPCW-Y6wjlvOetbttqrtmG9Z15F4iUrIKXCFQ0ns.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1ZAfaG-Jc-4YVf30Q5to9u4BeWk9Tl7gK-RR8yrKb5rE.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1_B-LtvTW3wt57XkM8EO7Au6R7cHTYXb8TvmTugJNtc0.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1a7wqHtTdQN9rxbcMsg2zJa-CPkqYu4rqdw2AwfjtHjs.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1b0h6T2DlMd-5sm1xGdF1e1Qrgddb2D-PU8P8GZ20Hk0.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1dAVOiCaa3g6lx3r7lLQZ6sxqVOYV5ZsgnfMpxgNJuyk.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1dBjRsoqexbBVZUYJTbZlybhH8cMGE1twD9kDtXh1kX8.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1eEillHIiOZLGJ4vj0Bm_9zjn3KjvxSHb291Rn7qsT9o.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1g_IyJmKgu-KesisMhiWPsTAcJWIO09ksqLwgemdrI3Y.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1h4Syw9MCUWgtJuij2SsgslfYGzTRU4SHz3vX94R_Khs.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1hkwgdCRoY1Km41PxPust4Umo0_nNKNM5MOrEXNr22LY.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1kuwV0FUwT3Dc2EU3CK9ojEWTlN3R8GNo8u8Sc8Zmj5E.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1lMmVYvwHmYuExByWEwlh-rGpUbirDPG7uPeR4gFh37g.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1oYdywl1XkOqB95PfGcw3LM9x_NOIuQPSvcq_K8v5GGs.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1qCMa99yPFqsZdjG3SXRWYnMfeUf6q9YZJRJewx2TRQ4.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1tBodxYU5EzuFOGMR46F64o9U8FISIFvMIaXn6QZ_SIQ.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1tQ2WZiIV4UDA3Al2aYgIHpVviwcEmqLDqjOQHs_dzxg.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1vd4nU1hUkJblTtaTt2Se4e2QUBV8TQZ6NdaSZOe6DcQ.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1wAivwO_8k5la6qbpd61lqxz2R23CCKF6hrYMNuQB6XM.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1xM4PJisjiArISTWalEW6oiGAgPG7ldg9kDmFFWDgi4A.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1ySPYKb-liIuWucG5iCAV8GGzWCCWRKDKp9DDBnat0OI.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/rev_1zrznzy9RhY5h6jAkSSWCT3FMVCfpxvGfXFJMJwjq0qc.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/chapter_revision_depth_scan_20260614_012522/revision_counts.tsv
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/drive-temporal-xml-reextract.before_182_units_20260614_015043.mjs
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/drive_extractor_discovery_20260614_002147/api_callsite_files.txt
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/drive_extractor_discovery_20260614_002147/archive_google_docs_inspection.txt
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/drive_extractor_discovery_20260614_002147/archive_one_lines_404_520.txt
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/drive_extractor_discovery_20260614_002147/candidate_code_files.txt
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/drive_gap_fill_16_20260613_233542/gap_candidates_from_existing_drive_cache.txt
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/drive_gap_fill_16_20260613_233542/gap_targets_16.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/drive_gap_fill_16_20260613_233542/gap_targets_16.tsv
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/drive_gap_fill_16_20260613_233542/gap_title_queries.txt
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/gdrive_raw_182_20260613_232242/gdrive_raw_manifest.tsv
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/matcher_integrity_20260613_234214/duplicate_mapped_targets.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/matcher_integrity_20260613_234214/matcher_docs_full.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/matcher_integrity_20260613_234214/matching_artifact_shapes.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/matcher_integrity_20260613_234214/suspicious_matches.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/matcher_integrity_20260613_234214/uncovered_by_strict_leaf_match.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/oauth_credentials_locator_20260614_010953/candidate_oauth_client_files.txt
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/oauth_flow_discovery_20260614_005934/oauth_callsite_files.txt
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/oauth_flow_discovery_20260614_005934/oauth_related_files.txt
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/oauth_old_flow_inspection_20260614_010840/oauth_old_flow_preview.txt
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/old_drive_auth_inspection_20260614_003511.txt
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/paired_reextract_targets_20260614_000018/raw_files_182.txt
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/paired_reextract_targets_20260614_000018/raw_sha256.tsv
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/paired_reextract_targets_20260614_000413/raw_files_182.null
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/paired_reextract_targets_20260614_000413/raw_files_182.txt
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/paired_reextract_targets_20260614_000413/raw_sha256.tsv
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/rclone_drive_api_probe_20260614_011933/drive_docs_sample.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/rclone_drive_api_probe_20260614_011933/first_doc_revisions.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/rclone_drive_api_probe_20260614_011933/probe.env
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/rclone_revision_probe_after_reconnect_20260614_012332/doc.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/rclone_revision_probe_after_reconnect_20260614_012332/revisions.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/rclone_revision_probe_fixed_url_20260614_012400/doc.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/rclone_revision_probe_fixed_url_20260614_012400/revisions.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/current.docx
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/current_ooxml/[Content_Types].xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/current_ooxml/_rels/.rels
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/current_ooxml/word/_rels/document.xml.rels
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/current_ooxml/word/document.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/current_ooxml/word/fontTable.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/current_ooxml/word/media/image1.png
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/current_ooxml/word/media/image10.png
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/current_ooxml/word/media/image2.png
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/current_ooxml/word/media/image3.png
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/current_ooxml/word/media/image4.png
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/current_ooxml/word/media/image5.png
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/current_ooxml/word/media/image6.png
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/current_ooxml/word/media/image7.png
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/current_ooxml/word/media/image8.png
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/current_ooxml/word/media/image9.png
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/current_ooxml/word/numbering.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/current_ooxml/word/settings.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/current_ooxml/word/styles.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/current_ooxml/word/theme/theme1.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/revision_1.bin
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/revision_175.bin
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/revision_227.bin
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/revision_286.bin
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/revision_345.bin
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/revision_355.bin
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/revision_408.bin
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/revision_430.bin
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/revision_436.bin
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/revision_450.bin
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/revision_452.bin
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/revision_470.bin
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/revision_491.bin
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/revision_495.bin
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/revision_596.bin
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/revision_599.bin
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/revision_ids.txt
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/revision_media_results.tsv
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_media_download_probe_20260614_012731/revisions.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_docx_export_links.tsv
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_export_results.tsv
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_1.docx
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_175.docx
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_175_ooxml/[Content_Types].xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_175_ooxml/_rels/.rels
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_175_ooxml/word/_rels/document.xml.rels
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_175_ooxml/word/_rels/fontTable.xml.rels
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_175_ooxml/word/document.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_175_ooxml/word/fontTable.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_175_ooxml/word/fonts/GoogleSans-bold.ttf
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_175_ooxml/word/fonts/GoogleSans-boldItalic.ttf
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_175_ooxml/word/fonts/GoogleSans-italic.ttf
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_175_ooxml/word/fonts/GoogleSans-regular.ttf
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_175_ooxml/word/media/image1.png
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_175_ooxml/word/numbering.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_175_ooxml/word/settings.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_175_ooxml/word/styles.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_175_ooxml/word/theme/theme1.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_1_ooxml/[Content_Types].xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_1_ooxml/_rels/.rels
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_1_ooxml/word/_rels/document.xml.rels
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_1_ooxml/word/_rels/fontTable.xml.rels
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_1_ooxml/word/document.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_1_ooxml/word/fontTable.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_1_ooxml/word/fonts/GoogleSans-bold.ttf
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_1_ooxml/word/fonts/GoogleSans-boldItalic.ttf
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_1_ooxml/word/fonts/GoogleSans-italic.ttf
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_1_ooxml/word/fonts/GoogleSans-regular.ttf
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_1_ooxml/word/numbering.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_1_ooxml/word/settings.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_1_ooxml/word/styles.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_1_ooxml/word/theme/theme1.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_227.docx
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_227_ooxml/[Content_Types].xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_227_ooxml/_rels/.rels
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_227_ooxml/word/_rels/document.xml.rels
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_227_ooxml/word/document.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_227_ooxml/word/fontTable.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_227_ooxml/word/media/image1.png
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_227_ooxml/word/numbering.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_227_ooxml/word/settings.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_227_ooxml/word/styles.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_227_ooxml/word/theme/theme1.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_286.docx
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_286_ooxml/[Content_Types].xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_286_ooxml/_rels/.rels
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_286_ooxml/word/_rels/document.xml.rels
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_286_ooxml/word/document.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_286_ooxml/word/fontTable.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_286_ooxml/word/media/image1.png
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_286_ooxml/word/numbering.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_286_ooxml/word/settings.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_286_ooxml/word/styles.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_286_ooxml/word/theme/theme1.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_345.docx
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_345_ooxml/[Content_Types].xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_345_ooxml/_rels/.rels
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_345_ooxml/word/_rels/document.xml.rels
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_345_ooxml/word/document.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_345_ooxml/word/fontTable.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_345_ooxml/word/media/image1.png
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_345_ooxml/word/numbering.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_345_ooxml/word/settings.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_345_ooxml/word/styles.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_345_ooxml/word/theme/theme1.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_355.docx
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_355_ooxml/[Content_Types].xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_355_ooxml/_rels/.rels
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_355_ooxml/word/_rels/document.xml.rels
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_355_ooxml/word/document.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_355_ooxml/word/fontTable.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_355_ooxml/word/media/image1.png
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_355_ooxml/word/numbering.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_355_ooxml/word/settings.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_355_ooxml/word/styles.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_355_ooxml/word/theme/theme1.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_408.docx
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_430.docx
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_436.docx
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_450.docx
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_452.docx
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_452_ooxml/[Content_Types].xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_452_ooxml/_rels/.rels
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_452_ooxml/word/_rels/document.xml.rels
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_452_ooxml/word/document.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_452_ooxml/word/fontTable.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_452_ooxml/word/media/image1.png
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_452_ooxml/word/media/image10.png
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_452_ooxml/word/media/image2.png
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_452_ooxml/word/media/image3.png
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_452_ooxml/word/media/image4.png
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_452_ooxml/word/media/image5.png
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_452_ooxml/word/media/image6.png
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_452_ooxml/word/media/image7.png
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_452_ooxml/word/media/image8.png
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_452_ooxml/word/media/image9.png
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_452_ooxml/word/numbering.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_452_ooxml/word/settings.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_452_ooxml/word/styles.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_452_ooxml/word/theme/theme1.xml
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_470.docx
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_491.docx
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_495.docx
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_596.docx
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revision_599.docx
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/revision_v2_exportlinks_probe_20260614_012926/v2_revisions.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/strict_drive_name_mapping_20260613_234339/needs_review.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/strict_drive_name_mapping_20260613_234339/needs_review.tsv
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/strict_drive_name_mapping_20260613_234339/strict_mapping.tsv
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/strict_drive_name_mapping_20260613_234339/strict_mapping_full.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/supabase_cloud_ingestion_deploy_20260614_053756.txt
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/supabase_ingestion_20260613_232259/local_supabase_state.txt
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/supabase_ingestion_20260613_232259/remote_public_schema.sql
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/supabase_schema_check_20260613_232748/public_schema.sql
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/xml_coverage_to_182_20260613_232839/covered_raw_targets.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/xml_coverage_to_182_20260613_232839/matched_57_xml_manifest.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/xml_coverage_to_182_20260613_232839/raw_182_manifest.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/xml_coverage_to_182_20260613_232839/summary.txt
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/audits/xml_coverage_to_182_20260613_232839/uncovered_raw_targets.json
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/logs/nos/20260614_supabase_edge_deploy_checkpoint.md
+A	docs/forensics/archive/20260614_supabase_ingestion/docs/forensics/logs/nos/20260614_supabase_ingestion_checkpoint.md
+A	docs/forensics/archive/20260614_supabase_ingestion/github_build_workflow/README.md
+A	docs/forensics/archive/20260614_supabase_ingestion/github_build_workflow/build-and-deploy.yml.snapshot
+A	docs/forensics/archive/20260614_supabase_ingestion/post_cleanup_git_status.txt
+A	docs/forensics/archive/20260614_supabase_ingestion/pre_cleanup_context.tsv
+A	docs/forensics/archive/20260614_supabase_ingestion/pre_cleanup_git_status.txt
+A	docs/forensics/archive/20260614_supabase_ingestion/scripts/apply-supabase-sql-via-psql.sh
+A	docs/forensics/archive/20260614_supabase_ingestion/scripts/build-supabase-archive-manifest-stream.mjs
+A	docs/forensics/archive/20260614_supabase_ingestion/scripts/build-supabase-archive-manifest.mjs
+A	docs/forensics/archive/20260614_supabase_ingestion/scripts/drive-temporal-xml-reextract.mjs
+A	docs/forensics/archive/20260614_supabase_ingestion/scripts/paired-drive-xml-reextract.mjs
+A	docs/forensics/archive/20260614_supabase_ingestion/scripts/register-shards-via-psql.sh
+A	docs/forensics/archive/20260614_supabase_ingestion/scripts/shard-supabase-manifests.sh
+A	docs/forensics/archive/20260614_supabase_ingestion/scripts/supabase-cloud-verify.sh
+A	docs/forensics/archive/20260614_supabase_ingestion/scripts/upload-supabase-shards-storage-only-safe.py
+A	docs/forensics/archive/20260614_supabase_ingestion/scripts/upload-supabase-shards-storage-only.sh
+A	docs/forensics/archive/20260614_supabase_ingestion/scripts/upload-supabase-shards.sh
+A	docs/forensics/archive/20260614_supabase_ingestion/supabase/migrations/20260614_043152_nos_ingestion_archive_schema.sql
+A	docs/forensics/archive/20260614_supabase_ingestion/supabase/migrations/20260614_053756_nos_supabase_cloud_ingestion_integration.sql
+A	docs/forensics/archive/20260614_supabase_ingestion/termux_build_failure/README.md
+A	docs/forensics/archive/20260614_supabase_ingestion/tracked_modification_patches/docs_agent_context_indexes_AGENT_CONTEXT_CANONICAL_INDEX_md.patch
+A	docs/forensics/archive/20260614_supabase_ingestion/tracked_modification_patches/scripts_extract_deep_history_py.patch
+A	docs/forensics/archive/20260614_supabase_ingestion/tracked_patch_actions.tsv
+A	docs/forensics/backups/20260614_143918_final_senior_polish/scripts/archive-google-docs-by-local-names.mjs.bak.20260612_223804
+R100	src/app/globals.css.bak	docs/forensics/backups/20260614_143918_final_senior_polish/src/src/app/globals.css.bak
+A	docs/forensics/backups/20260614_143918_final_senior_polish/src/src/app/layout.tsx.bak
+A	docs/forensics/backups/20260614_143918_final_senior_polish/src/src/app/page.tsx.bak
+A	docs/forensics/backups/AGENTS.md.backup_20260613_044544
+A	docs/forensics/backups/runtime-route-fix-20260615-025825/chapters.route.ts.before
+A	docs/forensics/backups/runtime-route-fix-20260615-025825/health.route.ts.before
+A	docs/forensics/logs/build_debug.txt
+A	docs/forensics/nos/nos_manifest.json
+D	export_audit.txt
+D	full_codebase_dump.txt
+D	import_audit.txt
+M	next-env.d.ts
+M	next.config.js
+D	nos_manifest.json
+M	package-lock.json
+M	package.json
+A	public/assets/boy-and-moon.png
+A	public/data/chapters/1.txt
+A	public/data/chapters/10.txt
+A	public/data/chapters/11.txt
+A	public/data/chapters/13.txt
+A	public/data/chapters/2.txt
+A	public/data/chapters/24.txt
+A	public/data/chapters/3.txt
+A	public/data/chapters/4.txt
+A	public/data/chapters/5.txt
+A	public/data/chapters/6.txt
+A	public/data/chapters/8.txt
+A	public/data/chapters/9.txt
+A	reports/agent_context/llama_merge/llama_agents_merge_draft_20260613_034544.md
+A	reports/agent_context/llama_merge/llama_agents_merge_draft_20260613_034722.md
+A	reports/agent_context/llama_merge/llama_agents_merge_draft_20260613_035251_singularity.md
+A	reports/agent_context/llama_merge/llama_agents_merge_prompt_20260613_034544.md
+A	reports/api-route-source-report.txt
+A	reports/app-data-source-report.txt
+A	reports/chapter-source-references.txt
+A	reports/context_import_check/selected_context_import_check.txt
+A	reports/data-lineage-audit.txt
+A	reports/db-lineage-report.txt
+A	reports/derived-panel-references.txt
+A	reports/gdrive_ooxml_raw_files.txt
+A	reports/ingestion-hash-references.txt
+A	reports/json-payload-shapes.txt
+A	reports/local-docx-xml-files.txt
+A	reports/name-matched-google-docs-archive-latest.json
+A	reports/perfect_weight/01_file_manifest.tsv
+A	reports/perfect_weight/01_repo_inventory.md
+A	reports/perfect_weight/02_context_classification.json
+A	reports/perfect_weight/02_context_classification.md
+A	reports/perfect_weight/03_code_data_map.md
+A	reports/perfect_weight/04_uiux_extract.md
+A	reports/perfect_weight/05_contradiction_fork_map.md
+A	reports/perfect_weight/06_supabase_snapshot.md
+A	reports/perfect_weight/07_panel_truth_audit.md
+A	reports/perfect_weight/08_next_100_actions.md
+A	reports/perfect_weight/09_WEIGHT_OF_THE_SKY_PERFECTION_README.md
+A	reports/readme_docs_missing.json
+A	reports/readme_docs_stage_manifest.json
+A	reports/readme_docs_staged_files.txt
+A	reports/runtime_sources/active_runtime_source_counts.json
+A	reports/runtime_sources/active_runtime_source_manifest.json
+A	reports/runtime_sources/active_runtime_source_registry.json
+A	reports/runtime_sources/active_runtime_source_registry.md
+A	reports/runtime_sources/clean_runtime_import_audit.md
+A	reports/runtime_sources/code_only_runtime_path_audit.md
+A	reports/runtime_sources/document_mentions_legacy_paths_audit.md
+A	reports/runtime_sources/manual_sort_suggestions.json
+A	reports/runtime_sources/manual_sort_suggestions.md
+A	reports/runtime_sources/not_archive_policy.md
+A	reports/runtime_sources/renderer_document_read_report.json
+A	reports/runtime_sources/renderer_document_read_report.md
+A	reports/runtime_sources/runtime_import_path_audit.md
+A	reports/runtime_sources/runtime_source_cutover_status.md
+A	reports/runtime_sources/runtime_source_decoupling_decision.md
+A	reports/runtime_sources/strict_code_runtime_path_audit.json
+A	reports/runtime_sources/strict_code_runtime_path_audit.md
+A	reports/xml_recovery/google_xml_extraction_audit.md
+A	reports/xml_recovery/materialized_ooxml_manifest.STARRED_ONLY.json
+A	reports/xml_recovery/materialized_ooxml_manifest.json
+A	reports/xml_recovery/share_google_docs_with_service_account.md
+A	reports/xml_recovery/source_xml_supabase_schema_proposal.sql
+A	reports/xml_recovery/xml_55_name_keys.STARRED_FROM_GOOGLE_DOCS.txt
+A	reports/xml_recovery/xml_starred_allowlist_unmatched_keys.txt
+A	reports/xml_recovery/xml_starred_hash_allowlist_keys.txt
+A	reports/xml_recovery/xml_starred_hash_doc_folders.txt
+A	reports/xml_recovery/xml_starred_hash_truth.txt
+A	reports/xml_recovery/xml_starred_match_map.json
+R100	scripts/build_files.sh	scripts/archive/20260614_092047_whole_tree_senior_cleanup/build_files.sh
+R098	export_blueprints.sh	scripts/archive/20260614_092047_whole_tree_senior_cleanup/export_blueprints.sh
+A	scripts/diagnostics/data-lineage-audit.sh
+R095	scripts/nos_audit.sh	scripts/diagnostics/nos_audit.sh
+R097	run_nos_diagnostics.sh	scripts/diagnostics/run_nos_diagnostics.sh
+R100	test-db.js	scripts/diagnostics/test-db.js
+A	scripts/filename_standardization/standardize_context_filenames.py
+A	scripts/ingestion/context/stage-numbered-download-readme-docs.py
+A	scripts/ingestion/google_drive/archive-google-docs-by-local-names.mjs
+R100	scripts/extract_deep_history.py	scripts/ingestion/google_drive/extract_deep_history.py
+R053	scripts/nos_invoke.sh	scripts/nos/nos_invoke.sh
+R072	scripts/nos_sync.sh	scripts/nos/nos_sync.sh
+A	scripts/perfect_weight/00_generate_perfection_scripts.py
+A	scripts/perfect_weight/01_inventory.sh
+A	scripts/perfect_weight/02_context_classifier.py
+A	scripts/perfect_weight/03_code_data_map.sh
+A	scripts/perfect_weight/04_uiux_extract.py
+A	scripts/perfect_weight/05_contradiction_fork_map.py
+A	scripts/perfect_weight/06_supabase_snapshot.sh
+A	scripts/perfect_weight/07_panel_truth_audit.py
+A	scripts/perfect_weight/08_next_100_actions.py
+A	scripts/perfect_weight/09_master_readme_builder.py
+A	scripts/perfect_weight/10_runner.sh
+A	scripts/runtime_sources/audit_runtime_import_paths.sh
+A	scripts/runtime_sources/classify_runtime_documents_for_manual_sort.py
+A	scripts/runtime_sources/clean_runtime_import_audit.sh
+A	scripts/runtime_sources/code_only_runtime_path_audit.sh
+A	scripts/runtime_sources/create_active_runtime_source_layout.py
+A	scripts/runtime_sources/read_renderer_documents.py
+A	scripts/runtime_sources/strict_code_runtime_path_audit.py
+A	scripts/runtime_sources/write_runtime_source_constants.py
+A	scripts/runtime_sources/write_runtime_source_registry.py
+A	scripts/semantic/verify-context-and-xml-hashes.mjs
+A	scripts/semantic/xml-grounded-vertex-rehash.mjs
+A	scripts/xml_recovery/audit_google_xml_extraction.sh
+A	scripts/xml_recovery/materialize_ooxml_raw.py
+A	src/app/api/auth-pin/route.ts
+M	src/app/api/biblical-references/route.ts
+M	src/app/api/chapters/route.ts
+M	src/app/api/graph/route.ts
+M	src/app/api/health/route.ts
+A	src/app/api/runtime-sources/route.ts
+M	src/app/api/search/route.ts
+M	src/app/globals.css
+M	src/app/layout.tsx
+M	src/app/page.tsx
+M	src/components/ReaderLayout.tsx
+A	src/components/RuntimeInitializer.tsx
+M	src/components/layers/Layer1Void.tsx
+M	src/components/layers/Layer2Cinema.tsx
+M	src/components/layers/Layer4Panel.tsx
+M	src/components/layers/canvas/ManuscriptCore.tsx
+M	src/components/layers/canvas/front-matter/TableOfContents.tsx
+A	src/components/layers/cinema/TelemetryOverlay.tsx
+M	src/components/layers/panel/ArchetypesDirectory.tsx
+M	src/components/layers/panel/AuthorGateway.tsx
+M	src/components/layers/panel/BiblicalReferencesDirectory.tsx
+M	src/components/layers/panel/ChapterSettings.tsx
+M	src/components/layers/panel/HyperlinksGraph.tsx
+A	src/components/layers/panel/IndexTab.tsx
+A	src/components/layers/panel/StatusTab.tsx
+R071	NOS_Runtime_Discovery_Dump.txt	src/components/layers/panel/StylesTab.tsx
+A	src/components/layers/panel/SystemTab.tsx
+M	src/core/narrative-types.ts
+M	src/core/runtimeEngine.ts
+M	src/data-layer/initialization-metadata/node_manifest.json
+M	src/data/cinema.ts
+M	src/hooks/useScrollFocus.ts
+M	src/hooks/useScrollTracker.ts
+A	src/lib/db.ts
+A	src/lib/runtime-source-paths.ts
+A	src/lib/runtime-source-reader.ts
+M	src/runtime/controlPanel.ts
+A	src/runtime/listeners/audioPlaybackListener.ts
+D	src/runtime/readerControls.ts
+D	src/runtime/runtimeContext.tsx
+M	src/services/analytics-engine/logic/coefficient_engine.ts
+M	src/services/analytics-engine/mapping/dualism_logic.ts
+M	src/services/document-analyzer/corpus-searcher.ts
+M	src/services/document-analyzer/synthesis-engine.ts
+M	src/services/image-engine/executor.ts
+M	src/services/image-engine/prompter.ts
+M	src/services/ingestion/pipeline.ts
+M	src/services/memory-engine/corpus-loader.ts
+M	src/services/memory-engine/document-store.ts
+M	src/services/memory-engine/integrity-validator.ts
+M	src/services/memory-engine/memory-engine.ts
+M	src/services/memory-engine/memory-kernel.ts
+M	src/services/narrative-graph-engine/connection-analyzer.ts
+M	src/services/narrative-graph-engine/consistency-analyzer.ts
+M	src/services/narrative-graph-engine/edge-builder.ts
+M	src/services/narrative-graph-engine/graph-kernel.ts
+M	src/services/narrative-graph-engine/graph-querier.ts
+M	src/services/narrative-graph-engine/graph-serializer.ts
+M	src/services/narrative-graph-engine/node-builder.ts
+M	src/services/narrative-graph-engine/path-finder.ts
+M	src/services/orchestration-engine/context-builder.ts
+M	src/services/orchestration-engine/google-swarm.ts
+M	src/services/orchestration-engine/orchestration-engine.ts
+M	src/services/orchestration-engine/pipeline.ts
+M	src/services/orchestration-engine/prompt-assembler.ts
+A	src/services/orchestration-engine/providers/anthropic.ts
+M	src/services/orchestration-engine/router.ts
+M	src/services/orchestration-engine/runtime-controller.ts
+M	src/services/writing-agent/agent-kernel.ts
+M	src/services/writing-agent/generation-executor.ts
+M	src/services/writing-agent/task-executor.ts
+M	src/styles/animations.css
+M	src/styles/components.css
+M	src/styles/tokens.css
+M	src/styles/typography.css
+A	supabase/functions/_shared/cors.ts
+A	supabase/functions/_shared/hash.ts
+A	supabase/functions/_shared/semantic.ts
+A	supabase/functions/_shared/supabase.ts
+A	supabase/functions/create-upload-url/index.ts
+A	supabase/functions/enqueue-enrichment/index.ts
+A	supabase/functions/process-enrichment-batch/index.ts
+A	supabase/functions/register-uploaded-artifact/index.ts
+A	supabase/functions/verify-artifact-hash/index.ts
+M	supabase/migrations/20260521000000_initial_schema.sql
+A	supabase/migrations/20260602000000_phase1_sync.sql
+A	supabase/migrations/20260617000100_xml_grounded_semantic_rehash.sql
+D	system_logic_audit.txt
+D	tsc.log
+M	tsconfig.json
+D	ui_ux_dump.txt
+M	vercel.json
+
+=== WORKFLOWS CURRENT ===
+total 31
+drwx------. 2 u0_a448 u0_a448 3452 Jun 17 17:41 .
+drwx------. 3 u0_a448 u0_a448 3452 Jun 14 20:28 ..
+-rw-------. 1 u0_a448 u0_a448 2979 Jun 17 17:41 apply-supabase-migration-management-api.yml
+-rw-------. 1 u0_a448 u0_a448  388 May 16 22:20 build-and-deploy.yml
+-rw-------. 1 u0_a448 u0_a448 3657 Jun 17 18:14 deploy-supabase-functions-only.yml
+-rw-------. 1 u0_a448 u0_a448 1547 Jun 17 17:41 deploy-supabase.yml
+-rw-------. 1 u0_a448 u0_a448 1580 Jun 17 18:39 semantic-rehash-dry-run.yml
+-rw-------. 1 u0_a448 u0_a448 1684 Jun 17 18:39 semantic-rehash-full.yml
+
+=== WORKFLOWS DEFAULT ===
+.github/workflows/build-and-deploy.yml

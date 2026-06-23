@@ -1,0 +1,4 @@
+Error: Vertex error: {"error":{"code":404,"message":"Publisher Model `projects/ai-job-agent-498702/locations/us-central1/publishers/google/models/gemini-2.0-flash-001` was not found or your project does not have access to it. Please ensure you are using a valid model version. For more information, see: https://cloud.google.com/vertex-ai/generative-ai/docs/learn/model-versions","status":"NOT_FOUND"}}
+    at callVertex (file:///data/data/com.termux/files/home/Workspaces/Hybrid/writing-agent-interface/scripts/semantic/xml-grounded-vertex-rehash.mjs:727:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (file:///data/data/com.termux/files/home/Workspaces/Hybrid/writing-agent-interface/scripts/semantic/xml-grounded-vertex-rehash.mjs:1004:22)

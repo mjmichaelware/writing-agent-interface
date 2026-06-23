@@ -1,0 +1,18 @@
+{
+  "dry_run_batch": [
+    "9a7e96e2-c3e3-4100-a872-b6085b5246e9"
+  ],
+  "paragraph_results": 1,
+  "dualism_relations": 1,
+  "archetype_movements": 1
+}
+{"run_id":"dry-run-20260618004454","chapter":7,"processed":1,"write_mode":false,"prompt_hash":"a68aed362234b182892c09e374617676c1553e9d5418afdcb0c670dfbbf98d51"}
+{
+  "dry_run_batch": [
+    "b9225715-abc9-44b4-91e7-69f27902a79b"
+  ],
+  "paragraph_results": 1,
+  "dualism_relations": 1,
+  "archetype_movements": 1
+}
+{"run_id":"dry-run-20260618004454","chapter":7,"processed":2,"write_mode":false,"prompt_hash":"e0ddfba007cfd4b045b156f160987bdbddc3597241ec3403cec15a08f7266e0b"}

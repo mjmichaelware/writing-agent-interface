@@ -1,0 +1,717 @@
+﻿# The Weight of the Sky — Narrative Runtime System | Handoff Summary
+
+
+## Current State (May 13, 2026)
+
+
+**What exists:**
+- Landing page (cinematic kernel: auto-start intro, title reveal, Hebrew typography, modals) — **status unknown, never confirmed deployed**
+- Event-driven runtime engine (EventBus + RuntimeEngine) with command dispatcher
+- Three feature listeners (audio, distortion, thematic) wired to event system
+- Dynamic chapter API route (just created, untested)
+- Smart parser framework (reads raw .txt from ingestion buffer, chunks by ~200 words)
+
+
+**What's broken/incomplete:**
+- Landing page deployment unconfirmed on actual phone
+- API route file access in Next.js hasn't been tested yet
+- Tone detection logic is placeholder ("includes 'fall' or 'darkness'")
+- Device viewport detection not yet implemented
+- Block size isn't dynamically responsive to screen height
+
+
+**What's been deployed:**
+- v2 patch: singleton runtime context, proper event lifecycle, listener initialization
+- Last successful git push: `smart-parser: dynamic chapter loading from ingestion buffer`
+
+
+---
+
+
+## How We Got Here
+
+
+### Phase 1: Architectural Refinement (Early session)
+- User wanted cinematic landing page + reader with real-time sensory effects
+- Built page that looked correct but had real failures: audio autoplay (mobile blocks it), setTimeout race conditions, Tailwind opacity bugs
+- Discovered: "clean architecture" without lifecycle thinking = fragile systems
+
+
+### Phase 2: Runtime Model Shift (Middle session)
+- Moved from "UI design" thinking → "deterministic state machine"
+- Initially proposed plugin system; user corrected to event-driven (simpler, proven pattern)
+- Key insight: Core evolves slowly, features subscribe to events, no direct state mutation
+- Built v1 scaffold (clean structure, dead code)
+
+
+### Phase 3: Operational Reality Check (Mid-late session)
+- v1 had 6 real bugs: listeners never initialized, block:render never emitted, retreat() bypassed engine, no cleanup, coupling risks
+- User pushed back: "not philosophy, actual risk analysis"
+- Built v2 patch: singleton pattern, command enforcement, proper emissions
+- Deployed to Vercel (build failed due to missing files)
+
+
+### Phase 4: Smart Parser Recognition (Most recent)
+- User rejected hardcoded chapter data
+- System should intelligently: detect device → calculate words-per-screen → fetch raw chapter → parse responsive blocks
+- This is why they have 200+ chapter files in ingestion buffer: meant to be READ, not manually imported
+- Last 30 minutes: fixing file structure, creating API route, preparing smart parser
+
+
+---
+
+
+## Where We're Trying to Go
+
+
+**Immediate (next 1-2 deploys):**
+1. Confirm landing page is actually live on phone (never verified)
+2. Get API route working: `/api/chapters?slug=7` returns parsed blocks from actual manuscript
+3. Reader fetches + renders real Chapter 7 prose
+4. Console logs show event flow (audio intensity, distortion warp firing correctly)
+
+
+**Near term (v2 cinematic):**
+- Device viewport detection → dynamic block sizing
+- Nonlinear emotion curves (depth → intensity not linear)
+- Audio engine actually connected to Howler/WebAudio
+- Thematic shifts tied to chapter tone metadata
+
+
+**Long term (full system):**
+- All 25 chapters callable (not just 7)
+- Scroll depth → visual distortion (text warping as you descend)
+- Image generation prompts derived from block content
+- Religious/archetypal thematic overlays (Ascent vs Descent poles)
+
+
+---
+
+
+## Critical Unknowns (Don't Assume)
+
+
+**Technical:**
+- Does landing page actually deploy to your phone URL? (We never tested)
+- Does the API route work on Vercel (file system access)?
+- Which Chapter 7 file is canonical? (You have: WOS_Ch7_The_Pit.txt, (D)_Chapter:_7_-_The_Pit.txt, (C)_Chapter:_7_-_The_Pit.txt, etc.)
+- Is Hebrew font rendering in browser?
+
+
+**System design:**
+- How should tone detection actually work? (Currently: keyword matching. Should it be: paragraph length? narrative intensity? emotional state analysis?)
+- What viewport heights should trigger different block sizes? (Desktop: 250 words? Mobile: 150 words? Or continuous scaling?)
+- How deep is the distortion effect supposed to go? (Just opacity? Text warping? Layout shift?)
+
+
+**User intent:**
+- When you said "device-aware," did you mean font size adapts, or block size, or both?
+- For tone metadata: should the system infer from content, or should you manually tag chapters?
+- Should the reader show scroll progress (e.g., "Block 7 of 42") or hide it?
+
+
+---
+
+
+## What's Outdated / Don't Trust
+
+
+❌ Early landing page code (had Framer Motion, removed)  
+❌ Placeholder Chapter 7 blocks (never used, thrown away)  
+❌ Plugin architecture discussion (corrected to event-driven)  
+❌ "Core never changes" claim (corrected to "evolves slowly")  
+❌ Tone detection as simple keyword matching (needs real logic)  
+❌ Assumption you want hardcoded chapters (you don't — smart fetch)  
+
+
+---
+
+
+## Next Immediate Action
+
+
+Push the API route + reader updates:
+```bash
+git add tsconfig.json src/app/api/chapters/route.ts src/app/reader/page.tsx
+git commit -m "smart-parser: dynamic chapter loading from ingestion buffer"
+git push origin master
+```
+
+
+Then:
+1. **Check Vercel build** — does it compile?
+2. **Visit URL on phone** — does landing page load?
+3. **Click "Enter Narrative Runtime"** — does `/reader` fetch Chapter 7?
+4. **Open console** — do events fire in correct order?
+
+
+Report back with actual behavior, not assumptions. That's where v2 decisions come from.
+
+
+You're right. Here's the content to paste into Google Docs:
+
+
+---
+
+
+**THE WEIGHT OF THE SKY — CURRENT STATE HANDOFF**
+**May 13, 2026, 10:07 UTC | Status: Deployed to Vercel, Reader Working, UI Needs Correction**
+
+
+**IMMEDIATE STATE (RIGHT NOW)**
+
+
+✅ Deployed: App is live on Vercel  
+✅ Core Function: Reader kernel (scrolling) working  
+❌ Visual: UI/UX not rendering as intended  
+
+
+**Your exact words:** "Deployed to vercel but app isn't appearing how I want seems to be functioning with the scrolling thing at least"
+
+
+**WHAT EXISTS (From Snapshot, May 13)**
+
+
+Pages Created (All Deployed):
+- Landing page (src/app/page.tsx, 4539 bytes) — Uses Framer Motion, Howler.js, lucide-react icons. Stage-based rendering. Needs styling fix.
+- Stub pages (~837-843 bytes each): Dashboard, Memory, Graph, Timeline, Search, Runtime. All have "Return to Hub" navigation.
+
+
+API Routes (All Empty, 0 bytes):
+- /api/visualize, /api/analyze-document, /api/chapters, /api/corpus, /api/execute, /api/graph, /api/manuscript, /api/search, /api/agent
+
+
+Core Systems (Built):
+- RuntimeEngine (src/core/runtimeEngine.ts) ✅
+- RuntimeContext (src/runtime/runtimeContext.ts) ✅
+- Feature listeners (audio, distortion, thematic) ✅
+- Reader page (src/app/reader/page.tsx) ✅ — scrolling working
+
+
+Core Systems (Skeleton/Not Implemented):
+- Memory Engine (interfaces only)
+- Retrieval Engine (interfaces only)
+- Narrative Graph Engine (interfaces only)
+- Writing Agent (interfaces only)
+- All service folders (empty stubs)
+
+
+Data Layer:
+- 182+ chapter files in docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw/
+- All protocols loaded
+- All lore files present
+
+
+Configuration:
+- tailwind.config.ts — Basic Tailwind setup
+- globals.css — Only @tailwind directives + black body
+- layout.tsx — Minimal metadata only
+- next.config.js — ignoreBuildErrors: true, ignoreEsLint: true
+
+
+Build Status:
+- system/runtime/active_state.json → "skeleton_deployed"
+
+
+**THE STORY SPINE (From Source Docs, Decided May 10-11)**
+
+
+CANON (Non-negotiable):
+1. Dan dies. Not ambiguous.
+2. Not a wasted death.
+3. Epilogue's open question is: Why? (capital W)
+4. Sak (cat-deity) is the narrative lens. Ch 11 reveal is the pivot.
+
+
+What The Book Is About:
+A son refuses to save his father and survives. Aviel is the tragedy. Dan is what survives the tragedy. Reader recognizes father and son in themselves and knows which one they are.
+
+
+Novel Structure: 9-8-7 (NOT 25, NOT 62)
+- Part 1: 9 chapters (Dan's journey, Hebron → Hermon)
+- Part 2: 8 chapters (Kasha/Beelzebub, Ch 10 intro, Ch 11 Sak reveal)
+- Part 3: 7 chapters (Izabel meets Dan in dreamscape)
+- Epilogue: 1 (philosophical Why)
+- Total: 24 chapters + Epilogue
+
+
+Chapters with prose drafts: 1-11, 13 (~13 chapters)
+Chapters without prose: 12, 14-25 (unwritten)
+
+
+**OPERATIONAL PROTOCOL (Binding)**
+
+
+Three-Plus Command Rule:
+- Default: 3+ terminal commands per batch
+- Exception: Single command only if next depends on output
+- Reason: Mobile copy-paste friction; maintain momentum
+
+
+No-Stupid-Mode (Binding):
+- Do NOT invent file paths; verify with find, ls
+- Do NOT assume machine state; propose diagnostic first
+- Do NOT exceed context window; break into chunks
+- If unsure: propose diagnostic, wait for operator feedback
+
+
+Session Protocol:
+1. Read this handoff document
+2. Confirm current state understanding
+3. Restate objective in one sentence
+4. Propose first batch of 3+ diagnostic commands
+5. Operator runs, pastes output + commentary
+6. AI reads BOTH before continuing
+
+
+Verification Rule:
+Before destructive action:
+- AI proposes in plain English
+- AI waits for explicit confirmation
+- AI provides command
+
+
+**WHAT'S BEEN TRIED & FAILED (Don't Repeat)**
+
+
+Destructive Scripts (May 10-11):
+- singularity_omega.py, trinity_compiler.py, etc.
+- Walked ~ instead of ~/WeightOfTheSky_Project
+- Created phantom folders, ate .git/, misclassified files
+- Status: Quarantined. DO NOT RUN.
+
+
+Pasting Entire Corpus into Chat:
+- Tried: Gemini, Claude Pro, ChatGPT, NotebookLM
+- Fails: ~1.2M tokens; 40% lost in middle
+- Lesson: Retrieval BEFORE prompt
+
+
+Local Next.js Build on Termux:
+- Fails: SWC/native binaries unreliable on ARM64
+- Status: Use cloud CI/CD instead (GitHub Actions)
+
+
+Framer Motion on Mobile:
+- Caused jank, high CPU
+- Solution: CSS-only animations
+
+
+Hardcoded Routing Scripts:
+
+
+- Unicode escapes as literal text (#Uff0f, #U2014)
+- Lesson: Use Python, os.listdir(), pattern matching
+
+
+**WHAT'S UNDECIDED (Gaps)**
+
+
+1. Izabel's nature: Biological daughter? Created? Hybrid?
+2. Dan's death mechanism: Chapter-by-chapter beats to death/ascension
+3. Epilogue exact content: Beyond the Why question
+4. UI/UX target: What should the app actually LOOK like? (This is blocking you NOW)
+
+
+**SINGULARITY v10.0 (Still Relevant)**
+
+
+Bridge script exists (local, working):
+- ~/WeightOfTheSky_Project/singularity_bridge.py
+- Current model: llama-3.3-70b-versatile (128K context)
+- Working with Groq
+
+
+Verb routing:
+- write chapter 7 → all drafts + protocols + lore → new prose
+- review chapter 3 → latest draft + Error Catalog → critique
+- ask: what does Dagon represent? → embedding search → grounded answer
+
+
+4-folder corpus structure:
+- 00_LORE_VAULT (lore files)
+- 01_Protocols (36 style/editing files)
+- 02_Manuscripts (chapter drafts)
+- 03_Analysis (market/critique)
+
+
+**HONEST ASSESSMENT (Where You Are)**
+
+
+✅ Core system works — event-driven reader is functional
+✅ Deployed — Vercel active, no build errors
+✅ Data loaded — 182+ chapter files, all protocols present
+
+
+❌ Visual presentation — Not matching intent
+❌ API routes — Not implemented (can wait)
+❌ Service engines — Still skeletons (can wait)
+
+
+You're not blocked on architecture. You're blocked on styling.
+
+
+**WHAT YOU NEED NOW**
+
+
+Tree: agent-interface.git
+   944a5f3..b8afce9  master -> master
+~/writing-agent-interface $ tree -L 5
+.
+├── README.md
+├── build_files.sh
+├── extract_deep_history.py                                      ├── next-env.d.ts
+├── next.config.js                                               ├── package-lock.json                                            ├── package.json
+├── postcss.config.js
+├── public
+│   └── bg.png
+├── src
+│   ├── actions
+│   │   ├── ingest.action.ts
+│   │   ├── retrieve.action.ts
+│   │   ├── update-memory.action.ts
+│   │   └── write.action.ts
+│   ├── app
+│   │   ├── api
+│   │   │   ├── agent
+│   │   │   ├── analyze-document
+│   │   │   │   └── route.ts                                     │   │   │   ├── chapters                                         │   │   │   │   └── route.ts
+│   │   │   ├── corpus                                           │   │   │   ├── execute
+│   │   │   ├── graph
+│   │   │   ├── manuscript                                       │   │   │   ├── search
+│   │   │   └── visualize
+│   │   │       └── route.ts
+│   │   ├── characters
+│   │   │   └── page.tsx
+│   │   ├── dashboard
+│   │   │   └── page.tsx
+│   │   ├── globals.css
+│   │   ├── graph
+│   │   │   └── page.tsx
+│   │   ├── head.tsx
+│   │   ├── layout.tsx
+│   │   ├── memory
+│   │   │   └── page.tsx
+│   │   ├── page.tsx
+│   │   ├── reader
+│   │   │   └── page.tsx
+│   │   ├── runtime
+│   │   │   └── page.tsx
+│   │   ├── search
+│   │   │   └── page.tsx
+│   │   └── timeline
+│   │       └── page.tsx
+│   ├── components
+│   │   └── ui
+│   │       ├── character-view.tsx
+│   │       ├── editor.tsx
+│   │       ├── graph-view.tsx
+│   │       ├── memory-panel.tsx
+│   │       ├── sidebar.tsx
+│   │       └── timeline.tsx
+│   ├── core
+│   │   ├── IMemoryEngine.ts
+│   │   ├── INarrativeGraphEngine.ts
+│   │   ├── IRetrievalEngine.ts
+│   │   ├── IWritingAgent.ts
+│   │   ├── document-types.ts
+│   │   ├── engine-constants.ts
+│   │   ├── graph-types.ts
+│   │   ├── narrative-types.ts
+│   │   ├── runtimeEngine.ts
+│   │   └── system-utils.ts
+│   ├── data
+│   │   └── chapter7-raw.txt
+│   ├── data-layer
+│   │   ├── 07_Build_Manifests
+│   │   │   └── Writing Agent App. Source Doc. (10) [NEUTRON].txt
+│   │   ├── aggregation-engine                                   │   │   │   └── node_manifest.json
+│   │   ├── disposal-bin
+│   │   │   └── node_manifest.json
+│   │   ├── entities
+│   │   │   └── node_manifest.json
+│   │   ├── ingestion-buffer
+│   │   │   ├── gdrive_raw
+│   │   │   │   ├── (A)Chapter_8:_Sea_People.txt
+│   │   │   │   ├── (A)_Chapter:_1_Stardust_to_Stardust.txt
+│   │   │   │   ├── (A)_Chapter_1-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (A)_Chapter_1:_Stardust_to_Stardust.txt
+│   │   │   │   ├── (A)_Chapter_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (A)_Chapter_2-_Living_Sacrifice.txt
+│   │   │   │   ├── (A)_Chapter_2:_Living_Sacrifice.txt
+│   │   │   │   ├── (A)_Chapter_3-_Lift_Up.txt
+│   │   │   │   ├── (A)_Chapter_3_-_Lift_Up.txt
+│   │   │   │   ├── (A)_Chapter_5_-_The_Snare.txt
+│   │   │   │   ├── (A)_Chapter_6:_Beelzebub,_Beelzebub.txt
+│   │   │   │   ├── (B)Chapter_8:_Sea_People.txt
+│   │   │   │   ├── (B)_Chapter:_1_Stardust_to_Stardust.txt
+│   │   │   │   ├── (B)_Chapter_1-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (B)_Chapter_1:_Stardust_to_Stardust.txt
+│   │   │   │   ├── (B)_Chapter_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (B)_Chapter_2-_Living_Sacrifice.txt
+│   │   │   │   ├── (B)_Chapter_2:_Living_Sacrifice.txt
+│   │   │   │   ├── (B)_Chapter_3-_Lift_Up.txt
+│   │   │   │   ├── (B)_Chapter_3:_Lift_Up.txt
+│   │   │   │   ├── (B)_Chapter_5-_The_Snare.txt
+│   │   │   │   ├── (B)_Chapter_6_-_Beelzebub,_Beelzebub.txt
+│   │   │   │   ├── (B)_Chapter_7:_The_Pit.txt
+│   │   │   │   ├── (B)_Chapter_9:_The_Ascent.txt
+│   │   │   │   ├── (B)_Stardust_to_Stardust.txt
+│   │   │   │   ├── (C)Chapter_8:_Sea_People.txt
+│   │   │   │   ├── (C)_Chapter:_1_-_Stardust_to_Stardust_.txt
+│   │   │   │   ├── (C)_Chapter:_7_-_The_Pit.txt
+│   │   │   │   ├── (C)_Chapter:_Stardust_to_Stardust.txt
+│   │   │   │   ├── (C)_Chapter_1-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (C)_Chapter_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (C)_Chapter_2-_Living_Sacrifice.txt
+│   │   │   │   ├── (C)_Chapter_3-_Lift_Up.txt
+│   │   │   │   ├── (C)_Chapter_3_-_Lift_Up.txt
+│   │   │   │   ├── (C)_Chapter_4-_Pilgrimage.txt
+│   │   │   │   ├── (C)_Chapter_4_-_Pilgrimage.txt
+│   │   │   │   ├── (C)_Chapter_6-_Beelzebub,_Beelzebub.txt
+│   │   │   │   ├── (D)_Chapter:_7_-_The_Pit.txt
+│   │   │   │   ├── (D)_Chapter_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (D)_Chapter_2-_Living_Sacrifice.txt
+│   │   │   │   ├── (D)_Chapter_2_-_Living_Sacrifice.txt
+│   │   │   │   ├── (E)_Chapter_1-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (E)_Chapter_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (E)_Chapter_2-_Living_Sacrifice.txt
+│   │   │   │   ├── (E)_Chapter_2_-_Living_Sacrifice.txt
+│   │   │   │   ├── (E)_Chapter_3-_Lift_Up.txt
+│   │   │   │   ├── (F)_Chapter:_1_Stardust_to_Stardust_.txt
+│   │   │   │   ├── (F)_Chapter_1:_Stardust_to_Stardust_.txt
+│   │   │   │   ├── (F)_Chapter_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (F)_Chapter_2-_Living_Sacrifice.txt
+│   │   │   │   ├── (F)_Chapter_3-_Lift_Up.txt
+│   │   │   │   ├── (Final)_Chapter_1:_Stardust_to_Stardust.txt
+│   │   │   │   ├── (Final)_Chapter_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (Final)_Chapter_2-_Living_Sacrifice.txt
+│   │   │   │   ├── (Final)_Chapter_3-_Lift_Up.txt
+│   │   │   │   ├── (Final)_Chapter_3:_Lift_Up.txt
+│   │   │   │   ├── (Final)_Chapter_5_-_The_Snare.txt
+│   │   │   │   ├── (G)_Chapter_1:_Stardust_to_Stardust.txt
+│   │   │   │   ├── (G)_Chapter_2-_Living_Sacrifice.txt
+│   │   │   │   ├── (G)_Chapter_3-_Lift_Up.txt
+│   │   │   │   ├── (G)_Final_)_Chapter:_10_-_Forsaken.txt
+│   │   │   │   ├── (I)_(Notes)_Chapter:_1_Stardust_to_Stardust_.txt
+│   │   │   │   ├── (I)_Chapter:_1_Stardust_to_Stardust_.txt
+│   │   │   │   ├── (N)_CHAPTER_1-_STARDUST_TO_STARDUST.txt
+│   │   │   │   ├── (N)_Chapter_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (Notes)_(P)_Chapter:_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (Notes)_Chapter_2-_Living_Sacrifice.txt
+│   │   │   │   ├── (Notes)_Chapter_2:_Living_Sacrifice.txt
+│   │   │   │   ├── (O)_Chapter_1-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (P)_Chapter:_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (Prompt_Guide_(E))_Chapter_10:_Forsaken.txt
+│   │   │   │   ├── (R) Chapter: 1 - Stardust to Stardust .txt
+│   │   │   │   ├── (R)_Chapter:_1_-_Stardust_to_Stardust_.txt
+│   │   │   │   ├── (Revision_Prompt_(D))_Chapter_10:_Forsaken.txt
+│   │   │   │   ├── (Revision_Prompt_(N)__Chapter_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (Revisions)_Chapter_1:_Stardust_to_Stardust.txt
+│   │   │   │   ├── (SDP)_v2.txt
+│   │   │   │   ├── (X)_Chapter_1:_Stardust_to_Stardust.txt
+│   │   │   │   ├── (X)_Chapter_1_-_Stardust_to_Stardust.docx.txt
+│   │   │   │   ├── (X)_Chapter_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── (X)_Chapter_1__Stardust_to_Stardust_(1).txt
+│   │   │   │   ├── (X)_Chapter_1__Stardust_to_Stardust_(2).txt
+│   │   │   │   ├── (Z)_Chapter_1:_Stardust_to_Stardust.txt
+│   │   │   │   ├── *Chapter_1:_Stardust_to_Stardust.txt
+│   │   │   │   ├── *Chapter_2-_Living_Sacrifice.txt
+│   │   │   │   ├── *Chapter_3:_Lift_Up.txt
+│   │   │   │   ├── *Chapter_4:_Pilgrimage.txt
+│   │   │   │   ├── *Chapter_7:_The_Pit.txt
+│   │   │   │   ├── *Chapter_8:_Sea_People.txt
+│   │   │   │   ├── *Chapter_9:_The_Ascent.txt
+│   │   │   │   ├── -Final_Chapter_1_Revision_Prompt-.txt
+│   │   │   │   ├── 1.0_Revision.txt
+│   │   │   │   ├── 10.0_Blueprint_for_The_Ascent_of_Daniel:_The_Archetype_of_Sacrifice_(NYT_Bestseller_Focus).txt
+│   │   │   │   ├── 10.0_MASTER_SYSTEM_FOR_CHAPTER_REVISION.txt
+│   │   │   │   ├── 10.0_Mass_Market.txt
+│   │   │   │   ├── 11.0_Error_Catalog.txt
+│   │   │   │   ├── 11.0_Final_Revision.txt
+│   │   │   │   ├── 11.0_Marketability_.txt
+│   │   │   │   ├── 12.0_Perfection.txt
+│   │   │   │   ├── 13.0_Claude.txt
+│   │   │   │   ├── 13.0_GENERAL_PRINCIPLES.txt
+│   │   │   │   ├── 2.0_Critique_／_Analysis_Guide.txt
+│   │   │   │   ├── 2.0_This_is_the_critical_adjustment—the_final_layer_that_elevates_philosophical_storytelling_into_timeless,_devastating_human_tragedy.txt
+│   │   │   │   ├── 3.0_Final_.txt
+│   │   │   │   ├── 3.0_Literary_&_Archetypal_Fusion_Rulebook_(The_Cat_God_&_The_Primal_Self).txt
+│   │   │   │   ├── 3.0_Scientific_Guide.txt
+│   │   │   │   ├── 4.0_(12_Rules_For_Life).txt
+│   │   │   │   ├── 4.0_Emotional_&_Archetypal_Editing_Rulebook_(Visceral_Empathy_Focus).txt
+│   │   │   │   ├── 4.0_Psychology_Guide.txt
+│   │   │   │   ├── 4.0_REVISED.txt
+│   │   │   │   ├── 5.0_Final_Guide.txt
+│   │   │   │   ├── 5.0_Psychology_Guide.txt
+│   │   │   │   ├── 6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt
+│   │   │   │   ├── 6.0_HIGHEST_PRIORITY_(Read_this_first_and_then_again_last)_.txt
+│   │   │   │   ├── 6.0_SYNTHESIS_MANDATE.txt
+│   │   │   │   ├── 6.0_Supreme_Generative_Constraint.txt
+│   │   │   │   ├── 7.0_Chapter_Refinery.txt
+│   │   │   │   ├── 7.0_Nuclear_Edit!!!!_(CRITICAL!_DIRE!_EMERGENCY!!!).txt
+│   │   │   │   ├── 8.0_Pacing／Redundancy.txt
+│   │   │   │   ├── 8._0_This_is_the_final,_most_crucial_step:_ensuring_the_narrative's_structure_is_so_perfectly_weighted_that_the_profound_sadness—the_weeping_of_self-recognition—is_not_a_chance_event,_but_an_earned,_inevitable_catharsis_for_the_reader.txt
+│   │   │   │   ├── 9.0_Aesthetic.txt
+│   │   │   │   ├── 9.0_Stones.txt
+│   │   │   │   ├── ALITTERAS_SYSTEM_BLUEPRINT_v1.txt
+│   │   │   │   ├── Chapter 3 - Commerciality and Marketing 3.0.txt
+│   │   │   │   ├── Chapter2_Weight_of_the_Sky.txt
+│   │   │   │   ├── Chapter:_10_-_MASTER_BRIEFING.txt
+│   │   │   │   ├── Chapter:_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── Chapter:_1_Proof_of_Authorship_1.0.txt
+│   │   │   │   ├── Chapter:_1_Proof_of_Authorship_1.1.txt
+│   │   │   │   ├── Chapter:_8_(Final).txt
+│   │   │   │   ├── Chapter_10.1.txt
+│   │   │   │   ├── Chapter_10.5.txt
+│   │   │   │   ├── Chapter_10:_Forsaken.txt
+│   │   │   │   ├── Chapter_10_Forsaken_FINAL_DEFINITIVE.txt
+│   │   │   │   ├── Chapter_10_Version_F.txt
+│   │   │   │   ├── Chapter_11.8.txt
+│   │   │   │   ├── Chapter_11._Forsaken.txt
+│   │   │   │   ├── Chapter_13:_Exodus.txt
+│   │   │   │   ├── Chapter_1:_Stardust_to_Stardust.txt
+│   │   │   │   ├── Chapter_1_-_Stardust_to_Stardust.txt
+│   │   │   │   ├── Chapter_1_Integration.txt
+│   │   │   │   ├── Chapter_1_Integration_2.0.txt
+│   │   │   │   ├── Chapter_1_Integration_Prompt.txt
+│   │   │   │   ├── Chapter_1_Merge_Prompt.txt
+│   │   │   │   ├── Chapter_1_Version_O.txt
+│   │   │   │   ├── Chapter_2:_Living_Sacrifice.txt
+│   │   │   │   ├── Chapter_2_-_Analysis_&_Guides_1.0.txt
+│   │   │   │   ├── Chapter_2_-_Commerciality_and_Marketing_3.0.txt
+│   │   │   │   ├── Chapter_2_-_Master_Revision_Prompt_2.0.txt
+│   │   │   │   ├── Chapter_2nd_to_last.txt
+│   │   │   │   ├── Chapter_3:_Lift_Up.txt
+│   │   │   │   ├── Chapter_3_-_Master_Revision_Prompt_2.0.txt
+│   │   │   │   ├── Chapter_3_Analysis_&_Guides.txt
+│   │   │   │   ├── Chapter_3_Integration_Prompt.txt
+│   │   │   │   ├── Chapter_4:_Pilgrimage.txt
+│   │   │   │   ├── Chapter_5:_The_Snare.txt
+│   │   │   │   ├── Chapter_6:_Beelzebub,_Beelzebub.txt
+│   │   │   │   ├── Chapter_8.1.txt
+│   │   │   │   ├── Chapter_8:_Sea_People.txt
+│   │   │   │   ├── Chapter_9:_The_Ascent.txt
+│   │   │   │   ├── Could_you_condense_that_chapter_by_500_to_1,000_w....txt
+│   │   │   │   ├── Critique_2.2.txt
+│   │   │   │   ├── Final Revision (Generalized For All Chapters).txt
+│   │   │   │   ├── Go_ahead_and_write_out_the_chapter_keep_in_mind_t....txt
+│   │   │   │   ├── MANUSCRIPT_AUTOPSY.txt
+│   │   │   │   ├── Narnia_.txt
+│   │   │   │   ├── Purple_Prose_Prompt.txt
+│   │   │   │   ├── THE_WEIGHT_OF_THE_SKY-_MASTER_COMPENDIUM_(SINGULARITY_v.txt
+│   │   │   │   ├── The_-Version_X-_Meta-Prompt.txt
+│   │   │   │   ├── The_Weight_of_the_Sky:_The_Fall_into_Megiddo.txt
+│   │   │   │   ├── The_scrape.txt
+│   │   │   │   ├── ToALITTERAS_ECOSYSTEM_v2.txt
+│   │   │   │   ├── Untitled_document.txt
+│   │   │   │   ├── Version_A.txt
+│   │   │   │   ├── Version_B.txt
+│   │   │   │   ├── WOS_Ch7_The_Pit.txt
+│   │   │   │   ├── Whole_Book.txt
+│   │   │   │   ├── chapter_11.2.txt
+│   │   │   │   ├── •(G)_Chapter:_1_Stardust_to_Stardust_.txt
+│   │   │   │   ├── •(G)_Chapter_2-_Living_Sacrifice.txt
+│   │   │   │   └── ﻿Chapter_1-_Stardust_to_Stardust.txt
+│   │   │   └── node_manifest.json
+│   │   ├── initialization-metadata
+│   │   │   └── node_manifest.json
+│   │   ├── logic-governance
+│   │   │   └── node_manifest.json
+│   │   ├── reference-data
+│   │   │   └── node_manifest.json
+│   │   ├── static-assets
+│   │   │   └── node_manifest.json
+│   │   └── version-archive
+│   │       ├── ema_history.json
+│   │       └── node_manifest.json                               │   ├── features
+│   │   ├── audioListener.ts
+│   │   ├── distortionListener.ts
+│   │   └── thematicListener.ts
+│   ├── hooks
+│   │   ├── useAgent.ts
+│   │   ├── useGraph.ts
+│   │   ├── useMemory.ts
+│   │   └── useRetrieval.ts
+│   ├── runtime
+│   │   └── runtimeContext.ts
+│   ├── services
+│   │   ├── analytics-engine
+│   │   │   ├── logic
+│   │   │   │   └── coefficient_engine.ts
+│   │   │   ├── mapping
+│   │   │   │   └── dualism_logic.ts
+│   │   │   ├── poles
+│   │   │   └── visualizers
+│   │   ├── document-analyzer
+│   │   │   ├── corpus-searcher.ts
+│   │   │   ├── parser.ts
+│   │   │   └── synthesis-engine.ts
+│   │   ├── image-engine
+│   │   │   ├── executor.ts
+│   │   │   └── prompter.ts
+│   │   ├── memory-engine
+│   │   │   ├── corpus-loader.ts
+│   │   │   ├── document-store.ts
+│   │   │   ├── embedding-processor.ts
+│   │   │   ├── integrity-validator.ts
+│   │   │   ├── memory-engine.ts
+│   │   │   ├── memory-kernel.ts
+│   │   │   ├── text-processor.ts
+│   │   │   └── vector-store.ts
+│   │   ├── narrative-graph-engine
+│   │   │   ├── connection-analyzer.ts
+│   │   │   ├── consistency-analyzer.ts
+│   │   │   ├── edge-builder.ts
+│   │   │   ├── graph-kernel.ts
+│   │   │   ├── graph-querier.ts
+│   │   │   ├── graph-serializer.ts
+│   │   │   ├── narrative-graph-engine.ts
+│   │   │   ├── node-builder.ts
+│   │   │   └── path-finder.ts
+│   │   ├── orchestration-engine
+│   │   │   ├── context-builder.ts
+│   │   │   ├── orchestration-engine.ts
+│   │   │   ├── orchestrator.py
+│   │   │   ├── pipeline.ts
+│   │   │   ├── prompt-assembler.ts
+│   │   │   └── runtime-controller.ts
+│   │   ├── retrieval-engine
+│   │   │   ├── context-filter.ts
+│   │   │   ├── fulltext-searcher.ts
+│   │   │   ├── relevance-ranker.ts
+│   │   │   ├── result-aggregator.ts
+│   │   │   ├── retrieval-engine.ts
+│   │   │   ├── retrieval-kernel.ts
+│   │   │   └── vector-searcher.ts
+│   │   └── writing-agent
+│   │       ├── agent-kernel.ts
+│   │       ├── constraint-validator.ts
+│   │       ├── generation-executor.ts
+│   │       ├── memory-controller.ts
+│   │       ├── output-processor.ts
+│   │       ├── prompt-controller.ts
+│   │       ├── task-executor.ts
+│   │       └── writing-agent.ts
+│   └── store
+│       ├── app.store.ts
+│       ├── graph.store.ts
+│       ├── memory.store.ts
+│       └── session.store.ts
+├── system
+│   ├── 07_Build_Manifests
+│   │   └── session_logs
+│   │       └── SESSION_2026-05-12.log
+│   ├── error-handler
+│   ├── process-manager
+│   ├── resource-manager
+│   │   ├── active_dualisms.json
+│   │   └── manifest.json
+│   └── runtime
+│       └── active_state.json
+├── tailwind.config.ts
+└── tsconfig.json
+
+
+63 directories, 300 files
+~/writing-agent-interface $

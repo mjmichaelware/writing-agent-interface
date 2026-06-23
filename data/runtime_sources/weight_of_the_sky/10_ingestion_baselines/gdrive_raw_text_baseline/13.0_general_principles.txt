@@ -1,0 +1,561 @@
+﻿GENERAL REVISION PRINCIPLES
+Universal Constraints for All Chapters
+
+USE THIS FOR: Every chapter revision across the entire manuscript
+DO NOT USE FOR: Chapter-specific constraints (use separate chapter files)
+
+================================================================================
+PART 1: NARRATIVE VOICE REQUIREMENTS
+================================================================================
+
+1.1: Direct-Address Narrator Standards
+---------------------------------------
+CORE PRINCIPLE: If using direct-address narrator, commit completely. No apologies, no hedging, no uncertainty.
+
+REQUIRED CHARACTERISTICS:
+- Confident authority - Narrator knows the story and isn't apologetic
+- Consistent presence - If narrator speaks to reader in opening, maintain throughout
+- Thematic integration - Narrator intrusions must serve the book's themes
+- Distinctive personality - Narrator has a voice, not just a function
+- Value-added commentary - Intrusions provide insight reader couldn't get from scene alone
+
+FORBIDDEN PHRASES:
+- "But I'm getting ahead of myself"
+- "I should tell you that..."
+- "Now I need to explain..."
+- "Before we continue, let me..."
+- "You might be wondering..."
+- Any apologetic or self-conscious narrative management
+
+ACCEPTABLE PATTERNS:
+- "Here's what matters:" [confident assertion]
+- "The ancients knew:" [wisdom sharing]
+- "Consider:" [invitation to reflect]
+- Direct foreshadowing without apology
+- Philosophical asides that deepen theme
+- Commentary that reveals narrator's personality
+
+CONSISTENCY CHECK:
+- If Chapter 1 uses direct address, ALL chapters must
+- Narrator voice should be recognizable chapter to chapter
+- Tone can shift with story events, but core personality stays consistent
+
+1.2: Close Third-Person Standards (If Used Instead)
+----------------------------------------------------
+CORE PRINCIPLE: Stay tight to POV character's perspective. Filter everything through their experience.
+
+REQUIRED CHARACTERISTICS:
+- All narration reflects POV character's knowledge/vocabulary
+- Observations are what character would notice
+- Metaphors draw from character's experience base
+- No information character couldn't know
+- Voice has character's personality embedded
+
+FORBIDDEN:
+- Omniscient narrator intrusions
+- Information character couldn't access
+- Head-hopping within scenes
+- Generic "camera" descriptions
+- Author's voice replacing character's
+
+================================================================================
+PART 2: PROSE CRAFT STANDARDS
+================================================================================
+
+2.1: Sentence-Level Requirements
+---------------------------------
+FILTER WORD ELIMINATION:
+Minimize or eliminate: felt, saw, heard, watched, noticed, realized, knew, understood, seemed, appeared
+
+BAD: "Dan felt exhaustion settle over him"
+GOOD: "Exhaustion settled over him" OR "His limbs went heavy, vision blurring"
+
+ACTIVE CONSTRUCTION PREFERENCE:
+Replace passive voice unless passive serves specific purpose
+
+BAD: "The torch was clutched in his hand"
+GOOD: "He clutched the torch"
+
+ADVERB REDUCTION:
+Cut 90% of -ly adverbs. Strengthen verbs instead.
+
+BAD: "walked slowly"
+GOOD: "trudged" / "crept" / "shuffled"
+
+VERB STRENGTH:
+Replace weak verbs (was, had, went, came, got) with precise verbs
+
+BAD: "went across the room quickly"
+GOOD: "darted across the room"
+
+PREPOSITIONAL PHRASE LIMIT:
+Maximum 2 prepositional phrases per sentence (preferably 1)
+
+BAD: "The torch in his hand scattered light down the corridor against the walls"
+GOOD: "The torch scattered light down the corridor"
+
+SENTENCE RHYTHM:
+- Vary sentence length intentionally (short/medium/long)
+- No more than 2 consecutive sentences with same opening structure
+- Use fragments strategically for emphasis
+- Power words in stress positions (beginning and especially end)
+
+2.2: Showing vs. Telling Standards
+-----------------------------------
+ABSOLUTE RULE: Show emotions through physical response, action, or dialogue. Never name them directly.
+
+FORBIDDEN PATTERNS:
+- "He felt [emotion]"
+- "She was [emotion]"
+- Character names their own emotion in thought
+- Narrator labels emotion for reader
+
+REQUIRED PATTERNS:
+- Physical sensations that imply emotion
+- Actions that reveal emotional state
+- Dialogue that demonstrates feeling
+- Environmental reactions to character's state
+
+EXAMPLES:
+
+Telling: "Dan felt terrified"
+Showing: "Dan's breath came in shallow gasps. His hands shook."
+
+Telling: "Aviel was consumed by grief"
+Showing: "Aviel sat motionless, staring at the wall where her loom had been"
+
+Telling: "This made Dan angry"
+Showing: "Dan's jaw clenched. He turned away before he said something he'd regret"
+
+2.3: Redundancy Elimination
+----------------------------
+PATTERN 1: Multiple Metaphors for Same Concept
+Choose ONE strongest metaphor. Cut the rest.
+
+BAD: "It stopped. Like a cart with a broken axle. The part that moved forward ceased."
+GOOD: "It stopped, sudden as a cart with a shattered axle."
+
+PATTERN 2: Repeating Same Information
+Say it once, say it well, move on.
+
+BAD: "The house was decaying. Rot filled every corner. The dwelling had fallen into ruin."
+GOOD: "Rot filled every corner of the house."
+
+PATTERN 3: Explaining After Showing
+If you showed it, don't explain it.
+
+BAD: "His hands shook. He was nervous."
+GOOD: "His hands shook."
+
+2.4: Concrete Over Abstract
+----------------------------
+RULE: Every abstract concept must have concrete physical manifestation
+
+ABSTRACT: "profound exhaustion"
+CONCRETE: "His legs trembled. Each breath scraped his throat raw."
+
+ABSTRACT: "deep grief"
+CONCRETE: "He moved through the rooms like a man underwater, every gesture slowed by invisible weight."
+
+ABSTRACT: "spiritual transcendence"
+CONCRETE: "The air turned thin and cold. His body felt lighter, less substantial, as if gravity had loosened its grip."
+
+================================================================================
+PART 3: CHARACTER REQUIREMENTS
+================================================================================
+
+3.1: Protagonist Standards
+---------------------------
+EVERY PROTAGONIST MUST HAVE:
+- Clear external goal - What do they want in this chapter?
+- Clear internal need - What do they actually need (may not know it)?
+- Specific flaw - Weakness that creates problems
+- Distinctive voice - Recognizable speech patterns/thought patterns
+- Agency - Makes choices that drive plot forward
+- Change capacity - Something shifts by chapter end
+
+PROTAGONIST MUST NOT:
+- Be passive victim of circumstances
+- Be perfect/without meaningful flaws
+- Speak in generic everyman voice
+- Make decisions for plot convenience vs. character logic
+- Remain static from chapter beginning to end
+
+3.2: Secondary Character Standards
+-----------------------------------
+EVERY NAMED CHARACTER MUST:
+- Have distinct voice/mannerisms
+- Want something specific (even if not stated)
+- Serve story function beyond exposition
+- Be present as person, not plot device
+
+SECONDARY CHARACTERS MUST NOT:
+- Exist solely to deliver information
+- Speak in same voice as protagonist
+- Lack personality/individuality
+- Behave inconsistently for plot convenience
+
+3.3: Character Voice Differentiation
+-------------------------------------
+REQUIRED: Reader should be able to identify speaker without dialogue tags
+
+TECHNIQUES:
+- Vocabulary differences (educated vs. common)
+- Sentence length patterns
+- Verbal tics/catchphrases (used sparingly)
+- Topic obsessions
+- Metaphor choices reflecting background
+- Speech rhythm (short/clipped vs. flowing)
+
+================================================================================
+PART 4: STRUCTURAL REQUIREMENTS
+================================================================================
+
+4.1: Chapter Architecture
+--------------------------
+EVERY CHAPTER MUST CONTAIN:
+- Opening hook - Immediate engagement (question, action, tension)
+- Clear scene goal - Character wants X in this chapter
+- Rising complications - Obstacles that escalate
+- Climax moment - Peak tension/decision point
+- Resolution - Addresses immediate chapter goal
+- Chapter hook - Unanswered question propelling to next chapter
+
+4.2: Scene Break Standards
+---------------------------
+USE SCENE BREAKS WHEN:
+- Time jump (minutes to hours)
+- Location change
+- POV shift (if multiple POV)
+- Tonal shift that needs visual pause
+- Reader needs breath before intensity continues
+
+TYPICAL CHAPTER STRUCTURE:
+3,000-4,000 words = 4-6 scene sections
+
+4.3: Pacing Requirements
+-------------------------
+RULE: Each scene beat should escalate stakes or deepen character understanding
+
+AVOID:
+- Plateau pacing (same intensity throughout)
+- False climaxes (big moment then chapter continues without justification)
+- Exposition dumps that halt forward motion
+- Scenes that don't change anything
+
+PURSUE:
+- Accelerating tension toward climax
+- Brief breathing moments that serve character development
+- Rising stakes (each complication worse than last)
+- Clear cause-and-effect chain
+
+================================================================================
+PART 5: WORLD-BUILDING STANDARDS
+================================================================================
+
+5.1: Historical/Cultural Specificity
+-------------------------------------
+SETTING: 1010 BCE Canaan/Ancient Near East
+
+REQUIRED SPECIFICITY:
+- Daily life details (food, tools, clothing, architecture)
+- Religious practices (sacrifice, prayer, ritual)
+- Social structures (family, tribe, authority)
+- Historical context (David's reign, Philistine conflicts)
+- Accurate geography (Hebron, regional features)
+
+FORBIDDEN ANACHRONISMS:
+- Modern concepts (psychology, science, technology)
+- Modern metaphors (machines, systems unknown in period)
+- Modern social structures/values
+- References to post-period events
+
+5.2: Theological Consistency
+-----------------------------
+PANTHEON RULES:
+- Dagon: Philistine deity, abundance/accumulation, material realm
+- Baal: Storm god, fertility, cyclical nature
+- El: Father deity, sky god, distant authority
+- Yahweh: Israelite God, transcendent, uncompromising
+- Lesser divine figures must fit established hierarchy
+
+REQUIRED CONSISTENCY:
+- Each deity's domain clearly defined
+- Power limitations established
+- Interaction rules consistent
+- Theological framework doesn't contradict itself
+
+5.3: Magic System Rules
+------------------------
+DREAMWALKING MECHANICS:
+- Access TECHNIQUE consistent
+- Cost/consequence clear and consistent
+- Limitations defined
+- Rules don't change for plot convenience
+
+DREAMSCAPE PROPERTIES:
+- Physical laws established
+- How will affects manifestation
+- Barrier mechanics consistent
+- Entry/exit rules clear
+
+================================================================================
+PART 6: SYMBOLIC LANGUAGE
+================================================================================
+
+6.1: Metaphor System Unity
+---------------------------
+CORE METAPHOR FAMILY: Stardust/light/ascent vs. earth/darkness/descent
+
+CONSISTENCY REQUIREMENTS:
+- All metaphors should ultimately relate to this core binary
+- Don't introduce competing metaphor systems
+- Water imagery connects to core (baptism/transformation)
+- Stone imagery connects to core (weight/permanence)
+- Fire imagery connects to core (purification/transcendence)
+
+6.2: Biblical Allusion Standards
+---------------------------------
+PRINCIPLE: Allusions should be recognizable but not heavy-handed
+
+TECHNIQUE:
+- Echo language without direct quotation
+- Transform biblical images into narrative elements
+- Let reader discover connections
+- Serve story first, allusion second
+
+EXAMPLE:
+Heavy-handed: "It was formless and void, and darkness was upon the face of the deep"
+Subtle: "Formless dark churned beneath him, void waiting to take shape"
+
+6.3: Symbol Subtlety
+--------------------
+RULE: Symbols should work on surface level even if reader misses deeper meaning
+
+BAD: Stone means only one thing and is obviously symbolic
+GOOD: Stone serves practical function while carrying symbolic weight
+
+TECHNIQUE:
+- Introduce symbol through concrete function
+- Repeat symbol with slight variations
+- Never explain symbol's meaning
+- Let context reveal significance
+- Symbol should deepen on rereading, not require explanation
+
+================================================================================
+PART 7: DIALOGUE STANDARDS
+================================================================================
+
+7.1: Dialogue Purpose
+----------------------
+EVERY DIALOGUE EXCHANGE MUST:
+- Advance plot OR develop character OR increase tension
+- Sound like actual speech (not written exposition)
+- Reflect speaker's voice distinctively
+- Create subtext (characters want more than they say)
+
+7.2: Dialogue Tag Minimalism
+-----------------------------
+PREFERRED: "Said" or no tag (action beats instead)
+ACCEPTABLE: Asked, whispered, shouted (only when volume matters)
+FORBIDDEN: Adverb tags ("said sadly"), fancy tags ("opined")
+
+EXAMPLES:
+Weak: "I can't do this," he said fearfully.
+Strong: "I can't do this." His hands shook.
+
+7.3: Subtext Requirements
+--------------------------
+RULE: Characters rarely say exactly what they mean
+
+SURFACE: Dan says "I'm coming to help"
+SUBTEXT: Dan thinks "I'm terrified you're beyond help but I have to try"
+
+TECHNIQUE:
+- Dialogue says one thing
+- Body language/action reveals actual feeling
+- Reader infers true meaning from contrast
+
+================================================================================
+PART 8: SENSORY GROUNDING
+================================================================================
+
+8.1: Five Senses Integration
+-----------------------------
+REQUIREMENT: Every important scene should engage at least 3 senses
+
+CHECKLIST:
+- Sight (most common, don't rely on exclusively)
+- Sound (ambient and specific)
+- Touch (texture, temperature, weight)
+- Smell (powerful memory trigger)
+- Taste (less common but impactful when used)
+
+8.2: Specific Over Generic
+---------------------------
+BAD: "cold stone,"
+
+"dark corridor," "rotting smell"
+GOOD: "limestone that bit into his knees,"
+
+"passage narrow enough to touch both walls," "sweet-sick reek of meat left in sun"
+
+8.3: Environmental Character
+-----------------------------
+RULE: Setting reflects and amplifies character emotion
+
+TECHNIQUE:
+- Character in turmoil notices decay, entropy
+- Character finding hope notices light, growth
+- Don't make connection explicit—let reader feel it
+
+================================================================================
+PART 9: PACING & RHYTHM
+================================================================================
+
+9.1: Sentence Length Variation
+-------------------------------
+PATTERN: Long sentences for complexity/flow, short for impact
+
+EXAMPLE:
+"He moved through the corridor, torch casting uncertain light across walls thick with dust and memory, each step taking him deeper into the house that had once held warmth but now held only shadows. He stopped. Listened."
+
+9.2: Paragraph Length Variation
+--------------------------------
+RULE: Vary paragraph length for visual rhythm
+
+AVOID:
+- Wall of text (8+ sentence paragraphs repeatedly)
+- Choppy (all 1-2 sentence paragraphs)
+
+PURSUE:
+- Mix of short (1-2), medium (3-5), occasional long (6-7)
+- Single-sentence paragraphs for emphasis only
+
+9.3: Chapter Tempo
+------------------
+STRUCTURE:
+- Opening: Medium-quick (establish situation, hook reader)
+- Rising: Accelerate (complications increase)
+- Climax: Peak intensity (shortest sentences, fastest pace)
+- Resolution: Decelerate (catch breath, process meaning)
+- Hook: Quick (question that propels forward)
+
+================================================================================
+PART 10: REVISION MINDSET
+================================================================================
+
+10.1: Kill Your Darlings
+-------------------------
+PRINCIPLE: Beautiful prose that doesn't serve the story must go
+
+APPLY TO:
+- Favorite metaphors that obscure rather than clarify
+- Poetic language that slows pacing inappropriately
+- Philosophical asides that halt momentum
+- Any sentence you wrote to show off rather than serve story
+
+10.2: Tighten Always
+--------------------
+RULE: Can it be said in fewer words without losing meaning? Then do it.
+
+TECHNIQUE:
+- Cut qualifiers (very, really, quite, rather)
+- Cut redundancy
+- Combine sentences where logical
+- Delete throat-clearing openings
+
+10.3: Trust the Reader
+----------------------
+PRINCIPLE: Reader is intelligent. Don't over-explain.
+
+APPLY TO:
+- Metaphor meanings
+- Character motivations
+- Symbolic significance
+- Emotional subtext
+- Thematic connections
+
+REMEMBER: Better to be slightly unclear and trust the reader than to over-explain and insult their intelligence.
+
+================================================================================
+PART 11: FINAL QUALITY CHECKS
+================================================================================
+
+11.1: The Read-Aloud Test
+--------------------------
+TECHNIQUE: Read chapter aloud. Any place you stumble = revision needed.
+
+LISTEN FOR:
+- Awkward phrasing
+- Rhythm problems
+- Unclear antecedents
+- Unintentional repetition
+- Sentences that run too long
+
+11.2: The Movie Test
+--------------------
+TECHNIQUE: Can you visualize each scene clearly?
+
+IF NO:
+- Add concrete sensory detail
+- Clarify spatial relationships
+- Specify character positions/movements
+- Ground abstract concepts in physical reality
+
+11.3: The Care Test
+-------------------
+TECHNIQUE: Do you care what happens to the character?
+
+IF NO:
+- Increase stakes (what does character risk?)
+- Add vulnerability (where is character weak?)
+- Create identification (give character relatable struggle)
+- Show character making hard choice
+
+11.4: The Momentum Test
+-----------------------
+TECHNIQUE: Does chapter pull you forward?
+
+IF NO:
+- Increase urgency (why must this happen now?)
+- Sharpen conflict (what prevents character from goal?)
+- Raise stakes (what happens if character fails?)
+- Add complications (unexpected obstacles)
+
+================================================================================
+PART 12: WORD COUNT TARGETS
+================================================================================
+
+CHAPTER LENGTH: 3,000-4,000 words (flexible depending on chapter needs)
+
+IF TOO LONG:
+- Cut redundancy first
+- Condense exposition
+- Tighten prose
+- Remove scenes that don't advance plot/character
+
+IF TOO SHORT:
+- Expand sensory detail
+- Dramatize more fully (less summary)
+- Deepen character interiority
+- Add complications to existing scenes
+
+================================================================================
+USING THIS DOCUMENT
+================================================================================
+
+FOR EACH CHAPTER REVISION:
+1. Read this document completely
+2. Read chapter-specific constraint document
+3. Apply all principles while honoring chapter-specific needs
+4. Use AI Revision Protocol to execute
+5. Verify all general principles maintained in final version
+
+REMEMBER: These are principles, not rigid rules. Serve the story first. But if you violate a principle, know WHY and ensure the violation serves a greater purpose.
+
+================================================================================
+DOCUMENT VERSION: 1.0
+APPLIES TO: All chapters of "An Archetypal Tale"
+USE IN CONJUNCTION WITH: AI_REVISION_PROTOCOL + CHAPTER_NAME_SPECIFIC + ERROR_CATALOG
+================================================================================

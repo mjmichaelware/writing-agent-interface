@@ -1,0 +1,794 @@
+=== NARRATIVE OS: MASTER BLUEPRINTS & RECOVERY ===
+Timestamp: Sun May 17 21:58:25 MDT 2026
+
+
+=== 1. PROJECT TREE (Weights, Dates, Paths) ===
+Note: node_modules, .git, and .next are excluded for clarity.
+SIZE | DATE | TIME | FILE PATH
+---------------------------------------------------
+523K 	 2026-05-15 12:07 	 ./.sandbox/emotion_audit.txt
+379K 	 2026-05-13 18:43 	 ./.sandbox/drive_updated.json
+302K 	 2026-05-16 05:29 	 ./public/assets/bg.png
+254K 	 2026-05-16 08:25 	 ./full_codebase_dump.txt
+190K 	 2026-05-16 10:02 	 ./ui_ux_dump.txt
+151K 	 2026-05-17 12:38 	 ./tsconfig.tsbuildinfo
+125K 	 2026-05-17 12:38 	 ./package-lock.json
+60K 	 2026-05-17 16:10 	 ./src/data-layer/version-archive/ema_history.json
+51K 	 2026-05-16 05:29 	 ./public/assets/flies.jpg
+45K 	 2026-05-15 12:07 	 ./.sandbox/project_dump.txt
+36K 	 2026-05-17 16:10 	 ./src/data-layer/initialization-metadata/node_manifest.json
+36K 	 2026-05-15 12:07 	 ./nos_manifest.json
+34K 	 2026-05-15 12:07 	 ./.sandbox/nos_full_audit.txt
+33K 	 2026-05-16 05:29 	 ./public/assets/megiddo1.jpg
+31K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Could_you_condense_that_chapter_by_500_to_1,000_w....txt
+31K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Version_O.txt
+31K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(I)_Chapter:_1_Stardust_to_Stardust_.txt
+31K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(I)_(Notes)_Chapter:_1_Stardust_to_Stardust_.txt
+30K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/4.0_REVISED.txt
+30K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_Chapter_2-_Living_Sacrifice.txt
+30K 	 2026-05-16 05:29 	 ./public/assets/megiddo2.jpg
+29K 	 2026-05-17 02:10 	 ./NOS_Critical_Files_Dump.txt
+28K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_8.1.txt
+28K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10_Forsaken_FINAL_DEFINITIVE.txt
+28K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_9:_The_Ascent.txt
+27K 	 2026-05-15 12:07 	 ./src/data/canon/7.txt
+27K 	 2026-05-13 19:19 	 ./public/data/chapters/7.txt
+27K 	 2026-05-13 18:30 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(Final)
+27K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_9:_The_Ascent.txt
+27K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10.5.txt
+27K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_7:_The_Pit.txt
+27K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_1:_Stardust_to_Stardust_.txt
+27K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_7_-_The_Pit.txt
+26K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_Chapter_2:_Living_Sacrifice.txt
+26K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(Notes)_(P)_Chapter:_1_-_Stardust_to_Stardust.txt
+26K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Go_ahead_and_write_out_the_chapter_keep_in_mind_t....txt
+26K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_11._Forsaken.txt
+26K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10_Version_F.txt
+26K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(Revision_Prompt_(N)__Chapter_1_-_Stardust_to_Stardust.txt
+25K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(P)_Chapter:_1_-_Stardust_to_Stardust.txt
+25K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/chapter_11.2.txt
+24K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Whole_Book.txt
+24K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_8:_Sea_People.txt
+24K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_6-_Beelzebub,_Beelzebub.txt
+23K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/•(G)_Chapter_2-_Living_Sacrifice.txt
+23K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/7.0_Nuclear_Edit!!!!_(CRITICAL!_DIRE!_EMERGENCY!!!).txt
+23K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_8:_Sea_People.txt
+23K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(N)_CHAPTER_1-_STARDUST_TO_STARDUST.txt
+23K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_2-_Living_Sacrifice.txt
+23K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_1_-_Stardust_to_Stardust.txt
+23K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter_1_-_Stardust_to_Stardust.txt
+23K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_3-_Lift_Up.txt
+23K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(A)Chapter_8:_Sea_People.txt
+22K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_10_-_MASTER_BRIEFING.txt
+22K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(R)_Chapter:_1_-_Stardust_to_Stardust_.txt
+22K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_6:_Beelzebub,_Beelzebub.txt
+22K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1:_Stardust_to_Stardust.txt
+22K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/1.0_Revision.txt
+22K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1__Stardust_to_Stardust_(2).txt
+22K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(R)
+22K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(Prompt_Guide_(E))_Chapter_10:_Forsaken.txt
+22K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(G)_Chapter_2-_Living_Sacrifice.txt
+22K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_2-_Living_Sacrifice.txt
+22K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_1-_Stardust_to_Stardust.txt
+22K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_3_-_Lift_Up.txt
+22K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_1-_Stardust_to_Stardust.txt
+22K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_6_-_Beelzebub,_Beelzebub.txt
+22K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1:_Stardust_to_Stardust.txt
+22K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_6:_Beelzebub,_Beelzebub.txt
+22K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1_-_Stardust_to_Stardust.txt
+21K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(SDP)_v2.txt
+21K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_11.8.txt
+21K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_1_-_Stardust_to_Stardust.txt
+21K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(Z)_Chapter_1:_Stardust_to_Stardust.txt
+21K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(Revision_Prompt_(D))_Chapter_10:_Forsaken.txt
+21K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_5_-_The_Snare.txt
+21K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_3-_Lift_Up.txt
+21K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_1_-_Stardust_to_Stardust.txt
+21K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_1_-_Stardust_to_Stardust.txt
+21K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_Stardust_to_Stardust.txt
+21K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter:_1_-_Stardust_to_Stardust_.txt
+21K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_7:_The_Pit.txt
+21K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_5-_The_Snare.txt
+21K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_3:_Lift_Up.txt
+21K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_3-_Lift_Up.txt
+21K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1_-_Stardust_to_Stardust.txt
+21K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1:_Stardust_to_Stardust.txt
+21K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_1-_Stardust_to_Stardust.txt
+20K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_2-_Living_Sacrifice.txt
+20K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_4_-_Pilgrimage.txt
+20K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_2-_Living_Sacrifice.txt
+20K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_2-_Living_Sacrifice.txt
+20K 	 2026-05-17 16:10 	 ./src/app/runtime/page.tsx
+20K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Version_A.txt
+20K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3:_Lift_Up.txt
+20K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10.1.txt
+20K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter2_Weight_of_the_Sky.txt
+20K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/6.0_HIGHEST_PRIORITY_(Read_this_first_and_then_again_last)_.txt
+20K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/13.0_GENERAL_PRINCIPLES.txt
+20K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_3:_Lift_Up.txt
+20K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1__Stardust_to_Stardust_(1).txt
+20K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1_-_Stardust_to_Stardust.txt
+20K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1_-_Stardust_to_Stardust.docx.txt
+20K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(G)_Chapter_1:_Stardust_to_Stardust.txt
+20K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_3:_Lift_Up.txt
+20K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(Final)_Chapter_1:_Stardust_to_Stardust.txt
+20K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_3-_Lift_Up.txt
+20K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(B)_Stardust_to_Stardust.txt
+20K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_9:_The_Ascent.txt
+20K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_1-_Stardust_to_Stardust.txt
+20K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter:_1_Stardust_to_Stardust.txt
+20K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(B)Chapter_8:_Sea_People.txt
+20K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_5_-_The_Snare.txt
+20K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_3_-_Lift_Up.txt
+20K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter:_1_Stardust_to_Stardust.txt
+19K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_4:_Pilgrimage.txt
+19K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter_2-_Living_Sacrifice.txt
+19K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_2-_Living_Sacrifice.txt
+19K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(B)_Chapter_2:_Living_Sacrifice.txt
+19K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(A)_Chapter_2:_Living_Sacrifice.txt
+19K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/﻿Chapter_1-_Stardust_to_Stardust.txt
+19K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/•(G)_Chapter:_1_Stardust_to_Stardust_.txt
+19K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Version_B.txt
+19K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_5:_The_Snare.txt
+19K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3_Analysis_&_Guides.txt
+19K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2:_Living_Sacrifice.txt
+19K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Integration_2.0.txt
+19K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_-_Stardust_to_Stardust.txt
+19K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_2-_Living_Sacrifice.txt
+19K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_1:_Stardust_to_Stardust.txt
+19K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(X)_Chapter_1:_Stardust_to_Stardust.txt
+19K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(Revisions)_Chapter_1:_Stardust_to_Stardust.txt
+19K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(G)_Final_)_Chapter:_10_-_Forsaken.txt
+19K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(G)_Chapter_3-_Lift_Up.txt
+19K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_3-_Lift_Up.txt
+19K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter_2_-_Living_Sacrifice.txt
+19K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(D)_Chapter:_7_-_The_Pit.txt
+18K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/*Chapter_4:_Pilgrimage.txt
+18K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(C)_Chapter_4-_Pilgrimage.txt
+18K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/The_scrape.txt
+18K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2_-_Analysis_&_Guides_1.0.txt
+18K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_1_Proof_of_Authorship_1.1.txt
+18K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(O)_Chapter_1-_Stardust_to_Stardust.txt
+18K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(N)_Chapter_1_-_Stardust_to_Stardust.txt
+17K 	 2026-05-13 10:38 	 ./src/data/chapter7-raw.txt
+17K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/WOS_Ch7_The_Pit.txt
+17K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2_-_Commerciality_and_Marketing_3.0.txt
+17K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Merge_Prompt.txt
+17K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_13:_Exodus.txt
+17K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_10:_Forsaken.txt
+17K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_8_(Final).txt
+17K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_3-_Lift_Up.txt
+17K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(C)Chapter_8:_Sea_People.txt
+16K 	 2026-05-17 21:58 	 ./export_blueprints.sh
+16K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter_1_-_Stardust_to_Stardust.txt
+15K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2_-_Master_Revision_Prompt_2.0.txt
+15K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/8.0_Pacing／Redundancy.txt
+14K 	 2026-05-12 19:15 	 ./system/resource-manager/manifest.json
+14K 	 2026-05-12 16:32 	 ./scripts/build_files.sh
+14K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Critique_2.2.txt
+14K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/10.0_Mass_Market.txt
+13K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/5.0_Psychology_Guide.txt
+13K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/4.0_Psychology_Guide.txt
+13K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/10.0_MASTER_SYSTEM_FOR_CHAPTER_REVISION.txt
+13K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/The_Weight_of_the_Sky:_The_Fall_into_Megiddo.txt
+13K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter:_1_Proof_of_Authorship_1.0.txt
+13K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/2.0_Critique_／_Analysis_Guide.txt
+13K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(F)_Chapter:_1_Stardust_to_Stardust_.txt
+12K 	 2026-05-17 02:14 	 ./NOS_Runtime_Discovery_Dump.txt
+12K 	 2026-05-16 08:22 	 ./system_logic_audit.txt
+12K 	 2026-05-12 17:42 	 ./src/data-layer/07_Build_Manifests/Writing
+12K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Narnia_.txt
+12K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/6.0_Supreme_Generative_Constraint.txt
+11K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Untitled_document.txt
+11K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/(E)_Chapter_2_-_Living_Sacrifice.txt
+9.9K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/3.0_Scientific_Guide.txt
+9.2K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/5.0_Final_Guide.txt
+8.8K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/-Final_Chapter_1_Revision_Prompt-.txt
+8.6K 	 2026-05-17 16:10 	 ./src/components/layers/panel/StylesTab.tsx
+8.5K 	 2026-05-17 16:10 	 ./src/components/layers/cinema/TelemetryOverlay.tsx
+8.3K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/9.0_Aesthetic.txt
+8.3K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/6.0_SYNTHESIS_MANDATE.txt
+8.1K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/13.0_Claude.txt
+7.8K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/11.0_Error_Catalog.txt
+7.6K 	 2026-05-15 12:07 	 ./.sandbox/full_audit_list.txt
+7.5K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/11.0_Final_Revision.txt
+7.4K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_2nd_to_last.txt
+7.1K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3_-_Master_Revision_Prompt_2.0.txt
+7.0K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Integration_Prompt.txt
+6.9K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Final
+6.8K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/3.0_Final_.txt
+6.7K 	 2026-05-17 16:10 	 ./src/components/layers/Layer4Panel.tsx
+6.5K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/THE_WEIGHT_OF_THE_SKY-_MASTER_COMPENDIUM_(SINGULARITY_v.txt
+6.4K 	 2026-05-13 18:03 	 ./.sandbox/file_list.txt
+6.3K 	 2026-05-17 02:31 	 ./NOS_Layout_Search_Discovery_Dump.txt
+6.3K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/12.0_Perfection.txt
+6.3K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/11.0_Marketability_.txt
+5.9K 	 2026-05-17 16:10 	 ./src/components/ui/editor.tsx
+5.8K 	 2026-05-17 16:10 	 ./src/components/layers/cinema/AssetProjector.tsx
+5.6K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_1_Integration.txt
+5.1K 	 2026-05-17 16:10 	 ./src/components/ui/sidebar.tsx
+5.1K 	 2026-05-17 16:10 	 ./src/app/page.tsx
+5.1K 	 2026-05-17 02:39 	 ./NOS_Responsive_Style_Config_Dump.txt
+5.0K 	 2026-05-17 02:24 	 ./NOS_Remaining_23_Matrix_Dump.txt
+5.0K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/3.0_Literary_&_Archetypal_Fusion_Rulebook_(The_Cat_God_&_The_Primal_Self).txt
+4.8K 	 2026-05-13 19:19 	 ./.sandbox/final_ch7_metadata.json
+4.7K 	 2026-05-17 00:34 	 ./src/app/globals.css.bak
+4.7K 	 2026-05-17 00:34 	 ./src/app/globals.css
+4.7K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter
+4.6K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/10.0_Blueprint_for_The_Ascent_of_Daniel:_The_Archetype_of_Sacrifice_(NYT_Bestseller_Focus).txt
+4.5K 	 2026-05-17 16:10 	 ./src/components/ReaderLayout.tsx
+4.5K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/2.0_This_is_the_critical_adjustment—the_final_layer_that_elevates_philosophical_storytelling_into_timeless,_devastating_human_tragedy.txt
+4.3K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Chapter_3_Integration_Prompt.txt
+4.2K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/8._0_This_is_the_final,_most_crucial_step:_ensuring_the_narrative's_structure_is_so_perfectly_weighted_that_the_profound_sadness—the_weeping_of_self-recognition—is_not_a_chance_event,_but_an_earned,_inevitable_catharsis_for_the_reader.txt
+4.1K 	 2026-05-17 16:10 	 ./src/components/layers/cinema/ShaderEffects.tsx
+4.1K 	 2026-05-17 16:10 	 ./src/components/layers/canvas/ManuscriptCore.tsx
+4.0K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/MANUSCRIPT_AUTOPSY.txt
+3.9K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/ToALITTERAS_ECOSYSTEM_v2.txt
+3.9K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/4.0_Emotional_&_Archetypal_Editing_Rulebook_(Visceral_Empathy_Focus).txt
+3.7K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/6.0_Core_Editing_Rules_for_Thematic_&_Archetypal_Hyperlinking.txt
+3.6K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/7.0_Chapter_Refinery.txt
+3.6K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/4.0_(12_Rules_For_Life).txt
+3.5K 	 2026-05-17 16:10 	 ./src/components/layers/panel/SystemTab.tsx
+3.5K 	 2026-05-17 16:10 	 ./src/components/layers/canvas/front-matter/TitleCover.tsx
+3.5K 	 2026-05-12 12:16 	 ./scripts/extract_deep_history.py
+3.4K 	 2026-05-17 21:38 	 ./run_nos_diagnostics.sh
+3.4K 	 2026-05-17 16:10 	 ./src/components/ui/ScopedBackdrop.tsx
+3.4K 	 2026-05-17 16:10 	 ./src/components/layers/Layer3Canvas.tsx
+3.3K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/9.0_Stones.txt
+3.1K 	 2026-05-15 12:07 	 ./scripts/nos_audit.sh
+3.0K 	 2026-05-17 16:10 	 ./src/data-layer/ingestion-buffer/gdrive_raw/ALITTERAS_SYSTEM_BLUEPRINT_v1.txt
+3.0K 	 2026-05-17 16:10 	 ./src/components/ui/OmniText.tsx
+2.8K 	 2026-05-17 16:10 	 ./src/runtime/controlPanel.ts
+2.8K 	 2026-05-17 12:32 	 ./src/services/memory-engine/vector-store.ts
+2.7K 	 2026-05-17 16:10 	 ./src/services/memory-engine/corpus-loader.ts
+2.6K 	 2026-05-15 12:07 	 ./.sandbox/nos_identity_audit.txt
+2.5K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/Purple_Prose_Prompt.txt
+2.4K 	 2026-05-08 03:57 	 ./src/data-layer/ingestion-buffer/gdrive_raw/The_-Version_X-_Meta-Prompt.txt
+2.2K 	 2026-05-17 16:10 	 ./src/core/runtimeEngine.ts
+2.2K 	 2026-05-17 16:10 	 ./src/components/layers/canvas/front-matter/TableOfContents.tsx
+2.2K 	 2026-05-17 16:10 	 ./src/components/layers/Layer2Cinema.tsx
+2.2K 	 2026-05-17 16:10 	 ./ManuscriptCore.tsx
+2.0K 	 2026-05-17 06:27 	 ./tsc.log
+1.8K 	 2026-05-16 23:41 	 ./et
+1.7K 	 2026-05-17 16:10 	 ./src/context/SidebarContext.tsx
+1.7K 	 2026-05-17 16:10 	 ./src/components/layers/panel/IndexTab.tsx
+1.7K 	 2026-05-17 16:10 	 ./src/components/layers/canvas/front-matter/Synopsis.tsx
+1.5K 	 2026-05-17 02:19 	 ./NOS_Core_Engine_Discovery_Dump.txt
+1.4K 	 2026-05-17 06:27 	 ./build.log
+1.3K 	 2026-05-17 16:10 	 ./src/runtime/runtimeContext.tsx
+1.3K 	 2026-05-17 02:18 	 ./NOS_Panel_Runtime_EMA_Dump.txt
+1.2K 	 2026-05-17 16:10 	 ./src/components/layers/canvas/front-matter/AboutAuthor.tsx
+1.2K 	 2026-05-15 12:07 	 ./scripts/nos_sync.sh
+1.2K 	 2026-05-12 06:11 	 ./src/services/orchestration-engine/orchestrator.py
+1.1K 	 2026-05-17 12:32 	 ./src/core/system-utils.ts
+847 	 2026-05-17 09:45 	 ./package.json
+845 	 2026-05-17 16:10 	 ./src/app/characters/page.tsx
+843 	 2026-05-17 16:10 	 ./src/app/dashboard/page.tsx
+841 	 2026-05-17 16:10 	 ./src/app/timeline/page.tsx
+837 	 2026-05-17 16:10 	 ./src/app/search/page.tsx
+837 	 2026-05-17 16:10 	 ./src/app/memory/page.tsx
+835 	 2026-05-17 16:10 	 ./src/app/graph/page.tsx
+834 	 2026-05-17 16:10 	 ./src/app/layout.tsx
+801 	 2026-05-17 16:10 	 ./src/components/layers/panel/StatusTab.tsx
+799 	 2026-05-17 16:10 	 ./src/components/layers/canvas/front-matter/Dedication.tsx
+792 	 2026-05-17 16:10 	 ./src/app/api/chapters/route.ts
+754 	 2026-05-17 16:10 	 ./src/app/api/agent/route.ts
+749 	 2026-05-17 04:03 	 ./tsconfig.json
+723 	 2026-05-17 16:10 	 ./src/lib/narrative/fileService.ts
+688 	 2026-05-17 12:32 	 ./src/core/INarrativeGraphEngine.ts
+681 	 2026-05-15 12:07 	 ./src/data-layer/reference-data/compendium.json
+667 	 2026-05-16 05:41 	 ./.sandbox/nos_omni_handshake.txt
+655 	 2026-05-17 12:32 	 ./src/services/image-engine/image-generator.ts
+654 	 2026-05-17 12:32 	 ./src/data/cinema.ts
+631 	 2026-05-15 12:07 	 ./src/data-layer/reference-data/author.json
+630 	 2026-05-17 12:32 	 ./src/app/api/visualize/route.ts
+537 	 2026-05-17 16:10 	 ./src/features/audioListener.ts
+520 	 2026-05-16 22:48 	 ./.vercel/README.txt
+512 	 2026-05-17 12:32 	 ./src/services/narrative-graph-engine/narrative-graph-engine.ts
+508 	 2026-05-17 16:10 	 ./src/app/api/search/route.ts
+488 	 2026-05-17 16:10 	 ./src/features/distortionListener.ts
+457 	 2026-05-17 12:32 	 ./src/core/types.ts
+447 	 2026-05-17 12:32 	 ./src/core/IWritingAgent.ts
+424 	 2026-05-17 16:10 	 ./next.config.js
+421 	 2026-05-17 16:10 	 ./src/features/thematicListener.ts
+416 	 2026-05-17 12:32 	 ./src/core/IRetrievalEngine.ts
+409 	 2026-05-17 12:32 	 ./src/core/IMemoryEngine.ts
+406 	 2026-05-17 12:32 	 ./src/services/memory-engine/embedding-processor.ts
+397 	 2026-05-15 12:07 	 ./.sandbox/nos_nervous_system_audit.txt
+388 	 2026-05-16 22:20 	 ./.github/workflows/build-and-deploy.yml
+368 	 2026-05-15 12:07 	 ./scripts/nos_invoke.sh
+364 	 2026-05-15 12:07 	 ./.sandbox/nos_connection_test.txt
+363 	 2026-05-17 12:32 	 ./src/services/writing-agent/writing-agent.ts
+343 	 2026-05-13 10:23 	 ./README.md
+322 	 2026-05-17 12:32 	 ./src/app/api/graph/route.ts
+317 	 2026-05-15 12:07 	 ./.sandbox/nos_logic_dump.txt
+309 	 2026-05-17 16:10 	 ./src/actions/ingest.action.ts
+302 	 2026-05-17 05:39 	 ./test-db.js
+288 	 2026-05-17 12:32 	 ./src/app/api/manuscript/route.ts
+285 	 2026-05-17 12:32 	 ./src/lib/narrative/indexStore.ts
+283 	 2026-05-16 22:28 	 ./.gitignore
+265 	 2026-05-15 12:07 	 ./.sandbox/nos_full_handshake_report.txt
+257 	 2026-05-17 12:32 	 ./src/utils/tokenize.ts
+251 	 2026-05-17 04:03 	 ./next-env.d.ts
+248 	 2026-05-12 21:47 	 ./tailwind.config.ts
+222 	 2026-05-16 22:48 	 ./.vercel/repo.json
+187 	 2026-05-12 06:11 	 ./src/data-layer/aggregation-engine/node_manifest.json
+185 	 2026-05-12 06:11 	 ./src/data-layer/logic-governance/node_manifest.json
+185 	 2026-05-12 06:11 	 ./src/data-layer/ingestion-buffer/node_manifest.json
+184 	 2026-05-12 06:11 	 ./src/data-layer/version-archive/node_manifest.json
+183 	 2026-05-12 06:11 	 ./src/data-layer/reference-data/node_manifest.json
+182 	 2026-05-12 06:11 	 ./src/data-layer/static-assets/node_manifest.json
+181 	 2026-05-12 06:11 	 ./src/data-layer/disposal-bin/node_manifest.json
+180 	 2026-05-15 12:07 	 ./.sandbox/nos_repair_report.txt
+177 	 2026-05-12 06:11 	 ./src/data-layer/entities/node_manifest.json
+173 	 2026-05-17 12:32 	 ./src/services/memory-engine/text-processor.ts
+139 	 2026-05-17 16:10 	 ./src/components/layers/Layer1Void.tsx
+137 	 2026-05-17 04:02 	 ./eslint.config.js
+133 	 2026-05-15 12:07 	 ./src/data-layer/initialization-metadata/commerce_catalog.json
+132 	 2026-05-15 12:07 	 ./src/data-layer/initialization-metadata/ui_theme_registry.json
+128 	 2026-05-17 12:35 	 ./src/app/head.tsx
+125 	 2026-05-17 12:32 	 ./src/app/api/execute/route.ts
+125 	 2026-05-17 12:32 	 ./src/app/api/analyze-document/route.ts
+124 	 2026-05-17 12:32 	 ./src/app/api/corpus/route.ts
+112 	 2026-05-17 16:10 	 ./src/components/ui/timeline.tsx
+110 	 2026-05-17 16:10 	 ./src/components/ui/memory-panel.tsx
+110 	 2026-05-17 16:10 	 ./src/components/ui/character-view.tsx
+109 	 2026-05-17 16:10 	 ./src/components/ui/graph-view.tsx
+93 	 2026-05-12 22:01 	 ./postcss.config.js
+91 	 2026-05-17 12:32 	 ./src/actions/update-memory.action.ts
+82 	 2026-05-17 12:32 	 ./src/actions/write.action.ts
+82 	 2026-05-17 12:32 	 ./src/actions/retrieve.action.ts
+79 	 2026-05-14 08:10 	 ./.env.local
+69 	 2026-05-12 20:22 	 ./system/runtime/active_state.json
+64 	 2026-05-17 12:32 	 ./src/hooks/useRetrieval.ts
+63 	 2026-05-17 12:32 	 ./src/core/document-types.ts
+62 	 2026-05-17 12:32 	 ./src/hooks/useMemory.ts
+58 	 2026-05-17 12:32 	 ./src/hooks/useAgent.ts
+56 	 2026-05-17 12:32 	 ./src/core/engine-constants.ts
+53 	 2026-05-17 12:32 	 ./src/hooks/useGraph.ts
+51 	 2026-05-17 12:32 	 ./src/core/narrative-types.ts
+50 	 2026-05-17 12:32 	 ./src/store/app.store.ts
+46 	 2026-05-17 12:32 	 ./src/store/session.store.ts
+43 	 2026-05-17 12:32 	 ./src/store/memory.store.ts
+43 	 2026-05-17 12:32 	 ./src/store/graph.store.ts
+39 	 2026-05-16 22:27 	 ./.vercelignore
+2 	 2026-05-15 12:07 	 ./src/data-layer/initialization-metadata/teasers.json
+0 	 2026-05-17 12:32 	 ./src/services/writing-agent/task-executor.ts
+0 	 2026-05-17 12:32 	 ./src/services/writing-agent/prompt-controller.ts
+0 	 2026-05-17 12:32 	 ./src/services/writing-agent/output-processor.ts
+0 	 2026-05-17 12:32 	 ./src/services/writing-agent/memory-controller.ts
+0 	 2026-05-17 12:32 	 ./src/services/writing-agent/generation-executor.ts
+0 	 2026-05-17 12:32 	 ./src/services/writing-agent/constraint-validator.ts
+0 	 2026-05-17 12:32 	 ./src/services/writing-agent/agent-kernel.ts
+0 	 2026-05-17 12:32 	 ./src/services/orchestration-engine/runtime-controller.ts
+0 	 2026-05-17 12:32 	 ./src/services/orchestration-engine/prompt-assembler.ts
+0 	 2026-05-17 12:32 	 ./src/services/orchestration-engine/pipeline.ts
+0 	 2026-05-17 12:32 	 ./src/services/orchestration-engine/orchestration-engine.ts
+0 	 2026-05-17 12:32 	 ./src/services/orchestration-engine/context-builder.ts
+0 	 2026-05-17 12:32 	 ./src/services/narrative-graph-engine/path-finder.ts
+0 	 2026-05-17 12:32 	 ./src/services/narrative-graph-engine/node-builder.ts
+0 	 2026-05-17 12:32 	 ./src/services/narrative-graph-engine/graph-serializer.ts
+0 	 2026-05-17 12:32 	 ./src/services/narrative-graph-engine/graph-querier.ts
+0 	 2026-05-17 12:32 	 ./src/services/narrative-graph-engine/graph-kernel.ts
+0 	 2026-05-17 12:32 	 ./src/services/narrative-graph-engine/edge-builder.ts
+0 	 2026-05-17 12:32 	 ./src/services/narrative-graph-engine/consistency-analyzer.ts
+0 	 2026-05-17 12:32 	 ./src/services/narrative-graph-engine/connection-analyzer.ts
+0 	 2026-05-17 12:32 	 ./src/services/memory-engine/memory-kernel.ts
+0 	 2026-05-17 12:32 	 ./src/services/memory-engine/memory-engine.ts
+0 	 2026-05-17 12:32 	 ./src/services/memory-engine/integrity-validator.ts
+0 	 2026-05-17 12:32 	 ./src/services/memory-engine/document-store.ts
+0 	 2026-05-17 12:32 	 ./src/services/image-engine/prompter.ts
+0 	 2026-05-17 12:32 	 ./src/services/image-engine/executor.ts
+0 	 2026-05-17 12:32 	 ./src/services/document-analyzer/synthesis-engine.ts
+0 	 2026-05-17 12:32 	 ./src/services/document-analyzer/parser.ts
+0 	 2026-05-17 12:32 	 ./src/services/analytics-engine/mapping/dualism_logic.ts
+0 	 2026-05-17 12:32 	 ./src/services/analytics-engine/logic/coefficient_engine.ts
+0 	 2026-05-17 12:32 	 ./src/hooks/useScrollTracker.ts
+0 	 2026-05-17 12:32 	 ./src/hooks/useListenerBus.ts
+0 	 2026-05-17 12:32 	 ./src/hooks/useChapterRoute.ts
+0 	 2026-05-17 12:32 	 ./src/hooks/useChapterLoader.ts
+0 	 2026-05-16 10:06 	 ./src/styles/typography.css
+0 	 2026-05-16 10:06 	 ./src/styles/tokens.css
+0 	 2026-05-16 10:06 	 ./src/styles/components.css
+0 	 2026-05-16 10:06 	 ./src/styles/animations.css
+0 	 2026-05-12 19:17 	 ./system/resource-manager/active_dualisms.json
+0 	 2026-05-12 19:17 	 ./system/07_Build_Manifests/session_logs/SESSION_2026-05-12.log
+
+
+=== 2. THE 14 TARGET FILES (PRISTINE CODE) ===
+
+
+>>> FILE 1: next.config.js (Fixes compilation failure)
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  // Removed poison eslint and experimental keys to unblock Termux ARM64 builds
+};
+module.exports = nextConfig;
+
+
+>>> FILE 2: package.json (Build script fix for Android)
+// ACTION REQUIRED: Do not copy this whole block over your package.json! 
+// Just change your "build" script to use Webpack, bypassing the Turbopack error on Termux:
+{
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build --webpack",
+    "start": "next start",
+    "ingest": "tsx src/actions/ingest.action.ts"
+  }
+}
+
+
+>>> FILE 3: src/core/runtimeEngine.ts (The Memory-Safe Singleton)
+class EventBus {
+  private static instance: EventBus;
+  private events: Map<string, Set<Function>> = new Map();
+
+  static getInstance() {
+    if (!EventBus.instance) {
+      EventBus.instance = new EventBus();
+    }
+    return EventBus.instance;
+  }
+
+  on(event: string, fn: Function) {
+    if (!this.events.has(event)) this.events.set(event, new Set());
+    this.events.get(event)!.add(fn);
+  }
+
+  off(event: string, fn: Function) {
+    this.events.get(event)?.delete(fn);
+  }
+
+  emit(event: string, data?: any) {
+    this.events.get(event)?.forEach((fn) => fn(data));
+  }
+}
+
+export const bus = EventBus.getInstance();
+export { EventBus };
+export default bus;
+
+
+>>> FILE 4: src/components/layers/canvas/ManuscriptCore.tsx (Headless GPU Scroller)
+"use client";
+
+import React, { useEffect, useRef } from "react";
+import { bus } from "@/core/runtimeEngine";
+
+export default function ManuscriptCore({ blocks, chapterSlug }: { blocks: string[]; chapterSlug: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
+  useEffect(() => {
+    const root = containerRef.current;
+    if (!root) return;
+
+    observerRef.current?.disconnect();
+
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        const el = entry.target as HTMLElement;
+        if (entry.isIntersecting) {
+          el.dataset.state = "active";
+          const index = el.dataset.index;
+          if (index) bus.emit("scroll:focus", { paraIndex: +index });
+        } else {
+          el.dataset.state = "inactive";
+        }
+      }
+    }, { root: null, rootMargin: "-40% 0px -40% 0px", threshold: 0 });
+
+    observerRef.current = observer;
+    root.querySelectorAll("p[data-para]").forEach((p) => observer.observe(p));
+
+    return () => observer.disconnect();
+  }, [chapterSlug]);
+
+  return (
+    <div ref={containerRef} className="w-full max-w-2xl mx-auto pb-[50vh] pt-[30vh] px-6 md:px-0">
+      {blocks.map((text, idx) => (
+        <p
+          key={idx}
+          data-para
+          data-index={idx}
+          data-state="inactive"
+          className="mb-10 text-justify font-serif text-lg md:text-xl text-[var(--text-primary)] tracking-wide leading-[var(--leading-prose)] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform opacity-40 data-[state=active]:opacity-100 data-[state=active]:translate-y-0 data-[state=inactive]:translate-y-[4px] data-[state=inactive]:blur-[1px]"
+        >
+          {text}
+        </p>
+      ))}
+    </div>
+  );
+}
+
+
+>>> FILE 5: src/components/layers/Layer3Canvas.tsx (Velocity Blur Listener)
+"use client";
+
+import React, { useEffect, useRef } from "react";
+import ManuscriptCore from "./canvas/ManuscriptCore";
+import { bus } from "@/core/runtimeEngine";
+
+export default function Layer3Canvas({ chapterData }: { chapterData: any }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const onNav = () => {
+      el.style.filter = "blur(4px)";
+      el.style.transform = "scale(0.98)";
+      el.style.opacity = "0.7";
+      el.scrollTo({ top: 0, behavior: "smooth" });
+
+      window.setTimeout(() => {
+        el.style.filter = "blur(0px)";
+        el.style.transform = "scale(1)";
+        el.style.opacity = "1";
+      }, 800);
+    };
+
+    bus.on("nav:velocity_scroll", onNav);
+    return () => bus.off("nav:velocity_scroll", onNav);
+  }, []);
+
+  if (!chapterData?.blocks?.length) return <div className="absolute inset-0 flex justify-center items-center text-zinc-600 font-mono">Awaiting Manifest...</div>;
+
+  return (
+    <div ref={scrollRef} className="absolute inset-0 overflow-y-auto overflow-x-hidden transition-all duration-500 will-change-[transform,filter,opacity]">
+      <div className="w-full min-h-screen relative">
+        <ManuscriptCore blocks={chapterData.blocks} chapterSlug={chapterData.slug} />
+      </div>
+    </div>
+  );
+}
+
+
+>>> FILE 6: src/components/ReaderLayout.tsx (3D Hardware Viewport)
+"use client";
+
+import React, { useEffect, useRef } from "react";
+import { bus } from "@/core/runtimeEngine";
+
+export default function ReaderLayout({ children }: { children: React.ReactNode }) {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const onToggle = (state: { isOpen: boolean }) => {
+      const el = wrapperRef.current;
+      if (!el) return;
+      if (state.isOpen) {
+        el.style.transform = "rotateY(-12deg) translateZ(-100px) translateX(4%)";
+        el.style.filter = "blur(3px) brightness(0.5)";
+        el.style.pointerEvents = "none";
+      } else {
+        el.style.transform = "rotateY(0deg) translateZ(0px) translateX(0%)";
+        el.style.filter = "blur(0px) brightness(1)";
+        el.style.pointerEvents = "auto";
+      }
+    };
+
+    bus.on("ui:menu_toggle", onToggle);
+    return () => bus.off("ui:menu_toggle", onToggle);
+  }, []);
+
+  return (
+    <div className="w-full h-screen overflow-hidden bg-[#020203] text-zinc-100 antialiased" style={{ perspective: "2000px" }}>
+      <div ref={wrapperRef} className="w-full h-full transform-gpu transition-all duration-800 ease-[cubic-bezier(0.22,1,0.36,1)] origin-left will-change-[transform,filter]">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+
+>>> FILE 7: src/components/layers/Layer4Panel.tsx (3D Page Flip Menu)
+"use client";
+
+import React, { useEffect, useRef, useState } from "react";
+import { bus } from "@/core/runtimeEngine";
+import SystemTab from "./panel/SystemTab";
+
+export default function Layer4Panel() {
+  const panelRef = useRef<HTMLDivElement>(null);
+  const shieldRef = useRef<HTMLDivElement>(null);
+  const [activeTab, setActiveTab] = useState("SYSTEM");
+
+  useEffect(() => {
+    const toggleMenu = (state: { isOpen: boolean }) => {
+      const panel = panelRef.current;
+      const shield = shieldRef.current;
+      if (!panel || !shield) return;
+
+      if (state.isOpen) {
+        panel.style.transform = "rotateY(0deg) translateX(0)";
+        panel.style.opacity = "1";
+        panel.style.pointerEvents = "auto";
+        shield.style.opacity = "1";
+        shield.style.pointerEvents = "auto";
+      } else {
+        panel.style.transform = "rotateY(25deg) translateX(100%)";
+        panel.style.opacity = "0";
+        panel.style.pointerEvents = "none";
+        shield.style.opacity = "0";
+        shield.style.pointerEvents = "none";
+      }
+    };
+
+    bus.on("ui:menu_toggle", toggleMenu);
+    return () => bus.off("ui:menu_toggle", toggleMenu);
+  }, []);
+
+  const closeMenu = () => bus.emit("ui:menu_toggle", { isOpen: false });
+
+  return (
+    <div className="fixed inset-0 z-50 pointer-events-none" style={{ perspective: "2000px" }}>
+      <div ref={shieldRef} onClick={closeMenu} className="absolute inset-0 bg-black/40 backdrop-blur-[2px] transition-opacity duration-800 ease-[cubic-bezier(0.22,1,0.36,1)] opacity-0 pointer-events-none will-change-[opacity]" />
+      <div ref={panelRef} className="absolute top-0 right-0 w-[85vw] md:w-[420px] h-full bg-[#050507] border-l border-zinc-900 shadow-2xl flex flex-col origin-right transition-all duration-800 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[transform,opacity] opacity-0 pointer-events-none" style={{ transform: "rotateY(25deg) translateX(100%)", transformStyle: "preserve-3d" }}>
+        <div className="w-full h-full flex flex-col pointer-events-auto">
+          <div className="flex items-center justify-between p-6 border-b border-zinc-900/50">
+            <div className="flex gap-4">
+              {["INDEX", "SYSTEM"].map(tab => (
+                <button key={tab} onClick={() => setActiveTab(tab)} className={`text-[10px] tracking-widest font-mono transition-colors ${activeTab === tab ? "text-zinc-100" : "text-zinc-600 hover:text-zinc-400"}`}>{tab}</button>
+              ))}
+            </div>
+          </div>
+          <div className="flex-1 overflow-y-auto relative bg-[#020203]">
+            {activeTab === "SYSTEM" && <SystemTab />}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+>>> FILE 8: src/components/layers/panel/SystemTab.tsx (The Tactile PIN Pad Sandbox)
+"use client";
+
+import React, { useState } from "react";
+
+export default function SystemTab() {
+  const [pin, setPin] = useState("");
+  const [unlocked, setUnlocked] = useState(false);
+  const [error, setError] = useState(false);
+
+  const handleKey = (num: string) => {
+    if (error) setError(false);
+    if (pin.length < 4) {
+      const newPin = pin + num;
+      setPin(newPin);
+      if (newPin.length === 4) {
+        if (newPin === "1003") {
+          setTimeout(() => setUnlocked(true), 300);
+        } else {
+          setError(true);
+          setTimeout(() => { setPin(""); setError(false); }, 500);
+        }
+      }
+    }
+  };
+
+  if (unlocked) {
+    return (
+      <div className="p-8 animate-in fade-in duration-700">
+        <h3 className="font-mono text-[10px] text-emerald-500 tracking-widest uppercase mb-6 flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />IWritingAgent: Online</h3>
+        <button className="w-full text-left p-4 border border-zinc-900 bg-zinc-900/20 hover:bg-zinc-900/50 transition-colors group"><span className="block font-serif text-zinc-300">Access 181 Concordance Nodes</span></button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="p-8 h-[60vh] flex flex-col items-center justify-center">
+      <div className="text-center mb-10">
+        <h2 className="font-mono text-[10px] tracking-[0.3em] text-zinc-500 mb-4">SYSTEM GATEWAY</h2>
+        <div className="flex gap-4 justify-center">
+          {[0, 1, 2, 3].map((i) => (
+            <div key={i} className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${error ? "bg-red-500 shadow-[0_0_12px_rgba(239,68,68,0.6)]" : i < pin.length ? "bg-zinc-200 shadow-[0_0_12px_rgba(255,255,255,0.4)]" : "bg-zinc-800"}`} />
+          ))}
+        </div>
+      </div>
+      <div className="grid grid-cols-3 gap-3 w-full max-w-[220px]">
+        {["1", "2", "3", "4", "5", "6", "7", "8", "9", "DEL", "0", "ENT"].map((key) => (
+          <button key={key} onClick={() => { if (key === "DEL") setPin(pin.slice(0, -1)); else handleKey(key); }} className="aspect-square font-mono text-sm text-zinc-400 border border-zinc-800/30 bg-[#070709] hover:bg-zinc-800 transition-all">{key}</button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+
+>>> FILE 9: src/app/page.tsx (Pristine Root Server Component)
+import React from "react";
+import ReaderLayout from "@/components/ReaderLayout";
+import Layer2Cinema from "@/components/layers/Layer2Cinema";
+import Layer3Canvas from "@/components/layers/Layer3Canvas";
+import Layer4Panel from "@/components/layers/Layer4Panel";
+import { VectorStore } from "@/services/memory-engine/vector-store";
+import path from "path";
+import { promises as fs } from "fs";
+
+export const dynamic = "force-dynamic";
+
+async function fetchChapterData(slug: string) {
+  try {
+    const store = new VectorStore();
+    const manifestPath = path.join(process.cwd(), "nos_manifest.json");
+    const manifestRaw = await fs.readFile(manifestPath, "utf-8");
+    const manifest = JSON.parse(manifestRaw || '{"nodes":[]}');
+    const targetNode = (manifest.nodes || []).find((n: any) => String(n.id).toLowerCase().includes(`chapter_${slug}`));
+    if (!targetNode) return null;
+    const matchedChapterId = await store.getChapterByManifestId(targetNode.id);
+    if (!matchedChapterId) return null;
+    const blocks = await store.getParagraphsByChapter(matchedChapterId);
+    return { slug, blocks, total: blocks.length };
+  } catch (e) {
+    return null;
+  }
+}
+
+export default async function Page() {
+  const chapterData = await fetchChapterData("7");
+  return (
+    <ReaderLayout>
+      <Layer2Cinema chapter={7} activePara={0} depth={0} />
+      <Layer3Canvas chapterData={chapterData} />
+      <Layer4Panel />
+    </ReaderLayout>
+  );
+}
+
+
+>>> FILE 10: src/runtime/runtimeContext.tsx (Context Healer Proxy)
+"use client";
+
+import React, { createContext, useContext } from "react";
+import { bus } from "@/core/runtimeEngine";
+
+export function getRuntime() {
+  return { bus: bus, emit: bus.emit.bind(bus), on: bus.on.bind(bus), off: bus.off.bind(bus) };
+}
+
+const RuntimeContext = createContext<{ bus: typeof bus }>({ bus });
+
+export function RuntimeProvider({ children }: { children: React.ReactNode }) {
+  return <RuntimeContext.Provider value={{ bus }}>{children}</RuntimeContext.Provider>;
+}
+
+export function useRuntime() {
+  return useContext(RuntimeContext);
+}
+
+
+>>> FILES 11, 12, 13: Feature Listeners (audioListener.ts, distortionListener.ts, thematicListener.ts)
+// ALL THREE FILES SHOULD LOOK LIKE THIS:
+import { bus } from "@/core/runtimeEngine";
+
+export function initListener() {
+  bus.on("scroll:focus", (data: any) => {
+    // Event injected natively
+  });
+}
+
+
+>>> FILE 14: nos_manifest.json (Sanitized Canonical Clean Base)
+{
+  "nodes": [
+    { "id": "Chapter_1", "file_path": "canon/Chapter_1.txt" },
+    { "id": "Chapter_2", "file_path": "canon/Chapter_2.txt" },
+    { "id": "Chapter_3", "file_path": "canon/Chapter_3.txt" },
+    { "id": "Chapter_4", "file_path": "canon/Chapter_4.txt" },
+    { "id": "Chapter_5", "file_path": "canon/Chapter_5.txt" },
+    { "id": "Chapter_6", "file_path": "canon/Chapter_6.txt" },
+    { "id": "Chapter_7", "file_path": "canon/Chapter_7.txt" },
+    { "id": "Chapter_8", "file_path": "canon/Chapter_8.txt" },
+    { "id": "Chapter_9", "file_path": "canon/Chapter_9.txt" },
+    { "id": "Chapter_10", "file_path": "canon/Chapter_10.txt" },
+    { "id": "Chapter_11", "file_path": "canon/Chapter_11.txt" },
+    { "id": "Chapter_12", "file_path": "canon/Chapter_12.txt" },
+    { "id": "Chapter_13", "file_path": "canon/Chapter_13.txt" }
+  ]
+}

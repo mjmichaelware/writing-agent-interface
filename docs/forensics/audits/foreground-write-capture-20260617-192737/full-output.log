@@ -1,0 +1,3 @@
+ReferenceError: callVertex is not defined
+    at main (file:///data/data/com.termux/files/home/Workspaces/Hybrid/writing-agent-interface/scripts/semantic/xml-grounded-vertex-rehash.mjs:1072:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)

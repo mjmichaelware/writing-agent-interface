@@ -1,0 +1,62 @@
+﻿6.0 Supreme Generative Constraint: The Meta-Narrative Filter (SUPERCRITICAL REVISION)
+Purpose: This document establishes the supreme, non-negotiable directive that governs the application of all specialized guides (1.0 through 5.0). Its function is to filter the TECHNIQUEs and tools of analysis, ensuring they only inform the prose and never appear as readable content within the final chapter.
+I. Lexical Segregation & Narrative Purity (Anti-Jargon Protocol)
+The separation between the Author's Tools (Tier 1) and the Reader's Experience (Tier 2) is absolute and inviolable.
+Exclusion of All Structural Jargon: All critical, analytical, or structural terms must be strictly excluded from the final prose. This prohibition is absolute and includes, but is not limited to:
+Structural Terms: Climax, Anti-Climax, Coda, Terminal Tension, Arc, Progression, Unresolved Question.
+References: Parenthetical notes, bullet points, or any reference to the source documents or rules (e.g., [5.0 Guide, I.2]).
+Formatting: Lists or bullet points are strictly forbidden within the narrative flow. The effect of listing (e.g., the items of Aviel's house) must be achieved through rhythmic, layered prose using colons and semicolons.
+Exclusion of Inaccessible Diction: The prose must be philosophically dense but immediately accessible. High-concept descriptive words that are unnecessarily obscure or academic are forbidden if a commonly understood, yet still evocative, alternative exists.
+FORBIDDEN: Subterranean, Verisimilitude, Hegemonic, Propinquity.
+MANDATORY SUBSTITUTION: Replace with vivid, accessible descriptions (e.g., beneath the settled rock, the appearance of truth, near-presence).
+II. Thematic Naming and Sensory Anchor Integrity
+Deity Naming Convention (NEW): To remove the overly simplistic duality of "High/Low" and maintain the integrity of the Deep Gods' power:
+The powerful entities associated with the Earth, material hoarding, and stagnation (Dagon, Baal, El) shall be called the DEEP GODS.
+The entities associated with the vertical path, truth, and light (Yahweh, Courage, Hope) shall be called the SOURCE GODS.
+Preservation of the Sensory Anchor (CRITICAL FIX): The first sentence of the original chapter must be retained as the sensory core of the paragraph. When applying the Negated Language rule (5.0 Guide, I.1), the negation must be applied to the anchor, not in place of it.
+MANDATORY OPENING FORMAT: "The torchlight, clenched in the boy's hand, [ORIGINAL ACTION]; it was [NEGATED DEFINITION]..."
+III. Structural Mandates: Length and Redundancy
+Word Count Maintenance (ABSOLUTE RULE): To compensate for the discrepancy between LLM and Google Docs word counts (4x multiplier), every revision MUST be at least four times the physical length of the base text (Chapter 1) or the last accepted revision. This is achieved by:
+Verbosity: Layering philosophical reflection, sensory detail, and physical action into the mandated long, complex sentences (1.0 Guide, I.2).
+Extensive Description: Sustaining detailed metaphorical description for all significant objects, actions, and character states.
+Diction Redundancy Protocol (Refining Repetition):
+Mandatory Thematic Repetition (5.0 Guide, III.4): The rhythmic repetition of the core lexicon (mass, drag, expenditure, rest, coldness, friction) is MANDATORY and must be sustained for thematic cohesion.
+Forbidden Accidental Redundancy: The repetition of non-thematic, descriptive words (viscous, familiar, sudden, large) that are not part of the core lexicon is STRICTLY FORBIDDEN within any single paragraph and should be avoided in adjacent paragraphs to enhance the quality of diction.
+IV. General Failure Prevention Checklist
+Final Cohesion: Ensure the final philosophical coda (2.0 Guide) flows seamlessly from the final paragraph without being explicitly named as a "Coda."
+Aphorism Origin (5.0 Guide, III.1): All philosophical statements must arise organically from the character's immediate physical action or reaction.
+(SUPERCRITICAL ADDITIONS)
+V. The Protocol of Core Text Preservation (The Anti-Destabilization Mandate)
+This section retracts any prior instruction that suggested the "complete rewriting" of the chapter (specifically in the 1.0 Guide). The goal is refinement, not replacement.
+Paragraph 1 Anchoring (Absolute Freeze): The first full paragraph of the original manuscript is to be considered the Gold Standard of Diction, Cadence, and Imagery. The prose structure, sensory details, and sequential flow of the opening paragraph MUST be preserved verbatim, subject only to the following, non-destructive edits:
+Permitted Edits: Only allow changes necessary to satisfy The Law of Physical Substitution (5.0, I.2) and Negated Language (5.0, I.1) by adjusting internal clauses, not the core sensory descriptors (e.g., changing "trembled" to "did not tremble").
+Prohibited Changes: Absolutely forbid alteration to the original subject matter, objects (torch, heart, stone), or the sequential unfolding of the boy’s movement. The opening paragraph is the stylistic blueprint; it must not be altered drastically.
+The Error of Structural Naming (Anti-Jargon Enforcement): Any term that denotes the structure or effect of a narrative passage is strictly forbidden.
+ABSOLUTELY FORBIDDEN: The use of the word 'climax', 'anti-climax', 'arc', 'narrative progression', or any synonym within the narrative itself or in any commentary about the narrative structure.
+VI. Diction, Accessibility, and Redundancy Protocol
+Redundancy Filter (Non-Lexicon): The recurrence of the mandatory thematic lexicon (mass, drag, friction, expenditure, cold fire, rest, viscosity) is required. However, the use of non-lexical descriptive adjectives or adverbs (e.g., sudden, familiar, large, precise, heavy) must not be repeated within any single paragraph, and ideally, not within adjacent paragraphs. This forces variation and prevents stylistic dilution.
+Accessibility and Allegorical Naming (Deep Gods Fix):
+Inaccessible Diction Prohibition: Words that are unnecessarily obscure, academic, or have common, accessible alternatives (e.g., 'subterranean', 'viscous' used excessively outside its core metaphorical mandate) are forbidden. The complexity must come from the philosophical layering of the sentences, not the obscurity of the vocabulary.
+Diction Constraint Rationale: When choosing a descriptive word, preference must be given to a word that is physically immediate and understandable by a reader of an intermediate vocabulary level.
+VII. Length and Output Mandates
+Length Congruence (The 4x Rule): To meet the requirement for word count consistency with external editors (Google Docs standard), every revised chapter MUST be generated at a physical length that is a minimum of four times the length of the base source chapter (Chapter_ 1 Stardust to Stardust.txt). This extended length must be achieved entirely through the application of the Rhythmic Complexity (1.0, I.2) mandate, layering description and reflection into longer sentences.
+(SUPERCRITICAL ADDITIONS)
+​V. The Protocol of Core Text Preservation (The Anti-Destabilization Mandate)
+​This section retracts any prior instruction that suggested the "complete rewriting" of the chapter (specifically in the 1.0 Guide). The goal is refinement, not replacement.
+1. ​Paragraph 1 Anchoring (Absolute Freeze): The first full paragraph of the original manuscript is to be considered the Gold Standard of Diction, Cadence, and Imagery. The prose structure, sensory details, and sequential flow of the opening paragraph MUST be preserved verbatim, subject only to the following, non-destructive edits:
+ * ​Permitted Edits: Only allow changes necessary to satisfy The Law of Physical Substitution (5.0, I.2) and Negated Language (5.0, I.1) by adjusting internal clauses, not the core sensory descriptors (e.g., changing "trembled" to "did not tremble").
+ * ​Prohibited Changes: Absolutely forbid alteration to the original subject matter, objects (torch, heart, stone), or the sequential unfolding of the boy’s movement. The opening paragraph is the stylistic blueprint; it must not be altered drastically.
+2. ​The Error of Structural Naming (Anti-Jargon Enforcement): Any term that denotes the structure or effect of a narrative passage is strictly forbidden.
+ * ​ABSOLUTELY FORBIDDEN: The use of the word 'climax', 'anti-climax', 'arc', 'narrative progression', or any synonym within the narrative itself or in any commentary about the narrative structure.
+​VI. Diction, Accessibility, and Redundancy Protocol
+1. ​Redundancy Filter (Non-Lexicon): The recurrence of the mandatory thematic lexicon (mass, drag, friction, expenditure, cold fire, rest, viscosity) is required. However, the use of non-lexical descriptive adjectives or adverbs (e.g., sudden, familiar, large, precise, heavy) must not be repeated within any single paragraph, and ideally, not within adjacent paragraphs. This forces variation and prevents stylistic dilution.
+2. ​Accessibility and Allegorical Naming (Deep Gods Fix):
+ * ​Inaccessible Diction Prohibition: Words that are unnecessarily obscure, academic, or have common, accessible alternatives (e.g., 'subterranean', 'viscous' used excessively outside its core metaphorical mandate) are forbidden. The complexity must come from the philosophical layering of the sentences, not the obscurity of the vocabulary.
+ * ​Diction Constraint Rationale: When choosing a descriptive word, preference must be given to a word that is physically immediate and understandable by a reader of an intermediate vocabulary level.
+​VII. Length and Output Mandates
+1. ​Length Congruence (The 4x Rule): To meet the requirement for word count consistency with external editors (Google Docs standard), every revised chapter MUST be generated at a physical length that is a minimum of four times the length of the base source chapter (Chapter_ 1 Stardust to Stardust.txt). This extended length must be achieved entirely through the application of the Rhythmic Complexity (1.0, I.2) mandate, layering description and reflection into longer sentences.
+VIII. The Non-Thematic Diction Scrutiny (Anti-Dilution Protocol)
+This mandate prevents the cascade failure of stylistic dilution caused by the repetitive use of descriptive adjectives and adverbs that are not part of the core symbolic lexicon (mass, drag, friction, rest, expenditure, cold fire).
+Diction Redundancy Prohibition (CRITICAL): Non-lexical descriptive words (e.g., viscous used as a general descriptive, sudden, familiar, large, heavy, precise, guttural) are STRICTLY FORBIDDEN from repetition within two adjacent paragraphs. This forces variation and prevents the prose from becoming aesthetically monotonous.
+The Law of Immediacy and Accessibility: If a descriptive word is highly academic or rare (e.g., subterranean, chthonic, propinquity), it must be replaced by a phrase that conveys the same immediate physical or sensory meaning (e.g., beneath the settled rock, near-presence). The prose must communicate philosophical depth through layered complexity, not through lexical obscurity.
+Allegorical Exclusion (The Coda): The term 'coda' must never appear in the narrative or the structural analysis. The final philosophical statements (as mandated by 5.0) must be referred to only as The Unresolved Question.

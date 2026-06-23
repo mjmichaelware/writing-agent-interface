@@ -1,0 +1,183 @@
+[3.4K May 16 08:21]  .
+├── [ 228 May 12 13:16]  next-env.d.ts
+├── [3.4K May 16 08:05]  scripts
+│   ├── [ 14K May 12 16:32]  build_files.sh
+│   ├── [3.5K May 12 12:16]  extract_deep_history.py
+│   ├── [3.1K May 15 12:07]  nos_audit.sh
+│   ├── [ 368 May 15 12:07]  nos_invoke.sh
+│   └── [1.2K May 15 12:07]  nos_sync.sh
+├── [3.4K May 15 12:07]  src
+│   ├── [3.4K May 12 07:27]  actions
+│   │   ├── [  83 May 16 04:30]  ingest.action.ts
+│   │   ├── [  82 May 16 04:30]  retrieve.action.ts
+│   │   ├── [  91 May 16 04:30]  update-memory.action.ts
+│   │   └── [  82 May 16 04:30]  write.action.ts
+│   ├── [3.4K May 16 06:11]  app
+│   │   ├── [3.4K May 15 12:07]  api
+│   │   │   ├── [3.4K May 16 04:30]  agent
+│   │   │   │   └── [ 125 May 16 04:30]  route.ts
+│   │   │   ├── [3.4K May 12 21:03]  analyze-document
+│   │   │   │   └── [ 125 May 16 04:30]  route.ts
+│   │   │   ├── [3.4K May 15 12:21]  chapters
+│   │   │   │   └── [2.1K May 15 12:21]  route.ts
+│   │   │   ├── [3.4K May 16 04:30]  corpus
+│   │   │   │   └── [ 124 May 16 04:30]  route.ts
+│   │   │   ├── [3.4K May 16 04:30]  execute
+│   │   │   │   └── [ 125 May 16 04:30]  route.ts
+│   │   │   ├── [3.4K May 16 04:30]  graph
+│   │   │   │   └── [ 124 May 16 04:30]  route.ts
+│   │   │   ├── [3.4K May 16 04:30]  manuscript
+│   │   │   │   └── [ 124 May 16 04:30]  route.ts
+│   │   │   ├── [3.4K May 15 12:07]  search
+│   │   │   │   └── [1.1K May 15 12:07]  route.ts
+│   │   │   └── [3.4K May 15 12:07]  visualize
+│   │   │       └── [ 630 May 15 12:07]  route.ts
+│   │   ├── [3.4K May 13 00:25]  characters
+│   │   │   └── [ 845 May 13 06:54]  page.tsx
+│   │   ├── [3.4K May 13 00:25]  dashboard
+│   │   │   └── [ 843 May 13 06:54]  page.tsx
+│   │   ├── [ 275 May 15 12:07]  globals.css
+│   │   ├── [3.4K May 13 00:25]  graph
+│   │   │   └── [ 835 May 13 06:54]  page.tsx
+│   │   ├── [ 121 May 13 10:23]  head.tsx
+│   │   ├── [ 826 May 15 12:07]  layout.tsx
+│   │   ├── [3.4K May 13 00:25]  memory
+│   │   │   └── [ 837 May 13 06:54]  page.tsx
+│   │   ├── [5.1K May 16 06:11]  page.tsx
+│   │   ├── [3.4K May 15 12:07]  runtime
+│   │   │   └── [ 19K May 15 12:07]  page.tsx
+│   │   ├── [3.4K May 13 00:25]  search
+│   │   │   └── [ 837 May 13 06:54]  page.tsx
+│   │   └── [3.4K May 13 00:25]  timeline
+│   │       └── [ 841 May 13 06:54]  page.tsx
+│   ├── [3.4K May 16 07:24]  components
+│   │   ├── [3.7K May 16 07:22]  OmniText.tsx
+│   │   ├── [4.5K May 16 07:24]  ReaderLayout.tsx
+│   │   ├── [3.4K May 16 08:08]  layers
+│   │   │   ├── [ 13K May 16 06:58]  Layer1Void.tsx
+│   │   │   ├── [7.0K May 16 07:30]  Layer2Cinema.tsx
+│   │   │   ├── [7.2K May 16 08:08]  Layer3Canvas.tsx
+│   │   │   ├── [ 17K May 16 07:30]  Layer4Panel.tsx
+│   │   │   ├── [3.4K May 16 07:14]  canvas
+│   │   │   │   ├── [8.8K May 16 07:12]  FrontMatter.tsx
+│   │   │   │   ├── [ 12K May 16 07:14]  ManuscriptCore.tsx
+│   │   │   │   └── [9.3K May 16 07:12]  TitleCover.tsx
+│   │   │   ├── [3.4K May 16 07:30]  cinema
+│   │   │   │   ├── [5.8K May 16 07:30]  AssetProjector.tsx
+│   │   │   │   ├── [4.1K May 16 07:30]  ShaderEffects.tsx
+│   │   │   │   └── [8.4K May 16 07:10]  TelemetryOverlay.tsx
+│   │   │   ├── [3.4K May 16 08:08]  panel
+│   │   │   │   ├── [1.7K May 16 06:01]  IndexTab.tsx
+│   │   │   │   ├── [ 801 May 16 07:30]  StatusTab.tsx
+│   │   │   │   ├── [8.6K May 16 08:08]  StylesTab.tsx
+│   │   │   │   └── [3.5K May 16 07:30]  SystemTab.tsx
+│   │   │   └── [3.4K May 16 06:54]  void
+│   │   │       ├── [ 11K May 16 06:50]  CanvasCore.tsx
+│   │   │       ├── [ 12K May 16 06:53]  InteractionField.tsx
+│   │   │       └── [ 13K May 16 06:54]  SystemDiagnostics.tsx
+│   │   └── [3.4K May 16 07:27]  ui
+│   │       ├── [3.0K May 16 07:22]  OmniText.tsx
+│   │       ├── [3.4K May 16 07:25]  ScopedBackdrop.tsx
+│   │       ├── [ 110 May 16 04:30]  character-view.tsx
+│   │       ├── [5.9K May 16 07:27]  editor.tsx
+│   │       ├── [ 109 May 16 04:30]  graph-view.tsx
+│   │       ├── [ 110 May 16 04:30]  memory-panel.tsx
+│   │       ├── [5.0K May 16 07:27]  sidebar.tsx
+│   │       └── [ 112 May 16 04:30]  timeline.tsx
+│   ├── [3.4K May 15 12:07]  context
+│   │   └── [1.7K May 15 12:07]  SidebarContext.tsx
+│   ├── [3.4K May 15 12:07]  core
+│   │   ├── [  66 May 16 04:30]  IMemoryEngine.ts
+│   │   ├── [  68 May 16 04:30]  INarrativeGraphEngine.ts
+│   │   ├── [  75 May 16 04:30]  IRetrievalEngine.ts
+│   │   ├── [  77 May 16 04:30]  IWritingAgent.ts
+│   │   ├── [  63 May 16 04:30]  document-types.ts
+│   │   ├── [  56 May 16 04:30]  engine-constants.ts
+│   │   ├── [  55 May 16 04:30]  graph-types.ts
+│   │   ├── [  51 May 16 04:30]  narrative-types.ts
+│   │   ├── [1.4K May 15 12:07]  runtimeEngine.ts
+│   │   ├── [  72 May 16 04:30]  system-utils.ts
+│   │   └── [ 457 May 15 12:07]  types.ts
+│   ├── [3.4K May 15 12:21]  data
+│   │   └── [ 654 May 15 12:21]  cinema.ts
+│   ├── [3.4K May 13 10:21]  features
+│   │   ├── [ 537 May 13 10:20]  audioListener.ts
+│   │   ├── [ 488 May 13 10:21]  distortionListener.ts
+│   │   └── [ 421 May 13 10:21]  thematicListener.ts
+│   ├── [3.4K May 15 02:06]  hooks
+│   │   ├── [  58 May 16 04:30]  useAgent.ts
+│   │   ├── [  53 May 16 04:30]  useGraph.ts
+│   │   ├── [  62 May 16 04:30]  useMemory.ts
+│   │   └── [  64 May 16 04:30]  useRetrieval.ts
+│   ├── [3.4K May 15 12:22]  runtime
+│   │   ├── [2.7K May 15 12:22]  controlPanel.ts
+│   │   └── [1.2K May 15 12:07]  runtimeContext.tsx
+│   ├── [3.4K May 12 21:03]  services
+│   │   ├── [3.4K May 16 04:31]  analytics-engine
+│   │   │   ├── [   0 May 16 04:31]  coefficient_engine.ts
+│   │   │   ├── [   0 May 16 04:31]  dualism_logic.ts
+│   │   │   ├── [3.4K May 12 18:53]  logic
+│   │   │   │   └── [   0 May 12 18:57]  coefficient_engine.ts
+│   │   │   └── [3.4K May 12 18:45]  mapping
+│   │   │       └── [   0 May 12 18:45]  dualism_logic.ts
+│   │   ├── [3.4K May 16 05:44]  document-analyzer
+│   │   │   ├── [1.0K May 16 05:44]  corpus-searcher.ts
+│   │   │   ├── [   0 May 16 04:31]  parser.ts
+│   │   │   └── [   0 May 16 04:31]  synthesis-engine.ts
+│   │   ├── [3.4K May 15 12:07]  image-engine
+│   │   │   ├── [   0 May 16 04:31]  executor.ts
+│   │   │   ├── [ 655 May 15 12:07]  image-generator.ts
+│   │   │   └── [   0 May 16 04:31]  prompter.ts
+│   │   ├── [3.4K May 15 12:07]  memory-engine
+│   │   │   ├── [ 853 May 12 21:11]  corpus-loader.ts
+│   │   │   ├── [   0 May 16 04:31]  document-store.ts
+│   │   │   ├── [   0 May 16 04:31]  embedding-processor.ts
+│   │   │   ├── [   0 May 16 04:31]  integrity-validator.ts
+│   │   │   ├── [   0 May 16 04:31]  memory-engine.ts
+│   │   │   ├── [   0 May 16 04:31]  memory-kernel.ts
+│   │   │   ├── [ 173 May 15 12:07]  text-processor.ts
+│   │   │   └── [   0 May 16 04:31]  vector-store.ts
+│   │   ├── [3.4K May 15 12:07]  narrative-graph-engine
+│   │   │   ├── [   0 May 16 04:31]  connection-analyzer.ts
+│   │   │   ├── [   0 May 16 04:31]  consistency-analyzer.ts
+│   │   │   ├── [   0 May 16 04:31]  edge-builder.ts
+│   │   │   ├── [   0 May 16 04:31]  graph-kernel.ts
+│   │   │   ├── [   0 May 16 04:31]  graph-querier.ts
+│   │   │   ├── [   0 May 16 04:31]  graph-serializer.ts
+│   │   │   ├── [ 258 May 16 05:45]  narrative-graph-engine.ts
+│   │   │   ├── [   0 May 16 04:31]  node-builder.ts
+│   │   │   └── [   0 May 16 04:31]  path-finder.ts
+│   │   ├── [3.4K May 12 07:27]  orchestration-engine
+│   │   │   ├── [   0 May 16 04:31]  context-builder.ts
+│   │   │   ├── [   0 May 16 04:31]  orchestration-engine.ts
+│   │   │   ├── [1.1K May 12 06:11]  orchestrator.py
+│   │   │   ├── [   0 May 16 04:31]  pipeline.ts
+│   │   │   ├── [   0 May 16 04:31]  prompt-assembler.ts
+│   │   │   └── [   0 May 16 04:31]  runtime-controller.ts
+│   │   ├── [3.4K May 15 12:07]  retrieval-engine
+│   │   │   ├── [   0 May 16 04:31]  context-filter.ts
+│   │   │   ├── [   0 May 16 04:31]  fulltext-searcher.ts
+│   │   │   ├── [   0 May 16 04:31]  relevance-ranker.ts
+│   │   │   ├── [   0 May 16 04:31]  result-aggregator.ts
+│   │   │   ├── [ 215 May 16 05:45]  retrieval-engine.ts
+│   │   │   ├── [   0 May 16 04:31]  retrieval-kernel.ts
+│   │   │   └── [   0 May 16 04:31]  vector-searcher.ts
+│   │   └── [3.4K May 15 12:07]  writing-agent
+│   │       ├── [   0 May 16 04:31]  agent-kernel.ts
+│   │       ├── [   0 May 16 04:31]  constraint-validator.ts
+│   │       ├── [   0 May 16 04:31]  generation-executor.ts
+│   │       ├── [   0 May 16 04:31]  memory-controller.ts
+│   │       ├── [   0 May 16 04:31]  output-processor.ts
+│   │       ├── [   0 May 16 04:31]  prompt-controller.ts
+│   │       ├── [   0 May 16 04:31]  task-executor.ts
+│   │       └── [ 219 May 16 05:45]  writing-agent.ts
+│   ├── [3.4K May 12 07:27]  store
+│   │   ├── [  50 May 16 04:30]  app.store.ts
+│   │   ├── [  43 May 16 04:30]  graph.store.ts
+│   │   ├── [  43 May 16 04:30]  memory.store.ts
+│   │   └── [  46 May 16 04:30]  session.store.ts
+│   └── [3.4K May 15 12:07]  utils
+│       └── [ 257 May 15 12:07]  tokenize.ts
+└── [ 248 May 12 21:47]  tailwind.config.ts
+
+48 directories, 133 files

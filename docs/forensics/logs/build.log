@@ -1,0 +1,26 @@
+
+> creative-intelligence-interface@1.0.0 build
+> next build
+
+⚠ `eslint` configuration in next.config.js is no longer supported. See more info here: https://nextjs.org/docs/app/api-reference/cli/next#next-lint-options
+⚠ Invalid next.config.js options detected: 
+⚠     Unrecognized key(s) in object: 'outputFileTracingExcludes' at "experimental"
+⚠     Unrecognized key(s) in object: 'eslint'
+⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+⚠ `experimental.outputFileTracingExcludes` has been moved to `outputFileTracingExcludes`. Please update your next.config.js file accordingly.
+  Skipping creating a lockfile at /data/data/com.termux/files/home/writing-agent-interface/.next/lock because we're using WASM bindings
+▲ Next.js 16.2.6 (Turbopack)
+- Environments: .env.local
+- Experiments (use with caution):
+  ? outputFileTracingExcludes (invalid experimental key)
+
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack is not supported on this platform (android/arm64) because native bindings are not available. Only WebAssembly (WASM) bindings were loaded, and Turbopack requires native bindings.
+
+To build on this platform, use Webpack instead:
+  next build --webpack
+
+For more information, see: https://nextjs.org/docs/app/api-reference/turbopack#supported-platforms
+    at ignore-listed frames

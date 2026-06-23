@@ -18,12 +18,12 @@ on:
       batch_action:
         description: "How to run the selected XML semantic pipeline."
         required: false
-        default: "prepare_batch"
+        default: "sync_write"
         type: choice
         options:
+          - "sync_write"
           - "prepare_batch"
           - "submit_batch"
-          - "sync_write"
           - "poll_batch"
           - "poll_import"
           - "import_results"
@@ -36,20 +36,22 @@ on:
         required: false
         default: ""
       provider:
-        description: "Semantic provider adapter."
+        description: "Semantic provider. Use ollama_actions for free GitHub Actions compute (no API key required)."
         required: false
-        default: "openai_batch"
+        default: "ollama_actions"
         type: choice
         options:
+          - "ollama_actions"
+          - "free_local"
+          - "gemini_sync"
           - "openai_batch"
           - "openai_sync"
           - "anthropic_batch"
           - "anthropic_sync"
-          - "gemini_sync"
       model:
-        description: "Provider model name."
+        description: "Model name. For ollama_actions: llama3.2:3b (recommended) or llama3.2:1b. For gemini_sync: gemini-2.5-flash-lite."
         required: false
-        default: "gpt-4.1-mini"
+        default: "llama3.2:3b"
       full_run_confirm:
         description: "Required true for full selected XML runs with no limits."
         required: false
@@ -78,12 +80,22 @@ jobs:
     env:
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
       SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF || vars.SUPABASE_PROJECT_REF }}
+      # Data-plane: PostgREST REST API for runtime writes (replaces Management API in hot path).
+      # SUPABASE_URL defaults to https://<PROJECT_REF>.supabase.co if not explicitly set.
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
       GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       SEMANTIC_PROVIDER: ${{ inputs.provider }}
       SEMANTIC_MODEL: ${{ inputs.model }}
       VERTEX_MODEL: ${{ inputs.model }}
+      OLLAMA_BASE_URL: "http://localhost:11434"
+      OLLAMA_MODEL: ${{ inputs.model }}
+      OLLAMA_NUM_CTX: "2048"
+      OLLAMA_CONTEXT_CHARS: "4000"
+      OLLAMA_TIMEOUT_MS: "300000"
+      OLLAMA_KEEP_ALIVE: "5m"
       SELECTED_XML_MIGRATION_FILE: supabase/migrations/20260620010000_expand_selected_xml_semantic_runtime.sql
       SELECTED_XML_SCRIPT: scripts/semantic/xml-selected-meaning-span-rehash.mjs
 
@@ -94,111 +106,265 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
 
-      - name: Install dependencies when needed
+      - name: Install dependencies
         shell: bash
         run: |
           set -euo pipefail
-
           if [ -f package-lock.json ]; then
             npm ci
           elif [ -f pnpm-lock.yaml ]; then
-            corepack enable
-            pnpm install --frozen-lockfile
+            corepack enable && pnpm install --frozen-lockfile
           elif [ -f yarn.lock ]; then
-            corepack enable
-            yarn install --frozen-lockfile
+            corepack enable && yarn install --frozen-lockfile
           else
             npm install
           fi
 
-      - name: Verify workflow env and selected XML script
+      - name: Validate inputs and provider requirements
         shell: bash
         run: |
           set -euo pipefail
 
-          test -n "$SEMANTIC_PROVIDER"
-          test -n "$SEMANTIC_MODEL"
-          test -n "${{ inputs.batch_action }}"
+          echo "===== INPUT SUMMARY ====="
+          echo "provider=${{ inputs.provider }}"
+          echo "model=${{ inputs.model }}"
+          echo "batch_action=${{ inputs.batch_action }}"
+          echo "full_run_confirm=${{ inputs.full_run_confirm }}"
+          echo "limit_docs=${{ inputs.limit_docs || '(none)' }}"
+          echo "limit=${{ inputs.limit || '(none)' }}"
+          echo "batch_size=${{ inputs.batch_size }}"
 
-          case "${{ inputs.batch_action }}" in
+          PROVIDER="${{ inputs.provider }}"
+          BATCH_ACTION="${{ inputs.batch_action }}"
+
+          # Validate batch_action vs provider compatibility
+          case "$BATCH_ACTION" in
             sync_write)
-              case "$SEMANTIC_PROVIDER" in
-                *_sync) ;;
-                *) echo "sync_write requires a *_sync provider"; exit 1 ;;
+              case "$PROVIDER" in
+                ollama_actions|free_local|*_sync) ;;
+                *) echo "::error::sync_write requires a *_sync provider, ollama_actions, or free_local. Got: $PROVIDER"; exit 1 ;;
               esac
-              test -n "$SUPABASE_ACCESS_TOKEN"
-              test -n "$SUPABASE_PROJECT_REF"
               ;;
-            prepare_batch)
-              case "$SEMANTIC_PROVIDER" in
+            prepare_batch|submit_batch|poll_batch|poll_import|import_results)
+              case "$PROVIDER" in
                 *_batch) ;;
-                *) echo "prepare_batch requires a *_batch provider"; exit 1 ;;
+                *) echo "::error::$BATCH_ACTION requires a *_batch provider. Got: $PROVIDER"; exit 1 ;;
               esac
               ;;
-            submit_batch|poll_batch|poll_import|import_results)
-              case "$SEMANTIC_PROVIDER" in
-                *_batch) ;;
-                *) echo "${{ inputs.batch_action }} requires a *_batch provider"; exit 1 ;;
+            *) echo "::error::Unsupported batch_action: $BATCH_ACTION"; exit 1 ;;
+          esac
+
+          # Validate API key requirements for non-free providers
+          case "$BATCH_ACTION" in
+            sync_write|submit_batch|poll_batch|poll_import)
+              case "$PROVIDER" in
+                openai_*) [ -n "${OPENAI_API_KEY:-}" ] || { echo "::error::OPENAI_API_KEY secret not set"; exit 1; } ;;
+                anthropic_*) [ -n "${ANTHROPIC_API_KEY:-}" ] || { echo "::error::ANTHROPIC_API_KEY secret not set"; exit 1; } ;;
+                gemini_*) [ -n "${GOOGLE_API_KEY:-}" ] || { echo "::error::GOOGLE_API_KEY secret not set"; exit 1; } ;;
+                ollama_actions|free_local) echo "Free local compute — no external API key required" ;;
+                *) echo "::error::Unsupported provider: $PROVIDER"; exit 1 ;;
               esac
-              ;;
-            *)
-              echo "Unsupported batch_action: ${{ inputs.batch_action }}"
-              exit 1
               ;;
           esac
 
-          case "${{ inputs.batch_action }}" in
+          # Validate Supabase credentials for write paths
+          case "$BATCH_ACTION" in
             sync_write|poll_import|import_results)
-              test -n "$SUPABASE_ACCESS_TOKEN"
-              test -n "$SUPABASE_PROJECT_REF"
-              ;;
-          esac
-
-          case "${{ inputs.batch_action }}" in
-            submit_batch|poll_batch|poll_import|sync_write)
-              case "$SEMANTIC_PROVIDER" in
-                openai_*) test -n "$OPENAI_API_KEY" ;;
-                anthropic_*) test -n "$ANTHROPIC_API_KEY" ;;
-                gemini_*) test -n "$GOOGLE_API_KEY"; test -n "$VERTEX_MODEL" ;;
-                *) echo "Unsupported provider: $SEMANTIC_PROVIDER"; exit 1 ;;
+              [ -n "${SUPABASE_SERVICE_ROLE_KEY:-}" ] || {
+                echo "::error::SUPABASE_SERVICE_ROLE_KEY secret not set. Open Supabase Dashboard → Settings → API Keys → Legacy API Keys → service_role. Do NOT use Settings → JWT Keys → Legacy JWT Secret."
+                exit 1
+              }
+              [ -n "${SUPABASE_PROJECT_REF:-}" ] || { echo "::error::SUPABASE_PROJECT_REF not set (used to construct data-plane URL when SUPABASE_URL is absent)"; exit 1; }
+              # Reject management PAT (sbp_) and publishable keys
+              case "${SUPABASE_SERVICE_ROLE_KEY:-}" in
+                sbp_*)
+                  echo "::error::SUPABASE_SERVICE_ROLE_KEY looks like a Management API PAT (sbp_...). Open Supabase Dashboard → Settings → API Keys → Legacy API Keys → service_role. Do NOT use Settings → JWT Keys → Legacy JWT Secret."
+                  exit 1 ;;
+                sb_publishable_*)
+                  echo "::error::SUPABASE_SERVICE_ROLE_KEY looks like an anon/publishable key. Open Supabase Dashboard → Settings → API Keys → Legacy API Keys → service_role."
+                  exit 1 ;;
               esac
+              # JWT must have 3 dot-separated parts
+              KEY_PARTS=$(echo "${SUPABASE_SERVICE_ROLE_KEY:-}" | tr -cd '.' | wc -c)
+              if [ "$KEY_PARTS" -ne 2 ]; then
+                echo "::error::SUPABASE_SERVICE_ROLE_KEY does not look like a JWT (needs 3 base64url parts). Open Supabase Dashboard → Settings → API Keys → Legacy API Keys → service_role. Do NOT use Settings → JWT Keys → Legacy JWT Secret — that is the HMAC signing secret, not a JWT."
+                exit 1
+              fi
               ;;
           esac
 
-          if [ "${{ inputs.batch_action }}" = "poll_batch" ] || [ "${{ inputs.batch_action }}" = "poll_import" ]; then
-            test -n "${{ inputs.batch_id }}"
+          # Validate additional batch inputs
+          case "$BATCH_ACTION" in
+            poll_batch|poll_import)
+              [ -n "${{ inputs.batch_id }}" ] || { echo "::error::batch_id is required for $BATCH_ACTION"; exit 1; } ;;
+          esac
+          if [ "$BATCH_ACTION" = "import_results" ]; then
+            [ -n "${{ inputs.import_batch_results_path }}" ] || { echo "::error::import_batch_results_path is required for import_results"; exit 1; }
           fi
 
-          if [ "${{ inputs.batch_action }}" = "import_results" ]; then
-            test -n "${{ inputs.import_batch_results_path }}"
-          fi
+          # Validate script and migration file exist
+          [ -f "$SELECTED_XML_SCRIPT" ] || { echo "::error::Script not found: $SELECTED_XML_SCRIPT"; exit 1; }
+          node --check "$SELECTED_XML_SCRIPT" || { echo "::error::Script has syntax errors: $SELECTED_XML_SCRIPT"; exit 1; }
+          [ -f "$SELECTED_XML_MIGRATION_FILE" ] || { echo "::error::Migration file not found: $SELECTED_XML_MIGRATION_FILE"; exit 1; }
 
-          test -f "$SELECTED_XML_SCRIPT"
-          test -f "$SELECTED_XML_MIGRATION_FILE"
+          echo "===== VALIDATION PASSED ====="
 
-          node --check "$SELECTED_XML_SCRIPT"
-
-          echo "project_ref=$SUPABASE_PROJECT_REF"
-          echo "provider=$SEMANTIC_PROVIDER"
-          echo "model=$SEMANTIC_MODEL"
-          echo "script=$SELECTED_XML_SCRIPT"
-          echo "migration=$SELECTED_XML_MIGRATION_FILE"
-
-      - name: Verify selected XML source files are present in repository checkout
+      - name: Verify selected XML source files
         shell: bash
         run: |
           set -euo pipefail
-
           echo "===== selected XML source discovery ====="
           find reports docs public scripts supabase -maxdepth 6 \
             \( -name 'xml_starred_hash_truth.txt' -o -name 'materialized_ooxml_manifest.json' -o -name 'document.xml' \) \
-            -print 2>/dev/null | sort | sed -n '1,200p'
+            -print 2>/dev/null | sort | head -80
 
+      - name: Restore Ollama model cache
+        if: ${{ inputs.provider == 'ollama_actions' || inputs.provider == 'free_local' }}
+        id: ollama-cache-restore
+        uses: actions/cache/restore@v4
+        with:
+          path: ~/.ollama/models
+          key: ollama-models-${{ runner.os }}-${{ inputs.model }}-v1
+
+      - name: Install Ollama and pull model (free local compute)
+        if: ${{ inputs.provider == 'ollama_actions' || inputs.provider == 'free_local' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          echo "===== Installing Ollama ====="
+          curl -fsSL https://ollama.com/install.sh | sh
+
+          echo "===== Starting ollama serve ====="
+          ollama serve &
+          OLLAMA_PID=$!
+          echo "ollama PID: $OLLAMA_PID"
+
+          echo "===== Waiting for ollama to be ready ====="
+          for i in $(seq 1 60); do
+            if curl -sf http://localhost:11434/api/tags > /dev/null 2>&1; then
+              echo "ollama ready after ${i}s"
+              break
+            fi
+            if [ "$i" -eq 60 ]; then
+              echo "::error::ollama did not start within 60s"
+              exit 1
+            fi
+            sleep 1
+          done
+
+          CACHE_HIT="${{ steps.ollama-cache-restore.outputs.cache-hit }}"
+          MODEL="${{ inputs.model }}"
+
+          if [ "$CACHE_HIT" = "true" ]; then
+            echo "===== Cache hit — checking if model is already loaded ====="
+            if ollama list 2>/dev/null | grep -qF "$MODEL"; then
+              echo "Model $MODEL found in cache, skipping pull"
+            else
+              echo "Cache present but model not listed — pulling anyway"
+              ollama pull "$MODEL" || {
+                echo "::error::Failed to pull model: $MODEL"
+                ollama list || true
+                exit 1
+              }
+            fi
+          else
+            echo "===== No cache hit — pulling model: $MODEL ====="
+            ollama pull "$MODEL" || {
+              echo "::error::Failed to pull model: $MODEL"
+              echo "Available models at pull time:"
+              ollama list || true
+              exit 1
+            }
+          fi
+
+          echo "===== Loaded models ====="
+          ollama list
+
+          echo "===== Quick model smoke test ====="
+          SMOKE_START=$(date +%s%3N)
+          RESPONSE=$(ollama run "$MODEL" "Reply with only the word OK" 2>&1)
+          SMOKE_END=$(date +%s%3N)
+          SMOKE_MS=$(( SMOKE_END - SMOKE_START ))
+          echo "Model response: $RESPONSE"
+          SMOKE_OK=false
+          echo "$RESPONSE" | grep -qi "ok" && SMOKE_OK=true || true
+
+          mkdir -p docs/forensics/audits
+          python3 -c "
+import json, sys
+data = {
+  'model': '$MODEL',
+  'cache_hit': '$CACHE_HIT' == 'true',
+  'smoke_response': sys.argv[1],
+  'smoke_ok': '$SMOKE_OK' == 'true',
+  'smoke_elapsed_ms': $SMOKE_MS,
+}
+print(json.dumps(data, indent=2))
+" "$RESPONSE" > docs/forensics/audits/ollama-smoke.json
+
+          if [ "$SMOKE_OK" != "true" ]; then
+            echo "Warning: smoke test response did not contain OK — model may be slow but continuing"
+          fi
+
+      - name: Save Ollama model cache
+        if: ${{ (inputs.provider == 'ollama_actions' || inputs.provider == 'free_local') && steps.ollama-cache-restore.outputs.cache-hit != 'true' }}
+        uses: actions/cache/save@v4
+        with:
+          path: ~/.ollama/models
+          key: ollama-models-${{ runner.os }}-${{ inputs.model }}-v1
+
+      - name: Verify Supabase data-plane connectivity
+        if: ${{ inputs.batch_action == 'sync_write' || inputs.batch_action == 'poll_import' || inputs.batch_action == 'import_results' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # Resolve data-plane URL (matches script logic)
+          SUPA_URL="${SUPABASE_URL:-}"
+          if [ -z "$SUPA_URL" ] && [ -n "${SUPABASE_PROJECT_REF:-}" ]; then
+            SUPA_URL="https://${SUPABASE_PROJECT_REF}.supabase.co"
+          fi
+          if [ -z "$SUPA_URL" ]; then
+            echo "::error::SUPABASE_URL not set and SUPABASE_PROJECT_REF not set. Cannot verify Supabase data plane."
+            exit 1
+          fi
+
+          SERVICE_KEY="${SUPABASE_SERVICE_ROLE_KEY:-}"
+          if [ -z "$SERVICE_KEY" ]; then
+            echo "::error::SUPABASE_SERVICE_ROLE_KEY not set. Set this secret to enable runtime data-plane writes."
+            exit 1
+          fi
+
+          echo "Checking Supabase data plane: $SUPA_URL/rest/v1/semantic_runs"
+          http_code="$(
+            curl -sS \
+              -o /tmp/supabase_check.json \
+              -w "%{http_code}" \
+              -X GET \
+              "${SUPA_URL}/rest/v1/semantic_runs?limit=1&select=id,status,started_at" \
+              --header "apikey: ${SERVICE_KEY}" \
+              --header "Authorization: Bearer ${SERVICE_KEY}" \
+              --header "Accept: application/json"
+          )"
+
+          echo "Supabase data-plane response (http_code=$http_code):"
+          cat /tmp/supabase_check.json | head -c 2000
           echo
-          echo "===== script selected source references ====="
-          grep -n "xml_starred_hash_truth\|materialized_ooxml\|selected_xml\|document.xml" "$SELECTED_XML_SCRIPT" | sed -n '1,160p'
+
+          case "$http_code" in
+            200|206) echo "Supabase data plane reachable (PostgREST)" ;;
+            401)
+              echo "::error::SUPABASE_SERVICE_ROLE_KEY rejected (401 Unauthorized). Open Supabase Dashboard → Settings → API Keys → Legacy API Keys → service_role and copy that value. Do NOT use Settings → JWT Keys → Legacy JWT Secret — that is the HMAC signing secret for generating JWTs, not a JWT itself."
+              exit 1 ;;
+            403)
+              echo "::error::SUPABASE_SERVICE_ROLE_KEY lacks permission (403). Ensure it is the service_role key from Settings → API Keys → Legacy API Keys → service_role, not an anon key."
+              exit 1 ;;
+            404) echo "::warning::semantic_runs table not found (404) — migration may be needed. Proceeding." ;;
+            *) echo "::error::Supabase data plane returned unexpected http_code=$http_code. Check SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY."; exit 1 ;;
+          esac
 
       - name: Apply selected XML meaning-span migration
         if: ${{ inputs.apply_migration_first == 'true' && (inputs.batch_action == 'sync_write' || inputs.batch_action == 'poll_import' || inputs.batch_action == 'import_results') }}
@@ -206,42 +372,42 @@ jobs:
         run: |
           set -euo pipefail
 
-          python - <<'PY' > /tmp/selected_xml_meaning_span_migration.json
+          python3 - <<'PY' > /tmp/migration_payload.json
           import json
           from pathlib import Path
-
           sql = Path("supabase/migrations/20260620010000_expand_selected_xml_semantic_runtime.sql").read_text(encoding="utf-8")
           print(json.dumps({"query": sql}))
           PY
 
           http_code="$(
             curl -sS \
-              -o /tmp/selected_xml_meaning_span_migration_response.json \
+              -o /tmp/migration_response.json \
               -w "%{http_code}" \
               -X POST \
               "https://api.supabase.com/v1/projects/${SUPABASE_PROJECT_REF}/database/query" \
               --header "Authorization: Bearer ${SUPABASE_ACCESS_TOKEN}" \
               --header "Content-Type: application/json" \
-              --data-binary @/tmp/selected_xml_meaning_span_migration.json
+              --data-binary @/tmp/migration_payload.json
           )"
 
-          cat /tmp/selected_xml_meaning_span_migration_response.json
+          cat /tmp/migration_response.json
           echo
           echo "http_code=$http_code"
 
           case "$http_code" in
-            200|201|202) ;;
-            *) exit 1 ;;
+            200|201|202) echo "Migration applied" ;;
+            *) echo "::error::Migration failed with http_code=$http_code"; exit 1 ;;
           esac
 
-      - name: No-AI canary for selected XML source driver
-        if: ${{ inputs.batch_action == 'sync_write' || inputs.batch_action == 'prepare_batch' || inputs.batch_action == 'submit_batch' }}
+      - name: No-AI canary (source driver validation)
+        if: ${{ (inputs.batch_action == 'sync_write' || inputs.batch_action == 'prepare_batch' || inputs.batch_action == 'submit_batch') && inputs.provider != 'ollama_actions' && inputs.provider != 'free_local' }}
         shell: bash
         run: |
           set -euo pipefail
-
           CANARY_PROVIDER="${{ inputs.provider }}"
+          # Map batch providers to their sync equivalent for canary
           CANARY_PROVIDER="${CANARY_PROVIDER/%_batch/_sync}"
+          echo "Canary provider: $CANARY_PROVIDER"
           node "$SELECTED_XML_SCRIPT" --no-ai --limit-docs=1 --limit=1 --batch-size=1 "--provider=$CANARY_PROVIDER"
 
       - name: Run selected XML semantic write
@@ -249,15 +415,14 @@ jobs:
         run: |
           set -euo pipefail
 
+          echo "===== RUN PARAMETERS ====="
           echo "batch_action=${{ inputs.batch_action }}"
-          echo "batch_id=${{ inputs.batch_id }}"
-          echo "import_batch_results_path=${{ inputs.import_batch_results_path }}"
           echo "provider=${{ inputs.provider }}"
-          echo "limit_docs=${{ inputs.limit_docs }}"
-          echo "limit=${{ inputs.limit }}"
-          echo "batch_size=${{ inputs.batch_size }}"
           echo "model=${{ inputs.model }}"
           echo "full_run_confirm=${{ inputs.full_run_confirm }}"
+          echo "limit_docs=${{ inputs.limit_docs || '(none)' }}"
+          echo "limit=${{ inputs.limit || '(none)' }}"
+          echo "batch_size=${{ inputs.batch_size }}"
 
           REQUIRES_CONFIRM=false
           case "${{ inputs.batch_action }}" in
@@ -265,76 +430,67 @@ jobs:
           esac
 
           if [ "$REQUIRES_CONFIRM" = true ] && [ -z "${{ inputs.limit_docs }}" ] && [ -z "${{ inputs.limit }}" ] && [ "${{ inputs.full_run_confirm }}" != "true" ]; then
-            echo "Refusing full run without full_run_confirm=true"
+            echo "::error::Full run requires full_run_confirm=true when no limits are set. Re-run with full_run_confirm=true to proceed."
             exit 1
           fi
 
           BASE_ARGS=("--batch-size=${{ inputs.batch_size }}" "--provider=${{ inputs.provider }}")
 
-          if [ -n "${{ inputs.limit_docs }}" ]; then
-            BASE_ARGS+=("--limit-docs=${{ inputs.limit_docs }}")
-          fi
-
-          if [ -n "${{ inputs.limit }}" ]; then
-            BASE_ARGS+=("--limit=${{ inputs.limit }}")
-          fi
-
-          if [ "${{ inputs.full_run_confirm }}" = "true" ]; then
-            BASE_ARGS+=("--full-run-confirm")
-          fi
+          [ -n "${{ inputs.limit_docs }}" ] && BASE_ARGS+=("--limit-docs=${{ inputs.limit_docs }}")
+          [ -n "${{ inputs.limit }}" ] && BASE_ARGS+=("--limit=${{ inputs.limit }}")
+          [ "${{ inputs.full_run_confirm }}" = "true" ] && BASE_ARGS+=("--full-run-confirm")
 
           case "${{ inputs.batch_action }}" in
             sync_write)
-              ARGS=(--write "${BASE_ARGS[@]}")
-              printf 'args=%s\n' "${ARGS[*]}"
-              echo "node $SELECTED_XML_SCRIPT ${ARGS[*]}"
-              node "$SELECTED_XML_SCRIPT" "${ARGS[@]}"
+              node "$SELECTED_XML_SCRIPT" --write "${BASE_ARGS[@]}"
               ;;
             prepare_batch)
-              ARGS=("${BASE_ARGS[@]}")
-              printf 'args=%s\n' "${ARGS[*]}"
-              echo "node $SELECTED_XML_SCRIPT ${ARGS[*]}"
-              node "$SELECTED_XML_SCRIPT" "${ARGS[@]}"
+              node "$SELECTED_XML_SCRIPT" "${BASE_ARGS[@]}"
               ;;
             submit_batch)
-              ARGS=("${BASE_ARGS[@]}" --submit-batch)
-              printf 'args=%s\n' "${ARGS[*]}"
-              echo "node $SELECTED_XML_SCRIPT ${ARGS[*]}"
-              node "$SELECTED_XML_SCRIPT" "${ARGS[@]}"
+              node "$SELECTED_XML_SCRIPT" "${BASE_ARGS[@]}" --submit-batch
               ;;
             poll_batch)
-              ARGS=("${BASE_ARGS[@]}" "--poll-batch=${{ inputs.batch_id }}")
-              printf 'args=%s\n' "${ARGS[*]}"
-              echo "node $SELECTED_XML_SCRIPT ${ARGS[*]}"
-              node "$SELECTED_XML_SCRIPT" "${ARGS[@]}"
+              node "$SELECTED_XML_SCRIPT" "${BASE_ARGS[@]}" "--poll-batch=${{ inputs.batch_id }}"
               ;;
             poll_import)
-              POLL_ARGS=("${BASE_ARGS[@]}" "--poll-batch=${{ inputs.batch_id }}")
-              printf 'poll_args=%s\n' "${POLL_ARGS[*]}"
-              echo "node $SELECTED_XML_SCRIPT ${POLL_ARGS[*]}"
-              node "$SELECTED_XML_SCRIPT" "${POLL_ARGS[@]}"
-
+              node "$SELECTED_XML_SCRIPT" "${BASE_ARGS[@]}" "--poll-batch=${{ inputs.batch_id }}"
               OUTPUT_PATH="$(find docs/forensics/audits/xml-selected-meaning-span-rehash-runs -path "*batch-output-${{ inputs.batch_id }}.jsonl" | sort | tail -n 1)"
-              test -n "$OUTPUT_PATH"
-              test -f "$OUTPUT_PATH"
+              [ -n "$OUTPUT_PATH" ] && [ -f "$OUTPUT_PATH" ] || { echo "::error::Batch output not found for batch_id=${{ inputs.batch_id }}"; exit 1; }
               echo "resolved_import_output=$OUTPUT_PATH"
-
-              IMPORT_ARGS=(--write "${BASE_ARGS[@]}" "--import-batch-results=$OUTPUT_PATH")
-              printf 'import_args=%s\n' "${IMPORT_ARGS[*]}"
-              echo "node $SELECTED_XML_SCRIPT ${IMPORT_ARGS[*]}"
-              node "$SELECTED_XML_SCRIPT" "${IMPORT_ARGS[@]}"
+              node "$SELECTED_XML_SCRIPT" --write "${BASE_ARGS[@]}" "--import-batch-results=$OUTPUT_PATH"
               ;;
             import_results)
-              ARGS=(--write "${BASE_ARGS[@]}" "--import-batch-results=${{ inputs.import_batch_results_path }}")
-              printf 'args=%s\n' "${ARGS[*]}"
-              echo "node $SELECTED_XML_SCRIPT ${ARGS[*]}"
-              node "$SELECTED_XML_SCRIPT" "${ARGS[@]}"
-              ;;
-            *)
-              echo "Unsupported batch_action: ${{ inputs.batch_action }}"
-              exit 1
+              node "$SELECTED_XML_SCRIPT" --write "${BASE_ARGS[@]}" "--import-batch-results=${{ inputs.import_batch_results_path }}"
               ;;
           esac
+
+      - name: Write job summary
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "## Selected XML Semantic Write"
+            echo "- **Branch:** \`${{ github.ref_name }}\`"
+            echo "- **Provider:** \`${{ inputs.provider }}\`  **Model:** \`${{ inputs.model }}\`"
+            echo "- **Action:** \`${{ inputs.batch_action }}\`  **full_run_confirm:** \`${{ inputs.full_run_confirm }}\`"
+            echo "- **limit_docs:** \`${{ inputs.limit_docs || 'all' }}\`  **limit:** \`${{ inputs.limit || 'all' }}\`  **batch_size:** \`${{ inputs.batch_size }}\`"
+            echo ""
+            echo "### Recent semantic_runs"
+            if curl -sS \
+              -X POST \
+              "https://api.supabase.com/v1/projects/${SUPABASE_PROJECT_REF}/database/query" \
+              --header "Authorization: Bearer ${SUPABASE_ACCESS_TOKEN}" \
+              --header "Content-Type: application/json" \
+              --data '{"query":"select id, status, provider, model, started_at, completed_at, error from public.semantic_runs order by started_at desc limit 5"}' \
+              -o /tmp/runs_summary.json 2>/dev/null; then
+              echo '```json'
+              cat /tmp/runs_summary.json
+              echo '```'
+            else
+              echo "_Supabase query unavailable_"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload selected XML semantic run artifacts
         if: always()
@@ -343,5 +499,9 @@ jobs:
           name: selected-xml-semantic-write-artifacts
           path: |
             docs/forensics/audits/xml-selected-meaning-span-rehash-runs/**
-            docs/forensics/audits/semantic-selected-xml-*.log
+            docs/forensics/audits/ai-bad-json/**
+            docs/forensics/audits/ai-empty/**
+            docs/forensics/audits/db-errors/**
+            docs/forensics/audits/ollama-smoke.json
+            docs/forensics/audits/ollama-result-cache.json
           if-no-files-found: warn

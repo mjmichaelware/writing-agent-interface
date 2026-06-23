@@ -59,6 +59,7 @@ const registerSources = args.has("--register-sources");
 const noAi = args.has("--no-ai");
 const submitBatch = args.has("--submit-batch");
 const fullRunConfirm = args.has("--full-run-confirm");
+const resumeExisting = args.has("--resume-existing");
 
 const limitArg = argv.find((x) => x.startsWith("--limit="));
 const chapterArg = argv.find((x) => x.startsWith("--chapter="));
@@ -68,6 +69,8 @@ const selectedTruthArg = argv.find((x) => x.startsWith("--selected-truth="));
 const providerArg = argv.find((x) => x.startsWith("--provider="));
 const pollBatchArg = argv.find((x) => x.startsWith("--poll-batch="));
 const importBatchResultsArg = argv.find((x) => x.startsWith("--import-batch-results="));
+const softStopMinutesArg = argv.find((x) => x.startsWith("--soft-stop-minutes="));
+const maxTaskRetriesArg = argv.find((x) => x.startsWith("--max-task-retries="));
 
 const LIMIT = limitArg ? Number(limitArg.split("=")[1]) : null;
 const CHAPTER_FILTER = chapterArg ? Number(chapterArg.split("=")[1]) : null;
@@ -77,6 +80,10 @@ const SELECTED_TRUTH_OVERRIDE = selectedTruthArg ? selectedTruthArg.split("=").s
 const PROVIDER = providerArg ? providerArg.split("=").slice(1).join("=") : (process.env.SEMANTIC_PROVIDER || "ollama");
 const POLL_BATCH_ID = pollBatchArg ? pollBatchArg.split("=").slice(1).join("=") : "";
 const IMPORT_BATCH_RESULTS_PATH = importBatchResultsArg ? importBatchResultsArg.split("=").slice(1).join("=") : "";
+const SOFT_STOP_MINUTES = softStopMinutesArg ? Number(softStopMinutesArg.split("=")[1]) : Number(process.env.SOFT_STOP_MINUTES || 330);
+const MAX_TASK_RETRIES = maxTaskRetriesArg ? Number(maxTaskRetriesArg.split("=")[1]) : Number(process.env.MAX_TASK_RETRIES || 2);
+const CHECKPOINT_RUNNING_STALE_MINUTES = Number(process.env.CHECKPOINT_RUNNING_STALE_MINUTES || 45);
+const RUN_STARTED_AT = Date.now();
 
 const paths = {
   contextPack: join(ROOT, "docs/agent_context/source_drop/hasher_context_v1/narrative_context_pack_v1.txt"),
@@ -521,6 +528,26 @@ const TABLE_SCHEMAS = {
     metadata: "jsonb",
     active: "boolean",
   },
+  semantic_window_task_checkpoints: {
+    checkpoint_key: "text",
+    source_doc_folder: "text",
+    source_document_xml_sha256: "text",
+    scene_window_id: "text",
+    task_name: "text",
+    provider: "text",
+    model: "text",
+    prompt_version: "text",
+    prompt_sha256: "text",
+    status: "text",
+    semantic_run_id: "uuid",
+    attempt_count: "integer",
+    result_count: "integer",
+    last_error_type: "text",
+    last_error_message: "text",
+    metadata: "jsonb",
+    created_at: "timestamptz",
+    updated_at: "timestamptz",
+  },
   source_documents: {
     source_kind: "text",
     source_path: "text",
@@ -884,6 +911,25 @@ async function createSemanticRun(sourceSummary) {
   return rows[0];
 }
 
+async function findResumeSemanticRun(sourceSummary) {
+  if (!writeMode || !resumeExisting) return null;
+  const query = [
+    "status=in.(running,failed)",
+    `provider=eq.${encodeURIComponent(ORIGINAL_PROVIDER)}`,
+    `model=eq.${encodeURIComponent(PROVIDER_MODEL)}`,
+    `prompt_version=eq.${encodeURIComponent(PROMPT_VERSION)}`,
+    `narrative_context_sha256=eq.${encodeURIComponent(sourceSummary.narrative_context_sha256)}`,
+    `xml_manifest_sha256=eq.${encodeURIComponent(sourceSummary.xml_manifest_sha256)}`,
+    `xml_manifest_count=eq.${encodeURIComponent(String(sourceSummary.xml_manifest_count))}`,
+    "order=started_at.desc",
+    "limit=5",
+    "select=*",
+  ].join("&");
+  const rows = await dataPlaneRequest(`semantic_runs?${query}`, { method: "GET" });
+  const matches = Array.isArray(rows) ? rows : [];
+  return matches.find((row) => row?.metadata?.selected_xml_driver) || matches[0] || null;
+}
+
 function loadPublicChapters() {
   const files = readdirSync(paths.publicChapters)
     .filter((x) => x.endsWith(".txt"))
@@ -1219,9 +1265,182 @@ const OLLAMA_PROVIDERS = new Set(["ollama", "ollama_actions", "local_actions_oll
 // Canonical model runner (routing); preserve original for metadata/display.
 const ORIGINAL_PROVIDER = PROVIDER;
 const CANONICAL_PROVIDER = OLLAMA_PROVIDERS.has(PROVIDER) ? "ollama" : PROVIDER;
+const SUMMARY_TASKS = ["meaning_spans", "dualisms", "archetypes", "biblical_references", "hyperlinks_parallelisms"];
+const DEFAULT_TASK_STATUS_COUNTS = () => Object.fromEntries(SUMMARY_TASKS.map((task) => [task, {
+  ok: 0,
+  empty: 0,
+  failed: 0,
+  skipped: 0,
+}]));
+const RUN_SUMMARY_BASE = {
+  run_id: null,
+  provider: ORIGINAL_PROVIDER,
+  canonical_provider: CANONICAL_PROVIDER,
+  provider_model: noAi ? "no-ai" : PROVIDER_MODEL,
+  write_mode: writeMode,
+  no_ai: noAi,
+  resume_existing: resumeExisting,
+  soft_stop_minutes: SOFT_STOP_MINUTES,
+  soft_stop_triggered: false,
+  selected_docs_count: 0,
+  raw_windows_seen: 0,
+  processed_windows: 0,
+  skipped_windows: 0,
+  skip_reason_counts: {},
+  total_windows: 0,
+  semantic_windows_target: 0,
+  semantic_windows_attempted: 0,
+  semantic_windows: 0,
+  total_task_window_units: 0,
+  completed_before_run: 0,
+  skipped_due_to_checkpoint: 0,
+  completed_this_run: 0,
+  empty_checkpoints: 0,
+  rejected_checkpoints: 0,
+  failed_checkpoints: 0,
+  remaining_after_run: 0,
+  estimated_average_seconds_per_task_window: null,
+  estimated_remaining_time_seconds: null,
+  meaning_spans: 0,
+  total_meaning_spans: 0,
+  task_ok: 0,
+  task_empty: 0,
+  task_skipped: 0,
+  task_failed: 0,
+  task_counts: DEFAULT_TASK_STATUS_COUNTS(),
+  per_task_failures: Object.fromEntries(SUMMARY_TASKS.map((task) => [task, 0])),
+  last_error_type: null,
+  last_error_message: null,
+  db_adapter: "supabase_data_plane",
+  management_api_hot_path: false,
+  failed: false,
+  sourceSummary: null,
+  pathsOutDir: paths.outDir,
+};
+const ACTIVE_RUN_STATE = { ...RUN_SUMMARY_BASE };
 
 function isSyncProvider(provider = PROVIDER) {
   return OLLAMA_PROVIDERS.has(provider) || provider.endsWith("_sync");
+}
+
+function nowArtifactStamp() {
+  return new Date().toISOString().replace(/[:.]/g, "-");
+}
+
+function ensureDir(path) {
+  mkdirSync(path, { recursive: true });
+  return path;
+}
+
+function taskArtifactStem({ windowIndex, task, promptMode = "default" }) {
+  const index = Number.isInteger(windowIndex) ? String(windowIndex).padStart(5, "0") : "unknown";
+  return `${index}-${task}${promptMode !== "default" ? `-${promptMode}` : ""}`;
+}
+
+function promptProfileForMode(promptMode = "default") {
+  if (promptMode === "reduced") return "reduced";
+  if (PROVIDER === "ollama_actions") return "actions";
+  return "default";
+}
+
+function createProviderError(type, message, extra = {}) {
+  const error = new Error(message);
+  error.name = "ProviderError";
+  error.provider_error_type = type;
+  Object.assign(error, extra);
+  return error;
+}
+
+function providerErrorType(error) {
+  return error?.provider_error_type || "provider_error";
+}
+
+function providerErrorMessage(error) {
+  return String(error?.message || error || "Unknown provider error");
+}
+
+function writeRunSummarySnapshot(overrides = {}) {
+  if (!ACTIVE_RUN_STATE.pathsOutDir) return null;
+  const elapsedSeconds = Math.max(0, (Date.now() - RUN_STARTED_AT) / 1000);
+  const terminalUnitsCompleted = ACTIVE_RUN_STATE.completed_before_run + ACTIVE_RUN_STATE.completed_this_run;
+  const remainingAfterRun = Math.max(0, ACTIVE_RUN_STATE.total_task_window_units - terminalUnitsCompleted);
+  const processedTerminalUnits = ACTIVE_RUN_STATE.completed_this_run + ACTIVE_RUN_STATE.empty_checkpoints + ACTIVE_RUN_STATE.rejected_checkpoints;
+  const averageSeconds = processedTerminalUnits > 0 ? elapsedSeconds / processedTerminalUnits : null;
+  const summary = {
+    run_id: ACTIVE_RUN_STATE.run_id,
+    provider: ACTIVE_RUN_STATE.provider,
+    canonical_provider: ACTIVE_RUN_STATE.canonical_provider,
+    provider_model: ACTIVE_RUN_STATE.provider_model,
+    write_mode: ACTIVE_RUN_STATE.write_mode,
+    no_ai: ACTIVE_RUN_STATE.no_ai,
+    resume_existing: ACTIVE_RUN_STATE.resume_existing,
+    soft_stop_minutes: ACTIVE_RUN_STATE.soft_stop_minutes,
+    soft_stop_triggered: ACTIVE_RUN_STATE.soft_stop_triggered,
+    selected_docs_count: ACTIVE_RUN_STATE.selected_docs_count,
+    raw_windows_seen: ACTIVE_RUN_STATE.raw_windows_seen,
+    processed_windows: ACTIVE_RUN_STATE.processed_windows,
+    skipped_windows: ACTIVE_RUN_STATE.skipped_windows,
+    skip_reason_counts: ACTIVE_RUN_STATE.skip_reason_counts,
+    total_windows: ACTIVE_RUN_STATE.total_windows,
+    semantic_windows_target: ACTIVE_RUN_STATE.semantic_windows_target,
+    semantic_windows_attempted: ACTIVE_RUN_STATE.semantic_windows_attempted,
+    semantic_windows: ACTIVE_RUN_STATE.semantic_windows,
+    total_task_window_units: ACTIVE_RUN_STATE.total_task_window_units,
+    completed_before_run: ACTIVE_RUN_STATE.completed_before_run,
+    skipped_due_to_checkpoint: ACTIVE_RUN_STATE.skipped_due_to_checkpoint,
+    completed_this_run: ACTIVE_RUN_STATE.completed_this_run,
+    empty_checkpoints: ACTIVE_RUN_STATE.empty_checkpoints,
+    rejected_checkpoints: ACTIVE_RUN_STATE.rejected_checkpoints,
+    failed_checkpoints: ACTIVE_RUN_STATE.failed_checkpoints,
+    remaining_after_run: remainingAfterRun,
+    estimated_average_seconds_per_task_window: averageSeconds,
+    estimated_remaining_time_seconds: averageSeconds === null ? null : Math.max(0, averageSeconds * remainingAfterRun),
+    meaning_spans: ACTIVE_RUN_STATE.meaning_spans,
+    total_meaning_spans: ACTIVE_RUN_STATE.total_meaning_spans,
+    task_ok: ACTIVE_RUN_STATE.task_ok,
+    task_empty: ACTIVE_RUN_STATE.task_empty,
+    task_skipped: ACTIVE_RUN_STATE.task_skipped,
+    task_failed: ACTIVE_RUN_STATE.task_failed,
+    task_counts: ACTIVE_RUN_STATE.task_counts,
+    per_task_failures: ACTIVE_RUN_STATE.per_task_failures,
+    last_error_type: ACTIVE_RUN_STATE.last_error_type,
+    last_error_message: ACTIVE_RUN_STATE.last_error_message,
+    db_adapter: ACTIVE_RUN_STATE.db_adapter,
+    management_api_hot_path: ACTIVE_RUN_STATE.management_api_hot_path,
+    failed: ACTIVE_RUN_STATE.failed,
+    sourceSummary: ACTIVE_RUN_STATE.sourceSummary,
+    ...overrides,
+  };
+  writeFileSync(join(ACTIVE_RUN_STATE.pathsOutDir, "run-summary.json"), JSON.stringify(summary, null, 2));
+  return summary;
+}
+
+function recordRunError(error, extra = {}) {
+  ACTIVE_RUN_STATE.last_error_type = providerErrorType(error);
+  ACTIVE_RUN_STATE.last_error_message = providerErrorMessage(error);
+  if (extra.failed !== undefined) ACTIVE_RUN_STATE.failed = extra.failed;
+}
+
+function incrementSkipReason(reason) {
+  ACTIVE_RUN_STATE.skip_reason_counts[reason] = (ACTIVE_RUN_STATE.skip_reason_counts[reason] || 0) + 1;
+}
+
+function recordTaskPacketForSummary(packet) {
+  if (!ACTIVE_RUN_STATE.task_counts[packet.task]) {
+    ACTIVE_RUN_STATE.task_counts[packet.task] = { ok: 0, empty: 0, failed: 0, skipped: 0 };
+  }
+  ACTIVE_RUN_STATE.task_counts[packet.task][packet.status] += 1;
+  if (packet.status === "ok") ACTIVE_RUN_STATE.task_ok += 1;
+  if (packet.status === "empty") ACTIVE_RUN_STATE.task_empty += 1;
+  if (packet.status === "skipped") ACTIVE_RUN_STATE.task_skipped += 1;
+  if (packet.status === "failed") {
+    ACTIVE_RUN_STATE.task_failed += 1;
+    ACTIVE_RUN_STATE.per_task_failures[packet.task] += 1;
+    if (packet.error_type || packet.failure_reason) {
+      ACTIVE_RUN_STATE.last_error_type = packet.error_type || packet.failure_reason;
+      ACTIVE_RUN_STATE.last_error_message = packet.validation_errors?.[0] || packet.failure_reason || ACTIVE_RUN_STATE.last_error_message;
+    }
+  }
 }
 
 function batchOperationMode() {
@@ -1230,6 +1449,413 @@ function batchOperationMode() {
   if (submitBatch) return "submit";
   if (isBatchProvider()) return "prepare";
   return "sync";
+}
+
+function softStopReached() {
+  return SOFT_STOP_MINUTES > 0 && ((Date.now() - RUN_STARTED_AT) / 60000) >= SOFT_STOP_MINUTES;
+}
+
+function checkpointKeyForTask({ window, task, promptHash }) {
+  return sha256Text(canonicalJson({
+    source_doc_folder: window.folder,
+    source_document_xml_sha256: window.document_xml_sha256,
+    scene_window_id: window.scene_window_id,
+    task_name: task,
+    provider: ORIGINAL_PROVIDER,
+    model: PROVIDER_MODEL,
+    prompt_version: PROMPT_VERSION,
+    prompt_sha256: promptHash,
+  }));
+}
+
+function checkpointTerminalStatusFromPacket(packet) {
+  if (!packet) return "failed";
+  if (packet.status === "ok") return "completed";
+  if (packet.status === "empty") return "empty";
+  if (packet.status === "failed" && /all_observations_rejected|schema_invalid|parse_failed|rejected/i.test(String(packet.failure_reason || packet.error_type || ""))) {
+    return "rejected";
+  }
+  return "failed";
+}
+
+function checkpointResultCountForStatus(status, packet, spanRows = []) {
+  if (status === "completed") return spanRows.length || packet?.accepted_observations?.length || 0;
+  return 0;
+}
+
+function checkpointIsTerminal(status) {
+  return ["completed", "empty", "rejected"].includes(status);
+}
+
+function checkpointIsRetryableStatus(status) {
+  return ["failed", "running", "pending"].includes(status);
+}
+
+function checkpointRunningIsStale(checkpoint) {
+  if (!checkpoint || checkpoint.status !== "running") return false;
+  const updatedAt = checkpoint.updated_at ? Date.parse(checkpoint.updated_at) : NaN;
+  if (!Number.isFinite(updatedAt)) return true;
+  return ((Date.now() - updatedAt) / 60000) >= CHECKPOINT_RUNNING_STALE_MINUTES;
+}
+
+function checkpointPacketFromMetadata({ checkpoint, task, window, contextCapsule, prompt, promptHash, promptArtifact }) {
+  const metadata = checkpoint?.metadata || {};
+  const packet = metadata.packet || {};
+  const packetSpanRows = Array.isArray(metadata.span_rows) ? metadata.span_rows : [];
+  return {
+    packet: {
+      task,
+      status: checkpoint?.status === "completed" ? "skipped" : checkpoint?.status === "empty" ? "skipped" : checkpoint?.status === "rejected" ? "skipped" : "skipped",
+      task_type: task,
+      window_id: window.scene_window_id,
+      observations: packet.observations || [],
+      accepted_observations: packet.accepted_observations || [],
+      rejected_observations: packet.rejected_observations || [],
+      failure_reason: packet.failure_reason || `checkpoint_${checkpoint?.status || "unknown"}`,
+      error_type: packet.error_type || null,
+      validation_errors: packet.validation_errors || [],
+      evidence_errors: packet.evidence_errors || [],
+      raw_output_hash: packet.raw_output_hash || null,
+      normalized_output_hash: packet.normalized_output_hash || null,
+      prompt,
+      promptHash,
+      prompt_mode: packet.prompt_mode || "default",
+      prompt_artifact_path: promptArtifact?.promptPath || packet.prompt_artifact_path || null,
+      prompt_artifact_metadata_path: promptArtifact?.metadataPath || packet.prompt_artifact_metadata_path || null,
+      window_index: packet.window_index ?? null,
+      outputText: packet.output_text || JSON.stringify({ observations: packet.observations || [] }),
+      outputHash: packet.raw_output_hash || sha256Text(String(packet.output_text || JSON.stringify({ observations: packet.observations || [] }))),
+      contextCapsuleHash: contextCapsule.context_capsule_sha256,
+      checkpoint_status: checkpoint?.status || null,
+      checkpoint_key: checkpoint?.checkpoint_key || null,
+      checkpoint_result_count: checkpoint?.result_count || 0,
+      checkpoint_attempt_count: checkpoint?.attempt_count || 0,
+      checkpoint_metadata: metadata,
+      span_rows: packetSpanRows,
+    },
+    spanRows: packetSpanRows,
+  };
+}
+
+function checkpointPacketMetadata(packet) {
+  return {
+    task: packet.task,
+    status: packet.status,
+    task_type: packet.task_type,
+    window_id: packet.window_id,
+    observations: packet.observations || [],
+    accepted_observations: packet.accepted_observations || [],
+    rejected_observations: packet.rejected_observations || [],
+    failure_reason: packet.failure_reason || null,
+    error_type: packet.error_type || null,
+    validation_errors: packet.validation_errors || [],
+    evidence_errors: packet.evidence_errors || [],
+    raw_output_hash: packet.raw_output_hash || null,
+    normalized_output_hash: packet.normalized_output_hash || null,
+    prompt_mode: packet.prompt_mode || "default",
+    prompt_artifact_path: packet.prompt_artifact_path || null,
+    prompt_artifact_metadata_path: packet.prompt_artifact_metadata_path || null,
+    window_index: packet.window_index ?? null,
+  };
+}
+
+function checkpointRowForTask({
+  semanticRun,
+  window,
+  task,
+  promptHash,
+  promptArtifact,
+  packet,
+  spanRows,
+  checkpointStatus,
+  attemptCount,
+  lastErrorType = null,
+  lastErrorMessage = null,
+}) {
+  const resultCount = checkpointResultCountForStatus(checkpointStatus, packet, spanRows);
+  return {
+    checkpoint_key: checkpointKeyForTask({ window, task, promptHash }),
+    source_doc_folder: window.folder,
+    source_document_xml_sha256: window.document_xml_sha256,
+    scene_window_id: window.scene_window_id,
+    task_name: task,
+    provider: ORIGINAL_PROVIDER,
+    model: PROVIDER_MODEL,
+    prompt_version: PROMPT_VERSION,
+    prompt_sha256: promptHash,
+    status: checkpointStatus,
+    semantic_run_id: semanticRun.id,
+    attempt_count: attemptCount,
+    result_count: resultCount,
+    last_error_type: lastErrorType,
+    last_error_message: lastErrorMessage,
+    metadata: {
+      selected_xml_driver: true,
+      prompt_version: PROMPT_VERSION,
+      provider: ORIGINAL_PROVIDER,
+      canonical_provider: CANONICAL_PROVIDER,
+      model: PROVIDER_MODEL,
+      run_id: semanticRun.id,
+      source_doc_folder: window.folder,
+      source_document_xml_sha256: window.document_xml_sha256,
+      scene_window_id: window.scene_window_id,
+      task_name: task,
+      prompt_mode: packet?.prompt_mode || "default",
+      prompt_artifact_path: promptArtifact?.promptPath || packet?.prompt_artifact_path || null,
+      prompt_artifact_metadata_path: promptArtifact?.metadataPath || packet?.prompt_artifact_metadata_path || null,
+      context_capsule_sha256: packet?.contextCapsuleHash || null,
+      packet,
+      span_rows: spanRows || [],
+    },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  };
+}
+
+async function fetchCheckpointRowsByKeys(keys) {
+  const uniqueKeys = [...new Set((keys || []).filter(Boolean))].sort();
+  if (!uniqueKeys.length) return [];
+  const path = `semantic_window_task_checkpoints?checkpoint_key=in.(${uniqueKeys.join(",")})&select=*`;
+  return dataPlaneRequest(path, { method: "GET" });
+}
+
+async function upsertCheckpointRows(rows) {
+  if (!rows.length) return [];
+  return insertRows("semantic_window_task_checkpoints?on_conflict=checkpoint_key", rows, 100);
+}
+
+function createSkippedCheckpointPacket({ task, window, prompt, promptHash, promptArtifact, promptMode = "default", windowIndex = null, checkpointStatus = "completed", checkpoint = null, spanRows = [] }) {
+  const reconstructed = checkpoint
+    ? checkpointPacketFromMetadata({ checkpoint, task, window, contextCapsule: { context_capsule_sha256: checkpoint?.metadata?.context_capsule_sha256 || null }, prompt, promptHash, promptArtifact })
+    : { packet: null, spanRows: [] };
+
+  if (reconstructed.packet) {
+    return reconstructed.packet;
+  }
+
+  return buildTaskPacket({
+    task,
+    window,
+    contextCapsule: { context_capsule_sha256: null },
+    prompt,
+    promptHash,
+    outputText: JSON.stringify({ observations: [] }),
+    observations: [],
+    acceptedObservations: [],
+    rejectedObservations: [],
+    validationErrors: [],
+    evidenceErrors: [],
+    status: "skipped",
+    failureReason: `checkpoint_${checkpointStatus}`,
+    errorType: `checkpoint_${checkpointStatus}`,
+    promptArtifactPath: promptArtifact?.promptPath || null,
+    promptArtifactMetadataPath: promptArtifact?.metadataPath || null,
+    promptMode,
+    windowIndex,
+  });
+}
+
+async function processSelectedXmlTaskUnit({
+  semanticRun,
+  window,
+  contextCapsule,
+  task,
+  windowIndex,
+  runHash,
+  noAi,
+}) {
+  const promptMode = "default";
+  const promptBundle = buildSemanticTaskPromptBundle({ task, window, contextCapsule, promptMode });
+  const prompt = promptBundle.prompt;
+  const promptHash = sha256Text(prompt);
+  const promptArtifact = writePromptArtifact({
+    task,
+    window,
+    contextCapsule,
+    prompt,
+    promptMode,
+    windowIndex,
+    narrativeContext: promptBundle.narrativeContext,
+  });
+  const checkpointKey = checkpointKeyForTask({ window, task, promptHash });
+
+  let checkpoint = null;
+  if (resumeExisting && writeMode) {
+    const rows = await fetchCheckpointRowsByKeys([checkpointKey]);
+    checkpoint = rows[0] || null;
+  }
+
+  if (checkpoint && checkpoint.status && checkpointIsTerminal(checkpoint.status)) {
+    const resumed = checkpointPacketFromMetadata({
+      checkpoint,
+      task,
+      window,
+      contextCapsule,
+      prompt,
+      promptHash,
+      promptArtifact,
+    });
+    ACTIVE_RUN_STATE.completed_before_run += 1;
+    ACTIVE_RUN_STATE.skipped_due_to_checkpoint += 1;
+    return {
+      packet: {
+        ...resumed.packet,
+        status: "skipped",
+        checkpoint_status: checkpoint.status,
+        checkpoint_key: checkpoint.checkpoint_key,
+      },
+      spanRows: resumed.spanRows,
+      checkpointStatus: checkpoint.status,
+      checkpointKey,
+      checkpoint,
+      didExecute: false,
+      skippedDueToCheckpoint: true,
+    };
+  }
+
+  if (checkpoint?.status === "running" && !checkpointRunningIsStale(checkpoint)) {
+    const packet = buildTaskPacket({
+      task,
+      window,
+      contextCapsule,
+      prompt,
+      promptHash,
+      outputText: JSON.stringify({ observations: [] }),
+      observations: [],
+      acceptedObservations: [],
+      rejectedObservations: [],
+      validationErrors: [],
+      evidenceErrors: [],
+      status: "skipped",
+      failureReason: "checkpoint_running_in_progress",
+      errorType: "checkpoint_running_in_progress",
+      promptArtifactPath: promptArtifact.promptPath,
+      promptArtifactMetadataPath: promptArtifact.metadataPath,
+      promptMode,
+      windowIndex,
+    });
+    return {
+      packet,
+      spanRows: [],
+      checkpointStatus: "running",
+      checkpointKey,
+      checkpoint,
+      didExecute: false,
+      skippedDueToCheckpoint: false,
+    };
+  }
+
+  if (checkpoint?.status === "failed" && Number(checkpoint.attempt_count || 0) >= MAX_TASK_RETRIES) {
+    const packet = buildTaskPacket({
+      task,
+      window,
+      contextCapsule,
+      prompt,
+      promptHash,
+      outputText: JSON.stringify({ observations: [] }),
+      observations: [],
+      acceptedObservations: [],
+      rejectedObservations: [],
+      validationErrors: [checkpoint.last_error_message || "checkpoint_retry_limit_exceeded"],
+      evidenceErrors: [],
+      status: "failed",
+      failureReason: "checkpoint_retry_limit_exceeded",
+      errorType: "checkpoint_retry_limit_exceeded",
+      promptArtifactPath: promptArtifact.promptPath,
+      promptArtifactMetadataPath: promptArtifact.metadataPath,
+      promptMode,
+      windowIndex,
+    });
+    ACTIVE_RUN_STATE.failed_checkpoints += 1;
+    return {
+      packet,
+      spanRows: [],
+      checkpointStatus: "failed",
+      checkpointKey,
+      checkpoint,
+      didExecute: false,
+      skippedDueToCheckpoint: false,
+    };
+  }
+
+  const attemptCount = Number(checkpoint?.attempt_count || 0) + 1;
+  const runningPacket = {
+    prompt_mode: promptMode,
+    prompt_artifact_path: promptArtifact.promptPath,
+    prompt_artifact_metadata_path: promptArtifact.metadataPath,
+    contextCapsuleHash: contextCapsule.context_capsule_sha256,
+  };
+  await upsertCheckpointRows([checkpointRowForTask({
+    semanticRun,
+    window,
+    task,
+    promptHash,
+    promptArtifact,
+    packet: runningPacket,
+    spanRows: [],
+    checkpointStatus: "running",
+    attemptCount,
+    lastErrorType: null,
+    lastErrorMessage: null,
+  })]);
+
+  const packet = await runSemanticTaskPacket({
+    task,
+    window,
+    contextCapsule,
+    noAi,
+    allowDecompose: true,
+    importedRawText: null,
+    allowRepair: true,
+    promptMode,
+    allowTimeoutRetry: true,
+    windowIndex,
+    promptBundle,
+    promptArtifact,
+    prompt,
+    promptHash,
+  });
+
+  const spanRows = buildMeaningSpanRowsFromTaskPackets({ semanticRun, window, taskPackets: [packet], runHash });
+  if (spanRows.length) {
+    await insertRows("semantic_meaning_spans?on_conflict=semantic_hash", spanRows);
+    ACTIVE_RUN_STATE.meaning_spans += spanRows.length;
+    ACTIVE_RUN_STATE.total_meaning_spans += spanRows.length;
+  }
+
+  const checkpointStatus = checkpointTerminalStatusFromPacket(packet);
+  const checkpointMetadataPacket = checkpointPacketMetadata(packet);
+  await upsertCheckpointRows([checkpointRowForTask({
+    semanticRun,
+    window,
+    task,
+    promptHash,
+    promptArtifact,
+    packet: checkpointMetadataPacket,
+    spanRows,
+    checkpointStatus,
+    attemptCount,
+    lastErrorType: packet.error_type || null,
+    lastErrorMessage: packet.failure_reason || packet.validation_errors?.[0] || packet.error_type || null,
+  })]);
+
+  if (checkpointStatus === "completed" || checkpointStatus === "empty" || checkpointStatus === "rejected") {
+    ACTIVE_RUN_STATE.completed_this_run += 1;
+    if (checkpointStatus === "empty") ACTIVE_RUN_STATE.empty_checkpoints += 1;
+    if (checkpointStatus === "rejected") ACTIVE_RUN_STATE.rejected_checkpoints += 1;
+  } else if (checkpointStatus === "failed") {
+    ACTIVE_RUN_STATE.failed_checkpoints += 1;
+  }
+
+  return {
+    packet,
+    spanRows,
+    checkpointStatus,
+    checkpointKey,
+    checkpoint: null,
+    didExecute: true,
+    skippedDueToCheckpoint: false,
+  };
 }
 
 const CONTEXT_STOPWORDS = new Set([
@@ -2960,10 +3586,35 @@ async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt,
   });
 }
 
-async function runSemanticTaskPacket({ task, window, contextCapsule, noAi, allowDecompose = true, importedRawText = null, allowRepair = true }) {
+async function runSemanticTaskPacket({
+  task,
+  window,
+  contextCapsule,
+  noAi,
+  allowDecompose = true,
+  importedRawText = null,
+  allowRepair = true,
+  promptMode = "default",
+  allowTimeoutRetry = true,
+  windowIndex = null,
+  promptBundle = null,
+  promptArtifact = null,
+  prompt = null,
+  promptHash = null,
+}) {
   const schema = taskResponseSchema(task);
-  const prompt = buildSemanticTaskPrompt({ task, window, contextCapsule });
-  const promptHash = sha256Text(prompt);
+  const resolvedPromptBundle = promptBundle || buildSemanticTaskPromptBundle({ task, window, contextCapsule, promptMode });
+  const resolvedPrompt = prompt ?? resolvedPromptBundle.prompt;
+  const resolvedPromptHash = promptHash ?? sha256Text(resolvedPrompt);
+  const resolvedPromptArtifact = promptArtifact || writePromptArtifact({
+    task,
+    window,
+    contextCapsule,
+    prompt: resolvedPrompt,
+    promptMode,
+    windowIndex,
+    narrativeContext: resolvedPromptBundle.narrativeContext,
+  });
 
   if (noAi) {
     const rawText = JSON.stringify({ observations: [] }, null, 2);
@@ -2971,8 +3622,8 @@ async function runSemanticTaskPacket({ task, window, contextCapsule, noAi, allow
       task,
       window,
       contextCapsule,
-      prompt,
-      promptHash,
+      prompt: resolvedPrompt,
+      promptHash: resolvedPromptHash,
       outputText: rawText,
       observations: [],
       acceptedObservations: [],
@@ -2980,25 +3631,77 @@ async function runSemanticTaskPacket({ task, window, contextCapsule, noAi, allow
       validationErrors: [],
       evidenceErrors: [],
       status: "empty",
+      promptArtifactPath: resolvedPromptArtifact.promptPath,
+      promptArtifactMetadataPath: resolvedPromptArtifact.metadataPath,
+      promptMode,
+      windowIndex,
     });
   }
 
   try {
     const rawText = importedRawText !== null
       ? importedRawText
-      : await callSemanticProviderSync({ task, prompt, schema });
+      : await callSemanticProviderSync({
+          task,
+          prompt: resolvedPrompt,
+          schema,
+          artifactContext: {
+            task,
+            prompt: resolvedPrompt,
+            promptMode,
+            promptArtifactPath: resolvedPromptArtifact.promptPath,
+            promptArtifactMetadataPath: resolvedPromptArtifact.metadataPath,
+            narrativeContext: resolvedPromptBundle.narrativeContext,
+            window,
+            windowIndex,
+            stem: resolvedPromptArtifact.stem,
+          },
+        });
 
     return await finalizeTaskPacketFromRaw({
       task,
       window,
       contextCapsule,
-      prompt,
-      promptHash,
+      prompt: resolvedPrompt,
+      promptHash: resolvedPromptHash,
       rawText,
       allowRepair,
+      promptArtifactPath: resolvedPromptArtifact.promptPath,
+      promptArtifactMetadataPath: resolvedPromptArtifact.metadataPath,
+      promptMode,
+      windowIndex,
     });
   } catch (error) {
-    const failureReason = String(error?.message || error);
+    const failureReason = providerErrorMessage(error);
+    const errorType = providerErrorType(error);
+
+    if (errorType === "ollama_generation_timeout" && allowTimeoutRetry && CANONICAL_PROVIDER === "ollama") {
+      console.warn(JSON.stringify({
+        event: "provider_retry_compact_prompt",
+        provider: PROVIDER,
+        task,
+        attempt: 1,
+        retry_mode: "reduced_prompt",
+        error_type: errorType,
+        prompt_chars: resolvedPrompt.length,
+      }));
+      return await runSemanticTaskPacket({
+        task,
+        window,
+        contextCapsule,
+        noAi,
+        allowDecompose,
+        importedRawText,
+        allowRepair,
+        promptMode: "reduced",
+        allowTimeoutRetry: false,
+        windowIndex,
+        promptBundle: null,
+        promptArtifact: null,
+        prompt: null,
+        promptHash: null,
+      });
+    }
 
     if (allowDecompose && window.render_paragraphs.length > 1) {
       const accepted = [];
@@ -3014,6 +3717,13 @@ async function runSemanticTaskPacket({ task, window, contextCapsule, noAi, allow
           allowDecompose: false,
           importedRawText: null,
           allowRepair,
+          promptMode,
+          allowTimeoutRetry: false,
+          windowIndex,
+          promptBundle: null,
+          promptArtifact: null,
+          prompt: null,
+          promptHash: null,
         });
         accepted.push(...fragment.accepted_observations);
         rejected.push(...fragment.rejected_observations);
@@ -3025,8 +3735,8 @@ async function runSemanticTaskPacket({ task, window, contextCapsule, noAi, allow
         task,
         window,
         contextCapsule,
-        prompt,
-        promptHash,
+        prompt: resolvedPrompt,
+        promptHash: resolvedPromptHash,
         outputText: JSON.stringify({ observations: [] }),
         observations: [],
         acceptedObservations: accepted,
@@ -3035,6 +3745,11 @@ async function runSemanticTaskPacket({ task, window, contextCapsule, noAi, allow
         evidenceErrors,
         status: accepted.length > 0 ? "ok" : "failed",
         failureReason: accepted.length > 0 ? "decomposed_after_packet_failure" : failureReason,
+        errorType: accepted.length > 0 ? null : errorType,
+        promptArtifactPath: resolvedPromptArtifact.promptPath,
+        promptArtifactMetadataPath: resolvedPromptArtifact.metadataPath,
+        promptMode,
+        windowIndex,
       });
     }
 
@@ -3043,8 +3758,8 @@ async function runSemanticTaskPacket({ task, window, contextCapsule, noAi, allow
       task,
       window,
       contextCapsule,
-      prompt,
-      promptHash,
+      prompt: resolvedPrompt,
+      promptHash: resolvedPromptHash,
       outputText: JSON.stringify({ observations: [] }),
       observations: [],
       acceptedObservations: [],
@@ -3053,6 +3768,11 @@ async function runSemanticTaskPacket({ task, window, contextCapsule, noAi, allow
       evidenceErrors: /render_para_key|Quote not found|Missing evidence anchors/i.test(failureReason) ? [failureReason] : [],
       status: "failed",
       failureReason,
+      errorType,
+      promptArtifactPath: resolvedPromptArtifact.promptPath,
+      promptArtifactMetadataPath: resolvedPromptArtifact.metadataPath,
+      promptMode,
+      windowIndex,
     });
   }
 }
@@ -4172,8 +4892,6 @@ async function writeSelectedSemanticRows({ semanticRun, window, spanRows, taskPa
     }, null, 2));
     return;
   }
-
-  if (spanRows.length) await insertRows("semantic_meaning_spans?on_conflict=semantic_hash", spanRows);
   if (archetypeAnchorRows.length) await insertRows("semantic_archetype_anchors?on_conflict=anchor_key", archetypeAnchorRows);
   if (biblicalAnchorRows.length) await insertRows("semantic_biblical_anchors?on_conflict=anchor_key", biblicalAnchorRows);
   if (crosslinkRows.length) await insertRows("semantic_crosslinks?on_conflict=semantic_hash", crosslinkRows);
@@ -4248,6 +4966,9 @@ async function main() {
     provider_model: noAi ? "no-ai" : PROVIDER_MODEL,
     db_adapter: "supabase_data_plane",
     management_api_hot_path: false,
+    resume_existing: resumeExisting,
+    soft_stop_minutes: SOFT_STOP_MINUTES,
+    max_task_retries: MAX_TASK_RETRIES,
     batch_mode: batchMode,
     submit_batch: submitBatch,
     poll_batch_id: POLL_BATCH_ID || null,
@@ -4264,6 +4985,16 @@ async function main() {
     total_windows: windows.length,
     semantic_windows_planned: plannedSemanticWindows,
     skipped_windows_planned: plannedSkippedWindows,
+    total_task_window_units_planned: plannedSemanticWindows * TASK_ORDER.length,
+    completed_before_run: 0,
+    skipped_due_to_checkpoint: 0,
+    completed_this_run: 0,
+    empty_checkpoints: 0,
+    rejected_checkpoints: 0,
+    failed_checkpoints: 0,
+    remaining_after_run: plannedSemanticWindows * TASK_ORDER.length,
+    estimated_average_seconds_per_task_window: null,
+    estimated_remaining_time_seconds: null,
     min_semantic_window_words: MIN_SEMANTIC_WINDOW_WORDS,
     min_semantic_window_chars: MIN_SEMANTIC_WINDOW_CHARS,
     allow_failure_continue: ALLOW_FAILURE_CONTINUE,
@@ -4332,7 +5063,28 @@ async function main() {
 
   loadOllamaResultCache();
 
-  const semanticRun = await createSemanticRun(sourceSummary);
+  let semanticRun = await findResumeSemanticRun(sourceSummary);
+  if (!semanticRun) {
+    semanticRun = await createSemanticRun(sourceSummary);
+  }
+
+  Object.assign(ACTIVE_RUN_STATE, {
+    ...RUN_SUMMARY_BASE,
+    run_id: semanticRun.id,
+    provider: ORIGINAL_PROVIDER,
+    canonical_provider: CANONICAL_PROVIDER,
+    provider_model: noAi ? "no-ai" : PROVIDER_MODEL,
+    write_mode: writeMode,
+    no_ai: noAi,
+    resume_existing: resumeExisting,
+    selected_docs_count: docs.length,
+    total_windows: windows.length,
+    semantic_windows_target: plannedSemanticWindows,
+    total_task_window_units: plannedSemanticWindows * TASK_ORDER.length,
+    sourceSummary,
+    pathsOutDir: paths.outDir,
+  });
+  writeRunSummarySnapshot();
 
   if (writeMode) {
     await insertRows("render_paragraphs?on_conflict=render_para_key", renderParagraphRowsForDb(semanticRun, docs));
@@ -4362,6 +5114,7 @@ async function main() {
   let observationsAccepted = 0;
   let observationsRejected = 0;
   let consecutiveFailedWindows = 0;
+  let stopRequested = false;
   const skippedPackets = [];
   const perTaskFailures = Object.fromEntries(TASK_ORDER.map((task) => [task, 0]));
 
@@ -4374,6 +5127,7 @@ async function main() {
     );
 
     const taskPackets = [];
+    let windowSoftStopTriggered = false;
     if (semanticPlan.status === "skipped") {
       skippedWindows += 1;
       console.warn(JSON.stringify({
@@ -4425,8 +5179,27 @@ async function main() {
               allowRepair: false,
             }));
           }
+          if (softStopReached()) {
+            ACTIVE_RUN_STATE.soft_stop_triggered = true;
+            windowSoftStopTriggered = true;
+            break;
+          }
         } else {
-          taskPackets.push(await runSemanticTaskPacket({ task, window, contextCapsule, noAi }));
+          const taskResult = await processSelectedXmlTaskUnit({
+            semanticRun,
+            window,
+            contextCapsule,
+            task,
+            windowIndex,
+            runHash,
+            noAi,
+          });
+          taskPackets.push(taskResult.packet);
+          if (softStopReached()) {
+            ACTIVE_RUN_STATE.soft_stop_triggered = true;
+            windowSoftStopTriggered = true;
+            break;
+          }
         }
       }
     }
@@ -4440,8 +5213,11 @@ async function main() {
         totalTaskFailures += 1;
         perTaskFailures[packet.task] += 1;
       }
-      observationsAccepted += packet.accepted_observations.length;
-      observationsRejected += packet.rejected_observations.length;
+      if (packet.status !== "skipped") {
+        observationsAccepted += packet.accepted_observations.length;
+        observationsRejected += packet.rejected_observations.length;
+      }
+      recordTaskPacketForSummary(packet);
 
       const stem = `${String(windowIndex).padStart(5, "0")}-${packet.task}`;
       writeFileSync(join(paths.outDir, `prompt-selected-${stem}.txt`), packet.prompt);
@@ -4483,9 +5259,24 @@ async function main() {
       }
     }
 
-    const spanRows = buildMeaningSpanRowsFromTaskPackets({ semanticRun, window, taskPackets, runHash });
-    await writeSelectedSemanticRows({ semanticRun, window, spanRows, taskPackets });
-    totalMeaningSpans += spanRows.length;
+    const spanRows = [];
+    for (const packet of taskPackets) {
+      if (packet.status === "skipped" && Array.isArray(packet.span_rows) && packet.span_rows.length) {
+        spanRows.push(...packet.span_rows);
+        continue;
+      }
+      spanRows.push(...buildMeaningSpanRowsFromTaskPackets({ semanticRun, window, taskPackets: [packet], runHash }));
+    }
+    const windowCompleted = semanticPlan.status === "skipped" || taskPackets.length === TASK_ORDER.length;
+    if (writeMode && importedBatch && windowCompleted && spanRows.length) {
+      await insertRows("semantic_meaning_spans?on_conflict=semantic_hash", spanRows);
+    }
+    if (windowCompleted) {
+      await writeSelectedSemanticRows({ semanticRun, window, spanRows, taskPackets });
+    }
+    totalMeaningSpans = ACTIVE_RUN_STATE.total_meaning_spans;
+    ACTIVE_RUN_STATE.meaning_spans = totalMeaningSpans;
+    ACTIVE_RUN_STATE.total_meaning_spans = totalMeaningSpans;
 
     writeFileSync(
       join(paths.outDir, `meaning-spans-selected-${String(windowIndex).padStart(5, "0")}.jsonl`),
@@ -4527,6 +5318,14 @@ async function main() {
       write_mode: writeMode,
       run_hash: runHash,
     }));
+
+    if (windowSoftStopTriggered) {
+      stopRequested = true;
+    }
+
+    if (stopRequested) {
+      break;
+    }
 
     if (!ALLOW_FAILURE_CONTINUE) {
       const semanticTaskSample = taskOk + taskEmpty + taskFailed;
@@ -4577,7 +5376,7 @@ async function main() {
   // This means every window failed classifySemanticWindow. Check window_skipped events in the log
   // for the exact skip_reason + text_preview. Likely cause: batch_size=1 with short paragraphs,
   // or MIN_SEMANTIC_WINDOW_CHARS/MIN_SEMANTIC_WINDOW_WORDS too high relative to paragraph length.
-  if (writeMode && !noAi && windows.length > 0 && semanticWindows === 0) {
+  if (writeMode && !noAi && windows.length > 0 && semanticWindows === 0 && !ACTIVE_RUN_STATE.soft_stop_triggered) {
     const allSkippedMsg = [
       `All ${skippedWindows} window(s) were classified as non-semantic and skipped — no AI tasks ran.`,
       `min_chars=${MIN_SEMANTIC_WINDOW_CHARS} min_words=${MIN_SEMANTIC_WINDOW_WORDS} batch_size=${BATCH_SIZE}`,
@@ -4616,7 +5415,7 @@ async function main() {
   // Fail loudly: write mode with AI ran semantic windows but produced zero meaning_spans.
   // This indicates the model is too small, prompts are truncated, or the model returned empty JSON.
   // Raw model responses are saved in docs/forensics/audits/ai-bad-json/ for inspection.
-  if (writeMode && !noAi && semanticWindows > 0 && totalMeaningSpans === 0) {
+  if (writeMode && !noAi && semanticWindows > 0 && totalMeaningSpans === 0 && !ACTIVE_RUN_STATE.soft_stop_triggered && ACTIVE_RUN_STATE.completed_before_run === 0 && ACTIVE_RUN_STATE.skipped_due_to_checkpoint === 0) {
     const emptyRunMsg = [
       `Zero meaning_spans written after processing ${semanticWindows} semantic window(s).`,
       `task_empty=${taskEmpty} task_failed=${taskFailed} task_ok=${taskOk}`,
@@ -4649,32 +5448,67 @@ async function main() {
   }
 
   if (writeMode) {
-    await patchRow("semantic_runs", semanticRun.id, {
-      status: "completed",
-      completed_at: new Date().toISOString(),
-      metadata: {
-        ...(semanticRun.metadata || {}),
-        total_processed_windows: totalProcessed,
-        total_meaning_spans: totalMeaningSpans,
-        total_task_failures: totalTaskFailures,
-        skipped_windows: skippedWindows,
-        semantic_windows: semanticWindows,
-        task_ok: taskOk,
-        task_empty: taskEmpty,
-        task_skipped: taskSkipped,
-        task_failed: taskFailed,
-        observations_accepted: observationsAccepted,
-        observations_rejected: observationsRejected,
-        per_task_failures: perTaskFailures,
-        run_hash: runHash,
-        ai_task_order: TASK_ORDER,
-        selected_xml_driver: true,
-        primary_hash_lane: "semantic_meaning_spans",
-        old_semantic_table_writes: "blocked_on_first_run",
-        semantic_provider: PROVIDER,
-        semantic_model: PROVIDER_MODEL,
-      },
-    });
+    if (ACTIVE_RUN_STATE.soft_stop_triggered) {
+      await patchRow("semantic_runs", semanticRun.id, {
+        metadata: {
+          ...(semanticRun.metadata || {}),
+          soft_stop_triggered: true,
+          resume_existing: resumeExisting,
+          total_processed_windows: totalProcessed,
+          total_meaning_spans: totalMeaningSpans,
+          total_task_failures: totalTaskFailures,
+          skipped_windows: skippedWindows,
+          semantic_windows: semanticWindows,
+          task_ok: taskOk,
+          task_empty: taskEmpty,
+          task_skipped: taskSkipped,
+          task_failed: taskFailed,
+          observations_accepted: observationsAccepted,
+          observations_rejected: observationsRejected,
+          per_task_failures: perTaskFailures,
+          run_hash: runHash,
+          ai_task_order: TASK_ORDER,
+          selected_xml_driver: true,
+          primary_hash_lane: "semantic_meaning_spans",
+          old_semantic_table_writes: "blocked_on_first_run",
+          semantic_provider: PROVIDER,
+          semantic_model: PROVIDER_MODEL,
+          soft_stop_minutes: SOFT_STOP_MINUTES,
+          completed_before_run: ACTIVE_RUN_STATE.completed_before_run,
+          skipped_due_to_checkpoint: ACTIVE_RUN_STATE.skipped_due_to_checkpoint,
+          completed_this_run: ACTIVE_RUN_STATE.completed_this_run,
+          remaining_after_run: ACTIVE_RUN_STATE.total_task_window_units - (ACTIVE_RUN_STATE.completed_before_run + ACTIVE_RUN_STATE.completed_this_run),
+          resume_needed: true,
+        },
+      }).catch(() => {});
+    } else {
+      await patchRow("semantic_runs", semanticRun.id, {
+        status: "completed",
+        completed_at: new Date().toISOString(),
+        metadata: {
+          ...(semanticRun.metadata || {}),
+          total_processed_windows: totalProcessed,
+          total_meaning_spans: totalMeaningSpans,
+          total_task_failures: totalTaskFailures,
+          skipped_windows: skippedWindows,
+          semantic_windows: semanticWindows,
+          task_ok: taskOk,
+          task_empty: taskEmpty,
+          task_skipped: taskSkipped,
+          task_failed: taskFailed,
+          observations_accepted: observationsAccepted,
+          observations_rejected: observationsRejected,
+          per_task_failures: perTaskFailures,
+          run_hash: runHash,
+          ai_task_order: TASK_ORDER,
+          selected_xml_driver: true,
+          primary_hash_lane: "semantic_meaning_spans",
+          old_semantic_table_writes: "blocked_on_first_run",
+          semantic_provider: PROVIDER,
+          semantic_model: PROVIDER_MODEL,
+        },
+      });
+    }
   }
 
   writeFileSync(join(paths.outDir, "run-summary.json"), JSON.stringify({

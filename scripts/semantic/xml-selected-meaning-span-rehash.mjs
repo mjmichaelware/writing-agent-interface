@@ -1114,8 +1114,8 @@ const TASK_ORDER = [
 ];
 
 const ALLOW_FAILURE_CONTINUE = args.has("--allow-failure-continue");
-const MIN_SEMANTIC_WINDOW_WORDS = Number(process.env.MIN_SEMANTIC_WINDOW_WORDS || 8);
-const MIN_SEMANTIC_WINDOW_CHARS = Number(process.env.MIN_SEMANTIC_WINDOW_CHARS || 60);
+const MIN_SEMANTIC_WINDOW_WORDS = Number(process.env.MIN_SEMANTIC_WINDOW_WORDS || 4);
+const MIN_SEMANTIC_WINDOW_CHARS = Number(process.env.MIN_SEMANTIC_WINDOW_CHARS || 20);
 const FAIL_FAST_INITIAL_SEMANTIC_WINDOWS = 10;
 const FAIL_FAST_INITIAL_FAILED_TASKS = 20;
 const FAIL_FAST_CONSECUTIVE_FAILED_WINDOWS = 5;
@@ -4278,6 +4278,18 @@ async function main() {
     const taskPackets = [];
     if (semanticPlan.status === "skipped") {
       skippedWindows += 1;
+      console.warn(JSON.stringify({
+        event: "window_skipped",
+        window_index: windowIndex,
+        scene_window_id: window.scene_window_id,
+        folder: window.folder,
+        skip_reason: semanticPlan.reason,
+        word_count: semanticPlan.wordCount,
+        char_count: semanticPlan.charCount,
+        text_preview: String(window.text || "").slice(0, 200),
+        min_words: MIN_SEMANTIC_WINDOW_WORDS,
+        min_chars: MIN_SEMANTIC_WINDOW_CHARS,
+      }));
       for (const task of TASK_ORDER) {
         taskPackets.push(createSkippedTaskPacket({ task, window, contextCapsule, reason: semanticPlan.reason }));
       }
@@ -4462,6 +4474,46 @@ async function main() {
     join(paths.outDir, "skipped-packets.jsonl"),
     skippedPackets.map((record) => JSON.stringify(record)).join("\n") + (skippedPackets.length ? "\n" : "")
   );
+
+  // Fail loudly: write mode skipped ALL windows — nothing reached the AI.
+  // This means every window failed classifySemanticWindow. Check window_skipped events in the log
+  // for the exact skip_reason + text_preview. Likely cause: batch_size=1 with short paragraphs,
+  // or MIN_SEMANTIC_WINDOW_CHARS/MIN_SEMANTIC_WINDOW_WORDS too high relative to paragraph length.
+  if (writeMode && !noAi && windows.length > 0 && semanticWindows === 0) {
+    const allSkippedMsg = [
+      `All ${skippedWindows} window(s) were classified as non-semantic and skipped — no AI tasks ran.`,
+      `min_chars=${MIN_SEMANTIC_WINDOW_CHARS} min_words=${MIN_SEMANTIC_WINDOW_WORDS} batch_size=${BATCH_SIZE}`,
+      `Check the window_skipped log events above for skip_reason and text_preview.`,
+      `Fix: lower MIN_SEMANTIC_WINDOW_CHARS/MIN_SEMANTIC_WINDOW_WORDS env vars, or increase batch_size`,
+      `so windows contain more prose per packet.`,
+    ].join(" ");
+    console.error(JSON.stringify({
+      event: "run_failed_all_windows_skipped",
+      provider: PROVIDER,
+      model: PROVIDER_MODEL,
+      windows: windows.length,
+      skipped_windows: skippedWindows,
+      semantic_windows: 0,
+      min_chars: MIN_SEMANTIC_WINDOW_CHARS,
+      min_words: MIN_SEMANTIC_WINDOW_WORDS,
+      batch_size: BATCH_SIZE,
+      error: allSkippedMsg,
+    }));
+    await patchRow("semantic_runs", semanticRun.id, {
+      status: "failed",
+      error: allSkippedMsg,
+      completed_at: new Date().toISOString(),
+    }).catch(() => {});
+    writeFileSync(join(paths.outDir, "run-summary.json"), JSON.stringify({
+      run_id: semanticRun.id, write_mode: writeMode, no_ai: noAi,
+      provider: PROVIDER, model: PROVIDER_MODEL,
+      windows: windows.length, skipped_windows: skippedWindows, semantic_windows: 0,
+      total_meaning_spans: 0, task_skipped: taskSkipped,
+      min_chars: MIN_SEMANTIC_WINDOW_CHARS, min_words: MIN_SEMANTIC_WINDOW_WORDS,
+      batch_size: BATCH_SIZE, error: allSkippedMsg, failed: true, sourceSummary,
+    }, null, 2));
+    process.exit(1);
+  }
 
   // Fail loudly: write mode with AI ran semantic windows but produced zero meaning_spans.
   // This indicates the model is too small, prompts are truncated, or the model returned empty JSON.

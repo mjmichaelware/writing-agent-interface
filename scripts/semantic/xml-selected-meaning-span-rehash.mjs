@@ -855,7 +855,7 @@ async function insertRows(tableArg, rows, _chunkSize = 100) {
   const out = [];
 
   for (let i = 0; i < rows.length; i += chunkSize) {
-    const chunk = rows.slice(i, i + chunkSize).map((row) => {
+    const prepared = rows.slice(i, i + chunkSize).map((row) => {
       const clean = {};
       for (const col of allCols) {
         const v = coerceForSql(row[col], schema[col]);
@@ -863,6 +863,11 @@ async function insertRows(tableArg, rows, _chunkSize = 100) {
       }
       return clean;
     });
+    const chunkColumns = uniqueBy(prepared.flatMap((row) => Object.keys(row)), (col) => col);
+    // PostgREST bulk inserts require every object in the request to have the same keys.
+    const chunk = prepared.map((row) => Object.fromEntries(
+      chunkColumns.map((col) => [col, Object.hasOwn(row, col) ? row[col] : null])
+    ));
 
     const inserted = await dataPlaneRequest(path, { method: "POST", body: chunk, prefer });
     if (needsReturn && Array.isArray(inserted)) out.push(...inserted);

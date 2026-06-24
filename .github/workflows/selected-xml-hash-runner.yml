@@ -11,19 +11,27 @@ on:
       limit_docs:
         description: Optional selected XML document limit.
         required: false
-        default: "1"
+        default: ""
       limit:
         description: Optional selected XML window limit.
         required: false
-        default: "20"
+        default: ""
       batch_size:
         description: Selected XML batch size.
         required: false
         default: "1"
+      full_run_confirm:
+        description: Required for uncapped full selected XML traversal.
+        required: false
+        default: "true"
       resume_existing:
         description: Resume from existing checkpoint state.
         required: false
         default: "false"
+      soft_stop_minutes:
+        description: Soft stop before the GitHub Actions hard timeout.
+        required: false
+        default: "330"
       provider:
         description: Semantic provider.
         required: false
@@ -46,6 +54,7 @@ jobs:
       SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
       SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF || vars.SUPABASE_PROJECT_REF }}
 
+      SELECTED_XML_FULL_RUN_CONFIRM: ${{ inputs.full_run_confirm || 'true' }}
       RESUME_EXISTING: ${{ inputs.resume_existing || 'false' }}
       ALLOW_FAILURE_CONTINUE: "true"
       SEMANTIC_PROVIDER: ${{ inputs.provider || 'ollama_actions' }}
@@ -61,14 +70,14 @@ jobs:
       OLLAMA_KEEP_ALIVE: 5m
       PROVIDER_RETRY_MAX: "0"
 
-      SOFT_STOP_MINUTES: "10"
+      SOFT_STOP_MINUTES: ${{ inputs.soft_stop_minutes || '330' }}
       MAX_TASK_RETRIES: "2"
       MIN_SEMANTIC_WINDOW_WORDS: "4"
       MIN_SEMANTIC_WINDOW_CHARS: "20"
 
       SELECTED_XML_SCRIPT: scripts/semantic/xml-selected-meaning-span-rehash.mjs
-      SELECTED_XML_LIMIT_DOCS: ${{ inputs.limit_docs || '1' }}
-      SELECTED_XML_LIMIT: ${{ inputs.limit || '20' }}
+      SELECTED_XML_LIMIT_DOCS: ${{ inputs.limit_docs }}
+      SELECTED_XML_LIMIT: ${{ inputs.limit }}
       SELECTED_XML_BATCH_SIZE: ${{ inputs.batch_size || '1' }}
       SELECTED_XML_RUN_LOG: docs/forensics/audits/selected-xml-hash-runner.log
       SELECTED_XML_RESULT_SIGNALS: docs/forensics/audits/selected-xml-result-signals.json
@@ -138,6 +147,7 @@ jobs:
           set -euo pipefail
 
           echo "selected_xml_driver=true"
+          echo "full_run_confirm=${SELECTED_XML_FULL_RUN_CONFIRM}"
           echo "resume_existing=${RESUME_EXISTING}"
           echo "semantic_provider=${SEMANTIC_PROVIDER}"
           echo "semantic_model=${SEMANTIC_MODEL}"
@@ -311,7 +321,28 @@ jobs:
           echo "no_ai=false"
           echo "db_adapter=supabase_data_plane"
           echo "management_api_hot_path=false"
+          echo "full_run_confirm=${SELECTED_XML_FULL_RUN_CONFIRM}"
           echo "resume_existing=${RESUME_EXISTING}"
+          run_args=(
+            "--write"
+            "--provider=${SEMANTIC_PROVIDER}"
+            "--batch-size=${SELECTED_XML_BATCH_SIZE}"
+            "--soft-stop-minutes=${SOFT_STOP_MINUTES}"
+            "--max-task-retries=${MAX_TASK_RETRIES}"
+          )
+
+          if [ "${SELECTED_XML_FULL_RUN_CONFIRM}" = "true" ]; then
+            run_args+=("--full-run-confirm")
+          fi
+          if [ -n "${SELECTED_XML_LIMIT_DOCS:-}" ]; then
+            run_args+=("--limit-docs=${SELECTED_XML_LIMIT_DOCS}")
+          fi
+          if [ -n "${SELECTED_XML_LIMIT:-}" ]; then
+            run_args+=("--limit=${SELECTED_XML_LIMIT}")
+          fi
+
+          printf 'selected_xml_command=%q ' node "$SELECTED_XML_SCRIPT" "${run_args[@]}"
+          printf '\n'
 
           RESUME_EXISTING="${RESUME_EXISTING}" \
           SEMANTIC_PROVIDER="${SEMANTIC_PROVIDER}" \
@@ -327,15 +358,7 @@ jobs:
           MIN_SEMANTIC_WINDOW_WORDS="${MIN_SEMANTIC_WINDOW_WORDS}" \
           MIN_SEMANTIC_WINDOW_CHARS="${MIN_SEMANTIC_WINDOW_CHARS}" \
           ALLOW_FAILURE_CONTINUE="${ALLOW_FAILURE_CONTINUE}" \
-          node scripts/semantic/xml-selected-meaning-span-rehash.mjs \
-            --write \
-            --provider="${SEMANTIC_PROVIDER}" \
-            --limit-docs="${SELECTED_XML_LIMIT_DOCS}" \
-            --limit="${SELECTED_XML_LIMIT}" \
-            --batch-size="${SELECTED_XML_BATCH_SIZE}" \
-            --soft-stop-minutes="${SOFT_STOP_MINUTES}" \
-            --max-task-retries="${MAX_TASK_RETRIES}" \
-            2>&1 | tee "$SELECTED_XML_RUN_LOG"
+          node "$SELECTED_XML_SCRIPT" "${run_args[@]}" 2>&1 | tee "$SELECTED_XML_RUN_LOG"
 
       - name: Print RESULT SIGNALS
         if: always()

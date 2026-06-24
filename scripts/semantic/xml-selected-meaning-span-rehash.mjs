@@ -59,7 +59,13 @@ const registerSources = args.has("--register-sources");
 const noAi = args.has("--no-ai");
 const submitBatch = args.has("--submit-batch");
 const fullRunConfirm = args.has("--full-run-confirm");
-const resumeExisting = args.has("--resume-existing");
+function envBoolean(name, fallback = false) {
+  const value = process.env[name];
+  if (value === undefined || value === null || value === "") return fallback;
+  return ["1", "true", "yes", "on"].includes(String(value).trim().toLowerCase());
+}
+const resumeExisting = args.has("--resume-existing") || envBoolean("RESUME_EXISTING");
+const taskCheckpointsEnabled = writeMode && resumeExisting;
 
 const limitArg = argv.find((x) => x.startsWith("--limit="));
 const chapterArg = argv.find((x) => x.startsWith("--chapter="));
@@ -1244,7 +1250,7 @@ const TASK_ORDER = [
   "hyperlinks_parallelisms",
 ];
 
-const ALLOW_FAILURE_CONTINUE = args.has("--allow-failure-continue");
+const ALLOW_FAILURE_CONTINUE = args.has("--allow-failure-continue") || envBoolean("ALLOW_FAILURE_CONTINUE");
 const MIN_SEMANTIC_WINDOW_WORDS = Number(process.env.MIN_SEMANTIC_WINDOW_WORDS || 4);
 const MIN_SEMANTIC_WINDOW_CHARS = Number(process.env.MIN_SEMANTIC_WINDOW_CHARS || 20);
 const FAIL_FAST_INITIAL_SEMANTIC_WINDOWS = 10;
@@ -1613,6 +1619,7 @@ function checkpointRowForTask({
 }
 
 async function fetchCheckpointRowsByKeys(keys) {
+  if (!taskCheckpointsEnabled) return [];
   const uniqueKeys = [...new Set((keys || []).filter(Boolean))].sort();
   if (!uniqueKeys.length) return [];
   const path = `semantic_window_task_checkpoints?checkpoint_key=in.(${uniqueKeys.join(",")})&select=*`;
@@ -1620,7 +1627,7 @@ async function fetchCheckpointRowsByKeys(keys) {
 }
 
 async function upsertCheckpointRows(rows) {
-  if (!rows.length) return [];
+  if (!taskCheckpointsEnabled || !rows.length) return [];
   return insertRows("semantic_window_task_checkpoints?on_conflict=checkpoint_key", rows, 100);
 }
 
@@ -1655,6 +1662,84 @@ function createSkippedCheckpointPacket({ task, window, prompt, promptHash, promp
   });
 }
 
+
+
+function safeArtifactPart(value, fallback = "unknown") {
+  return String(value ?? fallback)
+    .replace(/[^a-zA-Z0-9._-]+/g, "_")
+    .replace(/^_+|_+$/g, "")
+    .slice(0, 120) || fallback;
+}
+
+function writePromptArtifact({
+  task,
+  window,
+  contextCapsule,
+  prompt,
+  promptMode = "default",
+  windowIndex = null,
+  narrativeContext = null,
+}) {
+  const stem = taskArtifactStem({ windowIndex, task, promptMode });
+  const promptDir = join(paths.outDir, "prompts");
+  ensureDir(promptDir);
+
+  const promptPath = join(promptDir, `prompt-${stem}.txt`);
+  const metadataPath = join(promptDir, `prompt-${stem}.metadata.json`);
+  const promptHash = sha256Text(prompt || "");
+
+  const taskName = typeof task === "string"
+    ? task
+    : (task?.name || task?.task_name || task?.id || "unknown_task");
+
+  const metadata = {
+    artifact_type: "selected_xml_semantic_task_prompt",
+    prompt_mode: promptMode,
+    task_name: taskName,
+    window_index: windowIndex,
+    scene_window_id: window?.scene_window_id || window?.id || null,
+    source_doc_folder: window?.folder || window?.source_doc_folder || null,
+    source_document_xml_sha256: window?.source_document_xml_sha256 || null,
+    context_capsule_sha256: contextCapsule?.context_capsule_sha256 || null,
+    prompt_sha256: promptHash,
+    prompt_path: promptPath,
+    narrative_context: narrativeContext || null,
+    created_at: new Date().toISOString(),
+  };
+
+  writeFileSync(promptPath, prompt || "", "utf8");
+  writeFileSync(metadataPath, JSON.stringify(metadata, null, 2), "utf8");
+
+  return {
+    promptPath,
+    metadataPath,
+    promptHash,
+    metadata,
+  };
+}
+
+function buildSemanticTaskPromptBundle({ task, window, contextCapsule, promptMode = "default" }) {
+  const prompt = buildSemanticTaskPrompt({ task, window, contextCapsule });
+
+  const taskName = typeof task === "string"
+    ? task
+    : (task?.name || task?.task_name || task?.id || null);
+
+  const narrativeContext = {
+    prompt_mode: promptMode,
+    task_name: taskName,
+    scene_window_id: window?.scene_window_id || window?.id || null,
+    source_doc_folder: window?.folder || window?.source_doc_folder || null,
+    source_document_xml_sha256: window?.source_document_xml_sha256 || null,
+    context_capsule_sha256: contextCapsule?.context_capsule_sha256 || null,
+  };
+
+  return {
+    prompt,
+    narrativeContext,
+  };
+}
+
 async function processSelectedXmlTaskUnit({
   semanticRun,
   window,
@@ -1680,7 +1765,7 @@ async function processSelectedXmlTaskUnit({
   const checkpointKey = checkpointKeyForTask({ window, task, promptHash });
 
   let checkpoint = null;
-  if (resumeExisting && writeMode) {
+  if (taskCheckpointsEnabled) {
     const rows = await fetchCheckpointRowsByKeys([checkpointKey]);
     checkpoint = rows[0] || null;
   }
@@ -1825,19 +1910,21 @@ async function processSelectedXmlTaskUnit({
 
   const checkpointStatus = checkpointTerminalStatusFromPacket(packet);
   const checkpointMetadataPacket = checkpointPacketMetadata(packet);
-  await upsertCheckpointRows([checkpointRowForTask({
-    semanticRun,
-    window,
-    task,
-    promptHash,
-    promptArtifact,
-    packet: checkpointMetadataPacket,
-    spanRows,
-    checkpointStatus,
-    attemptCount,
-    lastErrorType: packet.error_type || null,
-    lastErrorMessage: packet.failure_reason || packet.validation_errors?.[0] || packet.error_type || null,
-  })]);
+  if (taskCheckpointsEnabled) {
+    await upsertCheckpointRows([checkpointRowForTask({
+      semanticRun,
+      window,
+      task,
+      promptHash,
+      promptArtifact,
+      packet: checkpointMetadataPacket,
+      spanRows,
+      checkpointStatus,
+      attemptCount,
+      lastErrorType: packet.error_type || null,
+      lastErrorMessage: packet.failure_reason || packet.validation_errors?.[0] || packet.error_type || null,
+    })]);
+  }
 
   if (checkpointStatus === "completed" || checkpointStatus === "empty" || checkpointStatus === "rejected") {
     ACTIVE_RUN_STATE.completed_this_run += 1;

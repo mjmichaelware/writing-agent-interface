@@ -3791,6 +3791,7 @@ function buildDeterministicFallbackObservations({ task, window, contextCapsule }
       return {
         observations: [{
           biblical_anchor_label: inferred.biblical_anchor_label,
+          biblical_anchor_key: inferred.biblical_anchor_key,
           book: inferred.book,
           chapter: inferred.chapter,
           verse_start: inferred.verse_start,

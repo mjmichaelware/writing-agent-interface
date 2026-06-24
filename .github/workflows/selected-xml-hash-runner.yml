@@ -199,6 +199,62 @@ jobs:
         run: |
           set -euo pipefail
 
+          dump_ollama_log() {
+            if [ -f "$SELECTED_XML_OLLAMA_LOG" ]; then
+              echo "===== Ollama log tail ====="
+              tail -n 200 "$SELECTED_XML_OLLAMA_LOG" || true
+            fi
+          }
+
+          ensure_ollama_ready() {
+            if curl -fsS "$OLLAMA_BASE_URL/api/tags" > /dev/null 2>&1; then
+              return 0
+            fi
+
+            echo "===== Ollama not reachable before proof; restarting ====="
+            mkdir -p docs/forensics/audits
+            : > "$SELECTED_XML_OLLAMA_LOG"
+
+            nohup ollama serve > "$SELECTED_XML_OLLAMA_LOG" 2>&1 &
+            echo "ollama_pid=$!"
+
+            ready="false"
+            for _ in $(seq 1 180); do
+              if curl -fsS "$OLLAMA_BASE_URL/api/tags" > /dev/null 2>&1; then
+                ready="true"
+                break
+              fi
+              sleep 1
+            done
+
+            if [ "$ready" != "true" ]; then
+              echo "::error::Ollama did not become ready within 180 seconds before proof."
+              dump_ollama_log
+              exit 1
+            fi
+
+            ollama pull "$OLLAMA_MODEL"
+            curl -fsS "$OLLAMA_BASE_URL/api/tags" | tee docs/forensics/audits/ollama-tags.json > /dev/null
+
+            smoke_response="$(
+              curl -fsS "$OLLAMA_BASE_URL/api/generate" \
+                -H 'Content-Type: application/json' \
+                -d "{\"model\":\"$OLLAMA_MODEL\",\"prompt\":\"Reply with exactly OK.\",\"stream\":false}"
+            )"
+            printf '%s\n' "$smoke_response" | tee "$SELECTED_XML_OLLAMA_SMOKE" > /dev/null
+
+            smoke_text="$(printf '%s' "$smoke_response" | jq -r '.response // empty')"
+            printf '%s\n' "$smoke_text" | tee "$SELECTED_XML_OLLAMA_SMOKE_TEXT" > /dev/null
+
+            if [ -z "$smoke_text" ] || ! printf '%s' "$smoke_text" | grep -q 'OK'; then
+              echo "::error::Ollama smoke test failed before proof."
+              dump_ollama_log
+              exit 1
+            fi
+          }
+
+          ensure_ollama_ready
+
           echo "RESULT SIGNALS: starting selected XML hash proof"
           echo "write_mode=true"
           echo "no_ai=false"

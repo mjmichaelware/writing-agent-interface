@@ -1,6 +1,11 @@
 name: Selected XML hash runner
 
 on:
+  push:
+    branches:
+      - main
+      - master
+      - fix/selected-xml-ollama-ready-gate
   workflow_dispatch:
     inputs:
       limit_docs:

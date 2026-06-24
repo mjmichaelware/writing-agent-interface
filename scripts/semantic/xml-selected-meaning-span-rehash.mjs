@@ -3344,15 +3344,23 @@ function findExplicitBiblicalCitation(window) {
     const parsed = parseBiblicalAddress(match[1]);
     if (!parsed) continue;
     return {
-      paragraph,
-      ...parsed,
-      biblical_anchor_key: biblicalAnchorKey({
+      ...buildBiblicalFallbackCandidate({
+        paragraph,
+        biblical_anchor_label: parsed.biblical_anchor_label,
         book: parsed.book,
         chapter: parsed.chapter,
         verse_start: parsed.verse_start,
         verse_end: parsed.verse_end,
         motif_family: "explicit_citation",
+        relationship_type: "direct_citation",
+        correspondence_rationale: `The source paragraph names ${match[1]} explicitly.`,
+        summary: "source_grounded_seed",
+        confidence: 0.6,
+        fallback_reason: "deterministic_explicit_biblical_citation",
+        provider_status: "deterministic_biblical_fallback",
+        fallback_tag: "biblical_explicit_citation_seed",
       }),
+      paragraph,
       matched_text: match[1],
     };
   }

@@ -51,7 +51,9 @@ jobs:
       SEMANTIC_PROVIDER: ${{ inputs.provider || 'ollama_actions' }}
       SEMANTIC_MODEL: ${{ inputs.model || 'llama3.2:1b' }}
 
-      OLLAMA_BASE_URL: http://localhost:11434
+      OLLAMA_BASE_URL: http://localhost:11435
+      OLLAMA_HOST: 127.0.0.1:11435
+      OLLAMA_MODELS: /home/runner/.ollama/models
       OLLAMA_MODEL: ${{ inputs.model || 'llama3.2:1b' }}
       OLLAMA_NUM_CTX: "2048"
       OLLAMA_CONTEXT_CHARS: "4000"
@@ -84,6 +86,7 @@ jobs:
           node-version: "22"
 
       - name: Cache Ollama model data
+        id: ollama-cache
         uses: actions/cache@v4
         with:
           path: ~/.ollama/models
@@ -158,6 +161,13 @@ jobs:
           curl -fsSL https://ollama.com/install.sh | sh
 
           mkdir -p docs/forensics/audits
+          mkdir -p "$OLLAMA_MODELS"
+          echo "ollama_cache_hit=${{ steps.ollama-cache.outputs.cache-hit }}"
+          if [ -d "$OLLAMA_MODELS/manifests" ]; then
+            echo "ollama_cached_manifest_count=$(find "$OLLAMA_MODELS/manifests" -type f | wc -l)"
+          else
+            echo "ollama_cached_manifest_count=0"
+          fi
           : > "$SELECTED_XML_OLLAMA_LOG"
 
           nohup ollama serve > "$SELECTED_XML_OLLAMA_LOG" 2>&1 &

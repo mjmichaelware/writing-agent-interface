@@ -3267,11 +3267,19 @@ function fallbackParagraphQuote(paragraph) {
   return String(paragraph?.text || "").trim();
 }
 
-function fallbackSeedMetadata({ task, window, paragraph, quote, fallbackTag = "source_grounded_seed" }) {
+function fallbackSeedMetadata({
+  task,
+  window,
+  paragraph,
+  quote,
+  fallbackTag = "source_grounded_seed",
+  fallbackReason = "empty_or_rejected_model_output",
+  providerStatus = "deterministic_source_grounded_fallback",
+}) {
   return {
     fallback_generated: true,
-    fallback_reason: "empty_or_rejected_model_output",
-    provider_status: "deterministic_source_grounded_fallback",
+    fallback_reason: fallbackReason,
+    provider_status: providerStatus,
     fallback_tag: fallbackTag,
     source_doc_folder: window?.folder || null,
     document_xml_sha256: window?.document_xml_sha256 || null,
@@ -3339,6 +3347,282 @@ function findExplicitBiblicalCitation(window) {
   return null;
 }
 
+function buildBiblicalFallbackCandidate({
+  paragraph,
+  biblical_anchor_label,
+  book,
+  chapter,
+  verse_start,
+  verse_end = null,
+  motif_family,
+  relationship_type,
+  correspondence_rationale,
+  summary,
+  confidence,
+  fallback_reason,
+  provider_status,
+  fallback_tag,
+}) {
+  return {
+    paragraph,
+    biblical_anchor_label,
+    book,
+    chapter,
+    verse_start,
+    verse_end,
+    motif_family,
+    relationship_type,
+    correspondence_rationale,
+    summary,
+    confidence,
+    fallback_reason,
+    provider_status,
+    fallback_tag,
+  };
+}
+
+function inferBiblicalAllusionSeed(window) {
+  for (const paragraph of nonEmptyRenderableParagraphs(window)) {
+    const text = compactWhitespace(String(paragraph?.text || ""), 4000);
+    if (!text) continue;
+    const lower = text.toLowerCase();
+    const hasAny = (...needles) => needles.some((needle) => lower.includes(needle));
+    const hasAll = (...needles) => needles.every((needle) => lower.includes(needle));
+
+    if (hasAny("mirror", "reflection", "reflections", "polished shield")) {
+      return buildBiblicalFallbackCandidate({
+        paragraph,
+        biblical_anchor_label: "James 1:23-25",
+        book: "James",
+        chapter: 1,
+        verse_start: 23,
+        verse_end: 25,
+        motif_family: "mirror_reflection",
+        relationship_type: "symbolic_resonance",
+        correspondence_rationale: "Mirror and reflection language tracks James 1:23-25's self-examination image.",
+        summary: "source_grounded_seed",
+        confidence: 0.42,
+        fallback_reason: "deterministic_biblical_allusion_seed",
+        provider_status: "deterministic_biblical_fallback",
+        fallback_tag: "biblical_allusion_seed",
+      });
+    }
+
+    if (hasAny("garden", "serpent", "temptation", "fruit", "innocence", "shame", "nakedness", "exile", "fall")) {
+      return buildBiblicalFallbackCandidate({
+        paragraph,
+        biblical_anchor_label: "Genesis 2:15-17",
+        book: "Genesis",
+        chapter: 2,
+        verse_start: 15,
+        verse_end: 17,
+        motif_family: "garden_fall",
+        relationship_type: "symbolic_resonance",
+        correspondence_rationale: "Garden, temptation, exile, or fall language points to Genesis's garden narrative.",
+        summary: "source_grounded_seed",
+        confidence: 0.38,
+        fallback_reason: "deterministic_biblical_allusion_seed",
+        provider_status: "deterministic_biblical_fallback",
+        fallback_tag: "biblical_allusion_seed",
+      });
+    }
+
+    if (hasAny("offering", "blood", "altar", "lamb", "scapegoat", "binding", "substitution", "atonement", "sacrifice", "living sacrifice")) {
+      return buildBiblicalFallbackCandidate({
+        paragraph,
+        biblical_anchor_label: "Genesis 22:1-14",
+        book: "Genesis",
+        chapter: 22,
+        verse_start: 1,
+        verse_end: 14,
+        motif_family: "sacrifice",
+        relationship_type: "symbolic_resonance",
+        correspondence_rationale: "Sacrifice, binding, lamb, or altar language points to the Abraham/Isaac sacrifice pattern.",
+        summary: "source_grounded_seed",
+        confidence: 0.35,
+        fallback_reason: "deterministic_biblical_allusion_seed",
+        provider_status: "deterministic_biblical_fallback",
+        fallback_tag: "biblical_allusion_seed",
+      });
+    }
+
+    if (hasAny("bondage", "liberation", "wilderness", "desert", "manna", "plague", "crossing", "pillar", "cloud", "bitter water", "wandering", "deliverance")) {
+      return buildBiblicalFallbackCandidate({
+        paragraph,
+        biblical_anchor_label: "Exodus 13:21-22",
+        book: "Exodus",
+        chapter: 13,
+        verse_start: 21,
+        verse_end: 22,
+        motif_family: "exodus_wilderness",
+        relationship_type: "symbolic_resonance",
+        correspondence_rationale: "Bondage, wilderness, crossing, or provision language points to Exodus wilderness motifs.",
+        summary: "source_grounded_seed",
+        confidence: 0.34,
+        fallback_reason: "deterministic_biblical_allusion_seed",
+        provider_status: "deterministic_biblical_fallback",
+        fallback_tag: "biblical_allusion_seed",
+      });
+    }
+
+    if (hasAny("beast", "abyss", "pit", "seals", "trumpets", "babylon", "judgment", "white stone", "new name", "apocalyptic", "cosmic sign")) {
+      return buildBiblicalFallbackCandidate({
+        paragraph,
+        biblical_anchor_label: "Revelation 21:1-5",
+        book: "Revelation",
+        chapter: 21,
+        verse_start: 1,
+        verse_end: 5,
+        motif_family: "apocalyptic_judgment",
+        relationship_type: "symbolic_resonance",
+        correspondence_rationale: "Apocalyptic imagery points to Revelation's new-creation and judgment imagery.",
+        summary: "source_grounded_seed",
+        confidence: 0.33,
+        fallback_reason: "deterministic_biblical_allusion_seed",
+        provider_status: "deterministic_biblical_fallback",
+        fallback_tag: "biblical_allusion_seed",
+      });
+    }
+
+    if (hasAny("suffering", "silence", "leviathan", "behemoth", "friends", "lament", "courtroom", "accusation")) {
+      return buildBiblicalFallbackCandidate({
+        paragraph,
+        biblical_anchor_label: "Job 38:1-4",
+        book: "Job",
+        chapter: 38,
+        verse_start: 1,
+        verse_end: 4,
+        motif_family: "wisdom_job",
+        relationship_type: "symbolic_resonance",
+        correspondence_rationale: "Suffering, silence, accusation, or cosmic-question language points to Job's wisdom frame.",
+        summary: "source_grounded_seed",
+        confidence: 0.32,
+        fallback_reason: "deterministic_biblical_allusion_seed",
+        provider_status: "deterministic_biblical_fallback",
+        fallback_tag: "biblical_allusion_seed",
+      });
+    }
+
+    if (hasAny("flesh", "spirit", "old self", "new self", "death to self", "rebirth", "baptism", "grace", "law", "bondage", "inner war", "weakness", "power")) {
+      return buildBiblicalFallbackCandidate({
+        paragraph,
+        biblical_anchor_label: "Romans 7:14-25",
+        book: "Romans",
+        chapter: 7,
+        verse_start: 14,
+        verse_end: 25,
+        motif_family: "pauline_anthropology",
+        relationship_type: "symbolic_resonance",
+        correspondence_rationale: "Flesh/spirit, old/new self, or inner-war language tracks Paul's anthropology in Romans.",
+        summary: "source_grounded_seed",
+        confidence: 0.31,
+        fallback_reason: "deterministic_biblical_allusion_seed",
+        provider_status: "deterministic_biblical_fallback",
+        fallback_tag: "biblical_allusion_seed",
+      });
+    }
+
+    if (
+      hasAny("the word", "logos", "new name", "hidden name", "language breaking", "tongues") ||
+      (hasAny("word", "truth", "speech", "silence", "name", "renaming") && hasAny("light", "logos", "spoken", "new", "hidden"))
+    ) {
+      const johnSeed = hasAny("logos", "light", "first word", "spoken into being", "word made", "word became", "the word") || hasAll("word", "light")
+        ? buildBiblicalFallbackCandidate({
+            paragraph,
+            biblical_anchor_label: "John 1:1-5",
+            book: "John",
+            chapter: 1,
+            verse_start: 1,
+            verse_end: 5,
+            motif_family: "name_word_truth",
+            relationship_type: "symbolic_resonance",
+            correspondence_rationale: "Word, Logos, voice, or naming language tracks John 1's opening Word motif.",
+            summary: "source_grounded_seed",
+            confidence: 0.39,
+            fallback_reason: "deterministic_biblical_allusion_seed",
+            provider_status: "deterministic_biblical_fallback",
+            fallback_tag: "biblical_allusion_seed",
+          })
+        : buildBiblicalFallbackCandidate({
+            paragraph,
+            biblical_anchor_label: "Genesis 11:1-9",
+            book: "Genesis",
+            chapter: 11,
+            verse_start: 1,
+            verse_end: 9,
+            motif_family: "name_word_truth",
+            relationship_type: "symbolic_resonance",
+            correspondence_rationale: "Naming, speech, or language-breaking language tracks the Babel/Gen. 11 motif.",
+            summary: "source_grounded_seed",
+            confidence: 0.35,
+            fallback_reason: "deterministic_biblical_allusion_seed",
+            provider_status: "deterministic_biblical_fallback",
+            fallback_tag: "biblical_allusion_seed",
+          });
+      return johnSeed;
+    }
+
+    if (hasAny("void", "formless", "darkness", "deep", "creation", "first day") || (hasAny("light") && hasAny("void", "formless", "darkness", "deep", "creation"))) {
+      return buildBiblicalFallbackCandidate({
+        paragraph,
+        biblical_anchor_label: "Genesis 1:1-3",
+        book: "Genesis",
+        chapter: 1,
+        verse_start: 1,
+        verse_end: 3,
+        motif_family: "creation",
+        relationship_type: "symbolic_resonance",
+        correspondence_rationale: "Creation, darkness, deep water, or light language tracks Genesis 1:1-3.",
+        summary: "source_grounded_seed",
+        confidence: 0.36,
+        fallback_reason: "deterministic_biblical_allusion_seed",
+        provider_status: "deterministic_biblical_fallback",
+        fallback_tag: "biblical_allusion_seed",
+      });
+    }
+
+    if (hasAll("dust", "breath")) {
+      return buildBiblicalFallbackCandidate({
+        paragraph,
+        biblical_anchor_label: "Genesis 2:7",
+        book: "Genesis",
+        chapter: 2,
+        verse_start: 7,
+        verse_end: null,
+        motif_family: "creation_dust",
+        relationship_type: "symbolic_resonance",
+        correspondence_rationale: "Dust and breath language tracks Genesis 2:7's creation-of-man image.",
+        summary: "source_grounded_seed",
+        confidence: 0.37,
+        fallback_reason: "deterministic_biblical_allusion_seed",
+        provider_status: "deterministic_biblical_fallback",
+        fallback_tag: "biblical_allusion_seed",
+      });
+    }
+
+    if (hasAny("stardust", "return", "ruin", "death", "ashes") || hasAll("dust", "breath")) {
+      return buildBiblicalFallbackCandidate({
+        paragraph,
+        biblical_anchor_label: "Genesis 3:19",
+        book: "Genesis",
+        chapter: 3,
+        verse_start: 19,
+        verse_end: null,
+        motif_family: "creation_dust",
+        relationship_type: "symbolic_resonance",
+        correspondence_rationale: "Dust, stardust, or return language tracks Genesis 3:19's mortality clause.",
+        summary: "source_grounded_seed",
+        confidence: 0.37,
+        fallback_reason: "deterministic_biblical_allusion_seed",
+        provider_status: "deterministic_biblical_fallback",
+        fallback_tag: "biblical_allusion_seed",
+      });
+    }
+  }
+
+  return null;
+}
+
 function inferFallbackArchetypeSeed(paragraph) {
   const text = String(paragraph?.text || "");
   const trimmed = text.trim();
@@ -3357,10 +3641,36 @@ function inferFallbackArchetypeSeed(paragraph) {
 function buildDeterministicFallbackObservations({ task, window, contextCapsule }) {
   const paragraphs = nonEmptyRenderableParagraphs(window);
   const paragraph = paragraphs[0] || null;
-  if (!paragraph) return null;
+  if (!paragraph) {
+    if (task === "biblical_references") {
+      return {
+        observations: [],
+        renderParaKey: null,
+        quoteLength: 0,
+        fallbackReason: "no_renderable_paragraph",
+        providerStatus: "deterministic_no_anchor_found",
+        fallbackTag: "source_grounded_empty",
+        noAnchorFound: true,
+      };
+    }
+    return null;
+  }
 
   const quote = fallbackParagraphQuote(paragraph);
-  if (!quote) return null;
+  if (!quote) {
+    if (task === "biblical_references") {
+      return {
+        observations: [],
+        renderParaKey: paragraph.render_para_key,
+        quoteLength: 0,
+        fallbackReason: "no_explicit_or_inferable_biblical_anchor",
+        providerStatus: "deterministic_no_anchor_found",
+        fallbackTag: "source_grounded_empty",
+        noAnchorFound: true,
+      };
+    }
+    return null;
+  }
 
   const meta = fallbackSeedMetadata({ task, window, paragraph, quote });
 
@@ -3442,30 +3752,44 @@ function buildDeterministicFallbackObservations({ task, window, contextCapsule }
     }
     case "biblical_references": {
       const citation = findExplicitBiblicalCitation(window);
-      if (!citation) return null;
-      const biblicalQuote = fallbackParagraphQuote(citation.paragraph);
+      const inferred = citation || inferBiblicalAllusionSeed(window);
+      if (!inferred) {
+        return {
+          observations: [],
+          renderParaKey: paragraph.render_para_key,
+          quoteLength: quote.length,
+          fallbackReason: "no_explicit_or_inferable_biblical_anchor",
+          providerStatus: "deterministic_no_anchor_found",
+          fallbackTag: "source_grounded_empty",
+          noAnchorFound: true,
+        };
+      }
+      const biblicalQuote = fallbackParagraphQuote(inferred.paragraph);
       const biblicalMeta = fallbackSeedMetadata({
         task,
         window,
-        paragraph: citation.paragraph,
+        paragraph: inferred.paragraph,
         quote: biblicalQuote,
+        fallbackTag: inferred.fallback_tag || "source_grounded_seed",
+        fallbackReason: inferred.fallback_reason || "empty_or_rejected_model_output",
+        providerStatus: inferred.provider_status || "deterministic_source_grounded_fallback",
       });
       return {
         observations: [{
-          biblical_anchor_label: citation.biblical_anchor_label,
-          book: citation.book,
-          chapter: citation.chapter,
-          verse_start: citation.verse_start,
-          verse_end: citation.verse_end,
-          motif_family: "source_grounded_seed",
-          relationship_type: "direct_citation",
-          correspondence_rationale: "explicit verse-style citation present in source paragraph",
-          summary: "source_grounded_seed",
-          evidence: [fallbackEvidenceRef(window, citation.paragraph, biblicalQuote, "source")],
-          confidence: 0.15,
+          biblical_anchor_label: inferred.biblical_anchor_label,
+          book: inferred.book,
+          chapter: inferred.chapter,
+          verse_start: inferred.verse_start,
+          verse_end: inferred.verse_end,
+          motif_family: inferred.motif_family,
+          relationship_type: inferred.relationship_type,
+          correspondence_rationale: inferred.correspondence_rationale,
+          summary: inferred.summary,
+          evidence: [fallbackEvidenceRef(window, inferred.paragraph, biblicalQuote, "source")],
+          confidence: inferred.confidence,
           ...biblicalMeta,
         }],
-        renderParaKey: citation.paragraph.render_para_key,
+        renderParaKey: inferred.paragraph.render_para_key,
         quoteLength: biblicalQuote.length,
         fallbackReason: biblicalMeta.fallback_reason,
         providerStatus: biblicalMeta.provider_status,
@@ -3810,10 +4134,52 @@ function buildDeterministicFallbackTaskPacket({
   errorType = null,
 }) {
   const fallback = buildDeterministicFallbackObservations({ task, window, contextCapsule });
+
+  const isBiblical = task === "biblical_references";
+  const noAnchorFound = Boolean(fallback?.noAnchorFound);
+  if (isBiblical && noAnchorFound) {
+    console.warn(JSON.stringify({
+      event: "biblical_reference_no_anchor_found",
+      task,
+      window_index: windowIndex,
+      scene_window_id: window.scene_window_id,
+      render_para_key: fallback?.renderParaKey,
+      quote_length: fallback?.quoteLength,
+      fallback_reason: fallback?.fallbackReason,
+      provider_status: fallback?.providerStatus,
+      fallback_tag: fallback?.fallbackTag,
+    }));
+
+    return buildTaskPacket({
+      task,
+      window,
+      contextCapsule,
+      prompt,
+      promptHash,
+      outputText,
+      observations: [],
+      acceptedObservations: [],
+      rejectedObservations: [],
+      validationErrors: [],
+      evidenceErrors: [],
+      status: "empty",
+      failureReason: null,
+      errorType: null,
+      promptArtifactPath,
+      promptArtifactMetadataPath,
+      promptMode,
+      windowIndex,
+      fallbackGenerated: true,
+      fallbackReason: fallback.fallbackReason,
+      providerStatus: fallback.providerStatus,
+      fallbackTag: fallback.fallbackTag,
+    });
+  }
+
   if (!fallback?.observations?.length) return null;
 
   console.warn(JSON.stringify({
-    event: task === "meaning_spans" ? "meaning_span_fallback_seeded" : "task_fallback_seeded",
+    event: isBiblical ? "biblical_reference_fallback_seeded" : task === "meaning_spans" ? "meaning_span_fallback_seeded" : "task_fallback_seeded",
     task,
     window_index: windowIndex,
     scene_window_id: window.scene_window_id,
@@ -3822,6 +4188,11 @@ function buildDeterministicFallbackTaskPacket({
     fallback_reason: fallback.fallbackReason,
     provider_status: fallback.providerStatus,
     fallback_tag: fallback.fallbackTag,
+    ...(isBiblical ? {
+      biblical_anchor_label: fallback.observations[0]?.biblical_anchor_label || null,
+      relationship_type: fallback.observations[0]?.relationship_type || null,
+      motif_family: fallback.observations[0]?.motif_family || null,
+    } : {}),
   }));
 
   return buildTaskPacket({
@@ -4100,6 +4471,14 @@ async function finalizeTaskPacketFromRaw({
       raw_chars: String(rawText).length,
       raw_preview: String(rawText).slice(0, 600),
     }));
+  }
+
+  if (status === "failed") {
+    const fallbackPacket = fallbackFor({
+      validationErrors: repairedValidated.validationErrors,
+      evidenceErrors: repairedValidated.evidenceErrors,
+    });
+    if (fallbackPacket) return fallbackPacket;
   }
 
   return buildTaskPacket({

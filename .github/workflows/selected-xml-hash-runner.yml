@@ -52,6 +52,14 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Cache Ollama model data
+        uses: actions/cache@v4
+        with:
+          path: ~/.ollama/models
+          key: ollama-${{ runner.os }}-llama3.2-1b
+          restore-keys: |
+            ollama-${{ runner.os }}-
+
       - name: Install dependencies
         shell: bash
         run: |
@@ -108,13 +116,24 @@ jobs:
         run: |
           set -euo pipefail
 
+          dump_ollama_log() {
+            if [ -f "$SELECTED_XML_OLLAMA_LOG" ]; then
+              echo "===== Ollama log tail ====="
+              tail -n 200 "$SELECTED_XML_OLLAMA_LOG" || true
+            fi
+          }
+          trap 'status=$?; if [ "$status" -ne 0 ]; then dump_ollama_log; fi' EXIT
+
           curl -fsSL https://ollama.com/install.sh | sh
 
           mkdir -p docs/forensics/audits
+          : > "$SELECTED_XML_OLLAMA_LOG"
+
           nohup ollama serve > "$SELECTED_XML_OLLAMA_LOG" 2>&1 &
+          echo "ollama_pid=$!"
 
           ready="false"
-          for _ in $(seq 1 90); do
+          for _ in $(seq 1 180); do
             if curl -fsS "$OLLAMA_BASE_URL/api/tags" > /dev/null 2>&1; then
               ready="true"
               break
@@ -123,30 +142,32 @@ jobs:
           done
 
           if [ "$ready" != "true" ]; then
-            echo "::error::Ollama did not become ready."
-            tail -n 200 "$SELECTED_XML_OLLAMA_LOG" || true
+            echo "::error::Ollama did not become ready within 180 seconds."
             exit 1
           fi
 
           ollama pull "$OLLAMA_MODEL"
           curl -fsS "$OLLAMA_BASE_URL/api/tags" | tee docs/forensics/audits/ollama-tags.json > /dev/null
 
-          ollama run "$OLLAMA_MODEL" "Reply OK" | tee "$SELECTED_XML_OLLAMA_SMOKE_TEXT"
+          smoke_response="$(
+            curl -fsS "$OLLAMA_BASE_URL/api/generate" \
+              -H 'Content-Type: application/json' \
+              -d '{"model":"llama3.2:1b","prompt":"Reply with exactly OK.","stream":false}'
+          )"
+          printf '%s\n' "$smoke_response" | tee "$SELECTED_XML_OLLAMA_SMOKE" > /dev/null
 
-          if ! grep -q "OK" "$SELECTED_XML_OLLAMA_SMOKE_TEXT"; then
-            echo "::error::Ollama smoke test did not return OK."
-            cat "$SELECTED_XML_OLLAMA_SMOKE_TEXT" || true
-            tail -n 200 "$SELECTED_XML_OLLAMA_LOG" || true
+          smoke_text="$(printf '%s' "$smoke_response" | jq -r '.response // empty')"
+          printf '%s\n' "$smoke_text" | tee "$SELECTED_XML_OLLAMA_SMOKE_TEXT" > /dev/null
+
+          if [ -z "$smoke_text" ]; then
+            echo "::error::Ollama smoke test returned no response text."
             exit 1
           fi
 
-          cat > "$SELECTED_XML_OLLAMA_SMOKE" <<EOF
-          {
-            "model": "$OLLAMA_MODEL",
-            "smoke_ok": true,
-            "command": "ollama run $OLLAMA_MODEL \"Reply OK\""
-          }
-          EOF
+          if ! printf '%s' "$smoke_text" | grep -q 'OK'; then
+            echo "::error::Ollama smoke test did not return OK."
+            exit 1
+          fi
 
       - name: Run selected XML hash proof
         shell: bash

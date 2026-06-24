@@ -3341,6 +3341,13 @@ function findExplicitBiblicalCitation(window) {
     return {
       paragraph,
       ...parsed,
+      biblical_anchor_key: biblicalAnchorKey({
+        book: parsed.book,
+        chapter: parsed.chapter,
+        verse_start: parsed.verse_start,
+        verse_end: parsed.verse_end,
+        motif_family: "explicit_citation",
+      }),
       matched_text: match[1],
     };
   }
@@ -3366,6 +3373,13 @@ function buildBiblicalFallbackCandidate({
   return {
     paragraph,
     biblical_anchor_label,
+    biblical_anchor_key: biblicalAnchorKey({
+      book,
+      chapter,
+      verse_start,
+      verse_end: verse_end ?? null,
+      motif_family,
+    }),
     book,
     chapter,
     verse_start,

@@ -3007,6 +3007,12 @@ async function saveBadAiJson(raw, phase, extra = {}) {
 }
 
 const ollamaResultCache = new Map();
+let OLLAMA_PROVIDER_DEGRADED = false;
+
+function isOllamaTransportFailure(error) {
+  const text = String(error?.message || error || "");
+  return /(?:ollama not running|request timed out after \d+ms|fetch failed|ECONNRESET|ETIMEDOUT|network)/i.test(text);
+}
 
 function loadOllamaResultCache() {
   if (!existsSync(OLLAMA_CACHE_PATH)) return;
@@ -3111,6 +3117,9 @@ async function callGeminiSync(prompt) {
 
 async function callSemanticProviderSync({ task, prompt, schema }) {
   if (OLLAMA_PROVIDERS.has(PROVIDER)) {
+    if (OLLAMA_PROVIDER_DEGRADED) {
+      throw createProviderError("ollama_provider_degraded", `Skipping Ollama after a prior transport failure at ${OLLAMA_BASE_URL}`);
+    }
     const cacheKey = sha256Text(`${OLLAMA_MODEL}:${prompt}`);
     const cached = checkOllamaCache(cacheKey);
     if (cached !== null) {
@@ -3126,6 +3135,16 @@ async function callSemanticProviderSync({ task, prompt, schema }) {
         return result;
       } catch (error) {
         lastError = error;
+        if (isOllamaTransportFailure(error)) {
+          OLLAMA_PROVIDER_DEGRADED = true;
+          console.warn(JSON.stringify({
+            event: "provider_degraded",
+            provider: PROVIDER,
+            task,
+            error: String(error?.message || error).slice(0, 1200),
+          }));
+          throw createProviderError("ollama_provider_degraded", String(error?.message || error));
+        }
         if (!isRetryableProviderError(error) || attempt >= maxRetries) throw error;
         const delay = providerRetryDelayMs(attempt + 1);
         console.warn(JSON.stringify({ event: "provider_retry", provider: PROVIDER, task, attempt: attempt + 1, max_retries: maxRetries, delay_ms: delay, error: String(error?.message || error).slice(0, 1200) }));

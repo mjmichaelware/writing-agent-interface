@@ -6052,6 +6052,24 @@ async function main() {
     pathsOutDir: paths.outDir,
   });
   writeRunSummarySnapshot();
+  console.log(JSON.stringify({
+    event: "selected_xml_bootstrap",
+    selected_xml_driver: true,
+    semantic_run_id: semanticRun.id,
+    resume_existing: resumeExisting,
+    checkpoint_cache_enabled: taskCheckpointsEnabled,
+    ollama_cache_entries: ollamaResultCache.size,
+    semantic_windows_target: ACTIVE_RUN_STATE.semantic_windows_target,
+    total_task_window_units: ACTIVE_RUN_STATE.total_task_window_units,
+    completed_before_run: ACTIVE_RUN_STATE.completed_before_run,
+    skipped_due_to_checkpoint: ACTIVE_RUN_STATE.skipped_due_to_checkpoint,
+    remaining_after_run: ACTIVE_RUN_STATE.total_task_window_units - (ACTIVE_RUN_STATE.completed_before_run + ACTIVE_RUN_STATE.completed_this_run),
+    stage: "awaiting_first_semantic_window",
+    source_doc_count: docs.length,
+    total_windows: windows.length,
+    planned_semantic_windows: plannedSemanticWindows,
+    planned_skipped_windows: plannedSkippedWindows,
+  }));
 
   if (writeMode) {
     await insertRows("render_paragraphs?on_conflict=render_para_key", renderParagraphRowsForDb(semanticRun, docs));

@@ -1529,6 +1529,10 @@ function checkpointPacketFromMetadata({ checkpoint, task, window, contextCapsule
       prompt_artifact_path: promptArtifact?.promptPath || packet.prompt_artifact_path || null,
       prompt_artifact_metadata_path: promptArtifact?.metadataPath || packet.prompt_artifact_metadata_path || null,
       window_index: packet.window_index ?? null,
+      fallback_generated: Boolean(packet.fallback_generated),
+      fallback_reason: packet.fallback_reason || null,
+      provider_status: packet.provider_status || null,
+      fallback_tag: packet.fallback_tag || null,
       outputText: packet.output_text || JSON.stringify({ observations: packet.observations || [] }),
       outputHash: packet.raw_output_hash || sha256Text(String(packet.output_text || JSON.stringify({ observations: packet.observations || [] }))),
       contextCapsuleHash: contextCapsule.context_capsule_sha256,
@@ -1562,6 +1566,10 @@ function checkpointPacketMetadata(packet) {
     prompt_artifact_path: packet.prompt_artifact_path || null,
     prompt_artifact_metadata_path: packet.prompt_artifact_metadata_path || null,
     window_index: packet.window_index ?? null,
+    fallback_generated: Boolean(packet.fallback_generated),
+    fallback_reason: packet.fallback_reason || null,
+    provider_status: packet.provider_status || null,
+    fallback_tag: packet.fallback_tag || null,
   };
 }
 
@@ -3228,6 +3236,255 @@ function resolveEvidenceArray(items, window, roleHint = null) {
   return deduped;
 }
 
+function nonEmptyRenderableParagraphs(window) {
+  return safeArray(window?.render_paragraphs).filter((paragraph) => String(paragraph?.text || "").trim().length > 0);
+}
+
+function firstRenderableParagraph(window) {
+  return nonEmptyRenderableParagraphs(window)[0] || null;
+}
+
+function fallbackParagraphQuote(paragraph) {
+  return String(paragraph?.text || "").trim();
+}
+
+function fallbackSeedMetadata({ task, window, paragraph, quote, fallbackTag = "source_grounded_seed" }) {
+  return {
+    fallback_generated: true,
+    fallback_reason: "empty_or_rejected_model_output",
+    provider_status: "deterministic_source_grounded_fallback",
+    fallback_tag: fallbackTag,
+    source_doc_folder: window?.folder || null,
+    document_xml_sha256: window?.document_xml_sha256 || null,
+    render_para_key: paragraph?.render_para_key || null,
+    source_xml_paragraph_indexes: Array.isArray(paragraph?.source_xml_paragraph_indexes) ? paragraph.source_xml_paragraph_indexes : [],
+    fallback_quote_length: String(quote || "").length,
+    scene_window_id: window?.scene_window_id || null,
+    fallback_task: task,
+  };
+}
+
+function fallbackEvidenceRef(window, paragraph, quote, role = null) {
+  return resolveEvidenceRef({
+    render_para_key: paragraph.render_para_key,
+    quote,
+    role,
+  }, window, role);
+}
+
+function splitFallbackContrastQuote(text) {
+  const source = String(text || "").trim();
+  if (!source) return { left: "", right: "" };
+
+  const separators = [
+    /[.!?][\s]+/,
+    /[;:—–-][\s]+/,
+    /\s+(?:but|yet|however|though|although|instead|while|whereas)\s+/i,
+  ];
+
+  for (const separator of separators) {
+    const match = source.match(separator);
+    if (match && match.index !== undefined) {
+      const splitIndex = match.index + match[0].length;
+      const left = source.slice(0, splitIndex).trim();
+      const right = source.slice(splitIndex).trim();
+      if (left && right) return { left, right };
+    }
+  }
+
+  let splitIndex = Math.floor(source.length / 2);
+  while (splitIndex < source.length && source[splitIndex] !== " ") splitIndex += 1;
+  if (splitIndex <= 0 || splitIndex >= source.length) splitIndex = Math.floor(source.length / 2);
+
+  const left = source.slice(0, splitIndex).trim();
+  const right = source.slice(splitIndex).trim();
+  return {
+    left: left || source,
+    right: right || source,
+  };
+}
+
+function findExplicitBiblicalCitation(window) {
+  for (const paragraph of nonEmptyRenderableParagraphs(window)) {
+    const text = String(paragraph?.text || "");
+    const match = text.match(/((?:[1-3]\s*)?[A-Za-z][A-Za-z.]*(?:\s+[A-Za-z][A-Za-z.]*)*\s+\d+:\d+(?:-\d+)?)/);
+    if (!match) continue;
+    const parsed = parseBiblicalAddress(match[1]);
+    if (!parsed) continue;
+    return {
+      paragraph,
+      ...parsed,
+      matched_text: match[1],
+    };
+  }
+  return null;
+}
+
+function inferFallbackArchetypeSeed(paragraph) {
+  const text = String(paragraph?.text || "");
+  const trimmed = text.trim();
+  const firstPerson = /\b(i|me|my|mine|we|us|our|ours)\b/i.test(text);
+  const plural = /\b(we|us|our|ours)\b/i.test(text);
+  const dialogue = /^["“]/.test(trimmed) || /["”]/.test(trimmed);
+  const namedEntities = extractNamedEntities(text);
+
+  const character = namedEntities[0] || (firstPerson ? "narrator" : plural ? "collective" : "unresolved_male_figure");
+  const archetype = firstPerson ? "Ego" : dialogue ? "Persona" : "Persona";
+  const movement = "fragmentation";
+
+  return { character, archetype, movement };
+}
+
+function buildDeterministicFallbackObservations({ task, window, contextCapsule }) {
+  const paragraphs = nonEmptyRenderableParagraphs(window);
+  const paragraph = paragraphs[0] || null;
+  if (!paragraph) return null;
+
+  const quote = fallbackParagraphQuote(paragraph);
+  if (!quote) return null;
+
+  const meta = fallbackSeedMetadata({ task, window, paragraph, quote });
+
+  switch (task) {
+    case "meaning_spans": {
+      return {
+        observations: [{
+          kind: "claim",
+          summary: "source_grounded_seed",
+          evidence: [fallbackEvidenceRef(window, paragraph, quote, "source")],
+          thematic_weight: 0.15,
+          gravity: 0.15,
+          tension: 0.15,
+          confidence: 0.15,
+          notes: "source-grounded seed fallback after empty or rejected model output",
+          ...meta,
+        }],
+        renderParaKey: paragraph.render_para_key,
+        quoteLength: quote.length,
+        fallbackReason: meta.fallback_reason,
+        providerStatus: meta.provider_status,
+        fallbackTag: meta.fallback_tag,
+      };
+    }
+    case "dualisms": {
+      let leftQuote = quote;
+      let rightQuote = quote;
+      let leftParagraph = paragraph;
+      let rightParagraph = paragraph;
+      if (paragraphs.length >= 2) {
+        leftParagraph = paragraphs[0];
+        rightParagraph = paragraphs[1];
+        leftQuote = fallbackParagraphQuote(leftParagraph);
+        rightQuote = fallbackParagraphQuote(rightParagraph);
+      } else {
+        const split = splitFallbackContrastQuote(quote);
+        leftQuote = split.left;
+        rightQuote = split.right;
+      }
+
+      return {
+        observations: [{
+          axis: "source_grounded_seed",
+          polarity: "tension",
+          summary: "source_grounded_seed",
+          left_evidence: [fallbackEvidenceRef(window, leftParagraph, leftQuote, "left")],
+          right_evidence: [fallbackEvidenceRef(window, rightParagraph, rightQuote, "right")],
+          bridge_evidence: [],
+          confidence: 0.12,
+          ...meta,
+        }],
+        renderParaKey: paragraph.render_para_key,
+        quoteLength: quote.length,
+        fallbackReason: meta.fallback_reason,
+        providerStatus: meta.provider_status,
+        fallbackTag: meta.fallback_tag,
+      };
+    }
+    case "archetypes": {
+      const seed = inferFallbackArchetypeSeed(paragraph);
+      return {
+        observations: [{
+          character: seed.character,
+          archetype: seed.archetype,
+          archetype_gloss: "source_grounded_seed",
+          movement: seed.movement,
+          summary: "source_grounded_seed",
+          evidence: [fallbackEvidenceRef(window, paragraph, quote, "source")],
+          confidence: 0.15,
+          ...meta,
+        }],
+        renderParaKey: paragraph.render_para_key,
+        quoteLength: quote.length,
+        fallbackReason: meta.fallback_reason,
+        providerStatus: meta.provider_status,
+        fallbackTag: meta.fallback_tag,
+      };
+    }
+    case "biblical_references": {
+      const citation = findExplicitBiblicalCitation(window);
+      if (!citation) return null;
+      const biblicalQuote = fallbackParagraphQuote(citation.paragraph);
+      const biblicalMeta = fallbackSeedMetadata({
+        task,
+        window,
+        paragraph: citation.paragraph,
+        quote: biblicalQuote,
+      });
+      return {
+        observations: [{
+          biblical_anchor_label: citation.biblical_anchor_label,
+          book: citation.book,
+          chapter: citation.chapter,
+          verse_start: citation.verse_start,
+          verse_end: citation.verse_end,
+          motif_family: "source_grounded_seed",
+          relationship_type: "direct_citation",
+          correspondence_rationale: "explicit verse-style citation present in source paragraph",
+          summary: "source_grounded_seed",
+          evidence: [fallbackEvidenceRef(window, citation.paragraph, biblicalQuote, "source")],
+          confidence: 0.15,
+          ...biblicalMeta,
+        }],
+        renderParaKey: citation.paragraph.render_para_key,
+        quoteLength: biblicalQuote.length,
+        fallbackReason: biblicalMeta.fallback_reason,
+        providerStatus: biblicalMeta.provider_status,
+        fallbackTag: biblicalMeta.fallback_tag,
+      };
+    }
+    case "hyperlinks_parallelisms": {
+      const sourceParagraphs = nonEmptyRenderableParagraphs(window);
+      const sourceParagraph = sourceParagraphs[0] || paragraph;
+      const targetParagraph = sourceParagraphs[1] || null;
+      const sourceQuote = fallbackParagraphQuote(sourceParagraph);
+      const targetQuote = targetParagraph ? fallbackParagraphQuote(targetParagraph) : "";
+      const sourceEvidence = [fallbackEvidenceRef(window, sourceParagraph, sourceQuote, "source")];
+      const targetEvidence = targetParagraph && targetQuote
+        ? [fallbackEvidenceRef(window, targetParagraph, targetQuote, "target")]
+        : [];
+
+      return {
+        observations: [{
+          relationship_type: "parallelism",
+          summary: "source_grounded_seed",
+          source_evidence: sourceEvidence,
+          target_hint: null,
+          target_evidence: targetEvidence,
+          confidence: 0.12,
+          ...fallbackSeedMetadata({ task, window, paragraph: sourceParagraph, quote: sourceQuote }),
+        }],
+        renderParaKey: sourceParagraph.render_para_key,
+        quoteLength: sourceQuote.length,
+        fallbackReason: meta.fallback_reason,
+        providerStatus: meta.provider_status,
+        fallbackTag: meta.fallback_tag,
+      };
+    }
+    default:
+      return null;
+  }
+}
+
 function normalizeMeaningSpanObservation(raw, window) {
   return {
     task: "meaning_spans",
@@ -3459,6 +3716,15 @@ function buildTaskPacket({
   evidenceErrors = [],
   status,
   failureReason = null,
+  errorType = null,
+  promptArtifactPath = null,
+  promptArtifactMetadataPath = null,
+  promptMode = "default",
+  windowIndex = null,
+  fallbackGenerated = false,
+  fallbackReason = null,
+  providerStatus = null,
+  fallbackTag = null,
 }) {
   const rawOutputHash = sha256Text(String(outputText || ""));
   const normalizedOutputHash = sha256Text(canonicalJson({
@@ -3488,6 +3754,15 @@ function buildTaskPacket({
     outputText,
     outputHash: rawOutputHash,
     contextCapsuleHash: contextCapsule.context_capsule_sha256,
+    error_type: errorType,
+    prompt_artifact_path: promptArtifactPath,
+    prompt_artifact_metadata_path: promptArtifactMetadataPath,
+    prompt_mode: promptMode,
+    window_index: windowIndex,
+    fallback_generated: fallbackGenerated,
+    fallback_reason: fallbackReason,
+    provider_status: providerStatus,
+    fallback_tag: fallbackTag,
   };
 }
 
@@ -3498,13 +3773,103 @@ function classifyTaskPacketStatus(normalized) {
   return "empty";
 }
 
-async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt, promptHash, rawText, allowRepair = true }) {
+function buildDeterministicFallbackTaskPacket({
+  task,
+  window,
+  contextCapsule,
+  prompt,
+  promptHash,
+  outputText,
+  rejectedObservations = [],
+  validationErrors = [],
+  evidenceErrors = [],
+  promptArtifactPath = null,
+  promptArtifactMetadataPath = null,
+  promptMode = "default",
+  windowIndex = null,
+  errorType = null,
+}) {
+  const fallback = buildDeterministicFallbackObservations({ task, window, contextCapsule });
+  if (!fallback?.observations?.length) return null;
+
+  console.warn(JSON.stringify({
+    event: task === "meaning_spans" ? "meaning_span_fallback_seeded" : "task_fallback_seeded",
+    task,
+    window_index: windowIndex,
+    scene_window_id: window.scene_window_id,
+    render_para_key: fallback.renderParaKey,
+    quote_length: fallback.quoteLength,
+    fallback_reason: fallback.fallbackReason,
+    provider_status: fallback.providerStatus,
+    fallback_tag: fallback.fallbackTag,
+  }));
+
+  return buildTaskPacket({
+    task,
+    window,
+    contextCapsule,
+    prompt,
+    promptHash,
+    outputText,
+    observations: fallback.observations,
+    acceptedObservations: fallback.observations,
+    rejectedObservations,
+    validationErrors,
+    evidenceErrors,
+    status: "ok",
+    failureReason: null,
+    errorType,
+    promptArtifactPath,
+    promptArtifactMetadataPath,
+    promptMode,
+    windowIndex,
+    fallbackGenerated: true,
+    fallbackReason: fallback.fallbackReason,
+    providerStatus: fallback.providerStatus,
+    fallbackTag: fallback.fallbackTag,
+  });
+}
+
+async function finalizeTaskPacketFromRaw({
+  task,
+  window,
+  contextCapsule,
+  prompt,
+  promptHash,
+  rawText,
+  allowRepair = true,
+  promptArtifactPath = null,
+  promptArtifactMetadataPath = null,
+  promptMode = "default",
+  windowIndex = null,
+  errorType = null,
+}) {
   const schema = taskResponseSchema(task);
   const parsed = parseJsonish(rawText);
+  const fallbackFor = (diagnostics = {}) => buildDeterministicFallbackTaskPacket({
+    task,
+    window,
+    contextCapsule,
+    prompt,
+    promptHash,
+    outputText: rawText,
+    rejectedObservations: diagnostics.rejectedObservations || [],
+    validationErrors: diagnostics.validationErrors || [],
+    evidenceErrors: diagnostics.evidenceErrors || [],
+    promptArtifactPath,
+    promptArtifactMetadataPath,
+    promptMode,
+    windowIndex,
+    errorType: diagnostics.errorType || errorType || null,
+  });
 
   if (!parsed.ok) {
     if (!allowRepair || !isSyncProvider(PROVIDER)) {
       const badPath = await saveBadAiJson(rawText, "initial-parse-failed", { task, scene_window_id: window.scene_window_id, provider: PROVIDER });
+      const fallbackPacket = fallbackFor({
+        validationErrors: [parsed.error, `bad_json_path=${badPath}`],
+      });
+      if (fallbackPacket) return fallbackPacket;
       return buildTaskPacket({
         task,
         window,
@@ -3519,6 +3884,11 @@ async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt,
         evidenceErrors: [],
         status: "failed",
         failureReason: "parse_failed",
+        errorType: "parse_failed",
+        promptArtifactPath,
+        promptArtifactMetadataPath,
+        promptMode,
+        windowIndex,
       });
     }
 
@@ -3529,6 +3899,11 @@ async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt,
     if (validated.ok) {
       const status = classifyTaskPacketStatus(validated);
       if (status !== "failed") {
+        const fallbackPacket = status === "empty" ? fallbackFor({
+          validationErrors: validated.validationErrors,
+          evidenceErrors: validated.evidenceErrors,
+        }) : null;
+        if (fallbackPacket) return fallbackPacket;
         return buildTaskPacket({
           task,
           window,
@@ -3542,10 +3917,21 @@ async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt,
           validationErrors: validated.validationErrors,
           evidenceErrors: validated.evidenceErrors,
           status,
+          promptArtifactPath,
+          promptArtifactMetadataPath,
+          promptMode,
+          windowIndex,
         });
       }
 
       if (!allowRepair || !isSyncProvider(PROVIDER)) {
+        const fallbackPacket = fallbackFor({
+          rejectedObservations: validated.rejectedObservations,
+          validationErrors: validated.validationErrors,
+          evidenceErrors: validated.evidenceErrors,
+          errorType: "all_observations_rejected",
+        });
+        if (fallbackPacket) return fallbackPacket;
         return buildTaskPacket({
           task,
           window,
@@ -3560,6 +3946,11 @@ async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt,
           evidenceErrors: validated.evidenceErrors,
           status: "failed",
           failureReason: "all_observations_rejected",
+          errorType: "all_observations_rejected",
+          promptArtifactPath,
+          promptArtifactMetadataPath,
+          promptMode,
+          windowIndex,
         });
       }
 
@@ -3571,6 +3962,11 @@ async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt,
       });
     } else {
       if (!allowRepair || !isSyncProvider(PROVIDER)) {
+        const fallbackPacket = fallbackFor({
+          validationErrors: validated.errors,
+          errorType: "schema_invalid",
+        });
+        if (fallbackPacket) return fallbackPacket;
         return buildTaskPacket({
           task,
           window,
@@ -3585,6 +3981,11 @@ async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt,
           evidenceErrors: [],
           status: "failed",
           failureReason: "schema_invalid",
+          errorType: "schema_invalid",
+          promptArtifactPath,
+          promptArtifactMetadataPath,
+          promptMode,
+          windowIndex,
         });
       }
 
@@ -3599,6 +4000,11 @@ async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt,
 
   const repairedParsed = parseJsonish(rawText);
   if (!repairedParsed.ok) {
+    const fallbackPacket = fallbackFor({
+      validationErrors: [repairedParsed.error],
+      errorType: "parse_failed_after_repair",
+    });
+    if (fallbackPacket) return fallbackPacket;
     return buildTaskPacket({
       task,
       window,
@@ -3613,11 +4019,21 @@ async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt,
       evidenceErrors: [],
       status: "failed",
       failureReason: "parse_failed_after_repair",
+      errorType: "parse_failed_after_repair",
+      promptArtifactPath,
+      promptArtifactMetadataPath,
+      promptMode,
+      windowIndex,
     });
   }
 
   const repairedValidated = normalizeTaskPayload(task, repairedParsed.value, window, contextCapsule);
   if (!repairedValidated.ok) {
+    const fallbackPacket = fallbackFor({
+      validationErrors: repairedValidated.errors,
+      errorType: "schema_invalid_after_repair",
+    });
+    if (fallbackPacket) return fallbackPacket;
     return buildTaskPacket({
       task,
       window,
@@ -3632,12 +4048,22 @@ async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt,
       evidenceErrors: [],
       status: "failed",
       failureReason: "schema_invalid_after_repair",
+      errorType: "schema_invalid_after_repair",
+      promptArtifactPath,
+      promptArtifactMetadataPath,
+      promptMode,
+      windowIndex,
     });
   }
 
   const status = classifyTaskPacketStatus(repairedValidated);
 
   if (status === "empty") {
+    const fallbackPacket = fallbackFor({
+      validationErrors: repairedValidated.validationErrors,
+      evidenceErrors: repairedValidated.evidenceErrors,
+    });
+    if (fallbackPacket) return fallbackPacket;
     saveBadAiJson(rawText, "task-empty", {
       task,
       scene_window_id: window.scene_window_id,
@@ -3670,6 +4096,11 @@ async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt,
     evidenceErrors: repairedValidated.evidenceErrors,
     status,
     failureReason: status === "failed" ? "all_observations_rejected_after_repair" : null,
+    errorType: status === "failed" ? "all_observations_rejected_after_repair" : null,
+    promptArtifactPath,
+    promptArtifactMetadataPath,
+    promptMode,
+    windowIndex,
   });
 }
 
@@ -3705,6 +4136,19 @@ async function runSemanticTaskPacket({
 
   if (noAi) {
     const rawText = JSON.stringify({ observations: [] }, null, 2);
+    const fallbackPacket = buildDeterministicFallbackTaskPacket({
+      task,
+      window,
+      contextCapsule,
+      prompt: resolvedPrompt,
+      promptHash: resolvedPromptHash,
+      outputText: rawText,
+      promptArtifactPath: resolvedPromptArtifact.promptPath,
+      promptArtifactMetadataPath: resolvedPromptArtifact.metadataPath,
+      promptMode,
+      windowIndex,
+    });
+    if (fallbackPacket) return fallbackPacket;
     return buildTaskPacket({
       task,
       window,
@@ -3871,6 +4315,18 @@ function makeObservationSpanRow({ semanticRun, window, observation, taskPacket, 
   let subjectName = null;
   let evidence = [];
   let interpretation = observation.notes || observation.summary || null;
+  const fallbackGenerated = Boolean(observation.fallback_generated);
+  const fallbackMetadata = fallbackGenerated ? {
+    fallback_generated: true,
+    fallback_reason: observation.fallback_reason || null,
+    provider_status: observation.provider_status || null,
+    fallback_tag: observation.fallback_tag || null,
+    source_doc_folder: observation.source_doc_folder || window.folder || null,
+    source_xml_paragraph_indexes: observation.source_xml_paragraph_indexes || [],
+    render_para_key: observation.render_para_key || null,
+    fallback_quote_length: observation.fallback_quote_length || null,
+    scene_window_id: observation.scene_window_id || window.scene_window_id || null,
+  } : {};
 
   switch (taskPacket.task) {
     case "meaning_spans":
@@ -3946,6 +4402,11 @@ function makeObservationSpanRow({ semanticRun, window, observation, taskPacket, 
       scene_window_id: window.scene_window_id,
       source_document_xml_sha256: window.document_xml_sha256,
       evidence,
+      ...(fallbackGenerated ? {
+        source_doc_folder: observation.source_doc_folder || window.folder || null,
+        render_para_key: observation.render_para_key || evidence[0]?.render_para_key || null,
+        source_xml_paragraph_indexes: observation.source_xml_paragraph_indexes || evidence[0]?.source_xml_paragraph_indexes || [],
+      } : {}),
     },
     interpretation: interpretation || null,
     confidence: clamp01(observation.confidence, 0.5),
@@ -3964,6 +4425,7 @@ function makeObservationSpanRow({ semanticRun, window, observation, taskPacket, 
       context_capsule_sha256: taskPacket.contextCapsuleHash,
       normalized_observation_hash: normalizedObservationHash,
       canonical_anchor_key: observation.archetype_anchor_key || observation.biblical_anchor_key || null,
+      ...fallbackMetadata,
       observation,
     },
     active: true,

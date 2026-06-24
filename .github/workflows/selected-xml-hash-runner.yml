@@ -119,6 +119,9 @@ jobs:
 
           mkdir -p docs/forensics/audits/xml-selected-meaning-span-rehash-runs
           mkdir -p docs/forensics/audits
+          if [ ! -f "$SELECTED_XML_OLLAMA_RESULT_CACHE" ]; then
+            printf '{}\n' > "$SELECTED_XML_OLLAMA_RESULT_CACHE"
+          fi
 
       - name: Cache selected XML semantic result cache
         id: selected-xml-result-cache

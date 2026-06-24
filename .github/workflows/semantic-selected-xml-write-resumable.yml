@@ -235,13 +235,13 @@ jobs:
             echo "===== Applying migration: $migration_file ====="
 
             python3 - "$migration_file" > "$RUNNER_TEMP/migration_payload.json" <<'PY'
-import json
-import sys
-from pathlib import Path
+            import json
+            import sys
+            from pathlib import Path
 
-sql = Path(sys.argv[1]).read_text(encoding="utf-8")
-print(json.dumps({"query": sql}))
-PY
+            sql = Path(sys.argv[1]).read_text(encoding="utf-8")
+            print(json.dumps({"query": sql}))
+            PY
 
             http_code="$(
               curl -sS \
@@ -308,8 +308,8 @@ PY
               -X POST "${OLLAMA_BASE_URL}/api/generate" \
               -H "Content-Type: application/json" \
               --data-binary @- <<EOF
-{"model":"${OLLAMA_MODEL}","prompt":"Reply with exactly OK.","stream":false,"keep_alive":"${OLLAMA_KEEP_ALIVE}","options":{"temperature":0,"num_ctx":256}}
-EOF
+              {"model":"${OLLAMA_MODEL}","prompt":"Reply with exactly OK.","stream":false,"keep_alive":"${OLLAMA_KEEP_ALIVE}","options":{"temperature":0,"num_ctx":256}}
+              EOF
           )"
 
           SMOKE_END_MS="$(node -e 'console.log(Date.now())')"
@@ -340,15 +340,15 @@ EOF
           SMOKE_RESPONSE="$MODEL_RESPONSE" \
           SMOKE_OK="$SMOKE_OK" \
           SMOKE_MS="$SMOKE_MS" \
-          node > docs/forensics/audits/ollama-smoke.json <<'NODE_SMOKE'
-const data = {
-  model: process.env.SMOKE_MODEL || "",
-  smoke_ok: process.env.SMOKE_OK === "true",
-  smoke_elapsed_ms: Number(process.env.SMOKE_MS || 0),
-  response_preview: String(process.env.SMOKE_RESPONSE || "").slice(0, 200),
-};
-console.log(JSON.stringify(data, null, 2));
-NODE_SMOKE
+            node > docs/forensics/audits/ollama-smoke.json <<'NODE_SMOKE'
+            const data = {
+              model: process.env.SMOKE_MODEL || "",
+              smoke_ok: process.env.SMOKE_OK === "true",
+              smoke_elapsed_ms: Number(process.env.SMOKE_MS || 0),
+              response_preview: String(process.env.SMOKE_RESPONSE || "").slice(0, 200),
+            };
+            console.log(JSON.stringify(data, null, 2));
+            NODE_SMOKE
 
           if [ "$SMOKE_OK" != "true" ]; then
             echo "::error::Ollama smoke test failed."
@@ -424,40 +424,40 @@ NODE_SMOKE
           if [ -n "${SUMMARY:-}" ] && [ -f "$SUMMARY" ]; then
             echo "summary=$SUMMARY"
             node - "$SUMMARY" <<'NODE_SUMMARY'
-const fs = require("fs");
-const file = process.argv[2];
-const data = JSON.parse(fs.readFileSync(file, "utf8"));
-const picked = {
-  run_id: data.run_id,
-  provider: data.provider,
-  canonical_provider: data.canonical_provider,
-  provider_model: data.provider_model,
-  write_mode: data.write_mode,
-  no_ai: data.no_ai,
-  db_adapter: data.db_adapter,
-  management_api_hot_path: data.management_api_hot_path,
-  resume_existing: data.resume_existing,
-  soft_stop_minutes: data.soft_stop_minutes,
-  soft_stop_triggered: data.soft_stop_triggered,
-  completed_before_run: data.completed_before_run,
-  skipped_due_to_checkpoint: data.skipped_due_to_checkpoint,
-  completed_this_run: data.completed_this_run,
-  remaining_after_run: data.remaining_after_run,
-  semantic_windows_target: data.semantic_windows_target,
-  semantic_windows_attempted: data.semantic_windows_attempted,
-  semantic_windows: data.semantic_windows,
-  meaning_spans: data.meaning_spans,
-  total_meaning_spans: data.total_meaning_spans,
-  task_ok: data.task_ok,
-  task_empty: data.task_empty,
-  task_failed: data.task_failed,
-  task_counts: data.task_counts,
-  failed: data.failed,
-  last_error_type: data.last_error_type,
-  last_error_message: data.last_error_message,
-};
-console.log(JSON.stringify(picked, null, 2));
-NODE_SUMMARY
+            const fs = require("fs");
+            const file = process.argv[2];
+            const data = JSON.parse(fs.readFileSync(file, "utf8"));
+            const picked = {
+              run_id: data.run_id,
+              provider: data.provider,
+              canonical_provider: data.canonical_provider,
+              provider_model: data.provider_model,
+              write_mode: data.write_mode,
+              no_ai: data.no_ai,
+              db_adapter: data.db_adapter,
+              management_api_hot_path: data.management_api_hot_path,
+              resume_existing: data.resume_existing,
+              soft_stop_minutes: data.soft_stop_minutes,
+              soft_stop_triggered: data.soft_stop_triggered,
+              completed_before_run: data.completed_before_run,
+              skipped_due_to_checkpoint: data.skipped_due_to_checkpoint,
+              completed_this_run: data.completed_this_run,
+              remaining_after_run: data.remaining_after_run,
+              semantic_windows_target: data.semantic_windows_target,
+              semantic_windows_attempted: data.semantic_windows_attempted,
+              semantic_windows: data.semantic_windows,
+              meaning_spans: data.meaning_spans,
+              total_meaning_spans: data.total_meaning_spans,
+              task_ok: data.task_ok,
+              task_empty: data.task_empty,
+              task_failed: data.task_failed,
+              task_counts: data.task_counts,
+              failed: data.failed,
+              last_error_type: data.last_error_type,
+              last_error_message: data.last_error_message,
+            };
+            console.log(JSON.stringify(picked, null, 2));
+            NODE_SUMMARY
           else
             echo "No run-summary.json found."
           fi

@@ -2,6 +2,31 @@ name: Selected XML hash runner
 
 on:
   workflow_dispatch:
+    inputs:
+      limit_docs:
+        description: Optional selected XML document limit.
+        required: false
+        default: "1"
+      limit:
+        description: Optional selected XML window limit.
+        required: false
+        default: "20"
+      batch_size:
+        description: Selected XML batch size.
+        required: false
+        default: "1"
+      resume_existing:
+        description: Resume from existing checkpoint state.
+        required: false
+        default: "false"
+      provider:
+        description: Semantic provider.
+        required: false
+        default: ollama_actions
+      model:
+        description: Semantic model.
+        required: false
+        default: llama3.2:1b
 
 permissions:
   contents: read
@@ -16,13 +41,13 @@ jobs:
       SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
       SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF || vars.SUPABASE_PROJECT_REF }}
 
-      RESUME_EXISTING: "false"
+      RESUME_EXISTING: ${{ inputs.resume_existing || 'false' }}
       ALLOW_FAILURE_CONTINUE: "true"
-      SEMANTIC_PROVIDER: ollama_actions
-      SEMANTIC_MODEL: llama3.2:1b
+      SEMANTIC_PROVIDER: ${{ inputs.provider || 'ollama_actions' }}
+      SEMANTIC_MODEL: ${{ inputs.model || 'llama3.2:1b' }}
 
       OLLAMA_BASE_URL: http://localhost:11434
-      OLLAMA_MODEL: llama3.2:1b
+      OLLAMA_MODEL: ${{ inputs.model || 'llama3.2:1b' }}
       OLLAMA_NUM_CTX: "2048"
       OLLAMA_CONTEXT_CHARS: "4000"
       OLLAMA_TIMEOUT_MS: "300000"
@@ -34,9 +59,9 @@ jobs:
       MIN_SEMANTIC_WINDOW_CHARS: "20"
 
       SELECTED_XML_SCRIPT: scripts/semantic/xml-selected-meaning-span-rehash.mjs
-      SELECTED_XML_LIMIT_DOCS: "1"
-      SELECTED_XML_LIMIT: "20"
-      SELECTED_XML_BATCH_SIZE: "1"
+      SELECTED_XML_LIMIT_DOCS: ${{ inputs.limit_docs || '1' }}
+      SELECTED_XML_LIMIT: ${{ inputs.limit || '20' }}
+      SELECTED_XML_BATCH_SIZE: ${{ inputs.batch_size || '1' }}
       SELECTED_XML_RUN_LOG: docs/forensics/audits/selected-xml-hash-runner.log
       SELECTED_XML_RESULT_SIGNALS: docs/forensics/audits/selected-xml-result-signals.json
       SELECTED_XML_OLLAMA_LOG: docs/forensics/audits/ollama-server.log
@@ -51,6 +76,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
+
+      - name: Cache Ollama model data
+        uses: actions/cache@v4
+        with:
+          path: ~/.ollama/models
+          key: ollama-${{ runner.os }}-llama3.2-1b
+          restore-keys: |
+            ollama-${{ runner.os }}-
 
       - name: Install dependencies
         shell: bash
@@ -108,13 +141,24 @@ jobs:
         run: |
           set -euo pipefail
 
+          dump_ollama_log() {
+            if [ -f "$SELECTED_XML_OLLAMA_LOG" ]; then
+              echo "===== Ollama log tail ====="
+              tail -n 200 "$SELECTED_XML_OLLAMA_LOG" || true
+            fi
+          }
+          trap 'status=$?; if [ "$status" -ne 0 ]; then dump_ollama_log; fi' EXIT
+
           curl -fsSL https://ollama.com/install.sh | sh
 
           mkdir -p docs/forensics/audits
+          : > "$SELECTED_XML_OLLAMA_LOG"
+
           nohup ollama serve > "$SELECTED_XML_OLLAMA_LOG" 2>&1 &
+          echo "ollama_pid=$!"
 
           ready="false"
-          for _ in $(seq 1 90); do
+          for _ in $(seq 1 180); do
             if curl -fsS "$OLLAMA_BASE_URL/api/tags" > /dev/null 2>&1; then
               ready="true"
               break
@@ -123,30 +167,32 @@ jobs:
           done
 
           if [ "$ready" != "true" ]; then
-            echo "::error::Ollama did not become ready."
-            tail -n 200 "$SELECTED_XML_OLLAMA_LOG" || true
+            echo "::error::Ollama did not become ready within 180 seconds."
             exit 1
           fi
 
           ollama pull "$OLLAMA_MODEL"
           curl -fsS "$OLLAMA_BASE_URL/api/tags" | tee docs/forensics/audits/ollama-tags.json > /dev/null
 
-          ollama run "$OLLAMA_MODEL" "Reply OK" | tee "$SELECTED_XML_OLLAMA_SMOKE_TEXT"
+          smoke_response="$(
+            curl -fsS "$OLLAMA_BASE_URL/api/generate" \
+              -H 'Content-Type: application/json' \
+              -d "{\"model\":\"$OLLAMA_MODEL\",\"prompt\":\"Reply with exactly OK.\",\"stream\":false}"
+          )"
+          printf '%s\n' "$smoke_response" | tee "$SELECTED_XML_OLLAMA_SMOKE" > /dev/null
 
-          if ! grep -q "OK" "$SELECTED_XML_OLLAMA_SMOKE_TEXT"; then
-            echo "::error::Ollama smoke test did not return OK."
-            cat "$SELECTED_XML_OLLAMA_SMOKE_TEXT" || true
-            tail -n 200 "$SELECTED_XML_OLLAMA_LOG" || true
+          smoke_text="$(printf '%s' "$smoke_response" | jq -r '.response // empty')"
+          printf '%s\n' "$smoke_text" | tee "$SELECTED_XML_OLLAMA_SMOKE_TEXT" > /dev/null
+
+          if [ -z "$smoke_text" ]; then
+            echo "::error::Ollama smoke test returned no response text."
             exit 1
           fi
 
-          cat > "$SELECTED_XML_OLLAMA_SMOKE" <<EOF
-          {
-            "model": "$OLLAMA_MODEL",
-            "smoke_ok": true,
-            "command": "ollama run $OLLAMA_MODEL \"Reply OK\""
-          }
-          EOF
+          if ! printf '%s' "$smoke_text" | grep -q 'OK'; then
+            echo "::error::Ollama smoke test did not return OK."
+            exit 1
+          fi
 
       - name: Run selected XML hash proof
         shell: bash
@@ -160,28 +206,28 @@ jobs:
           echo "management_api_hot_path=false"
           echo "resume_existing=${RESUME_EXISTING}"
 
-          RESUME_EXISTING=false \
-          SEMANTIC_PROVIDER=ollama_actions \
-          SEMANTIC_MODEL=llama3.2:1b \
-          OLLAMA_BASE_URL=http://localhost:11434 \
-          OLLAMA_MODEL=llama3.2:1b \
-          OLLAMA_NUM_CTX=2048 \
-          OLLAMA_CONTEXT_CHARS=4000 \
-          OLLAMA_TIMEOUT_MS=300000 \
-          OLLAMA_KEEP_ALIVE=5m \
-          SOFT_STOP_MINUTES=10 \
-          MAX_TASK_RETRIES=2 \
-          MIN_SEMANTIC_WINDOW_WORDS=4 \
-          MIN_SEMANTIC_WINDOW_CHARS=20 \
-          ALLOW_FAILURE_CONTINUE=true \
+          RESUME_EXISTING="${RESUME_EXISTING}" \
+          SEMANTIC_PROVIDER="${SEMANTIC_PROVIDER}" \
+          SEMANTIC_MODEL="${SEMANTIC_MODEL}" \
+          OLLAMA_BASE_URL="${OLLAMA_BASE_URL}" \
+          OLLAMA_MODEL="${OLLAMA_MODEL}" \
+          OLLAMA_NUM_CTX="${OLLAMA_NUM_CTX}" \
+          OLLAMA_CONTEXT_CHARS="${OLLAMA_CONTEXT_CHARS}" \
+          OLLAMA_TIMEOUT_MS="${OLLAMA_TIMEOUT_MS}" \
+          OLLAMA_KEEP_ALIVE="${OLLAMA_KEEP_ALIVE}" \
+          SOFT_STOP_MINUTES="${SOFT_STOP_MINUTES}" \
+          MAX_TASK_RETRIES="${MAX_TASK_RETRIES}" \
+          MIN_SEMANTIC_WINDOW_WORDS="${MIN_SEMANTIC_WINDOW_WORDS}" \
+          MIN_SEMANTIC_WINDOW_CHARS="${MIN_SEMANTIC_WINDOW_CHARS}" \
+          ALLOW_FAILURE_CONTINUE="${ALLOW_FAILURE_CONTINUE}" \
           node scripts/semantic/xml-selected-meaning-span-rehash.mjs \
             --write \
-            --provider=ollama_actions \
-            --limit-docs=1 \
-            --limit=20 \
-            --batch-size=1 \
-            --soft-stop-minutes=10 \
-            --max-task-retries=2 \
+            --provider="${SEMANTIC_PROVIDER}" \
+            --limit-docs="${SELECTED_XML_LIMIT_DOCS}" \
+            --limit="${SELECTED_XML_LIMIT}" \
+            --batch-size="${SELECTED_XML_BATCH_SIZE}" \
+            --soft-stop-minutes="${SOFT_STOP_MINUTES}" \
+            --max-task-retries="${MAX_TASK_RETRIES}" \
             2>&1 | tee "$SELECTED_XML_RUN_LOG"
 
       - name: Print RESULT SIGNALS

@@ -3455,7 +3455,7 @@ function buildDeterministicFallbackObservations({ task, window, contextCapsule }
     case "hyperlinks_parallelisms": {
       const sourceParagraphs = nonEmptyRenderableParagraphs(window);
       const sourceParagraph = sourceParagraphs[0] || paragraph;
-      const targetParagraph = sourceParagraphs[1] || null;
+      const targetParagraph = sourceParagraphs[1] || sourceParagraph;
       const sourceQuote = fallbackParagraphQuote(sourceParagraph);
       const targetQuote = targetParagraph ? fallbackParagraphQuote(targetParagraph) : "";
       const sourceEvidence = [fallbackEvidenceRef(window, sourceParagraph, sourceQuote, "source")];
@@ -4283,6 +4283,24 @@ async function runSemanticTaskPacket({
         windowIndex,
       });
     }
+
+    const fallbackPacket = buildDeterministicFallbackTaskPacket({
+      task,
+      window,
+      contextCapsule,
+      prompt: resolvedPrompt,
+      promptHash: resolvedPromptHash,
+      outputText: JSON.stringify({ observations: [] }),
+      rejectedObservations: [],
+      validationErrors: [failureReason],
+      evidenceErrors: /render_para_key|Quote not found|Missing evidence anchors/i.test(failureReason) ? [failureReason] : [],
+      promptArtifactPath: resolvedPromptArtifact.promptPath,
+      promptArtifactMetadataPath: resolvedPromptArtifact.metadataPath,
+      promptMode,
+      windowIndex,
+      errorType,
+    });
+    if (fallbackPacket) return fallbackPacket;
 
     await saveBadAiJson("", "task-failed", { task, scene_window_id: window.scene_window_id, error: failureReason, provider: PROVIDER });
     return buildTaskPacket({

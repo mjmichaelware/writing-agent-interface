@@ -1,0 +1,245 @@
+name: Selected XML hash runner
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  selected-xml-hash-runner:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF || vars.SUPABASE_PROJECT_REF }}
+
+      RESUME_EXISTING: "false"
+      ALLOW_FAILURE_CONTINUE: "true"
+      SEMANTIC_PROVIDER: ollama_actions
+      SEMANTIC_MODEL: llama3.2:1b
+
+      OLLAMA_BASE_URL: http://localhost:11434
+      OLLAMA_MODEL: llama3.2:1b
+      OLLAMA_NUM_CTX: "2048"
+      OLLAMA_CONTEXT_CHARS: "4000"
+      OLLAMA_TIMEOUT_MS: "300000"
+      OLLAMA_KEEP_ALIVE: 5m
+
+      SOFT_STOP_MINUTES: "10"
+      MAX_TASK_RETRIES: "2"
+      MIN_SEMANTIC_WINDOW_WORDS: "4"
+      MIN_SEMANTIC_WINDOW_CHARS: "20"
+
+      SELECTED_XML_SCRIPT: scripts/semantic/xml-selected-meaning-span-rehash.mjs
+      SELECTED_XML_LIMIT_DOCS: "1"
+      SELECTED_XML_LIMIT: "20"
+      SELECTED_XML_BATCH_SIZE: "1"
+      SELECTED_XML_RUN_LOG: docs/forensics/audits/selected-xml-hash-runner.log
+      SELECTED_XML_RESULT_SIGNALS: docs/forensics/audits/selected-xml-result-signals.json
+      SELECTED_XML_OLLAMA_LOG: docs/forensics/audits/ollama-server.log
+      SELECTED_XML_OLLAMA_SMOKE: docs/forensics/audits/ollama-smoke.json
+      SELECTED_XML_OLLAMA_SMOKE_TEXT: docs/forensics/audits/ollama-smoke.txt
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ -f package-lock.json ]; then
+            npm ci
+          elif [ -f pnpm-lock.yaml ]; then
+            corepack enable
+            pnpm install --frozen-lockfile
+          elif [ -f yarn.lock ]; then
+            corepack enable
+            yarn install --frozen-lockfile
+          else
+            npm install
+          fi
+
+      - name: Prepare audit directories
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          mkdir -p docs/forensics/audits/xml-selected-meaning-span-rehash-runs
+          mkdir -p docs/forensics/audits
+
+      - name: Validate selected XML driver syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          test -f "$SELECTED_XML_SCRIPT"
+          node --check "$SELECTED_XML_SCRIPT"
+
+      - name: Verify Supabase configuration
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ -z "${SUPABASE_URL:-}" ]; then
+            echo "::error::SUPABASE_URL is not set."
+            exit 1
+          fi
+          if [ -z "${SUPABASE_SERVICE_ROLE_KEY:-}" ]; then
+            echo "::error::SUPABASE_SERVICE_ROLE_KEY is not set."
+            exit 1
+          fi
+          if [ -z "${SUPABASE_PROJECT_REF:-}" ]; then
+            echo "::error::SUPABASE_PROJECT_REF is not set."
+            exit 1
+          fi
+
+      - name: Install Ollama on Ubuntu
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          curl -fsSL https://ollama.com/install.sh | sh
+
+          mkdir -p docs/forensics/audits
+          nohup ollama serve > "$SELECTED_XML_OLLAMA_LOG" 2>&1 &
+
+          ready="false"
+          for _ in $(seq 1 90); do
+            if curl -fsS "$OLLAMA_BASE_URL/api/tags" > /dev/null 2>&1; then
+              ready="true"
+              break
+            fi
+            sleep 1
+          done
+
+          if [ "$ready" != "true" ]; then
+            echo "::error::Ollama did not become ready."
+            tail -n 200 "$SELECTED_XML_OLLAMA_LOG" || true
+            exit 1
+          fi
+
+          ollama pull "$OLLAMA_MODEL"
+          curl -fsS "$OLLAMA_BASE_URL/api/tags" | tee docs/forensics/audits/ollama-tags.json > /dev/null
+
+          ollama run "$OLLAMA_MODEL" "Reply OK" | tee "$SELECTED_XML_OLLAMA_SMOKE_TEXT"
+
+          if ! grep -q "OK" "$SELECTED_XML_OLLAMA_SMOKE_TEXT"; then
+            echo "::error::Ollama smoke test did not return OK."
+            cat "$SELECTED_XML_OLLAMA_SMOKE_TEXT" || true
+            tail -n 200 "$SELECTED_XML_OLLAMA_LOG" || true
+            exit 1
+          fi
+
+          cat > "$SELECTED_XML_OLLAMA_SMOKE" <<EOF
+          {
+            "model": "$OLLAMA_MODEL",
+            "smoke_ok": true,
+            "command": "ollama run $OLLAMA_MODEL \"Reply OK\""
+          }
+          EOF
+
+      - name: Run selected XML hash proof
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          echo "RESULT SIGNALS: starting selected XML hash proof"
+          echo "write_mode=true"
+          echo "no_ai=false"
+          echo "db_adapter=supabase_data_plane"
+          echo "management_api_hot_path=false"
+          echo "resume_existing=${RESUME_EXISTING}"
+
+          RESUME_EXISTING=false \
+          SEMANTIC_PROVIDER=ollama_actions \
+          SEMANTIC_MODEL=llama3.2:1b \
+          OLLAMA_BASE_URL=http://localhost:11434 \
+          OLLAMA_MODEL=llama3.2:1b \
+          OLLAMA_NUM_CTX=2048 \
+          OLLAMA_CONTEXT_CHARS=4000 \
+          OLLAMA_TIMEOUT_MS=300000 \
+          OLLAMA_KEEP_ALIVE=5m \
+          SOFT_STOP_MINUTES=10 \
+          MAX_TASK_RETRIES=2 \
+          MIN_SEMANTIC_WINDOW_WORDS=4 \
+          MIN_SEMANTIC_WINDOW_CHARS=20 \
+          ALLOW_FAILURE_CONTINUE=true \
+          node scripts/semantic/xml-selected-meaning-span-rehash.mjs \
+            --write \
+            --provider=ollama_actions \
+            --limit-docs=1 \
+            --limit=20 \
+            --batch-size=1 \
+            --soft-stop-minutes=10 \
+            --max-task-retries=2 \
+            2>&1 | tee "$SELECTED_XML_RUN_LOG"
+
+      - name: Print RESULT SIGNALS
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          latest_summary="$(
+            find docs/forensics/audits/xml-selected-meaning-span-rehash-runs \
+              -type f \
+              -name run-summary.json \
+              | sort \
+              | tail -n 1 || true
+          )"
+
+          if [ -z "${latest_summary:-}" ] || [ ! -f "$latest_summary" ]; then
+            echo "RESULT SIGNALS: no run-summary.json found"
+            exit 0
+          fi
+
+          jq -c '{
+            run_id,
+            provider,
+            canonical_provider,
+            provider_model,
+            write_mode,
+            no_ai,
+            db_adapter,
+            management_api_hot_path,
+            resume_existing,
+            semantic_windows_target,
+            semantic_windows_attempted,
+            semantic_windows,
+            meaning_spans,
+            total_meaning_spans,
+            task_ok,
+            task_empty,
+            task_failed,
+            failed,
+            last_error_type,
+            last_error_message
+          }' "$latest_summary" | tee "$SELECTED_XML_RESULT_SIGNALS"
+
+          echo "RESULT SIGNALS: $SELECTED_XML_RESULT_SIGNALS"
+          cat "$SELECTED_XML_RESULT_SIGNALS"
+
+      - name: Upload selected XML hash artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: selected-xml-hash-runner-artifacts
+          if-no-files-found: warn
+          path: |
+            docs/forensics/audits/selected-xml-hash-runner.log
+            docs/forensics/audits/selected-xml-result-signals.json
+            docs/forensics/audits/ollama-server.log
+            docs/forensics/audits/ollama-tags.json
+            docs/forensics/audits/ollama-smoke.json
+            docs/forensics/audits/ollama-smoke.txt
+            docs/forensics/audits/xml-selected-meaning-span-rehash-runs/**

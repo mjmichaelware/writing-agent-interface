@@ -134,6 +134,7 @@ jobs:
       SOFT_STOP_MINUTES: ${{ inputs.soft_stop_minutes || github.event.client_payload.config.soft_stop_minutes || github.event.client_payload.soft_stop_minutes || '330' }}
       SELECTED_XML_MAX_TASK_RETRIES: ${{ inputs.max_task_retries || github.event.client_payload.config.max_task_retries || github.event.client_payload.max_task_retries || '2' }}
       MAX_TASK_RETRIES: ${{ inputs.max_task_retries || github.event.client_payload.config.max_task_retries || github.event.client_payload.max_task_retries || '2' }}
+      CHECKPOINT_RUNNING_STALE_MINUTES: "5"
 
     steps:
       - name: Checkout

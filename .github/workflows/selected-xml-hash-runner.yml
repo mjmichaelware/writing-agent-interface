@@ -64,10 +64,11 @@ jobs:
       OLLAMA_HOST: 127.0.0.1:11435
       OLLAMA_MODELS: /home/runner/.ollama/models
       OLLAMA_MODEL: ${{ inputs.model || 'llama3.2:1b' }}
-      OLLAMA_NUM_CTX: "2048"
-      OLLAMA_CONTEXT_CHARS: "4000"
-      OLLAMA_TIMEOUT_MS: "60000"
-      OLLAMA_KEEP_ALIVE: 5m
+      OLLAMA_NUM_CTX: "512"
+      OLLAMA_CONTEXT_CHARS: "2000"
+      OLLAMA_TIMEOUT_MS: "1800000"
+      OLLAMA_KEEP_ALIVE: "30m"
+      CHECKPOINT_RUNNING_STALE_MINUTES: "5"
       PROVIDER_RETRY_MAX: "0"
 
       SOFT_STOP_MINUTES: ${{ inputs.soft_stop_minutes || '330' }}

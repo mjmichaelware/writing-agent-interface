@@ -73,6 +73,7 @@ jobs:
       SELECTED_XML_RUN_LOG: docs/forensics/audits/selected-xml-hash-runner.log
       SELECTED_XML_RESULT_SIGNALS: docs/forensics/audits/selected-xml-result-signals.json
       SELECTED_XML_OLLAMA_LOG: docs/forensics/audits/ollama-server.log
+      SELECTED_XML_OLLAMA_RESULT_CACHE: docs/forensics/audits/ollama-result-cache.json
       SELECTED_XML_OLLAMA_SMOKE: docs/forensics/audits/ollama-smoke.json
       SELECTED_XML_OLLAMA_SMOKE_TEXT: docs/forensics/audits/ollama-smoke.txt
 
@@ -118,6 +119,37 @@ jobs:
 
           mkdir -p docs/forensics/audits/xml-selected-meaning-span-rehash-runs
           mkdir -p docs/forensics/audits
+
+      - name: Cache selected XML semantic result cache
+        id: selected-xml-result-cache
+        uses: actions/cache@v4
+        with:
+          path: docs/forensics/audits/ollama-result-cache.json
+          key: selected-xml-result-cache-${{ runner.os }}-${{ inputs.model || 'llama3.2:1b' }}-${{ hashFiles('scripts/semantic/xml-selected-meaning-span-rehash.mjs') }}
+          restore-keys: |
+            selected-xml-result-cache-${{ runner.os }}-${{ inputs.model || 'llama3.2:1b' }}-
+
+      - name: Emit early selected XML cache state
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          echo "selected_xml_driver=true"
+          echo "resume_existing=${RESUME_EXISTING}"
+          echo "semantic_provider=${SEMANTIC_PROVIDER}"
+          echo "semantic_model=${SEMANTIC_MODEL}"
+          echo "ollama_model_cache_hit=${{ steps.ollama-cache.outputs.cache-hit }}"
+          echo "selected_xml_result_cache_hit=${{ steps.selected-xml-result-cache.outputs.cache-hit }}"
+          if [ -f "$SELECTED_XML_OLLAMA_RESULT_CACHE" ]; then
+            echo "selected_xml_result_cache_entries=$(jq 'keys | length' "$SELECTED_XML_OLLAMA_RESULT_CACHE")"
+          else
+            echo "selected_xml_result_cache_entries=0"
+          fi
+          if [ -f "$SELECTED_XML_OLLAMA_LOG" ]; then
+            echo "selected_xml_ollama_log_present=true"
+          else
+            echo "selected_xml_ollama_log_present=false"
+          fi
 
       - name: Validate selected XML driver syntax
         shell: bash

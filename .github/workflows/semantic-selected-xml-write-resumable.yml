@@ -303,14 +303,7 @@ jobs:
           echo "===== Quick model smoke test ====="
           SMOKE_START_MS="$(node -e 'console.log(Date.now())')"
 
-          RESPONSE="$(
-            curl -sS \
-              -X POST "${OLLAMA_BASE_URL}/api/generate" \
-              -H "Content-Type: application/json" \
-              --data-binary @- <<EOF
-              {"model":"${OLLAMA_MODEL}","prompt":"Reply with exactly OK.","stream":false,"keep_alive":"${OLLAMA_KEEP_ALIVE}","options":{"temperature":0,"num_ctx":256}}
-              EOF
-          )"
+          RESPONSE="$(printf '%s' "{\"model\":\"${OLLAMA_MODEL}\",\"prompt\":\"Reply with exactly OK.\",\"stream\":false,\"keep_alive\":\"${OLLAMA_KEEP_ALIVE}\",\"options\":{\"temperature\":0,\"num_ctx\":256}}" | curl -sS -X POST "${OLLAMA_BASE_URL}/api/generate" -H "Content-Type: application/json" --data-binary @-)"
 
           SMOKE_END_MS="$(node -e 'console.log(Date.now())')"
           SMOKE_MS="$((SMOKE_END_MS - SMOKE_START_MS))"
@@ -405,6 +398,7 @@ jobs:
           node "$SELECTED_XML_SCRIPT"
 
       - name: Print compact run summary
+        continue-on-error: true
         if: always()
         shell: bash
         run: |

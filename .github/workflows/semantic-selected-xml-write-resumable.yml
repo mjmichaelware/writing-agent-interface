@@ -329,19 +329,9 @@ jobs:
             SMOKE_OK="false"
           fi
 
-          SMOKE_MODEL="$OLLAMA_MODEL" \
-          SMOKE_RESPONSE="$MODEL_RESPONSE" \
-          SMOKE_OK="$SMOKE_OK" \
-          SMOKE_MS="$SMOKE_MS" \
-            node > docs/forensics/audits/ollama-smoke.json <<'NODE_SMOKE'
-            const data = {
-              model: process.env.SMOKE_MODEL || "",
-              smoke_ok: process.env.SMOKE_OK === "true",
-              smoke_elapsed_ms: Number(process.env.SMOKE_MS || 0),
-              response_preview: String(process.env.SMOKE_RESPONSE || "").slice(0, 200),
-            };
-            console.log(JSON.stringify(data, null, 2));
-            NODE_SMOKE
+          SMOKE_MODEL="$OLLAMA_MODEL" SMOKE_RESPONSE="$MODEL_RESPONSE" SMOKE_OK="$SMOKE_OK" SMOKE_MS="$SMOKE_MS" \
+          node -e 'const d={model:process.env.SMOKE_MODEL||"",smoke_ok:process.env.SMOKE_OK==="true",smoke_elapsed_ms:Number(process.env.SMOKE_MS||0),response_preview:String(process.env.SMOKE_RESPONSE||"").slice(0,200)};process.stdout.write(JSON.stringify(d,null,2)+"\n")' \
+          > docs/forensics/audits/ollama-smoke.json
 
           if [ "$SMOKE_OK" != "true" ]; then
             echo "::error::Ollama smoke test failed."
@@ -403,58 +393,23 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-
           echo "===== Latest run-summary.json ====="
-
-          SUMMARY="$(
-            find docs/forensics/audits/xml-selected-meaning-span-rehash-runs \
-              -type f \
-              -name run-summary.json \
-              2>/dev/null \
-              | sort \
-              | tail -n 1 || true
-          )"
-
-          if [ -n "${SUMMARY:-}" ] && [ -f "$SUMMARY" ]; then
-            echo "summary=$SUMMARY"
-            node - "$SUMMARY" <<'NODE_SUMMARY'
-            const fs = require("fs");
-            const file = process.argv[2];
-            const data = JSON.parse(fs.readFileSync(file, "utf8"));
-            const picked = {
-              run_id: data.run_id,
-              provider: data.provider,
-              canonical_provider: data.canonical_provider,
-              provider_model: data.provider_model,
-              write_mode: data.write_mode,
-              no_ai: data.no_ai,
-              db_adapter: data.db_adapter,
-              management_api_hot_path: data.management_api_hot_path,
-              resume_existing: data.resume_existing,
-              soft_stop_minutes: data.soft_stop_minutes,
-              soft_stop_triggered: data.soft_stop_triggered,
-              completed_before_run: data.completed_before_run,
-              skipped_due_to_checkpoint: data.skipped_due_to_checkpoint,
-              completed_this_run: data.completed_this_run,
-              remaining_after_run: data.remaining_after_run,
-              semantic_windows_target: data.semantic_windows_target,
-              semantic_windows_attempted: data.semantic_windows_attempted,
-              semantic_windows: data.semantic_windows,
-              meaning_spans: data.meaning_spans,
-              total_meaning_spans: data.total_meaning_spans,
-              task_ok: data.task_ok,
-              task_empty: data.task_empty,
-              task_failed: data.task_failed,
-              task_counts: data.task_counts,
-              failed: data.failed,
-              last_error_type: data.last_error_type,
-              last_error_message: data.last_error_message,
-            };
-            console.log(JSON.stringify(picked, null, 2));
-            NODE_SUMMARY
-          else
-            echo "No run-summary.json found."
-          fi
+          SUMMARY_FILE="$(find docs/forensics/audits/xml-selected-meaning-span-rehash-runs -type f -name run-summary.json 2>/dev/null | sort | tail -n 1 || true)"
+          SUMMARY_FILE="$SUMMARY_FILE" node -e '
+          const fs = require("fs");
+          const f = process.env.SUMMARY_FILE || "";
+          if (!f) { console.log("summary_file=not_found"); process.exit(0); }
+          try {
+            const data = JSON.parse(fs.readFileSync(f, "utf8"));
+            const keys = ["run_id","provider","canonical_provider","provider_model","write_mode","no_ai","db_adapter","management_api_hot_path","resume_existing","soft_stop_minutes","soft_stop_triggered","completed_before_run","skipped_due_to_checkpoint","completed_this_run","remaining_after_run","semantic_windows_target","semantic_windows_attempted","semantic_windows","meaning_spans","total_meaning_spans","task_ok","task_empty","task_failed","task_counts","failed","last_error_type","last_error_message"];
+            const out = {};
+            keys.forEach(function(k) { out[k] = data[k]; });
+            console.log("summary=" + f);
+            console.log(JSON.stringify(out, null, 2));
+          } catch (e) {
+            console.log("summary_parse_error=" + String(e.message));
+          }
+          '
 
       - name: Upload selected XML semantic artifacts
         if: always()

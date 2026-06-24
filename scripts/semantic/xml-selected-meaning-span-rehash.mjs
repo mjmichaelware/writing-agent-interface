@@ -3425,6 +3425,7 @@ function buildDeterministicFallbackObservations({ task, window, contextCapsule }
         observations: [{
           character: seed.character,
           archetype: seed.archetype,
+          archetype_anchor_key: archetypeAnchorKey(seed.archetype),
           archetype_gloss: "source_grounded_seed",
           movement: seed.movement,
           summary: "source_grounded_seed",
@@ -4480,6 +4481,7 @@ function buildArchetypeAnchorRowsFromTaskPackets(taskPackets) {
   for (const packet of taskPackets) {
     if (packet.task !== "archetypes") continue;
     for (const observation of packet.accepted_observations) {
+      if (!observation.archetype_anchor_key) continue;
       rows.push({
         anchor_key: observation.archetype_anchor_key,
         canonical_label: observation.archetype,
@@ -4493,7 +4495,7 @@ function buildArchetypeAnchorRowsFromTaskPackets(taskPackets) {
       });
     }
   }
-  return uniqueBy(rows, (row) => row.anchor_key).sort((a, b) => a.anchor_key.localeCompare(b.anchor_key));
+  return uniqueBy(rows.filter((row) => Boolean(row.anchor_key)), (row) => row.anchor_key).sort((a, b) => a.anchor_key.localeCompare(b.anchor_key));
 }
 
 function buildBiblicalAnchorRowsFromTaskPackets({ semanticRun, taskPackets }) {

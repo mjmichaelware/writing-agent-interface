@@ -68,6 +68,14 @@ on:
         options:
           - "true"
           - "false"
+      resume:
+        description: "Resume from checkpoints — skip (window, task) pairs already written to semantic_window_task_checkpoints."
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
 
 permissions:
   contents: read
@@ -426,6 +434,8 @@ jobs:
           [ -n "${{ inputs.limit_docs }}" ] && BASE_ARGS+=("--limit-docs=${{ inputs.limit_docs }}")
           [ -n "${{ inputs.limit }}" ] && BASE_ARGS+=("--limit=${{ inputs.limit }}")
           [ "${{ inputs.full_run_confirm }}" = "true" ] && BASE_ARGS+=("--full-run-confirm")
+
+          [ "${{ inputs.resume }}" = "true" ] && BASE_ARGS+=("--resume")
 
           case "${{ inputs.batch_action }}" in
             sync_write)

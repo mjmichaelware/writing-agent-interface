@@ -55,6 +55,7 @@ const CONTROLLED_SUBJECT_PLACEHOLDERS = [
 const argv = process.argv.slice(2);
 const args = new Set(argv);
 const writeMode = args.has("--write");
+const resumeMode = args.has("--resume");
 const registerSources = args.has("--register-sources");
 const noAi = args.has("--no-ai");
 const submitBatch = args.has("--submit-batch");
@@ -604,6 +605,24 @@ const TABLE_SCHEMAS = {
     active: "boolean",
     metadata: "jsonb",
   },
+  semantic_window_task_checkpoints: {
+    checkpoint_key: "text",
+    source_doc_folder: "text",
+    source_document_xml_sha256: "text",
+    scene_window_id: "text",
+    task_name: "text",
+    provider: "text",
+    model: "text",
+    prompt_version: "text",
+    prompt_sha256: "text",
+    status: "text",
+    semantic_run_id: "uuid",
+    attempt_count: "integer",
+    result_count: "integer",
+    last_error_type: "text",
+    last_error_message: "text",
+    metadata: "jsonb",
+  },
   biblical_references: {
     paragraph_id: "uuid",
     semantic_run_id: "uuid",
@@ -869,6 +888,68 @@ async function insertRows(tableArg, rows, _chunkSize = 100) {
   }
 
   return out;
+}
+
+// Checkpoint helpers — keyed on (folder, scene_window_id, task, prompt_version, provider, model)
+// so changing any of those forces a re-run of the affected windows.
+function makeCheckpointKey(folder, sceneWindowId, taskName) {
+  return sha256Text([folder, sceneWindowId, taskName, PROMPT_VERSION, CANONICAL_PROVIDER, PROVIDER_MODEL].join("|"));
+}
+
+async function loadCompletedCheckpoints() {
+  if (!writeMode || !resumeMode) return new Set();
+  try {
+    const path =
+      `semantic_window_task_checkpoints` +
+      `?prompt_version=eq.${encodeURIComponent(PROMPT_VERSION)}` +
+      `&provider=eq.${encodeURIComponent(CANONICAL_PROVIDER)}` +
+      `&model=eq.${encodeURIComponent(PROVIDER_MODEL)}` +
+      `&status=eq.done` +
+      `&select=checkpoint_key` +
+      `&limit=100000`;
+    const rows = await dataPlaneRequest(path);
+    const keys = new Set(rows.map((r) => r.checkpoint_key).filter(Boolean));
+    console.log(JSON.stringify({
+      event: "checkpoint_load",
+      resume_mode: true,
+      count: keys.size,
+      prompt_version: PROMPT_VERSION,
+      provider: CANONICAL_PROVIDER,
+      model: PROVIDER_MODEL,
+    }));
+    return keys;
+  } catch (err) {
+    console.warn(JSON.stringify({ event: "checkpoint_load_warn", error: String(err).slice(0, 300) }));
+    return new Set();
+  }
+}
+
+async function upsertWindowCheckpoints({ semanticRun, window, taskPackets }) {
+  if (!writeMode || !resumeMode) return;
+  const rows = taskPackets
+    .filter((p) => p.status === "ok" || p.status === "empty")
+    .map((p) => ({
+      checkpoint_key: makeCheckpointKey(window.folder, window.scene_window_id, p.task),
+      source_doc_folder: window.folder,
+      source_document_xml_sha256: window.document_xml_sha256 ?? "",
+      scene_window_id: window.scene_window_id,
+      task_name: p.task,
+      provider: CANONICAL_PROVIDER,
+      model: PROVIDER_MODEL,
+      prompt_version: PROMPT_VERSION,
+      prompt_sha256: p.promptHash ?? "",
+      status: "done",
+      semantic_run_id: semanticRun.id,
+      attempt_count: 1,
+      result_count: p.accepted_observations.length,
+    }));
+  if (!rows.length) return;
+  await insertRows(
+    "semantic_window_task_checkpoints?on_conflict=checkpoint_key",
+    rows
+  ).catch((err) => {
+    console.warn(JSON.stringify({ event: "checkpoint_write_warn", error: String(err).slice(0, 300) }));
+  });
 }
 
 // Runtime row update via PostgREST data plane (NOT Management API).
@@ -5671,11 +5752,14 @@ async function main() {
     ai_task_order: TASK_ORDER,
   }));
 
+  const completedCheckpoints = await loadCompletedCheckpoints();
+
   let totalProcessed = 0;
   let rawWindowsSeen = 0;
   let totalMeaningSpans = 0;
   let totalTaskFailures = 0;
   let skippedWindows = 0;
+  let skippedDueToCheckpoint = 0;
   let semanticWindows = 0;
   let totalBiblical = 0;
   let totalArchetypes = 0;
@@ -5721,6 +5805,27 @@ async function main() {
       continue; // skip all AI and artifact I/O for pre-classified junk windows
     }
 
+    // Checkpoint-skip: if every task for this window is already done, skip entirely.
+    if (resumeMode && completedCheckpoints.size > 0) {
+      const allDone = TASK_ORDER.every((task) =>
+        completedCheckpoints.has(makeCheckpointKey(window.folder, window.scene_window_id, task))
+      );
+      if (allDone) {
+        skippedDueToCheckpoint += 1;
+        semanticWindows += 1; // counts toward LIMIT so we don't re-process indefinitely
+        console.log(JSON.stringify({
+          event: "window_checkpoint_skip",
+          window_index: windowIndex,
+          scene_window_id: window.scene_window_id,
+          folder: window.folder,
+          skipped_due_to_checkpoint: skippedDueToCheckpoint,
+          semantic_windows_so_far: semanticWindows,
+        }));
+        if (LIMIT && semanticWindows >= LIMIT) break;
+        continue;
+      }
+    }
+
     // Semantic window: build context, run tasks, write artifacts
     semanticWindows += 1;
     const contextCapsule = buildNarrativeContextCapsule({ contextPack, chapters, narrativeSources, availableNarrativeContextMap, window });
@@ -5731,6 +5836,28 @@ async function main() {
 
     const taskPackets = [];
     for (const task of TASK_ORDER) {
+        // Per-task checkpoint: skip AI call if this (window, task) is already persisted.
+        if (resumeMode && completedCheckpoints.has(makeCheckpointKey(window.folder, window.scene_window_id, task))) {
+          taskPackets.push({
+            task,
+            task_type: task,
+            status: "checkpoint_skip",
+            prompt: "",
+            promptHash: "",
+            outputText: "",
+            outputHash: "",
+            contextCapsuleHash: "",
+            observations: [],
+            accepted_observations: [],
+            rejected_observations: [],
+            failure_reason: null,
+            validation_errors: [],
+            evidence_errors: [],
+            raw_output_hash: "",
+            normalized_output_hash: "",
+          });
+          continue;
+        }
         if (importedBatch) {
           const prompt = buildSemanticTaskPrompt({ task, window, contextCapsule });
           const promptHash = sha256Text(prompt);
@@ -5889,6 +6016,7 @@ async function main() {
       semantic_windows_target: LIMIT || null,
       semantic_windows_attempted: semanticWindows,
       semantic_windows: semanticWindows,
+      skipped_due_to_checkpoint: skippedDueToCheckpoint,
       meaning_spans: totalMeaningSpans,
       task_failures: totalTaskFailures,
       task_ok: taskOk,
@@ -5902,6 +6030,7 @@ async function main() {
       per_task_failures: perTaskFailures,
       no_ai: noAi,
       write_mode: writeMode,
+      resume_mode: resumeMode,
       run_hash: runHash,
     }));
 
@@ -6142,6 +6271,7 @@ async function main() {
     processed_windows: totalProcessed,
     total_processed_windows: totalProcessed,
     skipped_windows: skippedWindows,
+    skipped_due_to_checkpoint: skippedDueToCheckpoint,
     skip_reason_counts: skipReasonCounts,
     semantic_windows_target: LIMIT || null,
     semantic_windows_attempted: semanticWindows,
@@ -6162,6 +6292,7 @@ async function main() {
     observations_accepted: observationsAccepted,
     observations_rejected: observationsRejected,
     per_task_failures: perTaskFailures,
+    resume_mode: resumeMode,
     run_hash: runHash,
     narrative_context_sha256: NARRATIVE_CONTEXT_SHA256,
     xml_manifest_sha256: XML_MANIFEST_SHA256,

@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
+import { bus } from "@/core/runtimeEngine";
 
-const PIN = "1003";
+const PIN = "9187";
 const KEY = "nos-author-unlocked";
 const muted = "#8a857c";
 const gold = "#c9a96e";

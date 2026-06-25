@@ -14,19 +14,16 @@ export async function GET() {
     return NextResponse.json({ files: [], error: 'Supabase not configured' });
   }
 
-  // Pull the deduplicated Drive file registry from nos.drive_sources (100 unique files).
-  // Falls back to deduped nos.local_imports if drive_sources is empty.
+  // Primary: deduplicated Drive file registry (100 unique files)
   const { data: sources, error: srcErr } = await supabase
-    .schema('nos' as any)
-    .from('drive_sources')
-    .select('drive_file_id, drive_name, mime_type, modified_time, web_view_link')
-    .order('drive_name', { ascending: true });
+    .from('v_drive_sources')
+    .select('id, name, mime_type, web_view_link, modified_time');
 
   if (!srcErr && sources && sources.length > 0) {
     return NextResponse.json({
       files: sources.map((f: any) => ({
-        id:           f.drive_file_id,
-        name:         f.drive_name ?? f.drive_file_id,
+        id:           f.id,
+        name:         f.name ?? f.id,
         mimeType:     f.mime_type ?? '',
         modifiedTime: f.modified_time ?? '',
         webViewLink:  f.web_view_link ?? '',
@@ -36,12 +33,10 @@ export async function GET() {
     });
   }
 
-  // Fallback: deduplicate local_imports by drive_file_id
+  // Fallback: ingestion buffer deduplicated by drive_file_id (182 rows → unique files)
   const { data: imports, error: impErr } = await supabase
-    .schema('nos' as any)
-    .from('local_imports')
-    .select('drive_file_id, drive_name, local_basename, status')
-    .order('target_index', { ascending: true });
+    .from('v_local_imports')
+    .select('drive_file_id, drive_name, local_basename, status');
 
   if (impErr) {
     return NextResponse.json({ files: [], error: impErr.message });
@@ -53,9 +48,9 @@ export async function GET() {
     if (row.drive_file_id && !seen.has(row.drive_file_id)) {
       seen.add(row.drive_file_id);
       files.push({
-        id:       row.drive_file_id,
-        name:     row.drive_name ?? row.local_basename ?? row.drive_file_id,
-        status:   row.status,
+        id:     row.drive_file_id,
+        name:   row.drive_name ?? row.local_basename ?? row.drive_file_id,
+        status: row.status,
       });
     }
   }

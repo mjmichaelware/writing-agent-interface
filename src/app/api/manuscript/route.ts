@@ -8,31 +8,26 @@ function getSupabase() {
   return createClient(url, key);
 }
 
-// Returns LIKE patterns that match a chapter number in the folder name.
-// Covers: "chapter_1_", "chapter_1-", "chapter1_", "chapter1q", etc.
-function chapterFolderPatterns(n: number): string[] {
-  return [
-    `%chapter_${n}_%`,
-    `%chapter_${n}-%`,
-    `%chapter${n}_%`,
-    `%chapter${n}-%`,
-    `%chapter${n}q%`,
-  ];
+// Match "chapter_N" or "chapterN" NOT followed by another digit.
+// Uses JS regex (not SQL ILIKE) to avoid _ being treated as a wildcard.
+// Correctly matches: chapter_1_, chapter_1-, chapter1_, chapter1q
+// Does NOT match: chapter_10, chapter_13, chapter_10.5
+function matchesChapter(folder: string, n: number): boolean {
+  return new RegExp(`chapter[_\\-\\s]?${n}([^0-9]|$)`, 'i').test(folder);
 }
 
-// Among discovered folders for a chapter, pick the best one for reading:
-// - drop folders whose name signals they are notes/drafts (notes_p_, _notes_)
+// Pick the best source folder for display:
+// - drop "notes_p_" folders (alternate drafts, not reading prose)
 // - prefer folders whose name contains "final"
-// - otherwise take the first alphabetically (numeric prefix = original source order)
+// - otherwise take first alphabetically (numeric prefix = stable source order)
 function pickBestFolder(folders: string[]): string | null {
   if (folders.length === 0) return null;
   const clean = folders.filter((f) => !/notes_p_|_notes_/i.test(f));
   const pool = clean.length > 0 ? clean : folders;
-  const withFinal = pool.find((f) => /final/i.test(f));
-  return withFinal ?? pool.sort()[0];
+  return pool.find((f) => /final/i.test(f)) ?? pool.sort()[0];
 }
 
-// Prose filter: skip very short strings and chapter headings that bleed into render_paragraphs
+// Prose filter: skip very short lines and chapter heading lines
 function isProse(text: string): boolean {
   const t = text.trim();
   return t.length > 40 && !/^CHAPTER\s+\d+/i.test(t);
@@ -50,21 +45,19 @@ export async function GET(request: Request) {
     let targetFolder = sourceFolder;
 
     if (!targetFolder && chapterNumber > 0) {
-      const patterns = chapterFolderPatterns(chapterNumber);
-      const seen = new Set<string>();
+      // Fetch all distinct folders (only 16 total) and filter in JS with
+      // a proper regex — avoids SQL ILIKE treating _ as a single-char wildcard
+      // which causes chapter_1_ to incorrectly match chapter_10_, chapter_13_, etc.
+      const { data: folderRows } = await supabase
+        .from('render_paragraphs')
+        .select('source_doc_folder')
+        .eq('active', true);
 
-      for (const pattern of patterns) {
-        const { data } = await supabase
-          .from('render_paragraphs')
-          .select('source_doc_folder')
-          .ilike('source_doc_folder', pattern)
-          .eq('active', true)
-          .limit(100);
-
-        for (const row of data ?? []) seen.add(row.source_doc_folder);
-      }
-
-      targetFolder = pickBestFolder([...seen]);
+      const allFolders = [
+        ...new Set((folderRows ?? []).map((r: any) => r.source_doc_folder as string)),
+      ];
+      const matching = allFolders.filter((f) => matchesChapter(f, chapterNumber));
+      targetFolder = pickBestFolder(matching);
     }
 
     if (!targetFolder) {
@@ -82,10 +75,10 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
-    const prose = (data ?? []).filter((p) => isProse(p.text));
+    const prose = (data ?? []).filter((p: any) => isProse(p.text));
 
     return NextResponse.json(
-      prose.map((p) => ({
+      prose.map((p: any) => ({
         id: p.render_para_key,
         content: p.text,
         archetypal_weights: {},

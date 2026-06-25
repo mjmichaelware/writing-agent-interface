@@ -26,7 +26,7 @@
   /* Typography — Feature 115 (True Native Typography) */
   --measure: 65ch;
   --font-size-prose: clamp(1.125rem, 2.5vw, 1.5rem);
-  --indent-prose: clamp(1rem, 4vw, 4rem);
+  --indent-prose: 2em;
 
   /* Motion Easing — Part II */
   --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
@@ -254,6 +254,8 @@ body {
 /* --- Typography Utilities ---------------------------------- */
 
 .prose-paragraph {
+  display: block;
+  width: 100%;
   font-family: var(--font-prose, 'EB Garamond', Georgia, serif);
   font-size: var(--font-size-prose);
   line-height: var(--reader-line-height, 1.7);
@@ -266,6 +268,11 @@ body {
   text-rendering: optimizeLegibility;
   contain: content;
   margin-bottom: 2rem;
+  text-indent: var(--indent-prose);
+}
+
+.prose-paragraph:first-of-type {
+  text-indent: 0;
 }
 
 .prose-paragraph:first-of-type::first-letter {

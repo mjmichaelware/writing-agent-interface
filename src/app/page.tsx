@@ -16,35 +16,35 @@ export default function Page() {
 
   useEffect(() => {
     async function loadChapter() {
+      setLoading(true);
       try {
-        // Feature 205: Fetch from Supabase Hash Registry
-        const chaptersRes = await fetch(`/api/chapters`);
-        const chapters = await chaptersRes.json();
-        
-        // Find by number
-        const activeChapter = chapters.find((c: any) => c.chapter_number === chapterNum);
-
-        if (activeChapter) {
-            const manuscriptRes = await fetch(`/api/manuscript?chapterId=${activeChapter.id}`);
-            const data = await manuscriptRes.json();
+        // Primary: render_paragraphs from the semantic pipeline (deterministic source)
+        const res = await fetch(`/api/manuscript?chapterNumber=${chapterNum}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
             setBlocks(data);
-            setPartNumber(activeChapter.part_number || "I");
+            setPartNumber(chapterNum <= 9 ? "I" : "II");
+            return;
+          }
+        }
+
+        // Fallback: local TXT if render_paragraphs has no rows yet for this chapter
+        const localRes = await fetch(`/data/chapters/${chapterNum}.txt`);
+        if (localRes.ok) {
+          const text = await localRes.text();
+          const paragraphs = text
+            .split(/\n\s*\n/)
+            .map((p) => p.trim())
+            .filter((p) => p.length > 0 && !p.startsWith("Chapter"));
+          setBlocks(paragraphs);
         } else {
-            // Fallback: Local TXT
-            const localRes = await fetch(`/data/chapters/${chapterNum}.txt`);
-            if (localRes.ok) {
-                const text = await localRes.text();
-                const paragraphs = text
-                  .split(/\n\s*\n/)
-                  .map(p => p.trim())
-                  .filter(p => p.length > 0 && !p.startsWith("Chapter"));
-                setBlocks(paragraphs);
-            } else {
-                setBlocks([]);
-            }
+          setBlocks([]);
         }
       } catch (err) {
         console.error("Failed to load chapter data:", err);
+      } finally {
+        setLoading(false);
       }
     }
     loadChapter();

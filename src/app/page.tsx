@@ -7,17 +7,45 @@ import Layer2Cinema from "@/components/layers/Layer2Cinema";
 import Layer3Canvas from "@/components/layers/Layer3Canvas";
 import Layer4Panel from "@/components/layers/Layer4Panel";
 import ManuscriptCore from "@/components/layers/canvas/ManuscriptCore";
+import { bus } from "@/core/runtimeEngine";
 
 export default function Page() {
   const [blocks, setBlocks] = useState<any[]>([]);
   const [partNumber, setPartNumber] = useState("I");
   const [chapterNum, setChapterNum] = useState(1);
+  const [source, setSource] = useState<"db" | "txt" | "drive">("db");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const unsub = bus.on("chapter:set", (d: any) => {
+      if (d?.chapterNumber > 0) {
+        setChapterNum(d.chapterNumber);
+        if (d.source) setSource(d.source);
+      }
+    });
+    return unsub;
+  }, []);
 
   useEffect(() => {
     async function loadChapter() {
       setLoading(true);
       try {
+        if (source === "txt") {
+          const localRes = await fetch(`/data/chapters/${chapterNum}.txt`);
+          if (localRes.ok) {
+            const text = await localRes.text();
+            const paragraphs = text
+              .split(/\n\s*\n/)
+              .map((p) => p.trim())
+              .filter((p) => p.length > 0 && !p.startsWith("Chapter"));
+            setBlocks(paragraphs);
+          } else {
+            setBlocks([]);
+          }
+          setPartNumber(chapterNum <= 9 ? "I" : "II");
+          return;
+        }
+
         // Primary: render_paragraphs from the semantic pipeline (deterministic source)
         const res = await fetch(`/api/manuscript?chapterNumber=${chapterNum}`);
         if (res.ok) {
@@ -48,7 +76,7 @@ export default function Page() {
       }
     }
     loadChapter();
-  }, [chapterNum]);
+  }, [chapterNum, source]);
 
   const handleChapterChange = (n: number) => {
       setChapterNum(n);

@@ -240,7 +240,7 @@ export default function ManuscriptCore({
             return (
               <p
                 key={id}
-                data-para
+                data-para={idx}
                 data-index={idx}
                 data-paragraph-id={id}
                 id={id}

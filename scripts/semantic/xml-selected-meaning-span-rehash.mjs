@@ -904,7 +904,7 @@ async function loadCompletedCheckpoints() {
       `?prompt_version=eq.${encodeURIComponent(PROMPT_VERSION)}` +
       `&provider=eq.${encodeURIComponent(CANONICAL_PROVIDER)}` +
       `&model=eq.${encodeURIComponent(PROVIDER_MODEL)}` +
-      `&status=eq.done` +
+      `&status=in.(completed,empty)` +
       `&select=checkpoint_key` +
       `&limit=100000`;
     const rows = await dataPlaneRequest(path);
@@ -938,7 +938,7 @@ async function upsertWindowCheckpoints({ semanticRun, window, taskPackets }) {
       model: PROVIDER_MODEL,
       prompt_version: PROMPT_VERSION,
       prompt_sha256: p.promptHash ?? "",
-      status: "done",
+      status: p.status === "ok" ? "completed" : "empty",
       semantic_run_id: semanticRun.id,
       attempt_count: 1,
       result_count: p.accepted_observations.length,

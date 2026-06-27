@@ -10,7 +10,7 @@ export default function Synopsis() {
     >
       <h2 className="section-label text-center mb-10">Synopsis</h2>
       <div className="reader-column">
-        <p className="manuscript-paragraph-segment">
+        <p className="manuscript-paragraph-segment" style={{ textAlign: "center" }}>
           In <span className="font-hebrew">Hebron</span> in 1003 BCE, during the early days of King <span className="font-hebrew">David</span>'s rule over <span className="font-hebrew">Judah</span>, 
           sixteen-year-old <span className="font-hebrew">Dan</span> lives inside an oppressive home paralyzed by his father's hoarding grief. 
           <span className="font-hebrew">Dan</span> is a dreamwalker, a visionary uniquely capable of consciously stepping into a hidden world constructed from minute cells of universal dust. 

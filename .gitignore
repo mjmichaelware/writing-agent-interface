@@ -28,3 +28,6 @@ gcp-credentials*.json
 google-credentials*.json
 .gcp/
 credentials.json
+
+# Forensics audit dumps
+docs/forensics/

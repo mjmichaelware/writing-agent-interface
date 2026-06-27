@@ -8,6 +8,9 @@ import Layer3Canvas from "@/components/layers/Layer3Canvas";
 import Layer4Panel from "@/components/layers/Layer4Panel";
 import ManuscriptCore from "@/components/layers/canvas/ManuscriptCore";
 import { bus } from "@/core/runtimeEngine";
+import { initAudioListener } from "@/runtime/listeners/audioListener";
+import { initDistortionListener } from "@/runtime/listeners/distortionListener";
+import { initThematicListener } from "@/runtime/listeners/thematicListener";
 
 export default function Page() {
   const [blocks, setBlocks] = useState<any[]>([]);
@@ -24,6 +27,20 @@ export default function Page() {
       }
     });
     return unsub;
+  }, []);
+
+  useEffect(() => {
+    const unsubs = [
+      initThematicListener(),
+      initAudioListener(),
+      initDistortionListener(),
+    ];
+
+    return () => {
+      unsubs.forEach((unsub) => {
+        if (typeof unsub === "function") unsub();
+      });
+    };
   }, []);
 
   useEffect(() => {

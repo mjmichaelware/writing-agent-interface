@@ -42,49 +42,86 @@ export async function GET(request: Request) {
 
   // --- Semantic path: query render_paragraphs from the pipeline ---
   if ((chapterNumber > 0 || sourceFolder) && supabase) {
-    let targetFolder = sourceFolder;
+    const loadSemanticParagraphs = async (useCanonical: boolean) => {
+      let targetFolder = sourceFolder;
 
-    if (!targetFolder && chapterNumber > 0) {
-      // Fetch all distinct folders (only 16 total) and filter in JS with
-      // a proper regex — avoids SQL ILIKE treating _ as a single-char wildcard
-      // which causes chapter_1_ to incorrectly match chapter_10_, chapter_13_, etc.
-      const { data: folderRows } = await supabase
+      if (!targetFolder && chapterNumber > 0) {
+        // Fetch all distinct folders (only 16 total) and filter in JS with
+        // a proper regex — avoids SQL ILIKE treating _ as a single-char wildcard
+        // which causes chapter_1_ to incorrectly match chapter_10_, chapter_13_, etc.
+        let folderQuery = supabase
+          .from('render_paragraphs')
+          .select('source_doc_folder')
+          .eq('active', true);
+
+        if (useCanonical) {
+          folderQuery = folderQuery.eq('canonical', true);
+        }
+
+        const { data: folderRows, error: folderError } = await folderQuery;
+        if (folderError) throw folderError;
+
+        const allFolders = [
+          ...new Set((folderRows ?? []).map((r: any) => r.source_doc_folder as string)),
+        ];
+        const matching = allFolders.filter((f) => matchesChapter(f, chapterNumber));
+        targetFolder = pickBestFolder(matching);
+      }
+
+      if (!targetFolder) {
+        return NextResponse.json([]);
+      }
+
+      let paragraphQuery = supabase
         .from('render_paragraphs')
-        .select('source_doc_folder')
+        .select('render_para_key, render_index, text, source_doc_folder')
+        .eq('source_doc_folder', targetFolder)
         .eq('active', true);
 
-      const allFolders = [
-        ...new Set((folderRows ?? []).map((r: any) => r.source_doc_folder as string)),
-      ];
-      const matching = allFolders.filter((f) => matchesChapter(f, chapterNumber));
-      targetFolder = pickBestFolder(matching);
+      if (useCanonical) {
+        paragraphQuery = paragraphQuery.eq('canonical', true).order('render_index', { ascending: true });
+      } else {
+        paragraphQuery = paragraphQuery.order('chunk_index', { ascending: true });
+      }
+
+      const { data, error } = await paragraphQuery;
+      if (error) throw error;
+
+      const prose = (data ?? []).filter((p: any) => isProse(p.text));
+
+      return NextResponse.json(
+        prose.map((p: any) => ({
+          id: p.render_para_key,
+          content: p.text,
+          archetypal_weights: {},
+          dualism_map: {},
+        }))
+      );
+    };
+
+    try {
+      return await loadSemanticParagraphs(true);
+    } catch (error: any) {
+      const message = error?.message ?? String(error);
+      if (!/canonical/i.test(message)) {
+        return NextResponse.json({ error: message }, { status: 500 });
+      }
+
+      console.warn(
+        "render_paragraphs canonical filter unavailable; falling back to chunk_index ordering",
+        message
+      );
+
+      try {
+        return await loadSemanticParagraphs(false);
+      } catch (fallbackError: any) {
+        console.error("Manuscript fallback query failed:", fallbackError);
+        return NextResponse.json(
+          { error: fallbackError?.message ?? String(fallbackError) },
+          { status: 500 }
+        );
+      }
     }
-
-    if (!targetFolder) {
-      return NextResponse.json([]);
-    }
-
-    const { data, error } = await supabase
-      .from('render_paragraphs')
-      .select('render_para_key, render_index, text, source_doc_folder')
-      .eq('source_doc_folder', targetFolder)
-      .eq('active', true)
-      .order('render_index', { ascending: true });
-
-    if (error) {
-      return NextResponse.json({ error: error.message }, { status: 500 });
-    }
-
-    const prose = (data ?? []).filter((p: any) => isProse(p.text));
-
-    return NextResponse.json(
-      prose.map((p: any) => ({
-        id: p.render_para_key,
-        content: p.text,
-        archetypal_weights: {},
-        dualism_map: {},
-      }))
-    );
   }
 
   // --- Legacy path: chapterId against the paragraphs table ---

@@ -58,6 +58,7 @@ function applyToneToDOM(index: number, tone: Tone) {
 }
 
 let toneRafId: number | null = null;
+let lastTone: Tone | null = null;
 
 export function initThematicListener() {
   if (typeof window === "undefined") return () => {};
@@ -84,6 +85,18 @@ export function initThematicListener() {
         toneRafId = null;
       });
     }
+
+    if (
+      tone !== lastTone &&
+      (tone === "sacred" || tone === "descent") &&
+      typeof navigator !== "undefined" &&
+      "vibrate" in navigator &&
+      typeof navigator.vibrate === "function"
+    ) {
+      navigator.vibrate(10);
+    }
+
+    lastTone = tone;
 
     // Emit for other systems (Layer2Cinema, ArchetypesDirectory, etc.)
     bus.emit("theme:tone",    { tone, paraIndex: index, warmth });

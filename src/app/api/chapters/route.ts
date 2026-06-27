@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { query } from '@/lib/db';
 
+export const revalidate = 3600;
+
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const slug = searchParams.get('slug');
@@ -18,7 +20,9 @@ export async function GET(request: NextRequest) {
 
     // Try to find the chapter by manifest_id (man_XX) or chapter_number
     let chapterQuery = `SELECT * FROM chapters WHERE manifest_id = $1`;
-    let chapterParams = [slug.startsWith('man_') ? slug : `man_${slug.padStart(2, '0')}`];
+    let chapterParams: (string | number)[] = [
+      slug.startsWith('man_') ? slug : `man_${slug.padStart(2, '0')}`,
+    ];
 
     // Fallback: check if slug is just a number
     if (isNaN(parseInt(slug)) === false && !slug.startsWith('man_')) {

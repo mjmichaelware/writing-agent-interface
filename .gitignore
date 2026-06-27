@@ -19,3 +19,4 @@ credentials.json
 
 # Forensics audit dumps
 docs/forensics/
+.env.local

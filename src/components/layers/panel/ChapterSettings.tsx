@@ -34,6 +34,7 @@ function applyToRoot(s: Settings) {
   document.body.dataset.motion = s.motion ? "on" : "off";
   document.body.dataset.bionic = s.bionic ? "on" : "off";
   document.body.dataset.audio = s.audio ? "on" : "off";
+  r.setProperty("--audio-enabled", s.audio ? "1" : "0");
 }
 
 export default function ChapterSettings() {
@@ -102,7 +103,7 @@ export default function ChapterSettings() {
         </button>
         <button onClick={() => setField("audio", !s.audio)}
           className={`reader-toggle ${s.audio ? "on" : ""}`}>
-          Audio {s.audio ? "on" : "off"}
+          Listen {s.audio ? "on" : "off"}
         </button>
       </div>
       <button onClick={reset} className="reader-reset">Reset</button>

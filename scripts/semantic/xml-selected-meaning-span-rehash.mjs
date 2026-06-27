@@ -866,16 +866,23 @@ function makeCheckpointKey(folder, sceneWindowId, taskName) {
 async function loadCompletedCheckpoints() {
   if (!writeMode || !resumeMode) return new Set();
   try {
-    const path =
-      `semantic_window_task_checkpoints` +
-      `?prompt_version=eq.${encodeURIComponent(PROMPT_VERSION)}` +
-      `&provider=eq.${encodeURIComponent(CANONICAL_PROVIDER)}` +
-      `&model=eq.${encodeURIComponent(PROVIDER_MODEL)}` +
-      `&status=in.(completed,empty)` +
-      `&select=checkpoint_key` +
-      `&limit=100000`;
-    const rows = await dataPlaneRequest(path);
-    const keys = new Set(rows.map((r) => r.checkpoint_key).filter(Boolean));
+    const keys = new Set();
+    let offset = 0;
+    const pageSize = 1000;
+    while (true) {
+      const path =
+        `semantic_window_task_checkpoints` +
+        `?prompt_version=eq.${encodeURIComponent(PROMPT_VERSION)}` +
+        `&provider=eq.${encodeURIComponent(CANONICAL_PROVIDER)}` +
+        `&model=eq.${encodeURIComponent(PROVIDER_MODEL)}` +
+        `&status=in.(completed,empty)` +
+        `&select=checkpoint_key` +
+        `&limit=${pageSize}&offset=${offset}`;
+      const rows = await dataPlaneRequest(path);
+      for (const r of rows) if (r.checkpoint_key) keys.add(r.checkpoint_key);
+      if (rows.length < pageSize) break;
+      offset += pageSize;
+    }
     console.log(JSON.stringify({
       event: "checkpoint_load",
       resume_mode: true,

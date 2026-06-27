@@ -109,7 +109,8 @@ function loadSelectedFolders() {
   return readFileSync(truthPath, "utf8")
     .split("\n")
     .map(l => l.trim())
-    .filter(l => l && !l.startsWith("#"));
+    .filter(l => l.startsWith("- 0"))   // only folder entries under "Included XML doc folders:"
+    .map(l => l.replace(/^-\s+/, ""));  // strip leading "- "
 }
 
 function extractParagraphTexts(xmlText) {

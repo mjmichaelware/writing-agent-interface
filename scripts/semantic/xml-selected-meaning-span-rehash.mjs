@@ -4805,7 +4805,7 @@ async function main() {
   // Fail loudly: write mode with AI ran semantic windows but produced zero meaning_spans.
   // This indicates the model is too small, prompts are truncated, or the model returned empty JSON.
   // Raw model responses are saved in docs/forensics/audits/ai-bad-json/ for inspection.
-  if (writeMode && !noAi && semanticWindows > 0 && totalMeaningSpans === 0) {
+  if (writeMode && !noAi && semanticWindows > 0 && totalMeaningSpans === 0 && skippedDueToCheckpoint < semanticWindows) {
     const emptyRunMsg = [
       `Zero meaning_spans written after processing ${semanticWindows} semantic window(s).`,
       `task_empty=${taskEmpty} task_failed=${taskFailed} task_ok=${taskOk}`,

@@ -9,6 +9,7 @@ import Layer4Panel from "@/components/layers/Layer4Panel";
 import ManuscriptCore from "@/components/layers/canvas/ManuscriptCore";
 import { bus } from "@/core/runtimeEngine";
 import { initAudioListener } from "@/runtime/listeners/audioListener";
+import { initAudioPlaybackListener } from "@/runtime/listeners/audioPlaybackListener";
 import { initDistortionListener } from "@/runtime/listeners/distortionListener";
 import { initThematicListener } from "@/runtime/listeners/thematicListener";
 
@@ -33,6 +34,7 @@ export default function Page() {
     const unsubs = [
       initThematicListener(),
       initAudioListener(),
+      initAudioPlaybackListener(),
       initDistortionListener(),
     ];
 

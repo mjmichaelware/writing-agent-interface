@@ -19,9 +19,13 @@ const SECURITY_FILTERS = [
 
 type StandardParagraph = {
   id: string;
+  chapter_slug?: string | null;
   chapter_number: number;
+  chapter_version?: string | null;
+  paragraph_order?: number;
   chunk_index: number;
   content: string;
+  weights?: any;
   content_hash: string | null;
   canonical: boolean;
   archetypal_weights: any;
@@ -41,14 +45,25 @@ function applySecurityFilters(query: any) {
 }
 
 function mapParagraph(row: any, chapterNumber: number, overrides: Partial<StandardParagraph> = {}): StandardParagraph {
+  const weights =
+    row?.weights ??
+    row?.archetypal_weights ??
+    overrides.weights ??
+    overrides.archetypal_weights ??
+    {};
+
   return {
     id: String(row?.id ?? overrides.id ?? ''),
+    chapter_slug: row?.chapter_slug ?? overrides.chapter_slug ?? null,
     chapter_number: Number(row?.chapter_number ?? chapterNumber ?? overrides.chapter_number ?? 0),
+    chapter_version: row?.chapter_version ?? overrides.chapter_version ?? null,
+    paragraph_order: Number(row?.paragraph_order ?? row?.chunk_index ?? overrides.paragraph_order ?? overrides.chunk_index ?? 0),
     chunk_index: Number(row?.chunk_index ?? overrides.chunk_index ?? 0),
     content: String(row?.content ?? overrides.content ?? ''),
+    weights,
     content_hash: row?.content_hash ?? overrides.content_hash ?? null,
     canonical: Boolean(row?.canonical ?? overrides.canonical ?? false),
-    archetypal_weights: row?.archetypal_weights ?? overrides.archetypal_weights ?? null,
+    archetypal_weights: weights,
     dualism_map: row?.dualism_map ?? overrides.dualism_map ?? null,
     hebrew_spans: row?.hebrew_spans ?? overrides.hebrew_spans ?? null,
     metadata: row?.metadata ?? overrides.metadata ?? null,
@@ -101,6 +116,26 @@ async function loadRenderParagraphs(supabase: ReturnType<typeof getSupabase>, ch
   return query;
 }
 
+async function loadPromotedManuscriptParagraphs(
+  supabase: ReturnType<typeof getSupabase>,
+  chapterNumber: number
+) {
+  if (!supabase) return { data: null, error: new Error('Supabase not configured') };
+
+  const query = applySecurityFilters(
+    supabase
+      .from('manuscript_paragraphs')
+      .select(
+        'id, content, chapter_slug, chapter_number, chapter_version, paragraph_order, dualism_map, source_doc_folder, archetypal_weights(paragraph_id, shadow, persona, anima, self)'
+      )
+      .eq('chapter_number', chapterNumber)
+      .eq('is_promoted', true)
+      .order('paragraph_order', { ascending: true })
+  );
+
+  return query;
+}
+
 async function loadLegacyParagraphs(supabase: ReturnType<typeof getSupabase>, chapterId: string) {
   if (!supabase) return { data: null, error: new Error('Supabase not configured') };
 
@@ -132,6 +167,50 @@ export async function GET(request: Request) {
   const resolvedChapterNumber = Number(chapter.chapter_number ?? chapterNumber ?? 0);
   const proseSource = String(chapter.prose_source ?? 'supabase');
   const proseSourceRef = chapter.prose_source_ref ?? null;
+
+  if (proseSource === 'supabase') {
+    try {
+      const { data, error } = await loadPromotedManuscriptParagraphs(supabase, resolvedChapterNumber);
+      if (error) throw error;
+
+      if ((data ?? []).length > 0) {
+        const paragraphs = (data ?? []).map((row: any) => {
+          const weightRow = Array.isArray(row?.archetypal_weights)
+            ? row.archetypal_weights[0]
+            : row?.archetypal_weights;
+          const weights = weightRow
+            ? {
+                shadow: Number(weightRow.shadow ?? 0),
+                persona: Number(weightRow.persona ?? 0),
+                anima: Number(weightRow.anima ?? 0),
+                self: Number(weightRow.self ?? 0),
+              }
+            : {};
+
+          return mapParagraph(
+            {
+              ...row,
+              chunk_index: Number(row?.paragraph_order ?? 0),
+              weights,
+              canonical: true,
+            },
+            resolvedChapterNumber
+          );
+        });
+
+        return NextResponse.json({
+          paragraphs,
+          prose_source: proseSource,
+          chapter_number: resolvedChapterNumber,
+        });
+      }
+    } catch (error: any) {
+      const message = error?.message ?? String(error);
+      if (!/manuscript_paragraphs|archetypal_weights|is_promoted|chapter_version|paragraph_order/i.test(message)) {
+        return NextResponse.json({ error: message }, { status: 500 });
+      }
+    }
+  }
 
   if (proseSource === 'gdrive_file') {
     if (!proseSourceRef) {

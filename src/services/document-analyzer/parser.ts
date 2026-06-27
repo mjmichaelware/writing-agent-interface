@@ -1,31 +1,72 @@
-import { VertexAI } from '@google-cloud/vertexai';
+import Anthropic from "@anthropic-ai/sdk";
 
-function getVertexAI() {
-  const project = process.env.GOOGLE_CLOUD_PROJECT;
-  const location = process.env.GOOGLE_CLOUD_LOCATION || 'us-central1';
-  if (!project) return null;
-  return new VertexAI({ project, location });
+function getAnthropic() {
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (!apiKey) return null;
+  return new Anthropic({ apiKey });
 }
 
-// System 9: Document Analyzer - Parser (using Gemini 1.5 for multimodal OCR)
-export async function parseDocument(fileBase64: string, mimeType: string) {
-  const vertexAI = getVertexAI();
-  if (!vertexAI) {
-    throw new Error("Google Cloud Project not configured for Vertex AI");
+function decodeBase64Text(fileBase64: string) {
+  return Buffer.from(fileBase64, "base64").toString("utf8");
+}
+
+function isTextMimeType(mimeType: string) {
+  return mimeType === "text/plain" || mimeType === "text/markdown";
+}
+
+function isImageMimeType(mimeType: string) {
+  return mimeType.startsWith("image/");
+}
+
+export async function parseDocument(fileBase64: string, mimeType: string): Promise<string> {
+  if (isTextMimeType(mimeType)) {
+    return decodeBase64Text(fileBase64);
   }
 
-  const model = vertexAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-  
-  const result = await model.generateContent([
-    {
-      inlineData: {
-        data: fileBase64,
-        mimeType: mimeType
-      }
-    },
-    'Extract all text from this document as accurately as possible, preserving layout where significant.'
-  ]);
+  const anthropic = getAnthropic();
+  if (!anthropic) {
+    throw new Error("Anthropic API key not configured");
+  }
 
-  const response = await result.response;
-  return response.text();
+  const model = process.env.ANTHROPIC_MODEL || "claude-sonnet-4-6";
+  const content: any[] = [
+    {
+      type: "text",
+      text: "Extract all readable text from this file. Return plain text only. Preserve paragraph breaks where they are materially meaningful.",
+    },
+  ];
+
+  if (mimeType === "application/pdf") {
+    content.push({
+      type: "document",
+      source: {
+        type: "base64",
+        media_type: "application/pdf",
+        data: fileBase64,
+      },
+    });
+  } else if (isImageMimeType(mimeType)) {
+    content.push({
+      type: "image",
+      source: {
+        type: "base64",
+        media_type: mimeType,
+        data: fileBase64,
+      },
+    });
+  } else {
+    throw new Error(`Unsupported document mimeType: ${mimeType}`);
+  }
+
+  const message = await anthropic.messages.create({
+    model,
+    max_tokens: 4096,
+    messages: [{ role: "user", content }],
+  });
+
+  return message.content
+    .filter((block) => block.type === "text")
+    .map((block) => block.text)
+    .join("\n")
+    .trim();
 }

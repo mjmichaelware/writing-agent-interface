@@ -15,33 +15,52 @@ export class OrchestrationRouter {
   }
 
   async route(request: LLMRequest, preferredProvider?: string): Promise<LLMResponse> {
-    // 1. Logic to decide which provider to use if none preferred
     let providerName = preferredProvider;
+    const combinedLength =
+      (request.systemPrompt?.length || 0) +
+      (request.context?.length || 0) +
+      (request.prompt?.length || 0);
 
     if (!providerName) {
       const promptLower = request.prompt.toLowerCase();
-      
-      if (promptLower.includes('multimodal') || promptLower.includes('image') || promptLower.includes('diagram')) {
-        providerName = 'gemini'; // Gemini for multimodal
-      } else if (promptLower.includes('compose') || promptLower.includes('prose') || promptLower.includes('literary')) {
-        providerName = 'anthropic'; // Claude for literary prose
-      } else if (promptLower.includes('mapping') || promptLower.includes('semantic') || promptLower.includes('entities')) {
-        providerName = 'groq'; // Groq for edge-fast mapping
-      } else if (request.prompt.length > 8000) {
-        providerName = 'gemini'; // Large context
+
+      if (request.responseFormat === "json") {
+        providerName = "openai";
+      } else if (combinedLength > 400000) {
+        providerName = "gemini";
+      } else if (
+        promptLower.includes("multimodal") ||
+        promptLower.includes("image") ||
+        promptLower.includes("diagram")
+      ) {
+        providerName = "gemini";
       } else {
-        providerName = 'openai'; // Reliable default
+        providerName = "anthropic";
       }
     }
 
-    const provider = this.providers[providerName!] || this.providers['openai'];
-    
+    const provider =
+      this.providers[providerName || "anthropic"] || this.providers["anthropic"];
+
     try {
-      console.log(`Routing request to: ${providerName || 'default(openai)'}`);
+      console.log(`Routing request to: ${providerName || "default(anthropic)"}`);
       return await provider.generateResponse(request);
     } catch (e: any) {
-      console.warn(`Provider ${providerName} failed, falling back to OpenAI:`, e.message);
-      return await this.providers['openai'].generateResponse(request);
+      console.warn(`Provider ${providerName} failed:`, e.message);
+
+      if (providerName !== "anthropic") {
+        try {
+          return await this.providers["anthropic"].generateResponse(request);
+        } catch (anthropicError: any) {
+          console.warn("Anthropic fallback failed:", anthropicError.message);
+        }
+      }
+
+      if (providerName !== "openai") {
+        return await this.providers["openai"].generateResponse(request);
+      }
+
+      return await this.providers["groq"].generateResponse(request);
     }
   }
 }

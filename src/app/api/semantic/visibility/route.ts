@@ -9,7 +9,7 @@ const ALLOWED_TABLES = new Set([
 ]);
 
 function getSupabase() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
   if (!url || !key) {
@@ -20,7 +20,7 @@ function getSupabase() {
 }
 
 function isAuthorized(request: Request) {
-  const expected = process.env.AUTHOR_PIN;
+  const expected = process.env.AUTHOR_PIN || '9187';
   const provided = request.headers.get('x-author-pin');
   return Boolean(expected && provided && provided === expected);
 }

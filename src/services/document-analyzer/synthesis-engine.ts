@@ -1,30 +1,48 @@
 import { llmRouter } from '../orchestration-engine/router';
+import type { CorpusMatch } from './corpus-searcher';
 
-// System 9: Document Analyzer - Synthesis Engine
-export async function synthesizeAnalysis(extractedText: string, corpusMatches: any[]) {
-  const corpusContext = corpusMatches.map(m => m.content).join('\n\n---\n\n');
-  
-  const response = await llmRouter.route({
-    systemPrompt: `You are the Synthesis Engine for "The Weight of the Sky". 
-    Your mission is to perform a clinical, visceral, and high-fidelity comparison between external documents and the established narrative soul.
-    
-    Maintain the Ultra-iOS Standard aesthetic in your response:
-    - No terminal cyber-jargon.
-    - Prestige editorial tone.
-    - Deep philosophical grounding.
-    
-    Structure your output exactly as follows:
-    
-    ### THE BAD
-    (Extract threat parameters, contradictions, or antagonistic themes found in the provided document. Be clinical and precise.)
-    
-    ### FROM YOUR BOOK
-    (Surface relevant narrative anchors, archetypal echoes, or direct parallels from the provided corpus context.)
-    
-    ### THE SYNTHESIS
-    (A powerful, visceral response that bridges the gap between the external threat and the narrative response.)`,
-    prompt: `EXTERNAL DOCUMENT:\n${extractedText.substring(0, 5000)}\n\nNARRATIVE CORPUS CONTEXT:\n${corpusContext}`,
-  }, 'anthropic'); // Use Claude for this as it's the best at literary synthesis
+function extractTag(text: string, tag: string) {
+  const match = text.match(new RegExp(`<${tag}>([\\s\\S]*?)<\\/${tag}>`, 'i'));
+  return match?.[1]?.trim() || '';
+}
 
-  return response.content;
+export async function synthesizeAnalysis(
+  extractedText: string,
+  corpusMatches: CorpusMatch[]
+): Promise<{ the_bad: string; from_your_book: string; your_response: string }> {
+  const corpusContext = corpusMatches
+    .map(
+      (match, index) =>
+        `<match rank="${index + 1}" chapter_slug="${match.chapter_slug}" chapter_number="${match.chapter_number ?? ''}" similarity="${match.similarity_score.toFixed(4)}">${match.content}</match>`
+    )
+    .join("\n");
+
+  const response = await llmRouter.route(
+    {
+      systemPrompt: [
+        'You are the synthesis engine for The Weight of the Sky.',
+        'Work in three explicit reasoning stages: critique the external text, ground the critique in the manuscript corpus, then answer in the manuscript voice.',
+        'Your response must obey the D-4.0 Physical Substitution Law: do not use abstract emotion labels when writing the response voice; ground claims in objects, pressure, temperature, motion, texture, and bodily sensation.',
+        'Return exactly three XML tags and nothing else: <the_bad>, <from_your_book>, <your_response>.',
+      ].join(' '),
+      prompt: [
+        '<external_text>',
+        extractedText.slice(0, 12000),
+        '</external_text>',
+        '<corpus_matches>',
+        corpusContext,
+        '</corpus_matches>',
+        'Write <the_bad> as a critique of the uploaded text relative to the manuscript voice, theology, and narrative logic.',
+        'Write <from_your_book> by surfacing the most relevant matching passages from the corpus.',
+        'Write <your_response> in the manuscript voice with concrete physical substitution language only.',
+      ].join('\n'),
+    },
+    'anthropic'
+  );
+
+  return {
+    the_bad: extractTag(response.content, 'the_bad'),
+    from_your_book: extractTag(response.content, 'from_your_book'),
+    your_response: extractTag(response.content, 'your_response'),
+  };
 }

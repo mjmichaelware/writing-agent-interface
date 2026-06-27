@@ -2,10 +2,8 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import { google } from 'googleapis';
 
-const DEFAULT_SYNC_DIR = path.join(
-  process.cwd(),
-  'docs/agent_context/source_drop/gdrive_raw_manuscript_staging/gdrive_raw'
-);
+const DEFAULT_SYNC_DIR = path.join(process.cwd(), 'gdrive_raw');
+const FORBIDDEN_NAME = /(compendium|blueprint|mandate|checkpoint|prompt)/i;
 
 function requireDriveClient() {
   const clientId = process.env.GOOGLE_CLIENT_ID;
@@ -117,38 +115,52 @@ export async function syncDriveFolder(): Promise<{
   }
 
   const drive = requireDriveClient();
-  const response = await drive.files.list({
-    q: `'${folderId}' in parents and trashed=false`,
-    fields: 'files(id, name, mimeType, modifiedTime)',
-    pageSize: 1000,
-    supportsAllDrives: true,
-    includeItemsFromAllDrives: true,
-  });
-
-  const files = response.data.files ?? [];
   const synced: string[] = [];
   const errors: string[] = [];
 
   await fs.mkdir(DEFAULT_SYNC_DIR, { recursive: true });
 
-  for (const file of files) {
-    const fileId = file.id ?? '';
-    const fileName = String(file.name ?? fileId ?? 'untitled');
+  let pageToken: string | undefined;
+  do {
+    const response = await drive.files.list({
+      q: `'${folderId}' in parents and trashed=false and mimeType='text/plain' and name contains '.txt'`,
+      fields: 'nextPageToken, files(id, name, mimeType)',
+      pageSize: 1000,
+      pageToken,
+      supportsAllDrives: true,
+      includeItemsFromAllDrives: true,
+    });
 
-    if (!fileId) {
-      errors.push(`${fileName}: missing file id`);
-      continue;
+    for (const file of response.data.files ?? []) {
+      const fileId = file.id ?? '';
+      const fileName = String(file.name ?? fileId ?? 'untitled');
+
+      if (!fileId) {
+        errors.push(`${fileName}: missing file id`);
+        continue;
+      }
+
+      if (FORBIDDEN_NAME.test(fileName)) {
+        errors.push(`${fileName}: skipped by security gate`);
+        continue;
+      }
+
+      if (!/\.txt$/i.test(fileName)) {
+        continue;
+      }
+
+      try {
+        const text = await downloadDriveText(drive, fileId, file.mimeType ?? null);
+        const safeName = fileName.replace(/[\\/]/g, '_');
+        await fs.writeFile(path.join(DEFAULT_SYNC_DIR, safeName), text, 'utf8');
+        synced.push(fileName);
+      } catch (error: any) {
+        errors.push(`${fileName}: ${error?.message ?? String(error)}`);
+      }
     }
 
-    try {
-      const text = await downloadDriveText(drive, fileId, file.mimeType ?? null);
-      const safeName = fileName.replace(/[\\/]/g, '_');
-      await fs.writeFile(path.join(DEFAULT_SYNC_DIR, safeName), text, 'utf8');
-      synced.push(fileName);
-    } catch (error: any) {
-      errors.push(`${fileName}: ${error?.message ?? String(error)}`);
-    }
-  }
+    pageToken = response.data.nextPageToken ?? undefined;
+  } while (pageToken);
 
   return { synced, errors };
 }

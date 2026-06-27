@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { bus } from "@/core/runtimeEngine";
 
-const PIN = "9187";
+const PIN = process.env.NEXT_PUBLIC_AUTHOR_PIN || "9187";
 const KEY = "nos-author-unlocked";
 const muted = "#8a857c";
 const gold = "#c9a96e";

@@ -31,6 +31,11 @@ export default function ManuscriptCore({
   blocks: (string | { 
     id: string; 
     content: string; 
+    chapter_number?: number;
+    chapter_slug?: string;
+    chapter_version?: string | null;
+    paragraph_order?: number;
+    weights?: any;
     archetypal_weights?: any; 
     dualism_map?: any;
     hebrew_spans?: any[];
@@ -88,7 +93,7 @@ export default function ManuscriptCore({
         const index = parseInt(p.dataset.index || "0");
         const block = blocks[index];
         if (typeof block !== 'string') {
-          const weights = block?.archetypal_weights || {};
+          const weights = block?.weights || block?.archetypal_weights || {};
           const dualisms = block?.dualism_map || {};
           
           const mass = (weights.shadow || 0) * 1.5 + (dualisms.descent || 0) * 2;
@@ -143,11 +148,17 @@ export default function ManuscriptCore({
               const block = blocks[parseInt(index)];
               const payload = {
                 paraIndex: index,
+                paragraphOrder: typeof block === "string" ? Number(index) : Number(block?.paragraph_order ?? index),
+                chapterNumber:
+                  typeof block === "string"
+                    ? Number.parseInt(chapterSlug, 10) || 0
+                    : Number(block?.chapter_number ?? Number.parseInt(chapterSlug, 10) || 0),
+                chapterVersion: typeof block === "string" ? null : block?.chapter_version ?? null,
                 content: typeof block === "string" ? block : block?.content || "",
-                weights: typeof block === "string" ? {} : block?.archetypal_weights || {},
+                weights: typeof block === "string" ? {} : block?.weights || block?.archetypal_weights || {},
                 dualisms: typeof block === "string" ? {} : block?.dualism_map || {},
                 partNumber,
-                chapterSlug
+                chapterSlug: typeof block === "string" ? chapterSlug : block?.chapter_slug || chapterSlug,
               };
               bus.emit("scroll:focus", payload);
             } else if (sectionId) {

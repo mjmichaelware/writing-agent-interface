@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { bus } from "@/core/runtimeEngine";
 
 type S = { typeSize: number; lineHeight: number; sensitivity: number; color: number; distortion: number; blur: number; contrast: number; warmth: number; motion: boolean; bionic: boolean; audio: boolean };
 const D: S = { typeSize: 1, lineHeight: 1.7, sensitivity: 0.5, color: 0.25, distortion: 0.15, blur: 0.15, contrast: 1, warmth: 0.25, motion: true, bionic: false, audio: false };

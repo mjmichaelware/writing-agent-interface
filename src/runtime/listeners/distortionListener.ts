@@ -14,14 +14,94 @@ type PhysicsState = {
   drift: number;
 };
 
+type NarrativeMeta = {
+  chapterCounts: Map<number, number>;
+  offsets: Map<number, number>;
+  averageParagraphs: number;
+  totalParagraphs: number;
+};
+
 function lerp(a: number, b: number, t: number): number {
   return a + (b - a) * t;
 }
 
+let narrativeMeta: NarrativeMeta = {
+  chapterCounts: new Map(),
+  offsets: new Map(),
+  averageParagraphs: 18,
+  totalParagraphs: 25 * 18,
+};
+
+async function loadNarrativeMeta(): Promise<NarrativeMeta> {
+  const chaptersResponse = await fetch("/api/chapters", { cache: "no-store" });
+  if (!chaptersResponse.ok) {
+    throw new Error(`chapter metadata request failed: ${chaptersResponse.status}`);
+  }
+
+  const chapters = await chaptersResponse.json();
+  const chapterRows = Array.isArray(chapters) ? chapters : [];
+  const chapterNumbers = chapterRows
+    .map((row: any) => Number(row?.chapter_number))
+    .filter((value: number) => Number.isInteger(value) && value > 0)
+    .sort((a: number, b: number) => a - b);
+
+  const countEntries = await Promise.all(
+    chapterNumbers.map(async (chapterNumber) => {
+      try {
+        const response = await fetch(`/api/manuscript?chapterNumber=${chapterNumber}`, {
+          cache: "no-store",
+        });
+        if (!response.ok) {
+          return [chapterNumber, 0] as const;
+        }
+
+        const payload = await response.json();
+        const paragraphs = Array.isArray(payload?.paragraphs) ? payload.paragraphs : [];
+        return [chapterNumber, paragraphs.length] as const;
+      } catch {
+        return [chapterNumber, 0] as const;
+      }
+    })
+  );
+
+  const chapterCounts = new Map<number, number>();
+  countEntries.forEach(([chapterNumber, count]) => {
+    chapterCounts.set(chapterNumber, count);
+  });
+
+  const totalParagraphs = countEntries.reduce((sum, [, count]) => sum + Math.max(count, 0), 0);
+  const averageParagraphs = countEntries.length > 0
+    ? Math.max(1, totalParagraphs / countEntries.length)
+    : 18;
+
+  const offsets = new Map<number, number>();
+  let runningOffset = 0;
+  chapterNumbers.forEach((chapterNumber) => {
+    offsets.set(chapterNumber, runningOffset);
+    runningOffset += chapterCounts.get(chapterNumber) || Math.round(averageParagraphs);
+  });
+
+  return {
+    chapterCounts,
+    offsets,
+    averageParagraphs,
+    totalParagraphs: Math.max(runningOffset, totalParagraphs, 1),
+  };
+}
+
+function resolveNarrativePosition(chapterNumber: number, paragraphOrder: number) {
+  const safeChapterNumber = Number.isInteger(chapterNumber) && chapterNumber > 0 ? chapterNumber : 1;
+  const safeParagraphOrder = Number.isFinite(paragraphOrder) ? Math.max(0, paragraphOrder) : 0;
+  const fallbackOffset = (safeChapterNumber - 1) * narrativeMeta.averageParagraphs;
+  const chapterOffset = narrativeMeta.offsets.get(safeChapterNumber) ?? fallbackOffset;
+  const rawPosition = chapterOffset + safeParagraphOrder;
+  return Math.max(0, Math.min(1, rawPosition / Math.max(1, narrativeMeta.totalParagraphs - 1)));
+}
+
 // Compute kinetic physics from archetypal weights if available,
-// otherwise fall back to position-based heuristic
+// otherwise fall back to full-arc position heuristic.
 function computePhysics(
-  paraIndex: number,
+  narrativePosition: number,
   weights?: ArchetypalWeights
 ): PhysicsState {
   if (weights) {
@@ -35,17 +115,23 @@ function computePhysics(
     };
   }
 
-  // Narrative position heuristic until embedding pipeline is live
-  const inDescent     = paraIndex >= 13;
-  const inThePit      = paraIndex >= 10 && paraIndex <= 18;
-  const atDreamBorder = paraIndex <= 4;
-  const isTransition  = [6, 12, 19].includes(paraIndex);
+  const inDescent = narrativePosition >= 0.55;
+  const inThePit = narrativePosition >= 0.42 && narrativePosition <= 0.72;
+  const atDreamBorder = narrativePosition <= 0.14;
+  const transitionDistance = Math.min(
+    Math.abs(narrativePosition - 0.28),
+    Math.abs(narrativePosition - 0.5),
+    Math.abs(narrativePosition - 0.8)
+  );
+  const transitionStrength = Math.max(0, 1 - transitionDistance / 0.08);
 
   return {
-    mass:    inDescent    ? Math.min(0.9, (paraIndex - 13) / 20)         : 0,
-    tension: inThePit     ? Math.sin(((paraIndex - 10) / 8) * Math.PI) * 0.78 : 0,
-    blur:    atDreamBorder ? ((4 - paraIndex) / 4) * 0.45               : 0,
-    drift:   isTransition  ? 0.55                                        : 0,
+    mass: inDescent ? Math.min(0.9, (narrativePosition - 0.55) / 0.45) : 0,
+    tension: inThePit
+      ? Math.sin(((narrativePosition - 0.42) / 0.3) * Math.PI) * 0.78
+      : 0,
+    blur: atDreamBorder ? ((0.14 - narrativePosition) / 0.14) * 0.45 : 0,
+    drift: transitionStrength * 0.55,
   };
 }
 
@@ -97,15 +183,31 @@ export function initDistortionListener() {
   if (typeof window === "undefined") return () => {};
 
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  loadNarrativeMeta()
+    .then((meta) => {
+      narrativeMeta = meta;
+    })
+    .catch((error) => {
+      console.warn("Failed to preload narrative metadata for distortion listener:", error);
+    });
 
   // Position-based physics — fires on every scroll:focus
   const unsubScroll = bus.on("scroll:focus", (data: any) => {
-    const index   = Number.parseInt(String(data?.paraIndex ?? 0), 10) || 0;
-    const weights = data?.archetypal_weights as ArchetypalWeights | undefined;
-    const physics = computePhysics(index, weights);
+    const index = Number.parseInt(String(data?.paraIndex ?? 0), 10) || 0;
+    const paragraphOrder = Number.parseInt(String(data?.paragraphOrder ?? index), 10) || index;
+    const chapterNumber = Number.parseInt(String(data?.chapterNumber ?? data?.chapterSlug ?? 1), 10) || 1;
+    const weights = data?.weights as ArchetypalWeights | undefined;
+    const narrativePosition = resolveNarrativePosition(chapterNumber, paragraphOrder);
+    const physics = computePhysics(narrativePosition, weights);
 
     applySmooth(physics, reduced);
-    bus.emit("distortion:update", { ...physics, paraIndex: index });
+    bus.emit("distortion:update", {
+      ...physics,
+      paraIndex: index,
+      paragraphOrder,
+      chapterNumber,
+      narrativePosition,
+    });
   });
 
   // Embedding pipeline override — fires when semantic parse is live

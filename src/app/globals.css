@@ -242,11 +242,13 @@ body::after {
 ::-webkit-scrollbar { width: 2px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: rgba(201, 169, 110, 0.18);
+  background: rgba(201, 169, 110, 0.28);
   border-radius: 1px;
+  box-shadow: 0 0 6px rgba(201, 169, 110, 0.4);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(201, 169, 110, 0.38);
+  background: rgba(201, 169, 110, 0.55);
+  box-shadow: 0 0 10px rgba(201, 169, 110, 0.6);
 }
 
 /* Selection */
@@ -303,7 +305,7 @@ body::after {
 .title-display {
   font-family: 'Frank Ruhl Libre', serif;
   color: var(--text-body);
-  font-size: clamp(2.8rem, 10vw, 6.5rem);
+  font-size: clamp(3rem, 12vw, 7.5rem);
   line-height: 1.04;
   letter-spacing: -0.01em;
   font-weight: 700;
@@ -318,6 +320,71 @@ body::after {
   letter-spacing: 0.08em;
   font-variant: small-caps;
   margin-bottom: 2rem;
+}
+
+/* Front matter section labels — gold, large, glowing, pulsing */
+.front-matter-label {
+  font-family: 'Frank Ruhl Libre', 'EB Garamond', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.75rem, 5vw, 3.25rem);
+  color: #c9a96e;
+  letter-spacing: 0.05em;
+  text-align: center;
+  text-shadow:
+    0 0 25px rgba(201, 169, 110, 0.8),
+    0 0 55px rgba(201, 169, 110, 0.45),
+    0 0 100px rgba(201, 169, 110, 0.2);
+  animation: pulse-star 3.8s ease-in-out infinite;
+  margin: 0 0 1.5rem;
+  line-height: 1.2;
+}
+
+@keyframes pulse-star {
+  0%, 100% {
+    text-shadow:
+      0 0 25px rgba(201, 169, 110, 0.8),
+      0 0 55px rgba(201, 169, 110, 0.45),
+      0 0 100px rgba(201, 169, 110, 0.2);
+    opacity: 1;
+  }
+  50% {
+    text-shadow:
+      0 0 40px rgba(201, 169, 110, 1),
+      0 0 85px rgba(201, 169, 110, 0.65),
+      0 0 140px rgba(201, 169, 110, 0.35),
+      0 0 200px rgba(201, 169, 110, 0.15);
+    opacity: 0.82;
+  }
+}
+
+@keyframes titleShimmer {
+  0% { background-position: -400% center; }
+  100% { background-position: 400% center; }
+}
+
+.title-shimmer {
+  background: linear-gradient(
+    90deg,
+    #e4e0d8 0%,
+    #e4e0d8 30%,
+    #f8f0d8 45%,
+    #ffe8a0 50%,
+    #f8f0d8 55%,
+    #e4e0d8 70%,
+    #e4e0d8 100%
+  );
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: titleShimmer 7s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.035) translate(0, -8px); }
 }
 
 /* --- Table of Contents ------------------------------------ */
@@ -509,9 +576,9 @@ p[data-state="active"] {
   transform: translateY(0) !important;
   color: var(--text-primary);
   transition:
-    opacity 700ms var(--ease-spring),
-    filter 700ms var(--ease-spring),
-    transform 700ms var(--ease-spring);
+    opacity 350ms var(--ease-spring),
+    filter 350ms var(--ease-spring),
+    transform 350ms var(--ease-spring);
 }
 
 p[data-state="inactive"] {
@@ -520,14 +587,12 @@ p[data-state="inactive"] {
   transform: translateY(3px);
   color: var(--text-muted);
   transition:
-    opacity 700ms var(--ease-spring),
-    filter 700ms var(--ease-spring),
-    transform 700ms var(--ease-spring);
+    opacity 350ms var(--ease-spring),
+    filter 350ms var(--ease-spring),
+    transform 350ms var(--ease-spring);
 }
 
-/* Thematic tone overrides — fired by thematicListener */
-p[data-tone="sacred"] { color: var(--sacred) !important; }
-p[data-tone="descent"] { color: var(--descent) !important; }
+/* Thematic tone overrides removed — typography distortion will be re-implemented separately */
 
 /* --- Kinetic Word Classes --------------------------------- */
 

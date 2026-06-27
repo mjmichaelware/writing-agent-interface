@@ -18,9 +18,9 @@ export default function BookOpeningSequence() {
     sessionStorage.setItem("nos-intro-v1", "1");
 
     setPhase(1);
-    const t1 = setTimeout(() => setPhase(2), 2200);   // book arrives → cover opens
-    const t2 = setTimeout(() => setPhase(3), 4800);   // start fade
-    const t3 = setTimeout(() => setPhase(4), 6200);   // remove from DOM
+    const t1 = setTimeout(() => setPhase(2), 3400);   // book arrives → cover opens
+    const t2 = setTimeout(() => setPhase(3), 7200);   // start fade (7.2s in)
+    const t3 = setTimeout(() => setPhase(4), 9200);   // remove from DOM
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
   }, []);
 
@@ -31,38 +31,54 @@ export default function BookOpeningSequence() {
       key="nos-intro"
       initial={{ opacity: 0 }}
       animate={{ opacity: phase === 3 ? 0 : 1 }}
-      transition={{ duration: phase === 3 ? 1.6 : 0.6, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: phase === 3 ? 2.2 : 0.8, ease: [0.22, 1, 0.36, 1] }}
       style={{
         position: "fixed", inset: 0, zIndex: 999999,
-        background: "radial-gradient(ellipse at 50% 45%, #0e0b06 0%, #040302 65%)",
+        background: "radial-gradient(ellipse at 50% 45%, #0f0b06 0%, #040302 60%)",
         display: "flex", flexDirection: "column",
         alignItems: "center", justifyContent: "center",
         gap: "2.5rem",
-        perspective: "1400px",
+        perspective: "1800px",
       }}
     >
+      {/* Ambient glow behind book */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: phase >= 2 ? 0.18 : 0.06 }}
+        transition={{ duration: 3, ease: [0.22, 1, 0.36, 1] }}
+        style={{
+          position: "absolute",
+          width: "min(90vw, 70vh)",
+          height: "min(90vw, 70vh)",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(201,169,110,1) 0%, rgba(201,169,110,0.3) 40%, transparent 70%)",
+          filter: "blur(60px)",
+          pointerEvents: "none",
+        }}
+      />
+
       {/* Book body — spins in from afar */}
       <motion.div
-        initial={{ rotateX: -20, rotateY: -540, scale: 0.1, z: -400 }}
+        initial={{ rotateX: -24, rotateY: -600, scale: 0.04, z: -1200 }}
         animate={{ rotateX: 0, rotateY: 0, scale: 1, z: 0 }}
         transition={{
           type: "spring",
-          stiffness: 55,
-          damping: 16,
-          delay: 0.15,
+          stiffness: 30,
+          damping: 11,
+          delay: 0.1,
         }}
         style={{
           position: "relative",
-          width: 210,
-          height: 290,
+          width: "min(85vw, 58vh, 520px)",
+          height: "min(calc(85vw * 1.38), 80vh, 718px)",
           transformStyle: "preserve-3d",
         }}
       >
         {/* Book spine (left side in 3D) */}
         <div style={{
           position: "absolute",
-          left: 0, top: 0, width: 10, height: "100%",
-          background: "linear-gradient(90deg, #0a0805, #1a140a)",
+          left: 0, top: 0, width: 14, height: "100%",
+          background: "linear-gradient(90deg, #060402, #1c1509)",
           transform: "rotateY(-90deg) translateZ(0px)",
           transformOrigin: "left center",
         }} />
@@ -70,32 +86,37 @@ export default function BookOpeningSequence() {
         {/* Back page / inner pages (revealed when cover opens) */}
         <div style={{
           position: "absolute", inset: 0,
-          background: "#0b0906",
+          background: "#0c0907",
           border: "1px solid rgba(201,169,110,0.12)",
           display: "flex", flexDirection: "column",
           alignItems: "center", justifyContent: "center",
-          gap: "0.875rem",
-          padding: "2rem 1.75rem",
+          gap: "1rem",
+          padding: "2.5rem 2rem",
         }}>
           <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: phase >= 2 ? 1 : 0, y: phase >= 2 ? 0 : 8 }}
-            transition={{ delay: phase >= 2 ? 1.7 : 0, duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-            style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.75rem" }}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: phase >= 2 ? 1 : 0, y: phase >= 2 ? 0 : 12 }}
+            transition={{ delay: phase >= 2 ? 2.0 : 0, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+            style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "1rem" }}
           >
-            <div style={{ width: 38, height: 1, background: "rgba(201,169,110,0.38)" }} />
+            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", width: "100%" }}>
+              <div style={{ flex: 1, height: 1, background: "rgba(201,169,110,0.3)" }} />
+              <span style={{ color: "rgba(201,169,110,0.55)", fontSize: "0.55rem" }}>✦</span>
+              <div style={{ flex: 1, height: 1, background: "rgba(201,169,110,0.3)" }} />
+            </div>
             <div style={{
               fontFamily: "'Frank Ruhl Libre', serif",
-              fontSize: "1.2rem", color: "#e4e0d8",
-              textAlign: "center", lineHeight: 1.3,
+              fontSize: "clamp(1.1rem, 3vw, 1.6rem)", color: "#e4e0d8",
+              textAlign: "center", lineHeight: 1.25,
             }}>
               The Weight<br />of the Sky
             </div>
-            <div style={{ width: 26, height: 1, background: "rgba(201,169,110,0.28)" }} />
+            <div style={{ width: 32, height: 1, background: "rgba(201,169,110,0.22)" }} />
             <div style={{
               fontFamily: "'EB Garamond', serif",
-              fontStyle: "italic", fontSize: "0.65rem",
+              fontStyle: "italic", fontSize: "clamp(0.6rem, 1.5vw, 0.8rem)",
               color: "#8a857c", letterSpacing: "0.1em",
+              textAlign: "center",
             }}>
               Michael Alonza Prentice Ware
             </div>
@@ -105,11 +126,11 @@ export default function BookOpeningSequence() {
         {/* Front cover — hinges open on left edge */}
         <motion.div
           initial={{ rotateY: 0 }}
-          animate={{ rotateY: phase >= 2 ? -164 : 0 }}
+          animate={{ rotateY: phase >= 2 ? -168 : 0 }}
           transition={{
-            duration: 2.1,
+            duration: 3.6,
             ease: [0.22, 1, 0.36, 1],
-            delay: phase >= 2 ? 0.4 : 0,
+            delay: phase >= 2 ? 0.5 : 0,
           }}
           style={{
             position: "absolute", inset: 0,
@@ -120,18 +141,18 @@ export default function BookOpeningSequence() {
           {/* Cover — front face */}
           <div style={{
             position: "absolute", inset: 0,
-            background: "linear-gradient(160deg, #1d1409 0%, #120e07 52%, #0e0c06 100%)",
-            border: "1px solid rgba(201,169,110,0.52)",
-            boxShadow: "6px 0 28px rgba(0,0,0,0.75), 0 0 50px rgba(201,169,110,0.05)",
+            background: "linear-gradient(160deg, #1f1509 0%, #130f07 52%, #0e0c06 100%)",
+            border: "1px solid rgba(201,169,110,0.55)",
+            boxShadow: "8px 0 36px rgba(0,0,0,0.8), 0 0 60px rgba(201,169,110,0.06), inset 0 0 40px rgba(0,0,0,0.4)",
             backfaceVisibility: "hidden",
             display: "flex", flexDirection: "column",
             alignItems: "center", justifyContent: "space-between",
-            padding: "2rem 1.75rem",
+            padding: "clamp(1.5rem, 5vh, 3rem) clamp(1.25rem, 4vw, 2.5rem)",
           }}>
             {/* Top rule */}
             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", width: "100%" }}>
               <div style={{ flex: 1, height: 1, background: "rgba(201,169,110,0.38)" }} />
-              <span style={{ color: "rgba(201,169,110,0.65)", fontSize: "0.42rem" }}>✦</span>
+              <span style={{ color: "rgba(201,169,110,0.65)", fontSize: "0.45rem" }}>✦</span>
               <div style={{ flex: 1, height: 1, background: "rgba(201,169,110,0.38)" }} />
             </div>
 
@@ -139,18 +160,18 @@ export default function BookOpeningSequence() {
             <div style={{ textAlign: "center" }}>
               <div style={{
                 fontFamily: "'Frank Ruhl Libre', serif",
-                fontSize: "1.45rem", color: "#c9a96e",
-                lineHeight: 1.2,
-                textShadow: "0 0 22px rgba(201,169,110,0.55), 0 0 55px rgba(201,169,110,0.18)",
+                fontSize: "clamp(1.4rem, 4vw, 2.2rem)", color: "#c9a96e",
+                lineHeight: 1.15,
+                textShadow: "0 0 28px rgba(201,169,110,0.65), 0 0 70px rgba(201,169,110,0.22)",
                 letterSpacing: "-0.01em",
               }}>
                 The Weight<br />of the Sky
               </div>
               <div style={{
-                marginTop: "0.75rem",
+                marginTop: "1rem",
                 fontFamily: "'EB Garamond', serif",
-                fontStyle: "italic", fontSize: "0.78rem",
-                color: "rgba(201,169,110,0.52)", letterSpacing: "0.05em",
+                fontStyle: "italic", fontSize: "clamp(0.7rem, 2vw, 1rem)",
+                color: "rgba(201,169,110,0.5)", letterSpacing: "0.06em",
               }}>
                 An Archetypal Tale
               </div>
@@ -158,11 +179,11 @@ export default function BookOpeningSequence() {
 
             {/* Author + bottom rule */}
             <div style={{ width: "100%", textAlign: "center" }}>
-              <div style={{ height: 1, background: "rgba(201,169,110,0.2)", marginBottom: "0.875rem" }} />
+              <div style={{ height: 1, background: "rgba(201,169,110,0.18)", marginBottom: "1rem" }} />
               <div style={{
                 fontFamily: "'EB Garamond', serif",
-                fontStyle: "italic", fontSize: "0.62rem",
-                color: "rgba(201,169,110,0.48)", letterSpacing: "0.1em",
+                fontStyle: "italic", fontSize: "clamp(0.55rem, 1.5vw, 0.75rem)",
+                color: "rgba(201,169,110,0.46)", letterSpacing: "0.12em",
               }}>
                 M. A. P. WARE
               </div>
@@ -172,7 +193,7 @@ export default function BookOpeningSequence() {
           {/* Cover back face (visible mid-flip) */}
           <div style={{
             position: "absolute", inset: 0,
-            background: "#070504",
+            background: "#060402",
             backfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
           }} />
@@ -180,9 +201,9 @@ export default function BookOpeningSequence() {
 
         {/* Drop shadow beneath */}
         <div style={{
-          position: "absolute", bottom: -22, left: "8%", right: "8%", height: 22,
-          background: "radial-gradient(ellipse, rgba(201,169,110,0.07) 0%, transparent 70%)",
-          filter: "blur(10px)",
+          position: "absolute", bottom: -30, left: "6%", right: "6%", height: 30,
+          background: "radial-gradient(ellipse, rgba(201,169,110,0.09) 0%, transparent 70%)",
+          filter: "blur(14px)",
         }} />
       </motion.div>
 
@@ -190,11 +211,11 @@ export default function BookOpeningSequence() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: phase >= 2 ? 1 : 0 }}
-        transition={{ delay: phase >= 2 ? 2.3 : 0, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ delay: phase >= 2 ? 2.8 : 0, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
         style={{
           fontFamily: "'EB Garamond', serif",
-          fontStyle: "italic", fontSize: "0.8125rem",
-          color: "#8a857c", letterSpacing: "0.12em",
+          fontStyle: "italic", fontSize: "clamp(0.75rem, 2vw, 0.9rem)",
+          color: "#8a857c", letterSpacing: "0.14em",
         }}
       >
         1003 BCE · Hebron

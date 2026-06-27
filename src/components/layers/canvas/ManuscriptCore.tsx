@@ -8,6 +8,19 @@ import Synopsis from "./front-matter/Synopsis";
 import AboutAuthor from "./front-matter/AboutAuthor";
 import TableOfContents from "./front-matter/TableOfContents";
 
+const HEBREW_NAMES = /\b(Hebron|Hermon|Mamre|Beelzebub|Megiddo|Sak)\b/g;
+
+function renderWithHebrewSpans(text: string): React.ReactNode[] {
+  const matchSource = new RegExp(HEBREW_NAMES.source, 'g');
+  const parts = text.split(HEBREW_NAMES);
+  return parts.map((part, i) => {
+    matchSource.lastIndex = 0;
+    return matchSource.test(part)
+      ? <span key={i} className="font-hebrew" lang="he">{part}</span>
+      : part;
+  });
+}
+
 const CHAPTER_TITLES: Record<number, string> = {
   1: "Stardust to Stardust",
   2: "Living Sacrifice",
@@ -42,6 +55,7 @@ export default function ManuscriptCore({
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const lastFrameRef = useRef<number>(0);
 
   const handleLoadChapter = (n: number) => {
     if (onLoadChapter) onLoadChapter(n);
@@ -64,6 +78,13 @@ export default function ManuscriptCore({
     mutationObserver.observe(root, { childList: true, subtree: true });
 
     const runKinematics = () => {
+      const now = performance.now();
+      const delta = now - lastFrameRef.current;
+      if (delta < 8.33) {
+        frameId = requestAnimationFrame(runKinematics);
+        return;
+      }
+      lastFrameRef.current = now;
       const centerY = window.innerHeight / 2;
 
       paras.forEach((p) => {
@@ -181,9 +202,11 @@ export default function ManuscriptCore({
       <div className="reader-column pt-32">
         <h2 id="chapter-content" className="section-label text-center mb-32">Chapter {chapterSlug}</h2>
         {blocks.length === 0 ? (
-          <p className="prose-paragraph text-center text-[#8a857c] italic">
-            This chapter is not yet available.
-          </p>
+          <div className="skeleton-container">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div key={i} className="skeleton-para" style={{ width: `${75 + (i % 3) * 8}%` }} />
+            ))}
+          </div>
         ) : (
           blocks.map((block, idx) => {
             const text = typeof block === "string" ? block : block.content;
@@ -199,7 +222,7 @@ export default function ManuscriptCore({
                 data-state="inactive"
                 className="prose-paragraph kinetic-word"
               >
-                {text}
+                {renderWithHebrewSpans(text)}
               </p>
             );
           })

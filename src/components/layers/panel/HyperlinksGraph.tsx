@@ -55,6 +55,46 @@ export default function HyperlinksGraph() {
   }, []);
 
   useEffect(() => {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    if (!supabaseUrl || !supabaseKey) return;
+
+    let cleanup: (() => void) | undefined;
+
+    import("@supabase/supabase-js").then(({ createClient }) => {
+      const client = createClient(supabaseUrl, supabaseKey);
+      const channel = client
+        .channel("graph-crosslinks")
+        .on("postgres_changes", { event: "*", schema: "public", table: "semantic_crosslinks" }, () => {
+          fetch("/api/graph")
+            .then(r => r.json())
+            .then(d => {
+              const rawNodes = d.paragraphs || [];
+              const rawLinks = d.hyperlinks || [];
+              const nodes: Node[] = rawNodes.map((n: any) => ({ id: n.id, content: n.content, dualism_map: n.dualism_map || {}, chapter_id: n.chapter_id }));
+              const links: Link[] = rawLinks.map((l: any) => ({ source: l.paragraph_id, target: nodes.find(n => n.id === l.theme_node_b)?.id || l.theme_node_b, type: l.link_type, weight: l.weight })).filter((l: any) => l.source && l.target);
+              if (links.length < 5) {
+                const keys = ["sacred","descent","shadow","persona","anima"];
+                for (let i = 0; i < nodes.length; i++) {
+                  for (let j = i + 1; j < nodes.length; j++) {
+                    if (keys.some(k => (nodes[i].dualism_map?.[k] || 0) > 0.4 && (nodes[j].dualism_map?.[k] || 0) > 0.4)) {
+                      links.push({ source: nodes[i].id, target: nodes[j].id, type: "implicit" });
+                    }
+                  }
+                }
+              }
+              setData({ nodes, links });
+            })
+            .catch(() => {});
+        })
+        .subscribe();
+      cleanup = () => { client.removeChannel(channel); };
+    });
+
+    return () => { cleanup?.(); };
+  }, []);
+
+  useEffect(() => {
     if (!data || !svgRef.current || !wrapRef.current) return;
     const svg = d3.select(svgRef.current);
     svg.selectAll("*").remove();

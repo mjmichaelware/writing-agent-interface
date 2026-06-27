@@ -3005,7 +3005,17 @@ async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt,
 
   const status = classifyTaskPacketStatus(repairedValidated);
 
-  if (status === "empty") {
+  // Smaller models (e.g. llama3.2:3b) sometimes hallucinate a render_para_key whose value
+  // is derived from the repair prompt text ("repair_json_payload" etc.).  When ALL evidence
+  // errors are "Unknown render_para_key" the model genuinely found no content — downgrade
+  // from "failed" to "empty" so the window is not counted against fail-fast thresholds.
+  const effectiveStatus = (
+    status === "failed" &&
+    repairedValidated.evidenceErrors.length > 0 &&
+    repairedValidated.evidenceErrors.every(e => String(e).includes("Unknown render_para_key"))
+  ) ? "empty" : status;
+
+  if (effectiveStatus === "empty") {
     saveBadAiJson(rawText, "task-empty", {
       task,
       scene_window_id: window.scene_window_id,
@@ -3036,8 +3046,8 @@ async function finalizeTaskPacketFromRaw({ task, window, contextCapsule, prompt,
     rejectedObservations: repairedValidated.rejectedObservations,
     validationErrors: repairedValidated.validationErrors,
     evidenceErrors: repairedValidated.evidenceErrors,
-    status,
-    failureReason: status === "failed" ? "all_observations_rejected_after_repair" : null,
+    status: effectiveStatus,
+    failureReason: effectiveStatus === "failed" ? "all_observations_rejected_after_repair" : null,
   });
 }
 

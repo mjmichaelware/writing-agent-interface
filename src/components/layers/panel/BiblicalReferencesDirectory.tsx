@@ -193,9 +193,8 @@ export default function BiblicalReferencesDirectory() {
                   border: `1px solid rgba(${hexToRgb(color)},0.25)`,
                   borderRadius: "10px",
                   color: color,
-                  fontSize: "0.65rem",
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase" as const,
+                  fontSize: "0.75rem",
+                  fontStyle: "italic",
                 }}>
                   {anchor.motif_family}
                 </div>
@@ -203,7 +202,7 @@ export default function BiblicalReferencesDirectory() {
             </div>
             {relatedRefs.length > 0 && (
               <div style={{ borderTop: `1px solid rgba(${hexToRgb(color)},0.1)`, paddingTop: "0.6rem" }}>
-                <div style={{ color: "#8a857c", fontSize: "0.7rem", marginBottom: "0.4rem", letterSpacing: "0.1em" }}>TEXTUAL ECHOES</div>
+                <div style={{ color: "#8a857c", fontSize: "0.8rem", marginBottom: "0.4rem", fontStyle: "italic" }}>Echoes in the text</div>
                 {relatedRefs.map((r, i) => (
                   <div key={i} style={{ marginBottom: "0.4rem" }}>
                     {r.evidence_text && (
@@ -228,7 +227,7 @@ export default function BiblicalReferencesDirectory() {
       <div style={{ flex: 1, overflowY: "auto" }}>
         <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", marginBottom: "0.6rem" }}>
           <div style={{ height: "1px", flex: 1, background: "rgba(201,169,110,0.1)" }} />
-          <span style={{ color: "#8a857c", fontSize: "0.7rem", letterSpacing: "0.15em" }}>TEXTUAL REFERENCES</span>
+          <span style={{ color: "#8a857c", fontSize: "0.8rem", fontStyle: "italic" }}>References in the manuscript</span>
           <div style={{ height: "1px", flex: 1, background: "rgba(201,169,110,0.1)" }} />
         </div>
         {data.references.slice(0, 30).map((ref, i) => (

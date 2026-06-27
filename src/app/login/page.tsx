@@ -91,13 +91,11 @@ export default function LoginPage() {
         {/* Title block */}
         <div style={{ textAlign: "center", marginBottom: "3rem" }}>
           <p style={{
-            fontSize: "0.65rem",
-            letterSpacing: "0.35em",
-            color: "#c9a96e",
-            opacity: 0.7,
+            fontSize: "0.875rem",
+            fontStyle: "italic",
+            color: "#8a857c",
             marginBottom: "1rem",
-            textTransform: "uppercase",
-          }}>Author Access</p>
+          }}>Author access</p>
           <h1 style={{
             fontSize: "2.2rem",
             fontWeight: 400,
@@ -119,13 +117,12 @@ export default function LoginPage() {
             <div style={{ marginBottom: "1.5rem" }}>
               <label style={{
                 display: "block",
-                fontSize: "0.7rem",
-                letterSpacing: "0.2em",
+                fontSize: "0.875rem",
+                fontStyle: "italic",
                 color: "#8a857c",
                 marginBottom: "0.6rem",
-                textTransform: "uppercase",
               }}>
-                Author's Vessel
+                Email
               </label>
               <input
                 type="email"
@@ -170,12 +167,11 @@ export default function LoginPage() {
                 border: "1px solid rgba(201,169,110,0.4)",
                 borderRadius: "2px",
                 color: "#c9a96e",
-                fontSize: "0.8125rem",
-                letterSpacing: "0.2em",
-                fontFamily: "Georgia, serif",
+                fontSize: "0.9375rem",
+                fontStyle: "italic",
+                fontFamily: "Georgia, 'EB Garamond', serif",
                 cursor: loading ? "default" : "pointer",
                 transition: "all 300ms",
-                textTransform: "uppercase",
               }}
               onMouseOver={e => {
                 if (!loading) (e.currentTarget.style.background = "rgba(201,169,110,0.2)");
@@ -184,19 +180,19 @@ export default function LoginPage() {
                 (e.currentTarget.style.background = "rgba(201,169,110,0.12)");
               }}
             >
-              {loading ? "Sending passage…" : "Send Passage →"}
+              {loading ? "Sending…" : "Send passage →"}
             </button>
 
             <p style={{
               textAlign: "center",
-              fontSize: "0.75rem",
+              fontSize: "0.875rem",
               color: "#8a857c",
               marginTop: "1.5rem",
               fontStyle: "italic",
-              lineHeight: 1.6,
+              lineHeight: 1.7,
             }}>
-              A magic passage will be sent to your vessel.<br />
-              Click the link to enter the manuscript.
+              A link will be sent to your email.<br />
+              Click it to enter the manuscript.
             </p>
           </form>
         ) : (

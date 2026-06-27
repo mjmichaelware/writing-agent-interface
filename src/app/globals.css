@@ -217,6 +217,15 @@ body {
   overflow-x: hidden;
 }
 
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  border: 1px solid rgba(80, 70, 55, 0.22);
+  pointer-events: none;
+  z-index: 2147483640;
+}
+
 /* Frank Ruhl Libre for Hebrew names and display titles */
 .font-hebrew {
   font-family: 'Frank Ruhl Libre', serif;

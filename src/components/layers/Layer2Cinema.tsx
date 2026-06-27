@@ -6,7 +6,7 @@ import AssetProjector from "@/components/layers/cinema/AssetProjector";
 import { resolveAssetByMeaning, resolveAssetByKeyword } from "@/data/cinema";
 
 export default function Layer2Cinema({ chapterSlug = "7" }: { chapterSlug?: string }) {
-  const [intensity, setIntensity] = useState(0.4);
+  const [intensity, setIntensity] = useState(0.88);
   const [currentAsset, setCurrentAsset] = useState("/assets/bg.png");
   const gyroX = useRef(0);
   const gyroY = useRef(0);

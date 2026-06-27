@@ -1,11 +1,15 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextResponse } from 'next/server';
 
+let _supabase: ReturnType<typeof createClient> | null = null;
+
 function getSupabase() {
+  if (_supabase) return _supabase;
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key) return null;
-  return createClient(url, key);
+  _supabase = createClient(url, key);
+  return _supabase;
 }
 
 // Match "chapter_N" or "chapterN" NOT followed by another digit.
@@ -28,7 +32,8 @@ function pickBestFolder(folders: string[]): string | null {
 }
 
 // Prose filter: skip very short lines and chapter heading lines
-function isProse(text: string): boolean {
+function isProse(text: string | null | undefined): boolean {
+  if (!text) return false;
   const t = text.trim();
   return t.length > 40 && !/^CHAPTER\s+\d+/i.test(t);
 }
@@ -48,13 +53,21 @@ export async function GET(request: Request) {
       // Fetch all distinct folders (only 16 total) and filter in JS with
       // a proper regex — avoids SQL ILIKE treating _ as a single-char wildcard
       // which causes chapter_1_ to incorrectly match chapter_10_, chapter_13_, etc.
-      const { data: folderRows } = await supabase
+      const { data: folderRows, error: folderError } = await supabase
         .from('render_paragraphs')
         .select('source_doc_folder')
         .eq('active', true);
 
+      if (folderError) {
+        return NextResponse.json({ error: folderError.message }, { status: 500 });
+      }
+
       const allFolders = [
-        ...new Set((folderRows ?? []).map((r: any) => r.source_doc_folder as string)),
+        ...new Set(
+          (folderRows ?? [])
+            .map((r: any) => r.source_doc_folder as string)
+            .filter(Boolean)
+        ),
       ];
       const matching = allFolders.filter((f) => matchesChapter(f, chapterNumber));
       targetFolder = pickBestFolder(matching);

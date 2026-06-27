@@ -3,6 +3,12 @@
    Global Design System & CSS Contracts
    ============================================================ */
 
+/* --- Base reset ------------------------------------------- */
+html {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
 /* --- CSS Custom Properties --------------------------------- */
 :root {
   /* Color Palette — Aesthetic Mandate §5 & Feature 140 (OLED True Black) */
@@ -307,11 +313,11 @@ body::after {
 .section-label {
   font-family: var(--font-prose, 'EB Garamond', Georgia, serif);
   font-style: italic;
-  font-size: 0.8125rem;
+  font-size: 0.9375rem;
   color: var(--text-muted);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   font-variant: small-caps;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 /* --- Table of Contents ------------------------------------ */
@@ -527,19 +533,16 @@ p[data-tone="descent"] { color: var(--descent) !important; }
 
 .kinetic-word {
   display: inline-block;
-  will-change: transform, filter, letter-spacing, opacity;
   transition:
     transform 700ms var(--ease-spring),
-    filter 700ms var(--ease-spring),
     letter-spacing 700ms var(--ease-spring),
     opacity 700ms var(--ease-spring);
   transform:
-    translateY(calc(var(--arc-mass) * 14px))
-    translateX(calc(var(--arc-drift) * 10px))
-    rotate(calc(var(--arc-mass) * 0.9deg));
-  filter: blur(calc(var(--arc-blur) * 2.5px));
-  letter-spacing: calc(var(--arc-tension) * -0.07em);
-  opacity: calc(1 - var(--arc-blur) * 0.28);
+    translateY(calc(var(--arc-mass, 0) * 14px))
+    translateX(calc(var(--arc-drift, 0) * 10px))
+    rotate(calc(var(--arc-mass, 0) * 0.9deg));
+  letter-spacing: calc(var(--arc-tension, 0) * -0.07em);
+  opacity: calc(1 - var(--arc-blur, 0) * 0.28);
 }
 
 .word-sacred {

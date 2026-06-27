@@ -45,7 +45,7 @@ export default function Layer3Canvas({ children }: { children: React.ReactNode }
   }, []);
 
   return (
-    <div className="layer3-canvas relative z-20 w-full min-h-screen will-change-[filter,opacity]">
+    <div className="layer3-canvas relative z-20 w-full min-h-screen">
       {children}
     </div>
   );

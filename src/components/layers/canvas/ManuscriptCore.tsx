@@ -21,21 +21,6 @@ function renderWithHebrewSpans(text: string): React.ReactNode[] {
   });
 }
 
-const CHAPTER_TITLES: Record<number, string> = {
-  1: "Stardust to Stardust",
-  2: "Living Sacrifice",
-  3: "Lift Up",
-  4: "Pilgrimage",
-  5: "The Snare",
-  6: "Beelzebub Beelzebub",
-  7: "The Pit",
-  8: "Sea People",
-  9: "The Ascent",
-  10: "Forsaken",
-  11: "Forsaken (II)",
-  12: "[pending: XII]",
-  13: "Exodus",
-};
 
 export default function ManuscriptCore({
   blocks,
@@ -197,7 +182,7 @@ export default function ManuscriptCore({
       <Dedication />
       <Synopsis />
       <div id="author"><AboutAuthor /></div>
-      <TableOfContents TITLES={CHAPTER_TITLES} onLoadChapter={handleLoadChapter} />
+      <TableOfContents onLoadChapter={handleLoadChapter} />
 
       <div className="reader-column pt-32">
         <h2 id="chapter-content" className="section-label text-center mb-32">Chapter {chapterSlug}</h2>

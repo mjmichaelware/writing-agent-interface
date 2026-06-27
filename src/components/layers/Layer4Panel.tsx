@@ -48,8 +48,8 @@ export default function Layer4Panel() {
         const y = window.scrollY;
         const d = y - lastScrollY.current;
         if (y < 100) setHeaderVisible(false);
-        else if (delta < -8) setHeaderVisible(true);
-        else if (delta > 8) setHeaderVisible(false);
+        else if (d < -8) setHeaderVisible(true);
+        else if (d > 8) setHeaderVisible(false);
         lastScrollY.current = y;
         const total = document.body.scrollHeight - window.innerHeight;
         const progress = total > 0 ? (y / total) * 100 : 0;

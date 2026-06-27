@@ -264,23 +264,6 @@ export default function ManuscriptCore({
           })
         )}
       </div>
-
-            return (
-              <p
-                key={id}
-                data-para
-                data-index={idx}
-                data-paragraph-id={id}
-                id={id}
-                data-state="inactive"
-                className="prose-paragraph kinetic-word"
-              >
-                {text}
-              </p>
-            );
-          })
-        )}
-      </div>
     </div>
   );
 }

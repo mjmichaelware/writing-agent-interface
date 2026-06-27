@@ -5,6 +5,7 @@ import { bus } from "@/core/runtimeEngine";
 const HyperlinksGraph = lazy(() => import("./panel/HyperlinksGraph"));
 const BiblicalReferencesDirectory = lazy(() => import("./panel/BiblicalReferencesDirectory"));
 const ArchetypesDirectory = lazy(() => import("./panel/ArchetypesDirectory"));
+const BiblicalArchetypeMatrix = lazy(() => import("./panel/BiblicalArchetypeMatrix"));
 const ChapterSettings = lazy(() => import("./panel/ChapterSettings"));
 const AuthorGateway = lazy(() => import("./panel/AuthorGateway"));
 
@@ -23,11 +24,12 @@ class TabBoundary extends Component<{ children: ReactNode; name: string }, { err
 }
 
 const TABS = [
-  { id: "HYPERLINKS", label: "Parallelisms & Dualisms", Component: HyperlinksGraph },
-  { id: "BIBLICAL",   label: "Biblical References",     Component: BiblicalReferencesDirectory },
-  { id: "ARCHETYPES", label: "Archetypes",              Component: ArchetypesDirectory },
-  { id: "SETTINGS",   label: "Chapter Settings",        Component: ChapterSettings },
-  { id: "GATEWAY",    label: "Author Gateway",          Component: AuthorGateway },
+  { id: "HYPERLINKS",   label: "Parallelisms & Dualisms", Component: HyperlinksGraph },
+  { id: "BIBLICAL",     label: "Biblical References",     Component: BiblicalReferencesDirectory },
+  { id: "ARCHETYPES",   label: "Archetypes",              Component: ArchetypesDirectory },
+  { id: "SACRED_MAP",   label: "Sacred Resonance",        Component: BiblicalArchetypeMatrix },
+  { id: "SETTINGS",     label: "Chapter Settings",        Component: ChapterSettings },
+  { id: "GATEWAY",      label: "Author Gateway",          Component: AuthorGateway },
 ];
 
 export default function Layer4Panel() {

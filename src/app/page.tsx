@@ -67,8 +67,9 @@ export default function Page() {
         const res = await fetch(`/api/manuscript?chapterNumber=${chapterNum}`);
         if (res.ok) {
           const data = await res.json();
-          if (Array.isArray(data) && data.length > 0) {
-            setBlocks(data);
+          const paragraphs = Array.isArray(data) ? data : data?.paragraphs;
+          if (Array.isArray(paragraphs) && paragraphs.length > 0) {
+            setBlocks(paragraphs);
             setPartNumber(chapterNum <= 9 ? "I" : "II");
             return;
           }

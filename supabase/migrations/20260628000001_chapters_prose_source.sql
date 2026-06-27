@@ -1,0 +1,3 @@
+ALTER TABLE chapters
+ADD COLUMN IF NOT EXISTS prose_source TEXT NOT NULL DEFAULT 'supabase',
+ADD COLUMN IF NOT EXISTS prose_source_ref TEXT;

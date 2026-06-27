@@ -152,7 +152,7 @@ export default function ManuscriptCore({
                 chapterNumber:
                   typeof block === "string"
                     ? Number.parseInt(chapterSlug, 10) || 0
-                    : Number(block?.chapter_number ?? Number.parseInt(chapterSlug, 10) || 0),
+                    : Number(block?.chapter_number ?? (Number.parseInt(chapterSlug, 10) || 0)),
                 chapterVersion: typeof block === "string" ? null : block?.chapter_version ?? null,
                 content: typeof block === "string" ? block : block?.content || "",
                 weights: typeof block === "string" ? {} : block?.weights || block?.archetypal_weights || {},

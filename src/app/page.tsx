@@ -13,6 +13,13 @@ import { initAudioPlaybackListener } from "@/runtime/listeners/audioPlaybackList
 import { initDistortionListener } from "@/runtime/listeners/distortionListener";
 import { initThematicListener } from "@/runtime/listeners/thematicListener";
 
+const getPartNumber = (n: number) => {
+  if (n <= 9) return "I";
+  if (n <= 17) return "II";
+  if (n <= 24) return "III";
+  return "Epilogue";
+};
+
 export default function Page() {
   const [blocks, setBlocks] = useState<any[]>([]);
   const [partNumber, setPartNumber] = useState("I");
@@ -61,7 +68,7 @@ export default function Page() {
           } else {
             setBlocks([]);
           }
-          setPartNumber(chapterNum <= 9 ? "I" : "II");
+          setPartNumber(getPartNumber(chapterNum));
           return;
         }
 
@@ -72,7 +79,7 @@ export default function Page() {
           const paragraphs = Array.isArray(data) ? data : data?.paragraphs;
           if (Array.isArray(paragraphs) && paragraphs.length > 0) {
             setBlocks(paragraphs);
-            setPartNumber(chapterNum <= 9 ? "I" : "II");
+            setPartNumber(getPartNumber(chapterNum));
             return;
           }
         }
@@ -105,6 +112,7 @@ export default function Page() {
 
   return (
     <main className="relative w-full min-h-screen overflow-hidden">
+      <div className="noise-grain" aria-hidden="true" />
       {/* Layer 4 is mounted in layout.tsx for root-level persistence and max z-index */}
 
       <ReaderLayout>

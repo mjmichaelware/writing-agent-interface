@@ -1,5 +1,6 @@
 "use client";
 import { useState, useRef } from "react";
+import { bus } from "@/core/runtimeEngine";
 
 const PIN = process.env.NEXT_PUBLIC_AUTHOR_PIN || "9187";
 const gold = "#c9a96e";
@@ -12,12 +13,20 @@ type Provider = "claude" | "gemini" | "groq";
 
 function Btn({ onClick, disabled, children }: { onClick: () => void; disabled?: boolean; children: React.ReactNode }) {
   return (
-    <button onClick={onClick} disabled={disabled} style={{
-      fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "0.875rem",
-      color: gold, background: "transparent", border: `1px solid ${gold}`,
-      padding: "0.4rem 1.25rem", cursor: disabled ? "not-allowed" : "pointer",
-      opacity: disabled ? 0.5 : 1, whiteSpace: "nowrap",
-    }}>{children}</button>
+    <button onClick={onClick} disabled={disabled}
+      style={{
+        fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "0.875rem",
+        color: disabled ? "rgba(201,169,110,0.4)" : "#c9a96e",
+        background: "rgba(201,169,110,0.06)",
+        border: `1px solid ${disabled ? "rgba(201,169,110,0.2)" : "rgba(201,169,110,0.45)"}`,
+        padding: "0.4rem 1.25rem", cursor: disabled ? "not-allowed" : "pointer",
+        whiteSpace: "nowrap",
+        boxShadow: disabled ? "none" : "0 0 10px rgba(201,169,110,0.1)",
+        transition: "all 250ms cubic-bezier(0.22,1,0.36,1)",
+      }}
+      onMouseEnter={e => { if (!disabled) (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 20px rgba(201,169,110,0.28)"; }}
+      onMouseLeave={e => { if (!disabled) (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 10px rgba(201,169,110,0.1)"; }}
+    >{children}</button>
   );
 }
 
@@ -129,10 +138,13 @@ export default function WritingAgentConsole() {
 
   const providerStyle = (p: Provider): React.CSSProperties => ({
     fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "0.8125rem",
-    padding: "0.25rem 0.875rem", background: "transparent",
-    border: `1px solid ${provider === p ? gold : "rgba(201,169,110,0.25)"}`,
+    padding: "0.25rem 0.875rem",
+    background: provider === p ? "rgba(201,169,110,0.08)" : "transparent",
+    border: `1px solid ${provider === p ? gold : "rgba(201,169,110,0.22)"}`,
     color: provider === p ? gold : muted,
-    cursor: "pointer", transition: "all 200ms",
+    cursor: "pointer", transition: "all 250ms cubic-bezier(0.22,1,0.36,1)",
+    boxShadow: provider === p ? "0 0 14px rgba(201,169,110,0.18), inset 0 0 6px rgba(201,169,110,0.06)" : "none",
+    textShadow: provider === p ? "0 0 10px rgba(201,169,110,0.4)" : "none",
   });
 
   const askAgent = async () => {
@@ -297,13 +309,34 @@ export default function WritingAgentConsole() {
 
   return (
     <div>
-      <p style={{ fontFamily: "Georgia, serif", fontStyle: "italic", color: gold, textAlign: "center", fontSize: "0.9375rem", margin: "0 0 0.75rem" }}>
-        Operator Active · Telemetry Online
-      </p>
+      {/* Header */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.75rem" }}>
+        <p style={{ fontFamily: "Georgia, serif", fontStyle: "italic", color: gold, fontSize: "0.9375rem", margin: 0, textShadow: "0 0 16px rgba(201,169,110,0.35)" }}>
+          Operator Active · Telemetry Online
+        </p>
+        <button
+          onClick={() => bus.emit("panel:open", { tabId: "HYPERLINKS" })}
+          style={{
+            fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "0.75rem",
+            color: "rgba(201,169,110,0.7)", background: "rgba(201,169,110,0.06)",
+            border: "1px solid rgba(201,169,110,0.2)", padding: "0.25rem 0.75rem",
+            cursor: "pointer", borderRadius: "2px",
+            transition: "all 250ms cubic-bezier(0.22,1,0.36,1)",
+            boxShadow: "0 0 8px rgba(201,169,110,0.06)",
+          }}
+          onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 16px rgba(201,169,110,0.22)"; (e.currentTarget as HTMLButtonElement).style.color = gold; }}
+          onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 8px rgba(201,169,110,0.06)"; (e.currentTarget as HTMLButtonElement).style.color = "rgba(201,169,110,0.7)"; }}
+        >
+          ⬡ Dualisms Graph
+        </button>
+      </div>
 
-      <div style={{ display: "flex", borderBottom: "1px solid rgba(201,169,110,0.2)", marginBottom: "1rem", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", borderBottom: "1px solid rgba(201,169,110,0.15)", marginBottom: "1rem", flexWrap: "wrap" }}>
         {(["agent","analyzer","drive","semantic","versions"] as const).map(t => (
-          <button key={t} onClick={() => setActiveTab(t)} style={tabStyle(t)}>
+          <button key={t} onClick={() => setActiveTab(t)} style={{
+            ...tabStyle(t),
+            textShadow: activeTab === t ? "0 0 12px rgba(201,169,110,0.5)" : "none",
+          }}>
             {t === "agent" ? "Agent" : t === "analyzer" ? "Docs" : t === "drive" ? "Drive" : t === "semantic" ? "Semantic" : "Versions"}
           </button>
         ))}
@@ -338,11 +371,27 @@ export default function WritingAgentConsole() {
 
           <textarea value={agentIn} onChange={e => setAgentIn(e.target.value)}
             placeholder="Ask the swarm about the manuscript…" rows={3}
-            style={{ width: "100%", margin: "0.5rem 0", fontFamily: "Georgia, serif", fontSize: "0.9375rem", color: body, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(201,169,110,0.15)", padding: "0.75rem", resize: "vertical", outline: "none", boxSizing: "border-box" }} />
+            style={{
+              width: "100%", margin: "0.5rem 0", fontFamily: "Georgia, serif",
+              fontSize: "0.9375rem", color: body,
+              background: "rgba(201,169,110,0.02)",
+              border: "1px solid rgba(201,169,110,0.18)",
+              padding: "0.75rem", resize: "vertical", outline: "none",
+              boxSizing: "border-box",
+              boxShadow: "inset 0 0 20px rgba(0,0,0,0.4)",
+              transition: "border-color 250ms, box-shadow 250ms",
+            }} />
           <Btn onClick={askAgent} disabled={loading}>{loading ? "Thinking…" : "Send"}</Btn>
 
           {agentOut && (
-            <div style={{ marginTop: "1rem", padding: "1rem", background: "rgba(255,255,255,0.03)", borderLeft: `2px solid ${gold}`, fontFamily: "Georgia, serif", fontSize: "0.9375rem", color: body, lineHeight: 1.6, whiteSpace: "pre-wrap" }}>
+            <div style={{
+              marginTop: "1rem", padding: "1rem",
+              background: "linear-gradient(135deg, rgba(12,9,5,0.6) 0%, rgba(8,6,3,0.8) 100%)",
+              borderLeft: `2px solid ${gold}`,
+              boxShadow: `0 0 30px rgba(0,0,0,0.4), inset 0 0 20px rgba(0,0,0,0.3), -2px 0 20px rgba(201,169,110,0.06)`,
+              fontFamily: "Georgia, serif", fontSize: "0.9375rem", color: body,
+              lineHeight: 1.6, whiteSpace: "pre-wrap",
+            }}>
               {agentOut}
             </div>
           )}
@@ -363,9 +412,15 @@ export default function WritingAgentConsole() {
           {analyzeLoading && <p style={{ fontFamily: "Georgia, serif", fontStyle: "italic", color: muted, fontSize: "0.875rem" }}>Analyzing…</p>}
           {analysisResult && (
             <div style={{ marginTop: "1rem" }}>
-              {(["the_bad","from_your_book","your_response"] as const).map(key => analysisResult[key] && (
-                <div key={key} style={{ marginBottom: "1.5rem", padding: "0.75rem", background: "rgba(255,255,255,0.02)", borderLeft: `2px solid ${gold}` }}>
-                  <div style={{ fontFamily: "Georgia, serif", fontSize: "0.6875rem", letterSpacing: "0.15em", color: gold, textTransform: "uppercase", marginBottom: "0.5rem" }}>
+              {(["the_bad","from_your_book","your_response"] as const).map((key, ki) => analysisResult[key] && (
+                <div key={key} style={{
+                  marginBottom: "1.5rem", padding: "1rem",
+                  background: "linear-gradient(135deg, rgba(12,9,5,0.5), rgba(8,6,3,0.7))",
+                  borderLeft: `2px solid ${gold}`,
+                  boxShadow: "0 0 24px rgba(0,0,0,0.35), inset 0 0 16px rgba(0,0,0,0.25)",
+                  animation: `fadeIn 0.5s ease ${ki * 0.15}s both`,
+                }}>
+                  <div style={{ fontFamily: "Georgia, serif", fontSize: "0.6875rem", letterSpacing: "0.15em", color: gold, textTransform: "uppercase", marginBottom: "0.5rem", textShadow: "0 0 10px rgba(201,169,110,0.3)" }}>
                     {key === "the_bad" ? "The Bad" : key === "from_your_book" ? "From Your Book" : "Your Response"}
                   </div>
                   <div style={{ fontFamily: "Georgia, serif", fontSize: "0.9375rem", color: body, lineHeight: 1.6 }}>{analysisResult[key]}</div>

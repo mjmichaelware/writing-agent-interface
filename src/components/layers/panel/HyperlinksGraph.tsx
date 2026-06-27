@@ -11,6 +11,7 @@ export default function HyperlinksGraph() {
   const wrapRef = useRef<HTMLDivElement>(null);
   const [data, setData] = useState<{ nodes: Node[]; links: Link[] } | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [dims, setDims] = useState({ w: 400, h: 400 });
 
   useEffect(() => {
     fetch("/api/graph")
@@ -95,12 +96,25 @@ export default function HyperlinksGraph() {
   }, []);
 
   useEffect(() => {
+    const wrap = wrapRef.current;
+    if (!wrap) return;
+    const ro = new ResizeObserver(entries => {
+      for (const e of entries) {
+        setDims({ w: e.contentRect.width || 400, h: e.contentRect.height || 400 });
+      }
+    });
+    ro.observe(wrap);
+    setDims({ w: wrap.clientWidth || 400, h: wrap.clientHeight || 400 });
+    return () => ro.disconnect();
+  }, []);
+
+  useEffect(() => {
     if (!data || !svgRef.current || !wrapRef.current) return;
     const svg = d3.select(svgRef.current);
     svg.selectAll("*").remove();
-    
-    const w = wrapRef.current.clientWidth || 400;
-    const h = wrapRef.current.clientHeight || 400;
+
+    const w = dims.w;
+    const h = dims.h;
     
     const g = svg.append("g");
     
@@ -114,28 +128,42 @@ export default function HyperlinksGraph() {
       .force("center", d3.forceCenter(w / 2, h / 2))
       .force("collide", d3.forceCollide().radius(30));
 
+    // Glow filter
+    const defs = svg.append("defs");
+    const filter = defs.append("filter").attr("id", "node-glow").attr("x", "-50%").attr("y", "-50%").attr("width", "200%").attr("height", "200%");
+    filter.append("feGaussianBlur").attr("stdDeviation", "3").attr("result", "blur");
+    const feMerge = filter.append("feMerge");
+    feMerge.append("feMergeNode").attr("in", "blur");
+    feMerge.append("feMergeNode").attr("in", "SourceGraphic");
+
     const link = g.append("g")
       .selectAll("line")
       .data(data.links)
       .join("line")
       .attr("stroke", "#c9a96e")
-      .attr("stroke-opacity", 0.2)
-      .attr("stroke-width", (d: any) => (d.weight || 1) * 0.5);
+      .attr("stroke-opacity", 0.18)
+      .attr("stroke-width", (d: any) => (d.weight || 1) * 0.6);
 
     const node = g.append("g")
       .selectAll("circle")
       .data(data.nodes)
       .join("circle")
-      .attr("r", 6)
+      .attr("r", 7)
       .attr("fill", (d: any) => {
         const m = d.dualism_map || {};
         if (m.sacred > 0.5) return "#e8d4a0";
         if (m.descent > 0.5) return "#6b2c2c";
-        if (m.shadow > 0.5) return "#2a2a2a";
+        if (m.shadow > 0.5) return "#3a3530";
         return "#c9a96e";
       })
-      .attr("stroke", "#0a0a0a")
-      .attr("stroke-width", 1.5)
+      .attr("stroke", (d: any) => {
+        const m = d.dualism_map || {};
+        if (m.sacred > 0.5) return "rgba(232,212,160,0.6)";
+        if (m.descent > 0.5) return "rgba(107,44,44,0.7)";
+        return "rgba(201,169,110,0.5)";
+      })
+      .attr("stroke-width", 1)
+      .attr("filter", "url(#node-glow)")
       .call(d3.drag<SVGCircleElement, any>()
         .on("start", dragstarted)
         .on("drag", dragged)
@@ -177,7 +205,7 @@ export default function HyperlinksGraph() {
     }
 
     return () => simulation.stop();
-  }, [data]);
+  }, [data, dims]);
 
   if (error) return <div className="panel-empty">{error}</div>;
   if (!data) return <div className="panel-loading">Mapping narrative connections...</div>;
@@ -187,8 +215,8 @@ export default function HyperlinksGraph() {
       <h2 className="panel-h2">Parallelisms & Dualisms</h2>
       <p className="panel-sub">{data.nodes.length} nodes · {data.links.length} connections</p>
       
-      <div ref={wrapRef} className="flex-1 min-h-[400px] relative overflow-hidden bg-black/20 rounded border border-white/5">
-        <svg ref={svgRef} className="w-full h-full cursor-move" />
+      <div ref={wrapRef} className="flex-1 min-h-[400px] relative overflow-hidden rounded" style={{ background: "linear-gradient(135deg, rgba(8,6,3,0.8) 0%, rgba(12,9,5,0.6) 100%)", border: "1px solid rgba(201,169,110,0.1)", boxShadow: "inset 0 0 40px rgba(0,0,0,0.5)" }}>
+        <svg ref={svgRef} className="w-full h-full cursor-move" style={{ width: dims.w, height: dims.h }} />
       </div>
 
       <div className="legend">

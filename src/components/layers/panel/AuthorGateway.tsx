@@ -14,6 +14,13 @@ export default function AuthorGateway() {
 
   useEffect(() => {
     try { if (localStorage.getItem(KEY) === "true") setUnlocked(true); } catch {}
+    try {
+      const p = new URLSearchParams(window.location.search).get("pin");
+      if (p && p === PIN) {
+        setUnlocked(true);
+        localStorage.setItem(KEY, "true");
+      }
+    } catch {}
   }, []);
 
   const tryUnlock = (v: string) => {

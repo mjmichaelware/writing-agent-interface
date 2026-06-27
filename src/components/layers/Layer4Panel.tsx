@@ -92,6 +92,36 @@ export default function Layer4Panel() {
   return (
     <>
       <div id="reading-progress-bar" className="reading-progress-bar" />
+
+      {/* Floating Author Gateway trigger — always visible */}
+      <button
+        onClick={() => bus.emit("panel:open", { tabId: "GATEWAY" })}
+        aria-label="Open Author Gateway"
+        style={{
+          position: "fixed", bottom: "1.75rem", right: "1.5rem",
+          width: "2.5rem", height: "2.5rem", borderRadius: "50%",
+          background: "rgba(8,6,3,0.88)",
+          backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)",
+          border: "1px solid rgba(201,169,110,0.35)",
+          boxShadow: "0 0 18px rgba(201,169,110,0.10), 0 4px 16px rgba(0,0,0,0.65)",
+          color: gold, fontSize: "1rem", cursor: "pointer",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          zIndex: 2147483645,
+          transition: "box-shadow 350ms cubic-bezier(0.22,1,0.36,1), border-color 350ms",
+          pointerEvents: isOpen ? "none" : "auto",
+          opacity: isOpen ? 0 : 1,
+        }}
+        onMouseEnter={e => {
+          (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 32px rgba(201,169,110,0.28), 0 4px 20px rgba(0,0,0,0.7)";
+          (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(201,169,110,0.65)";
+        }}
+        onMouseLeave={e => {
+          (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 18px rgba(201,169,110,0.10), 0 4px 16px rgba(0,0,0,0.65)";
+          (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(201,169,110,0.35)";
+        }}
+      >
+        ✦
+      </button>
       <header className={`layer4-top-header ${headerVisible ? "visible" : ""}`}>
         {TABS.map(t => (
           <button key={t.id}

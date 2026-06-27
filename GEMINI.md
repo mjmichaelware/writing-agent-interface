@@ -20,26 +20,30 @@ Before structural changes or when seeking lore/logic, reference the core archite
 - Also refer to: `.trashed-1781206417-Writing Agent App. Source Doc. (8) [COMBINED].txt`
 ## SESSION CONTEXT (read at every session start)
 
-On startup, before responding to any operator command, read these
-directories in order:
+**Primary authority**: Read `AGENTS.md` first. It is the complete, phase-by-phase
+Master Build Plan integrating all source documents, aesthetic mandates, operational
+protocols, LLM routing specs, Supabase contracts, and file paths. It supersedes
+all `.agent-context/` tier files when there is any conflict.
 
-### Tier 1 — Critical Project Identity (read first, hold all)
-`.agent-context/tier1-critical/` — 17 files defining the project's
-spine: source docs, AI checkpoints, the Aesthetic Mandate, both
-Claude assessments, the OMEGA prompt, the 4-layer UI/UX inventory,
-the IMPOSSIBLE_TARGETS structure, the project handoff context.
+On startup, before responding to any operator command, read these in order:
+
+1. `AGENTS.md` — complete Master Build Plan (ultimate authority)
+2. `docs/ai-context/CURRENT_PROJECT_STATE.md` — live state snapshot
+3. `docs/ai-context/CONTEXT_PRIORITY.md` — conflict resolution rules
+4. `src/data-layer/version-archive/ema_history.json` — canonical selection state
+
+### Legacy Tier Context (fallback only — AGENTS.md takes precedence)
+### Tier 1 — Critical Project Identity
+`.agent-context/tier1-critical/` — 17 files: source docs, AI checkpoints,
+Aesthetic Mandate, OMEGA prompt, 4-layer UI/UX inventory, IMPOSSIBLE_TARGETS.
 
 ### Tier 2 — Large Audits & Universal Mandates
-`.agent-context/tier2-large/` — 6 files including the
-CONTRADICTION_MAP, drive sync diffs, NEW_SEC_DOC v1/v2, and the
-NOS_INTEGRATION_BLUEPRINT (the system architecture authority).
+`.agent-context/tier2-large/` — 6 files: CONTRADICTION_MAP, drive sync diffs,
+NEW_SEC_DOC v1/v2, NOS_INTEGRATION_BLUEPRINT.
 
 ### Tier 3 — Runtime Checkpoints
-`.agent-context/tier3-checkpoints/` — 4 files including
-NOS_Master_Blueprints, NOS_Master_Diagnostic, Project Checkpoint 2,
-and the Termux session checkpoint.
+`.agent-context/tier3-checkpoints/` — 4 files: NOS_Master_Blueprints,
+NOS_Master_Diagnostic, Project Checkpoint 2, Termux session checkpoint.
 
-Hold all of this in working memory for the entire session. Reference
-files by tier and position number (e.g. "tier1/04" for
-AI_CHECKPOINT_FINAL) when citing context in responses.
+Hold all of this in working memory for the entire session.
 

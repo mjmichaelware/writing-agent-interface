@@ -1,0 +1,87 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git status)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git fetch:*)",
+      "Bash(git pull:*)",
+      "Bash(git checkout:*)",
+      "Bash(git branch:*)",
+      "Bash(npx next build*)",
+      "Bash(npx next dev*)",
+      "Bash(npm install*)",
+      "Bash(npm run build*)",
+      "Bash(npm run dev*)",
+      "Bash(npm run lint*)",
+      "Bash(npx tsc*)",
+      "Bash(node:*)",
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(mkdir:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(rm:*)"
+    ],
+    "deny": []
+  },
+  "mcpServers": {
+    "supabase": {
+      "description": "Supabase MCP — primary database for all narrative content, semantic spans, chapters, and embeddings. Use for migrations, SQL execution, table inspection, and project management."
+    },
+    "Google_Drive": {
+      "description": "Google Drive MCP — syncs manuscript .txt files from gdrive_raw/ folder. Use for reading chapter drafts, syncing canonical content, and downloading ingestion-buffer files."
+    },
+    "github": {
+      "description": "GitHub MCP — repo mjmichaelware/writing-agent-interface. Use for PR management, CI/CD workflow triggers (semantic-rehash, xml-hash-runner), branch operations, and issue tracking."
+    },
+    "Vercel": {
+      "description": "Vercel MCP — production deployment. Use to check deployment status, view build logs, inspect runtime errors, and manage project environment variables."
+    }
+  },
+  "env": {
+    "NEXT_PUBLIC_SUPABASE_URL": "",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "",
+    "SUPABASE_SERVICE_ROLE_KEY": "",
+    "SUPABASE_PROJECT_REF": "",
+    "ANTHROPIC_API_KEY": "",
+    "GEMINI_API_KEY": "",
+    "GROQ_API_KEY": "",
+    "OPENAI_API_KEY": "",
+    "GOOGLE_CLIENT_ID": "",
+    "GOOGLE_CLIENT_SECRET": "",
+    "GOOGLE_REDIRECT_URI": "",
+    "GOOGLE_REFRESH_TOKEN": "",
+    "GDRIVE_MANUSCRIPT_FOLDER_ID": "",
+    "GOOGLE_CLOUD_PROJECT": "",
+    "GOOGLE_CLOUD_LOCATION": "us-central1",
+    "AUTHOR_PIN": "",
+    "GENERATION_MONTHLY_BUDGET_USD": "5.00"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '[hook] Running bash command in writing-agent-interface'"
+          }
+        ]
+      }
+    ]
+  },
+  "model": "claude-sonnet-4-6",
+  "notes": {
+    "build": "Always use: npx next build --webpack (Termux ARM64 / no Turbopack)",
+    "branch": "Develop on claude/skills-agents-updates-jpdg8x → promote to main after each phase green signal",
+    "data_rule": "ALL narrative data from Supabase. NEVER fs.readFileSync for manuscript content.",
+    "security": "SUPABASE_SERVICE_ROLE_KEY is server-only. Never expose to client. Never include internal docs (compendium/blueprint/mandate/prompt) in reader-facing API responses.",
+    "llm_routing": "Claude (claude-sonnet-4-6) for prose/literary. Gemini 2.0 Flash for multimodal. Groq llama-4-scout-17b-16e-instruct for fast RAG.",
+    "author_pin": "AuthorGateway PIN gates cockpit. Value in AUTHOR_PIN env var. Never hardcode.",
+    "commit_format": "feat: phase N — description"
+  }
+}

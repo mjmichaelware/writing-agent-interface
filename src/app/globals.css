@@ -294,7 +294,7 @@ body {
   font-size: 0.8125rem;
   color: var(--text-muted);
   letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-variant: small-caps;
   margin-bottom: 2.5rem;
 }
 
@@ -305,7 +305,8 @@ body {
   font-size: 0.875rem;
   color: var(--accent-gold);
   letter-spacing: 0.15em;
-  text-transform: uppercase;
+  font-style: italic;
+  font-variant: small-caps;
   margin: 4rem 0 2rem 0;
   border-bottom: 1px solid rgba(201, 169, 110, 0.15);
   padding-bottom: 0.5rem;
@@ -372,31 +373,8 @@ body {
   padding: 0.75rem 0;
 }
 
-.toc-row::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%) scaleX(0);
-  transform-origin: left;
-  width: 2px;
-  height: 60%;
-  background: var(--accent-gold);
-  transition: transform var(--duration-medium) var(--ease-spring);
-  border-radius: 1px;
-}
-
-.toc-row:hover::before {
-  transform: translateY(-50%) scaleX(1);
-}
-
-.toc-row:hover {
-  color: var(--text-body);
-  padding-left: 0.875rem;
-}
-
 .toc-disabled {
-  opacity: 0.3;
+  opacity: 0.35;
   font-style: italic;
   cursor: default;
   pointer-events: none;
@@ -1058,3 +1036,135 @@ body.layer4-open { overflow: hidden; }
   transition: color 350ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .gateway-lock:hover { color: var(--accent-gold); }
+
+/* --- Manuscript Paragraph Segment (Synopsis, AboutAuthor) --- */
+.manuscript-paragraph-segment {
+  font-family: var(--font-prose);
+  font-size: var(--font-size-prose);
+  line-height: 1.7;
+  color: var(--text-body);
+  text-align: justify;
+}
+
+/* --- Reading Progress Bar (Phase 1A) ----------------------- */
+.reading-progress-bar {
+  position: fixed; top: 0; left: 0;
+  height: 1px; width: 0%;
+  background-color: var(--accent-gold);
+  z-index: 100;
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
+
+/* --- Noise Grain Overlay (Phase 10C) ----------------------- */
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-2%, -3%); }
+  20% { transform: translate(3%, 2%); }
+  30% { transform: translate(-1%, 4%); }
+  40% { transform: translate(4%, -1%); }
+  50% { transform: translate(-3%, 3%); }
+  60% { transform: translate(2%, -4%); }
+  70% { transform: translate(-4%, 1%); }
+  80% { transform: translate(1%, -2%); }
+  90% { transform: translate(3%, 4%); }
+}
+.noise-grain {
+  pointer-events: none; position: fixed; inset: -50%;
+  width: 200%; height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+  opacity: calc(0.02 + var(--grain-intensity, 0) * 0.04);
+  animation: grain 0.5s steps(1) infinite;
+  z-index: 15;
+}
+
+/* --- Skeleton Loaders (Phase 10D) -------------------------- */
+.skeleton-para {
+  height: 1em; margin-bottom: 0.75em; border-radius: 2px;
+  background: linear-gradient(90deg, var(--bg-void, #0a0a0a), #1a1a1a, var(--bg-void, #0a0a0a));
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+.skeleton-container { padding: 2rem; max-width: 65ch; margin: 0 auto; }
+.toc-skeleton-row {
+  height: 1.2em; margin-bottom: 0.6em; border-radius: 2px;
+  background: linear-gradient(90deg, var(--bg-void, #0a0a0a), #1a1a1a, var(--bg-void, #0a0a0a));
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+/* --- Semantic Editor (Phase 11E) --------------------------- */
+.semantic-row-hidden { color: #6b2c2c; opacity: 0.7; }
+.semantic-toggle {
+  font-family: var(--font-prose); font-size: 0.75rem;
+  padding: 0.2rem 0.6rem; cursor: pointer;
+  background: transparent; border: 1px solid currentColor;
+  transition: all 200ms;
+}
+.semantic-toggle.visible { color: var(--accent-gold); border-color: var(--accent-gold); }
+.semantic-toggle.hidden { color: #6b2c2c; border-color: #6b2c2c; }
+
+/* --- Cockpit Tab UI (Phase 11E/F) -------------------------- */
+.cockpit-tab-bar {
+  display: flex; gap: 0;
+  border-bottom: 1px solid rgba(201,169,110,0.2);
+  margin-bottom: 1rem; flex-wrap: wrap;
+}
+.cockpit-tab {
+  font-family: var(--font-prose); font-style: italic;
+  font-size: 0.8125rem; padding: 0.5rem 1rem;
+  background: transparent; border: none;
+  color: var(--text-muted); cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 200ms;
+}
+.cockpit-tab.active { color: var(--accent-gold); border-bottom-color: var(--accent-gold); }
+.cockpit-section { margin-top: 1rem; }
+.cockpit-section-heading {
+  font-family: var(--font-prose); font-style: italic;
+  color: var(--text-muted); font-size: 0.75rem;
+  letter-spacing: 0.1em; margin-bottom: 0.5rem;
+}
+.cockpit-row {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(201,169,110,0.08);
+}
+.cockpit-row-text {
+  font-family: var(--font-prose); font-size: 0.875rem;
+  color: var(--text-body); flex: 1;
+}
+
+/* --- Chapter Versions (Phase 11F) -------------------------- */
+.version-row {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(201,169,110,0.08);
+  flex-wrap: wrap;
+}
+.version-tag { font-family: var(--font-prose); font-size: 0.8125rem; color: var(--text-muted); flex: 1; }
+.diff-preview {
+  font-family: var(--font-prose); font-size: 0.8125rem;
+  color: var(--text-muted); font-style: italic;
+  background: rgba(255,255,255,0.02); padding: 0.5rem;
+  border-left: 2px solid rgba(201,169,110,0.3);
+  margin: 0.5rem 0; width: 100%;
+}
+
+/* --- Three-Part Document Analyzer Response (Phase 5C) ------- */
+.three-part-response { margin-top: 1rem; }
+.three-part-section {
+  margin-bottom: 1.5rem; padding: 0.75rem;
+  background: rgba(255,255,255,0.02);
+  border-left: 2px solid var(--accent-gold);
+}
+.three-part-label {
+  font-family: var(--font-prose); font-size: 0.6875rem;
+  letter-spacing: 0.15em; color: var(--accent-gold);
+  text-transform: uppercase; margin-bottom: 0.5rem;
+}
+.three-part-text {
+  font-family: var(--font-prose); font-size: 0.9375rem;
+  color: var(--text-body); line-height: 1.6;
+}

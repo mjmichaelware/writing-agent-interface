@@ -32,6 +32,10 @@ export default function Layer4Panel() {
         else if (delta < -8) setHeaderVisible(true);
         else if (delta > 8) setHeaderVisible(false);
         lastScrollY.current = y;
+        const total = document.body.scrollHeight - window.innerHeight;
+        const progress = total > 0 ? (y / total) * 100 : 0;
+        const bar = document.getElementById('reading-progress-bar');
+        if (bar) bar.style.width = `${Math.min(100, progress)}%`;
         raf = 0;
       });
     };
@@ -72,6 +76,7 @@ export default function Layer4Panel() {
 
   return (
     <>
+      <div id="reading-progress-bar" className="reading-progress-bar" />
       <header className={`layer4-top-header ${headerVisible ? "visible" : ""}`}>
         {TABS.map(tab => (
           <button key={tab.id}

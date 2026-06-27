@@ -1,12 +1,15 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { smoothScroll } from "@/utils/smoothScroll";
 
 export default function TitleCover() {
+  const { scrollYProgress } = useScroll();
+  const backdropOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
+
   return (
-    <section id="title-page" className="relative min-h-screen flex flex-col items-center justify-center text-center px-6">
+    <motion.section id="title-page" className="relative min-h-screen flex flex-col items-center justify-center text-center px-6" style={{ opacity: backdropOpacity }}>
       
       {/* Title block, vertically centered */}
       <motion.h1 
@@ -51,6 +54,6 @@ export default function TitleCover() {
       >
         By Michael Alonza Prentice Ware
       </motion.p>
-    </section>
+    </motion.section>
   );
 }

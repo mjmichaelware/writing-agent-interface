@@ -227,6 +227,13 @@ export default function ManuscriptCore({
     return result;
   };
 
+  // 10. Reading time from word count
+  const totalWords = blocks.reduce((sum, b) => {
+    const text = typeof b === "string" ? b : (b.content || "");
+    return sum + text.trim().split(/\s+/).filter(Boolean).length;
+  }, 0);
+  const readMinutes = Math.max(1, Math.round(totalWords / 200));
+
   return (
     <div ref={containerRef} className="reader-column pb-[50vh]">
       <TitleCover />
@@ -236,7 +243,28 @@ export default function ManuscriptCore({
       <TableOfContents onLoadChapter={handleLoadChapter} />
 
       <div className="reader-column pt-32">
-        <h2 id="chapter-content" className="section-label text-center mb-32">Chapter {chapterSlug}</h2>
+        {/* 19. Ornamental chapter header with unfurling rules */}
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "4rem" }}>
+          <div className="chapter-rule" style={{ width: "min(200px, 60vw)", marginBottom: "1.25rem" }} />
+          <h2 id="chapter-content" className="section-label text-center" style={{ marginBottom: "0.5rem" }}>
+            Chapter {chapterSlug}
+          </h2>
+          {/* 10. Reading time */}
+          {blocks.length > 0 && (
+            <p style={{
+              fontFamily: "'EB Garamond', serif",
+              fontStyle: "italic",
+              fontSize: "0.72rem",
+              color: "#8a857c",
+              letterSpacing: "0.1em",
+              margin: "0.5rem 0 0",
+            }}>
+              ~{readMinutes} min · {blocks.length} passages
+            </p>
+          )}
+          <div className="chapter-rule" style={{ width: "min(140px, 45vw)", marginTop: "1.25rem", animationDelay: "0.2s" }} />
+        </div>
+
         {blocks.length === 0 ? (
           <div className="skeleton-container">
             {Array.from({ length: 8 }).map((_, i) => (
@@ -244,24 +272,44 @@ export default function ManuscriptCore({
             ))}
           </div>
         ) : (
-          blocks.map((block, idx) => {
-            const text = typeof block === "string" ? block : block.content;
-            const id = typeof block === "string" ? `para-${idx}` : block.id;
+          <>
+            {blocks.map((block, idx) => {
+              const text = typeof block === "string" ? block : block.content;
+              const id = typeof block === "string" ? `para-${idx}` : block.id;
 
-            return (
-              <p
-                key={id}
-                data-para={idx}
-                data-index={idx}
-                data-paragraph-id={id}
-                id={id}
-                data-state="inactive"
-                className="prose-paragraph kinetic-word"
-              >
-                {renderWithHebrewSpans(text)}
-              </p>
-            );
-          })
+              return (
+                <p
+                  key={id}
+                  data-para={idx}
+                  data-index={idx}
+                  data-paragraph-id={id}
+                  id={id}
+                  data-state="inactive"
+                  className="prose-paragraph kinetic-word"
+                >
+                  {renderWithHebrewSpans(text)}
+                </p>
+              );
+            })}
+
+            {/* 11. Chapter-end ornamental footer */}
+            <div style={{
+              display: "flex", alignItems: "center", gap: "1.25rem",
+              marginTop: "5rem", marginBottom: "3rem",
+              opacity: 0.38,
+            }}>
+              <div style={{ flex: 1, height: 1, background: "rgba(201,169,110,0.4)" }} />
+              <span style={{
+                color: "#c9a96e",
+                fontSize: "0.65rem",
+                letterSpacing: "0.55em",
+                fontFamily: "'EB Garamond', serif",
+              }}>
+                ✦ ⸻ ✦
+              </span>
+              <div style={{ flex: 1, height: 1, background: "rgba(201,169,110,0.4)" }} />
+            </div>
+          </>
         )}
       </div>
     </div>

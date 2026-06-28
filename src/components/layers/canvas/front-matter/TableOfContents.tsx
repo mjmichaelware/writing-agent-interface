@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { bus } from "@/core/runtimeEngine";
 
 const ROMAN: Record<number, string> = {
   1: "I", 2: "II", 3: "III", 4: "IV", 5: "V", 6: "VI",
@@ -24,6 +25,7 @@ export default function TableOfContents({ onLoadChapter }: Props) {
   const [chapters, setChapters] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [activeChapter, setActiveChapter] = useState<number | null>(null);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -45,12 +47,25 @@ export default function TableOfContents({ onLoadChapter }: Props) {
     return () => { clearTimeout(timeout); controller.abort(); };
   }, []);
 
+  // 17. Track active chapter via bus events
+  useEffect(() => {
+    const unsub = bus.on("scroll:focus", (data: any) => {
+      if (data?.chapterNumber && data.chapterNumber > 0) {
+        setActiveChapter(data.chapterNumber);
+      }
+    });
+    return unsub;
+  }, []);
+
   const grouped = chapters.reduce<Record<string, any[]>>((acc, c) => {
     const part = String(c.part_number ?? "1");
     if (!acc[part]) acc[part] = [];
     acc[part].push(c);
     return acc;
   }, {});
+
+  // Global row index for stagger delays
+  let rowIndex = 0;
 
   return (
     <section id="toc" className="min-h-screen px-6 scroll-mt-24 pb-32">
@@ -73,21 +88,36 @@ export default function TableOfContents({ onLoadChapter }: Props) {
 
           return (
             <React.Fragment key={partKey}>
-              <h3 className="toc-part-heading">{partLabel}</h3>
+              {/* 5. Part heading with stagger delay */}
+              <h3
+                className="toc-part-heading"
+                style={{ animationDelay: `${rowIndex++ * 55}ms` }}
+              >
+                {partLabel}
+              </h3>
+
               {partChapters.map((c: any) => {
                 const numeral = ROMAN[c.chapter_number] || String(c.chapter_number);
                 const isDrafted = c.status === "drafted";
+                const isActive = activeChapter === c.chapter_number;
+                const delay = `${rowIndex++ * 55}ms`;
+
                 return isDrafted ? (
                   <button
                     key={c.id}
                     onClick={() => onLoadChapter(c.chapter_number)}
-                    className="toc-row"
+                    className={`toc-row${isActive ? " toc-active" : ""}`}
+                    style={{ animationDelay: delay }}
                   >
                     <span className="toc-title">{c.title}</span>
                     <span className="toc-numeral">{numeral}</span>
                   </button>
                 ) : (
-                  <div key={c.id} className="toc-row toc-disabled">
+                  <div
+                    key={c.id}
+                    className="toc-row toc-disabled"
+                    style={{ animationDelay: delay }}
+                  >
                     <span className="toc-title">{c.title || "—"}</span>
                     <span className="toc-numeral">{numeral}</span>
                   </div>

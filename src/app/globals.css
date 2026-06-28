@@ -1326,3 +1326,161 @@ body.layer4-open { overflow: hidden; }
   font-family: var(--font-prose); font-size: 0.9375rem;
   color: var(--text-body); line-height: 1.6;
 }
+
+/* ============================================================
+   CREATIVE ENHANCEMENTS — 20 ORIGINAL UI/UX IMPROVEMENTS
+   ============================================================ */
+
+/* 1. Void starfield twinkle — used by Layer1Void */
+@keyframes star-twinkle {
+  0%, 100% { opacity: var(--star-max, 0.4); transform: scale(1); }
+  45%, 55%  { opacity: calc(var(--star-max, 0.4) * 0.06); transform: scale(0.45); }
+}
+
+/* 2. Ambient cursor warm glow — see CursorGlow component */
+
+/* 3. Hebrew name hover warm illumination */
+.font-hebrew {
+  transition: text-shadow 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.font-hebrew:hover {
+  text-shadow: 0 0 16px rgba(201, 169, 110, 0.75),
+               0 0 36px rgba(201, 169, 110, 0.3);
+}
+
+/* 4. Reading progress bar traveling glint */
+@keyframes barGlint {
+  0%, 100% { background-position: 0% center; }
+  50%       { background-position: 100% center; }
+}
+.reading-progress-bar {
+  background: linear-gradient(
+    90deg,
+    var(--accent-gold) 0%,
+    #fff4b8 48%,
+    #ffe566 50%,
+    #fff4b8 52%,
+    var(--accent-gold) 100%
+  ) !important;
+  background-size: 300% 100% !important;
+  animation: barGlint 3s ease-in-out 2s infinite;
+}
+
+/* 5. TOC row stagger cascade — delay applied per-element via inline style */
+@keyframes tocRowReveal {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.toc-row, .toc-disabled {
+  animation: tocRowReveal 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.toc-part-heading {
+  animation: tocRowReveal 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* 6. Active paragraph 2% larger — imperceptible depth cue */
+p[data-state="active"] {
+  font-size: calc(var(--font-size-prose, 1.25rem) * 1.02) !important;
+}
+
+/* 7. Drop cap emerges gold then settles to body color */
+@keyframes dropCapGlow {
+  0%   { color: #c9a96e; text-shadow: 0 0 24px rgba(201,169,110,0.9), 0 0 55px rgba(201,169,110,0.4); }
+  55%  { color: #c9a96e; text-shadow: 0 0 10px rgba(201,169,110,0.35); }
+  100% { color: var(--text-primary); text-shadow: none; }
+}
+.prose-paragraph:first-of-type::first-letter {
+  animation: dropCapGlow 4.5s ease-out forwards;
+}
+
+/* 8. Magnetic nav buttons — transform applied via JS, transition smooths it */
+.title-nav button {
+  transition:
+    color 400ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 200ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+/* 9. Paper vellum grain on reader column */
+.reader-column {
+  position: relative;
+}
+.reader-column::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+  opacity: 0.032;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 11. Floating gold particles — title page */
+@keyframes float-particle {
+  0%   { transform: translateY(0) scale(0) rotate(0deg); opacity: 0; }
+  8%   { opacity: 0.65; transform: translateY(-40px) scale(1) rotate(20deg); }
+  90%  { opacity: 0.12; }
+  100% { transform: translateY(-60vh) scale(0.3) rotate(200deg); opacity: 0; }
+}
+
+/* 12. Scrollbar thumb breathing pulse */
+@keyframes thumbPulse {
+  0%, 100% { box-shadow: 0 0 5px rgba(201,169,110,0.3); }
+  50%       { box-shadow: 0 0 12px rgba(201,169,110,0.6); }
+}
+::-webkit-scrollbar-thumb {
+  animation: thumbPulse 4s ease-in-out infinite;
+}
+
+/* 13. Panel open prestige glow */
+.layer4-panel.open {
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.85),
+    0 0 0 0.5px rgba(201, 169, 110, 0.1),
+    0 0 100px -25px rgba(201, 169, 110, 0.16) !important;
+}
+
+/* 14. Prose hover letter-spacing bloom */
+.prose-paragraph:hover {
+  letter-spacing: 0.004em;
+}
+
+/* 16. Keyboard nav — visual skip affordance on focus */
+:focus-visible { outline: 1px solid rgba(201,169,110,0.5); }
+
+/* 17. TOC active chapter highlight */
+.toc-row.toc-active {
+  color: var(--accent-gold) !important;
+  padding-left: 1.25rem !important;
+  text-shadow: 0 0 18px rgba(201,169,110,0.28);
+}
+.toc-row.toc-active::before {
+  transform: translateY(-50%) scaleX(1) !important;
+  box-shadow: 2px 0 10px rgba(201,169,110,0.45);
+}
+
+/* 19. Chapter ornamental header rules */
+@keyframes ruleUnfurl {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+.chapter-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,169,110,0.35), transparent);
+  transform-origin: center;
+  animation: ruleUnfurl 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* 20. Scroll-to-top button */
+@keyframes scrollTopAppear {
+  from { opacity: 0; transform: scale(0.6); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.scroll-to-top {
+  animation: scrollTopAppear 400ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.scroll-to-top:hover {
+  background: rgba(201,169,110,0.12) !important;
+  border-color: rgba(201,169,110,0.6) !important;
+  box-shadow: 0 0 24px rgba(201,169,110,0.22), 0 6px 24px rgba(0,0,0,0.5) !important;
+  transform: scale(1.1);
+}

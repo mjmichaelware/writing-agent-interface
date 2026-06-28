@@ -12,6 +12,8 @@ import { initAudioListener } from "@/runtime/listeners/audioListener";
 import { initAudioPlaybackListener } from "@/runtime/listeners/audioPlaybackListener";
 import { initDistortionListener } from "@/runtime/listeners/distortionListener";
 import { initThematicListener } from "@/runtime/listeners/thematicListener";
+import CursorGlow from "@/components/CursorGlow";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const getPartNumber = (n: number) => {
   if (n <= 9) return "I";
@@ -113,17 +115,20 @@ export default function Page() {
   return (
     <main className="relative w-full min-h-screen overflow-hidden">
       <div className="noise-grain" aria-hidden="true" />
-      {/* Layer 4 is mounted in layout.tsx for root-level persistence and max z-index */}
+      {/* 2. Ambient cursor warm glow */}
+      <CursorGlow />
+      {/* 18. Floating return-to-top ornament */}
+      <ScrollToTop />
 
       <ReaderLayout>
         <Layer1Void />
         <Layer2Cinema chapterSlug={chapterNum.toString()} />
         <Layer3Canvas>
-          <ManuscriptCore 
-              blocks={blocks} 
-              chapterSlug={chapterNum.toString()} 
-              partNumber={partNumber} 
-              onLoadChapter={handleChapterChange}
+          <ManuscriptCore
+            blocks={blocks}
+            chapterSlug={chapterNum.toString()}
+            partNumber={partNumber}
+            onLoadChapter={handleChapterChange}
           />
         </Layer3Canvas>
       </ReaderLayout>

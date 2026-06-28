@@ -139,7 +139,7 @@ export default function WritingAgentConsole() {
   const fetchBuffer = async () => {
     setBufferLoading(true);
     try {
-      const res = await fetch("/api/gdrive");
+      const res = await fetch("/api/ingestion-buffer");
       const d = await res.json();
       setBufferFiles(Array.isArray(d.files) ? d.files : []);
     } catch (e: any) { setBufferFiles([]); }

@@ -2,7 +2,6 @@
 
 import React, { useEffect, useRef } from "react";
 import { bus } from "@/core/runtimeEngine";
-import { getKineticEffect } from "@/lib/kineticWords";
 import TitleCover from "./front-matter/TitleCover";
 import Dedication from "./front-matter/Dedication";
 import Synopsis from "./front-matter/Synopsis";
@@ -11,40 +10,103 @@ import TableOfContents from "./front-matter/TableOfContents";
 
 const HEBREW_NAMES = /\b(Hebron|Hermon|Mamre|Beelzebub|Megiddo|Sak|Rafa)\b/g;
 
-// Render text with Hebrew spans and deterministic kinetic word transforms
-function renderParagraph(text: string): React.ReactNode[] {
+// Deterministic 0..1 hash of a word — same word always yields same value
+function wordHash(word: string): number {
+  let h = 5381;
+  for (let i = 0; i < word.length; i++) {
+    h = ((h << 5) + h) ^ word.charCodeAt(i);
+    h = h >>> 0;
+  }
+  return (h % 65521) / 65521;
+}
+
+// Weight-driven kinetic rendering.
+// Each paragraph carries archetypal_weights {shadow, persona, anima, self}
+// and dualism_map {descent, ascent, tension, ...} from Supabase.
+// These drive the KIND and INTENSITY of distortion on every word.
+// Per-word variation comes from a deterministic hash of the word itself —
+// not from a dictionary; the word's identity matters only as a hash seed.
+function renderParagraph(
+  text: string,
+  weights: Record<string, number> = {},
+  dualisms: Record<string, number> = {}
+): React.ReactNode[] {
+  const shadow  = Math.min(1, weights.shadow  || 0);
+  const persona = Math.min(1, weights.persona || 0);
+  const anima   = Math.min(1, weights.anima   || 0);
+  const descent = Math.min(1, dualisms.descent || dualisms.fall    || 0);
+  const ascent  = Math.min(1, dualisms.ascent  || dualisms.rise    || 0);
+  const tension = Math.min(1, dualisms.tension || dualisms.conflict || 0);
+
+  const totalPressure = shadow + persona + anima + descent + ascent + tension;
+
   const nodes: React.ReactNode[] = [];
-  // Split on word boundaries, preserving whitespace and punctuation
   const tokens = text.split(/(\s+)/);
   let key = 0;
 
   for (const token of tokens) {
     if (!token) continue;
-    // Whitespace — pass through as-is
     if (/^\s+$/.test(token)) { nodes.push(token); continue; }
 
-    // Check for Hebrew name match (whole token stripped of punctuation)
     const bare = token.replace(/[^a-zA-Z]/g, "");
-    const hebrewMatch = HEBREW_NAMES.test(bare);
-    HEBREW_NAMES.lastIndex = 0;
 
-    if (hebrewMatch) {
-      nodes.push(<span key={key++} className="font-hebrew" lang="he">{token}</span>);
+    // Hebrew names always wrapped regardless of weights
+    if (bare) {
+      HEBREW_NAMES.lastIndex = 0;
+      if (HEBREW_NAMES.test(bare)) {
+        nodes.push(<span key={key++} className="font-hebrew" lang="he">{token}</span>);
+        continue;
+      }
+    }
+
+    // Low-pressure paragraph — no kinetic processing, render plain
+    if (totalPressure < 0.15 || !bare) {
+      nodes.push(token);
       continue;
     }
 
-    // Check for kinetic effect
-    const effect = getKineticEffect(bare);
-    if (effect) {
-      nodes.push(
-        <span key={key++} style={effect.style} aria-label={bare}>
-          {token}
-        </span>
-      );
-      continue;
-    }
+    // Deterministic per-word variation within the paragraph's pressure field
+    const h = wordHash(bare.toLowerCase());
 
-    nodes.push(token);
+    // Each Supabase weight axis maps to a specific visual dimension:
+    // shadow  → blur + opacity fade (obscurity, repression)
+    // descent → translateY down (gravity, collapse)
+    // ascent  → translateY up (levitation, hope)
+    // persona → letter-spacing (mask, measured speech)
+    // anima   → rotation left/right (emotion, flux)
+    // tension → horizontal compression (strain, suppression)
+    const blurAmt       = shadow  * (0.3 + h * 0.7) * 3.2;
+    const opacityLoss   = shadow  * (0.2 + h * 0.5) * 0.65;
+    const shiftDown     = descent * (0.1 + h * 0.9) * 10;
+    const shiftUp       = ascent  * (0.1 + h * 0.9) *  8;
+    const spacingEm     = persona * (0.3 + h * 0.7) * 0.22;
+    const rotateDeg     = anima   * (0.2 + h * 0.8) * 8 * (h > 0.5 ? 1 : -1);
+    const scaleX        = 1 - tension * (0.25 + h * 0.5) * 0.32;
+
+    const translateY = shiftDown - shiftUp;
+    const opacity    = Math.max(0.3, 1 - opacityLoss);
+
+    const hasEffect =
+      blurAmt > 0.1 ||
+      Math.abs(translateY) > 0.4 ||
+      spacingEm > 0.007 ||
+      Math.abs(rotateDeg) > 0.3 ||
+      scaleX < 0.97;
+
+    if (!hasEffect) { nodes.push(token); continue; }
+
+    const transforms: string[] = [];
+    if (Math.abs(translateY) > 0.3) transforms.push(`translateY(${translateY.toFixed(2)}px)`);
+    if (Math.abs(rotateDeg)  > 0.25) transforms.push(`rotate(${rotateDeg.toFixed(2)}deg)`);
+    if (scaleX < 0.97)               transforms.push(`scaleX(${scaleX.toFixed(3)})`);
+
+    const style: React.CSSProperties = { display: "inline-block" };
+    if (transforms.length)  style.transform     = transforms.join(" ");
+    if (blurAmt > 0.1)      style.filter        = `blur(${blurAmt.toFixed(2)}px)`;
+    if (opacity < 0.95)     style.opacity       = opacity;
+    if (spacingEm > 0.007)  style.letterSpacing = `${spacingEm.toFixed(3)}em`;
+
+    nodes.push(<span key={key++} style={style} aria-label={bare}>{token}</span>);
   }
   return nodes;
 }
@@ -302,8 +364,10 @@ export default function ManuscriptCore({
         ) : (
           <>
             {blocks.map((block, idx) => {
-              const text = typeof block === "string" ? block : block.content;
-              const id = typeof block === "string" ? `para-${idx}` : block.id;
+              const text    = typeof block === "string" ? block : block.content;
+              const id      = typeof block === "string" ? `para-${idx}` : block.id;
+              const weights = typeof block === "string" ? {} : (block.weights || block.archetypal_weights || {});
+              const dualisms = typeof block === "string" ? {} : (block.dualism_map || {});
 
               return (
                 <p
@@ -315,7 +379,7 @@ export default function ManuscriptCore({
                   data-state="inactive"
                   className="prose-paragraph kinetic-word"
                 >
-                  {renderParagraph(text)}
+                  {renderParagraph(text, weights, dualisms)}
                 </p>
               );
             })}

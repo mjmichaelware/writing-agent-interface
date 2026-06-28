@@ -1,5 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import { NextResponse } from "next/server";
+import { promises as fs } from "fs";
+import path from "path";
 
 function sb() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -8,31 +10,61 @@ function sb() {
   return createClient(url, key);
 }
 
-// Returns the raw ingestion buffer — v_local_imports in Supabase.
-// This is NOT Google Drive; it's the local file registry (182 files).
+const LOCAL_BUFFER_DIR = path.join(
+  process.cwd(),
+  "src/data-layer/ingestion-buffer/gdrive_ooxml_raw"
+);
+
+// Returns the full ingestion buffer — both the Supabase v_local_imports registry
+// AND the local filesystem buffer at src/data-layer/ingestion-buffer/gdrive_ooxml_raw/.
+// These are separate from Google Drive; they are staged local files.
 export async function GET() {
-  const client = sb();
-  if (!client) return NextResponse.json({ files: [], error: "Supabase not configured" });
-
-  const { data, error } = await client
-    .from("v_local_imports")
-    .select("drive_file_id, drive_name, local_basename, status, created_at");
-
-  if (error) return NextResponse.json({ files: [], error: error.message }, { status: 500 });
-
-  // Deduplicate by drive_file_id
   const seen = new Set<string>();
   const files: any[] = [];
-  for (const row of data ?? []) {
-    const key = row.drive_file_id || row.local_basename;
-    if (!key || seen.has(key)) continue;
-    seen.add(key);
-    files.push({
-      id:       key,
-      name:     row.drive_name || row.local_basename || key,
-      status:   row.status,
-      created:  row.created_at,
-    });
+
+  // Primary: Supabase v_local_imports registry (up to 182 files)
+  const client = sb();
+  if (client) {
+    const { data } = await client
+      .from("v_local_imports")
+      .select("drive_file_id, drive_name, local_basename, status, created_at");
+
+    for (const row of data ?? []) {
+      const id = row.drive_file_id || row.local_basename;
+      if (!id || seen.has(id)) continue;
+      seen.add(id);
+      files.push({
+        id,
+        name:    row.drive_name || row.local_basename || id,
+        status:  row.status || "registered",
+        source:  "supabase",
+      });
+    }
+  }
+
+  // Secondary: local filesystem buffer (files already pulled from Drive)
+  try {
+    const entries = await fs.readdir(LOCAL_BUFFER_DIR);
+    for (const name of entries) {
+      // File names are like: 0001_chapter_1_<title>_<drive_id>
+      // Extract drive ID from the last underscore-delimited segment
+      const parts = name.split("_");
+      const driveId = parts[parts.length - 1];
+      const id = driveId || name;
+      if (seen.has(id)) continue;
+      seen.add(id);
+      // Build human-readable name from filename segments (strip index prefix + id suffix)
+      const label = parts.slice(1, -1).join(" ").replace(/[-_]/g, " ");
+      files.push({
+        id,
+        name:    label || name,
+        status:  "local",
+        source:  "filesystem",
+        filename: name,
+      });
+    }
+  } catch {
+    // Directory may not exist in all environments
   }
 
   return NextResponse.json({ files, total: files.length, source: "ingestion_buffer" });

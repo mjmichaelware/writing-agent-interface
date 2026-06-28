@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { bus } from "@/core/runtimeEngine";
+import { getKineticEffectWithPressure } from "@/lib/kineticWords";
 import TitleCover from "./front-matter/TitleCover";
 import Dedication from "./front-matter/Dedication";
 import Synopsis from "./front-matter/Synopsis";
@@ -10,36 +11,15 @@ import TableOfContents from "./front-matter/TableOfContents";
 
 const HEBREW_NAMES = /\b(Hebron|Hermon|Mamre|Beelzebub|Megiddo|Sak|Rafa)\b/g;
 
-// Deterministic 0..1 hash of a word — same word always yields same value
-function wordHash(word: string): number {
-  let h = 5381;
-  for (let i = 0; i < word.length; i++) {
-    h = ((h << 5) + h) ^ word.charCodeAt(i);
-    h = h >>> 0;
-  }
-  return (h % 65521) / 65521;
-}
-
-// Weight-driven kinetic rendering.
-// Each paragraph carries archetypal_weights {shadow, persona, anima, self}
-// and dualism_map {descent, ascent, tension, ...} from Supabase.
-// These drive the KIND and INTENSITY of distortion on every word.
-// Per-word variation comes from a deterministic hash of the word itself —
-// not from a dictionary; the word's identity matters only as a hash seed.
+// Each word carries its own semantic identity — "ascent" climbs, "gain" grows,
+// "squeeze" compresses. The paragraph's Supabase archetypal_weights + dualism_map
+// amplify those base effects: a "fall" in a high-descent paragraph falls farther.
+// Words not in the dictionary render plain.
 function renderParagraph(
   text: string,
   weights: Record<string, number> = {},
   dualisms: Record<string, number> = {}
 ): React.ReactNode[] {
-  const shadow  = Math.min(1, weights.shadow  || 0);
-  const persona = Math.min(1, weights.persona || 0);
-  const anima   = Math.min(1, weights.anima   || 0);
-  const descent = Math.min(1, dualisms.descent || dualisms.fall    || 0);
-  const ascent  = Math.min(1, dualisms.ascent  || dualisms.rise    || 0);
-  const tension = Math.min(1, dualisms.tension || dualisms.conflict || 0);
-
-  const totalPressure = shadow + persona + anima + descent + ascent + tension;
-
   const nodes: React.ReactNode[] = [];
   const tokens = text.split(/(\s+)/);
   let key = 0;
@@ -50,7 +30,7 @@ function renderParagraph(
 
     const bare = token.replace(/[^a-zA-Z]/g, "");
 
-    // Hebrew names always wrapped regardless of weights
+    // Hebrew names always wrapped, kinetic system bypassed
     if (bare) {
       HEBREW_NAMES.lastIndex = 0;
       if (HEBREW_NAMES.test(bare)) {
@@ -59,54 +39,17 @@ function renderParagraph(
       }
     }
 
-    // Low-pressure paragraph — no kinetic processing, render plain
-    if (totalPressure < 0.15 || !bare) {
-      nodes.push(token);
+    if (!bare) { nodes.push(token); continue; }
+
+    // Word identity determines the type of effect;
+    // paragraph pressure from Supabase weights determines intensity
+    const style = getKineticEffectWithPressure(bare, weights, dualisms);
+    if (style) {
+      nodes.push(<span key={key++} style={style} aria-label={bare}>{token}</span>);
       continue;
     }
 
-    // Deterministic per-word variation within the paragraph's pressure field
-    const h = wordHash(bare.toLowerCase());
-
-    // Each Supabase weight axis maps to a specific visual dimension:
-    // shadow  → blur + opacity fade (obscurity, repression)
-    // descent → translateY down (gravity, collapse)
-    // ascent  → translateY up (levitation, hope)
-    // persona → letter-spacing (mask, measured speech)
-    // anima   → rotation left/right (emotion, flux)
-    // tension → horizontal compression (strain, suppression)
-    const blurAmt       = shadow  * (0.3 + h * 0.7) * 3.2;
-    const opacityLoss   = shadow  * (0.2 + h * 0.5) * 0.65;
-    const shiftDown     = descent * (0.1 + h * 0.9) * 10;
-    const shiftUp       = ascent  * (0.1 + h * 0.9) *  8;
-    const spacingEm     = persona * (0.3 + h * 0.7) * 0.22;
-    const rotateDeg     = anima   * (0.2 + h * 0.8) * 8 * (h > 0.5 ? 1 : -1);
-    const scaleX        = 1 - tension * (0.25 + h * 0.5) * 0.32;
-
-    const translateY = shiftDown - shiftUp;
-    const opacity    = Math.max(0.3, 1 - opacityLoss);
-
-    const hasEffect =
-      blurAmt > 0.1 ||
-      Math.abs(translateY) > 0.4 ||
-      spacingEm > 0.007 ||
-      Math.abs(rotateDeg) > 0.3 ||
-      scaleX < 0.97;
-
-    if (!hasEffect) { nodes.push(token); continue; }
-
-    const transforms: string[] = [];
-    if (Math.abs(translateY) > 0.3) transforms.push(`translateY(${translateY.toFixed(2)}px)`);
-    if (Math.abs(rotateDeg)  > 0.25) transforms.push(`rotate(${rotateDeg.toFixed(2)}deg)`);
-    if (scaleX < 0.97)               transforms.push(`scaleX(${scaleX.toFixed(3)})`);
-
-    const style: React.CSSProperties = { display: "inline-block" };
-    if (transforms.length)  style.transform     = transforms.join(" ");
-    if (blurAmt > 0.1)      style.filter        = `blur(${blurAmt.toFixed(2)}px)`;
-    if (opacity < 0.95)     style.opacity       = opacity;
-    if (spacingEm > 0.007)  style.letterSpacing = `${spacingEm.toFixed(3)}em`;
-
-    nodes.push(<span key={key++} style={style} aria-label={bare}>{token}</span>);
+    nodes.push(token);
   }
   return nodes;
 }

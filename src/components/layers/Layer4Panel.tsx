@@ -71,7 +71,9 @@ export default function Layer4Panel() {
     };
     const onClose = () => setIsOpen(false);
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") return onClose();
+      if (e.key === "Escape") { onClose(); return; }
+      const tag = (e.target as HTMLElement)?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA") return;
       if (e.key.toLowerCase() === "m") return bus.emit("panel:open", { tabId: activeTab });
       const n = parseInt(e.key);
       if (n >= 1 && n <= 5) bus.emit("panel:open", { tabId: TABS[n - 1].id });
@@ -95,23 +97,24 @@ export default function Layer4Panel() {
     <>
       <div id="reading-progress-bar" className="reading-progress-bar" />
 
-      {/* Floating Author Gateway trigger — always visible */}
+      {/* Floating Author Gateway trigger — bottom-right, pen icon to distinguish from scroll-to-top */}
       <button
         onClick={() => bus.emit("panel:open", { tabId: "GATEWAY" })}
         aria-label="Open Author Gateway"
         style={{
           position: "fixed", bottom: "1.75rem", right: "1.5rem",
-          width: "2.5rem", height: "2.5rem", borderRadius: "50%",
+          width: "2.75rem", height: "2.75rem", borderRadius: "4px",
           background: "rgba(8,6,3,0.88)",
           backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)",
           border: "1px solid rgba(201,169,110,0.35)",
           boxShadow: "0 0 18px rgba(201,169,110,0.10), 0 4px 16px rgba(0,0,0,0.65)",
-          color: gold, fontSize: "1rem", cursor: "pointer",
-          display: "flex", alignItems: "center", justifyContent: "center",
+          color: gold, fontSize: "0.7rem", cursor: "pointer",
+          display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1px",
           zIndex: 2147483645,
           transition: "box-shadow 350ms cubic-bezier(0.22,1,0.36,1), border-color 350ms",
           pointerEvents: isOpen ? "none" : "auto",
           opacity: isOpen ? 0 : 1,
+          fontFamily: "Georgia, serif", fontStyle: "italic",
         }}
         onMouseEnter={e => {
           (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 32px rgba(201,169,110,0.28), 0 4px 20px rgba(0,0,0,0.7)";
@@ -122,7 +125,8 @@ export default function Layer4Panel() {
           (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(201,169,110,0.35)";
         }}
       >
-        ✦
+        <span style={{ fontSize: "1rem", lineHeight: 1 }}>✎</span>
+        <span style={{ fontSize: "0.5rem", letterSpacing: "0.06em", opacity: 0.7 }}>AUTHOR</span>
       </button>
       <header className={`layer4-top-header ${headerVisible ? "visible" : ""}`}>
         {TABS.map(t => (

@@ -71,21 +71,11 @@ export default function ChapterSettings() {
           </button>
         ))}
       </div>
-      <div className="reader-toggles">
-        <button onClick={() => setField("motion", !s.motion)}
-          className={`reader-toggle ${s.motion ? "on" : ""}`}>
-          Motion {s.motion ? "on" : "off"}
-        </button>
-        <button onClick={() => setField("bionic", !s.bionic)}
-          className={`reader-toggle ${s.bionic ? "on" : ""}`}>
-          Bionic {s.bionic ? "on" : "off"}
-        </button>
-        <button onClick={() => setField("audio", !s.audio)}
-          className={`reader-toggle ${s.audio ? "on" : ""}`}>
-          Listen {s.audio ? "on" : "off"}
+      <div style={{ display: "flex", justifyContent: "center", marginTop: "0.5rem" }}>
+        <button onClick={() => setS(D)} style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "0.8125rem", color: muted, background: "transparent", border: `1px solid rgba(201,169,110,0.2)`, padding: "0.4rem 1.5rem", cursor: "pointer" }}>
+          Reset defaults
         </button>
       </div>
-      <button onClick={reset} className="reader-reset">Reset</button>
     </div>
   );
 }

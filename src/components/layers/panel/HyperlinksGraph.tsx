@@ -45,6 +45,8 @@ function buildStars(w: number, h: number, count = 130) {
   }));
 }
 
+type ViewMode = "all" | "parallelisms" | "dualisms";
+
 export default function HyperlinksGraph() {
   const svgRef    = useRef<SVGSVGElement>(null);
   const wrapRef   = useRef<HTMLDivElement>(null);
@@ -57,27 +59,42 @@ export default function HyperlinksGraph() {
   const [dims, setDims]       = useState({ w: 600, h: 480 });
   const [hovered, setHovered] = useState<string | null>(null);
   const [tooltip, setTooltip] = useState<{ text: string; x: number; y: number } | null>(null);
+  const [viewMode, setViewMode] = useState<ViewMode>("all");
 
   // ── Data fetch ──────────────────────────────────────────────
   function parseGraph(d: any) {
     const rawNodes = d.paragraphs || [];
-    const rawLinks = d.hyperlinks || [];
     const nodes: RawNode[] = rawNodes.map((n: any) => ({
       id: n.id, content: n.content,
       dualism_map: n.dualism_map || {}, chapter_id: n.chapter_id,
     }));
-    let links: Link[] = rawLinks.map((l: any) => ({
+
+    // Parallelisms — lateral mirror relationships (Y-axis reflections)
+    const parallelLinks: Link[] = (d.hyperlinks || []).map((l: any) => ({
       source: l.paragraph_id,
       target: nodes.find(n => n.id === l.theme_node_b)?.id || l.theme_node_b,
-      type: l.link_type, weight: l.weight,
+      type: "parallelism", weight: l.weight || 1,
     })).filter((l: any) => l.source && l.target);
+
+    // Dualisms — high/low oppositions (X-axis reflections)
+    const dualismLinks: Link[] = (d.crosslinks || d.dualisms || []).map((l: any) => ({
+      source: l.source_paragraph_id || l.paragraph_id,
+      target: l.target_paragraph_id || l.theme_node_b,
+      type: "dualism", weight: l.weight || 1,
+    })).filter((l: any) => l.source && l.target && l.source !== l.target);
+
+    // Fallback: synthesize from dualism_map weights if no real links
+    let links: Link[] = [...parallelLinks, ...dualismLinks];
     if (links.length < 5) {
       const keys = ["sacred","descent","shadow","persona","anima"];
       for (let i = 0; i < nodes.length; i++)
-        for (let j = i + 1; j < nodes.length; j++)
-          if (keys.some(k => (nodes[i].dualism_map?.[k] || 0) > 0.4 &&
-                             (nodes[j].dualism_map?.[k] || 0) > 0.4))
-            links.push({ source: nodes[i].id, target: nodes[j].id, type: "implicit" });
+        for (let j = i + 1; j < nodes.length; j++) {
+          const sharedDualism = keys.some(k =>
+            (nodes[i].dualism_map?.[k] || 0) > 0.4 && (nodes[j].dualism_map?.[k] || 0) > 0.4
+          );
+          if (sharedDualism)
+            links.push({ source: nodes[i].id, target: nodes[j].id, type: "dualism" });
+        }
     }
     return { nodes, links };
   }
@@ -149,7 +166,12 @@ export default function HyperlinksGraph() {
 
     // Add z-depth to nodes
     const simNodes: SimNode[] = data.nodes.map((n, i) => ({ ...n, z: 0.3 + (i % 10) / 10 * 0.7 }));
-    const simLinks = data.links.map(l => ({ ...l }));
+    const filteredLinks = data.links.filter(l =>
+      viewMode === "all" ? true :
+      viewMode === "parallelisms" ? l.type === "parallelism" :
+      l.type === "dualism"
+    );
+    const simLinks = filteredLinks.map(l => ({ ...l }));
 
     // ── Defs ──
     const defs = svg.append("defs");
@@ -213,15 +235,15 @@ export default function HyperlinksGraph() {
       .force("center", d3.forceCenter(w / 2, h / 2))
       .force("collide", d3.forceCollide<SimNode>().radius(d => getRadius(d.dualism_map) + 10));
 
-    // Links
+    // Links — parallelisms = silver-blue (Y-axis mirrors), dualisms = gold (X-axis high/low)
     const linkSel = g.append("g").attr("class", "links")
       .selectAll<SVGLineElement, Link>("line")
       .data(simLinks).join("line")
       .attr("class", "constellation-link")
-      .attr("stroke", d => d.type === "implicit" ? "rgba(180,160,120,0.10)" : "rgba(201,169,110,0.20)")
+      .attr("stroke", d => d.type === "parallelism" ? "rgba(150,190,220,0.30)" : "rgba(201,169,110,0.22)")
       .attr("stroke-width", d => (d.weight || 1) * 0.4 + 0.3)
       .attr("stroke-linecap", "round")
-      .attr("stroke-dasharray", d => d.type === "implicit" ? "2 5" : null);
+      .attr("stroke-dasharray", d => d.type === "dualism" ? "2 6" : null);
 
     // Node groups
     const nodeSel = g.append("g").attr("class", "nodes")
@@ -302,7 +324,7 @@ export default function HyperlinksGraph() {
     svg.call(zoom as any);
 
     return () => simulation.stop();
-  }, [data, dims]);
+  }, [data, dims, viewMode]);
 
   // ── Hover highlighting ───────────────────────────────────────
   useEffect(() => {
@@ -340,7 +362,7 @@ export default function HyperlinksGraph() {
       svg.selectAll<SVGLineElement, Link>("line.constellation-link")
         .style("opacity", null)
         .attr("stroke-width", (d: any) => (d.weight || 1) * 0.4 + 0.3)
-        .attr("stroke", (d: any) => d.type === "implicit" ? "rgba(180,160,120,0.10)" : "rgba(201,169,110,0.20)");
+        .attr("stroke", (d: any) => d.type === "parallelism" ? "rgba(150,190,220,0.30)" : "rgba(201,169,110,0.22)");
     }
   }, [hovered, data]);
 
@@ -350,13 +372,32 @@ export default function HyperlinksGraph() {
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
       {/* Header */}
-      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: "0.75rem" }}>
-        <h2 style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "1.125rem", color: "#e8e4dc", margin: 0 }}>
-          Parallelisms & Dualisms
-        </h2>
-        <span style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "0.75rem", color: "#8a857c" }}>
-          {data.nodes.length} stars · {data.links.length} connections
-        </span>
+      <div style={{ marginBottom: "0.75rem" }}>
+        <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: "0.5rem" }}>
+          <h2 style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "1.125rem", color: "#e8e4dc", margin: 0 }}>
+            Resonance Map
+          </h2>
+          <span style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "0.75rem", color: "#8a857c" }}>
+            {data.nodes.length} nodes · {data.links.filter(l => viewMode === "all" ? true : l.type === viewMode.replace("parallelisms","parallelism").replace("dualisms","dualism")).length} connections
+          </span>
+        </div>
+        {/* View toggle */}
+        <div style={{ display: "flex", gap: "0.4rem" }}>
+          {([
+            { id: "all",          label: "All" },
+            { id: "parallelisms", label: "Parallelisms  ↔", title: "Mirror reflections across the Y-axis — things that echo each other side by side" },
+            { id: "dualisms",     label: "Dualisms  ↕",     title: "Oppositions across the X-axis — high vs low, ascent vs descent" },
+          ] as { id: ViewMode; label: string; title?: string }[]).map(v => (
+            <button key={v.id} title={v.title} onClick={() => setViewMode(v.id)} style={{
+              fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "0.75rem",
+              padding: "0.2rem 0.75rem", cursor: "pointer",
+              background: viewMode === v.id ? "rgba(201,169,110,0.1)" : "transparent",
+              border: `1px solid ${viewMode === v.id ? "rgba(201,169,110,0.5)" : "rgba(201,169,110,0.18)"}`,
+              color: viewMode === v.id ? "#c9a96e" : "#8a857c",
+              transition: "all 200ms",
+            }}>{v.label}</button>
+          ))}
+        </div>
       </div>
 
       {/* Canvas */}
@@ -381,13 +422,22 @@ export default function HyperlinksGraph() {
       </div>
 
       {/* Legend */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", marginTop: "0.75rem", justifyContent: "center" }}>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "1.25rem", marginTop: "0.75rem", justifyContent: "center", alignItems: "center" }}>
         {ARCHETYPES.map(a => (
           <div key={a.key} style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
             <div style={{ width: 7, height: 7, borderRadius: "50%", background: a.color, boxShadow: `0 0 6px ${a.glow}` }} />
-            <span style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "0.75rem", color: "#8a857c" }}>{a.label}</span>
+            <span style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "0.7rem", color: "#8a857c" }}>{a.label}</span>
           </div>
         ))}
+        <div style={{ width: 1, height: 14, background: "rgba(201,169,110,0.15)" }} />
+        <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+          <div style={{ width: 18, height: 1.5, background: "rgba(150,190,220,0.7)", borderRadius: 1 }} />
+          <span style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "0.7rem", color: "#8a857c" }}>Parallelism ↔</span>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+          <div style={{ width: 18, height: 1.5, background: "rgba(201,169,110,0.7)", borderRadius: 1, borderTop: "1px dashed rgba(201,169,110,0.7)" }} />
+          <span style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "0.7rem", color: "#8a857c" }}>Dualism ↕</span>
+        </div>
       </div>
 
       {/* Twinkling animation */}

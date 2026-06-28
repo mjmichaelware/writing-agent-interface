@@ -14,6 +14,7 @@ import { initDistortionListener } from "@/runtime/listeners/distortionListener";
 import { initThematicListener } from "@/runtime/listeners/thematicListener";
 import CursorGlow from "@/components/CursorGlow";
 import ScrollToTop from "@/components/ScrollToTop";
+import ChapterSettings from "@/components/layers/panel/ChapterSettings";
 
 const getPartNumber = (n: number) => {
   if (n <= 9) return "I";
@@ -28,6 +29,7 @@ export default function Page() {
   const [chapterNum, setChapterNum] = useState(1);
   const [source, setSource] = useState<"db" | "txt" | "drive">("db");
   const [loading, setLoading] = useState(false);
+  const [showReaderSettings, setShowReaderSettings] = useState(false);
 
   useEffect(() => {
     const unsub = bus.on("chapter:set", (d: any) => {
@@ -119,6 +121,67 @@ export default function Page() {
       <CursorGlow />
       {/* 18. Floating return-to-top ornament */}
       <ScrollToTop />
+
+      {/* Reader settings — top-left, accessible without PIN */}
+      <button
+        onClick={() => setShowReaderSettings(v => !v)}
+        aria-label="Reader settings"
+        style={{
+          position: "fixed",
+          top: "1.25rem",
+          left: "1.25rem",
+          zIndex: 2147483646,
+          width: "2.25rem",
+          height: "2.25rem",
+          borderRadius: "50%",
+          background: "rgba(20,16,10,0.72)",
+          border: "1px solid rgba(201,169,110,0.28)",
+          color: "#c9a96e",
+          fontSize: "1rem",
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          backdropFilter: "blur(8px)",
+          WebkitBackdropFilter: "blur(8px)",
+          opacity: showReaderSettings ? 1 : 0.55,
+          transition: "opacity 0.2s",
+        }}
+      >
+        ⚙
+      </button>
+
+      {/* Reader settings drawer */}
+      {showReaderSettings && (
+        <>
+          <div
+            onClick={() => setShowReaderSettings(false)}
+            style={{
+              position: "fixed", inset: 0, zIndex: 2147483640,
+              background: "rgba(0,0,0,0.35)",
+            }}
+          />
+          <div style={{
+            position: "fixed",
+            top: "3.75rem",
+            left: "1rem",
+            zIndex: 2147483645,
+            width: "min(320px, calc(100vw - 2rem))",
+            background: "rgba(14,12,8,0.96)",
+            border: "1px solid rgba(201,169,110,0.22)",
+            borderRadius: "6px",
+            padding: "1.5rem 1.25rem",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+            boxShadow: "0 8px 40px rgba(0,0,0,0.7)",
+            maxHeight: "calc(100vh - 5rem)",
+            overflowY: "auto",
+          }}>
+            <ChapterSettings />
+          </div>
+        </>
+      )}
+
 
       <ReaderLayout>
         <Layer1Void />

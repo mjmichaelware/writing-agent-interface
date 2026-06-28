@@ -8,7 +8,7 @@ const muted = "#8a857c";
 const body = "#e8e4dc";
 const red = "#6b2c2c";
 
-type Tab = "agent" | "analyzer" | "drive" | "semantic" | "versions";
+type Tab = "agent" | "analyzer" | "buffer" | "drive" | "semantic" | "versions";
 type Provider = "claude" | "gemini" | "groq";
 
 function Btn({ onClick, disabled, children }: { onClick: () => void; disabled?: boolean; children: React.ReactNode }) {
@@ -128,6 +128,48 @@ export default function WritingAgentConsole() {
   const [versionsLoading, setVersionsLoading] = useState(false);
   const [promoteResult, setPromoteResult] = useState("");
 
+  // Drive buffer state
+  const [bufferFiles, setBufferFiles] = useState<any[]>([]);
+  const [bufferLoading, setBufferLoading] = useState(false);
+  const [bufferSearch, setBufferSearch] = useState("");
+  const [bufferSelected, setBufferSelected] = useState<Set<string>>(new Set());
+  const [bufferTargetChapter, setBufferTargetChapter] = useState(1);
+  const [bufferCopyResult, setBufferCopyResult] = useState("");
+
+  const fetchBuffer = async () => {
+    setBufferLoading(true);
+    try {
+      const res = await fetch("/api/gdrive");
+      const d = await res.json();
+      setBufferFiles(Array.isArray(d.files) ? d.files : []);
+    } catch (e: any) { setBufferFiles([]); }
+    finally { setBufferLoading(false); }
+  };
+
+  const toggleBufferFile = (id: string) => {
+    setBufferSelected(prev => {
+      const next = new Set(prev);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
+  };
+
+  const copyToVersion = async () => {
+    if (bufferSelected.size === 0) return;
+    setBufferCopyResult("Copying…");
+    try {
+      const selected = bufferFiles.filter(f => bufferSelected.has(f.id));
+      const res = await fetch("/api/sync/drive", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-author-pin": PIN },
+        body: JSON.stringify({ files: selected, chapter: bufferTargetChapter, action: "copy_to_version" }),
+      });
+      const d = await res.json();
+      setBufferCopyResult(`Done: ${d.synced?.length ?? bufferSelected.size} file(s) staged for chapter ${bufferTargetChapter}.`);
+      setBufferSelected(new Set());
+    } catch (e: any) { setBufferCopyResult(`Error: ${e.message}`); }
+  };
+
   const tabStyle = (t: Tab): React.CSSProperties => ({
     fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "0.8125rem",
     padding: "0.5rem 0.875rem", background: "transparent", border: "none",
@@ -218,25 +260,19 @@ export default function WritingAgentConsole() {
     setBiblicalRows([]); setArchetypeRows([]); setCrosslinkRows([]);
     try {
       const [bibRes, graphRes] = await Promise.all([
-        fetch(`/api/biblical-references?chapterId=${semanticChapter}`),
+        fetch(`/api/biblical-references`),
         fetch(`/api/graph`),
       ]);
       const bibData = await bibRes.json();
+      // Normalize: new API returns { references: [...] } with book/chapter/verse/reference_text
       setBiblicalRows(Array.isArray(bibData) ? bibData : bibData?.references || []);
 
       if (graphRes.ok) {
         const graphData = await graphRes.json();
-        const paras = graphData?.dualisms || graphData?.paragraphs || [];
-        const chNum = semanticChapter;
-        const archetypes = paras.filter((p: any) =>
-          (p.chapter_number === chNum || p.chapter_id === chNum) &&
-          p.archetypal_weights && Object.values(p.archetypal_weights).some((v: any) => v > 0)
-        );
-        setArchetypeRows(archetypes);
-        const crosslinks = (graphData?.crosslinks || []).filter((c: any) =>
-          c.chapter_number === chNum || c.source_chapter === chNum
-        );
-        setCrosslinkRows(crosslinks);
+        // Archetypes: use the canonical archetype definitions
+        setArchetypeRows(graphData?.archetypes || []);
+        // Crosslinks: all parallelisms + dualisms (no chapter filter since render_paragraphs has no chapter_number yet)
+        setCrosslinkRows(graphData?.crosslinks || []);
       }
     } catch { /* silent */ }
     finally { setSemanticLoading(false); }
@@ -332,12 +368,12 @@ export default function WritingAgentConsole() {
       </div>
 
       <div style={{ display: "flex", borderBottom: "1px solid rgba(201,169,110,0.15)", marginBottom: "1rem", flexWrap: "wrap" }}>
-        {(["agent","analyzer","drive","semantic","versions"] as const).map(t => (
-          <button key={t} onClick={() => setActiveTab(t)} style={{
+        {(["agent","analyzer","buffer","drive","semantic","versions"] as const).map(t => (
+          <button key={t} onClick={() => { setActiveTab(t); if (t === "buffer" && bufferFiles.length === 0) fetchBuffer(); }} style={{
             ...tabStyle(t),
             textShadow: activeTab === t ? "0 0 12px rgba(201,169,110,0.5)" : "none",
           }}>
-            {t === "agent" ? "Agent" : t === "analyzer" ? "Docs" : t === "drive" ? "Drive" : t === "semantic" ? "Semantic" : "Versions"}
+            {t === "agent" ? "Agent" : t === "analyzer" ? "Docs" : t === "buffer" ? `Buffer${bufferFiles.length ? ` (${bufferFiles.length})` : ""}` : t === "drive" ? "Drive" : t === "semantic" ? "Semantic" : "Versions"}
           </button>
         ))}
       </div>
@@ -431,9 +467,77 @@ export default function WritingAgentConsole() {
         </div>
       )}
 
+      {activeTab === "buffer" && (
+        <div>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.75rem", flexWrap: "wrap" }}>
+            <p style={{ margin: 0, fontFamily: "Georgia, serif", fontStyle: "italic", color: gold, fontSize: "0.9375rem" }}>
+              Drive Ingestion Buffer {bufferFiles.length > 0 ? `· ${bufferFiles.length} files` : ""}
+            </p>
+            <Btn onClick={fetchBuffer} disabled={bufferLoading}>{bufferLoading ? "Loading…" : "Refresh"}</Btn>
+          </div>
+
+          {bufferFiles.length > 0 && (
+            <>
+              <input
+                type="text"
+                placeholder="Search files…"
+                value={bufferSearch}
+                onChange={e => setBufferSearch(e.target.value)}
+                style={{ width: "100%", marginBottom: "0.75rem", fontFamily: "Georgia, serif", fontSize: "0.875rem", color: body, background: "rgba(201,169,110,0.02)", border: "1px solid rgba(201,169,110,0.2)", padding: "0.4rem 0.75rem", outline: "none", boxSizing: "border-box" }}
+              />
+              <div style={{ maxHeight: 280, overflowY: "auto", marginBottom: "0.75rem" }}>
+                {bufferFiles
+                  .filter(f => !bufferSearch || f.name?.toLowerCase().includes(bufferSearch.toLowerCase()))
+                  .map((f, i) => (
+                    <label key={f.id || i} style={{
+                      display: "flex", alignItems: "center", gap: "0.6rem",
+                      padding: "0.35rem 0.5rem", cursor: "pointer",
+                      background: bufferSelected.has(f.id) ? "rgba(201,169,110,0.06)" : "transparent",
+                      borderLeft: `2px solid ${bufferSelected.has(f.id) ? "rgba(201,169,110,0.5)" : "transparent"}`,
+                      transition: "all 150ms",
+                    }}>
+                      <input type="checkbox" checked={bufferSelected.has(f.id)} onChange={() => toggleBufferFile(f.id)}
+                        style={{ accentColor: gold, flexShrink: 0 }} />
+                      <span style={{ fontFamily: "Georgia, serif", fontSize: "0.8125rem", color: bufferSelected.has(f.id) ? gold : body, flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                        {f.name}
+                      </span>
+                      {f.status && (
+                        <span style={{ fontFamily: "Georgia, serif", fontSize: "0.68rem", color: muted, flexShrink: 0 }}>{f.status}</span>
+                      )}
+                    </label>
+                  ))
+                }
+              </div>
+
+              {bufferSelected.size > 0 && (
+                <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "wrap", padding: "0.75rem", background: "rgba(201,169,110,0.04)", border: "1px solid rgba(201,169,110,0.15)" }}>
+                  <span style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "0.8125rem", color: muted }}>
+                    {bufferSelected.size} selected → Chapter
+                  </span>
+                  <select value={bufferTargetChapter} onChange={e => setBufferTargetChapter(Number(e.target.value))} style={selectStyle}>
+                    {chapterOptions.map(n => <option key={n} value={n}>{n}</option>)}
+                  </select>
+                  <Btn onClick={copyToVersion}>Stage for Version</Btn>
+                  <button onClick={() => setBufferSelected(new Set())} style={{ fontFamily: "Georgia, serif", fontSize: "0.75rem", color: muted, background: "transparent", border: "none", cursor: "pointer" }}>
+                    Clear
+                  </button>
+                </div>
+              )}
+              {bufferCopyResult && <p style={{ fontFamily: "Georgia, serif", fontStyle: "italic", color: muted, fontSize: "0.875rem", marginTop: "0.5rem" }}>{bufferCopyResult}</p>}
+            </>
+          )}
+          {bufferFiles.length === 0 && !bufferLoading && (
+            <p style={{ fontFamily: "Georgia, serif", fontStyle: "italic", color: muted, fontSize: "0.875rem" }}>Click Refresh to load your 182-file ingestion buffer.</p>
+          )}
+        </div>
+      )}
+
       {activeTab === "drive" && (
         <div>
           <h3 style={{ fontFamily: "Georgia, serif", fontSize: "1rem", color: gold, margin: "0 0 0.75rem" }}>Drive Sync</h3>
+          <p style={{ fontFamily: "Georgia, serif", fontStyle: "italic", color: muted, fontSize: "0.8125rem", margin: "0 0 0.75rem" }}>
+            Sync manuscript files from Google Drive into the ingestion buffer.
+          </p>
           <Btn onClick={syncDrive} disabled={syncLoading}>{syncLoading ? "Syncing…" : "Sync Drive"}</Btn>
           {syncStatus && <p style={{ fontFamily: "Georgia, serif", fontStyle: "italic", color: muted, fontSize: "0.875rem", marginTop: "0.75rem" }}>{syncStatus}</p>}
         </div>
@@ -457,8 +561,16 @@ export default function WritingAgentConsole() {
             loading={semanticLoading && openSection === "biblical"}
           >
             {biblicalRows.length === 0
-              ? <p style={{ fontFamily: "Georgia, serif", fontStyle: "italic", color: muted, fontSize: "0.875rem" }}>None loaded.</p>
-              : biblicalRows.map((row, i) => <SemanticRow key={row.id || i} row={row} table="semantic_biblical_anchors" onToggle={toggleVisibility} />)
+              ? <p style={{ fontFamily: "Georgia, serif", fontStyle: "italic", color: muted, fontSize: "0.875rem" }}>None loaded — click Load above.</p>
+              : biblicalRows.map((row, i) => (
+                <div key={row.id || i} style={{ padding: "0.5rem 0", borderBottom: "1px solid rgba(201,169,110,0.08)", fontFamily: "Georgia, serif" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "0.5rem" }}>
+                    <span style={{ fontSize: "0.8125rem", color: gold }}>{row.book} {row.chapter}:{row.verse}{row.verse_end && row.verse_end !== row.verse ? `–${row.verse_end}` : ""}</span>
+                    <span style={{ fontSize: "0.68rem", color: muted, fontStyle: "italic" }}>{row.motif_family}</span>
+                  </div>
+                  <div style={{ fontSize: "0.875rem", color: body, marginTop: "0.2rem", lineHeight: 1.5 }}>{row.reference_text}</div>
+                </div>
+              ))
             }
           </CollapsibleSection>
 
@@ -468,32 +580,37 @@ export default function WritingAgentConsole() {
             loading={semanticLoading && openSection === "archetypes"}
           >
             {archetypeRows.length === 0
-              ? <p style={{ fontFamily: "Georgia, serif", fontStyle: "italic", color: muted, fontSize: "0.875rem" }}>None loaded.</p>
+              ? <p style={{ fontFamily: "Georgia, serif", fontStyle: "italic", color: muted, fontSize: "0.875rem" }}>None loaded — click Load above.</p>
               : archetypeRows.map((row, i) => (
-                <div key={row.id || i} style={{ padding: "0.5rem 0", borderBottom: "1px solid rgba(201,169,110,0.08)", fontFamily: "Georgia, serif", fontSize: "0.875rem", color: body }}>
-                  <div>
-                    {Object.entries(row.archetypal_weights || {}).map(([k, v]: [string, any]) => (
-                      <span key={k} style={{ marginRight: "0.75rem", color: muted, fontSize: "0.8rem" }}>
-                        {k}: <span style={{ color: (v as number) > 0.5 ? gold : body }}>{typeof v === "number" ? v.toFixed(2) : String(v)}</span>
-                      </span>
-                    ))}
-                  </div>
-                  <div style={{ fontSize: "0.8125rem", color: muted, fontStyle: "italic", marginTop: "0.25rem" }}>
-                    {(row.content || "").slice(0, 80)}{row.content?.length > 80 ? "…" : ""}
-                  </div>
+                <div key={row.id || i} style={{ display: "flex", alignItems: "center", gap: "0.75rem", padding: "0.45rem 0", borderBottom: "1px solid rgba(201,169,110,0.08)" }}>
+                  <span style={{ fontFamily: "Georgia, serif", fontSize: "0.875rem", color: gold, flex: 1 }}>{row.label || row.canonical_label}</span>
+                  <span style={{ fontFamily: "Georgia, serif", fontSize: "0.7rem", color: muted, fontStyle: "italic" }}>{row.family || row.ontology_family}</span>
                 </div>
               ))
             }
           </CollapsibleSection>
 
           <CollapsibleSection
-            title="Crosslinks" count={crosslinkRows.length}
+            title="Crosslinks / Dualisms" count={crosslinkRows.length}
             open={openSection === "crosslinks"} onToggle={() => setOpenSection(openSection === "crosslinks" ? null : "crosslinks")}
             loading={semanticLoading && openSection === "crosslinks"}
           >
             {crosslinkRows.length === 0
-              ? <p style={{ fontFamily: "Georgia, serif", fontStyle: "italic", color: muted, fontSize: "0.875rem" }}>None loaded.</p>
-              : crosslinkRows.map((row, i) => <SemanticRow key={row.id || i} row={row} table="semantic_crosslinks" onToggle={toggleVisibility} />)
+              ? <p style={{ fontFamily: "Georgia, serif", fontStyle: "italic", color: muted, fontSize: "0.875rem" }}>None loaded — click Load above.</p>
+              : crosslinkRows.map((row, i) => (
+                <div key={row.id || i} style={{ padding: "0.45rem 0", borderBottom: "1px solid rgba(201,169,110,0.08)", fontFamily: "Georgia, serif" }}>
+                  <div style={{ display: "flex", gap: "0.5rem", alignItems: "baseline" }}>
+                    <span style={{ fontSize: "0.68rem", color: muted, fontStyle: "italic" }}>{row.link_type === "parallelism" ? "↔" : "↕"}</span>
+                    <span style={{ fontSize: "0.8125rem", color: gold }}>{row.relation_type || row.relation_family}</span>
+                    <span style={{ fontSize: "0.68rem", color: muted }}>{row.left_family} → {row.right_family}</span>
+                  </div>
+                  {row.evidence_text && (
+                    <div style={{ fontSize: "0.8rem", color: body, fontStyle: "italic", marginTop: "0.2rem", opacity: 0.8 }}>
+                      {row.evidence_text.slice(0, 100)}{row.evidence_text.length > 100 ? "…" : ""}
+                    </div>
+                  )}
+                </div>
+              ))
             }
           </CollapsibleSection>
         </div>

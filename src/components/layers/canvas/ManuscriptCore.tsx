@@ -2,23 +2,51 @@
 
 import React, { useEffect, useRef } from "react";
 import { bus } from "@/core/runtimeEngine";
+import { getKineticEffect } from "@/lib/kineticWords";
 import TitleCover from "./front-matter/TitleCover";
 import Dedication from "./front-matter/Dedication";
 import Synopsis from "./front-matter/Synopsis";
 import AboutAuthor from "./front-matter/AboutAuthor";
 import TableOfContents from "./front-matter/TableOfContents";
 
-const HEBREW_NAMES = /\b(Hebron|Hermon|Mamre|Beelzebub|Megiddo|Sak)\b/g;
+const HEBREW_NAMES = /\b(Hebron|Hermon|Mamre|Beelzebub|Megiddo|Sak|Rafa)\b/g;
 
-function renderWithHebrewSpans(text: string): React.ReactNode[] {
-  const matchSource = new RegExp(HEBREW_NAMES.source, 'g');
-  const parts = text.split(HEBREW_NAMES);
-  return parts.map((part, i) => {
-    matchSource.lastIndex = 0;
-    return matchSource.test(part)
-      ? <span key={i} className="font-hebrew" lang="he">{part}</span>
-      : part;
-  });
+// Render text with Hebrew spans and deterministic kinetic word transforms
+function renderParagraph(text: string): React.ReactNode[] {
+  const nodes: React.ReactNode[] = [];
+  // Split on word boundaries, preserving whitespace and punctuation
+  const tokens = text.split(/(\s+)/);
+  let key = 0;
+
+  for (const token of tokens) {
+    if (!token) continue;
+    // Whitespace — pass through as-is
+    if (/^\s+$/.test(token)) { nodes.push(token); continue; }
+
+    // Check for Hebrew name match (whole token stripped of punctuation)
+    const bare = token.replace(/[^a-zA-Z]/g, "");
+    const hebrewMatch = HEBREW_NAMES.test(bare);
+    HEBREW_NAMES.lastIndex = 0;
+
+    if (hebrewMatch) {
+      nodes.push(<span key={key++} className="font-hebrew" lang="he">{token}</span>);
+      continue;
+    }
+
+    // Check for kinetic effect
+    const effect = getKineticEffect(bare);
+    if (effect) {
+      nodes.push(
+        <span key={key++} style={effect.style} aria-label={bare}>
+          {token}
+        </span>
+      );
+      continue;
+    }
+
+    nodes.push(token);
+  }
+  return nodes;
 }
 
 
@@ -287,7 +315,7 @@ export default function ManuscriptCore({
                   data-state="inactive"
                   className="prose-paragraph kinetic-word"
                 >
-                  {renderWithHebrewSpans(text)}
+                  {renderParagraph(text)}
                 </p>
               );
             })}

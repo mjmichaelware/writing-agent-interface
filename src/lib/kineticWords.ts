@@ -1,151 +1,37 @@
 import React from "react";
 
-// Semantic categories — each word's effect MATCHES its narrative meaning.
-// "ascent" climbs up. "gain" gets bigger. "squeeze" compresses.
-// Paragraph-level archetypal_weights/dualism_map from Supabase amplify
-// the base intensity — high descent paragraph = falling words fall harder.
+// Kinetic typography is fully Supabase-driven:
+//
+//   GATE      — only words the semantic pipeline identified as `subject_name`
+//               in this paragraph's semantic_meaning_spans get any effect.
+//               Nothing animates unless Supabase said it matters here.
+//
+//   EFFECT    — determined by the word's intrinsic physical/semantic meaning
+//               ("dust" sinks, "fire" glows, "silence" breathes wide)
+//               plus the claim_family when intrinsic meaning is ambiguous
+//               (proper names: archetype.Ego → compression, Persona → silence).
+//
+//   INTENSITY — paragraph's archetypal_weights / dualism_map from Supabase
+//               amplify the animation speed (high shadow pressure → faster descent).
+
 export type KineticCategory =
   | "descent" | "ascent" | "growth" | "compression"
   | "shadow" | "blur" | "light" | "sacred"
   | "silence" | "violence" | "motion_lateral" | "rotation";
 
-type KineticEntry = {
+export type SemanticWordEntry = {
+  word: string;
+  claim_family: string;
+  label: string;
+  confidence: number;
+};
+
+export type KineticEffect = {
+  style: React.CSSProperties;
   category: KineticCategory;
-  base: React.CSSProperties;
 };
 
-const KINETIC: Record<string, KineticEntry> = {
-  // DESCENT — gravity, collapse, sinking
-  fall:       { category:"descent",  base:{ display:"inline-block", transform:"translateY(6px) rotate(-1.5deg)", opacity:0.82 } },
-  falling:    { category:"descent",  base:{ display:"inline-block", transform:"translateY(5px) rotate(-1deg)",  opacity:0.8  } },
-  fell:       { category:"descent",  base:{ display:"inline-block", transform:"translateY(4px)",                opacity:0.83 } },
-  sink:       { category:"descent",  base:{ display:"inline-block", transform:"translateY(6px) scaleY(0.93)",  opacity:0.75 } },
-  sank:       { category:"descent",  base:{ display:"inline-block", transform:"translateY(5px) scaleY(0.94)",  opacity:0.77 } },
-  sinking:    { category:"descent",  base:{ display:"inline-block", transform:"translateY(4px) scaleY(0.92)",  opacity:0.78 } },
-  plunge:     { category:"descent",  base:{ display:"inline-block", transform:"translateY(8px) scaleY(0.9)",   opacity:0.7  } },
-  plunged:    { category:"descent",  base:{ display:"inline-block", transform:"translateY(7px) scaleY(0.91)",  opacity:0.72 } },
-  descent:    { category:"descent",  base:{ display:"inline-block", transform:"translateY(5px)",               opacity:0.8  } },
-  descend:    { category:"descent",  base:{ display:"inline-block", transform:"translateY(4px)",               opacity:0.82 } },
-  collapsed:  { category:"descent",  base:{ display:"inline-block", transform:"translateY(7px) scaleX(0.88) scaleY(0.88)", opacity:0.7 } },
-  collapse:   { category:"descent",  base:{ display:"inline-block", transform:"translateY(6px) scaleX(0.9)",  opacity:0.72 } },
-  dropped:    { category:"descent",  base:{ display:"inline-block", transform:"translateY(5px)",               opacity:0.8  } },
-  drop:       { category:"descent",  base:{ display:"inline-block", transform:"translateY(4px)",               opacity:0.82 } },
-
-  // ASCENT — rising, lifting, soaring
-  rise:       { category:"ascent",   base:{ display:"inline-block", transform:"translateY(-4px) scaleY(1.04)"  } },
-  rising:     { category:"ascent",   base:{ display:"inline-block", transform:"translateY(-5px) scaleY(1.06)"  } },
-  rose:       { category:"ascent",   base:{ display:"inline-block", transform:"translateY(-3px) scaleY(1.03)"  } },
-  ascend:     { category:"ascent",   base:{ display:"inline-block", transform:"translateY(-4px) scaleY(1.06)"  } },
-  ascent:     { category:"ascent",   base:{ display:"inline-block", transform:"translateY(-5px) scaleY(1.08)"  } },
-  lifted:     { category:"ascent",   base:{ display:"inline-block", transform:"translateY(-3px)"               } },
-  lift:       { category:"ascent",   base:{ display:"inline-block", transform:"translateY(-3px) scaleY(1.03)"  } },
-  soared:     { category:"ascent",   base:{ display:"inline-block", transform:"translateY(-7px) scaleY(1.1)"   } },
-  soar:       { category:"ascent",   base:{ display:"inline-block", transform:"translateY(-6px) scaleY(1.08)"  } },
-  climb:      { category:"ascent",   base:{ display:"inline-block", transform:"translateY(-4px)"               } },
-  climbed:    { category:"ascent",   base:{ display:"inline-block", transform:"translateY(-3px)"               } },
-  elevated:   { category:"ascent",   base:{ display:"inline-block", transform:"translateY(-4px) scaleY(1.05)"  } },
-
-  // GROWTH — expansion, gain, abundance
-  grow:       { category:"growth",   base:{ display:"inline-block", transform:"scale(1.12)", transformOrigin:"center" } },
-  grew:       { category:"growth",   base:{ display:"inline-block", transform:"scale(1.10)", transformOrigin:"center" } },
-  growing:    { category:"growth",   base:{ display:"inline-block", transform:"scale(1.11)", transformOrigin:"center" } },
-  expand:     { category:"growth",   base:{ display:"inline-block", transform:"scaleX(1.14)", letterSpacing:"0.06em" } },
-  expanded:   { category:"growth",   base:{ display:"inline-block", transform:"scaleX(1.12)", letterSpacing:"0.05em" } },
-  swell:      { category:"growth",   base:{ display:"inline-block", transform:"scale(1.10) scaleY(1.06)"       } },
-  swelled:    { category:"growth",   base:{ display:"inline-block", transform:"scale(1.08) scaleY(1.04)"       } },
-  gain:       { category:"growth",   base:{ display:"inline-block", transform:"scale(1.09)", fontWeight:600     } },
-  gained:     { category:"growth",   base:{ display:"inline-block", transform:"scale(1.07)"                    } },
-  vast:       { category:"growth",   base:{ display:"inline-block", letterSpacing:"0.25em", transform:"scaleX(1.14)" } },
-  endless:    { category:"growth",   base:{ display:"inline-block", letterSpacing:"0.18em", transform:"scaleX(1.10)" } },
-  wide:       { category:"growth",   base:{ display:"inline-block", letterSpacing:"0.2em"                      } },
-  infinite:   { category:"growth",   base:{ display:"inline-block", letterSpacing:"0.22em", opacity:0.88       } },
-  abundance:  { category:"growth",   base:{ display:"inline-block", transform:"scaleX(1.1) scaleY(1.05)"       } },
-  filled:     { category:"growth",   base:{ display:"inline-block", transform:"scale(1.06)", fontWeight:500    } },
-
-  // COMPRESSION — squeeze, crush, burden
-  squeeze:    { category:"compression", base:{ display:"inline-block", transform:"scaleX(0.62)", letterSpacing:"-0.06em", transformOrigin:"center" } },
-  squeezed:   { category:"compression", base:{ display:"inline-block", transform:"scaleX(0.65)", letterSpacing:"-0.05em" } },
-  compressed: { category:"compression", base:{ display:"inline-block", transform:"scaleX(0.70)", letterSpacing:"-0.04em" } },
-  crushed:    { category:"compression", base:{ display:"inline-block", transform:"scaleX(0.55) scaleY(0.88)", letterSpacing:"-0.07em" } },
-  shrink:     { category:"compression", base:{ display:"inline-block", transform:"scale(0.82)", opacity:0.85   } },
-  shrank:     { category:"compression", base:{ display:"inline-block", transform:"scale(0.84)", opacity:0.87   } },
-  wither:     { category:"compression", base:{ display:"inline-block", transform:"scaleX(0.78) scaleY(0.94)", opacity:0.75 } },
-  withered:   { category:"compression", base:{ display:"inline-block", transform:"scaleX(0.76) scaleY(0.92)", opacity:0.72 } },
-  heavy:      { category:"compression", base:{ display:"inline-block", fontWeight:700, transform:"scaleY(0.93)", textShadow:"0 2px 4px rgba(0,0,0,0.6)" } },
-  weight:     { category:"compression", base:{ display:"inline-block", fontWeight:700, transform:"scaleY(0.92)", textShadow:"0 2px 6px rgba(0,0,0,0.5)" } },
-  burden:     { category:"compression", base:{ display:"inline-block", transform:"translateY(3px) scaleY(0.92)", fontWeight:600 } },
-
-  // SHADOW / OBSCURITY
-  shadow:     { category:"shadow",   base:{ display:"inline-block", textShadow:"2px 2px 4px rgba(0,0,0,0.7)",  opacity:0.85 } },
-  shadows:    { category:"shadow",   base:{ display:"inline-block", textShadow:"2px 2px 4px rgba(0,0,0,0.7)",  opacity:0.85 } },
-  darkness:   { category:"shadow",   base:{ display:"inline-block", opacity:0.50, textShadow:"0 0 8px rgba(0,0,0,0.9)"  } },
-  dark:       { category:"shadow",   base:{ display:"inline-block", opacity:0.55  } },
-  hidden:     { category:"shadow",   base:{ display:"inline-block", opacity:0.38, filter:"blur(0.6px)"          } },
-  dim:        { category:"shadow",   base:{ display:"inline-block", opacity:0.42, filter:"blur(0.4px)"          } },
-  dimming:    { category:"shadow",   base:{ display:"inline-block", opacity:0.40  } },
-
-  // BLUR / OBSCURITY
-  blurry:     { category:"blur",     base:{ display:"inline-block", filter:"blur(1.8px)", opacity:0.78 } },
-  blur:       { category:"blur",     base:{ display:"inline-block", filter:"blur(1.4px)", opacity:0.80 } },
-  blurred:    { category:"blur",     base:{ display:"inline-block", filter:"blur(1.6px)", opacity:0.78 } },
-
-  // LIGHT / ILLUMINATION
-  light:      { category:"light",    base:{ display:"inline-block", textShadow:"0 0 12px rgba(255,240,180,0.65)", color:"#f5e8b0" } },
-  shining:    { category:"light",    base:{ display:"inline-block", textShadow:"0 0 14px rgba(255,235,150,0.70)", color:"#f5e8b0" } },
-  glowing:    { category:"light",    base:{ display:"inline-block", textShadow:"0 0 10px rgba(201,169,110,0.80)", color:"#e8d08a" } },
-  bright:     { category:"light",    base:{ display:"inline-block", textShadow:"0 0 10px rgba(255,240,160,0.55)", color:"#f0dfa0" } },
-  flame:      { category:"light",    base:{ display:"inline-block", textShadow:"0 0 8px rgba(255,100,30,0.70)",  color:"#f07030" } },
-  fire:       { category:"light",    base:{ display:"inline-block", textShadow:"0 0 10px rgba(255,80,20,0.65)",  color:"#f06020" } },
-  burning:    { category:"light",    base:{ display:"inline-block", textShadow:"0 0 10px rgba(255,80,20,0.60)",  color:"#e85820" } },
-  radiant:    { category:"light",    base:{ display:"inline-block", textShadow:"0 0 16px rgba(255,240,180,0.75)", color:"#f5e8b0" } },
-
-  // SACRED / TRANSCENDENT
-  holy:       { category:"sacred",   base:{ display:"inline-block", letterSpacing:"0.14em", textShadow:"0 0 14px rgba(220,200,150,0.55)", color:"#e8d49a" } },
-  sacred:     { category:"sacred",   base:{ display:"inline-block", letterSpacing:"0.12em", textShadow:"0 0 12px rgba(220,200,140,0.50)", color:"#e8d090" } },
-  glory:      { category:"sacred",   base:{ display:"inline-block", letterSpacing:"0.16em", textShadow:"0 0 16px rgba(240,210,130,0.65)", color:"#f0d888" } },
-  divine:     { category:"sacred",   base:{ display:"inline-block", letterSpacing:"0.12em", fontStyle:"italic", color:"#e8d49a" } },
-  eternal:    { category:"sacred",   base:{ display:"inline-block", letterSpacing:"0.16em", opacity:0.92, color:"#d4c080" } },
-  blessed:    { category:"sacred",   base:{ display:"inline-block", letterSpacing:"0.10em", textShadow:"0 0 10px rgba(220,200,140,0.45)", color:"#e8d49a" } },
-
-  // SILENCE / STILLNESS
-  silence:    { category:"silence",  base:{ display:"inline-block", letterSpacing:"0.28em", opacity:0.56 } },
-  silent:     { category:"silence",  base:{ display:"inline-block", letterSpacing:"0.22em", opacity:0.54 } },
-  still:      { category:"silence",  base:{ display:"inline-block", letterSpacing:"0.12em", opacity:0.65 } },
-  stillness:  { category:"silence",  base:{ display:"inline-block", letterSpacing:"0.26em", opacity:0.54 } },
-  quiet:      { category:"silence",  base:{ display:"inline-block", letterSpacing:"0.14em", opacity:0.62 } },
-  whisper:    { category:"silence",  base:{ display:"inline-block", fontSize:"0.86em",      opacity:0.68, letterSpacing:"0.08em" } },
-  whispered:  { category:"silence",  base:{ display:"inline-block", fontSize:"0.84em",      opacity:0.65 } },
-  empty:      { category:"silence",  base:{ display:"inline-block", letterSpacing:"0.18em", opacity:0.50 } },
-  hollow:     { category:"silence",  base:{ display:"inline-block", letterSpacing:"0.20em", opacity:0.52, fontStyle:"italic" } },
-
-  // VIOLENCE / FRACTURE / TREMBLING
-  shattered:  { category:"violence", base:{ display:"inline-block", letterSpacing:"0.16em", transform:"skewX(-3.5deg) scaleX(0.94)", opacity:0.82 } },
-  broken:     { category:"violence", base:{ display:"inline-block", transform:"skewX(-2.5deg)", opacity:0.80 } },
-  torn:       { category:"violence", base:{ display:"inline-block", transform:"skewX(-4deg) scaleX(0.91)", opacity:0.78 } },
-  trembling:  { category:"violence", base:{ display:"inline-block", transform:"skewX(2.5deg)", opacity:0.86 } },
-  shaking:    { category:"violence", base:{ display:"inline-block", transform:"skewX(2deg)" } },
-  fracture:   { category:"violence", base:{ display:"inline-block", letterSpacing:"0.12em", transform:"skewX(-3deg) scaleX(0.93)", opacity:0.80 } },
-
-  // LATERAL MOTION — drift, slide, scatter
-  slide:      { category:"motion_lateral", base:{ display:"inline-block", transform:"translateX(5px)",           fontStyle:"italic" } },
-  sliding:    { category:"motion_lateral", base:{ display:"inline-block", transform:"translateX(4px)",           fontStyle:"italic" } },
-  slid:       { category:"motion_lateral", base:{ display:"inline-block", transform:"translateX(3px)",           fontStyle:"italic" } },
-  drift:      { category:"motion_lateral", base:{ display:"inline-block", transform:"translateX(6px) rotate(0.8deg)", opacity:0.88 } },
-  drifting:   { category:"motion_lateral", base:{ display:"inline-block", transform:"translateX(4px) rotate(0.6deg)", opacity:0.88 } },
-  drifted:    { category:"motion_lateral", base:{ display:"inline-block", transform:"translateX(3px) rotate(0.5deg)", opacity:0.85 } },
-  scatter:    { category:"motion_lateral", base:{ display:"inline-block", letterSpacing:"0.20em", transform:"scaleX(1.12)" } },
-  scattered:  { category:"motion_lateral", base:{ display:"inline-block", letterSpacing:"0.16em" } },
-
-  // ROTATION / SPIN / TWIST
-  spin:       { category:"rotation", base:{ display:"inline-block", transform:"rotate(9deg)",  transformOrigin:"center" } },
-  spinning:   { category:"rotation", base:{ display:"inline-block", transform:"rotate(7deg)"   } },
-  spiral:     { category:"rotation", base:{ display:"inline-block", transform:"rotate(5deg) scaleX(0.92)" } },
-  whirl:      { category:"rotation", base:{ display:"inline-block", transform:"rotate(12deg)", letterSpacing:"0.04em" } },
-  twisted:    { category:"rotation", base:{ display:"inline-block", transform:"rotate(-5.5deg) scaleX(0.94)" } },
-  turning:    { category:"rotation", base:{ display:"inline-block", transform:"rotate(4.5deg)" } },
-};
-
-// Infinite ambient animation per category — each word moves in real time
+// Infinite ambient animations — defined in globals.css
 const CATEGORY_ANIMATION: Record<KineticCategory, string> = {
   descent:        "kinetic-descend-ambient 2.8s ease-in-out infinite",
   ascent:         "kinetic-ascend-ambient 3.2s ease-in-out infinite",
@@ -161,7 +47,54 @@ const CATEGORY_ANIMATION: Record<KineticCategory, string> = {
   rotation:       "kinetic-spin-ambient 5s ease-in-out infinite",
 };
 
-// Pressure axis each category responds to from paragraph weights/dualisms
+// Non-motion visual properties per category (color, spacing, opacity, filter)
+const CATEGORY_BASE: Record<KineticCategory, React.CSSProperties> = {
+  descent:        { opacity: 0.80 },
+  ascent:         {},
+  growth:         { fontWeight: 600 },
+  compression:    { letterSpacing: "-0.04em" },
+  shadow:         { opacity: 0.62, textShadow: "1px 1px 4px rgba(0,0,0,0.75)" },
+  blur:           { filter: "blur(0.5px)", opacity: 0.76 },
+  light:          { color: "#f5e8b0", textShadow: "0 0 10px rgba(255,240,180,0.60)" },
+  sacred:         { letterSpacing: "0.12em", color: "#e8d49a" },
+  silence:        { letterSpacing: "0.20em", opacity: 0.58 },
+  violence:       { opacity: 0.84 },
+  motion_lateral: { fontStyle: "italic" },
+  rotation:       {},
+};
+
+// Map a word to its kinetic category from its intrinsic physical/semantic meaning.
+// This is NOT a story dictionary — it categorizes general English words by what
+// they fundamentally DO or ARE in the physical/narrative world.
+function getIntrinsicCategory(w: string): KineticCategory | null {
+  if (/^(dust|ash|ashes|buried|grave|ruin|ruins|decay|dirt|clay|mud|sand|collapse|collapsed|heavy|weight|burden|deep|underground|tomb|dead|death|fallen|sank|sinking|dropped|below|fall|fell|falling|plunge|plunged|sink|descend|descent)$/.test(w)) return "descent";
+  if (/^(star|stars|stardust|sky|heaven|heavens|angel|spirit|soul|breath|float|above|high|heights|wing|wings|air|lifted|elevated|upward|rise|rising|soar|ascend|ascent|radiant|divine|cloud|clouds)$/.test(w)) return "ascent";
+  if (/^(silence|silent|quiet|whisper|whispered|still|stillness|empty|hollow|void|nothing|nothingness|absence|hush|mute|breathless|alone|lonely|solitude|invisible|hidden|secret|dark|dim)$/.test(w)) return "silence";
+  if (/^(fire|flame|flames|burning|burn|glow|glowing|bright|shine|shining|gleam|gleaming|spark|sparks|torch|candle|golden|gold|luminous|blaze|blazing|lit|light|shining|radiant)$/.test(w)) return "light";
+  if (/^(shatter|shattered|broken|fracture|fractured|torn|crack|cracked|trembling|tremor|tremble|shake|shaking|war|battle|struck|wound|wounds|blood|rage|fury|anger|wrath|sword|blade|sever|violent|violence|clash|clashed)$/.test(w)) return "violence";
+  if (/^(abundance|abundant|vast|wide|endless|infinite|filled|grow|growing|grew|swell|swelled|expand|expanded|rich|richness|overflow|overflowing|multiply|multiplied|great|greatness|fullness|harvest|plenty|fill)$/.test(w)) return "growth";
+  if (/^(holy|sacred|divine|glory|glorious|lord|god|blessed|blessing|eternal|covenant|prophecy|temple|altar|sacrifice|worship|righteous|mercy|grace|ancient|anointed)$/.test(w)) return "sacred";
+  if (/^(shadow|shadows|darkness|obscure|fog|mist|night|midnight|blind|blindness|veil|veiled|mask|masked)$/.test(w)) return "shadow";
+  if (/^(sea|wave|waves|drift|drifting|river|current|flow|flowing|slide|scatter|scattered|wandering|wander|wind|storm|swept|slide|slid|sliding)$/.test(w)) return "motion_lateral";
+  if (/^(spin|spiral|twist|twisted|whirl|coil|coiled|winding|turning|turn|rotate|rotation)$/.test(w)) return "rotation";
+  if (/^(squeeze|compressed|crush|crushed|shrink|shrank|withered|wither|narrow|narrowed|tight|tighten|bind|bound|cage|caged|imprisoned|pressed|pressing|constrict|constricted)$/.test(w)) return "compression";
+  if (/^(blur|blurred|blurry|haze|hazed|obscured|dim|dimming|fog|foggy|smoky|smoke)$/.test(w)) return "blur";
+  return null;
+}
+
+// When the word has no clear intrinsic physical meaning (e.g. a proper name),
+// fall back to what the semantic pipeline classified this word AS in the narrative.
+function getClaimDefaultCategory(claimFamily: string, label: string): KineticCategory {
+  if (claimFamily === "biblical") return "sacred";
+  if (claimFamily === "archetype") {
+    if (label === "Ego")    return "compression"; // ego consciousness = weight, burden
+    if (label === "Persona") return "silence";    // persona/mask = controlled, restrained
+  }
+  if (claimFamily === "dualism") return "violence"; // opposing forces in tension
+  return "silence";
+}
+
+// Pressure from the paragraph's Supabase weights amplifies animation speed (0–1).
 function getPressure(
   cat: KineticCategory,
   w: Record<string, number>,
@@ -169,76 +102,73 @@ function getPressure(
 ): number {
   const s = (k: Record<string, number>, key: string) => Math.min(1, k[key] || 0);
   switch (cat) {
-    case "descent":       return Math.min(1, s(d,"descent") + s(d,"fall")    + s(w,"shadow") * 0.3);
-    case "ascent":        return Math.min(1, s(d,"ascent")  + s(d,"rise")    + s(w,"anima")  * 0.3);
-    case "growth":        return Math.min(1, s(w,"self")    + s(d,"ascent")  * 0.4);
-    case "compression":   return Math.min(1, s(w,"shadow")  + s(d,"descent") * 0.5);
-    case "shadow":        return s(w,"shadow");
-    case "blur":          return Math.min(1, s(w,"shadow")  + s(w,"anima")   * 0.4);
-    case "light":         return Math.min(1, s(w,"self")    + s(d,"ascent")  * 0.5);
-    case "sacred":        return Math.min(1, s(w,"self")    * 1.4);
-    case "silence":       return Math.min(1, s(w,"persona") * 1.3);
-    case "violence":      return Math.min(1, s(d,"tension") + s(d,"conflict") + s(w,"shadow") * 0.5);
-    case "motion_lateral":return s(w,"anima");
-    case "rotation":      return Math.min(1, s(w,"anima")   + s(d,"tension") * 0.4);
-    default:              return 0;
+    case "descent":        return Math.min(1, s(d,"descent") + s(d,"fall")    + s(w,"shadow") * 0.3);
+    case "ascent":         return Math.min(1, s(d,"ascent")  + s(d,"rise")    + s(w,"anima")  * 0.3);
+    case "growth":         return Math.min(1, s(w,"self")    + s(d,"ascent")  * 0.4);
+    case "compression":    return Math.min(1, s(w,"shadow")  + s(d,"descent") * 0.5);
+    case "shadow":         return s(w,"shadow");
+    case "blur":           return Math.min(1, s(w,"shadow")  + s(w,"anima")   * 0.4);
+    case "light":          return Math.min(1, s(w,"self")    + s(d,"ascent")  * 0.5);
+    case "sacred":         return Math.min(1, s(w,"self")    * 1.4);
+    case "silence":        return Math.min(1, s(w,"persona") * 1.3);
+    case "violence":       return Math.min(1, s(d,"tension") + s(d,"conflict") + s(w,"shadow") * 0.5);
+    case "motion_lateral": return s(w,"anima");
+    case "rotation":       return Math.min(1, s(w,"anima")   + s(d,"tension") * 0.4);
+    default:               return 0;
   }
 }
 
-// Scales numeric pixel/degree/em values inside a CSS transform string
-function scaleTransform(t: string, factor: number): string {
-  return t.replace(/([-\d.]+)(px|deg)/g, (_, n, unit) =>
-    `${(parseFloat(n) * factor).toFixed(2)}${unit}`
-  );
-}
-
-export type KineticEffect = {
-  style: React.CSSProperties;
-  category: KineticCategory;
-};
-
-// Plain lookup — base effect only, no pressure
-export function getKineticEffect(word: string): KineticEffect | null {
-  const k = KINETIC[word.toLowerCase().replace(/[^a-z]/g, "")];
-  if (!k) return null;
-  const style: React.CSSProperties = { ...k.base, animation: CATEGORY_ANIMATION[k.category] };
-  return { style, category: k.category };
-}
-
-// Pressure-amplified lookup — use this in ManuscriptCore.
-// Paragraph weights/dualisms from Supabase modulate the intensity:
-// a "fall" in a high-descent paragraph falls farther than in a neutral one.
-// Pressure also speeds up the animation — a heavy paragraph makes its
-// descent words oscillate faster (lower duration).
-export function getKineticEffectWithPressure(
+// Main render function — fully Supabase-driven.
+//
+// semanticWords: the `subject_name` entries from semantic_meaning_spans for THIS
+// paragraph (loaded by the manuscript API). Empty array = no kinetic effects.
+//
+// Only words in semanticWords animate. Effect type = intrinsic word meaning
+// or claim_family fallback. Intensity = paragraph weights × span confidence.
+export function getSemanticKineticEffect(
   word: string,
+  semanticWords: SemanticWordEntry[],
   weights: Record<string, number>,
   dualisms: Record<string, number>
 ): React.CSSProperties | null {
-  const k = KINETIC[word.toLowerCase().replace(/[^a-z]/g, "")];
-  if (!k) return null;
+  const bare = word.toLowerCase().replace(/[^a-z]/g, "");
+  if (!bare || bare.length < 3 || !semanticWords.length) return null;
 
-  const pressure = getPressure(k.category, weights, dualisms);
-  const style: React.CSSProperties = { ...k.base };
+  // Gate: only words the AI identified as semantic subjects in THIS paragraph
+  const match = semanticWords.find(
+    (s) => s.word?.toLowerCase().replace(/[^a-z]/g, "") === bare
+  );
+  if (!match) return null;
 
-  // Pressure scales the animation speed: high pressure = 30% faster oscillation
-  const baseAnim = CATEGORY_ANIMATION[k.category];
-  if (baseAnim && pressure > 0.1) {
+  const category =
+    getIntrinsicCategory(bare) ??
+    getClaimDefaultCategory(match.claim_family, match.label);
+
+  const pressure       = getPressure(category, weights, dualisms);
+  const confidenceBoost = Math.min(1, (match.confidence || 0.15) * 5);
+  const intensity      = Math.max(0.1, pressure * 0.7 + confidenceBoost * 0.3);
+
+  const style: React.CSSProperties = {
+    display: "inline-block",
+    ...CATEGORY_BASE[category],
+  };
+
+  const baseAnim = CATEGORY_ANIMATION[category];
+  if (baseAnim) {
     const durationMatch = baseAnim.match(/([\d.]+)s/);
     if (durationMatch) {
-      const base = parseFloat(durationMatch[1]);
-      const scaled = Math.max(0.4, base * (1 - pressure * 0.3));
+      const base   = parseFloat(durationMatch[1]);
+      const scaled = Math.max(0.4, base * (1 - intensity * 0.35));
       style.animation = baseAnim.replace(durationMatch[0], `${scaled.toFixed(2)}s`);
     } else {
       style.animation = baseAnim;
     }
-  } else {
-    style.animation = baseAnim;
   }
 
   return style;
 }
 
-export function hasKineticEffect(word: string): boolean {
-  return word.toLowerCase().replace(/[^a-z]/g, "") in KINETIC;
+export function hasKineticEffect(word: string, semanticWords: SemanticWordEntry[]): boolean {
+  const bare = word.toLowerCase().replace(/[^a-z]/g, "");
+  return semanticWords.some((s) => s.word?.toLowerCase().replace(/[^a-z]/g, "") === bare);
 }

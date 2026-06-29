@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { bus } from "@/core/runtimeEngine";
-import { getKineticEffectWithPressure } from "@/lib/kineticWords";
+import { getSemanticKineticEffect, type SemanticWordEntry } from "@/lib/kineticWords";
 import TitleCover from "./front-matter/TitleCover";
 import Dedication from "./front-matter/Dedication";
 import Synopsis from "./front-matter/Synopsis";
@@ -11,12 +11,12 @@ import TableOfContents from "./front-matter/TableOfContents";
 
 const HEBREW_NAMES = /\b(Hebron|Hermon|Mamre|Beelzebub|Megiddo|Sak|Rafa)\b/g;
 
-// Each word carries its own semantic identity — "ascent" climbs, "gain" grows,
-// "squeeze" compresses. The paragraph's Supabase archetypal_weights + dualism_map
-// amplify those base effects: a "fall" in a high-descent paragraph falls farther.
-// Words not in the dictionary render plain.
+// Kinetic rendering is Supabase-driven: only words the semantic pipeline
+// identified as `subject_name` in this paragraph's spans get any effect.
+// Effect type = intrinsic word meaning; intensity = paragraph weights.
 function renderParagraph(
   text: string,
+  semanticWords: SemanticWordEntry[] = [],
   weights: Record<string, number> = {},
   dualisms: Record<string, number> = {}
 ): React.ReactNode[] {
@@ -41,9 +41,7 @@ function renderParagraph(
 
     if (!bare) { nodes.push(token); continue; }
 
-    // Word identity determines the type of effect;
-    // paragraph pressure from Supabase weights determines intensity
-    const style = getKineticEffectWithPressure(bare, weights, dualisms);
+    const style = getSemanticKineticEffect(bare, semanticWords, weights, dualisms);
     if (style) {
       nodes.push(<span key={key++} style={style} aria-label={bare}>{token}</span>);
       continue;
@@ -61,17 +59,18 @@ export default function ManuscriptCore({
   partNumber = "I",
   onLoadChapter
 }: {
-  blocks: (string | { 
-    id: string; 
-    content: string; 
+  blocks: (string | {
+    id: string;
+    content: string;
     chapter_number?: number;
     chapter_slug?: string;
     chapter_version?: string | null;
     paragraph_order?: number;
     weights?: any;
-    archetypal_weights?: any; 
+    archetypal_weights?: any;
     dualism_map?: any;
     hebrew_spans?: any[];
+    semantic_words?: SemanticWordEntry[];
   })[];
   chapterSlug: string;
   partNumber?: string;
@@ -307,10 +306,11 @@ export default function ManuscriptCore({
         ) : (
           <>
             {blocks.map((block, idx) => {
-              const text    = typeof block === "string" ? block : block.content;
-              const id      = typeof block === "string" ? `para-${idx}` : block.id;
-              const weights = typeof block === "string" ? {} : (block.weights || block.archetypal_weights || {});
-              const dualisms = typeof block === "string" ? {} : (block.dualism_map || {});
+              const text          = typeof block === "string" ? block : block.content;
+              const id            = typeof block === "string" ? `para-${idx}` : block.id;
+              const weights       = typeof block === "string" ? {} : (block.weights || block.archetypal_weights || {});
+              const dualisms      = typeof block === "string" ? {} : (block.dualism_map || {});
+              const semanticWords = typeof block === "string" ? [] : (block.semantic_words ?? []);
 
               return (
                 <p
@@ -322,7 +322,7 @@ export default function ManuscriptCore({
                   data-state="inactive"
                   className="prose-paragraph kinetic-word"
                 >
-                  {renderParagraph(text, weights, dualisms)}
+                  {renderParagraph(text, semanticWords, weights, dualisms)}
                 </p>
               );
             })}

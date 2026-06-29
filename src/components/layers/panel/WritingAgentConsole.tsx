@@ -193,7 +193,7 @@ export default function WritingAgentConsole() {
     if (!agentIn.trim() && !imageFileRef.current) return;
     setLoading(true); setAgentOut(""); setTokenUsage(null);
     try {
-      let body: any = { prompt: agentIn, provider };
+      let body: any = { prompt: agentIn, preferredProvider: provider };
       if (imageFileRef.current) {
         const base64 = await new Promise<string>((resolve, reject) => {
           const reader = new FileReader();
@@ -203,7 +203,7 @@ export default function WritingAgentConsole() {
         });
         body.imageData = base64;
         body.mimeType = imageFileRef.current.type;
-        body.provider = "gemini";
+        body.preferredProvider = "gemini";
       }
       const res = await fetch("/api/agent", {
         method: "POST",

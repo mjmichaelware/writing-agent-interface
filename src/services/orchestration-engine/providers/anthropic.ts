@@ -43,6 +43,11 @@ export class AnthropicProvider implements LLMProvider {
       content,
       provider: this.name,
       model: this.model,
+      usage: {
+        promptTokens: message.usage.input_tokens,
+        completionTokens: message.usage.output_tokens,
+        totalTokens: message.usage.input_tokens + message.usage.output_tokens,
+      },
     };
   }
 }

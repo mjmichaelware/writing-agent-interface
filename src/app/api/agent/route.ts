@@ -58,10 +58,15 @@ export async function POST(request: Request) {
       prompt,
     }, resolvedProvider);
 
-    return NextResponse.json({ 
+    return NextResponse.json({
+      response: response.content,
       result: response.content,
       provider: response.provider,
       model: response.model,
+      usage: response.usage ? {
+        input: response.usage.promptTokens,
+        output: response.usage.completionTokens,
+      } : null,
       ragActive,
       matchCount: matches.length,
     });

@@ -145,6 +145,22 @@ const KINETIC: Record<string, KineticEntry> = {
   turning:    { category:"rotation", base:{ display:"inline-block", transform:"rotate(4.5deg)" } },
 };
 
+// Infinite ambient animation per category — each word moves in real time
+const CATEGORY_ANIMATION: Record<KineticCategory, string> = {
+  descent:        "kinetic-descend-ambient 2.8s ease-in-out infinite",
+  ascent:         "kinetic-ascend-ambient 3.2s ease-in-out infinite",
+  growth:         "kinetic-grow-ambient 2.4s ease-in-out infinite",
+  compression:    "kinetic-compress-ambient 2.2s ease-in-out infinite",
+  shadow:         "kinetic-shadow-ambient 3.5s ease-in-out infinite",
+  blur:           "kinetic-blur-ambient 3s ease-in-out infinite",
+  light:          "kinetic-glow-ambient 2s ease-in-out infinite",
+  sacred:         "kinetic-sacred-ambient 4.5s ease-in-out infinite",
+  silence:        "kinetic-silence-ambient 5s ease-in-out infinite",
+  violence:       "kinetic-shake-ambient 0.7s ease-in-out infinite",
+  motion_lateral: "kinetic-drift-ambient 3.5s ease-in-out infinite",
+  rotation:       "kinetic-spin-ambient 5s ease-in-out infinite",
+};
+
 // Pressure axis each category responds to from paragraph weights/dualisms
 function getPressure(
   cat: KineticCategory,
@@ -185,12 +201,15 @@ export type KineticEffect = {
 export function getKineticEffect(word: string): KineticEffect | null {
   const k = KINETIC[word.toLowerCase().replace(/[^a-z]/g, "")];
   if (!k) return null;
-  return { style: k.base, category: k.category };
+  const style: React.CSSProperties = { ...k.base, animation: CATEGORY_ANIMATION[k.category] };
+  return { style, category: k.category };
 }
 
 // Pressure-amplified lookup — use this in ManuscriptCore.
 // Paragraph weights/dualisms from Supabase modulate the intensity:
 // a "fall" in a high-descent paragraph falls farther than in a neutral one.
+// Pressure also speeds up the animation — a heavy paragraph makes its
+// descent words oscillate faster (lower duration).
 export function getKineticEffectWithPressure(
   word: string,
   weights: Record<string, number>,
@@ -200,12 +219,23 @@ export function getKineticEffectWithPressure(
   if (!k) return null;
 
   const pressure = getPressure(k.category, weights, dualisms);
-  // Minimum 60% intensity so the effect is always visible; pressure adds up to 60% more
-  const scale = 0.6 + pressure * 0.6;
-  if (Math.abs(scale - 1) < 0.05) return k.base;
-
   const style: React.CSSProperties = { ...k.base };
-  if (style.transform) style.transform = scaleTransform(String(style.transform), scale);
+
+  // Pressure scales the animation speed: high pressure = 30% faster oscillation
+  const baseAnim = CATEGORY_ANIMATION[k.category];
+  if (baseAnim && pressure > 0.1) {
+    const durationMatch = baseAnim.match(/([\d.]+)s/);
+    if (durationMatch) {
+      const base = parseFloat(durationMatch[1]);
+      const scaled = Math.max(0.4, base * (1 - pressure * 0.3));
+      style.animation = baseAnim.replace(durationMatch[0], `${scaled.toFixed(2)}s`);
+    } else {
+      style.animation = baseAnim;
+    }
+  } else {
+    style.animation = baseAnim;
+  }
+
   return style;
 }
 

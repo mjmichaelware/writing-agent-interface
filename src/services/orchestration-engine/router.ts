@@ -12,6 +12,7 @@ export class OrchestrationRouter {
     this.providers['gemini'] = new GeminiProvider();
     this.providers['groq'] = new GroqProvider();
     this.providers['anthropic'] = new AnthropicProvider();
+    this.providers['claude'] = this.providers['anthropic'];
   }
 
   async route(request: LLMRequest, preferredProvider?: string): Promise<LLMResponse> {

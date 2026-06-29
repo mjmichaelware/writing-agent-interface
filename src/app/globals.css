@@ -697,6 +697,61 @@ p[data-state="inactive"] {
   animation: kinetic-stretch 900ms var(--ease-spring) forwards;
 }
 
+/* Ambient kinetic word animations — infinite real-time movement */
+@keyframes kinetic-descend-ambient {
+  0%, 100% { transform: translateY(1px) rotate(-0.2deg); opacity: 0.92; }
+  50%       { transform: translateY(7px) rotate(-1.8deg); opacity: 0.68; }
+}
+@keyframes kinetic-ascend-ambient {
+  0%, 100% { transform: translateY(-1px) scaleY(1.01); }
+  50%       { transform: translateY(-6px) scaleY(1.09); }
+}
+@keyframes kinetic-grow-ambient {
+  0%, 100% { transform: scale(1.0); }
+  50%       { transform: scale(1.13); }
+}
+@keyframes kinetic-compress-ambient {
+  0%, 100% { transform: scaleX(0.88); }
+  50%       { transform: scaleX(0.58) scaleY(0.90); }
+}
+@keyframes kinetic-shadow-ambient {
+  0%, 100% { opacity: 0.88; }
+  50%       { opacity: 0.40; }
+}
+@keyframes kinetic-blur-ambient {
+  0%, 100% { filter: blur(0.4px); opacity: 0.85; }
+  50%       { filter: blur(2.2px); opacity: 0.60; }
+}
+@keyframes kinetic-glow-ambient {
+  0%, 100% { text-shadow: 0 0 4px rgba(255,240,180,0.30); }
+  50%       { text-shadow: 0 0 22px rgba(255,240,180,0.95); }
+}
+@keyframes kinetic-sacred-ambient {
+  0%, 100% { letter-spacing: 0.06em; opacity: 0.88; }
+  50%       { letter-spacing: 0.22em; opacity: 1.0; }
+}
+@keyframes kinetic-silence-ambient {
+  0%, 100% { opacity: 0.60; letter-spacing: 0.16em; }
+  50%       { opacity: 0.28; letter-spacing: 0.36em; }
+}
+@keyframes kinetic-shake-ambient {
+  0%, 100% { transform: skewX(0deg) translateX(0px); }
+  15%       { transform: skewX(3deg) translateX(1px); }
+  30%       { transform: skewX(-3.5deg) translateX(-2px); }
+  45%       { transform: skewX(2.5deg) translateX(1px); }
+  60%       { transform: skewX(-2deg) translateX(-1px); }
+  75%       { transform: skewX(1.5deg) translateX(0.5px); }
+  90%       { transform: skewX(-1deg) translateX(0px); }
+}
+@keyframes kinetic-drift-ambient {
+  0%, 100% { transform: translateX(0px) rotate(0deg); }
+  50%       { transform: translateX(6px) rotate(0.8deg); }
+}
+@keyframes kinetic-spin-ambient {
+  0%, 100% { transform: rotate(0deg); }
+  50%       { transform: rotate(10deg); }
+}
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }

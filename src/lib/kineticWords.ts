@@ -42,25 +42,27 @@ const CATEGORY_ANIMATION: Record<KineticCategory, string> = {
   light:          "kinetic-glow-ambient 2s ease-in-out infinite",
   sacred:         "kinetic-sacred-ambient 4.5s ease-in-out infinite",
   silence:        "kinetic-silence-ambient 5s ease-in-out infinite",
-  violence:       "kinetic-shake-ambient 0.7s ease-in-out infinite",
+  violence:       "kinetic-shake-ambient 2.5s ease-in-out infinite",
   motion_lateral: "kinetic-drift-ambient 3.5s ease-in-out infinite",
   rotation:       "kinetic-spin-ambient 5s ease-in-out infinite",
 };
 
-// Non-motion visual properties per category (color, spacing, opacity, filter)
+// Non-motion visual properties per category.
+// No letterSpacing or fontWeight — those change word width and push surrounding text.
+// verticalAlign: "baseline" prevents inline-block from shifting line height.
 const CATEGORY_BASE: Record<KineticCategory, React.CSSProperties> = {
-  descent:        { opacity: 0.80 },
-  ascent:         {},
-  growth:         { fontWeight: 600 },
-  compression:    { letterSpacing: "-0.04em" },
-  shadow:         { opacity: 0.62, textShadow: "1px 1px 4px rgba(0,0,0,0.75)" },
-  blur:           { filter: "blur(0.5px)", opacity: 0.76 },
-  light:          { color: "#f5e8b0", textShadow: "0 0 10px rgba(255,240,180,0.60)" },
-  sacred:         { letterSpacing: "0.12em", color: "#e8d49a" },
-  silence:        { letterSpacing: "0.20em", opacity: 0.58 },
-  violence:       { opacity: 0.84 },
-  motion_lateral: { fontStyle: "italic" },
-  rotation:       {},
+  descent:        { opacity: 0.82, verticalAlign: "baseline" },
+  ascent:         { verticalAlign: "baseline" },
+  growth:         { verticalAlign: "baseline" },
+  compression:    { opacity: 0.80, verticalAlign: "baseline" },
+  shadow:         { opacity: 0.65, verticalAlign: "baseline" },
+  blur:           { verticalAlign: "baseline" },
+  light:          { color: "#f5e8b0", textShadow: "0 0 6px rgba(255,240,180,0.45)", verticalAlign: "baseline" },
+  sacred:         { color: "#e8d49a", verticalAlign: "baseline" },
+  silence:        { opacity: 0.65, verticalAlign: "baseline" },
+  violence:       { opacity: 0.88, verticalAlign: "baseline" },
+  motion_lateral: { verticalAlign: "baseline" },
+  rotation:       { verticalAlign: "baseline" },
 };
 
 // Map a word to its kinetic category from its intrinsic physical/semantic meaning.

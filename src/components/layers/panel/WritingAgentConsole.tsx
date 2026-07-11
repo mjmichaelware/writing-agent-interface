@@ -578,9 +578,24 @@ export default function WritingAgentConsole() {
             <div style={{ marginTop: "0.75rem", padding: "0.75rem", background: "rgba(90,30,30,0.2)", borderLeft: `2px solid ${danger}`, fontFamily: "Georgia, serif", fontSize: "0.875rem", color: "#c07070" }}>
               {agentErr}
               {agentErr.includes("not configured") && (
-                <p style={{ marginTop: "0.4rem", fontSize: "0.8rem", color: muted }}>
-                  Add <code style={{ color: gold }}>ANTHROPIC_API_KEY</code> (Claude), <code style={{ color: gold }}>GROQ_API_KEY</code> (Groq), or <code style={{ color: gold }}>GOOGLE_CLOUD_PROJECT</code> (Gemini) to Vercel environment variables.
-                </p>
+                <>
+                  <p style={{ marginTop: "0.4rem", fontSize: "0.8rem", color: muted }}>
+                    Set <code style={{ color: gold }}>ANTHROPIC_API_KEY</code> in Vercel → Project Settings → Environment Variables (check <em>Preview</em> + <em>Production</em>), then redeploy.
+                  </p>
+                  <button
+                    onClick={async () => {
+                      try {
+                        const r = await fetch("/api/debug/env");
+                        const d = await r.json();
+                        setAgentOut(JSON.stringify(d, null, 2));
+                        setAgentErr("");
+                      } catch (e: any) { setAgentErr(e.message); }
+                    }}
+                    style={{ marginTop: "0.5rem", fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "0.8rem", color: gold, background: "transparent", border: `1px solid rgba(201,169,110,0.3)`, cursor: "pointer", padding: "0.25rem 0.75rem" }}
+                  >
+                    Check which env vars are set →
+                  </button>
+                </>
               )}
             </div>
           )}

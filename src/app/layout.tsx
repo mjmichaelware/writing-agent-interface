@@ -1,12 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Frank_Ruhl_Libre, EB_Garamond } from "next/font/google";
 import "./globals.css";
-import dynamic from "next/dynamic";
 import Layer4Panel from "@/components/layers/Layer4Panel";
 import RuntimeInitializer from "@/components/RuntimeInitializer";
-
-// ssr: false prevents the hydration mismatch caused by sessionStorage checks
-const BookOpeningSequence = dynamic(() => import("@/components/BookOpeningSequence"), { ssr: false });
+import BookOpeningSequence from "@/components/BookOpeningSequence";
 
 const frankRuhl = Frank_Ruhl_Libre({
   subsets: ["hebrew", "latin"],

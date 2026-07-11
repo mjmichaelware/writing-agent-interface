@@ -45,8 +45,8 @@ export default function AboutAuthor() {
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
-        viewport={{ once: true, margin: "-10%" }}
+        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        viewport={{ once: true, margin: "300px" }}
         style={{
           position: "relative", zIndex: 1,
           display: "flex", flexDirection: "column",
@@ -61,7 +61,7 @@ export default function AboutAuthor() {
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "300px" }}
           style={{
             width: 70, height: 1,
             background: "rgba(201,169,110,0.45)",
@@ -72,8 +72,8 @@ export default function AboutAuthor() {
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true }}
+          transition={{ delay: 0.5, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, margin: "300px" }}
           style={{
             fontFamily: "'EB Garamond', serif",
             fontStyle: "italic",
@@ -104,7 +104,7 @@ export default function AboutAuthor() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 1.0, duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "300px" }}
           style={{ display: "flex", alignItems: "center", gap: "1rem", width: "100%", marginTop: "2.5rem" }}
         >
           <div style={{ flex: 1, height: 1, background: "rgba(201,169,110,0.2)" }} />

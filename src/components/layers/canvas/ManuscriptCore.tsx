@@ -137,17 +137,8 @@ export default function ManuscriptCore({
           p.style.setProperty("--arc-drift", (drift * normDist).toString());
         }
 
-        p.style.setProperty("--arc-blur", blurValue.toString());
+        // Opacity only — no blur or transform (both cause scroll jank on mobile)
         p.style.opacity = opacityValue.toString();
-        
-        // Only apply heavy filters when inactive to save performance
-        if (p.dataset.state === "inactive") {
-            p.style.filter = `blur(${blurValue}px)`;
-            p.style.transform = `translateY(${normDist * 10}px)`;
-        } else {
-            p.style.filter = "none";
-            p.style.transform = "none";
-        }
       });
 
       frameId = requestAnimationFrame(runKinematics);

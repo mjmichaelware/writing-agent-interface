@@ -127,6 +127,8 @@ export async function POST(request: Request) {
       systemPrompt,
       context: mergedContext || undefined,
       prompt: prompt || "Describe this image in the context of the manuscript.",
+      imageData: imageData || undefined,
+      mimeType: mimeType || undefined,
     }, preferredProvider || "anthropic");
 
     return NextResponse.json({

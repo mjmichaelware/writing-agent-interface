@@ -315,13 +315,14 @@ export default function WritingAgentConsole() {
         } else { results.push(`${filename}: ${d.staged} paragraphs → Chapter ${bufferTargetChapter} ✓`); }
       } catch (e: any) { results.push(`${filename}: ${e.message}`); }
     }
-    const allOk = results.every(r => r.includes("paragraphs staged"));
+    const anyOk = results.some(r => r.includes("✓") || r.includes("paragraphs →"));
+    const allOk = results.every(r => r.includes("✓") || r.includes("paragraphs →"));
     setStageStatus(results.join(" | "));
-    setStageOk(allOk);
-    if (allOk) {
+    setStageOk(allOk ? true : anyOk ? null : false);
+    if (anyOk) {
       // Reload the reader with the newly staged chapter
       bus.emit("chapter:set", { chapterNumber: bufferTargetChapter, source: "db" });
-      setBufferSelected(new Set());
+      if (allOk) setBufferSelected(new Set());
     }
     setStageLoading(false);
   };

@@ -138,6 +138,7 @@ export default function WritingAgentConsole() {
   const [assetStatus, setAssetStatus] = useState("");
   const [assetOk, setAssetOk] = useState<boolean | null>(null);
   const [assetAssignments, setAssetAssignments] = useState<Record<number, string>>({});
+  const [localAssets, setLocalAssets] = useState<string[]>([]);
 
   // Buffer
   const [bufferFiles, setBufferFiles]     = useState<any[]>([]);
@@ -238,9 +239,14 @@ export default function WritingAgentConsole() {
 
   const loadAssetAssignments = async () => {
     try {
-      const res = await fetch("/api/assets/chapter-bg");
-      const d = await res.json();
-      setAssetAssignments(d.assignments || {});
+      const [assignRes, listRes] = await Promise.all([
+        fetch("/api/assets/chapter-bg"),
+        fetch("/api/assets/list"),
+      ]);
+      const ad = await assignRes.json();
+      setAssetAssignments(ad.assignments || {});
+      const ld = await listRes.json();
+      setLocalAssets(ld.assets || []);
     } catch {}
   };
 
@@ -304,7 +310,9 @@ export default function WritingAgentConsole() {
         });
         const d = await res.json();
         if (!res.ok) { results.push(`${filename}: ${d.error}`); }
-        else { results.push(`${filename}: ${d.staged} paragraphs staged`); }
+        else if (d.mode === "preview_only") {
+          results.push(`${filename}: parsed ${d.staged} ¶ — NOT saved (Supabase env vars missing on this deployment)`);
+        } else { results.push(`${filename}: ${d.staged} paragraphs → Chapter ${bufferTargetChapter} ✓`); }
       } catch (e: any) { results.push(`${filename}: ${e.message}`); }
     }
     const allOk = results.every(r => r.includes("paragraphs staged"));
@@ -327,16 +335,29 @@ export default function WritingAgentConsole() {
         fetch(`/api/graph`),
       ]);
       const bibData = await bibRes.json();
-      if (!bibRes.ok) { setSemStatus(bibData.error || "Failed to load biblical refs"); setSemOk(false); }
-      else {
-        const refs = Array.isArray(bibData) ? bibData : bibData?.references || [];
-        setBiblicalRows(refs);
+      const graphData = graphRes.ok ? await graphRes.json() : null;
+
+      // Surface Supabase not configured error clearly
+      if (bibData?.error?.includes("not configured") || graphData?.error?.includes("not configured")) {
+        setSemStatus("Supabase not configured on this deployment — add NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY to Vercel env vars");
+        setSemOk(false);
+        setSemanticLoading(false);
+        return;
       }
-      if (graphRes.ok) {
-        const g = await graphRes.json();
-        setArchetypeRows(g?.archetypes || []);
-        setCrosslinkRows(g?.crosslinks || []);
-        setSemStatus(`${biblicalRows.length || "—"} biblical · ${g?.archetypes?.length ?? 0} archetypes · ${g?.crosslinks?.length ?? 0} crosslinks`);
+
+      const refs = Array.isArray(bibData) ? bibData : bibData?.references || [];
+      setBiblicalRows(refs);
+
+      const archetypes = graphData?.archetypes || [];
+      const crosslinks = graphData?.crosslinks || [];
+      setArchetypeRows(archetypes);
+      setCrosslinkRows(crosslinks);
+
+      if (refs.length === 0 && archetypes.length === 0 && crosslinks.length === 0) {
+        setSemStatus("No semantic data found — run the semantic pipeline to populate data");
+        setSemOk(null);
+      } else {
+        setSemStatus(`${refs.length} biblical · ${archetypes.length} archetypes · ${crosslinks.length} crosslinks`);
         setSemOk(true);
       }
     } catch (e: any) { setSemStatus(e.message); setSemOk(false); }
@@ -681,7 +702,7 @@ export default function WritingAgentConsole() {
         <div>
           <p style={{ ...sectionHead }}>Google Drive Sync</p>
           <p style={{ fontFamily: "Georgia, serif", fontStyle: "italic", color: muted, fontSize: "0.8125rem", margin: "0 0 0.75rem", lineHeight: 1.6 }}>
-            Requires <code style={{ color: gold }}>GOOGLE_CLIENT_ID</code>, <code style={{ color: gold }}>GOOGLE_CLIENT_SECRET</code>, and <code style={{ color: gold }}>GOOGLE_REFRESH_TOKEN</code> in Vercel environment variables. Syncs all .txt files and Google Docs from your entire Drive.
+            Requires <code style={{ color: gold }}>GOOGLE_CLIENT_ID</code>, <code style={{ color: gold }}>GOOGLE_CLIENT_SECRET</code>, and <code style={{ color: gold }}>GOOGLE_REFRESH_TOKEN</code> in Vercel → Project Settings → Environment Variables. Make sure to check <em>Preview</em> and <em>Production</em> both. Syncs all .txt files and Google Docs from your entire Drive.
           </p>
           <GoldBtn onClick={syncDrive} disabled={syncLoading}>
             {syncLoading ? "Syncing…" : "Sync Drive"}
@@ -721,6 +742,37 @@ export default function WritingAgentConsole() {
             </div>
           </div>
           <StatusLine text={assetStatus} ok={assetOk} />
+
+          {/* Local asset gallery — existing photos in /public/assets/ */}
+          {localAssets.length > 0 && (
+            <div style={{ marginTop: "0.75rem" }}>
+              <div style={{ fontFamily: "Georgia, serif", fontSize: "0.65rem", letterSpacing: "0.14em", color: muted, textTransform: "uppercase", marginBottom: "0.5rem" }}>
+                Local Assets — click to use
+              </div>
+              <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+                {localAssets.map(src => (
+                  <button
+                    key={src}
+                    onClick={() => setAssetUrl(src)}
+                    title={src}
+                    style={{
+                      width: 72, height: 72, padding: 0, cursor: "pointer",
+                      border: assetUrl === src ? `2px solid ${gold}` : "2px solid rgba(201,169,110,0.15)",
+                      background: "transparent", overflow: "hidden",
+                      transition: "border-color 180ms",
+                      flexShrink: 0,
+                    }}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={src} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                  </button>
+                ))}
+              </div>
+              <p style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "0.75rem", color: muted, marginTop: "0.35rem" }}>
+                Select an image above, pick a chapter, then Set Background.
+              </p>
+            </div>
+          )}
 
           {/* Current assignments */}
           {Object.keys(assetAssignments).length > 0 && (

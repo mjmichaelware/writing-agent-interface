@@ -114,6 +114,14 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
+  // CRITICAL: update chapters.prose_source so the manuscript API bypasses
+  // manuscript_paragraphs and reads directly from render_paragraphs canonical rows.
+  // Without this the reader always shows the old manuscript_paragraphs content.
+  await client
+    .from("chapters")
+    .update({ prose_source: "buffer_staged", prose_source_ref: safeFilename })
+    .eq("chapter_number", chapterNum);
+
   return NextResponse.json({
     staged: paragraphs.length,
     chapterNumber: chapterNum,

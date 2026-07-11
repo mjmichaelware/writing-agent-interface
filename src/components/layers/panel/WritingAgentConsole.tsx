@@ -612,7 +612,7 @@ export default function WritingAgentConsole() {
         <div>
           <p style={{ ...sectionHead }}>Google Drive Sync</p>
           <p style={{ fontFamily: "Georgia, serif", fontStyle: "italic", color: muted, fontSize: "0.8125rem", margin: "0 0 0.75rem", lineHeight: 1.6 }}>
-            Requires <code style={{ color: gold }}>GOOGLE_CLIENT_ID</code>, <code style={{ color: gold }}>GOOGLE_CLIENT_SECRET</code>, <code style={{ color: gold }}>GOOGLE_REFRESH_TOKEN</code>, and <code style={{ color: gold }}>GDRIVE_MANUSCRIPT_FOLDER_ID</code> in Vercel environment variables.
+            Requires <code style={{ color: gold }}>GOOGLE_CLIENT_ID</code>, <code style={{ color: gold }}>GOOGLE_CLIENT_SECRET</code>, and <code style={{ color: gold }}>GOOGLE_REFRESH_TOKEN</code> in Vercel environment variables. Syncs all .txt files and Google Docs from your entire Drive.
           </p>
           <GoldBtn onClick={syncDrive} disabled={syncLoading}>
             {syncLoading ? "Syncing…" : "Sync Drive"}

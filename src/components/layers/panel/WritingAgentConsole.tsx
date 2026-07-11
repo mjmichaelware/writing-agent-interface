@@ -2,7 +2,6 @@
 import { useState, useRef } from "react";
 import { bus } from "@/core/runtimeEngine";
 
-const PIN = process.env.NEXT_PUBLIC_AUTHOR_PIN || "9187";
 const gold = "#c9a96e";
 const muted = "#8a857c";
 const body = "#e8e4dc";
@@ -161,7 +160,7 @@ export default function WritingAgentConsole() {
       const selected = bufferFiles.filter(f => bufferSelected.has(f.id));
       const res = await fetch("/api/sync/drive", {
         method: "POST",
-        headers: { "Content-Type": "application/json", "x-author-pin": PIN },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ files: selected, chapter: bufferTargetChapter, action: "copy_to_version" }),
       });
       const d = await res.json();
@@ -228,7 +227,7 @@ export default function WritingAgentConsole() {
       });
       const res = await fetch("/api/analyze-document", {
         method: "POST",
-        headers: { "Content-Type": "application/json", "x-author-pin": PIN },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ fileBase64: base64, mimeType: file.type }),
       });
       const d = await res.json();
@@ -246,9 +245,7 @@ export default function WritingAgentConsole() {
   const syncDrive = async () => {
     setSyncLoading(true); setSyncStatus("");
     try {
-      const res = await fetch("/api/sync/drive", {
-        method: "POST", headers: { "x-author-pin": PIN },
-      });
+      const res = await fetch("/api/sync/drive", { method: "POST" });
       const d = await res.json();
       setSyncStatus(`Synced: ${d.synced?.length ?? 0}. Errors: ${d.errors?.length ?? 0}`);
     } catch (e: any) { setSyncStatus(`Error: ${e.message}`); }
@@ -283,7 +280,7 @@ export default function WritingAgentConsole() {
     try {
       await fetch("/api/semantic/visibility", {
         method: "PATCH",
-        headers: { "Content-Type": "application/json", "x-author-pin": PIN },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ table, id: row.id, visible_to_reader: newVisible }),
       });
       const updater = (rows: any[]) => rows.map(r => r.id === row.id ? { ...r, visible_to_reader: newVisible } : r);
@@ -298,7 +295,7 @@ export default function WritingAgentConsole() {
     try {
       const res = await fetch("/api/reannotate", {
         method: "POST",
-        headers: { "Content-Type": "application/json", "x-author-pin": PIN },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ chapter_number: semanticChapter }),
       });
       const d = await res.json();
@@ -329,7 +326,7 @@ export default function WritingAgentConsole() {
     try {
       const res = await fetch(`/api/chapters/${versionsChapter}/promote`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", "x-author-pin": PIN },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ chapter_number: versionsChapter, version_tag }),
       });
       const d = await res.json();
@@ -628,10 +625,23 @@ export default function WritingAgentConsole() {
 
           {versionGroups.map((v, i) => (
             <div key={i} style={{ padding: "0.5rem 0", borderBottom: "1px solid rgba(201,169,110,0.08)" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "wrap" }}>
                 <span style={{ fontFamily: "Georgia, serif", fontSize: "0.8125rem", color: muted, flex: 1 }}>
                   {v.chapter_version} ({v.count} ¶)
                 </span>
+                <button
+                  onClick={() => {
+                    bus.emit("chapter:set", { chapterNumber: versionsChapter, source: "db" });
+                    setPromoteResult(`Loading chapter ${versionsChapter} v${v.chapter_version} in reader…`);
+                  }}
+                  style={{
+                    fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "0.875rem",
+                    color: muted, background: "transparent", border: `1px solid rgba(201,169,110,0.3)`,
+                    padding: "0.35rem 0.75rem", cursor: "pointer",
+                  }}
+                >
+                  Load in Reader
+                </button>
                 <button onClick={() => promoteVersion(v.chapter_version)} style={{
                   fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "0.875rem",
                   color: gold, background: "transparent", border: `1px solid ${gold}`,

@@ -1,10 +1,6 @@
 import { NextResponse } from 'next/server';
 
-function isAuthorized(request: Request) {
-  const expected = process.env.AUTHOR_PIN || '9187';
-  const provided = request.headers.get('x-author-pin');
-  return Boolean(expected && provided && provided === expected);
-}
+import { isAuthorized } from '@/lib/auth';
 
 function getRepository() {
   return process.env.GITHUB_REPOSITORY || 'mjmichaelware/writing-agent-interface';

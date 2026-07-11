@@ -1,6 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextResponse } from 'next/server';
 import { embedText } from '@/services/memory-engine/vertex-embedder';
+import { isAuthorized } from '@/lib/auth';
 
 function getSupabase() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -9,12 +10,6 @@ function getSupabase() {
   if (!url || !key) return null;
 
   return createClient(url, key);
-}
-
-function isAuthorized(request: Request) {
-  const expected = process.env.AUTHOR_PIN;
-  const provided = request.headers.get('x-author-pin');
-  return Boolean(expected && provided && provided === expected);
 }
 
 function toVectorLiteral(values: number[]) {

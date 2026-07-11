@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextResponse } from 'next/server';
+import { isAuthorized } from '@/lib/auth';
 
 const ALLOWED_TABLES = new Set([
   'semantic_meaning_spans',
@@ -17,12 +18,6 @@ function getSupabase() {
   }
 
   return createClient(url, key);
-}
-
-function isAuthorized(request: Request) {
-  const expected = process.env.AUTHOR_PIN || '9187';
-  const provided = request.headers.get('x-author-pin');
-  return Boolean(expected && provided && provided === expected);
 }
 
 export async function PATCH(request: Request) {

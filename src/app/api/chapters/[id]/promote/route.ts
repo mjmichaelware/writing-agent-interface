@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextResponse } from 'next/server';
+import { isAuthorized } from '@/lib/auth';
 
 function getSupabase() {
   const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -7,12 +8,6 @@ function getSupabase() {
 
   if (!url || !key) return null;
   return createClient(url, key);
-}
-
-function isAuthorized(request: Request) {
-  const expected = process.env.AUTHOR_PIN || '9187';
-  const provided = request.headers.get('x-author-pin');
-  return Boolean(expected && provided && provided === expected);
 }
 
 export async function POST(request: Request) {

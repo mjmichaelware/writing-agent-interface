@@ -1,12 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getDriveFileMetadata, syncDriveFolder } from '@/services/document-analyzer/gdrive-sync';
 import { query } from '@/lib/db';
-
-function isAuthorized(request: Request) {
-  const expected = process.env.AUTHOR_PIN;
-  const provided = request.headers.get('x-author-pin');
-  return Boolean(expected && provided && provided === expected);
-}
+import { isAuthorized } from '@/lib/auth';
 
 export async function POST(request: Request) {
   if (!isAuthorized(request)) {

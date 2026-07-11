@@ -1,6 +1,25 @@
 "use client";
-import { useState, useRef } from "react";
+import { Component, useState, useRef } from "react";
 import { bus } from "@/core/runtimeEngine";
+
+class TabErrorBoundary extends Component<{ tab: string; children: React.ReactNode }, { error: Error | null }> {
+  constructor(props: any) { super(props); this.state = { error: null }; }
+  static getDerivedStateFromError(e: Error) { return { error: e }; }
+  componentDidUpdate(prev: any) { if (prev.tab !== this.props.tab) this.setState({ error: null }); }
+  render() {
+    if (this.state.error) {
+      return (
+        <div style={{ padding: "1rem", borderLeft: "2px solid #7a3535", fontFamily: "Georgia, serif" }}>
+          <p style={{ color: "#c07070", fontSize: "0.875rem", margin: "0 0 0.4rem" }}>Tab error — {this.state.error.message}</p>
+          <button onClick={() => this.setState({ error: null })} style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "0.8rem", color: "#c9a96e", background: "transparent", border: "1px solid rgba(201,169,110,0.3)", cursor: "pointer", padding: "0.25rem 0.75rem" }}>
+            Retry
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 const gold   = "#c9a96e";
 const muted  = "#8a857c";
@@ -493,6 +512,8 @@ export default function WritingAgentConsole() {
         ))}
       </div>
 
+      <TabErrorBoundary tab={activeTab}>
+
       {/* ── AGENT TAB ───────────────────────────────────────────────────── */}
       {activeTab === "agent" && (
         <div>
@@ -880,6 +901,8 @@ export default function WritingAgentConsole() {
           )}
         </div>
       )}
+
+      </TabErrorBoundary>
     </div>
   );
 }

@@ -8,7 +8,7 @@ const body   = "#e8e4dc";
 const danger = "#7a3535";
 const green  = "#4a7a5a";
 
-type Tab      = "agent" | "analyzer" | "buffer" | "drive" | "semantic" | "versions";
+type Tab      = "agent" | "analyzer" | "buffer" | "drive" | "assets" | "semantic" | "versions";
 type Provider = "claude" | "gemini" | "groq";
 
 // ─── Shared micro-components ───────────────────────────────────────────────
@@ -113,6 +113,13 @@ export default function WritingAgentConsole() {
   const [syncOk, setSyncOk]         = useState<boolean | null>(null);
   const [syncLoading, setSyncLoading] = useState(false);
 
+  // Assets
+  const [assetUrl, setAssetUrl] = useState("");
+  const [assetChapter, setAssetChapter] = useState(1);
+  const [assetStatus, setAssetStatus] = useState("");
+  const [assetOk, setAssetOk] = useState<boolean | null>(null);
+  const [assetAssignments, setAssetAssignments] = useState<Record<number, string>>({});
+
   // Buffer
   const [bufferFiles, setBufferFiles]     = useState<any[]>([]);
   const [bufferLoading, setBufferLoading] = useState(false);
@@ -208,6 +215,45 @@ export default function WritingAgentConsole() {
       setSyncOk(true);
     } catch (e: any) { setSyncStatus(e.message); setSyncOk(false); }
     finally { setSyncLoading(false); }
+  };
+
+  const loadAssetAssignments = async () => {
+    try {
+      const res = await fetch("/api/assets/chapter-bg");
+      const d = await res.json();
+      setAssetAssignments(d.assignments || {});
+    } catch {}
+  };
+
+  const assignAsset = async () => {
+    const url = assetUrl.trim();
+    if (!url) return;
+    setAssetStatus(""); setAssetOk(null);
+    try {
+      const res = await fetch("/api/assets/chapter-bg", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chapterNumber: assetChapter, url }),
+      });
+      const d = await res.json();
+      if (!res.ok) { setAssetStatus(d.error || "Failed"); setAssetOk(false); return; }
+      setAssetStatus(`Chapter ${assetChapter} background set.`);
+      setAssetOk(true);
+      setAssetAssignments(prev => ({ ...prev, [assetChapter]: url }));
+      bus.emit("cinema:set-bg", { chapterNumber: assetChapter, url });
+    } catch (e: any) { setAssetStatus(e.message); setAssetOk(false); }
+  };
+
+  const clearAsset = async (ch: number) => {
+    try {
+      await fetch("/api/assets/chapter-bg", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chapterNumber: ch, url: "" }),
+      });
+      setAssetAssignments(prev => { const n = { ...prev }; delete n[ch]; return n; });
+      bus.emit("cinema:set-bg", { chapterNumber: ch, url: "" });
+    } catch {}
   };
 
   const fetchBuffer = async () => {
@@ -430,15 +476,17 @@ export default function WritingAgentConsole() {
 
       {/* Tab bar */}
       <div style={{ display: "flex", borderBottom: "1px solid rgba(201,169,110,0.12)", marginBottom: "1rem", flexWrap: "wrap", gap: "0" }}>
-        {(["agent","analyzer","buffer","drive","semantic","versions"] as const).map(t => (
+        {(["agent","analyzer","buffer","drive","assets","semantic","versions"] as const).map(t => (
           <button key={t} style={tabStyle(t)} onClick={() => {
             setActiveTab(t);
             if (t === "buffer" && bufferFiles.length === 0) fetchBuffer();
+            if (t === "assets") loadAssetAssignments();
           }}>
             {t === "agent"    ? "Agent"
             : t === "analyzer" ? "Docs"
             : t === "buffer"   ? `Buffer${bufferFiles.length ? ` (${bufferFiles.length})` : ""}`
             : t === "drive"    ? "Drive"
+            : t === "assets"   ? "Assets"
             : t === "semantic" ? "Semantic"
             : "Versions"}
           </button>
@@ -618,6 +666,84 @@ export default function WritingAgentConsole() {
             {syncLoading ? "Syncing…" : "Sync Drive"}
           </GoldBtn>
           <StatusLine text={syncStatus} ok={syncOk} />
+        </div>
+      )}
+
+      {/* ── ASSETS TAB ───────────────────────────────────────────────────── */}
+      {activeTab === "assets" && (
+        <div>
+          <p style={{ ...sectionHead }}>Layer 2 Background Images</p>
+          <p style={{ fontFamily: "Georgia, serif", fontStyle: "italic", color: muted, fontSize: "0.8125rem", margin: "0 0 1rem", lineHeight: 1.6 }}>
+            Paste any Google Drive URL or image URL to set it as a chapter background. Drive URLs are proxied automatically — no manual file copying needed.
+          </p>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "1rem" }}>
+            <input
+              type="url"
+              value={assetUrl}
+              onChange={e => setAssetUrl(e.target.value)}
+              placeholder="https://drive.google.com/file/d/… or https://…"
+              style={{
+                width: "100%", fontFamily: "Georgia, serif", fontSize: "0.875rem",
+                color: body, background: "rgba(201,169,110,0.02)",
+                border: "1px solid rgba(201,169,110,0.18)", padding: "0.55rem 0.75rem",
+                outline: "none", boxSizing: "border-box",
+                boxShadow: "inset 0 0 12px rgba(0,0,0,0.3)",
+              }}
+            />
+            <div style={{ display: "flex", alignItems: "center", gap: "0.65rem", flexWrap: "wrap" }}>
+              <span style={{ fontFamily: "Georgia, serif", fontSize: "0.75rem", color: muted }}>Chapter</span>
+              <select value={assetChapter} onChange={e => setAssetChapter(Number(e.target.value))} style={selectStyle}>
+                {CHAPTERS.map(n => <option key={n} value={n}>{n}</option>)}
+              </select>
+              <GoldBtn onClick={assignAsset} disabled={!assetUrl.trim()}>Set Background</GoldBtn>
+            </div>
+          </div>
+          <StatusLine text={assetStatus} ok={assetOk} />
+
+          {/* Current assignments */}
+          {Object.keys(assetAssignments).length > 0 && (
+            <div style={{ marginTop: "1rem" }}>
+              <div style={{ fontFamily: "Georgia, serif", fontSize: "0.65rem", letterSpacing: "0.14em", color: muted, textTransform: "uppercase", marginBottom: "0.5rem" }}>
+                Current Assignments
+              </div>
+              {Object.entries(assetAssignments)
+                .sort(([a], [b]) => Number(a) - Number(b))
+                .map(([ch, url]) => (
+                  <div key={ch} style={{
+                    display: "flex", alignItems: "center", gap: "0.65rem",
+                    padding: "0.45rem 0.5rem", borderBottom: "1px solid rgba(201,169,110,0.07)",
+                    flexWrap: "wrap",
+                  }}>
+                    <span style={{ fontFamily: "Georgia, serif", fontSize: "0.8125rem", color: gold, minWidth: "4.5rem" }}>
+                      Chapter {ch}
+                    </span>
+                    <span style={{ fontFamily: "Georgia, serif", fontSize: "0.75rem", color: muted, flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                      {url.startsWith("/api/") ? `[Drive proxy]` : url.length > 48 ? url.slice(0, 48) + "…" : url}
+                    </span>
+                    <button
+                      onClick={() => clearAsset(Number(ch))}
+                      style={{
+                        fontFamily: "Georgia, serif", fontSize: "0.72rem",
+                        color: muted, background: "transparent",
+                        border: "1px solid rgba(138,133,124,0.2)",
+                        cursor: "pointer", padding: "0.15rem 0.5rem",
+                        transition: "all 180ms",
+                      }}
+                      onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color = "#c07070"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(122,53,53,0.4)"; }}
+                      onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = muted; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(138,133,124,0.2)"; }}
+                    >
+                      Clear
+                    </button>
+                  </div>
+                ))}
+            </div>
+          )}
+          {Object.keys(assetAssignments).length === 0 && (
+            <p style={{ fontFamily: "Georgia, serif", fontStyle: "italic", color: muted, fontSize: "0.8125rem", marginTop: "0.75rem" }}>
+              No chapter backgrounds assigned yet.
+            </p>
+          )}
         </div>
       )}
 

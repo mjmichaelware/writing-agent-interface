@@ -106,26 +106,21 @@ export async function syncDriveFolder(): Promise<{
   synced: string[];
   errors: string[];
 }> {
-  const folderId = process.env.GDRIVE_MANUSCRIPT_FOLDER_ID;
-  if (!folderId) {
-    return {
-      synced: [],
-      errors: ['GDRIVE_MANUSCRIPT_FOLDER_ID not configured'],
-    };
-  }
-
   const drive = requireDriveClient();
   const synced: string[] = [];
   const errors: string[] = [];
 
   await fs.mkdir(DEFAULT_SYNC_DIR, { recursive: true });
 
+  // Search all of Drive for .txt and Google Docs files — no folder restriction
+  const q = `trashed=false and (mimeType='text/plain' or mimeType='application/vnd.google-apps.document')`;
+
   let pageToken: string | undefined;
   do {
     const response = await drive.files.list({
-      q: `'${folderId}' in parents and trashed=false and mimeType='text/plain' and name contains '.txt'`,
+      q,
       fields: 'nextPageToken, files(id, name, mimeType)',
-      pageSize: 1000,
+      pageSize: 200,
       pageToken,
       supportsAllDrives: true,
       includeItemsFromAllDrives: true,
@@ -141,17 +136,15 @@ export async function syncDriveFolder(): Promise<{
       }
 
       if (FORBIDDEN_NAME.test(fileName)) {
-        errors.push(`${fileName}: skipped by security gate`);
-        continue;
-      }
-
-      if (!/\.txt$/i.test(fileName)) {
-        continue;
+        continue; // skip silently — security gate
       }
 
       try {
         const text = await downloadDriveText(drive, fileId, file.mimeType ?? null);
-        const safeName = fileName.replace(/[\\/]/g, '_');
+        // Store Google Docs as .txt, keep existing extensions for plain text files
+        const isGDoc = file.mimeType === 'application/vnd.google-apps.document';
+        const baseName = isGDoc && !fileName.endsWith('.txt') ? `${fileName}.txt` : fileName;
+        const safeName = baseName.replace(/[\\/]/g, '_');
         await fs.writeFile(path.join(DEFAULT_SYNC_DIR, safeName), text, 'utf8');
         synced.push(fileName);
       } catch (error: any) {

@@ -17,8 +17,7 @@ export async function GET(req: NextRequest) {
 
   let q = client
     .from("semantic_biblical_anchors")
-    .select("id, book, chapter, verse_start, verse_end, biblical_anchor_label, motif_family, anchor_key, active, metadata")
-    .eq("active", true)
+    .select("id, book, chapter, verse_start, verse_end, biblical_anchor_label, motif_family, anchor_key, metadata")
     .order("book")
     .order("chapter")
     .order("verse_start")

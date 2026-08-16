@@ -16,7 +16,6 @@ export async function GET() {
     client
       .from("render_paragraphs")
       .select("id, render_para_key, render_index, text, metadata, source_doc_folder")
-      .eq("active", true)
       .order("render_index")
       .limit(300),
     client
@@ -25,8 +24,7 @@ export async function GET() {
       .limit(600),
     client
       .from("semantic_archetype_anchors")
-      .select("id, anchor_key, canonical_label, ontology_family, metadata")
-      .eq("active", true),
+      .select("id, anchor_key, canonical_label, ontology_family, metadata"),
   ]);
 
   const paragraphs = (parasRes.data || []).map((p: any) => ({

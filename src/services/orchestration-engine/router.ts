@@ -1,67 +1,62 @@
 import { LLMProvider, LLMRequest, LLMResponse } from "./providers/base";
-import { OpenAIProvider } from "./providers/openai";
 import { GeminiProvider } from "./providers/gemini";
 import { GroqProvider } from "./providers/groq";
 import { AnthropicProvider } from "./providers/anthropic";
+
+// Provider priority: anthropic → groq → gemini. OpenAI is not in this project.
+const FALLBACK_ORDER = ["anthropic", "groq", "gemini"];
 
 export class OrchestrationRouter {
   private providers: Record<string, LLMProvider> = {};
 
   constructor() {
-    this.providers['openai'] = new OpenAIProvider();
-    this.providers['gemini'] = new GeminiProvider();
-    this.providers['groq'] = new GroqProvider();
-    this.providers['anthropic'] = new AnthropicProvider();
+    this.providers["gemini"]    = new GeminiProvider();
+    this.providers["groq"]      = new GroqProvider();
+    this.providers["anthropic"] = new AnthropicProvider();
+    this.providers["claude"]    = this.providers["anthropic"];
   }
 
   async route(request: LLMRequest, preferredProvider?: string): Promise<LLMResponse> {
     let providerName = preferredProvider;
-    const combinedLength =
-      (request.systemPrompt?.length || 0) +
-      (request.context?.length || 0) +
-      (request.prompt?.length || 0);
 
     if (!providerName) {
-      const promptLower = request.prompt.toLowerCase();
-
-      if (request.responseFormat === "json") {
-        providerName = "openai";
-      } else if (combinedLength > 400000) {
-        providerName = "gemini";
-      } else if (
-        promptLower.includes("multimodal") ||
-        promptLower.includes("image") ||
-        promptLower.includes("diagram")
-      ) {
+      const combinedLength =
+        (request.systemPrompt?.length || 0) +
+        (request.context?.length || 0) +
+        (request.prompt?.length || 0);
+      if (combinedLength > 400000) {
         providerName = "gemini";
       } else {
         providerName = "anthropic";
       }
     }
 
-    const provider =
-      this.providers[providerName || "anthropic"] || this.providers["anthropic"];
+    // Normalize "claude" → "anthropic"
+    const normalized = providerName === "claude" ? "anthropic" : providerName;
 
-    try {
-      console.log(`Routing request to: ${providerName || "default(anthropic)"}`);
-      return await provider.generateResponse(request);
-    } catch (e: any) {
-      console.warn(`Provider ${providerName} failed:`, e.message);
+    // Try the requested provider first, then fallback chain without OpenAI
+    const order = [
+      normalized,
+      ...FALLBACK_ORDER.filter(p => p !== normalized),
+    ];
 
-      if (providerName !== "anthropic") {
-        try {
-          return await this.providers["anthropic"].generateResponse(request);
-        } catch (anthropicError: any) {
-          console.warn("Anthropic fallback failed:", anthropicError.message);
-        }
+    const errors: string[] = [];
+    for (const name of order) {
+      const provider = this.providers[name];
+      if (!provider) continue;
+      try {
+        console.log(`Routing to: ${name}`);
+        return await provider.generateResponse(request);
+      } catch (e: any) {
+        const msg = e?.message || String(e);
+        console.warn(`Provider ${name} failed: ${msg}`);
+        errors.push(`${name}: ${msg}`);
       }
-
-      if (providerName !== "openai") {
-        return await this.providers["openai"].generateResponse(request);
-      }
-
-      return await this.providers["groq"].generateResponse(request);
     }
+
+    throw new Error(
+      `All providers failed. Check ANTHROPIC_API_KEY, GROQ_API_KEY, and GOOGLE_CLOUD_PROJECT in Vercel environment variables.\n\nDetails: ${errors.join(" | ")}`
+    );
   }
 }
 

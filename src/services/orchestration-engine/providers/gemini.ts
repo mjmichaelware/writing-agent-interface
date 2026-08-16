@@ -1,46 +1,44 @@
-import { VertexAI } from "@google-cloud/vertexai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import { LLMProvider, LLMRequest, LLMResponse } from "./base";
 
 export class GeminiProvider implements LLMProvider {
   name = "gemini";
-  private vertexAI: VertexAI | null = null;
 
-  constructor() {
-    const project = process.env.GOOGLE_CLOUD_PROJECT;
-    const location = process.env.GOOGLE_CLOUD_LOCATION || 'us-central1';
-    const email = process.env.GOOGLE_CLIENT_EMAIL;
-    const key = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
-
-    if (project) {
-      this.vertexAI = new VertexAI({ 
-        project, 
-        location,
-        googleAuthOptions: email && key ? {
-          credentials: {
-            client_email: email,
-            private_key: key,
-          }
-        } : undefined
-      });
+  private getClient() {
+    // Support GEMINI_API_KEY (simplest), GOOGLE_API_KEY, or fall through to Vertex config check
+    const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
+    if (!apiKey) {
+      // Also accept Vertex-style config — but we won't instantiate VertexAI here
+      // because it pulls in a heavy dep and requires a GCP project
+      throw new Error("Gemini API key not configured — set GEMINI_API_KEY in Vercel env vars");
     }
+    return new GoogleGenerativeAI(apiKey);
   }
 
   async generateResponse(request: LLMRequest): Promise<LLMResponse> {
-    if (!this.vertexAI) throw new Error("Google Cloud Project not configured for Gemini");
+    const genAI = this.getClient();
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-    const model = this.vertexAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const parts: any[] = [];
 
-    const fullPrompt = `
-      ${request.systemPrompt ? `System: ${request.systemPrompt}\n` : ''}
-      ${request.context ? `Context: ${request.context}\n` : ''}
-      User: ${request.prompt}
-    `;
+    if (request.imageData && request.mimeType) {
+      parts.push({ inlineData: { data: request.imageData, mimeType: request.mimeType } });
+    }
 
-    const result = await model.generateContent(fullPrompt);
-    const response = await result.response;
+    const text = [
+      request.systemPrompt ? `System: ${request.systemPrompt}` : "",
+      request.context ? `Context: ${request.context}` : "",
+      `User: ${request.prompt}`,
+    ].filter(Boolean).join("\n\n");
+
+    parts.push({ text });
+
+    const result = await model.generateContent({ contents: [{ role: "user", parts }] });
+    const response = result.response;
+    const content = response.text();
 
     return {
-      content: response.text(),
+      content,
       provider: this.name,
       model: "gemini-1.5-flash",
     };

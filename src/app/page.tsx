@@ -28,6 +28,7 @@ export default function Page() {
   const [partNumber, setPartNumber] = useState("I");
   const [chapterNum, setChapterNum] = useState(1);
   const [source, setSource] = useState<"db" | "txt" | "drive">("db");
+  const [refreshKey, setRefreshKey] = useState(0);
   const [loading, setLoading] = useState(false);
   const [showReaderSettings, setShowReaderSettings] = useState(false);
 
@@ -35,7 +36,9 @@ export default function Page() {
     const unsub = bus.on("chapter:set", (d: any) => {
       if (d?.chapterNumber > 0) {
         setChapterNum(d.chapterNumber);
-        if (d.source) setSource(d.source);
+        if (d.source) setSource(d.source as any);
+        // Always increment so the load effect fires even if chapterNum didn't change
+        setRefreshKey(k => k + 1);
       }
     });
     return unsub;
@@ -108,7 +111,7 @@ export default function Page() {
       }
     }
     loadChapter();
-  }, [chapterNum, source]);
+  }, [chapterNum, source, refreshKey]);
 
   const handleChapterChange = (n: number) => {
       setChapterNum(n);

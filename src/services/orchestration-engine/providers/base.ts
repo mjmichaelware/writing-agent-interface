@@ -3,6 +3,8 @@ export interface LLMRequest {
   systemPrompt?: string;
   context?: string;
   responseFormat?: 'text' | 'json';
+  imageData?: string;
+  mimeType?: string;
 }
 
 export interface LLMResponse {

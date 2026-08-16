@@ -697,6 +697,74 @@ p[data-state="inactive"] {
   animation: kinetic-stretch 900ms var(--ease-spring) forwards;
 }
 
+/* Ambient kinetic word animations — subliminal, opacity-led, layout-safe.
+   No letter-spacing or font-weight changes (those push surrounding words).
+   Transforms stay sub-pixel so the word's meaning shows, not its movement. */
+@keyframes kinetic-descend-ambient {
+  /* "fall" grows heavy, darkens — gravity felt, not seen */
+  0%, 100% { opacity: 0.85; transform: translateY(0px); }
+  50%       { opacity: 0.52; transform: translateY(1.5px); }
+}
+@keyframes kinetic-ascend-ambient {
+  /* "rise" lightens, barely lifts */
+  0%, 100% { opacity: 0.80; transform: translateY(0px); }
+  50%       { opacity: 1.0;  transform: translateY(-1.5px); }
+}
+@keyframes kinetic-grow-ambient {
+  /* "abundance" quietly brightens */
+  0%, 100% { opacity: 0.88; }
+  50%       { opacity: 1.0; }
+}
+@keyframes kinetic-compress-ambient {
+  /* "crush" dims and contracts */
+  0%, 100% { opacity: 0.88; }
+  50%       { opacity: 0.50; }
+}
+@keyframes kinetic-shadow-ambient {
+  /* "shadow" slow dark pulse */
+  0%, 100% { opacity: 0.80; }
+  50%       { opacity: 0.32; }
+}
+@keyframes kinetic-blur-ambient {
+  /* "fade" hazes without moving */
+  0%, 100% { filter: blur(0px);    opacity: 0.88; }
+  50%       { filter: blur(0.6px); opacity: 0.50; }
+}
+@keyframes kinetic-glow-ambient {
+  /* "fire" / "light" — radiance pulses in the text-shadow, word stays still */
+  0%, 100% { text-shadow: 0 0 3px rgba(255,240,180,0.20); }
+  50%       { text-shadow: 0 0 10px rgba(255,240,180,0.80); }
+}
+@keyframes kinetic-sacred-ambient {
+  /* "holy" — subtle gold brightening, no spacing shift */
+  0%, 100% { opacity: 0.82; }
+  50%       { opacity: 1.0; }
+}
+@keyframes kinetic-silence-ambient {
+  /* "silence" / "fade" — word nearly disappears, no spacing change */
+  0%, 100% { opacity: 0.62; }
+  50%       { opacity: 0.18; }
+}
+@keyframes kinetic-shake-ambient {
+  /* "tremble" / "quiver" — sub-pixel shimmer; the word shudders without
+     displacing anything around it */
+  0%, 100% { transform: translateX(0px);    opacity: 0.92; }
+  20%       { transform: translateX(0.4px);  opacity: 0.75; }
+  40%       { transform: translateX(-0.4px); opacity: 0.88; }
+  60%       { transform: translateX(0.3px);  opacity: 0.70; }
+  80%       { transform: translateX(-0.2px); opacity: 0.85; }
+}
+@keyframes kinetic-drift-ambient {
+  /* "wave" / "wander" — opacity drift, no horizontal shift */
+  0%, 100% { opacity: 0.85; }
+  50%       { opacity: 0.62; }
+}
+@keyframes kinetic-spin-ambient {
+  /* "spiral" — gentle opacity cycle */
+  0%, 100% { opacity: 0.82; }
+  50%       { opacity: 1.0; }
+}
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }

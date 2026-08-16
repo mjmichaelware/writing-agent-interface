@@ -17,6 +17,13 @@ const SECURITY_FILTERS = [
   ['source_doc_folder', 'ilike', '%prompt%'],
 ] as const;
 
+type SemanticWordEntry = {
+  word: string;
+  claim_family: string;
+  label: string;
+  confidence: number;
+};
+
 type StandardParagraph = {
   id: string;
   chapter_slug?: string | null;
@@ -35,6 +42,8 @@ type StandardParagraph = {
   chapter_id?: string | null;
   biblical_references?: any[] | null;
   chapters?: any | null;
+  render_para_key?: string | null;
+  semantic_words?: SemanticWordEntry[];
 };
 
 function applySecurityFilters(query: any) {
@@ -57,9 +66,9 @@ function mapParagraph(row: any, chapterNumber: number, overrides: Partial<Standa
     chapter_slug: row?.chapter_slug ?? overrides.chapter_slug ?? null,
     chapter_number: Number(row?.chapter_number ?? chapterNumber ?? overrides.chapter_number ?? 0),
     chapter_version: row?.chapter_version ?? overrides.chapter_version ?? null,
-    paragraph_order: Number(row?.paragraph_order ?? row?.chunk_index ?? overrides.paragraph_order ?? overrides.chunk_index ?? 0),
-    chunk_index: Number(row?.chunk_index ?? overrides.chunk_index ?? 0),
-    content: String(row?.content ?? overrides.content ?? ''),
+    paragraph_order: Number(row?.paragraph_order ?? row?.chunk_index ?? row?.render_index ?? overrides.paragraph_order ?? overrides.chunk_index ?? 0),
+    chunk_index: Number(row?.chunk_index ?? row?.render_index ?? overrides.chunk_index ?? 0),
+    content: String(row?.content ?? row?.text ?? overrides.content ?? ''),
     weights,
     content_hash: row?.content_hash ?? overrides.content_hash ?? null,
     canonical: Boolean(row?.canonical ?? overrides.canonical ?? false),
@@ -70,6 +79,8 @@ function mapParagraph(row: any, chapterNumber: number, overrides: Partial<Standa
     chapter_id: row?.chapter_id ?? overrides.chapter_id ?? null,
     biblical_references: row?.biblical_references ?? overrides.biblical_references ?? null,
     chapters: row?.chapters ?? overrides.chapters ?? null,
+    render_para_key: row?.render_para_key ?? overrides.render_para_key ?? null,
+    semantic_words: [],
   };
 }
 
@@ -101,12 +112,13 @@ async function resolveChapter(supabase: ReturnType<typeof getSupabase>, chapterI
 async function loadRenderParagraphs(supabase: ReturnType<typeof getSupabase>, chapterNumber: number, includeCanonical: boolean) {
   if (!supabase) return { data: null, error: new Error('Supabase not configured') };
 
+  // render_paragraphs uses `text` and `render_index` — not `content` / `chunk_index`
   let query = applySecurityFilters(
     supabase
       .from('render_paragraphs')
-      .select('id, chapter_number, chunk_index, content, content_hash, canonical, archetypal_weights')
+      .select('id, chapter_number, render_index, text, content_hash, canonical, render_para_key')
       .eq('chapter_number', chapterNumber)
-      .order('chunk_index', { ascending: true })
+      .order('render_index', { ascending: true })
   );
 
   if (includeCanonical) {
@@ -114,6 +126,45 @@ async function loadRenderParagraphs(supabase: ReturnType<typeof getSupabase>, ch
   }
 
   return query;
+}
+
+async function enrichWithSemanticWords(
+  supabase: ReturnType<typeof getSupabase>,
+  paragraphs: StandardParagraph[]
+): Promise<void> {
+  if (!supabase) return;
+  const keys = paragraphs.map((p) => p.render_para_key).filter(Boolean) as string[];
+  if (keys.length === 0) return;
+
+  try {
+    const { data: spans } = await supabase
+      .from('semantic_meaning_spans')
+      .select('source_span, claim_family, label, subject_name, confidence')
+      .filter('source_span->>render_para_key', 'in', `(${keys.join(',')})`)
+      .not('subject_name', 'is', null)
+      .in('claim_family', ['archetype', 'biblical', 'dualism']);
+
+    const map: Record<string, SemanticWordEntry[]> = {};
+    for (const span of spans ?? []) {
+      const key = (span.source_span as any)?.render_para_key;
+      if (!key) continue;
+      if (!map[key]) map[key] = [];
+      map[key].push({
+        word: span.subject_name,
+        claim_family: span.claim_family,
+        label: span.label || '',
+        confidence: Number(span.confidence || 0.15),
+      });
+    }
+
+    for (const para of paragraphs) {
+      if (para.render_para_key && map[para.render_para_key]) {
+        para.semantic_words = map[para.render_para_key];
+      }
+    }
+  } catch {
+    // Semantic enrichment is non-critical; degrade gracefully
+  }
 }
 
 async function loadPromotedManuscriptParagraphs(
@@ -308,7 +359,7 @@ export async function GET(request: Request) {
     const message = error?.message ?? String(error);
     if (/canonical/i.test(message)) {
       console.warn(
-        'render_paragraphs canonical filter unavailable; falling back to chunk_index ordering',
+        'render_paragraphs canonical filter unavailable; falling back to render_index ordering',
         message
       );
 
@@ -331,6 +382,9 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: message }, { status: 500 });
     }
   }
+
+  // Enrich with semantic words from Supabase (non-blocking — degrading gracefully if unavailable)
+  await enrichWithSemanticWords(supabase, renderParagraphs);
 
   if (renderParagraphs.length === 0) {
     if (!chapter.id) {

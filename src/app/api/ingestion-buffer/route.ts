@@ -12,7 +12,7 @@ function sb() {
 
 const LOCAL_BUFFER_DIR = path.join(
   process.cwd(),
-  "src/data-layer/ingestion-buffer/gdrive_ooxml_raw"
+  "src/data-layer/ingestion-buffer/gdrive_raw"
 );
 
 // Returns the full ingestion buffer — both the Supabase v_local_imports registry
@@ -46,15 +46,11 @@ export async function GET() {
   try {
     const entries = await fs.readdir(LOCAL_BUFFER_DIR);
     for (const name of entries) {
-      // File names are like: 0001_chapter_1_<title>_<drive_id>
-      // Extract drive ID from the last underscore-delimited segment
-      const parts = name.split("_");
-      const driveId = parts[parts.length - 1];
-      const id = driveId || name;
+      const id = name;
       if (seen.has(id)) continue;
       seen.add(id);
-      // Build human-readable name from filename segments (strip index prefix + id suffix)
-      const label = parts.slice(1, -1).join(" ").replace(/[-_]/g, " ");
+      // Human-readable label: strip extension, replace underscores/hyphens with spaces
+      const label = name.replace(/\.[^.]+$/, "").replace(/[_-]+/g, " ").trim();
       files.push({
         id,
         name:    label || name,
